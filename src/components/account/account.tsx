@@ -4,8 +4,8 @@ import {
   useSupabaseClient,
   Session
 } from '@supabase/auth-helpers-react';
-import { Database } from '../../../api/types/supabase';
-import { getUsername } from '../../../api/profile/users';
+import { Database } from '../../api/types/supabase';
+import { getUsername } from '../../api/profile/users';
 type Users = Database['public']['Tables']['users']['Row'];
 
 export default function Account({ session }: { session: Session }) {

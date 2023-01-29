@@ -1,0 +1,106 @@
+CREATE TABLE IF NOT EXISTS users (
+			id SERIAL PRIMARY KEY,
+			username VARCHAR(256) NOT NULL,
+			display_name VARCHAR(256) NOT NULL,
+			bio VARCHAR(256) NOT NULL,
+			location VARCHAR(256),
+			password VARCHAR(256) NOT NULL,
+			subscriptions VARCHAR(256) NOT NULL, 
+			created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS creators (
+			id SERIAL PRIMARY KEY,
+			user_id INTEGER NOT NULL REFERENCES users (id), 
+			is_verified BOOL NOT NULL, 
+			creator_subscriptions VARCHAR(256) NOT NULL, 
+			created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS characters (
+			id SERIAL PRIMARY KEY,
+			username VARCHAR(256) NOT NULL,
+			display_name VARCHAR(256) NOT NULL,
+			bio VARCHAR(256) NOT NULL,
+			creator_id INTEGER NOT NULL REFERENCES creators (id),
+			created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE followers (
+    id SERIAL PRIMARY KEY,
+		follower_id INTEGER NOT NULL REFERENCES users (id),
+		followed_id INTEGER NOT NULL REFERENCES users (id),
+    UNIQUE (follower_id, followed_id),
+		created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS hashtags (
+			id SERIAL PRIMARY KEY,
+			user_id INTEGER NOT NULL REFERENCES users (id),
+			name VARCHAR(256) NOT NULL,
+			created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS info_tags (
+			id SERIAL PRIMARY KEY,
+			name VARCHAR(256) NOT NULL,
+			created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS posts (
+			id SERIAL PRIMARY KEY,
+			user_id INTEGER NOT NULL REFERENCES users (id),
+			title VARCHAR(256) NOT NULL,
+			description VARCHAR(256) NOT NULL,
+			prompt_description VARCHAR(256) NOT NULL,
+			is_ppv BOOL NOT NULL,
+			hashtags_id INTEGER NOT NULL REFERENCES hashtags (id),
+			infotags_id INTEGER NOT NULL REFERENCES info_tags (id),
+			created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS media (
+			id SERIAL PRIMARY KEY,
+			post_id INTEGER NOT NULL REFERENCES posts (id),
+			media_type VARCHAR(256) NOT NULL,
+			media_url VARCHAR(256) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS comments (
+			id SERIAL PRIMARY KEY,
+			post_id INTEGER NOT NULL REFERENCES posts(id),
+			user_id INTEGER NOT NULL,
+			comment VARCHAR(256) NOT NULL,
+			created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS post_likes (
+			id SERIAL PRIMARY KEY,
+			post_id INTEGER NOT NULL REFERENCES posts(id),
+			user_id INTEGER NOT NULL REFERENCES users(id),
+			is_like BOOLEAN NOT NULL,
+			is_super BOOLEAN NOT NULL,
+			created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS items (
+		  id SERIAL PRIMARY KEY,
+		  name VARCHAR(255) NOT NULL,
+			creator_id INTEGER NOT NULL REFERENCES creators(id),
+		  owner_id INTEGER NOT NULL REFERENCES users(id),
+		  price DECIMAL(10,2) NOT NULL,
+			rarity VARCHAR(256) NOT NULL,
+			created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS bookmarks (
+	    id SERIAL PRIMARY KEY,
+	    user_id INT NOT NULL REFERENCES users(id),
+	    post_id INT NULL REFERENCES posts(id),
+	    media_id INT NULL REFERENCES media(id),
+	    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	    UNIQUE (user_id, post_id, media_id)
+);
+
+
+

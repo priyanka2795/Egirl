@@ -4,12 +4,12 @@ import {
   Session
 } from '@supabase/auth-helpers-react';
 
-import { Database } from '../types/supabase';
+import { Database } from '../../api/types/supabase';
 type Users = Database['public']['Tables']['users']['Row'];
 
-export async function getUsername(
+export async function getPosts(
   setLoading: (loading: boolean) => void,
-  setUsername: (username: string) => void
+  setData: (data: any) => void
 ) {
   const supabase = useSupabaseClient<Database>();
   const user = useUser();
@@ -19,17 +19,16 @@ export async function getUsername(
     if (!user) throw new Error('No user');
 
     let { data, error, status } = await supabase
-      .from('users')
-      .select(`username`)
-      .eq('id', user.id)
-      .single();
+      .from('posts')
+      .select(`title, description, is_ppv`)
+      .limit(10);
 
     if (error && status !== 406) {
       throw error;
     }
 
     if (data) {
-      setUsername(data.username);
+      setData(data);
     }
   } catch (error) {
     alert('Error loading posts data!');
