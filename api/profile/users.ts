@@ -7,9 +7,9 @@ import {
 import { Database } from '../types/supabase';
 type Users = Database['public']['Tables']['users']['Row'];
 
-export async function getPosts(
+export async function getUsername(
   setLoading: (loading: boolean) => void,
-  setData: (data: any) => void
+  setUsername: (username: string) => void
 ) {
   const supabase = useSupabaseClient<Database>();
   const user = useUser();
@@ -19,16 +19,17 @@ export async function getPosts(
     if (!user) throw new Error('No user');
 
     let { data, error, status } = await supabase
-      .from('posts')
-      .select(`title, description, is_ppv`)
-      .limit(10);
+      .from('users')
+      .select(`username`)
+      .eq('id', user.id)
+      .single();
 
     if (error && status !== 406) {
       throw error;
     }
 
     if (data) {
-      setData(data);
+      setUsername(data.username);
     }
   } catch (error) {
     alert('Error loading posts data!');

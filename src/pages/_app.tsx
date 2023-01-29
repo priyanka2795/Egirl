@@ -6,6 +6,9 @@ import { AppHead } from '@components/common/app-head';
 import type { ReactElement, ReactNode } from 'react';
 import type { NextPage } from 'next';
 import type { AppProps } from 'next/app';
+import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs';
+import { SessionContextProvider, Session } from '@supabase/auth-helpers-react';
+import { useState } from 'react';
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -21,14 +24,21 @@ export default function App({
 }: AppPropsWithLayout): ReactNode {
   const getLayout = Component.getLayout ?? ((page): ReactNode => page);
 
+  const [supabaseClient] = useState(() => createBrowserSupabaseClient());
+
   return (
     <>
       <AppHead />
-      <AuthContextProvider>
-        <ThemeContextProvider>
-          {getLayout(<Component {...pageProps} />)}
-        </ThemeContextProvider>
-      </AuthContextProvider>
+      <SessionContextProvider
+        supabaseClient={supabaseClient}
+        initialSession={pageProps.initialSession}
+      >
+        <AuthContextProvider>
+          <ThemeContextProvider>
+            {getLayout(<Component {...pageProps} />)}
+          </ThemeContextProvider>
+        </AuthContextProvider>
+      </SessionContextProvider>
     </>
   );
 }
