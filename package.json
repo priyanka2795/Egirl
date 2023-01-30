@@ -20,6 +20,7 @@
     "@supabase/auth-ui-react": "^0.2.6",
     "@supabase/supabase-js": "^2.5.0",
     "clsx": "^1.2.1",
+    "dotenv": "^16.0.3",
     "firebase": "^9.9.4",
     "framer-motion": "^7.2.1",
     "next": "12.2.4",
