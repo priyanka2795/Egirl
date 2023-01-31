@@ -16,20 +16,28 @@ export default function Login(): JSX.Element {
         title='Twitter - It’s what’s happening'
         description='From breaking news and entertainment to sports and politics, get the full story with all the live commentary.'
       />
-      <div className='container' style={{ padding: '50px 0 100px 0' }}>
-        {!session ? (
-          <Auth
-            supabaseClient={supabase}
-            appearance={{ theme: ThemeSupa }}
-            providers={['google']}
-            theme='dark'
-          />
-        ) : (
-          <Account session={session} />
-        )}
+      <div className='grid grid-cols-2'>
+        <div className='flex items-center justify-center bg-red-200 text-black'>
+          image here
+        </div>
+        <div className='mx-40 flex items-center'>
+          <div className='container' style={{ padding: '50px 0 100px 0' }}>
+            {!session ? (
+              <Auth
+                supabaseClient={supabase}
+                appearance={{ theme: ThemeSupa }}
+                providers={['google', 'twitter', 'apple']}
+                theme='dark'
+              />
+            ) : (
+              <Account session={session} />
+            )}
+          </div>
+        </div>
       </div>
-      <LoginMain />
-      <LoginFooter />
+
+      {/* <LoginMain />
+      <LoginFooter /> */}
     </div>
   );
 }

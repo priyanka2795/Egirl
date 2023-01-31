@@ -23,8 +23,6 @@ export default function Login(): JSX.Element {
             appearance={{ theme: ThemeSupa }}
             providers={['google']}
             theme='dark'
-            view='sign_up'
-            redirectTo='/login'
           />
         ) : (
           <Account session={session} />
