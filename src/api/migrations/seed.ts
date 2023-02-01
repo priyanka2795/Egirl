@@ -212,53 +212,27 @@ async function followers() {
   }
 }
 
-async function hashtags() {
-  const data = [
-    {
-      id: 1,
-      created_by: 1,
-      name: 'hash1',
-      created_at: '2016-07-24T03:32:45.678Z'
-    },
-    {
-      id: 2,
-      created_by: 2,
-      name: 'hash2',
-      created_at: '2016-07-24T03:32:45.678Z'
-    },
-    {
-      id: 3,
-      created_by: 2,
-      name: 'hash2',
-      created_at: '2016-07-24T03:32:45.678Z'
-    }
-  ];
-
-  const { error } = await supabaseClient.from('hashtags').insert(data);
-
-  if (error) {
-    console.log(error);
-  }
-}
-
 async function infotags() {
   const data = [
     {
       id: 1,
       created_by: 1,
       name: 'dom',
+      is_hashtag: false,
       created_at: '2016-07-24T03:32:45.678Z'
     },
     {
       id: 2,
       created_by: 2,
-      name: 'kinky',
+      name: '#kinky',
+      is_hashtag: true,
       created_at: '2017-07-24T03:32:45.678Z'
     },
     {
       id: 3,
       created_by: 3,
       name: 'bdsm',
+      is_hashtag: false,
       created_at: '2018-07-24T03:32:45.678Z'
     }
   ];
@@ -281,7 +255,6 @@ async function posts() {
       prompt_description: 'todo',
       is_ppv: false,
       is_character_post: true,
-      hashtag_ids: [1, 2],
       infotag_ids: [1, 2],
       created_at: '2016-07-24T03:32:45.678Z'
     },
@@ -294,7 +267,6 @@ async function posts() {
       prompt_description: 'todo',
       is_ppv: true,
       is_character_post: true,
-      hashtag_ids: [2, 3],
       infotag_ids: [2, 3],
       created_at: '2017-07-24T03:32:45.678Z'
     },
@@ -307,8 +279,7 @@ async function posts() {
       prompt_description: 'todo',
       is_ppv: true,
       is_character_post: true,
-      hashtags_id: [1, 3],
-      infotags_id: [1, 3],
+      infotag_ids: [1, 3],
       created_at: '2018-07-24T03:32:45.678Z'
     }
   ];
@@ -489,6 +460,35 @@ async function bookmarks() {
   }
 }
 
+async function interests() {
+  const data = [
+    {
+      id: 1,
+      user_id: '1dd94d8b-c048-4b21-8571-583296db317e',
+      infotag_id: 1,
+      created_at: '2016-07-24T03:32:45.678Z'
+    },
+    {
+      id: 2,
+      user_id: 'fc180fa6-465c-4a1e-b015-05f1004d4cf9',
+      infotag_id: 2,
+      created_at: '2017-07-24T03:32:45.678Z'
+    },
+    {
+      id: 3,
+      user_id: 'f771cfea-d30e-4157-b2f4-793857033165',
+      infotag_id: 3,
+      created_at: '2018-07-24T03:32:45.678Z'
+    }
+  ];
+
+  const { error } = await supabaseClient.from('bookmarks').insert(data);
+
+  if (error) {
+    console.log(error);
+  }
+}
+
 async function main() {
   await profile();
   console.log('profile done');
@@ -502,8 +502,6 @@ async function main() {
   console.log('creator_subscriptions done');
   await followers();
   console.log('followers done');
-  await hashtags();
-  console.log('hashtags done');
   await infotags();
   console.log('infotags done');
   await posts();
@@ -518,6 +516,8 @@ async function main() {
   console.log('items done');
   await bookmarks();
   console.log('bookmarks done');
+  await interests();
+  console.log('interests done');
 }
 
 main();
