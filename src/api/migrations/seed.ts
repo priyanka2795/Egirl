@@ -482,7 +482,7 @@ async function interests() {
     }
   ];
 
-  const { error } = await supabaseClient.from('bookmarks').insert(data);
+  const { error } = await supabaseClient.from('interests').insert(data);
 
   if (error) {
     console.log(error);

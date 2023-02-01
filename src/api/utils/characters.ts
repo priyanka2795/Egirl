@@ -43,16 +43,13 @@ export async function getCharacterById(character_id: number) {
   return { data, total_subscriptions, infotags, follower_count };
 }
 
-export async function getCharactersByInfoTags(
-  infotags: number[],
-  limit: number
-) {
+export async function getCharactersByInfoTags(infotags: string, limit: number) {
   let { data, error, status } = await supabaseClient
     .from('characters')
     .select(
-      `id, username, display_name, is_verified, bio, creator_id, profile_picture, profile_banner_picture, infotags, created_at`
+      `id, username, display_name, is_verified, bio, creator_id, profile_picture, profile_banner_picture, infotag_ids, created_at`
     )
-    .filter('infotags', 'contains', infotags)
+    .filter('infotag_ids', 'cs', infotags)
     .limit(limit);
 
   if ((error && status !== 406) || !data) {
@@ -89,9 +86,13 @@ export async function getCharactersByInfoTags(
 
     final_subscriptions[i] = total_subscriptions;
 
-    const info_tags = await getInfoTagsByInfoTagIds(data[0]['infotags']);
+    const infotag_ids = data[0]['infotag_ids'];
 
-    final_infotags[i] = info_tags;
+    const infotags = await getInfoTagsByInfoTagIds(
+      '(' + infotag_ids.join(',') + ')'
+    );
+
+    final_infotags[i] = infotags;
 
     // Can extend this later for loading list of followers
     const followers = await getFollowersByCharacterId(character_id);
@@ -116,9 +117,9 @@ export async function getUserSubscriptionsByCharacterId(character_id: number) {
   return data;
 }
 
-export async function getInfoTagsByInfoTagIds(infotag_ids: number[]) {
+export async function getInfoTagsByInfoTagIds(infotag_ids: string) {
   let { data, error, status } = await supabaseClient
-    .from('info_tags')
+    .from('infotags')
     .select(`id, created_by, name, created_at`)
     .filter('id', 'in', infotag_ids);
 

@@ -20,7 +20,6 @@ export async function getProfileInterests(user_id: string) {
     .from('interests')
     .select(`id, user_id, infotag_id, created_at`)
     .filter('user_id', 'eq', user_id);
-
   if ((error && status !== 406) || !data) {
     throw error;
   }
