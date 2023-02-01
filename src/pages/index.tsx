@@ -14,23 +14,24 @@ export default function Login(): JSX.Element {
   const customTheme = {
     default: {
       colors: {
-        brand: 'hsla(333, 92%, 77%, 1)',
-        brandAccent: 'hsla(333, 92%, 35%, 1)',
+        brand: 'rgb(231, 88, 88)',
+        brandAccent: 'rgb(201, 29, 29)',
         brandButtonText: 'white',
-        defaultButtonText: 'white',
-        defaultButtonBackground: 'hsla(333, 92%, 77%, 1)',
-        defaultButtonBackgroundHover: 'hsla(333, 92%, 35%, 1)',
+        defaultButtonText: 'black',
+        defaultButtonBorder: 'gray',
+        defaultButtonBackground: 'white',
+        defaultButtonBackgroundHover: 'white',
         inputBackground: 'transparent',
         inputBorder: 'lightgray',
-        inputBorderHover: 'gray',
-        inputBorderFocus: 'gray',
+        inputBorderHover: 'rgb(201, 29, 29)',
+        inputBorderFocus: 'rgb(201, 29, 29)',
         inputText: 'black',
         inputLabelText: 'gray',
         inputPlaceholder: 'darkgray',
         messageText: 'gray',
         messageTextDanger: 'red',
         anchorTextColor: 'gray',
-        anchorTextHoverColor: 'darkgray'
+        anchorTextHoverColor: 'rgb(201, 29, 29)'
       },
       space: {
         spaceSmall: '4px',
@@ -60,9 +61,9 @@ export default function Login(): JSX.Element {
         inputBorderWidth: '1px'
       },
       radii: {
-        borderRadiusButton: '4px',
-        buttonBorderRadius: '4px',
-        inputBorderRadius: '4px'
+        borderRadiusButton: '6px',
+        buttonBorderRadius: '6px',
+        inputBorderRadius: '6px'
       }
       // dark: {
       //   colors: {
@@ -84,17 +85,17 @@ export default function Login(): JSX.Element {
     }
   };
   return (
-    <div className='grid min-h-screen grid-rows-[1fr,auto] bg-white'>
+    <div className='grid min-h-screen grid-rows-[1fr,auto]'>
       <SEO
         title='Twitter - It’s what’s happening'
         description='From breaking news and entertainment to sports and politics, get the full story with all the live commentary.'
       />
-      <div className='grid grid-cols-2'>
-        <div className='flex items-center justify-center bg-white font-mono text-8xl italic text-black text-pink-400'>
+      <div className='grid grid-cols-5'>
+        <div className='flex items-center justify-center bg-white font-serif font-bold text-8xl italic text-main-red col-span-3'>
           e-Girls
         </div>
-        <div className='flex items-center bg-gradient-to-b from-pink-300 to-red-200'>
-          <div className='container mx-40 bg-white p-10'>
+        <div className='flex items-center bg-main-red col-span-2'>
+          <div className='container mx-40 p-10 bg-white shadow-2xl drop-shadow-2xl'>
             {!session ? (
               <Auth
                 supabaseClient={supabase}
