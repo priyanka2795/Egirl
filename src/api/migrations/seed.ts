@@ -70,7 +70,6 @@ async function creators() {
     console.log(error);
   }
 }
-//creators();
 
 async function characters() {
   const data = [
@@ -83,6 +82,7 @@ async function characters() {
       creator_id: 1,
       profile_picture: 'www.character-image.com',
       profile_banner_picture: 'www.character-imagebanner.com',
+      infotag_ids: [1, 2],
       created_at: '2016-07-24T03:32:45.678Z'
     },
     {
@@ -94,6 +94,7 @@ async function characters() {
       creator_id: 2,
       profile_picture: 'www.character-image.com',
       profile_banner_picture: 'www.character-imagebanner.com',
+      infotag_ids: [2, 3],
       created_at: '2016-07-24T03:32:45.678Z'
     },
     {
@@ -105,6 +106,7 @@ async function characters() {
       creator_id: 3,
       profile_picture: 'www.character-image.com',
       profile_banner_picture: 'www.character-imagebanner.com',
+      infotag_ids: [1, 3],
       created_at: '2016-07-24T03:32:45.678Z'
     }
   ];
@@ -115,7 +117,6 @@ async function characters() {
     console.log(error);
   }
 }
-//characters();
 
 async function user_subscriptions() {
   const data = [
@@ -150,7 +151,6 @@ async function user_subscriptions() {
     console.log(error);
   }
 }
-//user_subscriptions();
 
 async function creator_subscriptions() {
   const data = [
@@ -241,7 +241,7 @@ async function hashtags() {
   }
 }
 
-async function info_tags() {
+async function infotags() {
   const data = [
     {
       id: 1,
@@ -263,7 +263,7 @@ async function info_tags() {
     }
   ];
 
-  const { error } = await supabaseClient.from('info_tags').insert(data);
+  const { error } = await supabaseClient.from('infotags').insert(data);
 
   if (error) {
     console.log(error);
@@ -274,35 +274,41 @@ async function posts() {
   const data = [
     {
       id: 1,
+      user_id: '1dd94d8b-c048-4b21-8571-583296db317e',
       character_id: 1,
       title: 'mod',
       description: 'this is a mod',
       prompt_description: 'todo',
       is_ppv: false,
-      hashtags_id: 1,
-      infotags_id: 1,
+      is_character_post: true,
+      hashtag_ids: [1, 2],
+      infotag_ids: [1, 2],
       created_at: '2016-07-24T03:32:45.678Z'
     },
     {
       id: 2,
+      user_id: 'fc180fa6-465c-4a1e-b015-05f1004d4cf9',
       character_id: 2,
       title: 'dom',
       description: 'this is a dom',
       prompt_description: 'todo',
       is_ppv: true,
-      hashtags_id: 2,
-      infotags_id: 2,
+      is_character_post: true,
+      hashtag_ids: [2, 3],
+      infotag_ids: [2, 3],
       created_at: '2017-07-24T03:32:45.678Z'
     },
     {
       id: 3,
+      user_id: 'f771cfea-d30e-4157-b2f4-793857033165',
       character_id: 3,
       title: 'abc',
       description: 'this is a abc',
       prompt_description: 'todo',
       is_ppv: true,
-      hashtags_id: 3,
-      infotags_id: 3,
+      is_character_post: true,
+      hashtags_id: [1, 3],
+      infotags_id: [1, 3],
       created_at: '2018-07-24T03:32:45.678Z'
     }
   ];
@@ -498,8 +504,8 @@ async function main() {
   console.log('followers done');
   await hashtags();
   console.log('hashtags done');
-  await info_tags();
-  console.log('info_tags done');
+  await infotags();
+  console.log('infotags done');
   await posts();
   console.log('posts done');
   await media();
