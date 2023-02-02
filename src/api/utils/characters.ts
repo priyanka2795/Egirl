@@ -1,7 +1,5 @@
-import { supabaseClient } from '../../config/supabaseClient';
-
-export async function getCharacterById(character_id: number) {
-  let { data, error, status } = await supabaseClient
+export async function getCharacterById(character_id: number, client: any) {
+  let { data, error, status } = await client
     .from('characters')
     .select(
       `username, display_name, is_verified, bio, creator_id, profile_picture, profile_banner_picture, infotags, created_at`
@@ -13,7 +11,8 @@ export async function getCharacterById(character_id: number) {
   }
 
   const user_subscriptions = await getUserSubscriptionsByCharacterId(
-    character_id
+    character_id,
+    client
   );
   const total_subscriptions = user_subscriptions.reduce(
     (count: number[], sub: any) => {
@@ -34,17 +33,21 @@ export async function getCharacterById(character_id: number) {
     [0, 0, 0, 0] // Total, Tier 1, Tier 2, Tier 3
   );
 
-  const infotags = await getInfoTagsByInfoTagIds(data[0]['infotags']);
+  const infotags = await getInfoTagsByInfoTagIds(data[0]['infotags'], client);
 
   // Can extend this later for loading list of followers
-  const followers = await getFollowersByCharacterId(character_id);
+  const followers = await getFollowersByCharacterId(character_id, client);
   const follower_count = followers.length;
 
   return { data, total_subscriptions, infotags, follower_count };
 }
 
-export async function getCharactersByInfoTags(infotags: string, limit: number) {
-  let { data, error, status } = await supabaseClient
+export async function getCharactersByInfoTags(
+  infotags: string,
+  limit: number,
+  client: any
+) {
+  let { data, error, status } = await client
     .from('characters')
     .select(
       `id, username, display_name, is_verified, bio, creator_id, profile_picture, profile_banner_picture, infotag_ids, created_at`
@@ -63,7 +66,8 @@ export async function getCharactersByInfoTags(infotags: string, limit: number) {
   for (let i = 0; i < data.length; i++) {
     const character_id = data[i].id;
     const user_subscriptions = await getUserSubscriptionsByCharacterId(
-      character_id
+      character_id,
+      client
     );
     const total_subscriptions = user_subscriptions.reduce(
       (count: number[], sub: any) => {
@@ -89,13 +93,14 @@ export async function getCharactersByInfoTags(infotags: string, limit: number) {
     const infotag_ids = data[0]['infotag_ids'];
 
     const infotags = await getInfoTagsByInfoTagIds(
-      '(' + infotag_ids.join(',') + ')'
+      '(' + infotag_ids.join(',') + ')',
+      client
     );
 
     final_infotags[i] = infotags;
 
     // Can extend this later for loading list of followers
-    const followers = await getFollowersByCharacterId(character_id);
+    const followers = await getFollowersByCharacterId(character_id, client);
     const follower_count = followers.length;
 
     final_follower_count[i] = follower_count;
@@ -104,8 +109,11 @@ export async function getCharactersByInfoTags(infotags: string, limit: number) {
   return { data, final_subscriptions, final_infotags, final_follower_count };
 }
 
-export async function getUserSubscriptionsByCharacterId(character_id: number) {
-  let { data, error, status } = await supabaseClient
+export async function getUserSubscriptionsByCharacterId(
+  character_id: number,
+  client: any
+) {
+  let { data, error, status } = await client
     .from('user_subscriptions')
     .select(`id, user_id, character_id, subscription_tier, created_at`)
     .filter('character_id', 'eq', character_id);
@@ -117,8 +125,11 @@ export async function getUserSubscriptionsByCharacterId(character_id: number) {
   return data;
 }
 
-export async function getInfoTagsByInfoTagIds(infotag_ids: string) {
-  let { data, error, status } = await supabaseClient
+export async function getInfoTagsByInfoTagIds(
+  infotag_ids: string,
+  client: any
+) {
+  let { data, error, status } = await client
     .from('infotags')
     .select(`id, created_by, name, created_at`)
     .filter('id', 'in', infotag_ids);
@@ -130,8 +141,11 @@ export async function getInfoTagsByInfoTagIds(infotag_ids: string) {
   return data;
 }
 
-export async function getFollowersByCharacterId(character_id: number) {
-  let { data, error, status } = await supabaseClient
+export async function getFollowersByCharacterId(
+  character_id: number,
+  client: any
+) {
+  let { data, error, status } = await client
     .from('followers')
     .select(`id, follower_id, followed_id, created_at`)
     .filter('followed_id', 'eq', character_id);

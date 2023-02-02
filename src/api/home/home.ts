@@ -9,8 +9,8 @@ import {
 /// Character posts
 
 // Get posts for characters that user is subscribed to
-export async function getHomePostsSubscribedTo(user_id: string) {
-  const subscriptions = await getUserSubscriptionsByUserId(user_id);
+export async function getHomePostsSubscribedTo(user_id: string, client: any) {
+  const subscriptions = await getUserSubscriptionsByUserId(user_id, client);
   const character_ids = subscriptions.map(
     (subscription: any) => subscription.character_id
   );
@@ -20,8 +20,8 @@ export async function getHomePostsSubscribedTo(user_id: string) {
 }
 
 // Get posts for characters that user is following
-export async function getHomePostsFollowing(user_id: string) {
-  const follows = await getCharacterFollowsByUserId(user_id);
+export async function getHomePostsFollowing(user_id: string, client: any) {
+  const follows = await getCharacterFollowsByUserId(user_id, client);
   const character_ids = follows.map((character: any) => character.followed_id);
   const character_ids_str = '(' + character_ids.join(',') + ')';
   const posts = await getPosts(true, 20, undefined, character_ids_str);
@@ -29,11 +29,11 @@ export async function getHomePostsFollowing(user_id: string) {
 }
 
 // Get posts by infotags based on user interests
-export async function getHomePostsByInfoTags(user_id: string) {
-  const interests = await getProfileInterests(user_id);
+export async function getHomePostsByInfoTags(user_id: string, client: any) {
+  const interests = await getProfileInterests(user_id, client);
   const infotags = interests.map((interest: any) => interest.infotag_id);
   const infotags_str = '{' + infotags.join(',') + '}';
-  const posts = await getPostsByInfoTags(infotags_str, 20);
+  const posts = await getPostsByInfoTags(infotags_str, 20, client);
   return posts;
 }
 
@@ -46,11 +46,14 @@ export async function getHomePostsLatest() {
 /// Character profiles
 
 // Get suggested characters by infotags based on user interests
-export async function getHomeCharacterSuggestionsByInfotags(user_id: string) {
-  const interests = await getProfileInterests(user_id);
+export async function getHomeCharacterSuggestionsByInfotags(
+  user_id: string,
+  client: any
+) {
+  const interests = await getProfileInterests(user_id, client);
   const infotags = interests.map((interest: any) => interest.infotag_id);
   const infotags_str = '{' + infotags.join(',') + '}';
-  const characters = await getCharactersByInfoTags(infotags_str, 20);
+  const characters = await getCharactersByInfoTags(infotags_str, 20, client);
   return characters;
 }
 

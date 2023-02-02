@@ -1,8 +1,7 @@
-import { supabaseClient } from '../../config/supabaseClient';
-
 export async function getPosts(
   is_character: boolean,
   limit: number,
+  client: any,
   user_ids?: string,
   character_ids?: string
 ) {
@@ -19,7 +18,7 @@ export async function getPosts(
   if (is_character) {
     if (character_ids) {
       // Get all posts for a character
-      let { data, error, status } = await supabaseClient
+      let { data, error, status } = await client
         .from('posts')
         .select(
           `id, user_id, character_id, title, description, is_ppv, infotag_ids, created_at`
@@ -32,7 +31,7 @@ export async function getPosts(
       clientStatus = status;
     } else {
       // Get all posts for characters
-      let { data, error, status } = await supabaseClient
+      let { data, error, status } = await client
         .from('posts')
         .select(
           `id, user_id, character_id, title, description, is_ppv, infotag_ids, created_at`
@@ -46,7 +45,7 @@ export async function getPosts(
   } else {
     if (user_ids) {
       // Get all posts for a user
-      let { data, error, status } = await supabaseClient
+      let { data, error, status } = await client
         .from('posts')
         .select(
           `id, user_id, character_id, title, description, is_ppv, infotag_ids, created_at`
@@ -59,7 +58,7 @@ export async function getPosts(
       clientStatus = status;
     } else {
       // Get all posts for users
-      let { data, error, status } = await supabaseClient
+      let { data, error, status } = await client
         .from('posts')
         .select(
           `id, user_id, character_id, title, description, is_ppv, hashtags_id, infotags_id, created_at`
@@ -85,7 +84,7 @@ export async function getPosts(
   // Alo comments
   for (let i = 0; i < clientData.length; i++) {
     const post_id = clientData[i].id;
-    const post_likes: any = await getPostLikes(post_id);
+    const post_likes: any = await getPostLikes(post_id, client);
     const total_post_likes = post_likes.reduce(
       (count: number[], like: any) => {
         if (like.is_like && !like.is_super) {
@@ -102,15 +101,16 @@ export async function getPosts(
       [0, 0]
     );
 
-    const comments: any = await getPostComments(post_id);
+    const comments: any = await getPostComments(post_id, client);
     const total_comments = comments.length;
 
-    const media = await getPostMedia(post_id);
+    const media = await getPostMedia(post_id, client);
 
     const infotag_ids = clientData[0]['infotag_ids'];
 
     const infotags = await getInfoTagsByInfoTagIds(
-      '(' + infotag_ids.join(',') + ')'
+      '(' + infotag_ids.join(',') + ')',
+      client
     );
 
     final_post_likes[i] = {
@@ -137,8 +137,12 @@ export async function getPosts(
   };
 }
 
-export async function getPostsByInfoTags(infotags: string, limit: number) {
-  let { data, error, status } = await supabaseClient
+export async function getPostsByInfoTags(
+  infotags: string,
+  limit: number,
+  client: any
+) {
+  let { data, error, status } = await client
     .from('posts')
     .select(
       `id, user_id, character_id, title, description, is_ppv, infotag_ids, created_at`
@@ -159,7 +163,7 @@ export async function getPostsByInfoTags(infotags: string, limit: number) {
   // Alo comments
   for (let i = 0; i < data.length; i++) {
     const post_id = data[i].id;
-    const post_likes: any = await getPostLikes(post_id);
+    const post_likes: any = await getPostLikes(post_id, client);
     const total_post_likes = post_likes.reduce(
       (count: number[], like: any) => {
         if (like.is_like && !like.is_super) {
@@ -176,15 +180,16 @@ export async function getPostsByInfoTags(infotags: string, limit: number) {
       [0, 0]
     );
 
-    const comments: any = await getPostComments(post_id);
+    const comments: any = await getPostComments(post_id, client);
     const total_comments = comments.length;
 
-    const media = await getPostMedia(post_id);
+    const media = await getPostMedia(post_id, client);
 
     const infotag_ids = data[0]['infotag_ids'];
 
     const infotags = await getInfoTagsByInfoTagIds(
-      '(' + infotag_ids.join(',') + ')'
+      '(' + infotag_ids.join(',') + ')',
+      client
     );
 
     final_post_likes[i] = {
@@ -211,8 +216,8 @@ export async function getPostsByInfoTags(infotags: string, limit: number) {
   };
 }
 
-export async function getPostLikes(post_id: number) {
-  let { data, error, status } = await supabaseClient
+export async function getPostLikes(post_id: number, client: any) {
+  let { data, error, status } = await client
     .from('post_likes')
     .select(`post_id, user_id, is_like, is_super, created_at`)
     .filter('post_id', 'eq', post_id)
@@ -225,8 +230,8 @@ export async function getPostLikes(post_id: number) {
   return data;
 }
 
-export async function getPostComments(post_id: number) {
-  let { data, error, status } = await supabaseClient
+export async function getPostComments(post_id: number, client: any) {
+  let { data, error, status } = await client
     .from('comments')
     .select(`id, post_id, user_id, description, created_at`)
     .filter('post_id', 'eq', post_id);
@@ -238,8 +243,8 @@ export async function getPostComments(post_id: number) {
   return data;
 }
 
-export async function getPostsByCharacterId(character_id: number) {
-  let { data, error, status } = await supabaseClient
+export async function getPostsByCharacterId(character_id: number, client: any) {
+  let { data, error, status } = await client
     .from('posts')
     .select(`title, description, is_ppv`)
     .filter('character_id', 'eq', character_id)
@@ -252,8 +257,8 @@ export async function getPostsByCharacterId(character_id: number) {
   return data;
 }
 
-export async function getPostMedia(post_id: number) {
-  let { data, error, status } = await supabaseClient
+export async function getPostMedia(post_id: number, client: any) {
+  let { data, error, status } = await client
     .from('media')
     .select(`id, post_id, media_type, media_url, created_at`)
     .filter('post_id', 'eq', post_id);
@@ -265,8 +270,11 @@ export async function getPostMedia(post_id: number) {
   return data;
 }
 
-export async function getInfoTagsByInfoTagIds(infotag_ids: string) {
-  let { data, error, status } = await supabaseClient
+export async function getInfoTagsByInfoTagIds(
+  infotag_ids: string,
+  client: any
+) {
+  let { data, error, status } = await client
     .from('infotags')
     .select(`id, created_by, name, created_at`)
     .filter('id', 'in', infotag_ids);
@@ -278,4 +286,4 @@ export async function getInfoTagsByInfoTagIds(infotag_ids: string) {
   return data;
 }
 
-getPosts(true, 20, '()', '(1)').then((res) => console.log(res));
+//getPosts(true, 20, '()', '(1)').then((res) => console.log(res));
