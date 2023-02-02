@@ -13,9 +13,13 @@ import { MainHeader } from '@components/home/main-header';
 import { Tweet } from '@components/tweet/tweet';
 import { Loading } from '@components/ui/loading';
 import { Error } from '@components/ui/error';
-import type { ReactElement, ReactNode } from 'react';
+import { ReactElement, ReactNode, useEffect } from 'react';
+import { getHomePostsSubscribedTo } from '../api/home/test-supabase';
+import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react';
 
 export default function Home(): JSX.Element {
+  const user = useUser();
+  const client = useSupabaseClient();
   // const { isMobile } = useWindow();
 
   // const { data, loading, LoadMore } = useInfiniteScroll(
@@ -23,6 +27,18 @@ export default function Home(): JSX.Element {
   //   [where('parent', '==', null), orderBy('createdAt', 'desc')],
   //   { includeUser: true, allowNull: true, preserve: true }
   // );
+
+  const getHomePosts = async () => {
+    const data = await getHomePostsSubscribedTo(user!.id, client);
+    console.log('data', data);
+  };
+
+  useEffect(() => {
+    // must check for user here first
+    if (user) {
+      getHomePosts();
+    }
+  }, [user]);
 
   const isMobile = false;
   const data: any[] = [];

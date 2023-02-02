@@ -1,4 +1,4 @@
-export const getUsername = () => {
+export const getUsername = async () => {
   console.log('impliment this');
 };
 
