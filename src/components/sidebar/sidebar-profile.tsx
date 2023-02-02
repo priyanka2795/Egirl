@@ -15,10 +15,19 @@ import { variants } from './more-settings';
 import type { User } from '@lib/types/user';
 
 export function SidebarProfile(): JSX.Element {
-  const { user, signOut } = useAuth();
+  // const { user, signOut } = useAuth();
   const { open, openModal, closeModal } = useModal();
 
-  const { name, username, verified, photoURL } = user as User;
+  // const { name, username, verified, photoURL } = user as User;
+  const name = 'John Doe';
+  const username = 'johndoe';
+  const verified = true;
+  const photoURL =
+    'https://www.wikihow.com/images/thumb/f/fc/Get-the-URL-for-Pictures-Step-1-Version-6.jpg/v4-460px-Get-the-URL-for-Pictures-Step-1-Version-6.jpg.webp';
+
+  const signOut = () => {
+    console.log('impliment later!');
+  };
 
   return (
     <>

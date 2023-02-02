@@ -60,12 +60,13 @@ const navLinks: Readonly<NavLink[]> = [
 ];
 
 export function Sidebar(): JSX.Element {
-  const { user } = useAuth();
+  // const { user } = useAuth();
   const { isMobile } = useWindow();
 
   const { open, openModal, closeModal } = useModal();
 
-  const username = user?.username as string;
+  // const username = user?.username as string;
+  const username = 'username';
 
   return (
     <header

@@ -1,40 +1,44 @@
-import {
-  useUser,
-  useSupabaseClient,
-  Session
-} from '@supabase/auth-helpers-react';
+export const getUsername = () => {
+  console.log('impliment this');
+};
 
-import { Database } from '../../api/types/supabase';
-type Users = Database['public']['Tables']['users']['Row'];
+// import {
+//   useUser,
+//   useSupabaseClient,
+//   Session
+// } from '@supabase/auth-helpers-react';
 
-export async function getUsername(
-  setLoading: (loading: boolean) => void,
-  setUsername: (username: string) => void
-) {
-  const supabase = useSupabaseClient<Database>();
-  const user = useUser();
+// import { Database } from '../../api/types/supabase';
+// type Users = Database['public']['Tables']['users']['Row'];
 
-  try {
-    setLoading(true);
-    if (!user) throw new Error('No user');
+// export async function getUsername(
+//   setLoading: (loading: boolean) => void,
+//   setUsername: (username: string) => void
+// ) {
+//   const supabase = useSupabaseClient<Database>();
+//   const user = useUser();
 
-    let { data, error, status } = await supabase
-      .from('users')
-      .select(`username`)
-      .eq('id', user.id)
-      .single();
+//   try {
+//     setLoading(true);
+//     if (!user) throw new Error('No user');
 
-    if (error && status !== 406) {
-      throw error;
-    }
+//     let { data, error, status } = await supabase
+//       .from('users')
+//       .select(`username`)
+//       .eq('id', user.id)
+//       .single();
 
-    if (data) {
-      setUsername(data.username);
-    }
-  } catch (error) {
-    alert('Error loading posts data!');
-    console.log(error);
-  } finally {
-    setLoading(false);
-  }
-}
+//     if (error && status !== 406) {
+//       throw error;
+//     }
+
+//     if (data) {
+//       setUsername(data.username);
+//     }
+//   } catch (error) {
+//     alert('Error loading posts data!');
+//     console.log(error);
+//   } finally {
+//     setLoading(false);
+//   }
+// }

@@ -10,9 +10,10 @@ export type LayoutProps = {
 };
 
 export function ProtectedLayout({ children }: LayoutProps): JSX.Element {
-  const user = useRequireAuth();
+  // comment out protected layout
+  // const user = useRequireAuth();
 
-  if (!user) return <Placeholder />;
+  // if (!user) return <Placeholder />;
 
   return <>{children}</>;
 }

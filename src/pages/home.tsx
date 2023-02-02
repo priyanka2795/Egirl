@@ -1,13 +1,13 @@
 import { AnimatePresence } from 'framer-motion';
 import { where, orderBy } from 'firebase/firestore';
-import { useWindow } from '@lib/context/window-context';
+// import { useWindow } from '@lib/context/window-context';
+// import { Input } from '@components/input/input';
 import { useInfiniteScroll } from '@lib/hooks/useInfiniteScroll';
 import { tweetsCollection } from '@lib/firebase/collections';
 import { HomeLayout, ProtectedLayout } from '@components/layout/common-layout';
 import { MainLayout } from '@components/layout/main-layout';
 import { SEO } from '@components/common/seo';
 import { MainContainer } from '@components/home/main-container';
-import { Input } from '@components/input/input';
 import { UpdateUsername } from '@components/home/update-username';
 import { MainHeader } from '@components/home/main-header';
 import { Tweet } from '@components/tweet/tweet';
@@ -16,13 +16,18 @@ import { Error } from '@components/ui/error';
 import type { ReactElement, ReactNode } from 'react';
 
 export default function Home(): JSX.Element {
-  const { isMobile } = useWindow();
+  // const { isMobile } = useWindow();
 
-  const { data, loading, LoadMore } = useInfiniteScroll(
-    tweetsCollection,
-    [where('parent', '==', null), orderBy('createdAt', 'desc')],
-    { includeUser: true, allowNull: true, preserve: true }
-  );
+  // const { data, loading, LoadMore } = useInfiniteScroll(
+  //   tweetsCollection,
+  //   [where('parent', '==', null), orderBy('createdAt', 'desc')],
+  //   { includeUser: true, allowNull: true, preserve: true }
+  // );
+
+  const isMobile = false;
+  const data: any[] = [];
+  const loading = false;
+  const loadMore = () => {};
 
   return (
     <MainContainer>
@@ -34,7 +39,7 @@ export default function Home(): JSX.Element {
       >
         <UpdateUsername />
       </MainHeader>
-      {!isMobile && <Input />}
+      {/* {!isMobile && <Input />} */}
       <section className='mt-0.5 xs:mt-0'>
         {loading ? (
           <Loading className='mt-5' />
@@ -47,7 +52,7 @@ export default function Home(): JSX.Element {
                 <Tweet {...tweet} key={tweet.id} />
               ))}
             </AnimatePresence>
-            <LoadMore />
+            {/* <LoadMore /> */}
           </>
         )}
       </section>
@@ -55,6 +60,7 @@ export default function Home(): JSX.Element {
   );
 }
 
+// ProtectedLayout currently commented out (just returns children)
 Home.getLayout = (page: ReactElement): ReactNode => (
   <ProtectedLayout>
     <MainLayout>

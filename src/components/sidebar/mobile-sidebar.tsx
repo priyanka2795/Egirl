@@ -18,9 +18,13 @@ const variant: Variants = {
 };
 
 export function MobileSidebar(): JSX.Element {
-  const { user } = useAuth();
+  // const { user } = useAuth();
 
-  const { photoURL, name } = user as User;
+  // const { photoURL, name } = user as User;
+
+  const name = 'John Doe';
+  const photoURL =
+    'https://www.wikihow.com/images/thumb/f/fc/Get-the-URL-for-Pictures-Step-1-Version-6.jpg/v4-460px-Get-the-URL-for-Pictures-Step-1-Version-6.jpg.webp';
 
   const { open, openModal, closeModal } = useModal();
 
@@ -33,7 +37,7 @@ export function MobileSidebar(): JSX.Element {
         open={open}
         closeModal={closeModal}
       >
-        <MobileSidebarModal {...(user as User)} closeModal={closeModal} />
+        {/* <MobileSidebarModal {...(user as User)} closeModal={closeModal} /> */}
       </Modal>
       <Button className='accent-tab p-0 xs:hidden' onClick={openModal}>
         <UserAvatar src={photoURL} alt={name} size={30} />
