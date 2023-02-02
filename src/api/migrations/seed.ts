@@ -32,6 +32,16 @@ async function profile() {
       profile_picture: 'www.image.com',
       profile_banner_picture: 'www.imagebanner.com',
       created_at: '2016-07-24T03:32:45.678Z'
+    },
+    {
+      user_id: '2bc83fa6-7acb-414b-9312-2f897182381b',
+      username: 'htest',
+      display_name: 'Sup',
+      bio: '',
+      location: '',
+      profile_picture: 'www.image.com',
+      profile_banner_picture: 'www.imagebanner.com',
+      created_at: '2016-07-24T03:32:45.678Z'
     }
   ];
 
@@ -59,6 +69,12 @@ async function creators() {
     {
       id: 3,
       user_id: 'f771cfea-d30e-4157-b2f4-793857033165',
+      is_verified: true,
+      created_at: '2016-07-24T03:32:45.678Z'
+    },
+    {
+      id: 4,
+      user_id: '2bc83fa6-7acb-414b-9312-2f897182381b',
       is_verified: true,
       created_at: '2016-07-24T03:32:45.678Z'
     }
@@ -140,6 +156,13 @@ async function user_subscriptions() {
       character_id: 3,
       subscription_tier: 'TIER 3',
       created_at: '2016-07-24T03:32:45.678Z'
+    },
+    {
+      id: 4,
+      user_id: '2bc83fa6-7acb-414b-9312-2f897182381b',
+      character_id: 3,
+      subscription_tier: 'TIER 3',
+      created_at: '2016-07-24T03:32:45.678Z'
     }
   ];
 
@@ -200,6 +223,12 @@ async function followers() {
     {
       id: 3,
       follower_id: 'f771cfea-d30e-4157-b2f4-793857033165',
+      followed_id: 1,
+      created_at: '2016-07-24T03:32:45.678Z'
+    },
+    {
+      id: 4,
+      follower_id: '2bc83fa6-7acb-414b-9312-2f897182381b',
       followed_id: 1,
       created_at: '2016-07-24T03:32:45.678Z'
     }
@@ -281,6 +310,18 @@ async function posts() {
       is_character_post: true,
       infotag_ids: [1, 3],
       created_at: '2018-07-24T03:32:45.678Z'
+    },
+    {
+      id: 4,
+      user_id: '2bc83fa6-7acb-414b-9312-2f897182381b',
+      character_id: 3,
+      title: 'xyz',
+      description: 'this is a xyz',
+      prompt_description: 'todo',
+      is_ppv: true,
+      is_character_post: true,
+      infotag_ids: [1, 3],
+      created_at: '2018-07-24T03:32:45.678Z'
     }
   ];
 
@@ -345,6 +386,13 @@ async function comments() {
       user_id: 'f771cfea-d30e-4157-b2f4-793857033165',
       description: 'big titty goth gf',
       created_at: '2018-07-24T03:32:45.678Z'
+    },
+    {
+      id: 4,
+      post_id: 3,
+      user_id: '2bc83fa6-7acb-414b-9312-2f897182381b',
+      description: 'loooool',
+      created_at: '2018-07-24T03:32:45.678Z'
     }
   ];
 
@@ -377,6 +425,14 @@ async function post_likes() {
       id: 3,
       post_id: 3,
       user_id: 'f771cfea-d30e-4157-b2f4-793857033165',
+      is_like: true,
+      is_super: true,
+      created_at: '2018-07-24T03:32:45.678Z'
+    },
+    {
+      id: 4,
+      post_id: 3,
+      user_id: '2bc83fa6-7acb-414b-9312-2f897182381b',
       is_like: true,
       is_super: true,
       created_at: '2018-07-24T03:32:45.678Z'
@@ -478,6 +534,12 @@ async function interests() {
       id: 3,
       user_id: 'f771cfea-d30e-4157-b2f4-793857033165',
       infotag_id: 3,
+      created_at: '2018-07-24T03:32:45.678Z'
+    },
+    {
+      id: 4,
+      user_id: '2bc83fa6-7acb-414b-9312-2f897182381b',
+      infotag_id: 2,
       created_at: '2018-07-24T03:32:45.678Z'
     }
   ];

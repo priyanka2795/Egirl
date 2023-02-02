@@ -6,6 +6,8 @@ import {
   getCharacterFollowsByUserId
 } from '../utils/profiles';
 
+//import { supabaseClient } from '../../config/supabaseClient';
+
 /// Character posts
 
 // Get posts for characters that user is subscribed to
@@ -15,7 +17,7 @@ export async function getHomePostsSubscribedTo(user_id: string, client: any) {
     (subscription: any) => subscription.character_id
   );
   const character_ids_str = '(' + character_ids.join(',') + ')';
-  const posts = await getPosts(true, 20, undefined, character_ids_str);
+  const posts = await getPosts(true, 20, client, undefined, character_ids_str);
   return posts;
 }
 
@@ -24,7 +26,7 @@ export async function getHomePostsFollowing(user_id: string, client: any) {
   const follows = await getCharacterFollowsByUserId(user_id, client);
   const character_ids = follows.map((character: any) => character.followed_id);
   const character_ids_str = '(' + character_ids.join(',') + ')';
-  const posts = await getPosts(true, 20, undefined, character_ids_str);
+  const posts = await getPosts(true, 20, client, undefined, character_ids_str);
   return posts;
 }
 
@@ -57,6 +59,10 @@ export async function getHomeCharacterSuggestionsByInfotags(
   return characters;
 }
 
+// getHomePostsSubscribedTo(
+//   '2bc83fa6-7acb-414b-9312-2f897182381b',
+//   supabaseClient
+// );
 //getHomePostsSubscribedTo('1dd94d8b-c048-4b21-8571-583296db317e');
 //getHomePostsFollowing('1dd94d8b-c048-4b21-8571-583296db317e');
 //getHomePostsByInfoTags('1dd94d8b-c048-4b21-8571-583296db317e');
