@@ -34,6 +34,7 @@ export const variants: Variants = {
 };
 
 export function Tweet(tweet: TweetProps): JSX.Element {
+  console.log('tweet', tweet);
   const {
     id: tweetId,
     text,
@@ -52,6 +53,8 @@ export function Tweet(tweet: TweetProps): JSX.Element {
   } = tweet;
 
   const { id: ownerId, name, username, verified, photoURL } = tweetUserData;
+
+  console.log('tweet', tweet);
 
   const { user } = useAuth();
 
@@ -120,9 +123,9 @@ export function Tweet(tweet: TweetProps): JSX.Element {
               )}
             </AnimatePresence>
             <div className='flex flex-col items-center gap-2'>
-              <UserTooltip avatar modal={modal} {...tweetUserData}>
+              {/* <UserTooltip avatar modal={modal} {...tweetUserData}>
                 <UserAvatar src={photoURL} alt={name} username={username} />
-              </UserTooltip>
+              </UserTooltip> */}
               {parentTweet && (
                 <i className='hover-animation h-full w-0.5 bg-light-line-reply dark:bg-dark-line-reply' />
               )}
@@ -141,10 +144,10 @@ export function Tweet(tweet: TweetProps): JSX.Element {
                   <UserTooltip modal={modal} {...tweetUserData}>
                     <UserUsername username={username} />
                   </UserTooltip>
-                  <TweetDate tweetLink={tweetLink} createdAt={createdAt} />
+                  {/* <TweetDate tweetLink={tweetLink} createdAt={createdAt} /> */}
                 </div>
                 <div className='px-4'>
-                  {!modal && (
+                  {/* {!modal && (
                     <TweetActions
                       isOwner={isOwner}
                       ownerId={ownerId}
@@ -154,7 +157,7 @@ export function Tweet(tweet: TweetProps): JSX.Element {
                       hasImages={!!images}
                       createdBy={createdBy}
                     />
-                  )}
+                  )} */}
                 </div>
               </div>
               {(reply || modal) && (

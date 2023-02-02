@@ -90,6 +90,9 @@ export function TweetActions({
   } = useModal();
 
   const { id: userId, following, pinnedTweet } = user as User;
+  // const userId = '123';
+  // const following = ['123'];
+  // const pinnedTweet = '123214';
 
   const isInAdminControl = isAdmin && !isOwner;
   const tweetIsPinned = pinnedTweet === tweetId;

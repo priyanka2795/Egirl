@@ -14,7 +14,7 @@ import { Tweet } from '@components/tweet/tweet';
 import { Loading } from '@components/ui/loading';
 import { Error } from '@components/ui/error';
 import { ReactElement, ReactNode, useEffect } from 'react';
-import { getHomePostsSubscribedTo } from '../api/home/test-supabase';
+import { getHomePostsSubscribedTo } from '../api/home/home';
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react';
 
 export default function Home(): JSX.Element {
@@ -29,6 +29,8 @@ export default function Home(): JSX.Element {
   // );
 
   const getHomePosts = async () => {
+    // console.log('user id ', user.id);
+    console.log('client', client);
     const data = await getHomePostsSubscribedTo(user!.id, client);
     console.log('data', data);
   };
@@ -41,9 +43,60 @@ export default function Home(): JSX.Element {
   }, [user]);
 
   const isMobile = false;
-  const data: any[] = [];
+
   const loading = false;
   const loadMore = () => {};
+
+  /*
+  const {
+    id: tweetId,
+    text,
+    modal,
+    images,
+    parent,
+    pinned,
+    profile,
+    userLikes,
+    createdBy,
+    createdAt,
+    parentTweet,
+    userReplies,
+    userRetweets,
+    user: tweetUserData
+  } = tweet;
+
+  const { id: ownerId, name, username, verified, photoURL } = tweetUserData;
+  */
+
+  const tweet_1 = {
+    id: '1',
+    text: 'test',
+    model: false,
+    images: [
+      'https://www.wikihow.com/images/thumb/f/fc/Get-the-URL-for-Pictures-Step-1-Version-6.jpg/v4-460px-Get-the-URL-for-Pictures-Step-1-Version-6.jpg.webp'
+    ],
+    parent: false,
+    pinned: false,
+    profile: 'test',
+    userLikes: ['like1'],
+    createdBy: 'test',
+    createdAt: '2022-07-10T17:24:21.114Z',
+    parentTweet: false,
+    userReplies: 0,
+    userRetweets: [],
+    user: {
+      id: 'ownerId',
+      name: 'Holland Pleskac',
+      username: 'hollandpleskac',
+      verified: false,
+      photoURL:
+        'https://www.wikihow.com/images/thumb/f/fc/Get-the-URL-for-Pictures-Step-1-Version-6.jpg/v4-460px-Get-the-URL-for-Pictures-Step-1-Version-6.jpg.webp',
+      following: ['following1', 'following2'],
+      followers: ['follower1', 'follower2']
+    }
+  };
+
+  const data: any[] = [tweet_1];
 
   return (
     <MainContainer>
