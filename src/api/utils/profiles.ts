@@ -1,3 +1,5 @@
+import { getPosts } from './posts';
+
 export async function getProfile(user_id: string, client: any) {
   let { data, error, status } = await client
     .from('profile')
@@ -10,7 +12,11 @@ export async function getProfile(user_id: string, client: any) {
     throw error;
   }
 
-  return data;
+  const user_id_str = '(' + user_id + ')';
+  const posts = await getPosts(true, 20, client, user_id_str, undefined);
+  const numPosts = posts.clientData.length;
+
+  return { data, numPosts, posts };
 }
 
 export async function getProfileInterests(user_id: string, client: any) {

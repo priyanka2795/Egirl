@@ -1,14 +1,20 @@
+import { getPosts } from './posts';
+
 export async function getCharacterById(character_id: number, client: any) {
   let { data, error, status } = await client
     .from('characters')
     .select(
-      `username, display_name, is_verified, bio, creator_id, profile_picture, profile_banner_picture, infotags, created_at`
+      `username, display_name, is_verified, bio, creator_id, profile_picture, profile_banner_picture, infotag_ids, created_at`
     )
     .filter('id', 'eq', character_id);
 
   if ((error && status !== 406) || !data) {
     throw error;
   }
+
+  const character_id_str = '(' + character_id + ')';
+  const posts = await getPosts(true, 20, client, undefined, character_id_str);
+  const numPosts = posts.clientData.length;
 
   const user_subscriptions = await getUserSubscriptionsByCharacterId(
     character_id,
@@ -33,13 +39,27 @@ export async function getCharacterById(character_id: number, client: any) {
     [0, 0, 0, 0] // Total, Tier 1, Tier 2, Tier 3
   );
 
-  const infotags = await getInfoTagsByInfoTagIds(data[0]['infotags'], client);
+  const infotag_ids = data[0]['infotag_ids'];
+
+  const infotags = await getInfoTagsByInfoTagIds(
+    '(' + infotag_ids.join(',') + ')',
+    client
+  );
 
   // Can extend this later for loading list of followers
   const followers = await getFollowersByCharacterId(character_id, client);
   const follower_count = followers.length;
 
-  return { data, total_subscriptions, infotags, follower_count };
+  return {
+    data,
+    numPosts,
+    posts,
+    total_subscriptions,
+    user_subscriptions,
+    infotags,
+    follower_count,
+    followers
+  };
 }
 
 export async function getCharactersByInfoTags(
