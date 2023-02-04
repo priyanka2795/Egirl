@@ -551,7 +551,7 @@ async function interests() {
   }
 }
 
-async function lists() {
+async function custom_lists() {
   const data = [
     {
       id: 1,
@@ -583,7 +583,7 @@ async function lists() {
     }
   ];
 
-  const { error } = await supabaseClient.from('lists').insert(data);
+  const { error } = await supabaseClient.from('custom_lists').insert(data);
 
   if (error) {
     console.log(error);
@@ -619,8 +619,8 @@ async function main() {
   console.log('bookmarks done');
   await interests();
   console.log('interests done');
-  await lists();
-  console.log('lists done');
+  await custom_lists();
+  console.log('custom_lists done');
 }
 
 main();
