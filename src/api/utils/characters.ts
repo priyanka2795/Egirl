@@ -129,6 +129,21 @@ export async function getCharactersByInfoTags(
   return { data, final_subscriptions, final_infotags, final_follower_count };
 }
 
+export async function getCharactersByIds(character_ids: string, client: any) {
+  let { data, error, status } = await client
+    .from('characters')
+    .select(
+      `id, username, display_name, is_verified, bio, creator_id, profile_picture, profile_banner_picture, infotag_ids, created_at`
+    )
+    .filter('id', 'in', character_ids);
+
+  if ((error && status !== 406) || !data) {
+    throw error;
+  }
+
+  return { data };
+}
+
 export async function getUserSubscriptionsByCharacterId(
   character_id: number,
   client: any

@@ -551,6 +551,45 @@ async function interests() {
   }
 }
 
+async function lists() {
+  const data = [
+    {
+      id: 1,
+      user_id: '1dd94d8b-c048-4b21-8571-583296db317e',
+      list_name: 'furries',
+      character_ids: [1, 2],
+      created_at: '2016-07-24T03:32:45.678Z'
+    },
+    {
+      id: 2,
+      user_id: 'fc180fa6-465c-4a1e-b015-05f1004d4cf9',
+      list_name: 'ooooffff',
+      character_ids: [2, 3],
+      created_at: '2017-07-24T03:32:45.678Z'
+    },
+    {
+      id: 3,
+      user_id: 'f771cfea-d30e-4157-b2f4-793857033165',
+      list_name: 'wowza',
+      character_ids: [1, 3],
+      created_at: '2018-07-24T03:32:45.678Z'
+    },
+    {
+      id: 4,
+      user_id: '2bc83fa6-7acb-414b-9312-2f897182381b',
+      list_name: 'myList',
+      character_ids: [1, 2, 3],
+      created_at: '2018-07-24T03:32:45.678Z'
+    }
+  ];
+
+  const { error } = await supabaseClient.from('lists').insert(data);
+
+  if (error) {
+    console.log(error);
+  }
+}
+
 async function main() {
   await profile();
   console.log('profile done');
@@ -580,6 +619,8 @@ async function main() {
   console.log('bookmarks done');
   await interests();
   console.log('interests done');
+  await lists();
+  console.log('lists done');
 }
 
 main();

@@ -243,6 +243,21 @@ export async function getPostComments(post_id: number, client: any) {
   return data;
 }
 
+export async function getPost(post_id: number, client: any) {
+  let { data, error, status } = await client
+    .from('posts')
+    .select(
+      `id, user_id, character_id, title, description, is_ppv, hashtags_id, infotags_id, created_at`
+    )
+    .filter('post_id', 'eq', post_id);
+
+  if ((error && status !== 406) || !data) {
+    throw error;
+  }
+
+  return data;
+}
+
 export async function getPostsByCharacterId(character_id: number, client: any) {
   let { data, error, status } = await client
     .from('posts')
