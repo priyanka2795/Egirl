@@ -154,7 +154,6 @@ export function Tweet2(): JSX.Element {
                   {/* <TweetDate tweetLink={tweetLink} createdAt={createdAt} /> */}
                 </div>
               </div>
-              {/* text here */}
               {text && (
                 <p className='whitespace-pre-line break-words'>{text}</p>
               )}

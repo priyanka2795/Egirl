@@ -12,12 +12,15 @@ import { Loading } from '@components/ui/loading';
 import { Error } from '@components/ui/error';
 import { AnimatePresence } from 'framer-motion';
 import { Tweet2 } from '@components/tweet/tweet2';
+import { Input } from '@components/input/input';
+import { Input2 } from '@components/input/input2';
 
 export default function Home2(): JSX.Element {
   const user = useUser();
   const supabase = useSupabaseClient();
   const loading = false;
   const data: any[] = [{ id: '1' }];
+  const isMobile = false;
 
   return (
     <MainContainer>
@@ -28,9 +31,8 @@ export default function Home2(): JSX.Element {
       >
         <UpdateUsername2 />
       </MainHeader>
-      {/* <WindowContextProvider>
-        <Sidebar />
-      </WindowContextProvider> */}
+
+      {!isMobile && <Input2 />}
       <section className='mt-0.5 xs:mt-0'>
         {loading ? (
           <Loading className='mt-5' />
