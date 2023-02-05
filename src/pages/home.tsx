@@ -68,6 +68,7 @@ export default function Home(): JSX.Element {
   const { id: ownerId, name, username, verified, photoURL } = tweetUserData;
   */
 
+  //
   const tweet_1 = {
     id: '1',
     text: 'test',
