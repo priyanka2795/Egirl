@@ -4,13 +4,13 @@ import { AnimatePresence, motion } from 'framer-motion';
 import cn from 'clsx';
 import { UserTooltip } from '@components/user/user-tooltip';
 import { ImagePreview } from '@components/input/image-preview';
-import { TweetStats } from './tweet-stats';
 import { TweetStatus } from './tweet-status';
 import Link from 'next/link';
 import { delayScroll } from '@lib/utils';
 import type { Variants } from 'framer-motion';
 import { useModal } from '@lib/hooks/useModal';
 import { Modal } from '@components/modal/modal';
+import { TweetStats2 } from './tweet-stats2';
 
 export const variants: Variants = {
   initial: { opacity: 0 },
@@ -167,7 +167,7 @@ export function Tweet2(): JSX.Element {
                   />
                 )}
                 {!modal && (
-                  <TweetStats
+                  <TweetStats2
                     reply={reply}
                     userId={userId}
                     isOwner={isOwner}
