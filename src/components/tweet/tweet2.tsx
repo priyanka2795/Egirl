@@ -99,9 +99,9 @@ export function Tweet2(): JSX.Element {
         TWEET REPLY MODEL NEEDS TO BE IMPLIMENTED
       </Modal>
       <Link href={tweetLink} scroll={!reply}>
-        <a
+        <div
           className={cn(
-            `accent-tab hover-card relative flex flex-col 
+            `accent-tab hover-card relative flex flex-col
              gap-y-4 px-4 py-3 outline-none duration-200`,
             parentTweet
               ? 'mt-0.5 pt-2.5 pb-0'
@@ -181,7 +181,7 @@ export function Tweet2(): JSX.Element {
               </div>
             </div>
           </div>
-        </a>
+        </div>
       </Link>
     </motion.article>
   );
