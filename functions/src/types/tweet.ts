@@ -18,17 +18,17 @@ export type Tweet = {
   parent: { id: string; username: string } | null;
   userLikes: string[];
   createdBy: string;
-  createdAt: Timestamp;
-  updatedAt: Timestamp | null;
+  createdAt: number;
+  updatedAt: number | null;
   userReplies: number;
   userRetweets: string[];
 };
 
 export const tweetConverter: FirestoreDataConverter<Tweet> = {
-  toFirestore(tweet) {
+  toFirestore(tweet: any) {
     return { ...tweet };
   },
-  fromFirestore(snapshot) {
+  fromFirestore(snapshot: { data: () => any; }) {
     const data = snapshot.data();
 
     return { ...data } as Tweet;

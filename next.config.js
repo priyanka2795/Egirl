@@ -8,7 +8,8 @@ const nextConfig = {
       'firebasestorage.googleapis.com',
       'www.wikihow.com',
       'pbs.twimg.com',
-      'upload.wikimedia.org'
+      'upload.wikimedia.org',
+      'i.pinimg.com'
     ]
   }
 };
