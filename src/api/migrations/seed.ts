@@ -590,6 +590,64 @@ async function custom_lists() {
   }
 }
 
+async function user_blocks() {
+  const data = [
+    {
+      id: 1,
+      user_id: '1dd94d8b-c048-4b21-8571-583296db317e',
+      blocked_profile_id: 'fc180fa6-465c-4a1e-b015-05f1004d4cf9',
+      blocked_character_id: 2,
+      blocked_reason_title: 'blocked_reason1',
+      blocked_description: 'blocked_description1',
+      created_at: '2016-07-24T03:32:45.678Z'
+    },
+    {
+      id: 2,
+      user_id: 'fc180fa6-465c-4a1e-b015-05f1004d4cf9',
+      blocked_profile_id: 'f771cfea-d30e-4157-b2f4-793857033165',
+      blocked_character_id: 3,
+      blocked_reason_title: 'blocked_reason2',
+      blocked_description: 'blocked_description2',
+      created_at: '2016-07-24T03:32:45.678Z'
+    }
+  ];
+
+  const { error } = await supabaseClient.from('user_blocks').insert(data);
+
+  if (error) {
+    console.log(error);
+  }
+}
+
+async function user_reports() {
+  const data = [
+    {
+      id: 1,
+      user_id: '1dd94d8b-c048-4b21-8571-583296db317e',
+      reported_profile_id: 'fc180fa6-465c-4a1e-b015-05f1004d4cf9',
+      reported_character_id: 2,
+      reported_reason_title: 'report_reason1',
+      reported_description: 'report_description1',
+      created_at: '2016-07-24T03:32:45.678Z'
+    },
+    {
+      id: 2,
+      user_id: 'fc180fa6-465c-4a1e-b015-05f1004d4cf9',
+      reported_profile_id: 'f771cfea-d30e-4157-b2f4-793857033165',
+      reported_character_id: 3,
+      reported_reason_title: 'report_reason2',
+      reported_description: 'report_description2',
+      created_at: '2016-07-24T03:32:45.678Z'
+    }
+  ];
+
+  const { error } = await supabaseClient.from('user_reports').insert(data);
+
+  if (error) {
+    console.log(error);
+  }
+}
+
 async function main() {
   await profile();
   console.log('profile done');
@@ -621,6 +679,10 @@ async function main() {
   console.log('interests done');
   await custom_lists();
   console.log('custom_lists done');
+  await user_blocks();
+  console.log('user_blocks done');
+  await user_reports();
+  console.log('user_reports done');
 }
 
 main();
