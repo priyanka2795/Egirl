@@ -16,6 +16,8 @@ import { Error } from '@components/ui/error';
 import { ReactElement, ReactNode, useEffect } from 'react';
 import { getHomePostsSubscribedTo } from '../api/home/home';
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react';
+import { User } from '@lib/types/user';
+import { Tweet as TypeTweet } from '@lib/types/tweet';
 
 export default function Home(): JSX.Element {
   const user = useUser();
@@ -69,35 +71,154 @@ export default function Home(): JSX.Element {
   */
 
   //
-  const tweet_1 = {
-    id: '1',
-    text: 'test',
-    model: false,
-    images: [
-      'https://www.wikihow.com/images/thumb/f/fc/Get-the-URL-for-Pictures-Step-1-Version-6.jpg/v4-460px-Get-the-URL-for-Pictures-Step-1-Version-6.jpg.webp'
-    ],
-    parent: false,
-    pinned: false,
-    profile: 'test',
-    userLikes: ['like1'],
-    createdBy: 'test',
-    createdAt: '2022-07-10T17:24:21.114Z',
-    parentTweet: false,
-    userReplies: 0,
-    userRetweets: [],
-    user: {
-      id: 'ownerId',
-      name: 'Holland Pleskac',
-      username: 'hollandpleskac',
-      verified: false,
-      photoURL:
-        'https://www.wikihow.com/images/thumb/f/fc/Get-the-URL-for-Pictures-Step-1-Version-6.jpg/v4-460px-Get-the-URL-for-Pictures-Step-1-Version-6.jpg.webp',
-      following: ['following1', 'following2'],
-      followers: ['follower1', 'follower2']
-    }
-  };
+  const tweetData: (TypeTweet & { user: User; })[] | null =
+    [
+      {
+        createdAt: 12345,
+        createdBy: 'egirl1',
+        id: '1',
+        images: null,
+        parent: {
+          id: '10',
+          username: 'eGorl'
+        },
+        text: 'First tweet of the day',
+        updatedAt: 88889,
+        user: {
+          id: '1',
+          username: "egirl",
+          name: "E girl 1",
+          accent: 'blue',
+          bio: 'Im an Egirl',
+          coverPhotoURL: "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+          followers: ['100'],
+          following: ['10'],
+          location: 'Metaverse',
+          photoURL: "https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg",
+          pinnedTweet: 'My first tweet',
+          theme: 'dark',
+          totalPhotos: 123,
+          totalTweets: 111,
+          verified: true,
+          website: 'www.egirl.com'
+        },
+        userLikes: ['111'],
+        userReplies: 123,
+        userRetweets: ['123']
+      },
+      {
+        createdAt: 12345,
+        createdBy: 'egirl1',
+        id: '1',
+        images: null,
+        parent: {
+          id: '10',
+          username: 'eGorl'
+        },
+        text: 'Bookmark this!',
+        updatedAt: 88889,
+        user: {
+          id: '1',
+          username: "egirl",
+          name: "E girl 1",
+          accent: 'blue',
+          bio: 'Im an Egirl',
+          coverPhotoURL: "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+          followers: ['100'],
+          following: ['10'],
+          location: 'Metaverse',
+          photoURL: "https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg",
+          pinnedTweet: 'My first tweet',
+          theme: 'dark',
+          totalPhotos: 123,
+          totalTweets: 111,
+          verified: true,
+          website: 'www.egirl.com'
+        },
+        userLikes: ['111'],
+        userReplies: 123,
+        userRetweets: ['123']
+      },
+      {
+        createdAt: 12345,
+        createdBy: 'egirl1',
+        id: '1',
+        images: [
+          {
+            src: 'https://i.pinimg.com/550x/8d/4f/44/8d4f442214edc01230b38228bad5226f.jpg',
+            alt: 'anime girl',
+            id: '123',
+          },
+          {
+            src: 'https://i.pinimg.com/564x/f4/fb/6b/f4fb6b6dc78c15007f8c16599ce6e03b.jpg',
+            alt: 'anime girl 2',
+            id: '1233',
+          }
+        ],
+        parent: null,
+        text: 'Bookmark with image!',
+        updatedAt: 88889,
+        user: {
+          id: '1',
+          username: "egirl",
+          name: "E girl 1",
+          accent: 'blue',
+          bio: 'Im an Egirl',
+          coverPhotoURL: "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+          followers: ['100'],
+          following: ['10'],
+          location: 'Metaverse',
+          photoURL: "https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg",
+          pinnedTweet: 'My first tweet',
+          theme: 'dark',
+          totalPhotos: 123,
+          totalTweets: 111,
+          verified: true,
+          website: 'www.egirl.com'
+        },
+        userLikes: ['111'],
+        userReplies: 123,
+        userRetweets: ['123']
+      },
+      {
+        id: '1',
+        text: 'test holland tweet',
+        // model: false,
+        images: null,
+        parent: null,
+        // pinned: false,
+        updatedAt: 101909,
+        // profile: 'test',
+        userLikes: ['like1'],
+        createdBy: 'test',
+        createdAt: 88889,
+        // parentTweet: false,
+        userReplies: 0,
 
-  const data: any[] = [tweet_1];
+        userRetweets: [],
+        user: {
+          id: 'ownerId',
+          name: 'Holland Pleskac',
+          username: 'hollandpleskac',
+          verified: false,
+          photoURL:
+            'https://www.wikihow.com/images/thumb/f/fc/Get-the-URL-for-Pictures-Step-1-Version-6.jpg/v4-460px-Get-the-URL-for-Pictures-Step-1-Version-6.jpg.webp',
+          following: ['following1', 'following2'],
+          followers: ['follower1', 'follower2'],
+          accent: 'blue',
+          bio: 'Im Holland',
+          coverPhotoURL: 'https://www.wikihow.com/images/thumb/f/fc/Get-the-URL-for-Pictures-Step-1-Version-6.jpg/v4-460px-Get-the-URL-for-Pictures-Step-1-Version-6.jpg.webp',
+          location: 'Hollandland',
+          pinnedTweet: null,
+          theme: null,
+          totalPhotos: 0,
+          totalTweets: 0,
+          website: null
+        }
+      }
+    ]
+
+  const data: any[] = tweetData;
 
   return (
     <MainContainer>
