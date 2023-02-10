@@ -34,13 +34,17 @@ type UserEditProfileProps = {
 };
 
 export function UserEditProfile({ hide }: UserEditProfileProps): JSX.Element {
-  const { user } = useUser();
+  // const { user } = useUser();
   const { open, openModal, closeModal } = useModal();
 
   const [loading, setLoading] = useState(false);
 
-  const { bio, name, website, location, photoURL, coverPhotoURL } =
-    user as User;
+  const bio = 'I am an egirl';
+  const name = 'E Girl 1';
+  const website = 'www.egirl.com'; 
+  const location = 'Metaverse';
+  const photoURL = "https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg"; 
+  const coverPhotoURL = "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png";
 
   const [editUserData, setEditUserData] = useState<EditableUserData>({
     bio,
@@ -66,7 +70,7 @@ export function UserEditProfile({ hide }: UserEditProfileProps): JSX.Element {
   const updateData = async (): Promise<void> => {
     setLoading(true);
 
-    const userId = user?.id as string;
+    const userId = '123';
 
     const { photoURL, coverPhotoURL: coverURL } = userImages;
 

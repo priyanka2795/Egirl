@@ -96,16 +96,17 @@ export default function Login(): JSX.Element {
         </div>
         <div className='flex items-center bg-main-red col-span-2'>
           <div className='container mx-40 p-10 bg-white shadow-2xl drop-shadow-2xl'>
-            {!session ? (
+            {/* {!session ? ( */}
               <Auth
                 supabaseClient={supabase}
                 appearance={{ theme: customTheme }}
                 providers={['google', 'twitter', 'apple']}
                 theme='default'
+                redirectTo='/home'
               />
-            ) : (
+            {/* ) : (
               <Account session={session} />
-            )}
+            )} */}
           </div>
         </div>
       </div>

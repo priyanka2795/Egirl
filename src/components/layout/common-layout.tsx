@@ -35,8 +35,8 @@ export function UserLayout({ children }: LayoutProps): JSX.Element {
     <>
       {children}
       <Aside>
-        <Suggestions />
-        <AsideTrends />
+        {/* <Suggestions />
+        <AsideTrends /> */}
       </Aside>
     </>
   );

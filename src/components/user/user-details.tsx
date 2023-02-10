@@ -7,19 +7,7 @@ import { UserFollowStats } from './user-follow-stats';
 import type { IconName } from '@components/ui/hero-icon';
 import type { User } from '@lib/types/user';
 
-type UserDetailsProps = Pick<
-  User,
-  | 'id'
-  | 'bio'
-  | 'name'
-  | 'website'
-  | 'username'
-  | 'location'
-  | 'verified'
-  | 'createdAt'
-  | 'following'
-  | 'followers'
->;
+type UserDetailsProps = User;
 
 type DetailIcon = [string | null, IconName];
 
@@ -31,14 +19,13 @@ export function UserDetails({
   username,
   location,
   verified,
-  createdAt,
   following,
   followers
 }: UserDetailsProps): JSX.Element {
   const detailIcons: Readonly<DetailIcon[]> = [
     [location, 'MapPinIcon'],
     [website, 'LinkIcon'],
-    [`Joined ${formatDate(createdAt, 'joined')}`, 'CalendarDaysIcon']
+    [`Joined 1 day ago`, 'CalendarDaysIcon']
   ];
 
   return (
@@ -79,7 +66,7 @@ export function UserDetails({
                       {detail}
                       <ToolTip
                         className='translate-y-1'
-                        tip={formatDate(createdAt, 'full')}
+                        tip='1 day ago'
                       />
                     </button>
                   ) : (

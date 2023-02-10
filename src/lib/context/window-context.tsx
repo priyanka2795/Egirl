@@ -79,30 +79,38 @@ type WindowContextProviderProps = {
 export function WindowContextProvider({
   children
 }: WindowContextProviderProps): JSX.Element {
-  const [windowSize, setWindowSize] = useState<WindowSize>({
-    width: 500,
-    height: 500
-  });
+  const value = null;
+  
+  if (typeof window !== "undefined") {
+    const [windowSize, setWindowSize] = useState<WindowSize>({
+      width: window.innerWidth,
+      height: window.innerHeight
+    });
+  
+    useEffect(() => {
+      const handleResize = (): void =>
+        setWindowSize({
+          width: window.innerWidth,
+          height: window.innerHeight
+        });
+  
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }, []);
+  
+    const value: WindowContext = {
+      ...windowSize,
+      isMobile: windowSize.width < 500
+    };
 
-  useEffect(() => {
-    const handleResize = (): void =>
-      setWindowSize({
-        width: 500,
-        height: 500
-      });
+    return (
+      <WindowContext.Provider value={value}>{children}</WindowContext.Provider>
+    );
+  }
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  const value: WindowContext = {
-    ...windowSize,
-    isMobile: false
-  };
-
-  return (
-    <WindowContext.Provider value={value}>{children}</WindowContext.Provider>
-  );
+  // return (
+  //   <WindowContext.Provider value={value}>{children}</WindowContext.Provider>
+  // );
 }
 
 export function useWindow(): WindowContext {

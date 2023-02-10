@@ -6,7 +6,9 @@ const nextConfig = {
     domains: [
       'lh3.googleusercontent.com',
       'firebasestorage.googleapis.com',
-      'www.wikihow.com'
+      'www.wikihow.com',
+      'pbs.twimg.com',
+      'upload.wikimedia.org'
     ]
   }
 };

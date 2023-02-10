@@ -13,11 +13,33 @@ import { StatsEmpty } from '@components/tweet/stats-empty';
 import { Loading } from '@components/ui/loading';
 import { Tweet } from '@components/tweet/tweet';
 import type { ReactElement, ReactNode } from 'react';
+import { User } from '@lib/types/user';
 
 export default function UserTweets(): JSX.Element {
-  const { user } = useUser();
+  // const { user } = useUser();
 
-  const { id, username, pinnedTweet } = user ?? {};
+  const id = '123';
+  const username = 'eGirl' 
+  const pinnedTweet = 'My First Tweet';
+
+  const user: User = {
+    id: '1',
+    username: "egirl",
+    name: "E girl 1",
+    accent: 'blue',
+    bio: 'Im an Egirl',
+    coverPhotoURL: "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+    followers: ['100'],
+    following: ['10'],
+    location: 'Metaverse',
+    photoURL: "https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg",
+    pinnedTweet: 'My first tweet',
+    theme: 'dark',
+    totalPhotos: 123,
+    totalTweets: 111,
+    verified: true,
+    website: 'www.egirl.com'
+  };
 
   const { data: pinnedData } = useDocument(
     doc(tweetsCollection, pinnedTweet ?? 'null'),

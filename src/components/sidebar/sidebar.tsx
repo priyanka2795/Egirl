@@ -124,7 +124,7 @@ export function Sidebar(): JSX.Element {
             <p className='hidden xl:block'>Tweet</p>
           </Button>
         </section>
-        {!isMobile && <SidebarProfile />}
+        {/* {!isMobile && <SidebarProfile />} */}
       </div>
     </header>
   );

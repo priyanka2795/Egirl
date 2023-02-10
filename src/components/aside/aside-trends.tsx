@@ -22,11 +22,11 @@ type AsideTrendsProps = {
 };
 
 export function AsideTrends({ inTrendsPage }: AsideTrendsProps): JSX.Element {
-  const { data, loading } = useTrends(1, inTrendsPage ? 100 : 10, {
-    refreshInterval: 30000
-  });
+  // const { data, loading } = useTrends(1, inTrendsPage ? 100 : 10, {
+  //   refreshInterval: 30000
+  // });
 
-  const { trends, location } = data ?? {};
+  // const { trends, location } = data ?? {};
 
   return (
     <section
@@ -35,7 +35,7 @@ export function AsideTrends({ inTrendsPage }: AsideTrendsProps): JSX.Element {
           'hover-animation rounded-2xl bg-main-sidebar-background'
       )}
     >
-      {loading ? (
+      {/* {loading ? (
         <Loading />
       ) : trends ? (
         <motion.div
@@ -93,7 +93,7 @@ export function AsideTrends({ inTrendsPage }: AsideTrendsProps): JSX.Element {
         </motion.div>
       ) : (
         <Error />
-      )}
+      )} */}
     </section>
   );
 }
