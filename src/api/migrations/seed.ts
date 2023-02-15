@@ -145,7 +145,7 @@ async function subscriptions() {
       created_at: '2016-07-24T03:32:45.678Z'
     },
     {
-      id: 1,
+      id: 2,
       subscription_name: 'medium package',
       subscription_price: 14.99,
       stripe_product_id: 'stripe product id 2',
@@ -153,7 +153,7 @@ async function subscriptions() {
       created_at: '2016-07-24T03:32:45.678Z'
     },
     {
-      id: 1,
+      id: 3,
       subscription_name: 'large package',
       subscription_price: 24.99,
       stripe_product_id: 'stripe product id 3',
@@ -161,11 +161,27 @@ async function subscriptions() {
       created_at: '2016-07-24T03:32:45.678Z'
     },
     {
-      id: 1,
-      subscription_name: 'basic package',
-      subscription_price: 4.99,
+      id: 4,
+      subscription_name: 'creator basic package',
+      subscription_price: 9.99,
       stripe_product_id: 'stripe product id 4',
-      subscription_tier: 'TIER 1',
+      subscription_tier: 'TIER 4',
+      created_at: '2016-07-24T03:32:45.678Z'
+    },
+    {
+      id: 5,
+      subscription_name: 'creator medium package',
+      subscription_price: 19.99,
+      stripe_product_id: 'stripe product id 5',
+      subscription_tier: 'TIER 5',
+      created_at: '2016-07-24T03:32:45.678Z'
+    },
+    {
+      id: 6,
+      subscription_name: 'creator large package',
+      subscription_price: 29.99,
+      stripe_product_id: 'stripe product id 6',
+      subscription_tier: 'TIER 6',
       created_at: '2016-07-24T03:32:45.678Z'
     }
   ];
@@ -206,7 +222,7 @@ async function user_subscriptions() {
     {
       id: 4,
       user_id: 'a0e83fdc-039c-46cf-9d3d-ff515aaa7bfd',
-      character_id: 4,
+      character_id: 2,
       subscription_id: 4,
       stripe_subscription_id: 'stripe subscription id 4',
       created_at: '2016-07-24T03:32:45.678Z'
@@ -227,22 +243,22 @@ async function creator_subscriptions() {
     {
       id: 1,
       subscriber_id: 1,
-      subscription_id: 1,
-      stripe_subscription_id: 'stripe subscription id 1',
+      subscription_id: 4,
+      stripe_subscription_id: 'stripe creator subscription id 1',
       created_at: '2016-07-24T03:32:45.678Z'
     },
     {
       id: 2,
       subscriber_id: 2,
-      subscription_id: 2,
-      stripe_subscription_id: 'stripe subscription id 2',
+      subscription_id: 5,
+      stripe_subscription_id: 'stripe creator subscription id 2',
       created_at: '2016-07-24T03:32:45.678Z'
     },
     {
       id: 3,
       subscriber_id: 3,
-      subscription_id: 3,
-      stripe_subscription_id: 'stripe subscription id 3',
+      subscription_id: 6,
+      stripe_subscription_id: 'stripe creator subscription id 3',
       created_at: '2016-07-24T03:32:45.678Z'
     }
   ];
@@ -601,7 +617,7 @@ async function interests() {
   }
 }
 
-async function custom_lists() {
+async function lists() {
   const data = [
     {
       id: 1,
@@ -633,7 +649,7 @@ async function custom_lists() {
     }
   ];
 
-  const { error } = await supabaseClient.from('custom_lists').insert(data);
+  const { error } = await supabaseClient.from('lists').insert(data);
 
   if (error) {
     console.log(error);
@@ -764,9 +780,7 @@ async function prepaid_dollars() {
     }
   ];
 
-  const { error } = await supabaseClient
-    .from('messages_character_to_user')
-    .insert(data);
+  const { error } = await supabaseClient.from('prepaid_dollars').insert(data);
 
   if (error) {
     console.log(error);
@@ -789,9 +803,7 @@ async function user_transactions() {
     }
   ];
 
-  const { error } = await supabaseClient
-    .from('messages_character_to_user')
-    .insert(data);
+  const { error } = await supabaseClient.from('user_transactions').insert(data);
 
   if (error) {
     console.log(error);
@@ -844,8 +856,8 @@ async function main() {
   await interests();
   console.log('interests done');
 
-  await custom_lists();
-  console.log('custom_lists done');
+  await lists();
+  console.log('lists done');
 
   await user_blocks();
   console.log('user_blocks done');
