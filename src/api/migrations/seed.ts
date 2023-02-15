@@ -134,34 +134,81 @@ async function characters() {
   }
 }
 
+async function subscriptions() {
+  const data = [
+    {
+      id: 1,
+      subscription_name: 'basic package',
+      subscription_price: 4.99,
+      stripe_product_id: 'stripe product id 1',
+      subscription_tier: 'TIER 1',
+      created_at: '2016-07-24T03:32:45.678Z'
+    },
+    {
+      id: 1,
+      subscription_name: 'medium package',
+      subscription_price: 14.99,
+      stripe_product_id: 'stripe product id 2',
+      subscription_tier: 'TIER 2',
+      created_at: '2016-07-24T03:32:45.678Z'
+    },
+    {
+      id: 1,
+      subscription_name: 'large package',
+      subscription_price: 24.99,
+      stripe_product_id: 'stripe product id 3',
+      subscription_tier: 'TIER 3',
+      created_at: '2016-07-24T03:32:45.678Z'
+    },
+    {
+      id: 1,
+      subscription_name: 'basic package',
+      subscription_price: 4.99,
+      stripe_product_id: 'stripe product id 4',
+      subscription_tier: 'TIER 1',
+      created_at: '2016-07-24T03:32:45.678Z'
+    }
+  ];
+
+  const { error } = await supabaseClient.from('subscriptions').insert(data);
+
+  if (error) {
+    console.log(error);
+  }
+}
+
 async function user_subscriptions() {
   const data = [
     {
       id: 1,
       user_id: 'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
       character_id: 1,
-      subscription_tier: 'TIER 1',
+      subscription_id: 1,
+      stripe_subscription_id: 'stripe subscription id 1',
       created_at: '2016-07-24T03:32:45.678Z'
     },
     {
       id: 2,
-      user_id: 'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
+      user_id: 'e05b8c71-a5e0-41c5-96e7-549c0d7a4a04',
       character_id: 2,
-      subscription_tier: 'TIER 2',
+      subscription_id: 2,
+      stripe_subscription_id: 'stripe subscription id 2',
       created_at: '2016-07-24T03:32:45.678Z'
     },
     {
       id: 3,
-      user_id: 'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
+      user_id: 'd692bc5c-5df1-408f-9d18-a14afc8216ed',
       character_id: 3,
-      subscription_tier: 'TIER 3',
+      subscription_id: 3,
+      stripe_subscription_id: 'stripe subscription id 3',
       created_at: '2016-07-24T03:32:45.678Z'
     },
     {
       id: 4,
       user_id: 'a0e83fdc-039c-46cf-9d3d-ff515aaa7bfd',
-      character_id: 3,
-      subscription_tier: 'TIER 3',
+      character_id: 4,
+      subscription_id: 4,
+      stripe_subscription_id: 'stripe subscription id 4',
       created_at: '2016-07-24T03:32:45.678Z'
     }
   ];
@@ -180,19 +227,22 @@ async function creator_subscriptions() {
     {
       id: 1,
       subscriber_id: 1,
-      subscription_tier: 'TIER 1',
+      subscription_id: 1,
+      stripe_subscription_id: 'stripe subscription id 1',
       created_at: '2016-07-24T03:32:45.678Z'
     },
     {
       id: 2,
       subscriber_id: 2,
-      subscription_tier: 'TIER 3',
+      subscription_id: 2,
+      stripe_subscription_id: 'stripe subscription id 2',
       created_at: '2016-07-24T03:32:45.678Z'
     },
     {
       id: 3,
       subscriber_id: 3,
-      subscription_tier: 'TIER 2',
+      subscription_id: 3,
+      stripe_subscription_id: 'stripe subscription id 3',
       created_at: '2016-07-24T03:32:45.678Z'
     }
   ];
@@ -648,41 +698,172 @@ async function user_reports() {
   }
 }
 
+async function messages_user_to_character() {
+  const data = [
+    {
+      id: 1,
+      sender_id: 'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
+      recipient_id: 1,
+      message: 'hey bb what is up',
+      created_at: '2016-07-24T03:32:45.678Z'
+    },
+    {
+      id: 2,
+      sender_id: 'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
+      recipient_id: 2,
+      message: 'it is morbin time',
+      created_at: '2016-07-24T03:32:45.678Z'
+    }
+  ];
+
+  const { error } = await supabaseClient
+    .from('messages_user_to_character')
+    .insert(data);
+
+  if (error) {
+    console.log(error);
+  }
+}
+
+async function messages_character_to_user() {
+  const data = [
+    {
+      id: 1,
+      sender_id: 1,
+      recipient_id: 'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
+      message: 'hey uwu uwu something something',
+      created_at: '2016-07-24T03:32:45.678Z'
+    },
+    {
+      id: 2,
+      sender_id: 2,
+      recipient_id: 'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
+      message: 'did u like my uwu?',
+      created_at: '2016-07-24T03:32:45.678Z'
+    }
+  ];
+
+  const { error } = await supabaseClient
+    .from('messages_character_to_user')
+    .insert(data);
+
+  if (error) {
+    console.log(error);
+  }
+}
+
+async function prepaid_dollars() {
+  const data = [
+    {
+      user_id: 'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
+      prepaid_dollar_amount: 1000.95
+    },
+    {
+      user_id: 'e05b8c71-a5e0-41c5-96e7-549c0d7a4a04',
+      prepaid_dollar_amount: 1000000.69
+    }
+  ];
+
+  const { error } = await supabaseClient
+    .from('messages_character_to_user')
+    .insert(data);
+
+  if (error) {
+    console.log(error);
+  }
+}
+
+async function user_transactions() {
+  const data = [
+    {
+      user_id: 'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
+      transaction_amount: 50.41,
+      stripe_transaction_id: 'stripe transaction id 1',
+      created_at: '2016-07-24T03:32:45.678Z'
+    },
+    {
+      user_id: 'e05b8c71-a5e0-41c5-96e7-549c0d7a4a04',
+      transaction_amount: 842.23,
+      stripe_transaction_id: 'stripe transaction id 2',
+      created_at: '2016-07-24T03:32:45.678Z'
+    }
+  ];
+
+  const { error } = await supabaseClient
+    .from('messages_character_to_user')
+    .insert(data);
+
+  if (error) {
+    console.log(error);
+  }
+}
+
 async function main() {
   await profile();
   console.log('profile done');
+
   await creators();
   console.log('creators done');
+
   await characters();
   console.log('characters done');
+
+  await subscriptions();
+  console.log(subscriptions);
+
   await user_subscriptions();
   console.log('user_subscriptions done');
+
   await creator_subscriptions();
   console.log('creator_subscriptions done');
+
   await followers();
   console.log('followers done');
+
   await infotags();
   console.log('infotags done');
+
   await posts();
   console.log('posts done');
+
   await media();
   console.log('media done');
+
   await comments();
   console.log('comments done');
+
   await post_likes();
   console.log('post_likes done');
+
   await items();
   console.log('items done');
+
   await bookmarks();
   console.log('bookmarks done');
+
   await interests();
   console.log('interests done');
+
   await custom_lists();
   console.log('custom_lists done');
+
   await user_blocks();
   console.log('user_blocks done');
+
   await user_reports();
   console.log('user_reports done');
+
+  await messages_user_to_character();
+  console.log('messages_user_to_character done');
+
+  await messages_character_to_user();
+  console.log('messages_character_to_user done');
+
+  await prepaid_dollars();
+  console.log('prepaid_dollars done');
+
+  await user_transactions();
+  console.log('user_transactions done');
 }
 
 main();
