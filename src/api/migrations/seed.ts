@@ -792,12 +792,14 @@ async function user_transactions() {
     {
       user_id: 'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
       transaction_amount: 50.41,
+      transaction_description: 'character subscription',
       stripe_transaction_id: 'stripe transaction id 1',
       created_at: '2016-07-24T03:32:45.678Z'
     },
     {
       user_id: 'e05b8c71-a5e0-41c5-96e7-549c0d7a4a04',
       transaction_amount: 842.23,
+      transaction_description: 'character subscription',
       stripe_transaction_id: 'stripe transaction id 2',
       created_at: '2016-07-24T03:32:45.678Z'
     }
