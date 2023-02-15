@@ -4,7 +4,7 @@ import { supabaseClient } from '../../config/supabaseClient';
 async function profile() {
   const data = [
     {
-      user_id: '1dd94d8b-c048-4b21-8571-583296db317e',
+      user_id: 'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
       username: 'chrisPbacon',
       display_name: 'Chris P. Bacon',
       bio: '',
@@ -14,7 +14,7 @@ async function profile() {
       created_at: '2016-07-24T03:32:45.678Z'
     },
     {
-      user_id: 'fc180fa6-465c-4a1e-b015-05f1004d4cf9',
+      user_id: 'e05b8c71-a5e0-41c5-96e7-549c0d7a4a04',
       username: 'sauceGuy',
       display_name: 'Sauce Y. Guy',
       bio: '',
@@ -24,7 +24,7 @@ async function profile() {
       created_at: '2016-07-24T03:32:45.678Z'
     },
     {
-      user_id: 'f771cfea-d30e-4157-b2f4-793857033165',
+      user_id: 'd692bc5c-5df1-408f-9d18-a14afc8216ed',
       username: 'hurrrr',
       display_name: 'Hurrrr Durrrr. Murrrr',
       bio: '',
