@@ -28,9 +28,10 @@ import type { ReactElement, ReactNode } from 'react';
 import { User } from '@lib/types/user';
 import { Tweet as TypeTweet } from '@lib/types/tweet';
 import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react';
-import { getFollowerLists } from 'api/lists/lists';
+import { getCustomLists, getFollowerLists } from 'api/lists/lists';
 import type { User as AdminUser } from '@lib/types/user';
 import { UserCard } from '@components/user/user-card';
+import { AddListModal } from '@components/modal/add-list-model';
 
 const suggestionsData: AdminUser[] = [
   {
@@ -65,12 +66,12 @@ export default function Lists(): JSX.Element {
   const fetchFollowingList = async () => {
     // if (supabaseUser) {
     console.log('fetching now...');
-    const res = await getFollowerLists(
+    const res = await getCustomLists(
       'd692bc5c-5df1-408f-9d18-a14afc8216ed', // supabaseUser.id,
       supabaseClient
     );
     console.log('res', res);
-    setCharacters(res.characters.data);
+    // setCharacters(res.characters.data);
     // }
   };
 
@@ -250,10 +251,11 @@ export default function Lists(): JSX.Element {
     }
   ];
 
-  const handleClear = async (): Promise<void> => {
-    await clearAllBookmarks(userId);
+  const handleAddList = async (): Promise<void> => {
+    // await clearAllBookmarks(userId);
+
     closeModal();
-    toast.success('Successfully cleared all bookmarks');
+    toast.success('Successfully added list');
   };
 
   return (
@@ -264,16 +266,24 @@ export default function Lists(): JSX.Element {
         open={open}
         closeModal={closeModal}
       >
-        <ActionModal
-          title='Clear all Lists?'
+        <AddListModal
+          title='Add List'
           description='This can’t be undone and you’ll remove all Tweets you’ve added to your Lists.'
           mainBtnClassName='bg-accent-red hover:bg-accent-red/90 active:bg-accent-red/75 accent-tab 
                             focus-visible:bg-accent-red/90'
           mainBtnLabel='Clear'
-          action={handleClear}
+          action={handleAddList}
           closeModal={closeModal}
         />
       </Modal>
+      {/* <Modal
+        className='flex items-start justify-center'
+        modalClassName='bg-main-background rounded-2xl max-w-xl w-full my-8 overflow-hidden'
+        open={open}
+        closeModal={closeModal}
+      >
+        TWEET REPLY MODEL NEEDS TO BE IMPLIMENTED
+      </Modal> */}
       <MainHeader className='flex items-center justify-between'>
         <div className='-mb-1 flex flex-col'>
           <h2 className='-mt-1 text-xl font-bold'>Lists</h2>
@@ -294,6 +304,7 @@ export default function Lists(): JSX.Element {
           />
         </Button>
       </MainHeader>
+
       <section className='mt-0.5'>
         <div className='flex'>
           <button className='border-2 border-black p-4 text-white hover:border-white'>
@@ -301,6 +312,14 @@ export default function Lists(): JSX.Element {
           </button>
           <button className='border-2 border-black p-4 text-white hover:border-white'>
             Blocked
+          </button>
+          <button
+            onClick={() => {
+              openModal();
+            }}
+            className='border-2 border-black p-4 text-white hover:border-white'
+          >
+            Add List
           </button>
         </div>
       </section>
