@@ -28,7 +28,7 @@ import type { ReactElement, ReactNode } from 'react';
 import { User } from '@lib/types/user';
 import { Tweet as TypeTweet } from '@lib/types/tweet';
 import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react';
-import { getCustomLists, getFollowerLists } from 'api/lists/lists';
+import { getFollowerLists } from 'api/lists/lists';
 import type { User as AdminUser } from '@lib/types/user';
 import { UserCard } from '@components/user/user-card';
 import { AddListModal } from '@components/modal/add-list-model';
@@ -66,12 +66,12 @@ export default function Lists(): JSX.Element {
   const fetchFollowingList = async () => {
     // if (supabaseUser) {
     console.log('fetching now...');
-    const res = await getCustomLists(
+    const res = await getFollowerLists(
       'd692bc5c-5df1-408f-9d18-a14afc8216ed', // supabaseUser.id,
       supabaseClient
     );
     console.log('res', res);
-    // setCharacters(res.characters.data);
+    setCharacters(res.characters.data);
     // }
   };
 
