@@ -11,6 +11,11 @@ import { NextImage } from '@components/ui/next-image';
 type UserCardProps = User & {
   modal?: boolean;
   follow?: boolean;
+  customName?: string;
+  customTwitterHandle?: string;
+  customSrcUrl?: string;
+  customUrl?: string;
+  customAlt?: string;
 };
 
 export function UserCard(user: UserCardProps): JSX.Element {
@@ -18,9 +23,12 @@ export function UserCard(user: UserCardProps): JSX.Element {
   const size = 10;
   const pictureSize = 100;
 
-  const src = 'https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg';
-  const url = 'https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png';
-  const alt = name;
+  const src =
+    user.customSrcUrl || 'https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg';
+  const url =
+    user.customUrl ||
+    'https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png';
+  const alt = user.customAlt || name;
 
   return (
     // <Link href={`/user/${username}`}>
@@ -39,7 +47,7 @@ export function UserCard(user: UserCardProps): JSX.Element {
     //         key={src}
     //       />
     //     </div>
-        
+
     //     <div className='flex items-end'>
     //       <div className='mr-6'>
     //         <UserTooltip avatar {...user} modal={modal}>
@@ -70,37 +78,41 @@ export function UserCard(user: UserCardProps): JSX.Element {
     //       </div>
     //     </div>
     //     </div> */}
-        
+
     //   </a>
     // </Link>
-  <>
-    <div className="shadow-lg">
-      <div className='relative'>
-        <div className="">
-          <NextImage
-            width={350}
-            height={175}
-            src={url}
-            alt={alt}
-            key={url}
-            imgClassName="rounded-lg"
-          />
-        </div>
-        <div className="absolute bottom-1 w-full bg-black bg-opacity-20 grid justify-items-center h-15">
-          <span className="text-lg text-white font-semibold uppercase">E Girl - 1</span>
-          <span className="text-md text-whiteuppercase">@egirl</span>
-        </div>
-        <div className="absolute left-2 bottom-10">
-          <div className="">
-            <div className='flex w-full'>
-              <UserTooltip avatar {...user} modal={modal}>
-                <UserAvatar src={src} alt={name} username={username} />
-              </UserTooltip>
+    <>
+      <div className='shadow-lg'>
+        <div className='relative'>
+          <div className=''>
+            <NextImage
+              width={350}
+              height={175}
+              src={url}
+              alt={alt}
+              key={url}
+              imgClassName='rounded-lg'
+            />
+          </div>
+          <div className='h-15 absolute bottom-1 grid w-full justify-items-center bg-black bg-opacity-20'>
+            <span className='text-lg font-semibold uppercase text-white'>
+              {user.customName || 'E Girl - 1'}
+            </span>
+            <span className='text-md text-whiteuppercase'>
+              {user.customTwitterHandle || '@egirl'}
+            </span>
+          </div>
+          <div className='absolute left-2 bottom-10'>
+            <div className=''>
+              <div className='flex w-full'>
+                <UserTooltip avatar {...user} modal={modal}>
+                  <UserAvatar src={src} alt={name} username={username} />
+                </UserTooltip>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </>
+    </>
   );
 }
