@@ -34,13 +34,13 @@ export default function App({
         supabaseClient={supabaseClient}
         initialSession={pageProps.initialSession}
       >
-        <SupabaseAuthContextProvider>
-          <AuthContextProvider>
+        <AuthContextProvider>
+          <SupabaseAuthContextProvider>
             <ThemeContextProvider>
               {getLayout(<Component {...pageProps} />)}
             </ThemeContextProvider>
-          </AuthContextProvider>
-        </SupabaseAuthContextProvider>
+          </SupabaseAuthContextProvider>
+        </AuthContextProvider>
       </SessionContextProvider>
     </>
   );
