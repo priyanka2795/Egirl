@@ -53,7 +53,9 @@ export async function getUserSubscriptionsByUserId(
 ) {
   let { data, error, status } = await client
     .from('user_subscriptions')
-    .select(`id, user_id, character_id, subscription_tier, created_at`)
+    .select(
+      `id, user_id, character_id, subscription_id, stripe_subscription_id, created_at`
+    )
     .filter('user_id', 'eq', user_id);
 
   if ((error && status !== 406) || !data) {

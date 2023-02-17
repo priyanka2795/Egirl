@@ -1,4 +1,5 @@
 import { getPosts } from './posts';
+import { getSubscriptions } from './subscriptions';
 
 export async function getCharacterById(character_id: number, client: any) {
   let { data, error, status } = await client
@@ -16,10 +17,25 @@ export async function getCharacterById(character_id: number, client: any) {
   const posts = await getPosts(true, 20, client, undefined, character_id_str);
   const numPosts = posts.clientData.length;
 
-  const user_subscriptions = await getUserSubscriptionsByCharacterId(
+  let user_subscriptions = await getUserSubscriptionsByCharacterId(
     character_id,
     client
   );
+
+  const subscription_metadata = await getSubscriptions(client);
+
+  user_subscriptions = user_subscriptions.map((sub: any) => {
+    const subscription = subscription_metadata.find(
+      (m: any) => m.id === sub.subscription_id
+    );
+    return {
+      ...sub,
+      subscription_name: subscription.subscription_name,
+      subscription_price: subscription.subscription_price,
+      subscription_tier: subscription.subscription_tier
+    };
+  });
+
   const total_subscriptions = user_subscriptions.reduce(
     (count: number[], sub: any) => {
       if (sub.subscription_tier === '') {
@@ -150,7 +166,7 @@ export async function getUserSubscriptionsByCharacterId(
 ) {
   let { data, error, status } = await client
     .from('user_subscriptions')
-    .select(`id, user_id, character_id, subscription_tier, created_at`)
+    .select(`id, user_id, character_id, subscription_id, created_at`)
     .filter('character_id', 'eq', character_id);
 
   if ((error && status !== 406) || !data) {

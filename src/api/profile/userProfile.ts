@@ -17,5 +17,5 @@ export async function getUserProfileInterests(user_id: string, client: any) {
   return interests;
 }
 
-//getUserProfile('2bc83fa6-7acb-414b-9312-2f897182381b', supabaseClient);
-//getUserProfileInterests('2bc83fa6-7acb-414b-9312-2f897182381b', supabaseClient);
+//getUserProfile('a0e83fdc-039c-46cf-9d3d-ff515aaa7bfd', supabaseClient);
+//getUserProfileInterests('a0e83fdc-039c-46cf-9d3d-ff515aaa7bfd', supabaseClient);
