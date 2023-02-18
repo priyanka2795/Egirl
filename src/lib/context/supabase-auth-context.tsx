@@ -30,9 +30,9 @@ const SupabaseAuthContextProvider = (props: any) => {
         setUserSession(session);
         setUser(session?.user ?? null);
 
-        if (session?.user) {
-          router.push('/home2');
-        }
+        // if (session?.user) {
+        //   router.push('/home2');
+        // }
       }
     );
 

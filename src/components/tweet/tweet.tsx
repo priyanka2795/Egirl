@@ -25,6 +25,12 @@ export type TweetProps = Tweet & {
   pinned?: boolean;
   profile?: User | null;
   parentTweet?: boolean;
+  customId?: string;
+  customName?: string;
+  customText?: string;
+  customImageUrls?: string[];
+  customCommentsCount?: number;
+  customLikes?: string[];
 };
 
 export const variants: Variants = {
@@ -49,7 +55,13 @@ export function Tweet(tweet: TweetProps): JSX.Element {
     parentTweet,
     userReplies,
     userRetweets,
-    user: tweetUserData
+    user: tweetUserData,
+    customId,
+    customCommentsCount,
+    customName,
+    customImageUrls,
+    customLikes,
+    customText
   } = tweet;
 
   const { id: ownerId, name, username, verified, photoURL } = tweetUserData;
@@ -135,7 +147,7 @@ export function Tweet(tweet: TweetProps): JSX.Element {
                 <div className='flex gap-1 truncate xs:overflow-visible xs:whitespace-normal'>
                   <UserTooltip modal={modal} {...tweetUserData}>
                     <UserName
-                      name={name}
+                      name={customName ? customName : name}
                       username={username}
                       verified={verified}
                       className='text-light-primary dark:text-dark-primary'
@@ -176,7 +188,9 @@ export function Tweet(tweet: TweetProps): JSX.Element {
                 </p>
               )}
               {text && (
-                <p className='whitespace-pre-line break-words'>{text}</p>
+                <p className='whitespace-pre-line break-words'>
+                  {customText ? customText : text}
+                </p>
               )}
               <div className='mt-1 flex flex-col gap-2'>
                 {images && (
@@ -191,8 +205,8 @@ export function Tweet(tweet: TweetProps): JSX.Element {
                     reply={reply}
                     userId={userId}
                     isOwner={isOwner}
-                    tweetId={tweetId}
-                    userLikes={userLikes}
+                    tweetId={customId ? customId : tweetId}
+                    userLikes={customLikes ? customLikes : userLikes}
                     userReplies={userReplies}
                     userRetweets={userRetweets}
                     openModal={!parent ? openModal : undefined}
