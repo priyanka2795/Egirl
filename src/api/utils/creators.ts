@@ -1,6 +1,9 @@
 import { supabaseClient } from '../../config/supabaseClient';
 import { getSubscriptions } from './subscriptions';
 
+/// Getters
+
+// Get creator by creator id
 export async function getCreator(creator_id: number, client: any) {
   let { data, error, status } = await client
     .from('creators')
@@ -56,6 +59,7 @@ export async function getCreator(creator_id: number, client: any) {
   return { data, total_subscriptions, characters };
 }
 
+// Get characters by creator id
 export async function getCharactersByCreatorId(
   creator_id: number,
   client: any
@@ -74,6 +78,7 @@ export async function getCharactersByCreatorId(
   return data;
 }
 
+// Get creator subscriptions by creator id
 export async function getCreatorSubscriptionsByCreatorId(
   creator_id: number,
   client: any

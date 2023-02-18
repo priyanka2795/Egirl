@@ -1,6 +1,9 @@
 import { getPosts } from './posts';
 import { getSubscriptions } from './subscriptions';
 
+/// Getters
+
+// Get character by id
 export async function getCharacterById(character_id: number, client: any) {
   let { data, error, status } = await client
     .from('characters')
@@ -78,6 +81,7 @@ export async function getCharacterById(character_id: number, client: any) {
   };
 }
 
+// Get characters by info tags
 export async function getCharactersByInfoTags(
   infotags: string,
   limit: number,
@@ -145,6 +149,7 @@ export async function getCharactersByInfoTags(
   return { data, final_subscriptions, final_infotags, final_follower_count };
 }
 
+// Get characters by ids
 export async function getCharactersByIds(character_ids: string, client: any) {
   let { data, error, status } = await client
     .from('characters')
@@ -160,6 +165,7 @@ export async function getCharactersByIds(character_ids: string, client: any) {
   return { data };
 }
 
+// Get subscriptions by character id
 export async function getUserSubscriptionsByCharacterId(
   character_id: number,
   client: any
@@ -176,6 +182,7 @@ export async function getUserSubscriptionsByCharacterId(
   return data;
 }
 
+// Get info tags by info tag ids
 export async function getInfoTagsByInfoTagIds(
   infotag_ids: string,
   client: any
@@ -192,6 +199,7 @@ export async function getInfoTagsByInfoTagIds(
   return data;
 }
 
+// Get followers by character id
 export async function getFollowersByCharacterId(
   character_id: number,
   client: any
@@ -206,4 +214,41 @@ export async function getFollowersByCharacterId(
   }
 
   return data;
+}
+
+/// Setters
+
+// Create character profile
+export async function createCharacterProfile(
+  username: string,
+  display_name: string,
+  is_verified: boolean,
+  bio: string,
+  creator_id: number,
+  profile_picture: string,
+  profile_banner_picture: string,
+  infotag_ids: number[],
+  client: any
+) {
+  let character_profile_data = {
+    username,
+    display_name,
+    is_verified,
+    bio,
+    creator_id,
+    profile_picture,
+    profile_banner_picture,
+    infotag_ids
+  };
+
+  let { data, error, status } = await client
+    .from('characters')
+    .insert([character_profile_data])
+    .single();
+
+  if (error && status !== 201) {
+    throw error;
+  }
+
+  return character_profile_data;
 }

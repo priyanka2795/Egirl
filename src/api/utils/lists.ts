@@ -2,6 +2,9 @@ import { getPosts } from './posts';
 import { getCharactersByIds } from './characters';
 import { getCharacterFollowsByUserId } from './profiles';
 
+/// Getters
+
+// Get custom lists by user
 export async function getListsByUser(user_id: string, client: any) {
   let { data, error, status } = await client
     .from('lists')
@@ -24,6 +27,7 @@ export async function getListsByUser(user_id: string, client: any) {
   return { data, final_characters };
 }
 
+// Get follower lists by user
 export async function getFollowerListsByUser(user_id: string, client: any) {
   let characterFollows = await getCharacterFollowsByUserId(user_id, client);
 
@@ -34,8 +38,32 @@ export async function getFollowerListsByUser(user_id: string, client: any) {
   return { characters };
 }
 
-// Setters
+/// Setters
 
+// Add custom list
+export async function addCustomList(
+  user_id: string,
+  list_name: string,
+  character_ids: number[],
+  client: any
+) {
+  let user_data = {
+    user_id,
+    list_name,
+    character_ids,
+    created_at: new Date().toISOString()
+  };
+  let { data, error, status } = await client.from('lists').insert([user_data]);
+
+  if (error && status !== 201) {
+    console.log('Error in addCustomList:', error);
+    throw error;
+  }
+
+  return user_data;
+}
+
+// Add character ids to list by user
 export async function addCharacterIdsToListByUser(
   user_id: string,
   character_ids: number[],

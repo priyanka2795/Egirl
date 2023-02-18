@@ -1,6 +1,7 @@
 import { loadStripe, Stripe as StripeObj } from '@stripe/stripe-js';
 import Stripe from 'stripe';
 import { toDateTime } from './helpers';
+// import { supabaseClient } from '../../config/supabaseClient';
 
 let stripePromise: Promise<StripeObj | null>;
 
@@ -28,7 +29,7 @@ export const stripe = new Stripe(
   }
 );
 
-// Create or retrieve customer
+// Create or retrieve Stripe customer
 export async function createOrRetrieveCustomer(
   email: string,
   uuid: string,
@@ -40,7 +41,7 @@ export async function createOrRetrieveCustomer(
     .eq('id', uuid)
     .single();
   if (error || !data?.stripe_customer_id) {
-    // No customer record found, let's create one.
+    console.log('Creating customer, uuid: ', uuid);
     const customerData: { metadata: { supabaseUUID: string }; email?: string } =
       {
         metadata: {
@@ -49,18 +50,29 @@ export async function createOrRetrieveCustomer(
       };
     if (email) customerData.email = email;
     const customer = await stripe.customers.create(customerData);
+    console.log('This is new customer from Stripe: ', customer);
     // Insert customer id into Supabase
-    const { error: supabaseError } = await client
-      .from('customers')
-      .insert([{ id: uuid, stripe_customer_id: customer.id }]);
-    if (supabaseError) throw supabaseError;
+    const { error: supabaseError } = await client.from('customers').insert([
+      {
+        user_id: uuid,
+        stripe_customer_id: customer.id,
+        created_at: new Date()
+      }
+    ]);
+    if (supabaseError) {
+      console.log(
+        'In createOrRetrieveCustomer(), supabaseError: ',
+        supabaseError
+      );
+      throw supabaseError;
+    }
     console.log(`New customer created and inserted for ${uuid}.`);
     return customer.id;
   }
   return data.stripe_customer_id;
 }
 
-// TODO: modify product records
+// Upsert a Stripe product record
 export async function upsertProductRecord(
   product: Stripe.Product,
   client: any
@@ -79,6 +91,7 @@ export async function upsertProductRecord(
   console.log(`Product inserted/updated: ${product.id}`);
 }
 
+// Upsert Stripe product price record
 export async function upsertPriceRecord(price: Stripe.Price, client: any) {
   const priceData: any = {
     id: price.id,
@@ -128,7 +141,7 @@ export async function manageSubscriptionStatusChange(
   createAction = false,
   client: any
 ) {
-  // Get customer's UUID from mapping table.
+  // Get customer's UUID from customers table
   const { data: customerData, error: noCustomerError } = await client
     .from('customers')
     .select('id')
@@ -141,6 +154,7 @@ export async function manageSubscriptionStatusChange(
   const subscription = await stripe.subscriptions.retrieve(subscriptionId, {
     expand: ['default_payment_method']
   });
+
   // Upsert the latest status of the subscription object
   const subscriptionData: any = {
     id: subscription.id,
@@ -177,19 +191,27 @@ export async function manageSubscriptionStatusChange(
   };
 
   const { error } = await client
-    .from('subscriptions')
+    .from('stripe_subscriptions')
     .upsert([subscriptionData]);
   if (error) throw error;
   console.log(
-    `Inserted/updated subscription [${subscription.id}] for user [${uuid}]`
+    `Inserted/updated Stripe subscription [${subscription.id}] for user [${uuid}]`
   );
 
   // For a new subscription copy the billing details to the customer object
   // NOTE: This is a costly operation and should happen at the very end
   if (createAction && subscription.default_payment_method && uuid)
+    // TODO: add create action on stripe side
     //@ts-ignore
     await copyBillingDetailsToCustomer(
       uuid,
       subscription.default_payment_method as Stripe.PaymentMethod
     );
 }
+
+// console.log('Testing stripe utils: ');
+// createOrRetrieveCustomer(
+//   'test@gmail.com',
+//   'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
+//   supabaseClient
+// );

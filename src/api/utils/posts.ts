@@ -1,3 +1,6 @@
+/// Getters
+
+// Get posts, with fiilters for user_ids, character_ids
 export async function getPosts(
   is_character: boolean,
   limit: number,
@@ -137,6 +140,7 @@ export async function getPosts(
   };
 }
 
+// Get posts by infotags
 export async function getPostsByInfoTags(
   infotags: string,
   limit: number,
@@ -216,6 +220,7 @@ export async function getPostsByInfoTags(
   };
 }
 
+// Get post likes
 export async function getPostLikes(post_id: number, client: any) {
   let { data, error, status } = await client
     .from('post_likes')
@@ -230,6 +235,7 @@ export async function getPostLikes(post_id: number, client: any) {
   return data;
 }
 
+// Get post comments
 export async function getPostComments(post_id: number, client: any) {
   let { data, error, status } = await client
     .from('comments')
@@ -243,6 +249,7 @@ export async function getPostComments(post_id: number, client: any) {
   return data;
 }
 
+// Get post by post id
 export async function getPost(post_id: number, client: any) {
   let { data, error, status } = await client
     .from('posts')
@@ -258,6 +265,7 @@ export async function getPost(post_id: number, client: any) {
   return data;
 }
 
+// Get posts by character id
 export async function getPostsByCharacterId(character_id: number, client: any) {
   let { data, error, status } = await client
     .from('posts')
@@ -272,6 +280,7 @@ export async function getPostsByCharacterId(character_id: number, client: any) {
   return data;
 }
 
+// Get post media
 export async function getPostMedia(post_id: number, client: any) {
   let { data, error, status } = await client
     .from('media')
@@ -285,6 +294,7 @@ export async function getPostMedia(post_id: number, client: any) {
   return data;
 }
 
+// Get info tags by info tag ids
 export async function getInfoTagsByInfoTagIds(
   infotag_ids: string,
   client: any
@@ -302,3 +312,36 @@ export async function getInfoTagsByInfoTagIds(
 }
 
 //getPosts(true, 20, '()', '(1)').then((res) => console.log(res));
+
+/// Setters
+
+// Create post
+export async function createPost(
+  user_id: number,
+  character_id: number,
+  title: string,
+  description: string,
+  prompt_description: string,
+  is_ppv: boolean,
+  is_character_post: boolean,
+  infotags_id: number[],
+  client: any
+) {
+  let postData = {
+    user_id,
+    character_id,
+    title,
+    description,
+    prompt_description,
+    is_ppv,
+    is_character_post,
+    infotags_id
+  };
+  let { data, error, status } = await client.from('posts').insert([postData]);
+
+  if (error && status !== 201) {
+    throw error;
+  }
+
+  return postData;
+}

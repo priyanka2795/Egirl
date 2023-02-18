@@ -1,5 +1,8 @@
 import { getPosts } from './posts';
 
+/// Getters
+
+// Get bookmarks by user
 export async function getBookmarksByUser(user_id: string, client: any) {
   let { data, error, status } = await client
     .from('bookmarks')

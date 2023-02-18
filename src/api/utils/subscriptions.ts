@@ -1,6 +1,9 @@
 import { getUserSubscriptionsByUserId } from './profiles';
 import { getCharactersByIds } from './characters';
 
+/// Getters
+
+// Get subscriptions
 export async function getSubscriptions(client: any) {
   let { data, error, status } = await client
     .from('subscriptions')
@@ -15,6 +18,7 @@ export async function getSubscriptions(client: any) {
   return data;
 }
 
+// Get subscriptions by user
 export async function getSubscriptionsByUser(user_id: string, client: any) {
   let subscriptions = await getUserSubscriptionsByUserId(user_id, client);
 
