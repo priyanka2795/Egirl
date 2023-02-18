@@ -1,3 +1,6 @@
+/// Getters
+
+// Get reported characters by user
 export async function getReportedCharactersByUser(
   user_id: string,
   client: any
@@ -19,6 +22,7 @@ export async function getReportedCharactersByUser(
   return character_ids;
 }
 
+// Get reported profiles by user
 export async function getReportedProfilesByUser(user_id: string, client: any) {
   let { data, error, status } = await client
     .from('user_reports')

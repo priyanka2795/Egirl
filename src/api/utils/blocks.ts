@@ -1,3 +1,6 @@
+/// Getters
+
+// Get blocked characters by user
 export async function getBlockedCharactersByUser(user_id: string, client: any) {
   let { data, error, status } = await client
     .from('user_blocks')
@@ -14,6 +17,7 @@ export async function getBlockedCharactersByUser(user_id: string, client: any) {
   return character_ids;
 }
 
+/// Get blocked profiles by user
 export async function getBlockedProfilesByUser(user_id: string, client: any) {
   let { data, error, status } = await client
     .from('user_blocks')

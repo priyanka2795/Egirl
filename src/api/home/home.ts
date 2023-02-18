@@ -1,5 +1,5 @@
 import { getCharacterById, getCharactersByInfoTags } from '../utils/characters';
-import { getPostsByInfoTags, getPosts } from '../utils/posts';
+import { getPostsByInfoTags, getPosts, createPost } from '../utils/posts';
 import {
   getProfileInterests,
   getUserSubscriptionsByUserId,
@@ -7,6 +7,8 @@ import {
 } from '../utils/profiles';
 import { getBlockedCharactersByUser } from '../utils/blocks';
 //import { supabaseClient } from '../../config/supabaseClient';
+
+/// Getters
 
 /// Character posts
 
@@ -61,6 +63,34 @@ export async function getHomeCharacterSuggestionsByInfotags(
   const infotags_str = '{' + infotags.join(',') + '}';
   const characters = await getCharactersByInfoTags(infotags_str, 20, client);
   return characters;
+}
+
+/// Setters
+
+export async function createCharacterPost(
+  user_id: number,
+  character_id: number,
+  title: string,
+  description: string,
+  prompt_description: string,
+  is_ppv: boolean,
+  is_character_post: boolean,
+  infotags_id: number[],
+  client: any
+) {
+  // TODO: validation
+  const post = await createPost(
+    user_id,
+    character_id,
+    title,
+    description,
+    prompt_description,
+    is_ppv,
+    is_character_post,
+    infotags_id,
+    client
+  );
+  return post;
 }
 
 // getHomePostsSubscribedTo(
