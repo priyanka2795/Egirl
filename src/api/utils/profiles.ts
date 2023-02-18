@@ -79,6 +79,7 @@ export async function createUserProfile(
   username: string,
   display_name: string,
   bio: string,
+  location: string,
   profile_picture: string,
   profile_banner_picture: string,
   client: any
@@ -88,6 +89,7 @@ export async function createUserProfile(
     username,
     display_name,
     bio,
+    location,
     profile_picture,
     profile_banner_picture
   };
