@@ -71,12 +71,19 @@ export default async function webhookHandler(
             await upsertPriceRecord(event.data.object as Stripe.Price, client);
             break;
           case 'customer.subscription.created':
+            let created_subscription = event.data.object as Stripe.Subscription;
+            await manageSubscriptionStatusChange(
+              created_subscription.id,
+              created_subscription.customer as string,
+              event.type === 'customer.subscription.created',
+              client
+            );
           case 'customer.subscription.updated':
           case 'customer.subscription.deleted':
-            const subscription = event.data.object as Stripe.Subscription;
+            let deleted_subscription = event.data.object as Stripe.Subscription;
             await manageSubscriptionStatusChange(
-              subscription.id,
-              subscription.customer as string,
+              deleted_subscription.id,
+              deleted_subscription.customer as string,
               event.type === 'customer.subscription.created',
               client
             );
