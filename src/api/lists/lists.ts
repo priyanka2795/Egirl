@@ -57,12 +57,12 @@ export async function addCharactersToList(
 
 //getCustomLists('e8a2be37-76f6-4ebb-bfd8-b9e370046a41', supabaseClient);
 // getFollowerLists('e8a2be37-76f6-4ebb-bfd8-b9e370046a41', supabaseClient);
-createCustomList(
-  'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
-  'furries2',
-  [2, 3],
-  supabaseClient
-);
+// createCustomList(
+//   'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
+//   'furries2',
+//   [2, 3],
+//   supabaseClient
+// );
 // addCharactersToList(
 //   'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
 //   [3, 2],

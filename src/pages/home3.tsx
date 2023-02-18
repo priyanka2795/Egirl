@@ -41,10 +41,7 @@ export default function Home(): JSX.Element {
     // console.log('user id ', user.id);
     console.log('client', client);
     // user!.id
-    const res = await getHomePostsSubscribedTo(
-      'e05b8c71-a5e0-41c5-96e7-549c0d7a4a04',
-      client
-    );
+    const res = await getHomePostsSubscribedTo(user!.id, client);
     console.log(
       res.clientData.map((post: any, index: number) => {
         return {

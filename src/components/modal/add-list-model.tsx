@@ -3,6 +3,8 @@ import cn from 'clsx';
 import { Dialog } from '@headlessui/react';
 import { Button } from '@components/ui/button';
 import { CustomIcon } from '@components/ui/custom-icon';
+import { createCustomList } from 'api/lists/lists';
+import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react';
 
 type AddListModalProps = {
   title: string;
@@ -29,6 +31,9 @@ export function AddListModal({
   action,
   closeModal
 }: AddListModalProps): JSX.Element {
+  const supabaseClient = useSupabaseClient();
+  const user = useUser();
+
   const mainBtn = useRef<HTMLButtonElement>(null);
 
   const [listName, setListName] = useState('');
@@ -43,7 +48,10 @@ export function AddListModal({
     return () => clearTimeout(timeoutId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
+  const createList = async () => {
+    await createCustomList(user!.id, listName, [], supabaseClient);
+    action();
+  };
   return (
     <div className='flex flex-col gap-6'>
       <div className='flex flex-col gap-4'>
@@ -79,7 +87,11 @@ export function AddListModal({
                dark:focus-visible:bg-light-border/90 dark:active:bg-light-border/75`
           )}
           ref={mainBtn}
-          onClick={action}
+          onClick={() => {
+            createList().then(() => {
+              action();
+            });
+          }}
         >
           Add List
         </button>

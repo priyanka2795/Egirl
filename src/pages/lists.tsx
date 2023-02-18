@@ -28,7 +28,7 @@ import type { ReactElement, ReactNode } from 'react';
 import { User } from '@lib/types/user';
 import { Tweet as TypeTweet } from '@lib/types/tweet';
 import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react';
-import { getCustomLists, getFollowerLists } from 'api/lists/lists';
+import { getCustomLists } from 'api/lists/lists';
 import type { User as AdminUser } from '@lib/types/user';
 import { UserCard } from '@components/user/user-card';
 import { AddListModal } from '@components/modal/add-list-model';
@@ -262,9 +262,7 @@ export default function Lists(): JSX.Element {
     }
   ];
 
-  const handleAddList = async (): Promise<void> => {
-    // await clearAllBookmarks(userId);
-
+  const action = async (): Promise<void> => {
     closeModal();
     toast.success('Successfully added list');
   };
@@ -283,7 +281,7 @@ export default function Lists(): JSX.Element {
           mainBtnClassName='bg-accent-red hover:bg-accent-red/90 active:bg-accent-red/75 accent-tab 
                             focus-visible:bg-accent-red/90'
           mainBtnLabel='Clear'
-          action={handleAddList}
+          action={action}
           closeModal={closeModal}
         />
       </Modal>
