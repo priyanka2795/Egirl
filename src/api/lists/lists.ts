@@ -2,7 +2,8 @@ import {
   getListsByUser,
   getFollowerListsByUser,
   addCharacterIdsToListByUser,
-  addCustomList
+  addCustomList,
+  getBlockedCharactersByUser
 } from '../utils/lists';
 
 import { supabaseClient } from '../../config/supabaseClient';
@@ -20,6 +21,12 @@ export async function getCustomLists(user_id: string, client: any) {
 // Get followers (default list)
 export async function getFollowerLists(user_id: string, client: any) {
   const lists = await getFollowerListsByUser(user_id, client);
+  return lists;
+}
+
+// Get blocked characters
+export async function getBlockedCharacters(user_id: string, client: any) {
+  const lists = await getBlockedCharactersByUser(user_id, client);
   return lists;
 }
 
