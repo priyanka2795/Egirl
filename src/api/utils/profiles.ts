@@ -22,7 +22,23 @@ export async function getProfile(user_id: string, client: any) {
   return { data, numPosts, posts };
 }
 
-// Get profiile interests by user id
+// Get profiles by ids
+export async function getProfilesByIds(user_ids: string, client: any) {
+  let { data, error, status } = await client
+    .from('profile')
+    .select(
+      `user_id, username, display_name, bio, profile_picture, profile_banner_picture, created_at`
+    )
+    .filter('user_id', 'in', user_ids);
+
+  if ((error && status !== 406) || !data) {
+    throw error;
+  }
+
+  return { data };
+}
+
+// Get profile interests by user id
 export async function getProfileInterests(user_id: string, client: any) {
   let { data, error, status } = await client
     .from('interests')

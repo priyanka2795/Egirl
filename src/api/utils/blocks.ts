@@ -1,4 +1,5 @@
 import { getCharactersByIds } from './characters';
+import { getProfilesByIds } from './profiles';
 
 /// Getters
 
@@ -45,12 +46,15 @@ export async function getBlockedCharactersForUser(
   client: any
 ) {
   let characterBlocks = await getBlockedCharacterIdsByUser(user_id, client);
-
-  let blocked_character_ids = characterBlocks.map(
-    (follow: any) => follow.blocked_character_id
-  );
-
-  const character_ids_str = '(' + blocked_character_ids.join(',') + ')';
+  const character_ids_str = '(' + characterBlocks.join(',') + ')';
   const characters = await getCharactersByIds(character_ids_str, client);
   return { characters };
+}
+
+// Get blocked profiles
+export async function getBlockedProfilesForUser(user_id: string, client: any) {
+  let profileBlocks = await getBlockedProfilesByUser(user_id, client);
+  const profile_ids_str = '(' + profileBlocks.join(',') + ')';
+  const profiles = await getProfilesByIds(profile_ids_str, client);
+  return { profiles };
 }
