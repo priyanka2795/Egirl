@@ -177,11 +177,11 @@ export async function getLastTwentyUserCharChat(
   console.log(latestMessages);
   return latestMessages;
 }
-getLastTwentyUserCharChat(
-  'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
-  1,
-  supabaseClient
-);
+// getLastTwentyUserCharChat(
+//   'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
+//   1,
+//   supabaseClient
+// );
 
 // add who is the sender
 
