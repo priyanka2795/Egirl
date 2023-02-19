@@ -41,7 +41,7 @@ export async function getFollowerListsByUser(user_id: string, client: any) {
 // Get blocked characters
 export async function getBlockedCharactersByUser(user_id: string, client: any) {
   let blockedCharacters = await getBlockedCharactersForUser(user_id, client);
-  return blockedCharacters;
+  return { blockedCharacters };
 }
 
 /// Setters
