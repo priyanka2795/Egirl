@@ -5,7 +5,7 @@ import {
   getUserSubscriptionsByUserId,
   getCharacterFollowsByUserId
 } from '../utils/profiles';
-import { getBlockedCharactersByUser } from '../utils/blocks';
+import { getBlockedCharacterIdsByUser } from '../utils/blocks';
 //import { supabaseClient } from '../../config/supabaseClient';
 
 /// Getters
@@ -18,9 +18,12 @@ export async function getHomePostsSubscribedTo(user_id: string, client: any) {
   const character_ids = subscriptions.map(
     (subscription: any) => subscription.character_id
   );
-  const blockedCharacters = await getBlockedCharactersByUser(user_id, client);
+  const blockedCharacterIds = await getBlockedCharacterIdsByUser(
+    user_id,
+    client
+  );
   const final_character_ids = character_ids.filter(
-    (character: any) => !blockedCharacters.includes(character)
+    (character: any) => !blockedCharacterIds.includes(character)
   );
   const character_ids_str = '(' + final_character_ids.join(',') + ')';
   const posts = await getPosts(true, 20, client, undefined, character_ids_str);

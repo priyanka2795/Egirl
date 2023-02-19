@@ -1,7 +1,12 @@
+import { getCharactersByIds } from './characters';
+
 /// Getters
 
 // Get blocked characters by user
-export async function getBlockedCharactersByUser(user_id: string, client: any) {
+export async function getBlockedCharacterIdsByUser(
+  user_id: string,
+  client: any
+) {
   let { data, error, status } = await client
     .from('user_blocks')
     .select(`user_id, blocked_profile_id, blocked_character_id, created_at`)
@@ -32,4 +37,20 @@ export async function getBlockedProfilesByUser(user_id: string, client: any) {
   const profile_ids_str = '(' + profile_ids.join(',') + ')';
 
   return profile_ids;
+}
+
+// Get blocked characters
+export async function getBlockedCharactersForUser(
+  user_id: string,
+  client: any
+) {
+  let characterBlocks = await getBlockedCharacterIdsByUser(user_id, client);
+
+  let blocked_character_ids = characterBlocks.map(
+    (follow: any) => follow.blocked_character_id
+  );
+
+  const character_ids_str = '(' + blocked_character_ids.join(',') + ')';
+  const characters = await getCharactersByIds(character_ids_str, client);
+  return { characters };
 }
