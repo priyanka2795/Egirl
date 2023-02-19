@@ -91,21 +91,22 @@ export async function getAllUserCharChat(
 // this means if the user or character has sent 20 chats in a row, those will be the ones that are grabbed
 // First index: Most recent message (of the 20)
 // Last index: Most non-recent message (of the 20)
-export async function getLastTwentyUserCharChat(
+export async function getFlexUserCharChat(
   user_id: string,
   character_id: number,
+  limit: number,
   client: any
 ) {
   let userMessages = await getUserToCharacterMessagesLim(
     user_id,
     character_id,
-    20,
+    limit,
     client
   );
   let characterMessages = await getCharacterToUserMessagesLim(
     character_id,
     user_id,
-    20,
+    limit,
     client
   );
 
@@ -151,7 +152,7 @@ export async function getLastTwentyUserCharChat(
   );
 
   // extracting latest 20 messages content with who_is_sender from messsages array
-  const latestMessages = messages.slice(0, 20).map((message) => ({
+  const latestMessages = messages.slice(0, limit).map((message) => ({
     message: message.message,
     who_is_sender: message.who_is_sender
   }));
@@ -177,8 +178,9 @@ export async function getLastTwentyUserCharChat(
   console.log(latestMessages);
   return latestMessages;
 }
-getLastTwentyUserCharChat(
+getFlexUserCharChat(
   'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
   1,
+  20,
   supabaseClient
 );
