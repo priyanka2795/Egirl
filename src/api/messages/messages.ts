@@ -177,19 +177,8 @@ export async function getLastTwentyUserCharChat(
   console.log(latestMessages);
   return latestMessages;
 }
-// getLastTwentyUserCharChat(
-//   'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
-//   1,
-//   supabaseClient
-// );
-
-// add who is the sender
-
-// {
-//     id: 1,
-//     sender_id: 1,
-//     recipient_id: 'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
-//     message: 'hey uwu uwu something something',
-//     who_is_sender: 'character'
-//     created_at: '2016-07-24T03:32:45.678'
-// }
+getLastTwentyUserCharChat(
+  'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
+  1,
+  supabaseClient
+);
