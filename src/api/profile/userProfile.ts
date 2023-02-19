@@ -32,6 +32,7 @@ export async function createUserProfile(
   username: string,
   display_name: string,
   bio: string,
+  location: string,
   profile_picture: string,
   profile_banner_picture: string,
   client: any
@@ -42,6 +43,7 @@ export async function createUserProfile(
     username,
     display_name,
     bio,
+    location,
     profile_picture,
     profile_banner_picture,
     client
@@ -61,3 +63,14 @@ export async function addUserInterest(
 
 //getUserProfile('a0e83fdc-039c-46cf-9d3d-ff515aaa7bfd', supabaseClient);
 //getUserProfileInterests('a0e83fdc-039c-46cf-9d3d-ff515aaa7bfd', supabaseClient);
+
+// createUserProfile(
+//   '0af1f824-8db2-4642-b468-3a97e8d72cb4',
+//   'htest',
+//   'h test',
+//   '',
+//   '',
+//   'www.image.com',
+//   'www.imagebanner.com',
+//   supabaseClient
+// );
