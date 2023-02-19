@@ -1,21 +1,70 @@
-import { getCustomListsByUser, getFollowerListsByUser } from '../utils/lists';
+import {
+  getListsByUser,
+  getFollowerListsByUser,
+  addCharacterIdsToListByUser,
+  addCustomList
+} from '../utils/lists';
 
-// import { supabaseClient } from '../../config/supabaseClient';
+import { supabaseClient } from '../../config/supabaseClient';
 
 /// Lists
 
+/// Getters
+
 // Get custom lists
 export async function getCustomLists(user_id: string, client: any) {
-  const lists = await getCustomListsByUser(user_id, client);
+  const lists = await getListsByUser(user_id, client);
   return lists;
 }
 
 // Get followers (default list)
 export async function getFollowerLists(user_id: string, client: any) {
   const lists = await getFollowerListsByUser(user_id, client);
-  console.log('lists: ', lists);
   return lists;
 }
 
-// getCustomLists('1dd94d8b-c048-4b21-8571-583296db317e', supabaseClient);
-// getFollowerLists('1dd94d8b-c048-4b21-8571-583296db317e', supabaseClient);
+/// Setters
+
+// Create custom list
+export async function createCustomList(
+  user_id: string,
+  list_name: string,
+  character_ids: number[],
+  client: any
+) {
+  const newCharacterIdList = await addCustomList(
+    user_id,
+    list_name,
+    character_ids,
+    client
+  );
+  return newCharacterIdList;
+}
+
+// Add characters to lists
+export async function addCharactersToList(
+  user_id: string,
+  character_ids: number[],
+  client: any
+) {
+  const newCharacterIdList = await addCharacterIdsToListByUser(
+    user_id,
+    character_ids,
+    client
+  );
+  return newCharacterIdList;
+}
+
+//getCustomLists('e8a2be37-76f6-4ebb-bfd8-b9e370046a41', supabaseClient);
+// getFollowerLists('e8a2be37-76f6-4ebb-bfd8-b9e370046a41', supabaseClient);
+// createCustomList(
+//   'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
+//   'furries2',
+//   [2, 3],
+//   supabaseClient
+// );
+// addCharactersToList(
+//   'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
+//   [3, 2],
+//   supabaseClient
+// );

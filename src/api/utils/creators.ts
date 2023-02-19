@@ -1,5 +1,9 @@
 import { supabaseClient } from '../../config/supabaseClient';
+import { getSubscriptions } from './subscriptions';
 
+/// Getters
+
+// Get creator by creator id
 export async function getCreator(creator_id: number, client: any) {
   let { data, error, status } = await client
     .from('creators')
@@ -12,10 +16,25 @@ export async function getCreator(creator_id: number, client: any) {
     throw error;
   }
 
-  const creator_subscriptions = await getCreatorSubscriptionsByCreatorId(
+  let creator_subscriptions = await getCreatorSubscriptionsByCreatorId(
     creator_id,
     client
   );
+
+  const subscription_metadata = await getSubscriptions(client);
+
+  creator_subscriptions = creator_subscriptions.map((sub: any) => {
+    const subscription = subscription_metadata.find(
+      (m: any) => m.id === sub.subscription_id
+    );
+    return {
+      ...sub,
+      subscription_name: subscription.subscription_name,
+      subscription_price: subscription.subscription_price,
+      subscription_tier: subscription.subscription_tier
+    };
+  });
+
   const total_subscriptions = creator_subscriptions.reduce(
     (count: number[], sub: any) => {
       if (sub.subscription_tier === '') {
@@ -40,6 +59,7 @@ export async function getCreator(creator_id: number, client: any) {
   return { data, total_subscriptions, characters };
 }
 
+// Get characters by creator id
 export async function getCharactersByCreatorId(
   creator_id: number,
   client: any
@@ -58,6 +78,7 @@ export async function getCharactersByCreatorId(
   return data;
 }
 
+// Get creator subscriptions by creator id
 export async function getCreatorSubscriptionsByCreatorId(
   creator_id: number,
   client: any

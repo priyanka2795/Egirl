@@ -1,5 +1,9 @@
 import { getPosts } from './posts';
+import { getSubscriptions } from './subscriptions';
 
+/// Getters
+
+// Get character by id
 export async function getCharacterById(character_id: number, client: any) {
   let { data, error, status } = await client
     .from('characters')
@@ -16,10 +20,25 @@ export async function getCharacterById(character_id: number, client: any) {
   const posts = await getPosts(true, 20, client, undefined, character_id_str);
   const numPosts = posts.clientData.length;
 
-  const user_subscriptions = await getUserSubscriptionsByCharacterId(
+  let user_subscriptions = await getUserSubscriptionsByCharacterId(
     character_id,
     client
   );
+
+  const subscription_metadata = await getSubscriptions(client);
+
+  user_subscriptions = user_subscriptions.map((sub: any) => {
+    const subscription = subscription_metadata.find(
+      (m: any) => m.id === sub.subscription_id
+    );
+    return {
+      ...sub,
+      subscription_name: subscription.subscription_name,
+      subscription_price: subscription.subscription_price,
+      subscription_tier: subscription.subscription_tier
+    };
+  });
+
   const total_subscriptions = user_subscriptions.reduce(
     (count: number[], sub: any) => {
       if (sub.subscription_tier === '') {
@@ -62,6 +81,7 @@ export async function getCharacterById(character_id: number, client: any) {
   };
 }
 
+// Get characters by info tags
 export async function getCharactersByInfoTags(
   infotags: string,
   limit: number,
@@ -129,6 +149,7 @@ export async function getCharactersByInfoTags(
   return { data, final_subscriptions, final_infotags, final_follower_count };
 }
 
+// Get characters by ids
 export async function getCharactersByIds(character_ids: string, client: any) {
   let { data, error, status } = await client
     .from('characters')
@@ -144,13 +165,14 @@ export async function getCharactersByIds(character_ids: string, client: any) {
   return { data };
 }
 
+// Get subscriptions by character id
 export async function getUserSubscriptionsByCharacterId(
   character_id: number,
   client: any
 ) {
   let { data, error, status } = await client
     .from('user_subscriptions')
-    .select(`id, user_id, character_id, subscription_tier, created_at`)
+    .select(`id, user_id, character_id, subscription_id, created_at`)
     .filter('character_id', 'eq', character_id);
 
   if ((error && status !== 406) || !data) {
@@ -160,6 +182,7 @@ export async function getUserSubscriptionsByCharacterId(
   return data;
 }
 
+// Get info tags by info tag ids
 export async function getInfoTagsByInfoTagIds(
   infotag_ids: string,
   client: any
@@ -176,6 +199,7 @@ export async function getInfoTagsByInfoTagIds(
   return data;
 }
 
+// Get followers by character id
 export async function getFollowersByCharacterId(
   character_id: number,
   client: any
@@ -190,4 +214,41 @@ export async function getFollowersByCharacterId(
   }
 
   return data;
+}
+
+/// Setters
+
+// Create character profile
+export async function createCharacterProfile(
+  username: string,
+  display_name: string,
+  is_verified: boolean,
+  bio: string,
+  creator_id: number,
+  profile_picture: string,
+  profile_banner_picture: string,
+  infotag_ids: number[],
+  client: any
+) {
+  let character_profile_data = {
+    username,
+    display_name,
+    is_verified,
+    bio,
+    creator_id,
+    profile_picture,
+    profile_banner_picture,
+    infotag_ids
+  };
+
+  let { data, error, status } = await client
+    .from('characters')
+    .insert([character_profile_data])
+    .single();
+
+  if (error && status !== 201) {
+    throw error;
+  }
+
+  return character_profile_data;
 }

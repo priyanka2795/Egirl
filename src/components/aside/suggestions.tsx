@@ -20,31 +20,30 @@ import { getIdTokenResult, User } from 'firebase/auth';
 import type { User as AdminUser } from '@lib/types/user';
 
 export function Suggestions(): JSX.Element {
-
   async function del(): Promise<void> {
-    Promise.resolve()
-  };
+    Promise.resolve();
+  }
 
   async function getIdtok(): Promise<string> {
-    return Promise.resolve('123')
-  };
+    return Promise.resolve('123');
+  }
 
   function toJSON(): object {
-    return {}
-  };
+    return {};
+  }
 
   interface ParsedToken {
-    'exp'?: string;
-    'sub'?: string;
-    'auth_time'?: string;
-    'iat'?: string;
-    'firebase'?: {
-        'sign_in_provider'?: string;
-        'sign_in_second_factor'?: string;
-        'identities'?: Record<string, string>;
+    exp?: string;
+    sub?: string;
+    auth_time?: string;
+    iat?: string;
+    firebase?: {
+      sign_in_provider?: string;
+      sign_in_second_factor?: string;
+      identities?: Record<string, string>;
     };
     [key: string]: any;
-}
+  }
 
   interface IdTokenResult {
     authTime: string;
@@ -64,25 +63,23 @@ export function Suggestions(): JSX.Element {
       signInProvider: '123',
       signInSecondFactor: '123',
       token: '123',
-      claims: {
-
-      }
-    }
-  };
+      claims: {}
+    };
+  }
 
   const suggestionsData: AdminUser[] = [
     {
       accent: 'blue',
       bio: 'Syahir',
-      coverPhotoURL: 'https://www.wikihow.com/images/thumb/f/fc/Get-the-URL-for-Pictures-Step-1-Version-6.jpg/v4-460px-Get-the-URL-for-Pictures-Step-1-Version-6.jpg.webp',
-      followers: [
-        '1', '2'
-      ],
+      coverPhotoURL:
+        'https://www.wikihow.com/images/thumb/f/fc/Get-the-URL-for-Pictures-Step-1-Version-6.jpg/v4-460px-Get-the-URL-for-Pictures-Step-1-Version-6.jpg.webp',
+      followers: ['1', '2'],
       following: ['1'],
       id: '1',
       location: '123',
       name: 'Syahir Amali',
-      photoURL: 'https://www.wikihow.com/images/thumb/f/fc/Get-the-URL-for-Pictures-Step-1-Version-6.jpg/v4-460px-Get-the-URL-for-Pictures-Step-1-Version-6.jpg.webp',
+      photoURL:
+        'https://www.wikihow.com/images/thumb/f/fc/Get-the-URL-for-Pictures-Step-1-Version-6.jpg/v4-460px-Get-the-URL-for-Pictures-Step-1-Version-6.jpg.webp',
       pinnedTweet: 'pinned test tweet',
       theme: 'light',
       totalPhotos: 1,
@@ -93,27 +90,26 @@ export function Suggestions(): JSX.Element {
     }
   ];
 
-  const adminData: AdminUser = 
-    {
-      accent: 'blue',
-      bio: 'Syahir',
-      coverPhotoURL: 'https://www.wikihow.com/images/thumb/f/fc/Get-the-URL-for-Pictures-Step-1-Version-6.jpg/v4-460px-Get-the-URL-for-Pictures-Step-1-Version-6.jpg.webp',
-      followers: [
-        '1', '2'
-      ],
-      following: ['1'],
-      id: '1',
-      location: '123',
-      name: 'Syahir Amali',
-      photoURL: 'https://www.wikihow.com/images/thumb/f/fc/Get-the-URL-for-Pictures-Step-1-Version-6.jpg/v4-460px-Get-the-URL-for-Pictures-Step-1-Version-6.jpg.webp',
-      pinnedTweet: 'pinned test tweet',
-      theme: 'light',
-      totalPhotos: 1,
-      totalTweets: 5,
-      username: 'patato',
-      verified: true,
-      website: 'www.testsite.com'
-    };
+  const adminData: AdminUser = {
+    accent: 'blue',
+    bio: 'Syahir',
+    coverPhotoURL:
+      'https://www.wikihow.com/images/thumb/f/fc/Get-the-URL-for-Pictures-Step-1-Version-6.jpg/v4-460px-Get-the-URL-for-Pictures-Step-1-Version-6.jpg.webp',
+    followers: ['1', '2'],
+    following: ['1'],
+    id: '1',
+    location: '123',
+    name: 'Syahir Amali',
+    photoURL:
+      'https://www.wikihow.com/images/thumb/f/fc/Get-the-URL-for-Pictures-Step-1-Version-6.jpg/v4-460px-Get-the-URL-for-Pictures-Step-1-Version-6.jpg.webp',
+    pinnedTweet: 'pinned test tweet',
+    theme: 'light',
+    totalPhotos: 1,
+    totalTweets: 5,
+    username: 'patato',
+    verified: true,
+    website: 'www.testsite.com'
+  };
 
   const suggestionsLoading = false;
   const adminLoading = false;

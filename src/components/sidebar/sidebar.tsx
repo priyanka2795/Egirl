@@ -54,7 +54,6 @@ const navLinks: Readonly<NavLink[]> = [
     href: '/lists',
     linkName: 'Lists',
     iconName: 'Bars3BottomLeftIcon',
-    disabled: true,
     canBeHidden: true
   }
 ];

@@ -10,4 +10,4 @@ export async function getSubscriptions(user_id: string, client: any) {
   return subscriptions;
 }
 
-// getSubscriptions('1dd94d8b-c048-4b21-8571-583296db317e', supabaseClient);
+// getSubscriptions('e8a2be37-76f6-4ebb-bfd8-b9e370046a41', supabaseClient);

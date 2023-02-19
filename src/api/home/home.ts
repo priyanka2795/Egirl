@@ -1,12 +1,14 @@
 import { getCharacterById, getCharactersByInfoTags } from '../utils/characters';
-import { getPostsByInfoTags, getPosts } from '../utils/posts';
+import { getPostsByInfoTags, getPosts, createPost } from '../utils/posts';
 import {
   getProfileInterests,
   getUserSubscriptionsByUserId,
   getCharacterFollowsByUserId
 } from '../utils/profiles';
-
+import { getBlockedCharactersByUser } from '../utils/blocks';
 //import { supabaseClient } from '../../config/supabaseClient';
+
+/// Getters
 
 /// Character posts
 
@@ -16,7 +18,11 @@ export async function getHomePostsSubscribedTo(user_id: string, client: any) {
   const character_ids = subscriptions.map(
     (subscription: any) => subscription.character_id
   );
-  const character_ids_str = '(' + character_ids.join(',') + ')';
+  const blockedCharacters = await getBlockedCharactersByUser(user_id, client);
+  const final_character_ids = character_ids.filter(
+    (character: any) => !blockedCharacters.includes(character)
+  );
+  const character_ids_str = '(' + final_character_ids.join(',') + ')';
   const posts = await getPosts(true, 20, client, undefined, character_ids_str);
   return posts;
 }
@@ -40,8 +46,8 @@ export async function getHomePostsByInfoTags(user_id: string, client: any) {
 }
 
 // Get latest Posts
-export async function getHomePostsLatest() {
-  const posts = await getPosts(true, 20, undefined, undefined);
+export async function getHomePostsLatest(client: any) {
+  const posts = await getPosts(true, 20, client, undefined, undefined);
   return posts;
 }
 
@@ -59,12 +65,43 @@ export async function getHomeCharacterSuggestionsByInfotags(
   return characters;
 }
 
+/// Setters
+
+export async function createCharacterPost(
+  user_id: number,
+  character_id: number,
+  title: string,
+  description: string,
+  prompt_description: string,
+  is_ppv: boolean,
+  is_character_post: boolean,
+  infotags_id: number[],
+  client: any
+) {
+  // TODO: validation
+  const post = await createPost(
+    user_id,
+    character_id,
+    title,
+    description,
+    prompt_description,
+    is_ppv,
+    is_character_post,
+    infotags_id,
+    client
+  );
+  return post;
+}
+
 // getHomePostsSubscribedTo(
-//   '2bc83fa6-7acb-414b-9312-2f897182381b',
+//   'e05b8c71-a5e0-41c5-96e7-549c0d7a4a04',
 //   supabaseClient
 // );
-//getHomePostsSubscribedTo('1dd94d8b-c048-4b21-8571-583296db317e');
-//getHomePostsFollowing('1dd94d8b-c048-4b21-8571-583296db317e');
-//getHomePostsByInfoTags('1dd94d8b-c048-4b21-8571-583296db317e');
-//getHomePostsLatest();
-//getHomeCharacterSuggestionsByInfotags('1dd94d8b-c048-4b21-8571-583296db317e');
+//getHomePostsSubscribedTo('e8a2be37-76f6-4ebb-bfd8-b9e370046a41');
+//getHomePostsFollowing('e8a2be37-76f6-4ebb-bfd8-b9e370046a41', supabaseClient);
+//getHomePostsByInfoTags('e8a2be37-76f6-4ebb-bfd8-b9e370046a41', supabaseClient);
+//getHomePostsLatest(supabaseClient);
+// getHomeCharacterSuggestionsByInfotags(
+//   'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
+//   supabaseClient
+// );
