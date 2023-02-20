@@ -4,6 +4,8 @@ import { where, orderBy } from 'firebase/firestore';
 // import { Input } from '@components/input/input';
 import { useInfiniteScroll } from '@lib/hooks/useInfiniteScroll';
 import { tweetsCollection } from '@lib/firebase/collections';
+import { toast } from 'react-hot-toast';
+
 import {
   BlankLayout,
   HomeLayout,
@@ -30,6 +32,9 @@ import { getFlexUserCharChat } from 'api/messages/messages';
 import { Message } from '@components/messages/Message';
 import { MessagesContainer } from '@components/home/messages-container';
 import { CharChat } from '@components/messages/CharChat';
+import { useModal } from '@lib/hooks/useModal';
+import { ImageRequestModal } from '@components/messages/ImageRequestModal';
+import { Modal } from '@components/modal/modal';
 
 export default function Messages(): JSX.Element {
   const user = useUser();
@@ -38,6 +43,7 @@ export default function Messages(): JSX.Element {
   const [enteredMessage, setEnteredMessage] = useState<string>('');
   const [messages, setMessages] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const { open, openModal, closeModal } = useModal();
 
   const isMobile = false;
 
@@ -51,8 +57,8 @@ export default function Messages(): JSX.Element {
 
   const tweetData = null;
 
-  const sendMessageHandler = () => {
-    console.log('sending a message with value: ', enteredMessage);
+  const sendImageRequestHandler = () => {
+    console.log('sending image request');
   };
 
   const loadMessageData = async () => {
@@ -72,6 +78,11 @@ export default function Messages(): JSX.Element {
     });
   }, []);
 
+  const modalAction = async (): Promise<void> => {
+    closeModal();
+    toast.success('Successfully Requested an Image');
+  };
+
   return (
     <MessagesContainer>
       <SEO title='Messages / Eapp' />
@@ -83,6 +94,21 @@ export default function Messages(): JSX.Element {
         {/* <UpdateUsername /> */}
       </MainHeader>
       {/* {!isMobile && <Input />} */}
+      <Modal
+        modalClassName='max-w-md bg-white w-full p-8 rounded-2xl'
+        open={open}
+        closeModal={closeModal}
+      >
+        <ImageRequestModal
+          title='Add List'
+          description='This can’t be undone and you’ll remove all Tweets you’ve added to your Lists.'
+          mainBtnClassName='bg-accent-red hover:bg-accent-red/90 active:bg-accent-red/75 accent-tab 
+                            focus-visible:bg-accent-red/90'
+          mainBtnLabel='Clear'
+          action={modalAction}
+          closeModal={closeModal}
+        />
+      </Modal>
       <div className='flex'>
         <section className='flex w-full max-w-xl flex-col bg-blue-400'>
           <input
@@ -142,10 +168,16 @@ export default function Messages(): JSX.Element {
               </button>
             </div>
             <div className='flex w-full justify-between'>
-              <button className='rounded bg-gray-200 p-1 text-sm text-black hover:bg-gray-300 focus:bg-gray-300'>
+              <button
+                onClick={openModal}
+                className='rounded bg-gray-200 p-1 text-sm text-black hover:bg-gray-300 focus:bg-gray-300'
+              >
                 Image Request
               </button>
-              <button className='rounded bg-green-400 p-1 text-sm text-white hover:bg-green-500 focus:bg-green-500'>
+              <button
+                onClick={openModal}
+                className='rounded bg-green-400 p-1 text-sm text-white hover:bg-green-500 focus:bg-green-500'
+              >
                 Your Heart's Desire
               </button>
             </div>
@@ -159,7 +191,7 @@ export default function Messages(): JSX.Element {
               onChange={onChangeMessageHandler}
             />
             <button
-              onClick={sendMessageHandler}
+              onClick={sendImageRequestHandler}
               className='rounded-r bg-green-400 p-4 hover:bg-green-500 focus:bg-green-500'
             >
               Send
