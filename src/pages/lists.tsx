@@ -28,11 +28,14 @@ import type { ReactElement, ReactNode } from 'react';
 import { User } from '@lib/types/user';
 import { Tweet as TypeTweet } from '@lib/types/tweet';
 import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react';
-import { getCustomLists, getFollowerLists } from 'api/lists/lists';
+import {
+  getBlockedCharacters,
+  getCustomLists,
+  getFollowerLists
+} from 'api/lists/lists';
 import type { User as AdminUser } from '@lib/types/user';
 import { UserCard } from '@components/user/user-card';
 import { AddListModal } from '@components/modal/add-list-model';
-import { getBlockedCharactersByUser } from 'api/utils/blocks';
 
 const suggestionsData: AdminUser[] = [
   {
@@ -63,7 +66,7 @@ export default function Lists(): JSX.Element {
   const supabaseClient = useSupabaseClient();
   const [characters, setCharacters] = useState<any>([]);
   const [lists, setLists] = useState<string[]>([]);
-  const [activeList, setActiveList] = useState<number>(0);
+  const [activeList, setActiveList] = useState<number>(-2);
   const [loading, setLoading] = useState(true);
   const supabaseUser = useUser();
 
@@ -73,6 +76,7 @@ export default function Lists(): JSX.Element {
       'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
       supabaseClient
     );
+    console.log('DATA', custeomListsRes);
     setLists(custeomListsRes.data.map((list: any) => list.list_name));
   };
 
@@ -89,12 +93,12 @@ export default function Lists(): JSX.Element {
 
   const fetchBlockedList = async () => {
     // set characters for Follower list (default)
-    const blockedRes = await getFollowerLists(
+    const blockedRes = await getBlockedCharacters(
       'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
       supabaseClient
     );
     console.log('blocked data', blockedRes);
-    setCharacters(blockedRes.characters.data);
+    setCharacters(blockedRes.blockedCharacters.characters.data);
     setActiveList(-1);
   };
 
@@ -116,9 +120,13 @@ export default function Lists(): JSX.Element {
 
   useEffect(() => {
     if (supabaseUser) {
-      fetchCustomLists().then(() => {
-        fetchFollowersList().then(() => setLoading(false));
-      });
+      fetchCustomLists()
+        .then(() => {
+          fetchFollowersList();
+        })
+        .then(() => {
+          setLoading(false);
+        });
     }
   }, [supabaseUser]);
 
@@ -401,30 +409,30 @@ export default function Lists(): JSX.Element {
             alt: 'No bookmarks'
           }}
         /> */}
-        <AnimatePresence mode='popLayout'>
-          {characters &&
-            characters?.map((char: any) => (
-              <UserCard
-                {...suggestionsData[0]}
-                key={char.id}
-                customName={char.display_name}
-                customTwitterHandle={char.username}
-                // customAlt={'EGIRL'}
-                // customSrcUrl={char.profile_banner_picture}
-                // customUrl={char.profile_picture}
-              />
-            ))}
-          {characters.length == 0 && !loading && (
-            <StatsEmpty
-              title='Save Profiles in a list'
-              description='Don’t let the good ones fly away! Save Profiles to easily find them again in the future.'
-              imageData={{
-                src: '/assets/no-bookmarks.png',
-                alt: 'No bookmarks'
-              }}
+        {/* <AnimatePresence mode='popLayout'> */}
+        {characters &&
+          characters?.map((char: any) => (
+            <UserCard
+              {...suggestionsData[0]}
+              key={char.id}
+              customName={char.display_name}
+              customTwitterHandle={char.username}
+              // customAlt={'EGIRL'}
+              // customSrcUrl={char.profile_banner_picture}
+              // customUrl={char.profile_picture}
             />
-          )}
-        </AnimatePresence>
+          ))}
+        {characters.length == 0 && !loading && (
+          <StatsEmpty
+            title='Save Profiles in a list'
+            description='Don’t let the good ones fly away! Save Profiles to easily find them again in the future.'
+            imageData={{
+              src: '/assets/no-bookmarks.png',
+              alt: 'No bookmarks'
+            }}
+          />
+        )}
+        {/* </AnimatePresence> */}
       </section>
       {/* {(pageState == 'posts' ||
         pageState == 'locked-posts' ||
