@@ -1,5 +1,4 @@
-import cn from 'clsx';
-import type { ReactNode } from 'react';
+import Image from 'next/image';
 
 type ChatChatProps = {
   name: string;
@@ -18,8 +17,14 @@ export function CharChat({
 }: ChatChatProps): JSX.Element {
   return (
     <button className='flex w-full cursor-pointer select-none items-center bg-gray-100 p-4 hover:bg-gray-200 focus:bg-gray-200'>
-      <div className=' w-[12%]'>
-        <div className='h-12 w-12 rounded-full bg-red-400'></div>
+      <div className=' flex w-[12%]'>
+        <Image
+          src='https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg'
+          alt={name}
+          width='48px'
+          height='48px'
+          className='rounded-full object-cover'
+        />
       </div>
 
       <div className='flex w-[85%] flex-col'>

@@ -5,6 +5,8 @@ import { Button } from '@components/ui/button';
 import { CustomIcon } from '@components/ui/custom-icon';
 import { createCustomList } from 'api/lists/lists';
 import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react';
+import Image from 'next/image';
+import { RequestItem } from './RequestItem';
 
 type ImageRequestModalProps = {
   title: string;
@@ -52,6 +54,7 @@ export function ImageRequestModal({
     await createCustomList(user!.id, listName, [], supabaseClient);
     action();
   };
+
   return (
     <div className='flex flex-col gap-6'>
       {/* <div className='flex flex-col gap-4'>
@@ -73,17 +76,57 @@ export function ImageRequestModal({
       <div className='flex flex-col items-center gap-y-3 '>
         <h3 className='text-sm font-semibold text-black'>Clothes</h3>
         <div className='flex gap-x-4'>
-          <div className='h-12 w-12 rounded bg-red-400'></div>
-          <div className='h-12 w-12 rounded bg-red-400'></div>
-          <div className='h-12 w-12 rounded bg-red-400'></div>
-          <div className='h-12 w-12 rounded bg-red-400'></div>
+          <RequestItem
+            src='https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg'
+            alt='alt'
+            selected={false}
+            onSelect={() => {}}
+          />
+          <RequestItem
+            src='https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg'
+            alt='alt'
+            selected={false}
+            onSelect={() => {}}
+          />
+          <RequestItem
+            src='https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg'
+            alt='alt'
+            selected={true}
+            onSelect={() => {}}
+          />
+          <RequestItem
+            src='https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg'
+            alt='alt'
+            selected={false}
+            onSelect={() => {}}
+          />
         </div>
         <h3 className='text-sm font-semibold text-black'>Locations</h3>
         <div className='flex gap-x-4'>
-          <div className='h-12 w-12 rounded bg-blue-400'></div>
-          <div className='h-12 w-12 rounded bg-blue-400'></div>
-          <div className='h-12 w-12 rounded bg-blue-400'></div>
-          <div className='h-12 w-12 rounded bg-blue-400'></div>
+          <RequestItem
+            src='https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg'
+            alt='alt'
+            selected={true}
+            onSelect={() => {}}
+          />
+          <RequestItem
+            src='https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg'
+            alt='alt'
+            selected={false}
+            onSelect={() => {}}
+          />
+          <RequestItem
+            src='https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg'
+            alt='alt'
+            selected={false}
+            onSelect={() => {}}
+          />
+          <RequestItem
+            src='https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg'
+            alt='alt'
+            selected={false}
+            onSelect={() => {}}
+          />
         </div>
         <h3 className='font-semibold text-black'>Cost: $1.00</h3>
       </div>

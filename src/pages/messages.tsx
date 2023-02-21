@@ -35,6 +35,7 @@ import { CharChat } from '@components/messages/CharChat';
 import { useModal } from '@lib/hooks/useModal';
 import { ImageRequestModal } from '@components/messages/ImageRequestModal';
 import { Modal } from '@components/modal/modal';
+import { getFollowerLists } from 'api/lists/lists';
 
 export default function Messages(): JSX.Element {
   const user = useUser();
@@ -72,9 +73,18 @@ export default function Messages(): JSX.Element {
     console.log('res', res);
   };
 
+  const getFollowedChars = async () => {
+    const res = await getFollowerLists(
+      'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
+      client
+    );
+    console.log('res', res.characters.data);
+  };
+
   useEffect(() => {
     loadMessageData().then(() => {
       setLoading(false);
+      getFollowedChars();
     });
   }, []);
 
