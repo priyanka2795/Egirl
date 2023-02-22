@@ -1,6 +1,10 @@
 import { getPosts } from './posts';
 import { getCharactersByIds } from './characters';
 import { getCharacterFollowsByUserId } from './profiles';
+import {
+  getBlockedCharactersForUser,
+  getBlockedProfilesForUser
+} from './blocks';
 
 /// Getters
 
@@ -36,6 +40,18 @@ export async function getFollowerListsByUser(user_id: string, client: any) {
   const character_ids_str = '(' + character_ids.join(',') + ')';
   const characters = await getCharactersByIds(character_ids_str, client);
   return { characters };
+}
+
+// Get blocked characters
+export async function getBlockedCharactersByUser(user_id: string, client: any) {
+  let blockedCharacters = await getBlockedCharactersForUser(user_id, client);
+  return { blockedCharacters };
+}
+
+// Get blocked profiles
+export async function getBlockedProfilesByUser(user_id: string, client: any) {
+  let blockedProfiles = await getBlockedProfilesForUser(user_id, client);
+  return { blockedProfiles };
 }
 
 /// Setters

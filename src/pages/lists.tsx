@@ -28,7 +28,11 @@ import type { ReactElement, ReactNode } from 'react';
 import { User } from '@lib/types/user';
 import { Tweet as TypeTweet } from '@lib/types/tweet';
 import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react';
-import { getCustomLists } from 'api/lists/lists';
+import {
+  getBlockedCharacters,
+  getCustomLists,
+  getFollowerLists
+} from 'api/lists/lists';
 import type { User as AdminUser } from '@lib/types/user';
 import { UserCard } from '@components/user/user-card';
 import { AddListModal } from '@components/modal/add-list-model';
@@ -62,33 +66,67 @@ export default function Lists(): JSX.Element {
   const supabaseClient = useSupabaseClient();
   const [characters, setCharacters] = useState<any>([]);
   const [lists, setLists] = useState<string[]>([]);
-  const [activeList, setActiveList] = useState<number>(0);
+  const [activeList, setActiveList] = useState<number>(-2);
   const [loading, setLoading] = useState(true);
   const supabaseUser = useUser();
 
-  const fetchLists = async () => {
-    const res = await getCustomLists(supabaseUser!.id, supabaseClient);
-    setLists(res.data.map((list: any) => list.list_name));
-    if (res.final_characters.length > 0) {
-      setCharacters(res.final_characters[0].data);
-      console.log('test', res.final_characters[0].data);
-    }
-    console.log('empty');
+  const fetchCustomLists = async () => {
+    // get custom lists
+    const custeomListsRes = await getCustomLists(
+      'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
+      supabaseClient
+    );
+    console.log('DATA', custeomListsRes);
+    setLists(custeomListsRes.data.map((list: any) => list.list_name));
   };
 
-  const changeListHandler = async (listIndex: number) => {
+  const fetchFollowersList = async () => {
+    // set characters for Follower list (default)
+    const followersRes = await getFollowerLists(
+      'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
+      supabaseClient
+    );
+    console.log('follower data', followersRes.characters.data);
+    setCharacters(followersRes.characters.data);
+    setActiveList(-2);
+  };
+
+  const fetchBlockedList = async () => {
+    // set characters for Follower list (default)
+    const blockedRes = await getBlockedCharacters(
+      'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
+      supabaseClient
+    );
+    console.log('blocked data', blockedRes);
+    setCharacters(blockedRes.blockedCharacters.characters.data);
+    setActiveList(-1);
+  };
+
+  // set characters to chosen custom list
+  const changeCustomListHandler = async (listIndex: number) => {
     setActiveList(listIndex);
-    const res = await getCustomLists(supabaseUser!.id, supabaseClient);
-    if (res.final_characters.length > 0) {
+    const res = await getCustomLists(
+      'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
+      supabaseClient
+    );
+    console.log('result of changing list', res);
+    if (res.final_characters[listIndex].data.length > 0) {
       setCharacters(res.final_characters[listIndex].data);
     }
+    console.log('listIndex', listIndex);
+    console.log('res.final_char', res.final_characters[listIndex].data);
+    setActiveList(listIndex);
   };
 
   useEffect(() => {
     if (supabaseUser) {
-      fetchLists().then(() => {
-        setLoading(false);
-      });
+      fetchCustomLists()
+        .then(() => {
+          fetchFollowersList();
+        })
+        .then(() => {
+          setLoading(false);
+        });
     }
   }, [supabaseUser]);
 
@@ -316,14 +354,36 @@ export default function Lists(): JSX.Element {
 
       <section className='mt-0.5'>
         <div className='flex'>
+          <button
+            onClick={() => {
+              fetchFollowersList();
+            }}
+            className={`border-2 border-black p-4 text-white hover:border-white ${
+              activeList == -2 && 'bg-accent-blue'
+            }`}
+          >
+            Following
+          </button>
+          <button
+            onClick={() => {
+              fetchBlockedList();
+            }}
+            className={`border-2 border-black p-4 text-white hover:border-white ${
+              activeList == -1 && 'bg-accent-blue'
+            }`}
+          >
+            Blocked
+          </button>
           {lists &&
             lists.map((list, listIndex) => {
               return (
                 <button
                   onClick={() => {
-                    changeListHandler(listIndex);
+                    changeCustomListHandler(listIndex);
                   }}
-                  className='border-2 border-black p-4 text-white hover:border-white'
+                  className={`border-2 border-black p-4 text-white hover:border-white ${
+                    activeList == listIndex && 'bg-accent-blue'
+                  }`}
                   key={listIndex}
                 >
                   {list}
@@ -349,30 +409,30 @@ export default function Lists(): JSX.Element {
             alt: 'No bookmarks'
           }}
         /> */}
-        <AnimatePresence mode='popLayout'>
-          {characters &&
-            characters?.map((char: any) => (
-              <UserCard
-                {...suggestionsData[0]}
-                key={char.id}
-                customName={char.display_name}
-                customTwitterHandle={char.username}
-                // customAlt={'EGIRL'}
-                // customSrcUrl={char.profile_banner_picture}
-                // customUrl={char.profile_picture}
-              />
-            ))}
-          {characters.length == 0 && !loading && (
-            <StatsEmpty
-              title='Save Profiles in a list'
-              description='Don’t let the good ones fly away! Save Profiles to easily find them again in the future.'
-              imageData={{
-                src: '/assets/no-bookmarks.png',
-                alt: 'No bookmarks'
-              }}
+        {/* <AnimatePresence mode='popLayout'> */}
+        {characters &&
+          characters?.map((char: any) => (
+            <UserCard
+              {...suggestionsData[0]}
+              key={char.id}
+              customName={char.display_name}
+              customTwitterHandle={char.username}
+              // customAlt={'EGIRL'}
+              // customSrcUrl={char.profile_banner_picture}
+              // customUrl={char.profile_picture}
             />
-          )}
-        </AnimatePresence>
+          ))}
+        {characters.length == 0 && !loading && (
+          <StatsEmpty
+            title='Save Profiles in a list'
+            description='Don’t let the good ones fly away! Save Profiles to easily find them again in the future.'
+            imageData={{
+              src: '/assets/no-bookmarks.png',
+              alt: 'No bookmarks'
+            }}
+          />
+        )}
+        {/* </AnimatePresence> */}
       </section>
       {/* {(pageState == 'posts' ||
         pageState == 'locked-posts' ||

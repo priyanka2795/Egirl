@@ -726,6 +726,13 @@ async function messages_user_to_character() {
     {
       id: 2,
       sender_id: 'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
+      recipient_id: 1,
+      message: 'yo this is a 2nd message',
+      created_at: '2016-07-24T03:32:46.678Z'
+    },
+    {
+      id: 3,
+      sender_id: 'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
       recipient_id: 2,
       message: 'it is morbin time',
       created_at: '2016-07-24T03:32:45.678Z'
