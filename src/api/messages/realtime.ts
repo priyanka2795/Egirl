@@ -1,12 +1,19 @@
 import { supabaseClient } from '../../config/supabaseClient';
 
+// TODO: need to do inference on chatbot model
+// for actually generating the msgs
+// and then replace hardcoded msgs below
+
+// TODO: where is loop?
+// Is it on client side in realtime params?
+
 // TODOs: timeouts, closing channel logic
 // step 1: FE fetches existing msg history for room
 // step 2: on subscribe -> enters new msg into db and passes to FE
 // step 3: channel.unsubscribe() when closes
 
-// TODO: where is loop?
-// Is it on client side in realtime params?
+const characterMsgModelEndpoint =
+  'https://api-inference.huggingface.co/models/gpt2';
 
 async function getLatestMsgId() {
   const { data, error } = await supabaseClient
@@ -40,6 +47,25 @@ export async function setupChannel(
   let latestCharacterMsgTime = new Date();
   let timedOut = false;
 
+  // TODO: edit this
+  let modelMsg = 'Welcome to Realtime!';
+  // let modelMsg = await fetch(characterMsgModelEndpoint, {
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //         inputs: 'Welcome to Realtime!',
+  //         parameters: {
+  //           max_length: 100,
+  //           temperature: 0.7,
+  //           }
+  //           })})
+  //           .then((res) => res.json())
+  //           .then((res) => res.generated_text)
+  //           .catch((err) => console.log(err));
+  //           console.log(modelMsg);
+
   channel.on(
     'postgres_changes',
     {
@@ -66,12 +92,13 @@ export async function setupChannel(
 
     if (status === 'SUBSCRIBED' && balance >= cost && !timedOut) {
       const nextMsgId = (await getLatestMsgId()) + 1;
+      // TODO: replace message with model
       const new_msg = {
         id: nextMsgId,
         room_id: roomId,
         recipient_id: userId,
         sender_id: characterId,
-        message: 'Welcome to Realtime!'
+        message: modelMsg
       };
       const res = await supabaseClient
         .from('messages_character_to_user')
@@ -79,7 +106,7 @@ export async function setupChannel(
       console.log(res);
       balance -= cost;
       setCallHistory(...callHistory, new_msg);
-      console.log('added to call history..');
+      console.log('Added to call history..');
     } else if (status == 'CLOSED' || balance < cost || timedOut) {
       // TODO: add this elsewhere based on user action
       console.log('Channel closed');
