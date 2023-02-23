@@ -40,7 +40,6 @@ export const variants: Variants = {
 };
 
 export function Tweet(tweet: TweetProps): JSX.Element {
-  console.log('tweet', tweet);
   const {
     id: tweetId,
     text,
@@ -65,8 +64,6 @@ export function Tweet(tweet: TweetProps): JSX.Element {
   } = tweet;
 
   const { id: ownerId, name, username, verified, photoURL } = tweetUserData;
-
-  console.log('tweet', tweet);
 
   const { user } = useAuth();
 
