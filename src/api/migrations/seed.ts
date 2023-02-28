@@ -819,6 +819,47 @@ async function user_transactions() {
   }
 }
 
+async function rooms() {
+  const data = [
+    {
+      id: 1,
+      user_id: 'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
+      character_id: 1,
+      created_at: '2016-07-24T03:32:45.678Z'
+    },
+    {
+      id: 2,
+      user_id: 'e05b8c71-a5e0-41c5-96e7-549c0d7a4a04',
+      character_id: 2,
+      created_at: '2016-07-24T03:32:45.678Z'
+    },
+    {
+      id: 3,
+      user_id: 'd692bc5c-5df1-408f-9d18-a14afc8216ed',
+      character_id: 3,
+      created_at: '2016-07-24T03:32:45.678Z'
+    },
+    {
+      id: 4,
+      user_id: 'a0e83fdc-039c-46cf-9d3d-ff515aaa7bfd',
+      character_id: 2,
+      created_at: '2016-07-24T03:32:45.678Z'
+    },
+    {
+      id: 5,
+      user_id: 'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
+      character_id: 2,
+      created_at: '2016-07-24T03:32:45.678Z'
+    }
+  ];
+
+  const { error } = await supabaseClient.from('rooms').insert(data);
+
+  if (error) {
+    console.log(error);
+  }
+}
+
 async function main() {
   await profile();
   console.log('profile done');
@@ -885,6 +926,9 @@ async function main() {
 
   await user_transactions();
   console.log('user_transactions done');
+
+  await rooms();
+  console.log('rooms done');
 }
 
 main();
