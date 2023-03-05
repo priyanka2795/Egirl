@@ -105,6 +105,7 @@ export async function setupChannel(
       }
     )
     .subscribe(async (status: any) => {
+      console.log('Channel subscribed, status is: ', status);
       if (
         new Date().getTime() - latestCharacterMsgTime.getTime() >
         1000 * timeoutThreshold
@@ -116,17 +117,10 @@ export async function setupChannel(
       }
 
       if (status === 'SUBSCRIBED' && balance >= cost && !timedOut) {
+        console.log('Subscribed');
         balance -= cost;
-        const message = 'Realtime testing msg';
-        await getCharacterMessageToUser(
-          roomId,
-          characterId,
-          userId,
-          message,
-          client
-        );
-        //setCallHistory(...callHistory, new_msg);
-        console.log('Added to call history');
+        /// Optional - sleep
+        //await new Promise((f) => setTimeout(f, 1000));
       } else if (status == 'CLOSED' || balance < cost || timedOut) {
         // TODO: add this elsewhere based on user action
         console.log('Channel closed');
@@ -145,7 +139,7 @@ export async function testRealTime() {
   const initialBalance = 0.5;
   const costPerMsg = 0.1;
   const timeoutThreshold = 30;
-  let message = 'Realtime testing 3';
+  let message = 'Realtime testing 4';
 
   await setupChannel(
     setCallHistory,
@@ -166,6 +160,8 @@ export async function testRealTime() {
     message,
     supabaseClient
   );
+
+  console.log('Done with testRealTime()..');
 }
 
 testRealTime();
