@@ -2,8 +2,6 @@ import { AnimatePresence } from 'framer-motion';
 import { where, orderBy } from 'firebase/firestore';
 // import { useWindow } from '@lib/context/window-context';
 // import { Input } from '@components/input/input';
-import { useInfiniteScroll } from '@lib/hooks/useInfiniteScroll';
-import { tweetsCollection } from '@lib/firebase/collections';
 import { toast } from 'react-hot-toast';
 
 import {
@@ -59,7 +57,6 @@ export default function Messages(): JSX.Element {
   const tweetData = null;
 
   const sendImageRequestHandler = () => {
-    console.log('sending image request');
   };
 
   const loadMessageData = async () => {
@@ -70,7 +67,6 @@ export default function Messages(): JSX.Element {
       client
     );
     setMessages(res);
-    console.log('res', res);
   };
 
   const getFollowedChars = async () => {
@@ -78,7 +74,6 @@ export default function Messages(): JSX.Element {
       'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
       client
     );
-    console.log('res', res.characters.data);
   };
 
   useEffect(() => {

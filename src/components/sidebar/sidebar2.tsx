@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { useAuth } from '@lib/context/auth-context';
 import { useWindow } from '@lib/context/window-context';
 import { useModal } from '@lib/hooks/useModal';
 import { Modal } from '@components/modal/modal';
@@ -60,7 +59,6 @@ const navLinks: Readonly<NavLink[]> = [
 ];
 
 export function Sidebar(): JSX.Element {
-  // const { user } = useAuth();
   const { isMobile } = useWindow();
 
   const { open, openModal, closeModal } = useModal();

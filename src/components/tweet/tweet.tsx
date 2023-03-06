@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
 import cn from 'clsx';
-import { useAuth } from '@lib/context/auth-context';
 import { useModal } from '@lib/hooks/useModal';
 import { delayScroll } from '@lib/utils';
 import { Modal } from '@components/modal/modal';
@@ -65,13 +64,11 @@ export function Tweet(tweet: TweetProps): JSX.Element {
 
   const { id: ownerId, name, username, verified, photoURL } = tweetUserData;
 
-  const { user } = useAuth();
-
   const { open, openModal, closeModal } = useModal();
 
   const tweetLink = `/tweet/${tweetId}`;
 
-  const userId = user?.id as string;
+  const userId = '1234';
 
   const isOwner = userId === createdBy;
 

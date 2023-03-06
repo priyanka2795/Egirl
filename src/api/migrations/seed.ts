@@ -1,4 +1,3 @@
-import { usersCollection } from '@lib/firebase/collections';
 import { supabaseClient } from '../../config/supabaseClient';
 
 async function profile() {

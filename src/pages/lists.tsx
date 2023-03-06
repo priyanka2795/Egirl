@@ -2,15 +2,10 @@ import { useEffect, useMemo, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { toast } from 'react-hot-toast';
 import { orderBy, query } from 'firebase/firestore';
-import { useAuth } from '@lib/context/auth-context';
 import { useModal } from '@lib/hooks/useModal';
 import { useCollection } from '@lib/hooks/useCollection';
 import { useArrayDocument } from '@lib/hooks/useArrayDocument';
 import { clearAllBookmarks } from '@lib/firebase/utils';
-import {
-  tweetsCollection,
-  userBookmarksCollection
-} from '@lib/firebase/collections';
 import { HomeLayout, ProtectedLayout } from '@components/layout/common-layout';
 import { MainLayout } from '@components/layout/main-layout';
 import { SEO } from '@components/common/seo';
@@ -51,7 +46,7 @@ const suggestionsData: AdminUser[] = [
     photoURL:
       'https://www.wikihow.com/images/thumb/f/fc/Get-the-URL-for-Pictures-Step-1-Version-6.jpg/v4-460px-Get-the-URL-for-Pictures-Step-1-Version-6.jpg.webp',
     pinnedTweet: 'pinned test tweet',
-    theme: 'light',
+    theme: 'dark',
     totalPhotos: 1,
     totalTweets: 5,
     username: 'patoto',
@@ -76,7 +71,6 @@ export default function Lists(): JSX.Element {
       'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
       supabaseClient
     );
-    console.log('DATA', custeomListsRes);
     setLists(custeomListsRes.data.map((list: any) => list.list_name));
   };
 
@@ -86,7 +80,6 @@ export default function Lists(): JSX.Element {
       'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
       supabaseClient
     );
-    console.log('follower data', followersRes.characters.data);
     setCharacters(followersRes.characters.data);
     setActiveList(-2);
   };
@@ -97,7 +90,6 @@ export default function Lists(): JSX.Element {
       'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
       supabaseClient
     );
-    console.log('blocked data', blockedRes);
     setCharacters(blockedRes.blockedCharacters.characters.data);
     setActiveList(-1);
   };
@@ -109,12 +101,9 @@ export default function Lists(): JSX.Element {
       'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
       supabaseClient
     );
-    console.log('result of changing list', res);
     if (res.final_characters[listIndex].data.length > 0) {
       setCharacters(res.final_characters[listIndex].data);
     }
-    console.log('listIndex', listIndex);
-    console.log('res.final_char', res.final_characters[listIndex].data);
     setActiveList(listIndex);
   };
 

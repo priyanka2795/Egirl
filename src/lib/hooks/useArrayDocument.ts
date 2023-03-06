@@ -1,6 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
 import { doc, getDoc } from 'firebase/firestore';
-import { usersCollection } from '@lib/firebase/collections';
 import type { CollectionReference } from 'firebase/firestore';
 import type { User } from '@lib/types/user';
 
@@ -36,54 +35,54 @@ export function useArrayDocument<T>(
 
   const { includeUser, disabled } = options ?? {};
 
-  useEffect(() => {
-    if (disabled) return;
+  // useEffect(() => {
+  //   if (disabled) return;
 
-    if (includeUser && !data) setLoading(true);
+  //   if (includeUser && !data) setLoading(true);
 
-    const populateUser = async (currentData: DataWithRef<T>): Promise<void> => {
-      const dataWithUser = await Promise.all(
-        currentData.map(async (currentData) => {
-          const user = (
-            await getDoc(doc(usersCollection, currentData.createdBy))
-          ).data();
-          return { ...currentData, user };
-        })
-      );
-      setData(dataWithUser);
-      setLoading(false);
-    };
+  //   const populateUser = async (currentData: DataWithRef<T>): Promise<void> => {
+  //     const dataWithUser = await Promise.all(
+  //       currentData.map(async (currentData) => {
+  //         const user = (
+  //           await getDoc(doc(usersCollection, currentData.createdBy))
+  //         ).data();
+  //         return { ...currentData, user };
+  //       })
+  //     );
+  //     setData(dataWithUser);
+  //     setLoading(false);
+  //   };
 
-    const fetchData = async (): Promise<void> => {
-      try {
-        const docsSnapshot = await Promise.all(
-          cachedDocsId.map((id) => getDoc(doc(collection, id)))
-        );
+  //   const fetchData = async (): Promise<void> => {
+  //     try {
+  //       const docsSnapshot = await Promise.all(
+  //         cachedDocsId.map((id) => getDoc(doc(collection, id)))
+  //       );
 
-        const docs = docsSnapshot.map((doc) =>
-          doc.data({ serverTimestamps: 'estimate' })
-        );
+  //       const docs = docsSnapshot.map((doc) =>
+  //         doc.data({ serverTimestamps: 'estimate' })
+  //       );
 
-        if (!docs.length) {
-          setData(null);
-          setLoading(false);
-          return;
-        }
+  //       if (!docs.length) {
+  //         setData(null);
+  //         setLoading(false);
+  //         return;
+  //       }
 
-        if (includeUser) void populateUser(docs as DataWithRef<T>);
-        else {
-          setData(docs as T[]);
-          setLoading(false);
-        }
-      } catch {
-        setData(null);
-        setLoading(false);
-      }
-    };
+  //       if (includeUser) void populateUser(docs as DataWithRef<T>);
+  //       else {
+  //         setData(docs as T[]);
+  //         setLoading(false);
+  //       }
+  //     } catch {
+  //       setData(null);
+  //       setLoading(false);
+  //     }
+  //   };
 
-    void fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cachedDocsId]);
+  //   void fetchData();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [cachedDocsId]);
 
   return { data, loading };
 }

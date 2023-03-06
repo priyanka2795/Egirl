@@ -67,7 +67,6 @@ const navLinks: Readonly<NavLink[]> = [
 ];
 
 export function Sidebar(): JSX.Element {
-  // const { user } = useAuth();
   // const { isMobile } = useWindow();
 
   const { open, openModal, closeModal } = useModal();

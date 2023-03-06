@@ -33,7 +33,7 @@ const suggestionsData: AdminUser[] = [
     photoURL:
       'https://www.wikihow.com/images/thumb/f/fc/Get-the-URL-for-Pictures-Step-1-Version-6.jpg/v4-460px-Get-the-URL-for-Pictures-Step-1-Version-6.jpg.webp',
     pinnedTweet: 'pinned test tweet',
-    theme: 'light',
+    theme: 'dark',
     totalPhotos: 1,
     totalTweets: 5,
     username: 'patoto',

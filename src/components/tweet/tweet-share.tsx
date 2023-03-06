@@ -3,8 +3,6 @@ import cn from 'clsx';
 import { Popover } from '@headlessui/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { toast } from 'react-hot-toast';
-import { useAuth } from '@lib/context/auth-context';
-import { manageBookmark } from '@lib/firebase/utils';
 import { preventBubbling } from '@lib/utils';
 import { siteURL } from '@lib/env';
 import { Button } from '@components/ui/button';
@@ -23,29 +21,28 @@ export function TweetShare({
   tweetId,
   viewTweet
 }: TweetShareProps): JSX.Element {
-  const { userBookmarks } = useAuth();
 
-  const handleBookmark =
-    (closeMenu: () => void, ...args: Parameters<typeof manageBookmark>) =>
-    async (): Promise<void> => {
-      const [type] = args;
+  // const handleBookmark =
+  //   (closeMenu: () => void, ...args: Parameters<typeof manageBookmark>) =>
+  //   async (): Promise<void> => {
+  //     const [type] = args;
 
-      closeMenu();
-      await manageBookmark(...args);
+  //     closeMenu();
+  //     await manageBookmark(...args);
 
-      toast.success(
-        type === 'bookmark'
-          ? (): JSX.Element => (
-              <span className='flex gap-2'>
-                Tweet added to your Bookmarks
-                <Link href='/bookmarks'>
-                  <a className='custom-underline font-bold'>View</a>
-                </Link>
-              </span>
-            )
-          : 'Tweet removed from your bookmarks'
-      );
-    };
+  //     toast.success(
+  //       type === 'bookmark'
+  //         ? (): JSX.Element => (
+  //             <span className='flex gap-2'>
+  //               Tweet added to your Bookmarks
+  //               <Link href='/bookmarks'>
+  //                 <a className='custom-underline font-bold'>View</a>
+  //               </Link>
+  //             </span>
+  //           )
+  //         : 'Tweet removed from your bookmarks'
+  //     );
+  //   };
 
   const handleCopy = (closeMenu: () => void) => async (): Promise<void> => {
     closeMenu();
@@ -53,7 +50,7 @@ export function TweetShare({
     toast.success('Copied to clipboard');
   };
 
-  const tweetIsBookmarked = !!userBookmarks?.some(({ id }) => id === tweetId);
+  const tweetIsBookmarked = false;
 
   return (
     <Popover className='relative'>
@@ -99,7 +96,7 @@ export function TweetShare({
                     className='accent-tab flex w-full gap-3 rounded-md rounded-t-none p-4 hover:bg-main-sidebar-background'
                     as={Button}
                     onClick={preventBubbling(
-                      handleBookmark(close, 'bookmark', userId, tweetId)
+                      // handleBookmark(close, 'bookmark', userId, tweetId)
                     )}
                   >
                     <HeroIcon iconName='BookmarkIcon' />
@@ -110,7 +107,7 @@ export function TweetShare({
                     className='accent-tab flex w-full gap-3 rounded-md rounded-t-none p-4 hover:bg-main-sidebar-background'
                     as={Button}
                     onClick={preventBubbling(
-                      handleBookmark(close, 'unbookmark', userId, tweetId)
+                      // handleBookmark(close, 'unbookmark', userId, tweetId)
                     )}
                   >
                     <HeroIcon iconName='BookmarkSlashIcon' />

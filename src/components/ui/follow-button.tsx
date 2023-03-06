@@ -1,10 +1,9 @@
-import { useAuth } from '@lib/context/auth-context';
 import { useModal } from '@lib/hooks/useModal';
-import { manageFollow } from '@lib/firebase/utils';
 import { preventBubbling } from '@lib/utils';
 import { Modal } from '@components/modal/modal';
 import { ActionModal } from '@components/modal/action-modal';
 import { Button } from '@components/ui/button';
+import { useUser } from '@supabase/auth-helpers-react';
 
 type FollowButtonProps = {
   userTargetId: string;
@@ -15,23 +14,26 @@ export function FollowButton({
   userTargetId,
   userTargetUsername
 }: FollowButtonProps): JSX.Element | null {
-  const { user } = useAuth();
+  const user = useUser();
+
   const { open, openModal, closeModal } = useModal();
 
   if (user?.id === userTargetId) return null;
 
-  const { id: userId, following } = user ?? {};
+  // const { id: userId, following } = user ?? {};
 
-  const handleFollow = (): Promise<void> =>
-    manageFollow('follow', userId as string, userTargetId);
+  const handleFollow = () => {
+    // manageFollow('follow', userId as string, userTargetId);
+  }
 
   const handleUnfollow = async (): Promise<void> => {
-    await manageFollow('unfollow', userId as string, userTargetId);
-    closeModal();
+    // await manageFollow('unfollow', userId as string, userTargetId);
+    // closeModal();
   };
 
-  const userIsFollowed = !!following?.includes(userTargetId ?? '');
-
+  // const userIsFollowed = !!following?.includes(userTargetId ?? '');
+  const userIsFollowed = true;
+  
   return (
     <>
       <Modal

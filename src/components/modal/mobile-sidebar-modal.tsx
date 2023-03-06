@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { useAuth } from '@lib/context/auth-context';
 import { useModal } from '@lib/hooks/useModal';
 import { Button } from '@components/ui/button';
 import { UserAvatar } from '@components/user/user-avatar';
@@ -81,7 +80,6 @@ export function MobileSidebarModal({
   coverPhotoURL,
   closeModal
 }: MobileSidebarModalProps): JSX.Element {
-  const { signOut } = useAuth();
 
   const {
     open: displayOpen,
@@ -117,7 +115,7 @@ export function MobileSidebarModal({
         open={logOutOpen}
         closeModal={logOutCloseModal}
       >
-        <ActionModal
+        {/* <ActionModal
           useIcon
           focusOnMainBtn
           title='Log out of Twitter?'
@@ -125,7 +123,7 @@ export function MobileSidebarModal({
           mainBtnLabel='Log out'
           action={signOut}
           closeModal={logOutCloseModal}
-        />
+        /> */}
       </Modal>
       <MainHeader
         useActionButton

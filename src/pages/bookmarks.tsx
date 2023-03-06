@@ -2,15 +2,10 @@ import { useEffect, useMemo, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { toast } from 'react-hot-toast';
 import { orderBy, query } from 'firebase/firestore';
-import { useAuth } from '@lib/context/auth-context';
 import { useModal } from '@lib/hooks/useModal';
 import { useCollection } from '@lib/hooks/useCollection';
 import { useArrayDocument } from '@lib/hooks/useArrayDocument';
 import { clearAllBookmarks } from '@lib/firebase/utils';
-import {
-  tweetsCollection,
-  userBookmarksCollection
-} from '@lib/firebase/collections';
 import { BookmarkLayout, HomeLayout, ProtectedLayout } from '@components/layout/common-layout';
 import { MainLayout } from '@components/layout/main-layout';
 import { SEO } from '@components/common/seo';
@@ -45,7 +40,6 @@ export default function Bookmarks(): JSX.Element {
       'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
       supabaseClient
     ).then((data) => {
-      console.log("DATA", data)
     });
     
   };

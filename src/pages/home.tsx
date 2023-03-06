@@ -2,8 +2,6 @@ import { AnimatePresence } from 'framer-motion';
 import { where, orderBy } from 'firebase/firestore';
 // import { useWindow } from '@lib/context/window-context';
 // import { Input } from '@components/input/input';
-import { useInfiniteScroll } from '@lib/hooks/useInfiniteScroll';
-import { tweetsCollection } from '@lib/firebase/collections';
 import { HomeLayout, ProtectedLayout } from '@components/layout/common-layout';
 import { MainLayout } from '@components/layout/main-layout';
 import { SEO } from '@components/common/seo';
@@ -24,9 +22,7 @@ export default function Home(): JSX.Element {
   const client = useSupabaseClient();
 
   const getHomePosts = async () => {
-    console.log('client', client);
     const data = await getHomePostsSubscribedTo(user!.id, client);
-    console.log('data', data);
   };
 
   useEffect(() => {
@@ -182,7 +178,7 @@ export default function Home(): JSX.Element {
           coverPhotoURL: 'https://www.wikihow.com/images/thumb/f/fc/Get-the-URL-for-Pictures-Step-1-Version-6.jpg/v4-460px-Get-the-URL-for-Pictures-Step-1-Version-6.jpg.webp',
           location: 'Hollandland',
           pinnedTweet: null,
-          theme: null,
+          theme: 'dark',
           totalPhotos: 0,
           totalTweets: 0,
           website: null
