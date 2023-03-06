@@ -100,8 +100,8 @@ export function Sidebar(): JSX.Element {
             </Link>
           </h1>
           <nav className='flex items-center justify-around xs:flex-col xs:justify-center xl:block'>
-            {navLinks.map(({ ...linkData }) => (
-              <SidebarLink {...linkData} key={linkData.href} />
+            {navLinks.map(({ ...linkData }, index) => (
+              <SidebarLink {...linkData} key={index} />
             ))}
             <SidebarLink
               href={`/user/${username}`}

@@ -155,7 +155,7 @@ export default function Messages(): JSX.Element {
               <Error message='Something went wrong' />
             ) : (
               <>
-                <AnimatePresence mode='popLayout'>
+                {/* <AnimatePresence mode='popLayout'> */}
                   {messages?.map((message, index) => (
                     <Message
                       key={index}
@@ -163,7 +163,7 @@ export default function Messages(): JSX.Element {
                       sender={message.who_is_sender}
                     />
                   ))}
-                </AnimatePresence>
+                {/* </AnimatePresence> */}
                 {/* <LoadMore /> */}
               </>
             )}

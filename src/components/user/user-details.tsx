@@ -48,7 +48,7 @@ export function UserDetails({
           {detailIcons.map(
             ([detail, icon], index) =>
               detail && (
-                <div className='flex items-center gap-1' key={icon}>
+                <div className='flex items-center gap-1' key={index}>
                   <i>
                     <HeroIcon className='h-5 w-5' iconName={icon} />
                   </i>

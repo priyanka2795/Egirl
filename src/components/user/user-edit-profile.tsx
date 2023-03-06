@@ -250,12 +250,12 @@ export function UserEditProfile({ hide }: UserEditProfileProps): JSX.Element {
           removeCoverImage={removeCoverImage}
           resetUserEditData={resetUserEditData}
         >
-          {inputFields.map((inputData) => (
+          {inputFields.map((inputData, index) => (
             <InputField
               {...inputData}
               handleChange={handleChange(inputData.inputId)}
               handleKeyboardShortcut={handleKeyboardShortcut}
-              key={inputData.inputId}
+              key={index}
             />
           ))}
         </EditProfileModal>

@@ -27,10 +27,28 @@ import { Loading } from '@components/ui/loading';
 import type { ReactElement, ReactNode } from 'react';
 import { User } from '@lib/types/user';
 import { Tweet as TypeTweet } from '@lib/types/tweet';
+import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react';
+import { getBookmarksByUser } from 'api/utils/bookmarks';
 
 export default function Bookmarks(): JSX.Element {
   const { open, openModal, closeModal } = useModal();
   const [selection, setSelection] = useState('all');
+  const [tweetLoading, setTweetLoading] = useState(false);
+  const supabaseClient = useSupabaseClient();
+  const supabaseUser = useUser();
+
+  const [bookmarks, setBookmarks] = useState<(TypeTweet & { user: User; })[] | null>(null);
+
+  const fetchUserBookmarks = async () => {
+    // get custom lists
+    const bookmarksResponse = await getBookmarksByUser(
+      'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
+      supabaseClient
+    ).then((data) => {
+      console.log("DATA", data)
+    });
+    
+  };
 
   const allTweet: (TypeTweet & { user: User; })[] | null = [
     {
@@ -66,7 +84,7 @@ export default function Bookmarks(): JSX.Element {
     {
       createdAt: 12345,
       createdBy: 'egirl1',
-      id: '1',
+      id: '2',
       images: null,
       parent: {
         id: '10',
@@ -75,7 +93,7 @@ export default function Bookmarks(): JSX.Element {
       text: 'Bookmark this!',
       updatedAt: 88889,
       user: {
-        id: '1',
+        id: '66',
         username: "egirl",
         name: "E girl 1",
         accent: 'blue',
@@ -99,7 +117,7 @@ export default function Bookmarks(): JSX.Element {
     {
       createdAt: 12345,
       createdBy: 'egirl1',
-      id: '1',
+      id: '3',
       images: [
         {
           src: 'https://i.pinimg.com/550x/8d/4f/44/8d4f442214edc01230b38228bad5226f.jpg',
@@ -109,7 +127,7 @@ export default function Bookmarks(): JSX.Element {
         {
           src: 'https://i.pinimg.com/564x/f4/fb/6b/f4fb6b6dc78c15007f8c16599ce6e03b.jpg',
           alt: 'anime girl 2',
-          id: '1233',
+          id: '456',
         }
       ],
       parent: null,
@@ -173,7 +191,7 @@ export default function Bookmarks(): JSX.Element {
     {
       createdAt: 12345,
       createdBy: 'egirl1',
-      id: '1',
+      id: '2',
       images: null,
       parent: {
         id: '10',
@@ -294,7 +312,7 @@ export default function Bookmarks(): JSX.Element {
     {
       createdAt: 12345,
       createdBy: 'egirl1',
-      id: '1',
+      id: '2',
       images: [
         {
           src: 'https://i.pinimg.com/550x/8d/4f/44/8d4f442214edc01230b38228bad5226f.jpg',
@@ -357,10 +375,6 @@ export default function Bookmarks(): JSX.Element {
 
   const userId = user?.id as string;
 
-  // const { data: bookmarksRef, loading: bookmarksRefLoading } = useCollection(
-  //   query(userBookmarksCollection(userId), orderBy('createdAt', 'desc')),
-  //   { allowNull: true }
-  // );
   type Bookmark = {
     id: string;
   };
@@ -375,19 +389,6 @@ export default function Bookmarks(): JSX.Element {
       id: '2'
     }
   ]
-
-  const tweetIds = useMemo(
-    () => bookmarksRef?.map(({ id }) => id) ?? [],
-    [bookmarksRef]
-  );
-
-  // const { data: tweetData, loading: tweetLoading } = useArrayDocument(
-  //   tweetIds,
-  //   tweetsCollection,
-  //   { includeUser: true }
-  // );
-
-  let tweetLoading = false
 
   const handleClear = async (): Promise<void> => {
     await clearAllBookmarks(userId);
@@ -410,8 +411,13 @@ export default function Bookmarks(): JSX.Element {
   };
 
   useEffect(() => {
-
-  }, [tweetData, selection]);
+    if (supabaseUser) {
+      fetchUserBookmarks()
+      .then(() => {
+        setTweetLoading(false);
+      });
+    }
+  }, [tweetData, selection, supabaseUser]);
 
   return (
     <MainBookmarkContainer>
@@ -491,11 +497,13 @@ export default function Bookmarks(): JSX.Element {
                 imageData={{ src: '/assets/no-bookmarks.png', alt: 'No bookmarks' }}
               />
             ) : (
-              <AnimatePresence mode='popLayout'>
-                {tweetData?.map((tweet) => (
-                  <><Tweet {...tweet} key={tweet.id} /></>
-                ))}
-              </AnimatePresence>
+              <>
+                {/* <AnimatePresence mode='popLayout'> */}
+                  {tweetData?.map((tweet) => (
+                    <Tweet {...tweet} key={tweet.id} />
+                  ))}
+                {/* </AnimatePresence> */}
+          </>
             )}
           </div>
         </div>

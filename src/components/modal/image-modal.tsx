@@ -77,7 +77,7 @@ export function ImageModal({
   return (
     <>
       {requireArrows &&
-        arrowButtons.map(([name, className, iconName]) => (
+        arrowButtons.map(([name, className, iconName], index) => (
           <Button
             className={cn(
               `absolute z-10 hover:bg-light-primary/10 active:bg-light-primary/20
@@ -86,7 +86,7 @@ export function ImageModal({
               className
             )}
             onClick={preventBubbling(handleNextIndex(name))}
-            key={name}
+            key={index}
           >
             <HeroIcon iconName={iconName} />
           </Button>

@@ -1,17 +1,5 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import {
-  doc,
-  limit,
-  query,
-  where,
-  orderBy,
-  documentId
-} from 'firebase/firestore';
-import { useAuth } from '@lib/context/auth-context';
-import { useCollection } from '@lib/hooks/useCollection';
-import { useDocument } from '@lib/hooks/useDocument';
-import { usersCollection } from '@lib/firebase/collections';
 import { UserCard } from '@components/user/user-card';
 import { Loading } from '@components/ui/loading';
 import { Error } from '@components/ui/error';
@@ -122,8 +110,8 @@ export function Suggestions(): JSX.Element {
         <motion.div className='inner:px-4 inner:py-3' {...variants}>
           <h2 className='text-xl font-bold'>Suggestions</h2>
           {adminData && <UserCard {...adminData} />}
-          {suggestionsData?.map((userData) => (
-            <UserCard {...userData} key={userData.id} />
+          {suggestionsData?.map((userData, index) => (
+            <UserCard {...userData} key={index} />
           ))}
           <Link href='/people'>
             <a

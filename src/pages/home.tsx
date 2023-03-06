@@ -22,23 +22,14 @@ import { Tweet as TypeTweet } from '@lib/types/tweet';
 export default function Home(): JSX.Element {
   const user = useUser();
   const client = useSupabaseClient();
-  // const { isMobile } = useWindow();
-
-  // const { data, loading, LoadMore } = useInfiniteScroll(
-  //   tweetsCollection,
-  //   [where('parent', '==', null), orderBy('createdAt', 'desc')],
-  //   { includeUser: true, allowNull: true, preserve: true }
-  // );
 
   const getHomePosts = async () => {
-    // console.log('user id ', user.id);
     console.log('client', client);
     const data = await getHomePostsSubscribedTo(user!.id, client);
     console.log('data', data);
   };
 
   useEffect(() => {
-    // must check for user here first
     if (user) {
       getHomePosts();
     }
@@ -48,32 +39,10 @@ export default function Home(): JSX.Element {
 
   const loading = false;
   const loadMore = () => {};
-
-  /*
-  const {
-    id: tweetId,
-    text,
-    modal,
-    images,
-    parent,
-    pinned,
-    profile,
-    userLikes,
-    createdBy,
-    createdAt,
-    parentTweet,
-    userReplies,
-    userRetweets,
-    user: tweetUserData
-  } = tweet;
-
-  const { id: ownerId, name, username, verified, photoURL } = tweetUserData;
-  */
-
-  //
-  const tweetData: (TypeTweet & { user: User; })[] | null =
+  const tweetData: (TypeTweet & { user: User; modal?: boolean; })[] | null =
     [
       {
+        modal: false,
         createdAt: 12345,
         createdBy: 'egirl1',
         id: '1',
@@ -107,9 +76,10 @@ export default function Home(): JSX.Element {
         userRetweets: ['123']
       },
       {
+        modal: false,
         createdAt: 12345,
         createdBy: 'egirl1',
-        id: '1',
+        id: '2',
         images: null,
         parent: {
           id: '10',
@@ -140,9 +110,10 @@ export default function Home(): JSX.Element {
         userRetweets: ['123']
       },
       {
+        modal: false,
         createdAt: 12345,
         createdBy: 'egirl1',
-        id: '1',
+        id: '3',
         images: [
           {
             src: 'https://i.pinimg.com/550x/8d/4f/44/8d4f442214edc01230b38228bad5226f.jpg',
@@ -181,7 +152,8 @@ export default function Home(): JSX.Element {
         userRetweets: ['123']
       },
       {
-        id: '1',
+        modal: false,
+        id: '4',
         text: 'test holland tweet',
         // model: false,
         images: null,
@@ -230,7 +202,6 @@ export default function Home(): JSX.Element {
       >
         <UpdateUsername />
       </MainHeader>
-      {/* {!isMobile && <Input />} */}
       <section className='mt-0.5 xs:mt-0'>
         {loading ? (
           <Loading className='mt-5' />
@@ -238,12 +209,11 @@ export default function Home(): JSX.Element {
           <Error message='Something went wrong' />
         ) : (
           <>
-            <AnimatePresence mode='popLayout'>
+            {/* <AnimatePresence mode='popLayout'> */}
               {data.map((tweet) => (
                 <Tweet {...tweet} key={tweet.id} />
               ))}
-            </AnimatePresence>
-            {/* <LoadMore /> */}
+            {/* </AnimatePresence> */}
           </>
         )}
       </section>
