@@ -50,55 +50,49 @@ export function ThemeContextProvider({
   //   if (user && userAccent) setAccent(userAccent);
   // }, [userId, userAccent]);
 
-  // useEffect(() => {
-  //   const flipTheme = (theme: Theme): NodeJS.Timeout | undefined => {
-  //     const root = document.documentElement;
-  //     const targetTheme = theme === 'dim' ? 'dark' : theme;
+  useEffect(() => {
+    const flipTheme = (theme: Theme): NodeJS.Timeout | undefined => {
+      const root = document.documentElement;
+      const targetTheme = theme === 'dim' ? 'dark' : theme;
 
-  //     if (targetTheme === 'dark') root.classList.add('dark');
-  //     else root.classList.remove('dark');
+      if (targetTheme === 'dark') root.classList.add('dark');
+      else root.classList.remove('dark');
 
-  //     root.style.setProperty('--main-background', `var(--${theme}-background)`);
+      root.style.setProperty('--main-background', `var(--${theme}-background)`);
 
-  //     root.style.setProperty(
-  //       '--main-search-background',
-  //       `var(--${theme}-search-background)`
-  //     );
+      root.style.setProperty(
+        '--main-search-background',
+        `var(--${theme}-search-background)`
+      );
 
-  //     root.style.setProperty(
-  //       '--main-sidebar-background',
-  //       `var(--${theme}-sidebar-background)`
-  //     );
+      root.style.setProperty(
+        '--main-sidebar-background',
+        `var(--${theme}-sidebar-background)`
+      );
 
-  //     if (user) {
-  //       localStorage.setItem('theme', theme);
-  //       return setTimeout(() => void updateUserTheme(user.id, { theme }), 500);
-  //     }
+      localStorage.setItem('theme', theme);
 
-  //     return undefined;
-  //   };
+      return undefined;
+    };
 
-  //   const timeoutId = flipTheme(theme);
-  //   return () => clearTimeout(timeoutId);
-  // }, [userId, theme]);
+    const timeoutId = flipTheme(theme);
+    return () => clearTimeout(timeoutId);
+  }, [theme]);
 
-  // useEffect(() => {
-  //   const flipAccent = (accent: Accent): NodeJS.Timeout | undefined => {
-  //     const root = document.documentElement;
+  useEffect(() => {
+    const flipAccent = (accent: Accent): NodeJS.Timeout | undefined => {
+      const root = document.documentElement;
 
-  //     root.style.setProperty('--main-accent', `var(--accent-${accent})`);
+      root.style.setProperty('--main-accent', `var(--accent-${accent})`);
 
-  //     if (user) {
-  //       localStorage.setItem('accent', accent);
-  //       return setTimeout(() => void updateUserTheme(user.id, { accent }), 500);
-  //     }
+      localStorage.setItem('accent', accent);
 
-  //     return undefined;
-  //   };
+      return undefined;
+    };
 
-  //   const timeoutId = flipAccent(accent);
-  //   return () => clearTimeout(timeoutId);
-  // }, [userId, accent]);
+    const timeoutId = flipAccent(accent);
+    return () => clearTimeout(timeoutId);
+  }, [accent]);
 
   const changeTheme = ({
     target: { value }
