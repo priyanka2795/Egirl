@@ -1,10 +1,4 @@
-import { doc, query, where } from 'firebase/firestore';
 import { AnimatePresence } from 'framer-motion';
-import { useUser } from '@lib/context/user-context';
-import { useCollection } from '@lib/hooks/useCollection';
-import { useDocument } from '@lib/hooks/useDocument';
-import { tweetsCollection } from '@lib/firebase/collections';
-import { mergeData } from '@lib/merge';
 import { UserLayout, ProtectedLayout } from '@components/layout/common-layout';
 import { MainLayout } from '@components/layout/main-layout';
 import { UserDataLayout } from '@components/layout/user-data-layout';
@@ -144,7 +138,7 @@ export default function UserTweets(): JSX.Element {
     {
       createdAt: 12345,
       createdBy: 'egirl1',
-      id: '1',
+      id: '2',
       images: null,
       parent: {
         id: '10',
@@ -177,7 +171,7 @@ export default function UserTweets(): JSX.Element {
     {
       createdAt: 12345,
       createdBy: 'egirl1',
-      id: '1',
+      id: '3',
       images: [
         {
           src: 'https://i.pinimg.com/550x/8d/4f/44/8d4f442214edc01230b38228bad5226f.jpg',
@@ -244,14 +238,16 @@ export default function UserTweets(): JSX.Element {
           description='When they do, their Tweets will show up here.'
         />
       ) : (
-        <AnimatePresence mode='popLayout'>
+        <>
+        {/*<AnimatePresence mode='popLayout'>*/}
           {pinnedData && (
             <Tweet pinned {...pinnedData} key={`pinned-${pinnedData.id}`} />
           )}
           {mergedTweets.map((tweet) => (
             <Tweet {...tweet} profile={user} key={tweet.id} />
           ))}
-        </AnimatePresence>
+        {/*</AnimatePresence>*/}
+        </>
       )}
     </section>
   );
