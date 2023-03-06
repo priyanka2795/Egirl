@@ -67,8 +67,8 @@ export function UserCards({
       ) : (
         <AnimatePresence mode='popLayout'>
           {data?.length ? (
-            data.map((userData) => (
-              <motion.div layout='position' key={userData.id} {...variants}>
+            data.map((userData, index) => (
+              <motion.div layout='position' key={index} {...variants}>
                 <UserCard {...userData} follow={follow} modal={modal} />
               </motion.div>
             ))

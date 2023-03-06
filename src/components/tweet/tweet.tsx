@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
 import cn from 'clsx';
-import { useAuth } from '@lib/context/auth-context';
 import { useModal } from '@lib/hooks/useModal';
 import { delayScroll } from '@lib/utils';
 import { Modal } from '@components/modal/modal';
@@ -25,6 +24,12 @@ export type TweetProps = Tweet & {
   pinned?: boolean;
   profile?: User | null;
   parentTweet?: boolean;
+  customId?: string;
+  customName?: string;
+  customText?: string;
+  customImageUrls?: string[];
+  customCommentsCount?: number;
+  customLikes?: string[];
 };
 
 export const variants: Variants = {
@@ -34,7 +39,6 @@ export const variants: Variants = {
 };
 
 export function Tweet(tweet: TweetProps): JSX.Element {
-  console.log('tweet', tweet);
   const {
     id: tweetId,
     text,
@@ -49,20 +53,22 @@ export function Tweet(tweet: TweetProps): JSX.Element {
     parentTweet,
     userReplies,
     userRetweets,
-    user: tweetUserData
+    user: tweetUserData,
+    customId,
+    customCommentsCount,
+    customName,
+    customImageUrls,
+    customLikes,
+    customText
   } = tweet;
 
   const { id: ownerId, name, username, verified, photoURL } = tweetUserData;
-
-  console.log('tweet', tweet);
-
-  const { user } = useAuth();
 
   const { open, openModal, closeModal } = useModal();
 
   const tweetLink = `/tweet/${tweetId}`;
 
-  const userId = user?.id as string;
+  const userId = '1234';
 
   const isOwner = userId === createdBy;
 
@@ -105,7 +111,6 @@ export function Tweet(tweet: TweetProps): JSX.Element {
           onClick={delayScroll(200)}
         >
           <div className='grid grid-cols-[auto,1fr] gap-x-3 gap-y-1'>
-            <AnimatePresence initial={false}>
               {modal ? null : pinned ? (
                 <TweetStatus type='pin'>
                   <p className='text-sm font-bold'>Pinned Tweet</p>
@@ -121,11 +126,7 @@ export function Tweet(tweet: TweetProps): JSX.Element {
                   </TweetStatus>
                 )
               )}
-            </AnimatePresence>
             <div className='flex flex-col items-center gap-2'>
-              {/* <UserTooltip avatar modal={modal} {...tweetUserData}>
-                <UserAvatar src={photoURL} alt={name} username={username} />
-              </UserTooltip> */}
               {parentTweet && (
                 <i className='hover-animation h-full w-0.5 bg-light-line-reply dark:bg-dark-line-reply' />
               )}
@@ -135,7 +136,7 @@ export function Tweet(tweet: TweetProps): JSX.Element {
                 <div className='flex gap-1 truncate xs:overflow-visible xs:whitespace-normal'>
                   <UserTooltip modal={modal} {...tweetUserData}>
                     <UserName
-                      name={name}
+                      name={customName ? customName : name}
                       username={username}
                       verified={verified}
                       className='text-light-primary dark:text-dark-primary'
@@ -144,20 +145,6 @@ export function Tweet(tweet: TweetProps): JSX.Element {
                   <UserTooltip modal={modal} {...tweetUserData}>
                     <UserUsername username={username} />
                   </UserTooltip>
-                  {/* <TweetDate tweetLink={tweetLink} createdAt={createdAt} /> */}
-                </div>
-                <div className='px-4'>
-                  {/* {!modal && (
-                    <TweetActions
-                      isOwner={isOwner}
-                      ownerId={ownerId}
-                      tweetId={tweetId}
-                      parentId={parentId}
-                      username={username}
-                      hasImages={!!images}
-                      createdBy={createdBy}
-                    />
-                  )} */}
                 </div>
               </div>
               {(reply || modal) && (
@@ -169,14 +156,16 @@ export function Tweet(tweet: TweetProps): JSX.Element {
                 >
                   Replying to{' '}
                   <Link href={`/user/${parentUsername}`}>
-                    <a className='custom-underline text-main-accent'>
+                    <span className='custom-underline text-main-accent'>
                       @{parentUsername}
-                    </a>
+                    </span>
                   </Link>
                 </p>
               )}
               {text && (
-                <p className='whitespace-pre-line break-words'>{text}</p>
+                <p className='whitespace-pre-line break-words'>
+                  {customText ? customText : text}
+                </p>
               )}
               <div className='mt-1 flex flex-col gap-2'>
                 {images && (
@@ -191,8 +180,8 @@ export function Tweet(tweet: TweetProps): JSX.Element {
                     reply={reply}
                     userId={userId}
                     isOwner={isOwner}
-                    tweetId={tweetId}
-                    userLikes={userLikes}
+                    tweetId={customId ? customId : tweetId}
+                    userLikes={customLikes ? customLikes : userLikes}
                     userReplies={userReplies}
                     userRetweets={userRetweets}
                     openModal={!parent ? openModal : undefined}

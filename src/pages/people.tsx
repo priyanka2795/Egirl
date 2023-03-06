@@ -1,8 +1,6 @@
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 import { where } from 'firebase/firestore';
-import { useAuth } from '@lib/context/auth-context';
-import { usersCollection } from '@lib/firebase/collections';
 import { useInfiniteScroll } from '@lib/hooks/useInfiniteScroll';
 import {
   PeopleLayout,
@@ -17,16 +15,17 @@ import { Loading } from '@components/ui/loading';
 import { Error } from '@components/ui/error';
 import { variants } from '@components/aside/aside-trends';
 import type { ReactElement, ReactNode } from 'react';
+import { useUser } from '@supabase/auth-helpers-react';
 
 export default function People(): JSX.Element {
-  const { user } = useAuth();
+  const user = useUser();
 
-  const { data, loading, LoadMore } = useInfiniteScroll(
-    usersCollection,
-    [where('id', '!=', user?.id)],
-    { allowNull: true, preserve: true },
-    { marginBottom: 500 }
-  );
+  // const { data, loading, LoadMore } = useInfiniteScroll(
+  //   usersCollection,
+  //   [where('id', '!=', user?.id)],
+  //   { allowNull: true, preserve: true },
+  //   { marginBottom: 500 }
+  // );
 
   const { back } = useRouter();
 
@@ -35,7 +34,7 @@ export default function People(): JSX.Element {
       <SEO title='People / Twitter' />
       <MainHeader useActionButton title='People' action={back} />
       <section>
-        {loading ? (
+        {/* {loading ? (
           <Loading className='mt-5' />
         ) : !data ? (
           <Error message='Something went wrong' />
@@ -48,7 +47,7 @@ export default function People(): JSX.Element {
             </motion.div>
             <LoadMore />
           </>
-        )}
+        )} */}
       </section>
     </MainContainer>
   );

@@ -2,8 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
-import { checkUsernameAvailability, updateUsername } from '@lib/firebase/utils';
-import { useAuth } from '@lib/context/auth-context';
 import { useModal } from '@lib/hooks/useModal';
 import { isValidUsername } from '@lib/validation';
 import { sleep } from '@lib/utils';
@@ -23,37 +21,36 @@ export function UpdateUsername(): JSX.Element {
   const [inputValue, setInputValue] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const { user } = useAuth();
   const { open, openModal, closeModal } = useModal();
 
   useEffect(() => {
-    const checkAvailability = async (value: string): Promise<void> => {
-      const empty = await checkUsernameAvailability(value);
+    // const checkAvailability = async (value: string): Promise<void> => {
+    //   const empty = await checkUsernameAvailability(value);
 
-      if (empty) setAvailable(true);
-      else {
-        setAvailable(false);
-        setErrorMessage('This username has been taken. Please choose another.');
-      }
-    };
+    //   if (empty) setAvailable(true);
+    //   else {
+    //     setAvailable(false);
+    //     setErrorMessage('This username has been taken. Please choose another.');
+    //   }
+    // };
 
-    if (!visited && inputValue.length > 0) setVisited(true);
+    // if (!visited && inputValue.length > 0) setVisited(true);
 
-    if (visited) {
-      if (errorMessage) setErrorMessage('');
+    // if (visited) {
+    //   if (errorMessage) setErrorMessage('');
 
-      const error = isValidUsername(user?.username as string, inputValue);
+    //   const error = isValidUsername(user?.username as string, inputValue);
 
-      if (error) {
-        setAvailable(false);
-        setErrorMessage(error);
-      } else void checkAvailability(inputValue);
-    }
+    //   if (error) {
+    //     setAvailable(false);
+    //     setErrorMessage(error);
+    //   } else void checkAvailability(inputValue);
+    // }
   }, [inputValue]);
 
   useEffect(() => {
-    if (!user?.updatedAt) openModal();
-    else setAlreadySet(true);
+    // if (!user?.updatedAt) openModal();
+    // else setAlreadySet(true);
   }, []);
 
   const changeUsername = async (
@@ -67,7 +64,7 @@ export function UpdateUsername(): JSX.Element {
 
     await sleep(500);
 
-    await updateUsername(user?.id as string, inputValue);
+    // await updateUsername(user?.id as string, inputValue);
 
     closeModal();
 
@@ -82,7 +79,7 @@ export function UpdateUsername(): JSX.Element {
 
   const cancelUpdateUsername = (): void => {
     closeModal();
-    if (!alreadySet) void updateUsername(user?.id as string);
+    // if (!alreadySet) void updateUsername(user?.id as string);
   };
 
   const handleChange = ({

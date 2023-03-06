@@ -2,14 +2,16 @@ import { AuthLayout } from '@components/layout/auth-layout';
 import { SEO } from '@components/common/seo';
 import { LoginMain } from '@components/login/login-main';
 import { LoginFooter } from '@components/login/login-footer';
-import type { ReactElement, ReactNode } from 'react';
+import { ReactElement, ReactNode, useEffect } from 'react';
 import { Auth, ThemeSupa } from '@supabase/auth-ui-react';
-import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react';
+import { useSession, useSupabaseClient, useUser } from '@supabase/auth-helpers-react';
 import Account from '../components/account/account';
+import Router from 'next/router';
 
 export default function Login(): JSX.Element {
   const session = useSession();
   const supabase = useSupabaseClient();
+  const user = useUser();
 
   const customTheme = {
     default: {
@@ -84,6 +86,13 @@ export default function Login(): JSX.Element {
       // },
     }
   };
+
+  useEffect(() => {
+    if(user != null){
+      Router.push('/home');
+    };
+  }, [user]);
+  
   return (
     <div className='grid min-h-screen grid-rows-[1fr,auto]'>
       <SEO
@@ -96,16 +105,17 @@ export default function Login(): JSX.Element {
         </div>
         <div className='flex items-center bg-main-red col-span-2'>
           <div className='container mx-40 p-10 bg-white shadow-2xl drop-shadow-2xl'>
-            {!session ? (
+            {/* {!session ? ( */}
               <Auth
                 supabaseClient={supabase}
                 appearance={{ theme: customTheme }}
                 providers={['google', 'twitter', 'apple']}
                 theme='default'
+                redirectTo='/home'
               />
-            ) : (
+            {/* ) : (
               <Account session={session} />
-            )}
+            )} */}
           </div>
         </div>
       </div>

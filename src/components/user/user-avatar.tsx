@@ -17,7 +17,7 @@ export function UserAvatar({
   username,
   className
 }: UserAvatarProps): JSX.Element {
-  const pictureSize = size ?? 48;
+  const pictureSize = 110;
 
   return (
     <Link href={username ? `/user/${username}` : '#'}>

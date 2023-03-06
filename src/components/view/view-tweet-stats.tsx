@@ -2,7 +2,6 @@ import { useState } from 'react';
 import cn from 'clsx';
 import { useArrayDocument } from '@lib/hooks/useArrayDocument';
 import { useModal } from '@lib/hooks/useModal';
-import { usersCollection } from '@lib/firebase/collections';
 import { Modal } from '@components/modal/modal';
 import { TweetStatsModal } from '@components/modal/tweet-stats-modal';
 import { NumberStats } from '@components/tweet/number-stats';
@@ -38,11 +37,11 @@ export function ViewTweetStats({
 
   const { open, openModal, closeModal } = useModal();
 
-  const { data, loading } = useArrayDocument(
-    statsType ? (statsType === 'likes' ? userLikes : userRetweets) : [],
-    usersCollection,
-    { disabled: !statsType }
-  );
+  // const { data, loading } = useArrayDocument(
+  //   statsType ? (statsType === 'likes' ? userLikes : userRetweets) : [],
+  //   usersCollection,
+  //   { disabled: !statsType }
+  // );
 
   const handleOpen = (type: StatsType) => (): void => {
     setStatsType(type);
@@ -68,14 +67,14 @@ export function ViewTweetStats({
         open={open}
         closeModal={handleClose}
       >
-        <TweetStatsModal statsType={statsType} handleClose={handleClose}>
+        {/* <TweetStatsModal statsType={statsType} handleClose={handleClose}>
           <UserCards
             follow
             type={statsType as StatsType}
             data={data}
             loading={loading}
           />
-        </TweetStatsModal>
+        </TweetStatsModal> */}
       </Modal>
       {isStatsVisible && (
         <div

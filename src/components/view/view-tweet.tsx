@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import cn from 'clsx';
-import { useAuth } from '@lib/context/auth-context';
 import { useModal } from '@lib/hooks/useModal';
 import { Modal } from '@components/modal/modal';
 import { TweetReplyModal } from '@components/modal/tweet-reply-modal';
@@ -41,13 +40,11 @@ export function ViewTweet(tweet: ViewTweetProps): JSX.Element {
 
   const { id: ownerId, name, username, verified, photoURL } = tweetUserData;
 
-  const { user } = useAuth();
-
   const { open, openModal, closeModal } = useModal();
 
   const tweetLink = `/tweet/${tweetId}`;
 
-  const userId = user?.id as string;
+  const userId = '456';
 
   const isOwner = userId === createdBy;
 

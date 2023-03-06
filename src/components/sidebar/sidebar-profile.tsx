@@ -1,7 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { Menu } from '@headlessui/react';
 import cn from 'clsx';
-import { useAuth } from '@lib/context/auth-context';
 import { useModal } from '@lib/hooks/useModal';
 import { Modal } from '@components/modal/modal';
 import { ActionModal } from '@components/modal/action-modal';
@@ -15,7 +14,6 @@ import { variants } from './more-settings';
 import type { User } from '@lib/types/user';
 
 export function SidebarProfile(): JSX.Element {
-  // const { user, signOut } = useAuth();
   const { open, openModal, closeModal } = useModal();
 
   // const { name, username, verified, photoURL } = user as User;
@@ -26,7 +24,6 @@ export function SidebarProfile(): JSX.Element {
     'https://www.wikihow.com/images/thumb/f/fc/Get-the-URL-for-Pictures-Step-1-Version-6.jpg/v4-460px-Get-the-URL-for-Pictures-Step-1-Version-6.jpg.webp';
 
   const signOut = () => {
-    console.log('impliment later!');
   };
 
   return (

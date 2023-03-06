@@ -67,8 +67,8 @@ export function DisplayModal({ closeModal }: DisplayModalProps): JSX.Element {
           className='hover-animation grid grid-cols-3 grid-rows-2 justify-items-center gap-3 
                      rounded-2xl bg-main-sidebar-background py-3 xs:grid-cols-6 xs:grid-rows-none'
         >
-          {accentsColor.map((accentColor) => (
-            <InputAccentRadio type={accentColor} key={accentColor} />
+          {accentsColor.map((accentColor, index) => (
+            <InputAccentRadio type={accentColor} key={index} />
           ))}
         </div>
       </div>
@@ -80,8 +80,8 @@ export function DisplayModal({ closeModal }: DisplayModalProps): JSX.Element {
           className='hover-animation grid grid-rows-3 gap-3 rounded-2xl bg-main-sidebar-background
                      px-4 py-3 xs:grid-cols-3 xs:grid-rows-none'
         >
-          {themes.map(([themeType, label]) => (
-            <InputThemeRadio type={themeType} label={label} key={themeType} />
+          {themes.map(([themeType, label], index) => (
+            <InputThemeRadio type={themeType} label={label} key={index} />
           ))}
         </div>
       </div>

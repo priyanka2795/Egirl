@@ -5,7 +5,7 @@ import {
   getCharacterToUserMessagesLim
 } from '../utils/messages';
 
-import { supabaseClient } from '../../config/supabaseClient';
+// import { supabaseClient } from '../../config/supabaseClient';
 
 // this will grab the entire chat history between the user and the character
 export async function getAllUserCharChat(
@@ -79,7 +79,6 @@ export async function getAllUserCharChat(
   //   );
 
   //   const arrMessages = messages.map((message) => message.message);
-  console.log(arrMessages);
   return arrMessages;
 }
 // getAllUserCharChat('e8a2be37-76f6-4ebb-bfd8-b9e370046a41', 1, supabaseClient);
@@ -175,12 +174,11 @@ export async function getFlexUserCharChat(
 
   // -------------
 
-  console.log(latestMessages);
   return latestMessages;
 }
-getFlexUserCharChat(
-  'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
-  1,
-  20,
-  supabaseClient
-);
+// getFlexUserCharChat(
+//   'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
+//   1,
+//   20,
+//   supabaseClient
+// );

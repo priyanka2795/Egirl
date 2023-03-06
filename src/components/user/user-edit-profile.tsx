@@ -3,7 +3,6 @@ import { toast } from 'react-hot-toast';
 import cn from 'clsx';
 import { useUser } from '@lib/context/user-context';
 import { useModal } from '@lib/hooks/useModal';
-import { updateUserData, uploadImages } from '@lib/firebase/utils';
 import { sleep } from '@lib/utils';
 import { getImagesData } from '@lib/validation';
 import { Modal } from '@components/modal/modal';
@@ -34,13 +33,17 @@ type UserEditProfileProps = {
 };
 
 export function UserEditProfile({ hide }: UserEditProfileProps): JSX.Element {
-  const { user } = useUser();
+  // const { user } = useUser();
   const { open, openModal, closeModal } = useModal();
 
   const [loading, setLoading] = useState(false);
 
-  const { bio, name, website, location, photoURL, coverPhotoURL } =
-    user as User;
+  const bio = 'I am an egirl';
+  const name = 'E Girl 1';
+  const website = 'www.egirl.com'; 
+  const location = 'Metaverse';
+  const photoURL = "https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg"; 
+  const coverPhotoURL = "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png";
 
   const [editUserData, setEditUserData] = useState<EditableUserData>({
     bio,
@@ -66,21 +69,21 @@ export function UserEditProfile({ hide }: UserEditProfileProps): JSX.Element {
   const updateData = async (): Promise<void> => {
     setLoading(true);
 
-    const userId = user?.id as string;
+    const userId = '123';
 
     const { photoURL, coverPhotoURL: coverURL } = userImages;
 
-    const [newPhotoURL, newCoverPhotoURL] = await Promise.all(
-      [photoURL, coverURL].map((image) => uploadImages(userId, image))
-    );
+    // const [newPhotoURL, newCoverPhotoURL] = await Promise.all(
+    //   [photoURL, coverURL].map((image) => uploadImages(userId, image))
+    // );
 
-    const newImages: Partial<Pick<User, 'photoURL' | 'coverPhotoURL'>> = {
-      coverPhotoURL:
-        coverPhotoURL === editUserData.coverPhotoURL
-          ? coverPhotoURL
-          : newCoverPhotoURL?.[0].src ?? null,
-      ...(newPhotoURL && { photoURL: newPhotoURL[0].src })
-    };
+    // const newImages: Partial<Pick<User, 'photoURL' | 'coverPhotoURL'>> = {
+    //   coverPhotoURL:
+    //     coverPhotoURL === editUserData.coverPhotoURL
+    //       ? coverPhotoURL
+    //       : newCoverPhotoURL?.[0].src ?? null,
+    //   ...(newPhotoURL && { photoURL: newPhotoURL[0].src })
+    // };
 
     const trimmedKeys: Readonly<EditableData[]> = [
       'name',
@@ -94,22 +97,22 @@ export function UserEditProfile({ hide }: UserEditProfileProps): JSX.Element {
       {} as TrimmedTexts
     );
 
-    const newUserData: Readonly<EditableUserData> = {
-      ...editUserData,
-      ...trimmedTexts,
-      ...newImages
-    };
+    // const newUserData: Readonly<EditableUserData> = {
+    //   ...editUserData,
+    //   ...trimmedTexts,
+    //   ...newImages
+    // };
 
     await sleep(500);
 
-    await updateUserData(userId, newUserData);
+    // await updateUserData(userId, newUserData);
 
     closeModal();
 
     cleanImage();
 
     setLoading(false);
-    setEditUserData(newUserData);
+    // setEditUserData(newUserData);
 
     toast.success('Profile updated successfully');
   };
@@ -246,12 +249,12 @@ export function UserEditProfile({ hide }: UserEditProfileProps): JSX.Element {
           removeCoverImage={removeCoverImage}
           resetUserEditData={resetUserEditData}
         >
-          {inputFields.map((inputData) => (
+          {inputFields.map((inputData, index) => (
             <InputField
               {...inputData}
               handleChange={handleChange(inputData.inputId)}
               handleKeyboardShortcut={handleKeyboardShortcut}
-              key={inputData.inputId}
+              key={index}
             />
           ))}
         </EditProfileModal>
