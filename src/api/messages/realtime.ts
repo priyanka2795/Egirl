@@ -78,6 +78,7 @@ export async function setupChannel(
   initialBalance: number,
   costPerMsg: number,
   timeoutThreshold: number, // in seconds
+  unsubscribe: () => boolean,
   client: any
 ) {
   const channel = client.channel(`room:${roomId}`, { pingInterval: 1 });
@@ -121,7 +122,12 @@ export async function setupChannel(
         balance -= cost;
         /// Optional - sleep
         //await new Promise((f) => setTimeout(f, 1000));
-      } else if (status == 'CLOSED' || balance < cost || timedOut) {
+      } else if (
+        status == 'CLOSED' ||
+        balance < cost ||
+        timedOut ||
+        unsubscribe()
+      ) {
         // TODO: add this elsewhere based on user action
         console.log('Channel closed');
         channel.unsubscribe(); // closes channel
@@ -140,6 +146,7 @@ export async function testRealTime() {
   const costPerMsg = 0.1;
   const timeoutThreshold = 30;
   let message = 'Realtime testing 4';
+  let unsubscribe = () => false;
 
   await setupChannel(
     setCallHistory,
@@ -150,6 +157,7 @@ export async function testRealTime() {
     initialBalance,
     costPerMsg,
     timeoutThreshold,
+    unsubscribe,
     supabaseClient
   );
 
