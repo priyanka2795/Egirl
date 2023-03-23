@@ -48,6 +48,7 @@ module.exports = {
   plugins: [
     ({ addVariant }) => {
       addVariant('inner', '& > *');
-    }
+    },
+    require('@tailwindcss/forms'),
   ]
 };
