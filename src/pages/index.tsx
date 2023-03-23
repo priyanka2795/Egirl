@@ -151,26 +151,34 @@ export default function Login(): JSX.Element {
                   </span>
                 </div>
                 <div className='flex items-center pr-[24px]'>
-                  <span className='text-[#181818] text-[16px] font-[500] hover:text-[#5848BC] hover:underline hover:decoration-[#5848BC] hover:underline-offset-8'>
-                    For users
-                  </span>
+                  <button>
+                    <span className='text-[16px] font-[500] text-[#5848BC] underline decoration-[#5848BC] underline-offset-8'>
+                      For users
+                    </span>
+                  </button>
                 </div>
                 <div className='flex items-center'>
-                  <span className='text-[#181818] text-[16px] font-[500] hover:text-[#5848BC] hover:underline hover:decoration-[#5848BC] hover:underline-offset-8'>
-                    For creators
-                  </span>
+                  <button>
+                    <span className='text-[#181818] text-[16px] font-[500] hover:text-[#5848BC] hover:underline hover:decoration-[#5848BC] hover:underline-offset-8'>
+                      For creators
+                    </span>
+                  </button>
                 </div>
             </div>
             <div className='flex'>
               <div className='flex items-center pr-[24px]'>
+                <button>
                   <span className='text-[#181818] text-[16px] font-[500]'>
                     Contact
                   </span>
+                </button>
               </div>
               <div className='flex items-center justify-center w-[158px] px-[18px] py-[10px] bg-[#5848BC] rounded-[12px]'>
+                <button>
                   <span className='text-white text-[16px] font-[500]'>
                     Get beta access
                   </span>
+                </button>
               </div>
             </div>
           </div>
