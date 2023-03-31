@@ -1,15 +1,29 @@
 /// Getters
 
-// Get label for particular img
-export async function getImageLabel(
+// Get images for user
+export async function getImagesByUser(user_id: string, client: any) {
+  let { data, error, status } = await client
+    .from('sd_images')
+    .select(`creator_user_id, prompt, img_url, img_hash, label, created_at`)
+    .filter('creator_user_id', 'eq', user_id);
+
+  if ((error && status !== 406) || !data) {
+    throw error;
+  }
+
+  return { data };
+}
+
+// Get img metadata
+export async function getImageMetadata(
   user_id: string,
   image_id: number,
   client: any
 ) {
   let { data, error, status } = await client
     .from('sd_images')
-    .select(`user_id, list_name, character_ids, created_at`)
-    .filter('user_id', 'eq', user_id);
+    .select(`creator_user_id, prompt, img_url, img_hash, label, created_at`)
+    .filter('id', 'eq', image_id);
 
   if ((error && status !== 406) || !data) {
     throw error;
@@ -23,20 +37,22 @@ export async function getImageLabel(
 // Add image row to DB
 export async function addImage(
   user_id: string,
-  image_url: string,
-  label: string,
+  prompt: string,
+  img_url: string,
   img_hash: string,
+  label: string,
   client: any
 ) {
   let img_data = {
     user_id,
-    image_url,
-    label,
+    prompt,
+    img_url,
     img_hash,
+    label,
     created_at: new Date().toISOString()
   };
   let { data, error, status } = await client
-    .from('images_sd')
+    .from('sg_images')
     .insert([img_data]);
 
   if (error && status !== 201) {
@@ -45,4 +61,31 @@ export async function addImage(
   }
 
   return img_data;
+}
+
+// Add mask row to DB
+export async function addMaskImage(
+  user_id: string,
+  original_img_id: string,
+  img_url: string,
+  img_hash: string,
+  client: any
+) {
+  let mask_data = {
+    user_id,
+    original_img_id,
+    img_url,
+    img_hash,
+    created_at: new Date().toISOString()
+  };
+  let { data, error, status } = await client
+    .from('mask_images')
+    .insert([mask_data]);
+
+  if (error && status !== 201) {
+    console.log('Error in addMaskImage:', error);
+    throw error;
+  }
+
+  return mask_data;
 }
