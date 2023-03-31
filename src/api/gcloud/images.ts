@@ -1,14 +1,26 @@
 import { Storage } from '@google-cloud/storage';
 import * as path from 'path';
+import * as process from 'process';
+import * as crypto from 'crypto';
+import * as fs from 'fs';
+
+// Set the path to your service account key file
+const keyFilePath = path.join(
+  __dirname,
+  '../../../../keys/gcp_json/natural-apricot-380602-8e1a89e753bb.json'
+);
+
+// Set the environment variable
+process.env.GOOGLE_APPLICATION_CREDENTIALS = keyFilePath;
 
 // Creates a new Storage instance
 const storage = new Storage();
 
 // Upload image to cloud storage
-async function uploadImageToCloudStorage(
+export async function uploadImageToCloudStorage(
   bucketName: string,
   file: any
-): Promise<string> {
+): Promise<any> {
   // Define the destination path and file name for the uploaded file
   const destFileName = `${Date.now()}-${path.basename(file.originalname)}`;
   const destFilePath = `${bucketName}/${destFileName}`;
@@ -28,12 +40,21 @@ async function uploadImageToCloudStorage(
     .file(destFilePath)
     .getMetadata();
 
-  // Return the path to the file in the bucket
-  return `https://storage.googleapis.com/${bucketName}/${destFileName}?generation=${metadata.generation}`;
+  // Calculate MD5 hash of the base64 encoding of the image
+  const base64Image = fs.readFileSync(file.path, { encoding: 'base64' });
+  const md5Hash = crypto.createHash('md5').update(base64Image).digest('hex');
+
+  console.log('this is md5Hash: ', md5Hash);
+
+  // Return the path to the file in the bucket and the MD5 hash
+  return {
+    url: `https://storage.googleapis.com/${bucketName}/${destFileName}?generation=${metadata.generation}`,
+    md5Hash: md5Hash
+  };
 }
 
 // Get image from cloud storage
-async function getImageFromCloudStorage(
+export async function getImageFromCloudStorage(
   bucketName: string,
   fileName: string
 ): Promise<string> {
@@ -53,3 +74,33 @@ async function getImageFromCloudStorage(
     throw new Error(`Error getting image from Cloud Storage: ${error.message}`);
   }
 }
+
+// Testing image upload
+async function testUploadFile() {
+  const testBucketName = 'mindshape-image-test';
+  console.log('this is current directory', __dirname);
+
+  const testFilePath = './scenery2.jpg';
+  const testFile = {
+    originalname: 'scenery2.jpg',
+    mimetype: 'image/jpeg',
+    path: testFilePath
+  };
+  const { url, md5Hash } = await uploadImageToCloudStorage(
+    testBucketName,
+    testFile
+  );
+  console.log('In testUploadFile(), this is result url: ', url);
+  console.log('In testUploadFile(), this is result md5Hash: ', md5Hash);
+}
+
+// Testing getting image
+async function testGetFile() {
+  const testBucketName = 'mindshape-image-test';
+  const testFileName = '1680293139549-scenery.jpg';
+  const url = await getImageFromCloudStorage(testBucketName, testFileName);
+  console.log('In testGetFile(), this is result url: ', url);
+}
+
+testUploadFile();
+// testGetFile();

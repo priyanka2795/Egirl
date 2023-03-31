@@ -36,7 +36,7 @@ export async function getImageMetadata(
 
 // Add image row to DB
 export async function addImage(
-  user_id: string,
+  creator_user_id: string,
   prompt: string,
   img_url: string,
   img_hash: string,
@@ -44,7 +44,7 @@ export async function addImage(
   client: any
 ) {
   let img_data = {
-    user_id,
+    creator_user_id,
     prompt,
     img_url,
     img_hash,
@@ -52,7 +52,7 @@ export async function addImage(
     created_at: new Date().toISOString()
   };
   let { data, error, status } = await client
-    .from('sg_images')
+    .from('sd_images')
     .insert([img_data]);
 
   if (error && status !== 201) {
