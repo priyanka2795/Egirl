@@ -16,6 +16,27 @@ process.env.GOOGLE_APPLICATION_CREDENTIALS = keyFilePath;
 // Creates a new Storage instance
 const storage = new Storage();
 
+// Create new bucket on GCS
+export async function createBucket(
+  bucketName: string,
+  location: string
+): Promise<string> {
+  try {
+    // Create a new bucket with the specified name and location
+    const [bucket] = await storage.createBucket(bucketName, {
+      location: location,
+      storageClass: 'STANDARD'
+    });
+
+    console.log(`Bucket ${bucketName} created in ${location}`);
+    // Return the URL of the newly created bucket
+    return `https://storage.googleapis.com/${bucket.name}`;
+  } catch (error: any) {
+    console.error(`Error creating bucket ${bucketName}: ${error.message}`);
+    throw new Error(`Error creating bucket ${bucketName}: ${error.message}`);
+  }
+}
+
 // Upload image to cloud storage
 export async function uploadImageToCloudStorage(
   bucketName: string,
@@ -102,5 +123,14 @@ async function testGetFile() {
   console.log('In testGetFile(), this is result url: ', url);
 }
 
-testUploadFile();
+// Testing creating bucket
+async function testCreateBucket() {
+  const testBucketName = 'mindshape-image-test';
+  const testLocation = 'us-central1';
+  const url = await createBucket(testBucketName, testLocation);
+  console.log('In testCreateBucket(), this is result url: ', url);
+}
+
+// testCreateBucket();
+// testUploadFile();
 // testGetFile();
