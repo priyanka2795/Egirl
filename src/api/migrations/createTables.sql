@@ -273,3 +273,32 @@ CREATE TABLE IF NOT EXISTS mask_images (
 	img_hash VARCHAR(512) NOT NULL,
 	created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+
+-- Affiliate marketing  
+CREATE TABLE IF NOT EXISTS affiliate_links (
+	id SERIAL PRIMARY KEY,
+	user_id uuid NOT NULL REFERENCES profile(user_id),
+	affiliate_link VARCHAR(256) NOT NULL,
+	created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS affiliate_joins (
+	id SERIAL PRIMARY KEY,
+	affiliate_link_id INT NOT NULL REFERENCES affiliate_links(id),
+	affiliate_user_id uuid NOT NULL REFERENCES profile(user_id),
+	created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS referral_joins (
+	id SERIAL PRIMARY KEY,
+	referral_id INT NOT NULL REFERENCES referrals(id),
+	referral_user_id uuid NOT NULL REFERENCES profile(user_id),
+	created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS referrals (
+	id SERIAL PRIMARY KEY,
+	user_id uuid NOT NULL REFERENCES profile(user_id),
+	referral_code VARCHAR(256) NOT NULL,
+	created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
