@@ -202,55 +202,66 @@ CREATE TABLE IF NOT EXISTS user_transactions (
 );
 
 -- Stripe tables
--- Customers
-CREATE TABLE IF NOT EXISTS customers (
+-- Stripe Customers
+CREATE TABLE IF NOT EXISTS stripe_customers (
 	user_id uuid NOT NULL REFERENCES profile(user_id),
 	stripe_customer_id VARCHAR(256) NOT NULL,
 	created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
--- Products
-CREATE TABLE IF NOT EXISTS products (
+-- Stripe Payments
+CREATE TABLE IF NOT EXISTS stripe_payments (
+	customer VARCHAR(256) NOT NULL,
+	payment_intent_id VARCHAR(256) NOT NULL,
+	amount VARCHAR(256) NOT NULL,
+	currency VARCHAR(256) NOT NULL,
+	card_number VARCHAR(256) NOT NULL,
+	payment_method_id VARCHAR(256) NOT NULL,
+	created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Stripe Products
+CREATE TABLE IF NOT EXISTS stripe_products (
 	id VARCHAR(256) PRIMARY KEY,
-	/ / stripe product.id active BOOLEAN NOT NULL,
+	active BOOLEAN NOT NULL,
 	name VARCHAR(256) NOT NULL,
 	description VARCHAR(256) NOT NULL,
 	image VARCHAR(256) NOT NULL,
 	metadata VARCHAR(256) NOT NULL
 );
 
--- Prices
-CREATE TABLE IF NOT EXISTS prices (
+-- Stripe Prices
+CREATE TABLE IF NOT EXISTS stripe_prices (
 	id VARCHAR(256) PRIMARY KEY,
-	/ / stripe price.id product_id VARCHAR(256) NOT NULL,
+	product_id VARCHAR(256) NOT NULL,
 	active BOOLEAN NOT NULL,
 	currency VARCHAR(256) NOT NULL,
 	description VARCHAR(256) NOT NULL,
-	type VARCHAR(256) NOT NULL,
+	price_type VARCHAR(256) NOT NULL,
 	unit_amount VARCHAR(256) NOT NULL,
-	interval VARCHAR(256) NOT NULL,
+	price_interval VARCHAR(256) NOT NULL,
 	interval_count VARCHAR(256) NOT NULL,
 	trial_period_days VARCHAR(256) NOT NULL,
 	metadata VARCHAR(256) NOT NULL
 );
 
--- Users - billing address, payment_method 
--- Subscriptions
-CREATE TABLE IF NOT EXISTS subscriptions (
+-- Stripe Subscriptions
+CREATE TABLE IF NOT EXISTS stripe_subscriptions (
 	id VARCHAR(256) PRIMARY KEY,
-	/ / stripe price.id user_id VARCHAR(256) NOT NULL,
-	metadata VARCHAR(256) NOT NULL status BOOLEAN NOT NULL,
+	user_id VARCHAR(256) NOT NULL,
+	metadata VARCHAR(256) NOT NULL,
+	subscription_status BOOLEAN NOT NULL,
 	price_id VARCHAR(256) NOT NULL,
 	quantity VARCHAR(256) NOT NULL,
-	cancel_at_period_end cancel_at canceled_at current_period_start current_period_end created ended_at trial_start trial_end active BOOLEAN NOT NULL,
-	currency VARCHAR(256) NOT NULL,
-	description VARCHAR(256) NOT NULL,
-	type VARCHAR(256) NOT NULL,
-	unit_amount VARCHAR(256) NOT NULL,
-	interval VARCHAR(256) NOT NULL,
-	interval_count VARCHAR(256) NOT NULL,
-	trial_period_days VARCHAR(256) NOT NULL,
-	metadata VARCHAR(256) NOT NULL
+	cancel_at_period_end VARCHAR(256),
+	cancel_at VARCHAR(256),
+	canceled_at VARCHAR(256),
+	current_period_start VARCHAR(256),
+	current_period_end VARCHAR(256),
+	created VARCHAR(256),
+	ended_at VARCHAR(256),
+	trial_start VARCHAR(256),
+	trial_end VARCHAR(256)
 );
 
 -- ML Object stores 
