@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { getDoc, doc, onSnapshot } from 'firebase/firestore';
-import { usersCollection } from '@lib/firebase/collections';
 import { useCacheQuery } from './useCacheQuery';
 import type { Query } from 'firebase/firestore';
 import type { User } from '@lib/types/user';
@@ -58,16 +57,16 @@ export function useCollection<T>(
     }
 
     const populateUser = async (currentData: DataWithRef<T>): Promise<void> => {
-      const dataWithUser = await Promise.all(
-        currentData.map(async (currentData) => {
-          const user = (
-            await getDoc(doc(usersCollection, currentData.createdBy))
-          ).data();
-          return { ...currentData, user };
-        })
-      );
-      setData(dataWithUser);
-      setLoading(false);
+      // const dataWithUser = await Promise.all(
+      //   currentData.map(async (currentData) => {
+      //     const user = (
+      //       await getDoc(doc(usersCollection, currentData.createdBy))
+      //     ).data();
+      //     return { ...currentData, user };
+      //   })
+      // );
+      // setData(dataWithUser);
+      // setLoading(false);
     };
 
     const unsubscribe = onSnapshot(cachedQuery, (snapshot) => {

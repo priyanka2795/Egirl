@@ -1,7 +1,5 @@
 import { AnimatePresence } from 'framer-motion';
 import { query, where, orderBy } from 'firebase/firestore';
-import { useCollection } from '@lib/hooks/useCollection';
-import { tweetsCollection } from '@lib/firebase/collections';
 import { useUser } from '@lib/context/user-context';
 import { UserLayout, ProtectedLayout } from '@components/layout/common-layout';
 import { MainLayout } from '@components/layout/main-layout';
@@ -18,14 +16,39 @@ export default function UserLikes(): JSX.Element {
 
   const { id, name, username } = user ?? {};
 
-  const { data, loading } = useCollection(
-    query(
-      tweetsCollection,
-      where('userLikes', 'array-contains', id),
-      orderBy('createdAt', 'desc')
-    ),
-    { includeUser: true, allowNull: true }
-  );
+  // const { data, loading } = useCollection(
+  //   query(
+  //     tweetsCollection,
+  //     where('userLikes', 'array-contains', id),
+  //     orderBy('createdAt', 'desc')
+  //   ),
+  //   { includeUser: true, allowNull: true }
+  // );
+
+  const loading = false;
+  const data = [{
+    id: null,
+    key: null,
+    text: null,
+    modal: null,
+    images: null,
+    parent: null,
+    pinned: null,
+    profile: null,
+    userLikes: null,
+    createdBy: null,
+    createdAt: null,
+    parentTweet: null,
+    userReplies: null,
+    userRetweets: null,
+    user: null,
+    customId: null,
+    customCommentsCount: null,
+    customName: null,
+    customImageUrls: null,
+    customLikes: null,
+    customText: null
+  }];
 
   return (
     <section>
@@ -43,9 +66,9 @@ export default function UserLikes(): JSX.Element {
         />
       ) : (
         <AnimatePresence mode='popLayout'>
-          {data.map((tweet) => (
+          {/* {data.map((tweet) => (
             <Tweet {...tweet} key={tweet.id} />
-          ))}
+          ))} */}
         </AnimatePresence>
       )}
     </section>
