@@ -16,13 +16,13 @@ export function AsideFooter(): JSX.Element {
                  text-light-secondary dark:text-dark-secondary'
     >
       <nav className='flex flex-wrap justify-center gap-2'>
-        {footerLinks.map(([linkName, href]) => (
+        {footerLinks.map(([linkName, href], index) => (
           <a
             className='custom-underline'
             target='_blank'
             rel='noreferrer'
             href={href}
-            key={href}
+            key={index}
           >
             {linkName}
           </a>

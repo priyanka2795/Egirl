@@ -1,4 +1,3 @@
-import type { Timestamp } from 'firebase/firestore';
 
 const RELATIVE_TIME_FORMATTER = new Intl.RelativeTimeFormat('en-gb', {
   style: 'short',
@@ -14,10 +13,10 @@ const UNITS: Units = {
 };
 
 export function formatDate(
-  targetDate: Timestamp,
+  targetDate: Date,
   mode: 'tweet' | 'message' | 'full' | 'joined'
 ): string {
-  const date = targetDate.toDate();
+  const date = targetDate;
 
   if (mode === 'full') return getFullTime(date);
   if (mode === 'tweet') return getPostTime(date);

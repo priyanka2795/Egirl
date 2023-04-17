@@ -1,6 +1,4 @@
-import type { Timestamp } from 'firebase/firestore';
-
-type DataWithDate<T> = T & { createdAt: Timestamp };
+type DataWithDate<T> = T & { createdAt: Date };
 
 export function mergeData<T>(
   sortData: boolean,
@@ -11,7 +9,7 @@ export function mergeData<T>(
 
   return mergeData.length
     ? sortData
-      ? mergeData.sort((a, b) => +b.createdAt.toDate() - +a.createdAt.toDate())
+      ? mergeData.sort((a, b) => +b.createdAt - +a.createdAt)
       : mergeData
     : null;
 }

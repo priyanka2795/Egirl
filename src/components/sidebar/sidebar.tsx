@@ -1,14 +1,10 @@
 import Link from 'next/link';
-import { useAuth } from '@lib/context/auth-context';
-import { useWindow } from '@lib/context/window-context';
 import { useModal } from '@lib/hooks/useModal';
 import { Modal } from '@components/modal/modal';
 import { Input } from '@components/input/input';
 import { CustomIcon } from '@components/ui/custom-icon';
 import { Button } from '@components/ui/button';
 import { SidebarLink } from './sidebar-link';
-import { MoreSettings } from './more-settings';
-import { SidebarProfile } from './sidebar-profile';
 import type { IconName } from '@components/ui/hero-icon';
 
 export type NavLink = {
@@ -55,12 +51,23 @@ const navLinks: Readonly<NavLink[]> = [
     linkName: 'Lists',
     iconName: 'Bars3BottomLeftIcon',
     canBeHidden: true
+  },
+  {
+    href: '/subscriptions',
+    linkName: 'Subscriptions',
+    iconName: 'Bars3BottomLeftIcon',
+    canBeHidden: true
+  },
+  {
+    href: '/add-card',
+    linkName: 'Add Card',
+    iconName: 'Bars3BottomLeftIcon',
+    canBeHidden: true
   }
 ];
 
 export function Sidebar(): JSX.Element {
-  // const { user } = useAuth();
-  const { isMobile } = useWindow();
+  // const { isMobile } = useWindow();
 
   const { open, openModal, closeModal } = useModal();
 
@@ -99,8 +106,8 @@ export function Sidebar(): JSX.Element {
             </Link>
           </h1>
           <nav className='flex items-center justify-around xs:flex-col xs:justify-center xl:block'>
-            {navLinks.map(({ ...linkData }) => (
-              <SidebarLink {...linkData} key={linkData.href} />
+            {navLinks.map(({ ...linkData }, index) => (
+              <SidebarLink {...linkData} key={index} />
             ))}
             <SidebarLink
               href={`/user/${username}`}
@@ -108,7 +115,6 @@ export function Sidebar(): JSX.Element {
               linkName='Profile'
               iconName='UserIcon'
             />
-            {!isMobile && <MoreSettings />}
           </nav>
           <Button
             className='accent-tab absolute right-4 -translate-y-[72px] bg-main-accent text-lg font-bold text-white
@@ -123,7 +129,6 @@ export function Sidebar(): JSX.Element {
             <p className='hidden xl:block'>Tweet</p>
           </Button>
         </section>
-        {/* {!isMobile && <SidebarProfile />} */}
       </div>
     </header>
   );

@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { useAuth } from '@lib/context/auth-context';
 import { useWindow } from '@lib/context/window-context';
 import { useModal } from '@lib/hooks/useModal';
 import { Modal } from '@components/modal/modal';
@@ -60,7 +59,6 @@ const navLinks: Readonly<NavLink[]> = [
 ];
 
 export function Sidebar(): JSX.Element {
-  // const { user } = useAuth();
   const { isMobile } = useWindow();
 
   const { open, openModal, closeModal } = useModal();
@@ -100,8 +98,8 @@ export function Sidebar(): JSX.Element {
             </Link>
           </h1>
           <nav className='flex items-center justify-around xs:flex-col xs:justify-center xl:block'>
-            {navLinks.map(({ ...linkData }) => (
-              <SidebarLink {...linkData} key={linkData.href} />
+            {navLinks.map(({ ...linkData }, index) => (
+              <SidebarLink {...linkData} key={index} />
             ))}
             <SidebarLink
               href={`/user/${username}`}

@@ -3,15 +3,6 @@ import { useState, useEffect, useRef, useId } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import cn from 'clsx';
 import { toast } from 'react-hot-toast';
-import { addDoc, getDoc, serverTimestamp } from 'firebase/firestore';
-import { tweetsCollection } from '@lib/firebase/collections';
-import {
-  manageReply,
-  uploadImages,
-  manageTotalTweets,
-  manageTotalPhotos
-} from '@lib/firebase/utils';
-import { useAuth } from '@lib/context/auth-context';
 import { sleep } from '@lib/utils';
 import { getImagesData } from '@lib/validation';
 import { UserAvatar } from '@components/user/user-avatar';
@@ -19,11 +10,11 @@ import { InputForm, fromTop } from './input-form';
 import { ImagePreview } from './image-preview';
 import { InputOptions } from './input-options';
 import type { ReactNode, FormEvent, ChangeEvent, ClipboardEvent } from 'react';
-import type { WithFieldValue } from 'firebase/firestore';
 import type { Variants } from 'framer-motion';
 import type { User } from '@lib/types/user';
 import type { Tweet } from '@lib/types/tweet';
 import type { FilesWithId, ImagesPreview, ImageData } from '@lib/types/file';
+import { useUser } from '@supabase/auth-helpers-react';
 
 type InputProps = {
   modal?: boolean;
@@ -55,8 +46,9 @@ export function Input({
   const [loading, setLoading] = useState(false);
   const [visited, setVisited] = useState(false);
 
-  const { user, isAdmin } = useAuth();
-  const { name, username, photoURL } = user as User;
+  const user = useUser();
+
+  // const { name, username, photoURL } = user as User;
 
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
@@ -81,13 +73,17 @@ export function Input({
 
     const userId = user?.id as string;
 
-    const tweetData: WithFieldValue<Omit<Tweet, 'id'>> = {
+    const tweetData = {
       text: inputValue.trim() || null,
       parent: isReplying && parent ? parent : null,
-      images: await uploadImages(userId, selectedImages),
+      images: [{
+        id: '1',
+        src: 'src image',
+        alt: 'alt image'
+      }],
       userLikes: [],
-      createdBy: userId,
-      createdAt: serverTimestamp(),
+      createdBy: 1,
+      createdAt: 123,
       updatedAt: null,
       userReplies: 0,
       userRetweets: []
@@ -95,14 +91,15 @@ export function Input({
 
     await sleep(500);
 
-    const [tweetRef] = await Promise.all([
-      addDoc(tweetsCollection, tweetData),
-      manageTotalTweets('increment', userId),
-      tweetData.images && manageTotalPhotos('increment', userId),
-      isReplying && manageReply('increment', parent?.id as string)
-    ]);
+    // const [tweetRef] = await Promise.all([
+      // addDoc(tweetsCollection, tweetData),
+      // manageTotalTweets('increment', userId),
+      // tweetData.images && manageTotalPhotos('increment', userId),
+      // isReplying && manageReply('increment', parent?.id as string)
+    // ]);
 
-    const { id: tweetId } = await getDoc(tweetRef);
+    // const { id: tweetId } = await getDoc(tweetRef);
+    const tweetId = 12345
 
     if (!modal && !replyModal) {
       discardTweet();
@@ -190,7 +187,7 @@ export function Input({
 
   const formId = useId();
 
-  const inputLimit = isAdmin ? 560 : 280;
+  const inputLimit = 280;
 
   const inputLength = inputValue.length;
   const isValidInput = !!inputValue.trim().length;
@@ -237,7 +234,7 @@ export function Input({
         )}
         htmlFor={formId}
       >
-        <UserAvatar src={photoURL} alt={name} username={username} />
+        {/* <UserAvatar src={photoURL} alt={name} username={username} /> */}
         <div className='flex w-full flex-col gap-4'>
           <InputForm
             modal={modal}

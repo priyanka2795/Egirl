@@ -2,8 +2,6 @@ import { AnimatePresence } from 'framer-motion';
 import { where, orderBy } from 'firebase/firestore';
 // import { useWindow } from '@lib/context/window-context';
 // import { Input } from '@components/input/input';
-import { useInfiniteScroll } from '@lib/hooks/useInfiniteScroll';
-import { tweetsCollection } from '@lib/firebase/collections';
 import { HomeLayout, ProtectedLayout } from '@components/layout/common-layout';
 import { MainLayout } from '@components/layout/main-layout';
 import { SEO } from '@components/common/seo';
@@ -39,20 +37,9 @@ export default function Home(): JSX.Element {
 
   const getHomePosts = async () => {
     // console.log('user id ', user.id);
-    console.log('client', client);
     // user!.id
     const res = await getHomePostsSubscribedTo(user!.id, client);
-    console.log(
-      res.clientData.map((post: any, index: number) => {
-        return {
-          ...post,
-          likes: res.final_post_likes[index],
-          comments: res.final_comments[index],
-          infoTags: res.final_infotags[index],
-          media: res.final_media[index]
-        };
-      })
-    );
+    
     setPostList(
       res.clientData.map((post: any, index: number) => {
         return {

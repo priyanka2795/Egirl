@@ -100,7 +100,7 @@ export function InputOptions({
                        hover:bg-main-accent/10 active:bg-main-accent/20'
             onClick={index === 0 ? onClick : undefined}
             disabled={disabled}
-            key={name}
+            key={index}
           >
             <HeroIcon className='h-5 w-5' iconName={iconName} />
             <ToolTip tip={name} modal={modal} />

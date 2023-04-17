@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { useAuth } from '@lib/context/auth-context';
 import { useModal } from '@lib/hooks/useModal';
 import { Button } from '@components/ui/button';
 import { UserAvatar } from '@components/user/user-avatar';
@@ -81,7 +80,6 @@ export function MobileSidebarModal({
   coverPhotoURL,
   closeModal
 }: MobileSidebarModalProps): JSX.Element {
-  const { signOut } = useAuth();
 
   const {
     open: displayOpen,
@@ -117,7 +115,7 @@ export function MobileSidebarModal({
         open={logOutOpen}
         closeModal={logOutCloseModal}
       >
-        <ActionModal
+        {/* <ActionModal
           useIcon
           focusOnMainBtn
           title='Log out of Twitter?'
@@ -125,7 +123,7 @@ export function MobileSidebarModal({
           mainBtnLabel='Log out'
           action={signOut}
           closeModal={logOutCloseModal}
-        />
+        /> */}
       </Modal>
       <MainHeader
         useActionButton
@@ -173,8 +171,8 @@ export function MobileSidebarModal({
             <UserUsername username={username} />
           </div>
           <div className='text-secondary flex gap-4'>
-            {allStats.map(([id, label, stat]) => (
-              <Link href={`${userLink}/${id}`} key={id}>
+            {allStats.map(([id, label, stat], index) => (
+              <Link href={`${userLink}/${id}`} key={index}>
                 <a
                   className='hover-animation flex h-4 items-center gap-1 border-b border-b-transparent 
                              outline-none hover:border-b-light-primary focus-visible:border-b-light-primary
@@ -195,14 +193,14 @@ export function MobileSidebarModal({
               iconName='UserIcon'
               linkName='Profile'
             />
-            {topNavLinks.map((linkData) => (
-              <MobileSidebarLink {...linkData} key={linkData.href} />
+            {topNavLinks.map((linkData, index) => (
+              <MobileSidebarLink {...linkData} key={index} />
             ))}
           </nav>
           <i className='h-0.5 bg-light-line-reply dark:bg-dark-line-reply' />
           <nav className='flex flex-col'>
-            {bottomNavLinks.map((linkData) => (
-              <MobileSidebarLink bottom {...linkData} key={linkData.href} />
+            {bottomNavLinks.map((linkData, index) => (
+              <MobileSidebarLink bottom {...linkData} key={index} />
             ))}
             <Button
               className='accent-tab accent-bg-tab flex items-center gap-2 rounded-md p-1.5 font-bold transition

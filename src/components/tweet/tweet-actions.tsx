@@ -1,21 +1,10 @@
 import { useMemo } from 'react';
 import { useRouter } from 'next/router';
-import { doc, getDoc } from 'firebase/firestore';
 import { Popover } from '@headlessui/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import cn from 'clsx';
 import { toast } from 'react-hot-toast';
-import { useAuth } from '@lib/context/auth-context';
 import { useModal } from '@lib/hooks/useModal';
-import { tweetsCollection } from '@lib/firebase/collections';
-import {
-  removeTweet,
-  manageReply,
-  manageFollow,
-  managePinnedTweet,
-  manageTotalTweets,
-  manageTotalPhotos
-} from '@lib/firebase/utils';
 import { delayScroll, preventBubbling, sleep } from '@lib/utils';
 import { Modal } from '@components/modal/modal';
 import { ActionModal } from '@components/modal/action-modal';
@@ -74,7 +63,6 @@ export function TweetActions({
   viewTweet,
   createdBy
 }: TweetActionsProps): JSX.Element {
-  const { user, isAdmin } = useAuth();
   const { push } = useRouter();
 
   const {
@@ -89,61 +77,66 @@ export function TweetActions({
     closeModal: pinCloseModal
   } = useModal();
 
-  const { id: userId, following, pinnedTweet } = user as User;
+  // const { id: userId, following, pinnedTweet } = user as User;
   // const userId = '123';
   // const following = ['123'];
   // const pinnedTweet = '123214';
 
-  const isInAdminControl = isAdmin && !isOwner;
-  const tweetIsPinned = pinnedTweet === tweetId;
+  // const isInAdminControl = isAdmin && !isOwner;
+  // const tweetIsPinned = pinnedTweet === tweetId;
+  const isInAdminControl = true;
+  const tweetIsPinned = true;
 
   const handleRemove = async (): Promise<void> => {
-    if (viewTweet)
-      if (parentId) {
-        const parentSnapshot = await getDoc(doc(tweetsCollection, parentId));
-        if (parentSnapshot.exists()) {
-          await push(`/tweet/${parentId}`, undefined, { scroll: false });
-          delayScroll(200)();
-          await sleep(50);
-        } else await push('/home');
-      } else await push('/home');
+    // if (viewTweet)
+    //   if (parentId) {
+    //     const parentSnapshot = await getDoc(doc(tweetsCollection, parentId));
+    //     if (parentSnapshot.exists()) {
+    //       await push(`/tweet/${parentId}`, undefined, { scroll: false });
+    //       delayScroll(200)();
+    //       await sleep(50);
+    //     } else await push('/home');
+    //   } else await push('/home');
 
-    await Promise.all([
-      removeTweet(tweetId),
-      manageTotalTweets('decrement', ownerId),
-      hasImages && manageTotalPhotos('decrement', createdBy),
-      parentId && manageReply('decrement', parentId)
-    ]);
+    // await Promise.all([
+    //   removeTweet(tweetId),
+    //   manageTotalTweets('decrement', ownerId),
+    //   hasImages && manageTotalPhotos('decrement', createdBy),
+    //   parentId && manageReply('decrement', parentId)
+    // ]);
 
-    toast.success(
-      `${isInAdminControl ? `@${username}'s` : 'Your'} Tweet was deleted`
-    );
+    // toast.success(
+    //   `${isInAdminControl ? `@${username}'s` : 'Your'} Tweet was deleted`
+    // );
 
-    removeCloseModal();
+    // removeCloseModal();
   };
 
   const handlePin = async (): Promise<void> => {
-    await managePinnedTweet(tweetIsPinned ? 'unpin' : 'pin', userId, tweetId);
-    toast.success(
-      `Your tweet was ${tweetIsPinned ? 'unpinned' : 'pinned'} to your profile`
-    );
-    pinCloseModal();
+    // await managePinnedTweet(tweetIsPinned ? 'unpin' : 'pin', userId, tweetId);
+    // toast.success(
+    //   `Your tweet was ${tweetIsPinned ? 'unpinned' : 'pinned'} to your profile`
+    // );
+    // pinCloseModal();
   };
 
-  const handleFollow =
-    (closeMenu: () => void, ...args: Parameters<typeof manageFollow>) =>
-    async (): Promise<void> => {
-      const [type] = args;
+  // const handleFollow =
+  //   (closeMenu: () => void, ...args: Parameters<typeof manageFollow>) =>
+  //   async (): Promise<void> => {
+  //     const [type] = args;
 
-      closeMenu();
-      await manageFollow(...args);
+  //     closeMenu();
+  //     await manageFollow(...args);
 
-      toast.success(
-        `You ${type === 'follow' ? 'followed' : 'unfollowed'} @${username}`
-      );
-    };
+  //     toast.success(
+  //       `You ${type === 'follow' ? 'followed' : 'unfollowed'} @${username}`
+  //     );
+  //   };
 
-  const userIsFollowed = following.includes(createdBy);
+  // const userIsFollowed = following.includes(createdBy);
+  const userIsFollowed = true;
+
+  const isAdmin = true;
 
   const currentPinModalData = useMemo(
     () => pinModalData[+tweetIsPinned],
@@ -251,7 +244,7 @@ export function TweetActions({
                       className='accent-tab flex w-full gap-3 rounded-md rounded-t-none p-4 hover:bg-main-sidebar-background'
                       as={Button}
                       onClick={preventBubbling(
-                        handleFollow(close, 'unfollow', userId, createdBy)
+                        // handleFollow(close, 'unfollow', userId, createdBy)
                       )}
                     >
                       <HeroIcon iconName='UserMinusIcon' />
@@ -262,7 +255,7 @@ export function TweetActions({
                       className='accent-tab flex w-full gap-3 rounded-md rounded-t-none p-4 hover:bg-main-sidebar-background'
                       as={Button}
                       onClick={preventBubbling(
-                        handleFollow(close, 'follow', userId, createdBy)
+                        // handleFollow(close, 'follow', userId, createdBy)
                       )}
                     >
                       <HeroIcon iconName='UserPlusIcon' />

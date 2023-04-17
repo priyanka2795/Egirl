@@ -1,10 +1,8 @@
-import { useAuth } from '@lib/context/auth-context';
 import { NextImage } from '@components/ui/next-image';
 import { CustomIcon } from '@components/ui/custom-icon';
 import { Button } from '@components/ui/button';
 
 export function LoginMain(): JSX.Element {
-  const { signInWithGoogle } = useAuth();
 
   return (
     <main className='grid lg:grid-cols-[1fr,45vw]'>
@@ -43,7 +41,7 @@ export function LoginMain(): JSX.Element {
               className='flex justify-center gap-2 border border-light-line-reply font-bold text-light-primary transition
                          hover:bg-[#e6e6e6] focus-visible:bg-[#e6e6e6] active:bg-[#cccccc] dark:border-0 dark:bg-white
                          dark:hover:brightness-90 dark:focus-visible:brightness-90 dark:active:brightness-75'
-              onClick={signInWithGoogle}
+              // onClick={signInWithGoogle}
             >
               <CustomIcon iconName='GoogleIcon' /> Sign up with Google
             </Button>
@@ -102,7 +100,7 @@ export function LoginMain(): JSX.Element {
               className='border border-light-line-reply font-bold text-accent-blue hover:bg-accent-blue/10
                          focus-visible:bg-accent-blue/10 focus-visible:!ring-accent-blue/80 active:bg-accent-blue/20
                          dark:border-light-secondary'
-              onClick={signInWithGoogle}
+              // onClick={signInWithGoogle}
             >
               Sign in
             </Button>

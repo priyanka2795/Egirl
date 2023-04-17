@@ -11,8 +11,6 @@ export function getURL() {
 }
 
 export async function postData(url: string, data?: any) {
-  console.log('posting,', url, data);
-
   const res: Response = await fetch(url, {
     method: 'POST',
     headers: new Headers({ 'Content-Type': 'application/json' }),

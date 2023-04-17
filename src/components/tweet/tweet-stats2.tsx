@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import cn from 'clsx';
-import { manageRetweet, manageLike } from '@lib/firebase/utils';
 import { ViewTweetStats } from '@components/view/view-tweet-stats';
 import { TweetOption } from './tweet-option';
 import { TweetShare } from './tweet-share';
@@ -120,7 +119,6 @@ export function TweetStats2({
           //   tweetId
           // )}
           onClick={() => {
-            console.log('impliment retweet later');
           }}
         />
         <TweetOption
@@ -135,11 +133,11 @@ export function TweetStats2({
           stats={currentLikes}
           iconName='HeartIcon'
           viewTweet={viewTweet}
-          onClick={manageLike(
-            tweetIsLiked ? 'unlike' : 'like',
-            userId,
-            tweetId
-          )}
+          // onClick={manageLike(
+          //   tweetIsLiked ? 'unlike' : 'like',
+          //   userId,
+          //   tweetId
+          // )}
         />
         <TweetShare userId={userId} tweetId={tweetId} viewTweet={viewTweet} />
         {isOwner && (

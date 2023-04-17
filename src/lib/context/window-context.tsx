@@ -79,45 +79,49 @@ type WindowContextProviderProps = {
 export function WindowContextProvider({
   children
 }: WindowContextProviderProps): JSX.Element {
-  const value = null;
+  // const value = null;
   
-  if (typeof window !== "undefined") {
-    const [windowSize, setWindowSize] = useState<WindowSize>({
-      width: window.innerWidth,
-      height: window.innerHeight
-    });
+  // if (typeof window !== "undefined") {
+  //   const [windowSize, setWindowSize] = useState<WindowSize>({
+  //     width: window.innerWidth,
+  //     height: window.innerHeight
+  //   });
   
-    useEffect(() => {
-      const handleResize = (): void =>
-        setWindowSize({
-          width: window.innerWidth,
-          height: window.innerHeight
-        });
+  //   useEffect(() => {
+  //     const handleResize = (): void =>
+  //       setWindowSize({
+  //         width: window.innerWidth,
+  //         height: window.innerHeight
+  //       });
   
-      window.addEventListener('resize', handleResize);
-      return () => window.removeEventListener('resize', handleResize);
-    }, []);
+  //     window.addEventListener('resize', handleResize);
+  //     return () => window.removeEventListener('resize', handleResize);
+  //   }, []);
   
-    const value: WindowContext = {
-      ...windowSize,
-      isMobile: windowSize.width < 500
-    };
+  //   const value: WindowContext = {
+  //     ...windowSize,
+  //     isMobile: windowSize.width < 500
+  //   };
 
-    return (
-      <WindowContext.Provider value={value}>{children}</WindowContext.Provider>
-    );
-  }
+  //   return (
+  //     <WindowContext.Provider value={value}>{children}</WindowContext.Provider>
+  //   );
+  // }
 
   // return (
   //   <WindowContext.Provider value={value}>{children}</WindowContext.Provider>
   // );
+  return (
+    <>{children}</>
+  );
 }
 
-export function useWindow(): WindowContext {
-  const context = useContext(WindowContext);
+export function useWindow() {
+  // const context = useContext(WindowContext);
 
-  if (!context)
-    throw new Error('useWindow must be used within an WindowContextProvider');
+  // if (!context)
+  //   throw new Error('useWindow must be used within an WindowContextProvider');
 
-  return context;
+  // return context;
+  return false;
 }

@@ -1,21 +1,16 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { toast } from 'react-hot-toast';
 import { orderBy, query } from 'firebase/firestore';
-import { useAuth } from '@lib/context/auth-context';
 import { useModal } from '@lib/hooks/useModal';
 import { useCollection } from '@lib/hooks/useCollection';
 import { useArrayDocument } from '@lib/hooks/useArrayDocument';
 import { clearAllBookmarks } from '@lib/firebase/utils';
-import {
-  tweetsCollection,
-  userBookmarksCollection
-} from '@lib/firebase/collections';
-import { HomeLayout, ProtectedLayout } from '@components/layout/common-layout';
+import { BookmarkLayout, HomeLayout, ProtectedLayout } from '@components/layout/common-layout';
 import { MainLayout } from '@components/layout/main-layout';
 import { SEO } from '@components/common/seo';
 import { MainHeader } from '@components/home/main-header';
-import { MainContainer } from '@components/home/main-container';
+import { MainBookmarkContainer, MainContainer } from '@components/home/main-container';
 import { Modal } from '@components/modal/modal';
 import { ActionModal } from '@components/modal/action-modal';
 import { Tweet } from '@components/tweet/tweet';
@@ -27,9 +22,331 @@ import { Loading } from '@components/ui/loading';
 import type { ReactElement, ReactNode } from 'react';
 import { User } from '@lib/types/user';
 import { Tweet as TypeTweet } from '@lib/types/tweet';
+import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react';
+import { getBookmarksByUser } from 'api/utils/bookmarks';
 
 export default function Bookmarks(): JSX.Element {
   const { open, openModal, closeModal } = useModal();
+  const [selection, setSelection] = useState('all');
+  const [tweetLoading, setTweetLoading] = useState(false);
+  const supabaseClient = useSupabaseClient();
+  const supabaseUser = useUser();
+
+  const [bookmarks, setBookmarks] = useState<(TypeTweet & { user: User; })[] | null>(null);
+
+  const fetchUserBookmarks = async () => {
+    // get custom lists
+    const bookmarksResponse = await getBookmarksByUser(
+      'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
+      supabaseClient
+    ).then((data) => {
+    });
+    
+  };
+
+  const allTweet: (TypeTweet & { user: User; })[] | null = [
+    {
+      createdAt: 12345,
+      createdBy: 'egirl1',
+      id: '1',
+      images: null,
+      parent: null,
+      text: 'First tweet of the day',
+      updatedAt: 88889,
+      user: {
+        id: '1',
+        username: "egirl",
+        name: "E girl 1",
+        accent: 'blue',
+        bio: 'Im an Egirl',
+        coverPhotoURL: "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+        followers: ['100'],
+        following: ['10'],
+        location: 'Metaverse',
+        photoURL: "https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg",
+        pinnedTweet: 'My first tweet',
+        theme: 'dark',
+        totalPhotos: 123,
+        totalTweets: 111,
+        verified: true,
+        website: 'www.egirl.com'
+      },
+      userLikes: ['111'],
+      userReplies: 123,
+      userRetweets: ['123']
+    },
+    {
+      createdAt: 12345,
+      createdBy: 'egirl1',
+      id: '2',
+      images: null,
+      parent: {
+        id: '10',
+        username: 'eGorl'
+      },
+      text: 'Bookmark this!',
+      updatedAt: 88889,
+      user: {
+        id: '66',
+        username: "egirl",
+        name: "E girl 1",
+        accent: 'blue',
+        bio: 'Im an Egirl',
+        coverPhotoURL: "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+        followers: ['100'],
+        following: ['10'],
+        location: 'Metaverse',
+        photoURL: "https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg",
+        pinnedTweet: 'My first tweet',
+        theme: 'dark',
+        totalPhotos: 123,
+        totalTweets: 111,
+        verified: true,
+        website: 'www.egirl.com'
+      },
+      userLikes: ['111'],
+      userReplies: 123,
+      userRetweets: ['123']
+    },
+    {
+      createdAt: 12345,
+      createdBy: 'egirl1',
+      id: '3',
+      images: [
+        {
+          src: 'https://i.pinimg.com/550x/8d/4f/44/8d4f442214edc01230b38228bad5226f.jpg',
+          alt: 'anime girl',
+          id: '123',
+        },
+        {
+          src: 'https://i.pinimg.com/564x/f4/fb/6b/f4fb6b6dc78c15007f8c16599ce6e03b.jpg',
+          alt: 'anime girl 2',
+          id: '456',
+        }
+      ],
+      parent: null,
+      text: 'Bookmark with image!',
+      updatedAt: 88889,
+      user: {
+        id: '1',
+        username: "egirl",
+        name: "E girl 1",
+        accent: 'blue',
+        bio: 'Im an Egirl',
+        coverPhotoURL: "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+        followers: ['100'],
+        following: ['10'],
+        location: 'Metaverse',
+        photoURL: "https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg",
+        pinnedTweet: 'My first tweet',
+        theme: 'dark',
+        totalPhotos: 123,
+        totalTweets: 111,
+        verified: true,
+        website: 'www.egirl.com'
+      },
+      userLikes: ['111'],
+      userReplies: 123,
+      userRetweets: ['123']
+    }
+  ];
+
+  const posts: (TypeTweet & { user: User; })[] | null = [
+    {
+      createdAt: 12345,
+      createdBy: 'egirl1',
+      id: '1',
+      images: null,
+      parent: null,
+      text: 'First tweet of the day',
+      updatedAt: 88889,
+      user: {
+        id: '1',
+        username: "egirl",
+        name: "E girl 1",
+        accent: 'blue',
+        bio: 'Im an Egirl',
+        coverPhotoURL: "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+        followers: ['100'],
+        following: ['10'],
+        location: 'Metaverse',
+        photoURL: "https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg",
+        pinnedTweet: 'My first tweet',
+        theme: 'dark',
+        totalPhotos: 123,
+        totalTweets: 111,
+        verified: true,
+        website: 'www.egirl.com'
+      },
+      userLikes: ['111'],
+      userReplies: 123,
+      userRetweets: ['123']
+    },
+    {
+      createdAt: 12345,
+      createdBy: 'egirl1',
+      id: '2',
+      images: null,
+      parent: {
+        id: '10',
+        username: 'eGorl'
+      },
+      text: 'Bookmark this!',
+      updatedAt: 88889,
+      user: {
+        id: '1',
+        username: "egirl",
+        name: "E girl 1",
+        accent: 'blue',
+        bio: 'Im an Egirl',
+        coverPhotoURL: "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+        followers: ['100'],
+        following: ['10'],
+        location: 'Metaverse',
+        photoURL: "https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg",
+        pinnedTweet: 'My first tweet',
+        theme: 'dark',
+        totalPhotos: 123,
+        totalTweets: 111,
+        verified: true,
+        website: 'www.egirl.com'
+      },
+      userLikes: ['111'],
+      userReplies: 123,
+      userRetweets: ['123']
+    }
+  ];
+
+  const images: (TypeTweet & { user: User; })[] | null = [
+    {
+      createdAt: 12345,
+      createdBy: 'egirl1',
+      id: '1',
+      images: [
+        {
+          src: 'https://i.pinimg.com/550x/8d/4f/44/8d4f442214edc01230b38228bad5226f.jpg',
+          alt: 'anime girl',
+          id: '123',
+        },
+        {
+          src: 'https://i.pinimg.com/564x/f4/fb/6b/f4fb6b6dc78c15007f8c16599ce6e03b.jpg',
+          alt: 'anime girl 2',
+          id: '1233',
+        }
+      ],
+      parent: null,
+      text: 'Bookmark with image!',
+      updatedAt: 88889,
+      user: {
+        id: '1',
+        username: "egirl",
+        name: "E girl 1",
+        accent: 'blue',
+        bio: 'Im an Egirl',
+        coverPhotoURL: "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+        followers: ['100'],
+        following: ['10'],
+        location: 'Metaverse',
+        photoURL: "https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg",
+        pinnedTweet: 'My first tweet',
+        theme: 'dark',
+        totalPhotos: 123,
+        totalTweets: 111,
+        verified: true,
+        website: 'www.egirl.com'
+      },
+      userLikes: ['111'],
+      userReplies: 123,
+      userRetweets: ['123']
+    }
+  ];
+
+  const locked: (TypeTweet & { user: User; })[] | null = [
+    {
+      createdAt: 12345,
+      createdBy: 'egirl1',
+      id: '1',
+      images: [
+        {
+          src: 'https://i.pinimg.com/550x/8d/4f/44/8d4f442214edc01230b38228bad5226f.jpg',
+          alt: 'anime girl',
+          id: '123',
+        },
+        {
+          src: 'https://i.pinimg.com/564x/f4/fb/6b/f4fb6b6dc78c15007f8c16599ce6e03b.jpg',
+          alt: 'anime girl 2',
+          id: '1233',
+        }
+      ],
+      parent: null,
+      text: 'Bookmark with image!',
+      updatedAt: 88889,
+      user: {
+        id: '1',
+        username: "egirl",
+        name: "E girl 1",
+        accent: 'blue',
+        bio: 'Im an Egirl',
+        coverPhotoURL: "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+        followers: ['100'],
+        following: ['10'],
+        location: 'Metaverse',
+        photoURL: "https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg",
+        pinnedTweet: 'My first tweet',
+        theme: 'dark',
+        totalPhotos: 123,
+        totalTweets: 111,
+        verified: true,
+        website: 'www.egirl.com'
+      },
+      userLikes: ['111'],
+      userReplies: 123,
+      userRetweets: ['123']
+    },
+    {
+      createdAt: 12345,
+      createdBy: 'egirl1',
+      id: '2',
+      images: [
+        {
+          src: 'https://i.pinimg.com/550x/8d/4f/44/8d4f442214edc01230b38228bad5226f.jpg',
+          alt: 'anime girl',
+          id: '123',
+        },
+        {
+          src: 'https://i.pinimg.com/564x/f4/fb/6b/f4fb6b6dc78c15007f8c16599ce6e03b.jpg',
+          alt: 'anime girl 2',
+          id: '1233',
+        }
+      ],
+      parent: null,
+      text: 'Bookmark with image!',
+      updatedAt: 88889,
+      user: {
+        id: '1',
+        username: "egirl",
+        name: "E girl 1",
+        accent: 'blue',
+        bio: 'Im an Egirl',
+        coverPhotoURL: "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+        followers: ['100'],
+        following: ['10'],
+        location: 'Metaverse',
+        photoURL: "https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg",
+        pinnedTweet: 'My first tweet',
+        theme: 'dark',
+        totalPhotos: 123,
+        totalTweets: 111,
+        verified: true,
+        website: 'www.egirl.com'
+      },
+      userLikes: ['111'],
+      userReplies: 123,
+      userRetweets: ['123']
+    }
+  ];
+
+  const [tweetData, setTweetData] = useState<(TypeTweet & { user: User; })[] | null >(allTweet);
 
   const user: User = {
     id: '1',
@@ -52,10 +369,6 @@ export default function Bookmarks(): JSX.Element {
 
   const userId = user?.id as string;
 
-  // const { data: bookmarksRef, loading: bookmarksRefLoading } = useCollection(
-  //   query(userBookmarksCollection(userId), orderBy('createdAt', 'desc')),
-  //   { allowNull: true }
-  // );
   type Bookmark = {
     id: string;
   };
@@ -71,141 +384,37 @@ export default function Bookmarks(): JSX.Element {
     }
   ]
 
-  const tweetIds = useMemo(
-    () => bookmarksRef?.map(({ id }) => id) ?? [],
-    [bookmarksRef]
-  );
-
-  // const { data: tweetData, loading: tweetLoading } = useArrayDocument(
-  //   tweetIds,
-  //   tweetsCollection,
-  //   { includeUser: true }
-  // );
-
-  const tweetLoading = false
-
-  const tweetData: (TypeTweet & { user: User; })[] | null =
-    [
-      {
-        createdAt: 12345,
-        createdBy: 'egirl1',
-        id: '1',
-        images: null,
-        parent: {
-          id: '10',
-          username: 'eGorl'
-        },
-        text: 'First tweet of the day',
-        updatedAt: 88889,
-        user: {
-          id: '1',
-          username: "egirl",
-          name: "E girl 1",
-          accent: 'blue',
-          bio: 'Im an Egirl',
-          coverPhotoURL: "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
-          followers: ['100'],
-          following: ['10'],
-          location: 'Metaverse',
-          photoURL: "https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg",
-          pinnedTweet: 'My first tweet',
-          theme: 'dark',
-          totalPhotos: 123,
-          totalTweets: 111,
-          verified: true,
-          website: 'www.egirl.com'
-        },
-        userLikes: ['111'],
-        userReplies: 123,
-        userRetweets: ['123']
-      },
-      {
-        createdAt: 12345,
-        createdBy: 'egirl1',
-        id: '1',
-        images: null,
-        parent: {
-          id: '10',
-          username: 'eGorl'
-        },
-        text: 'Bookmark this!',
-        updatedAt: 88889,
-        user: {
-          id: '1',
-          username: "egirl",
-          name: "E girl 1",
-          accent: 'blue',
-          bio: 'Im an Egirl',
-          coverPhotoURL: "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
-          followers: ['100'],
-          following: ['10'],
-          location: 'Metaverse',
-          photoURL: "https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg",
-          pinnedTweet: 'My first tweet',
-          theme: 'dark',
-          totalPhotos: 123,
-          totalTweets: 111,
-          verified: true,
-          website: 'www.egirl.com'
-        },
-        userLikes: ['111'],
-        userReplies: 123,
-        userRetweets: ['123']
-      },
-      {
-        createdAt: 12345,
-        createdBy: 'egirl1',
-        id: '1',
-        images: [
-          {
-            src: 'https://i.pinimg.com/550x/8d/4f/44/8d4f442214edc01230b38228bad5226f.jpg',
-            alt: 'anime girl',
-            id: '123',
-          },
-          {
-            src: 'https://i.pinimg.com/564x/f4/fb/6b/f4fb6b6dc78c15007f8c16599ce6e03b.jpg',
-            alt: 'anime girl 2',
-            id: '1233',
-          }
-        ],
-        parent: {
-          id: '10',
-          username: 'eGorl'
-        },
-        text: 'Bookmark with image!',
-        updatedAt: 88889,
-        user: {
-          id: '1',
-          username: "egirl",
-          name: "E girl 1",
-          accent: 'blue',
-          bio: 'Im an Egirl',
-          coverPhotoURL: "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
-          followers: ['100'],
-          following: ['10'],
-          location: 'Metaverse',
-          photoURL: "https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg",
-          pinnedTweet: 'My first tweet',
-          theme: 'dark',
-          totalPhotos: 123,
-          totalTweets: 111,
-          verified: true,
-          website: 'www.egirl.com'
-        },
-        userLikes: ['111'],
-        userReplies: 123,
-        userRetweets: ['123']
-      }
-    ]
-
   const handleClear = async (): Promise<void> => {
     await clearAllBookmarks(userId);
     closeModal();
     toast.success('Successfully cleared all bookmarks');
   };
 
+  const handleSelection = async (value: string): Promise<void> => {
+
+    if(value == 'all'){
+      setTweetData(allTweet);
+    } else if(value == 'posts'){
+      setTweetData(posts);
+    } else if(value == 'photos'){
+      setTweetData(images);
+    }else if(value == 'locked'){
+      setTweetData(locked);
+    }
+    setSelection(value);
+  };
+
+  useEffect(() => {
+    if (supabaseUser) {
+      fetchUserBookmarks()
+      .then(() => {
+        setTweetLoading(false);
+      });
+    }
+  }, [tweetData, selection, supabaseUser]);
+
   return (
-    <MainContainer>
+    <MainBookmarkContainer>
       <SEO title='Bookmarks / Twitter' />
       <Modal
         modalClassName='max-w-xs bg-main-background w-full p-8 rounded-2xl'
@@ -243,30 +452,64 @@ export default function Bookmarks(): JSX.Element {
         </Button>
       </MainHeader>
       <section className='mt-0.5'>
-        {bookmarksRefLoading || tweetLoading ? (
-          <Loading className='mt-5' />
-        ) : !bookmarksRef ? (
-          <StatsEmpty
-            title='Save Tweets for later'
-            description='Don’t let the good ones fly away! Bookmark Tweets to easily find them again in the future.'
-            imageData={{ src: '/assets/no-bookmarks.png', alt: 'No bookmarks' }}
-          />
-        ) : (
-          <AnimatePresence mode='popLayout'>
-            {tweetData?.map((tweet) => (
-              <Tweet {...tweet} key={tweet.id} />
-            ))}
-          </AnimatePresence>
-        )}
+        <div className='w-full flex'>
+          <div className='w-1/4'>
+            <div className='w-full'>
+              <button className='w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={async () => {
+                  const selection = 'all'
+                  await handleSelection(selection)
+                }}>
+                All Bookmarks
+              </button>
+              <button className='w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={async () => {
+                  const selection = 'posts'
+                  await handleSelection(selection)
+                }}>
+                Posts
+              </button>
+              <button className='w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={async () => {
+                  const selection = 'photos'
+                  await handleSelection(selection)
+                }}>
+                Photos
+              </button>
+              <button className='w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={async () => {
+                  const selection = 'locked'
+                  await handleSelection(selection)
+                }}>
+                Locked
+              </button>
+            </div>
+          </div>
+          <div className='w-full'>
+            {bookmarksRefLoading || tweetLoading ? (
+              <Loading className='mt-5' />
+            ) : !bookmarksRef ? (
+              <StatsEmpty
+                title='Save Tweets for later'
+                description='Don’t let the good ones fly away! Bookmark Tweets to easily find them again in the future.'
+                imageData={{ src: '/assets/no-bookmarks.png', alt: 'No bookmarks' }}
+              />
+            ) : (
+              <>
+                {/* <AnimatePresence mode='popLayout'> */}
+                  {tweetData?.map((tweet) => (
+                    <Tweet {...tweet} key={tweet.id} />
+                  ))}
+                {/* </AnimatePresence> */}
+          </>
+            )}
+          </div>
+        </div>
       </section>
-    </MainContainer>
+    </MainBookmarkContainer>
   );
 }
 
 Bookmarks.getLayout = (page: ReactElement): ReactNode => (
   <ProtectedLayout>
     <MainLayout>
-      <HomeLayout>{page}</HomeLayout>
+      <BookmarkLayout>{page}</BookmarkLayout>
     </MainLayout>
   </ProtectedLayout>
 );

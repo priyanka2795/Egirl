@@ -30,6 +30,14 @@ export function HomeLayout({ children }: LayoutProps): JSX.Element {
   );
 }
 
+export function BookmarkLayout({ children }: LayoutProps): JSX.Element {
+  return (
+    <>
+      {children}
+    </>
+  );
+}
+
 export function BlankLayout({ children }: LayoutProps): JSX.Element {
   return <>{children}</>;
 }
