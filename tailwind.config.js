@@ -7,10 +7,18 @@ module.exports = {
   content: ['src/pages/**/*.tsx', 'src/components/**/*.tsx'],
   theme: {
     screens: {
-      xs: '500px',
+      'xs': '300px', // Mobile (iPhone 3 - iPhone XS Max).
+      'sm': '576px', // Mobile (matches max: iPhone 11 Pro Max landscape @ 896px).
+      'md': '898px', // Tablet (matches max: iPad Pro @ 1112px).
+      'lg': '1200px', // Desktop smallest.
+      'xl': '1259px', // Desktop wide.
+      '2xl': '1359px', // Desktop widescreen.
       ...defaultTheme.screens
     },
     extend: {
+      screens:{
+        'xs': '279px', // Mobile (iPhone 3 - iPhone XS Max).
+      },
       fontFamily: {
         'twitter-chirp': ['TwitterChirp', 'sans-serif'],
         'twitter-chirp-extended': ['TwitterChirpExtendedHeavy', 'sans-serif']
@@ -48,6 +56,7 @@ module.exports = {
   plugins: [
     ({ addVariant }) => {
       addVariant('inner', '& > *');
-    }
-  ]
+    },
+    require('@tailwindcss/forms'),
+  ],
 };

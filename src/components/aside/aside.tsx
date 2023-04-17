@@ -8,9 +8,9 @@ type AsideProps = {
 };
 
 export function Aside({ children }: AsideProps): JSX.Element | null {
-  const { width } = useWindow();
+  // const { width } = useWindow();
 
-  if (width < 1024) return null;
+  // if (width < 1024) return null;
 
   return (
     <aside className='flex flex-col gap-4 pt-1 w-96	'>

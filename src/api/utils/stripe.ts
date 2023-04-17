@@ -1,4 +1,8 @@
-import { loadStripe, Stripe as StripeObj } from '@stripe/stripe-js';
+import {
+  loadStripe,
+  Stripe as StripeObj,
+  StripeCardElement
+} from '@stripe/stripe-js';
 import Stripe from 'stripe';
 import { toDateTime } from './helpers';
 // import { supabaseClient } from '../../config/supabaseClient';
@@ -70,6 +74,45 @@ export async function createOrRetrieveCustomer(
     return customer.id;
   }
   return data.stripe_customer_id;
+}
+
+// Process card payment
+export async function processCardPayment(data: any) {
+  const { amount, currency, cardNumber, cardExpMonth, cardExpYear, cardCVC } =
+    data;
+
+  // Create payment intent
+  const paymentIntent = await stripe.paymentIntents.create({
+    amount: 1000, // cents
+    currency: 'usd',
+    payment_method_types: ['card']
+  });
+
+  // Collect the customer card details and create payment method
+  const paymentMethod = await stripe.paymentMethods.create({
+    type: 'card',
+    card: {
+      number: cardNumber,
+      exp_month: cardExpMonth,
+      exp_year: cardExpYear,
+      cvc: cardCVC
+    }
+  });
+
+  // Attach the payment method to customer
+  await stripe.paymentMethods.attach(paymentMethod.id, {
+    customer: paymentIntent.customer as string
+  });
+
+  // Confirm the payment intent with the attached payment method
+  const confirmedPaymentIntent = await stripe.paymentIntents.confirm(
+    paymentIntent.id,
+    {
+      payment_method: paymentMethod.id
+    }
+  );
+
+  return confirmedPaymentIntent;
 }
 
 // Upsert a Stripe product record

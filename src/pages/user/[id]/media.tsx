@@ -1,7 +1,6 @@
 import { AnimatePresence } from 'framer-motion';
 import { query, where } from 'firebase/firestore';
 import { useCollection } from '@lib/hooks/useCollection';
-import { tweetsCollection } from '@lib/firebase/collections';
 import { useUser } from '@lib/context/user-context';
 import { mergeData } from '@lib/merge';
 import { UserLayout, ProtectedLayout } from '@components/layout/common-layout';
@@ -19,16 +18,20 @@ export default function UserMedia(): JSX.Element {
 
   const { id, name, username } = user ?? {};
 
-  const { data, loading } = useCollection(
-    query(
-      tweetsCollection,
-      where('createdBy', '==', id),
-      where('images', '!=', null)
-    ),
-    { includeUser: true, allowNull: true }
-  );
+  // const { data, loading } = useCollection(
+  //   query(
+  //     tweetsCollection,
+  //     where('createdBy', '==', id),
+  //     where('images', '!=', null)
+  //   ),
+  //   { includeUser: true, allowNull: true }
+  // );
 
-  const sortedTweets = mergeData(true, data);
+  const loading = false;
+  const data = [{}];
+
+  // const sortedTweets = mergeData(true, data);
+  const sortedTweets = true
 
   return (
     <section>
@@ -47,9 +50,9 @@ export default function UserMedia(): JSX.Element {
         />
       ) : (
         <AnimatePresence mode='popLayout'>
-          {sortedTweets.map((tweet) => (
+          {/* {sortedTweets.map((tweet) => (
             <Tweet {...tweet} key={tweet.id} />
-          ))}
+          ))} */}
         </AnimatePresence>
       )}
     </section>

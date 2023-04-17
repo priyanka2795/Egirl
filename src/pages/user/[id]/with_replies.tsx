@@ -2,7 +2,6 @@ import { AnimatePresence } from 'framer-motion';
 import { doc, query, where, orderBy } from 'firebase/firestore';
 import { useCollection } from '@lib/hooks/useCollection';
 import { useDocument } from '@lib/hooks/useDocument';
-import { tweetsCollection } from '@lib/firebase/collections';
 import { useUser } from '@lib/context/user-context';
 import { UserLayout, ProtectedLayout } from '@components/layout/common-layout';
 import { MainLayout } from '@components/layout/main-layout';
@@ -20,23 +19,28 @@ export default function UserWithReplies(): JSX.Element {
 
   const { id, name, username, pinnedTweet } = user ?? {};
 
-  const { data: pinnedData } = useDocument(
-    doc(tweetsCollection, pinnedTweet ?? 'null'),
-    {
-      disabled: !pinnedTweet,
-      allowNull: true,
-      includeUser: true
-    }
-  );
+  // const { data: pinnedData } = useDocument(
+  //   doc(tweetsCollection, pinnedTweet ?? 'null'),
+  //   {
+  //     disabled: !pinnedTweet,
+  //     allowNull: true,
+  //     includeUser: true
+  //   }
+  // );
 
-  const { data, loading } = useCollection(
-    query(
-      tweetsCollection,
-      where('createdBy', '==', id),
-      orderBy('createdAt', 'desc')
-    ),
-    { includeUser: true, allowNull: true }
-  );
+  const pinnedData = [{}]
+
+  // const { data, loading } = useCollection(
+  //   query(
+  //     tweetsCollection,
+  //     where('createdBy', '==', id),
+  //     orderBy('createdAt', 'desc')
+  //   ),
+  //   { includeUser: true, allowNull: true }
+  // );
+
+  const loading = false;
+  const data = [{}];
 
   return (
     <section>
@@ -54,10 +58,10 @@ export default function UserWithReplies(): JSX.Element {
         />
       ) : (
         <AnimatePresence mode='popLayout'>
-          {pinnedData && (
+          {/* {pinnedData && (
             <Tweet pinned {...pinnedData} key={`pinned-${pinnedData.id}`} />
           )}
-          <TweetWithParent data={data} />
+          <TweetWithParent data={data} /> */}
         </AnimatePresence>
       )}
     </section>
