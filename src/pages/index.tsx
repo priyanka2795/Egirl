@@ -85,62 +85,64 @@ export default function UserLanding(): JSX.Element {
       <SEO title='Egirls' description='' />
 
       {/* Nav Bar */}
-      <Nav
-        setBetaAccess={() => setBetaAccess()}
-        setSideNav={() => setSideNav()}
-      />
-      {/* <nav className='bg-[#F6F6F6] lg:px-[100px] px-24 fixed top-0 z-10 w-full'>
-        <div className='lg:py-6 py-3'>
-          <div className='flex justify-between items-center'>
+      <nav className='fixed top-0 z-10 w-full bg-[#F6F6F6] px-24 lg:px-[100px]'>
+        <div className='py-3 lg:py-6'>
+          <div className='flex items-center justify-between'>
             <div className='lg:flex'>
-                <div className='pr-[40px]'>
-                  <span className='text-[#181818] text-[64px] lg:text-[32px] font-semibold'>
-                    Egirls
-                  </span>
+              <div className='pr-[40px]'>
+                <span className='text-[64px] font-semibold text-[#181818] lg:text-[32px]'>
+                  Egirls
+                </span>
+              </div>
+              <div className='lg:flex lg:items-center lg:space-x-4'>
+                <div className='hidden lg:flex lg:items-center'>
+                  <button>
+                    <span className='text-[32px] font-[500] text-[#5848BC] underline  decoration-[#5848BC] underline-offset-8 lg:text-[16px]'>
+                      For users
+                    </span>
+                  </button>
                 </div>
-                <div className='lg:flex lg:space-x-4 lg:items-center'>
-                  <div className='hidden lg:flex lg:items-center'>
-                    <button>
-                      <span className='text-[32px] lg:text-[16px] font-[500] text-[#5848BC]  underline decoration-[#5848BC] underline-offset-8'>
-                        For users
-                      </span>
-                    </button>
-                  </div>
-                  <div className='hidden lg:flex lg:items-center'>
-                    <button>
-                      <Link href='/creator-landing'>
-                      <span className='text-[#181818] text-[32px] lg:text-[16px] font-[500] hover:text-[#5848BC] hover:underline hover:decoration-[#5848BC] hover:underline-offset-8'>
+                <div className='hidden lg:flex lg:items-center'>
+                  <button>
+                    <Link href='/creator-landing'>
+                      <span className='text-[32px] font-[500] text-[#181818] hover:text-[#5848BC] hover:underline hover:decoration-[#5848BC] hover:underline-offset-8 lg:text-[16px]'>
                         For creators
                       </span>
-                      </Link>
-                    </button>
-                  </div>
+                    </Link>
+                  </button>
                 </div>
+              </div>
             </div>
-            <div className='lg:flex md:flex lg:space-x-4 md:space-x-4'>
+            <div className='md:flex md:space-x-4 lg:flex lg:space-x-4'>
               <div className='hidden lg:flex lg:items-center'>
                 <button>
                   <Link href='/contact-us'>
-                    <span className='text-[#181818] text-[32px] lg:text-[16px] font-[500] hover:text-[#5848BC] hover:underline hover:decoration-[#5848BC] hover:underline-offset-8'>
+                    <span className='text-[32px] font-[500] text-[#181818] hover:text-[#5848BC] hover:underline hover:decoration-[#5848BC] hover:underline-offset-8 lg:text-[16px]'>
                       Contact
                     </span>
                   </Link>
                 </button>
               </div>
-              <div className='sm:hidden xs:hidden lg:flex lg:items-center md:flex md:items-center justify-center lg:w-[158px] px-[18px] py-[10px] bg-[#5848BC] rounded-[12px]' onClick={setBetaAccess()}>
+              <div
+                className='justify-center rounded-[12px] bg-[#5848BC] px-[18px] py-[10px] xs:hidden sm:hidden md:flex md:items-center lg:flex lg:w-[158px] lg:items-center'
+                onClick={setBetaAccess()}
+              >
                 <button>
-                  <span className='text-white text-[32px] lg:text-[16px] font-[500]'>
+                  <span className='text-[32px] font-[500] text-white lg:text-[16px]'>
                     Join Discord
                   </span>
                 </button>
               </div>
-              <div className='lg:flex lg:items-center md:flex md:items-center sm:flex sm:items-center xs:flex xs:items-center' onClick={setSideNav()}>
-                <Bars2Icon className='fill-[black] h-[40px] w-[40px] lg:h-[20px] lg:w-[20px] lg:hidden' ></Bars2Icon>
+              <div
+                className='xs:flex xs:items-center sm:flex sm:items-center md:flex md:items-center lg:flex lg:items-center'
+                onClick={setSideNav()}
+              >
+                <Bars2Icon className='h-[40px] w-[40px] fill-[black] lg:hidden lg:h-[20px] lg:w-[20px]'></Bars2Icon>
               </div>
             </div>
           </div>
         </div>
-      </nav> */}
+      </nav>
 
       {/* Side NavBar */}
       <nav
@@ -398,43 +400,47 @@ export default function UserLanding(): JSX.Element {
       </div>
 
       {/* Header */}
-      <Header />
-      {/* <div className='bg-[#F6F6F6] lg:px-[100px] px-24 w-full mt-[96px]'>
+      <div className='mt-[96px] w-full bg-[#F6F6F6] px-24 lg:px-[100px]'>
         <div className='py-20'>
-          <div className='lg:grid lg:grid-cols-2 gap-[100px] md:grid md:grid-cols-2 sm:grid sm:grid-cols-1 md:max-xl:grid md:max-lg:grid-cols-1 md:justify-center sm:justify-center xs:justify-center justify-center'>
+          <div className='justify-center gap-[100px] xs:justify-center sm:grid sm:grid-cols-1 sm:justify-center md:grid md:grid-cols-2 md:justify-center md:max-xl:grid md:max-lg:grid-cols-1 lg:grid lg:grid-cols-2'>
             <div className=''>
               <div className='flex justify-center lg:justify-start'>
-                <div className='flex items-center bg-[#EAE8FD] rounded-[8px] px-[8px] py-[12px]'>
-                  <StarIcon className='fill-[#5848BC] h-[40px] w-[40px] lg:h-[20px] lg:w-[20px] pr-[8px]'></StarIcon>
+                <div className='flex items-center rounded-[8px] bg-[#EAE8FD] px-[8px] py-[12px]'>
+                  <StarIcon className='h-[40px] w-[40px] fill-[#5848BC] pr-[8px] lg:h-[20px] lg:w-[20px]'></StarIcon>
                   <div className='flex '>
-                    <span className='text-[#5848BC] text-[32px] md:text-[24px] lg:text-[16px] font-[500]'>
+                    <span className='text-[32px] font-[500] text-[#5848BC] md:text-[24px] lg:text-[16px]'>
                       experience the future
                     </span>
                   </div>
                 </div>
               </div>
               <div className='pt-12 text-center lg:text-start'>
-                <span className='text-black text-[104px] lg:text-[52px] font-[600]'>
-                  YOUR FAVOURITE <span className='font-[500] italic'>EGIRLS</span>, ALL IN ONE PLACE
+                <span className='text-[104px] font-[600] text-black lg:text-[52px]'>
+                  YOUR FAVOURITE{' '}
+                  <span className='font-[500] italic'>EGIRLS</span>, ALL IN ONE
+                  PLACE
                 </span>
               </div>
               <div className='pt-[48px] text-center lg:text-start'>
-                <span className='text-black text-[36px] lg:text-[18px] font-[400]'>
-                  Join our waitlist for beta access, 3000 people have joined so far!
+                <span className='text-[36px] font-[400] text-black lg:text-[18px]'>
+                  Join our waitlist for beta access, 3000 people have joined so
+                  far!
                 </span>
               </div>
-              <div className='pt-[20px] flex justify-center lg:justify-start'>
+              <div className='flex justify-center pt-[20px] lg:justify-start'>
                 <div className='flex w-1/2 lg:w-full'>
-                  <input type="email" className="form-input px-4 py-3 rounded-l-[12px] border-transparent drop-shadow text-[#949698] w-[395px] text-[36px] lg:text-[18px]" placeholder='Enter your email'/>
-                  <div className='flex items-center justify-center px-[24px] py-[16px] bg-[#5848BC] rounded-r-[12px] drop-shadow'>
-                    <span className='text-[36px] lg:text-[18px]'>
-                      Join
-                    </span>
+                  <input
+                    type='email'
+                    className='form-input w-[395px] rounded-l-[12px] border-transparent px-4 py-3 text-[36px] text-[#949698] drop-shadow lg:text-[18px]'
+                    placeholder='Enter your email'
+                  />
+                  <div className='flex items-center justify-center rounded-r-[12px] bg-[#5848BC] px-[24px] py-[16px] drop-shadow'>
+                    <span className='text-[36px] lg:text-[18px]'>Join</span>
                   </div>
                 </div>
               </div>
             </div>
-            <div className='pt-32 lg:pt-0 mt-15 lg:mt-0'>
+            <div className='mt-15 pt-32 lg:mt-0 lg:pt-0'>
               <div className='shrink-0'>
                 <NextImage
                   width={700}
@@ -446,14 +452,137 @@ export default function UserLanding(): JSX.Element {
             </div>
           </div>
         </div>
-      </div> */}
+      </div>
 
       {/* Discover */}
-      <Discover />
+      <div className='w-full bg-[#FFFFFF] px-24 lg:px-[100px]'>
+        <div className='py-10'>
+          <div className=''>
+            <div className=''>
+              <div className='flex justify-center lg:justify-start'>
+                <div className=''>
+                  <span className='text-[36px] font-[500] text-[#949698] md:text-[24px] lg:text-[18px]'>
+                    SOMETHING FOR EVERYONE
+                  </span>
+                </div>
+              </div>
+              <div className='flex justify-center space-x-3 lg:justify-start'>
+                <span className='text-[64px] font-[600] text-[#000000] lg:text-[48px]'>
+                  Discover
+                </span>
+                <span className='text-[64px] font-[400] italic text-[#000000] lg:text-[48px]'>
+                  Egirls
+                </span>
+              </div>
+            </div>
+            <div className='mt-10'>
+              <div className='items-center justify-around space-x-4 lg:flex'>
+                <div className='mb-10 flex justify-center'>
+                  <div>
+                    <div className='hidden lg:block'>
+                      <NextImage
+                        width={400}
+                        height={465}
+                        src={'/assets/svgImages/discoverEgirl1.svg'}
+                        imgClassName='rounded-[15px]'
+                        alt={'discover e girl1'}
+                      />
+                    </div>
+                    <div className='lg:hidden'>
+                      <NextImage
+                        width={600}
+                        height={665}
+                        src={'/assets/svgImages/discoverEgirl1.svg'}
+                        imgClassName='rounded-[15px]'
+                        alt={'discover e girl1'}
+                      />
+                    </div>
+                    <div className='mt-[12px]'>
+                      <span className='text-[30px] font-[600] text-[#000000] lg:text-[24px]'>
+                        Sarah Scarlet
+                      </span>
+                    </div>
+                    <div className='mt-[2px]'>
+                      <span className='text-[28px] font-[500] text-[#949698] lg:text-[14px]'>
+                        LOS ANGELES, USA
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className='mb-10 flex justify-center'>
+                  <div>
+                    <div className='hidden lg:block'>
+                      <NextImage
+                        width={400}
+                        height={465}
+                        src={'/assets/svgImages/discoverEgirl2.svg'}
+                        imgClassName='rounded-[15px]'
+                        alt={'discover e girl2'}
+                      />
+                    </div>
+                    <div className='lg:hidden'>
+                      <NextImage
+                        width={600}
+                        height={665}
+                        src={'/assets/svgImages/discoverEgirl2.svg'}
+                        imgClassName='rounded-[15px]'
+                        alt={'discover e girl2'}
+                      />
+                    </div>
+
+                    <div className='mt-[12px]'>
+                      <span className='text-[30px] font-[600] text-[#000000] lg:text-[24px]'>
+                        Jennie Yoon
+                      </span>
+                    </div>
+                    <div className='mt-[2px]'>
+                      <span className='text-[28px] font-[500] text-[#949698] lg:text-[14px]'>
+                        Seoul, South Korea{' '}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className='mb-10 flex justify-center'>
+                  <div>
+                    <div className='hidden lg:block'>
+                      <NextImage
+                        width={400}
+                        height={465}
+                        src={'/assets/svgImages/discoverEgirl3.svg'}
+                        imgClassName='rounded-[15px]'
+                        alt={'discover e girl3'}
+                      />
+                    </div>
+                    <div className='lg:hidden'>
+                      <NextImage
+                        width={600}
+                        height={665}
+                        src={'/assets/svgImages/discoverEgirl3.svg'}
+                        imgClassName='rounded-[15px]'
+                        alt={'discover e girl3'}
+                      />
+                    </div>
+
+                    <div className='mt-[12px]'>
+                      <span className='text-[30px] font-[600] text-[#000000] lg:text-[24px]'>
+                        Mika-Chan
+                      </span>
+                    </div>
+                    <div className='mt-[2px]'>
+                      <span className='text-[28px] font-[500] text-[#949698] lg:text-[14px]'>
+                        Tokyo, Japan
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* Chat */}
-      <Chat />
-      {/* <div className='w-full bg-[#FFFFFF] px-24 lg:px-[100px]'>
+      <div className='w-full bg-[#FFFFFF] px-24 lg:px-[100px]'>
         <div className='w-full py-20'>
           <div className='w-full gap-[100px] sm:grid sm:grid-cols-1 md:grid md:grid-cols-2 md:max-xl:grid md:max-lg:grid-cols-1 lg:grid lg:grid-cols-2'>
             <div className='w-full'>
@@ -725,11 +854,10 @@ export default function UserLanding(): JSX.Element {
             </div>
           </div>
         </div>
-      </div> */}
+      </div>
 
       {/* Subscribe */}
-      <Subscribe />
-      {/* <div className='w-full bg-[#F7F7F7] px-24 lg:px-[100px]'>
+      <div className='w-full bg-[#F7F7F7] px-24 lg:px-[100px]'>
         <div className='py-10'>
           <div className=''>
             <div className=''>
@@ -886,7 +1014,7 @@ export default function UserLanding(): JSX.Element {
             </div>
           </div>
         </div>
-      </div> */}
+      </div>
 
       {/* Footer */}
       <div className='w-full bg-[#000000] px-24 lg:px-[100px]'>
@@ -965,7 +1093,7 @@ export default function UserLanding(): JSX.Element {
                   className='rounded-[15px]'
                 />
               </div>
-              <div>
+              <div className='p-1'>
                 <NextImage
                   width={18}
                   height={18}
@@ -974,7 +1102,7 @@ export default function UserLanding(): JSX.Element {
                   className='rounded-[15px]'
                 />
               </div>
-              <div>
+              <div className='p-1'>
                 <NextImage
                   width={18}
                   height={18}
@@ -983,7 +1111,7 @@ export default function UserLanding(): JSX.Element {
                   className='rounded-[15px]'
                 />
               </div>
-              <div>
+              <div className='p-1'>
                 <NextImage
                   width={18}
                   height={18}
@@ -992,7 +1120,7 @@ export default function UserLanding(): JSX.Element {
                   className='rounded-[15px]'
                 />
               </div>
-              <div>
+              <div className='p-1'>
                 <NextImage
                   width={18}
                   height={18}

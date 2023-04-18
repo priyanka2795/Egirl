@@ -48,7 +48,6 @@ export function useDocument<T>(
       //   doc(usersCollection, currentData.createdBy)
       // );
       // const dataWithUser = { ...currentData, user: userData.data() };
-
       // setData(dataWithUser);
       // setLoading(false);
     };

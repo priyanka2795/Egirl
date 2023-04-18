@@ -4,7 +4,11 @@ import { LoginMain } from '@components/login/login-main';
 import { LoginFooter } from '@components/login/login-footer';
 import { ReactElement, ReactNode, useEffect, useState } from 'react';
 import { Auth, ThemeSupa } from '@supabase/auth-ui-react';
-import { useSession, useSupabaseClient, useUser } from '@supabase/auth-helpers-react';
+import {
+  useSession,
+  useSupabaseClient,
+  useUser
+} from '@supabase/auth-helpers-react';
 import Account from '../components/account/account';
 import Router from 'next/router';
 import { LayoutProps } from '@components/layout/common-layout';
@@ -22,13 +26,8 @@ import TextingIllustration from '@components/svg-assets/Texting';
 import { StarIcon, Bars2Icon, XMarkIcon } from '@heroicons/react/20/solid';
 
 export function LandingLayout({ children }: LayoutProps): JSX.Element {
-  return (
-    <div className='w-full bg-white'>
-      {children}
-    </div>
-  );
+  return <div className='w-full bg-white'>{children}</div>;
 }
-
 
 export default function CreatorLanding(): JSX.Element {
   const session = useSession();
@@ -43,99 +42,100 @@ export default function CreatorLanding(): JSX.Element {
   const showSection1 = (visibility: boolean) => (): void => {
     setSection2(false);
     setSection3(false);
-    if(!visibility){
-      setSection1(true)
+    if (!visibility) {
+      setSection1(true);
     }
   };
 
   const showSection2 = (visibility: boolean) => (): void => {
     setSection1(false);
     setSection3(false);
-    if(!visibility){
-      setSection2(true)
+    if (!visibility) {
+      setSection2(true);
     }
   };
 
   const showSection3 = (visibility: boolean) => (): void => {
     setSection1(false);
     setSection2(false);
-    if(!visibility){
+    if (!visibility) {
       setSection3(true);
     }
   };
-  
+
   const setSideNav = () => (): void => {
     setHiddenSideDiv(!hiddenSideDiv);
-  }
+  };
 
   const setBetaAccess = () => (): void => {
     setShowBetaAccess(!showBetaAccess);
-  }
+  };
 
   const hideSideShowBeta = () => (): void => {
     setShowBetaAccess(true);
     setHiddenSideDiv(false);
-  }
+  };
 
-  useEffect(() => {
+  useEffect(() => {});
 
-  });
-  
   return (
-    <div className='grid min-h-screen grid-rows-[1fr,auto] bg-white h-screen'>
-      <SEO
-        title='Egirls'
-        description=''
-      />
+    <div className='grid h-screen min-h-screen grid-rows-[1fr,auto] bg-white'>
+      <SEO title='Egirls' description='' />
 
       {/* Nav Bar */}
-      <nav className='bg-[black] lg:px-[100px] px-24 fixed top-0 z-10 w-full'>
-        <div className='lg:py-6 py-3'>
-          <div className='flex justify-between items-center'>
+      <nav className='fixed top-0 z-10 w-full bg-[black] px-24 lg:px-[100px]'>
+        <div className='py-3 lg:py-6'>
+          <div className='flex items-center justify-between'>
             <div className='lg:flex'>
-                <div className='pr-[40px]'>
-                  <span className='text-[white] text-[64px] lg:text-[32px] font-semibold'>
-                    Egirls
-                  </span>
+              <div className='pr-[40px]'>
+                <span className='text-[64px] font-semibold text-[white] lg:text-[32px]'>
+                  Egirls
+                </span>
+              </div>
+              <div className='lg:flex lg:items-center lg:space-x-4'>
+                <div className='hidden lg:flex lg:items-center'>
+                  <Link href='/'>
+                    <span className='text-[32px] font-[500] text-[white] hover:text-[#5848BC] hover:underline hover:decoration-[#5848BC] hover:underline-offset-8 lg:text-[16px]'>
+                      For users
+                    </span>
+                  </Link>
                 </div>
-                <div className='lg:flex lg:space-x-4 lg:items-center'>
-                  <div className='hidden lg:flex lg:items-center'>
-                    <Link href='/'>
-                        <span className='text-[white] text-[32px] lg:text-[16px] font-[500] hover:text-[#5848BC] hover:underline hover:decoration-[#5848BC] hover:underline-offset-8'>
-                          For users
-                        </span>
-                      </Link>
-                  </div>
-                  <div className='hidden lg:flex lg:items-center'>
-                    <button>
-                      <Link href='/creator-landing'>
-                        <span className='text-[32px] lg:text-[16px] font-[500] text-[#5848BC]  underline decoration-[#5848BC] underline-offset-8'>
-                          For creators
-                        </span>
-                      </Link>
-                    </button>
-                  </div>
+                <div className='hidden lg:flex lg:items-center'>
+                  <button>
+                    <Link href='/creator-landing'>
+                      <span className='text-[32px] font-[500] text-[#5848BC] underline  decoration-[#5848BC] underline-offset-8 lg:text-[16px]'>
+                        For creators
+                      </span>
+                    </Link>
+                  </button>
                 </div>
+              </div>
             </div>
-            <div className='lg:flex md:flex lg:space-x-4 md:space-x-4'>
+            <div className='md:flex md:space-x-4 lg:flex lg:space-x-4'>
               <div className='hidden lg:flex lg:items-center'>
                 <button>
                   <Link href='/contact-us'>
-                    <span className='text-[white] text-[32px] lg:text-[16px] font-[500] hover:text-[#5848BC] hover:underline hover:decoration-[#5848BC] hover:underline-offset-8'>
+                    <span className='text-[32px] font-[500] text-[white] hover:text-[#5848BC] hover:underline hover:decoration-[#5848BC] hover:underline-offset-8 lg:text-[16px]'>
                       Contact
                     </span>
                   </Link>
                 </button>
               </div>
-              <div className='sm:hidden xs:hidden lg:flex lg:items-center md:flex md:items-center justify-center lg:w-[158px] px-[18px] py-[10px] bg-[#5848BC] rounded-[12px]' onClick={setBetaAccess()}>
+              <div
+                className='justify-center rounded-[12px] bg-[#5848BC] px-[18px] py-[10px] xs:hidden sm:hidden md:flex md:items-center lg:flex lg:w-[158px] lg:items-center'
+                onClick={setBetaAccess()}
+              >
                 <button>
-                  <span className='text-white text-[32px] lg:text-[16px] font-[500]'>
+                  <span className='text-[32px] font-[500] text-white lg:text-[16px]'>
                     Join Discord
                   </span>
                 </button>
               </div>
-              <div className='lg:flex lg:items-center md:flex md:items-center sm:flex sm:items-center xs:flex xs:items-center' onClick={setSideNav()}>
-                <Bars2Icon className='fill-[white] h-[40px] w-[40px] lg:h-[20px] lg:w-[20px] lg:hidden' ></Bars2Icon>
+              <div
+                className='xs:flex xs:items-center sm:flex sm:items-center md:flex md:items-center lg:flex lg:items-center'
+                onClick={setSideNav()}
+              >
+                <Bars2Icon className='h-[40px] w-[40px] fill-[white] lg:hidden lg:h-[20px] lg:w-[20px]'></Bars2Icon>
               </div>
             </div>
           </div>
@@ -143,27 +143,34 @@ export default function CreatorLanding(): JSX.Element {
       </nav>
 
       {/* Side NavBar */}
-      <nav className={`bg-[black] h-full w-full top-0 z-10 fixed lg:invisible p-20 ease-in duration-300 ${hiddenSideDiv === false ? 'invisible' : 'visible ease-in duration-300'}`}>
+      <nav
+        className={`fixed top-0 z-10 h-full w-full bg-[black] p-20 duration-300 ease-in lg:invisible ${
+          hiddenSideDiv === false ? 'invisible' : 'visible duration-300 ease-in'
+        }`}
+      >
         <div>
           <div className='flex items-center justify-between'>
             <div className=''>
               <button>
                 <Link href='/'>
-                  <span className='text-[white] xs:text-[104px] sm:text-[104px] text-[52px] font-semibold'>
+                  <span className='text-[52px] font-semibold text-[white] xs:text-[104px] sm:text-[104px]'>
                     Egirls
                   </span>
-                </Link> 
+                </Link>
               </button>
             </div>
             <div>
-              <XMarkIcon className='fill-[white] h-16 w-16' onClick={setSideNav()}></XMarkIcon>
+              <XMarkIcon
+                className='h-16 w-16 fill-[white]'
+                onClick={setSideNav()}
+              ></XMarkIcon>
             </div>
           </div>
-          <div className='pt-20 space-y-20'>
+          <div className='space-y-20 pt-20'>
             <div className=''>
               <button>
-                <Link href='/creator-landing'>
-                  <span className='xs:text-[48px] sm:text-[48px] text-[24px] font-[500] text-[#5848BC] underline hover:decoration-[#5848BC] underline-offset-8'>
+                <Link href='/'>
+                  <span className='text-[24px] font-[500] text-[white] hover:text-[#5848BC] hover:underline hover:decoration-[#5848BC] hover:underline-offset-8 xs:text-[48px] sm:text-[48px]'>
                     For users
                   </span>
                 </Link>
@@ -172,7 +179,7 @@ export default function CreatorLanding(): JSX.Element {
             <div className=''>
               <button>
                 <Link href='/creator-landing'>
-                  <span className='text-[white] xs:text-[48px] sm:text-[48px] text-[24px] font-[500] hover:text-[#5848BC] hover:underline hover:decoration-[#5848BC] hover:underline-offset-8'>
+                  <span className='text-[24px] font-[500] text-[#5848BC] underline underline-offset-8 hover:decoration-[#5848BC] xs:text-[48px] sm:text-[48px]'>
                     For creators
                   </span>
                 </Link>
@@ -181,7 +188,7 @@ export default function CreatorLanding(): JSX.Element {
             <div className=''>
               <button>
                 <Link href='/contact-us'>
-                  <span className='text-[white] xs:text-[48px] sm:text-[48px] text-[24px] font-[500] hover:text-[#5848BC] hover:underline hover:decoration-[#5848BC] hover:underline-offset-8'>
+                  <span className='text-[24px] font-[500] text-[white] hover:text-[#5848BC] hover:underline hover:decoration-[#5848BC] hover:underline-offset-8 xs:text-[48px] sm:text-[48px]'>
                     Contact
                   </span>
                 </Link>
@@ -189,10 +196,13 @@ export default function CreatorLanding(): JSX.Element {
             </div>
           </div>
 
-          <div className='flex justify-center bottom-16 absolute inset-x-10'>
-            <div className='lg:hidden w-full flex justify-center px-[18px] py-[10px] bg-[#5848BC] rounded-[12px]' onClick={hideSideShowBeta()}>
+          <div className='absolute inset-x-10 bottom-16 flex justify-center'>
+            <div
+              className='flex w-full justify-center rounded-[12px] bg-[#5848BC] px-[18px] py-[10px] lg:hidden'
+              onClick={hideSideShowBeta()}
+            >
               <button>
-                <span className='text-white xs:text-[64px] sm:text-[64px] text-[32px] font-[500]'>
+                <span className='text-[32px] font-[500] text-white xs:text-[64px] sm:text-[64px]'>
                   Join Discord
                 </span>
               </button>
@@ -201,116 +211,122 @@ export default function CreatorLanding(): JSX.Element {
         </div>
       </nav>
 
-      {/* Join Discord */} 
-      <div className={`bg-[black] h-full w-full top-0 z-10 fixed ease-in duration-300 items-center ${showBetaAccess === false ? 'hidden' : 'ease-in duration-300'}`}>
-        <div className='bg-[url(/assets/svgImages/joinDiscordBg.svg)] h-full w-full bg-no-repeat bg-center bg-cover'>
-          <div className='flex justify-end w-full'>
+      {/* Join Discord */}
+      <div
+        className={`fixed top-0 z-10 h-full w-full items-center bg-[black] duration-300 ease-in ${
+          showBetaAccess === false ? 'hidden' : 'duration-300 ease-in'
+        }`}
+      >
+        <div className='h-full w-full bg-[url(/assets/svgImages/joinDiscordBg.svg)] bg-cover bg-center bg-no-repeat'>
+          <div className='flex w-full justify-end'>
             <div className='p-8'>
               <button>
-                <XMarkIcon className='fill-[white] h-10 w-10' onClick={setBetaAccess()}></XMarkIcon>
+                <XMarkIcon
+                  className='h-20 w-20 fill-[white] lg:h-10 lg:w-10'
+                  onClick={setBetaAccess()}
+                ></XMarkIcon>
               </button>
             </div>
           </div>
-          <div className='w-full p-2'>
-            <div className='flex justify-center p-2'>
-              <div className='flex justify-center items-center bg-[#313131] rounded-[8px] h-[40px] w-[135px] px-[8px] py-[12px]'>
-                <StarIcon className='fill-[#5848BC] h-[20px] w-[20px] pr-[8px]'></StarIcon>
-                <div className='flex'>
-                  <span className='text-[white] text-[16px] font-[500]'>
-                    Join us
-                  </span>
+          <div className='flex h-full items-center'>
+            <div className='w-full p-2'>
+              <div className='flex justify-center p-2'>
+                <div className='flex items-center justify-center rounded-[8px] bg-[#313131] p-[24px] lg:h-[40px] lg:w-[135px] lg:px-[8px] lg:py-[12px]'>
+                  <StarIcon className='h-[40px] w-[40px] fill-[#5848BC] pr-[8px] lg:h-[20px] lg:w-[20px]'></StarIcon>
+                  <div className='flex'>
+                    <span className='text-[42px] font-[500] text-[white] lg:text-[16px]'>
+                      Join us
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className='flex justify-center p-2'>
-              <div className='text-[white] text-[64px] font-[600]'>
-                <div>
-                  <span>
-                    Design <span className='italic font-[400]'> without </span>
-                  </span>
-                </div>
-                <div className='flex justify-center'>
-                  <span>
-                    limits
-                  </span>
+              <div className='flex justify-center p-2'>
+                <div className='text-center text-[120px] font-[600]  text-[white] lg:text-[64px]'>
+                  <div>
+                    <span>
+                      Design{' '}
+                      <span className='font-[400] italic'> without </span>
+                    </span>
+                  </div>
+                  <div className='flex justify-center'>
+                    <span>limits</span>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className='flex justify-center p-2'>
-              <div className='text-[#ffffff]/[0.44] text-[18px] font-[400]'>
-                <span>
-                  Join our Discord community and introduce yourself
-                </span>
+              <div className='flex justify-center p-2'>
+                <div className='text-[36px] font-[400] text-[#ffffff]/[0.44] lg:text-[18px]'>
+                  <span>Join our Discord community and introduce yourself</span>
+                </div>
               </div>
-            </div>
-            <div className='flex justify-center p-16'>
-              <div className='flex items-center justify-center w-[158px] px-[24px] py-[16px] bg-[#5848BC] rounded-[12px] drop-shadow'>
-                <span>
-                  Join Discord
-                </span>
+              <div className='flex justify-center p-16'>
+                <div className='flex items-center justify-center rounded-[12px] bg-[#5848BC] px-[24px] py-[16px] drop-shadow'>
+                  <span className='text-[36px] lg:text-[18px]'>
+                    Join Discord
+                  </span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      
+
       {/* Header */}
-      <div className='bg-[#000000] lg:px-[100px] px-24 mt-[96px]'>
+      <div className='mt-[96px] bg-[#000000] px-24 lg:px-[100px]'>
         <div className='py-20'>
           <div className=''>
             <div className='lg:hidden'>
-                <EGirlIcon className='overflow-visible'/>
+              <EGirlIcon className='overflow-visible' />
             </div>
-            <div className='lg:hidden flex justify-end'>
+            <div className='flex justify-end lg:hidden'>
               <RoundedEgirlIcon />
             </div>
-            <div className='flex justify-center lg:justify-between items-center'>
+            <div className='flex items-center justify-center lg:justify-between'>
               <div className='hidden lg:block'>
-                <EGirlIcon className='overflow-visible'/>
+                <EGirlIcon className='overflow-visible' />
               </div>
-              <div className='flex items-center bg-[#313131] rounded-[8px] h-[40px] w-[175px] px-[8px] py-[12px] space-x-2'>
-                <StarIcon className='fill-[#5848BC] h-[20px] w-[20px] pr-[8px]'></StarIcon>
+              <div className='flex h-[80px] w-[320px] items-center space-x-2 rounded-[8px] bg-[#313131] px-[8px] py-[12px] lg:h-[40px] lg:w-[175px]'>
+                <StarIcon className='h-[40px] w-[40px] fill-[#5848BC] pr-[8px] lg:h-[20px] lg:w-[20px]'></StarIcon>
                 <div className='flex'>
-                  <span className='text-[white] text-[15px] font-[500]'>
+                  <span className='text-[30px] font-[500] text-[white] md:text-[24px] lg:text-[15px]'>
                     become a creator
                   </span>
                 </div>
               </div>
-              <div className='hidden lg:w-[100px] lg:block'></div>
+              <div className='hidden lg:block lg:w-[100px]'></div>
             </div>
-            <div className='flex justify-center lg:justify-between items-center pt-[24px]'>
+            <div className='flex items-center justify-center pt-[24px] lg:justify-between'>
               <div className='hidden lg:block lg:w-[80px]'></div>
               <div className=''>
-                <div className='flex-none justify-center items-center space-x-5 text-center'>
-                  <div className='flex space-x-3 items-center justify-center'>
-                    <span className='uppercase text-[white] text-[56px] font-[600]'>
-                      Let 
+                <div className='flex-none items-center justify-center space-x-5 text-center'>
+                  <div className='flex items-center justify-center space-x-3'>
+                    <span className='text-[112px] font-[600] uppercase text-[white] lg:text-[56px]'>
+                      Let
                     </span>
                     <div className='flex justify-center'>
-                      <CreatorRoundIcon1 />
+                      <CreatorRoundIcon1 className='l' />
                     </div>
-                    <span className='uppercase text-[white] text-[56px] font-[600]'>
+                    <span className='text-[112px] font-[600] uppercase text-[white] lg:text-[56px]'>
                       Your
                     </span>
                   </div>
-                  <div className='flex space-x-3 items-center justify-center'>
-                    <span className='uppercase italic text-[white] text-[56px] font-[600]'>
-                      Imagination 
+                  <div className='flex items-center justify-center space-x-3'>
+                    <span className='text-[112px] font-[600] uppercase italic text-[white] lg:text-[56px]'>
+                      Imagination
                     </span>
                     <div className='flex justify-center'>
-                    <NextImage
-                      width={40}
-                      height={40}
-                      src={'/assets/svgImages/roundCreatorIcon.svg'}
-                      alt={'round creator icon'}
-                    />
+                      <NextImage
+                        width={40}
+                        height={40}
+                        src={'/assets/svgImages/roundCreatorIcon.svg'}
+                        alt={'round creator icon'}
+                      />
                     </div>
-                    <span className='uppercase text-[white] text-[56px] font-[600]'>
+                    <span className='text-[112px] font-[600] uppercase text-[white] lg:text-[56px]'>
                       Run
                     </span>
                   </div>
                   <div>
-                    <span className='uppercase text-[white] text-[56px] font-[600]'>
+                    <span className='text-[112px] font-[600] uppercase text-[white] lg:text-[56px]'>
                       Wild
                     </span>
                   </div>
@@ -326,43 +342,48 @@ export default function CreatorLanding(): JSX.Element {
               <RoundedCreatingTagIcon />
             </div>
             <div className='flex justify-center'>
-              <span className='text-[white] text-[18px] font-[400]'>
-                Join our waitlist for beta access, 3000 people have joined so far!
+              <span className='text-[36px] font-[400] text-[white] lg:text-[18px]'>
+                Join our waitlist for beta access, 3000 people have joined so
+                far!
               </span>
             </div>
-            <div className='pt-[20px] flex justify-center'>
+            <div className='flex justify-center pt-[20px]'>
               <div className='flex w-[515px]'>
-                <input type="email" className="bg-[#313131] form-input px-4 py-3 rounded-l-[12px] border-transparent drop-shadow text-[#949698] w-[395px]" placeholder='Enter your email'/>
-                <div className='flex items-center justify-center w-[158px] px-[24px] py-[16px] bg-[#5848BC] rounded-r-[12px] drop-shadow'>
-                  <span>
-                    Join
-                  </span>
+                <input
+                  type='email'
+                  className='form-input w-[395px] rounded-l-[12px] border-transparent bg-[#313131] px-4 py-3 text-[36px] text-[#949698] drop-shadow lg:text-[18px]'
+                  placeholder='Enter your email'
+                />
+                <div className='flex w-[158px] items-center justify-center rounded-r-[12px] bg-[#5848BC] px-[24px] py-[16px] drop-shadow'>
+                  <span className='text-[36px] lg:text-[18px]'>Join</span>
                 </div>
               </div>
             </div>
             <div>
-              <div className='lg:hidden mt-10'>
+              <div className='mt-10 lg:hidden'>
                 <RoundedCreatingTagIcon />
               </div>
             </div>
           </div>
         </div>
       </div>
-      
+
       {/* Contact Us */}
-      <div className='grid grid-row-2 gap-4 grid-cols-none lg:grid-cols-4 lg:grid-rows-none justify-items-center bg-[#F6F6F6] lg:px-[100px] px-24 py-10'>
+      <div className='grid-row-2 grid grid-cols-none justify-items-center gap-8 bg-[#F6F6F6] px-24 py-10 lg:grid-cols-4 lg:grid-rows-none lg:px-[100px]'>
         <div className='lg:col-span-3'>
           <div className='border-l-2'>
             <div className='pl-16'>
-              <span className='text-[black] text-[24px] font-[400]'>
-                It’s a new era, and we’re leading the charge. Don’t miss your chance to create an established brand in the new creator economy.
+              <span className='text-[48px] font-[400] text-[black] lg:text-[24px]'>
+                It’s a new era, and we’re leading the charge. Don’t miss your
+                chance to create an established brand in the new creator
+                economy.
               </span>
             </div>
           </div>
         </div>
         <div className='lg:cols-span-1 w-full'>
-          <div className='flex justify-center items-center border-[2px] w-full lg:w-[144px] h-[56px] p-[12px] rounded-lg'>
-            <div className='text-[black] text-[18px] font-[600]'>
+          <div className='flex h-[56px] w-full items-center justify-center rounded-lg border-[2px] p-[12px] lg:w-[144px]'>
+            <div className='text-[36px] font-[600] text-[black] lg:text-[18px]'>
               <Link href='/contact-us'>
                 <span> Contact Us </span>
               </Link>
@@ -372,120 +393,142 @@ export default function CreatorLanding(): JSX.Element {
       </div>
 
       {/* How it works */}
-      <div className='bg-[#FFFFFF] lg:px-[100px] px-24'>
+      <div className='bg-[#FFFFFF] px-24 lg:px-[100px]'>
         <div className='flex justify-center pt-[100px] pb-[80px]'>
           <div className='space-x-2'>
-            <span className='text-[black] text-[48px] font-[500]'>
-              How it 
+            <span className='text-[96px] font-[500] text-[black] lg:text-[48px]'>
+              How it
             </span>
-            <span className='text-[black] text-[48px] font-[500] italic'>
+            <span className='text-[96px] font-[500] italic text-[black] lg:text-[48px]'>
               works?
             </span>
           </div>
         </div>
-        
+
         <div className=''>
-          <div className='lg:px-[60px] grid lg:grid-cols-2 lg:grid-rows-none grid-rows-2 grid-cols-none auto-cols-max py-2 justify-items-center items-center'>
+          <div className='grid w-full grid-cols-none grid-rows-2 items-center justify-items-center py-2 lg:grid-cols-2 lg:grid-rows-none lg:px-[60px]'>
             <div className='col-span-1'>
               <div className=''>
-                <div className='flex justify-center items-center bg-[#EAE8FD] w-[95px] h-[50px] rounded-lg'>
-                  <span className='text-[#7362C6] text-[18px] font-[500]'>
+                <div className='flex h-[100px] w-[190px] items-center justify-center rounded-lg bg-[#EAE8FD] lg:h-[50px] lg:w-[95px]'>
+                  <span className='text-[36px] font-[500] text-[#7362C6] lg:text-[18px]'>
                     STEP 1
                   </span>
                 </div>
                 <div className='pt-[32px]'>
-                  <span className='text-[black] text-[34px] font-[600]'>
+                  <span className='text-[68px] font-[600] text-[black] lg:text-[34px]'>
                     Make an Egirl
                   </span>
                 </div>
                 <div>
                   <div>
-                    <div className='flex items-center pt-[32px] py-[12px] space-x-2'>
-                        <StarIcon className='fill-[#000000] h-[24px] w-[24px] pr-[8px]'></StarIcon>
-                        <div className='flex'>
-                          <span className='text-[black] text-[24px] font-[400]'>
-                            Pick a name
-                          </span>
-                        </div>
+                    <div className='flex items-center space-x-2 py-[12px] pt-[32px]'>
+                      <StarIcon className='h-[48px] w-[48px] fill-[#000000] pr-[8px] lg:h-[24px] lg:w-[24px]'></StarIcon>
+                      <div className='flex'>
+                        <span className='text-[48px] font-[400] text-[black] lg:text-[24px]'>
+                          Pick a name
+                        </span>
+                      </div>
                     </div>
-                    <div className='flex items-center pt-[16px] py-[12px] space-x-2'>
-                        <StarIcon className='fill-[#000000] h-[24px] w-[24px] pr-[8px]'></StarIcon>
-                        <div className='flex'>
-                          <span className='text-[black] text-[24px] font-[400]'>
-                            Give her a unique personality
-                          </span>
-                        </div>
+                    <div className='flex items-center space-x-2 py-[12px] pt-[16px]'>
+                      <StarIcon className='h-[48px] w-[48px] fill-[#000000] pr-[8px] lg:h-[24px] lg:w-[24px]'></StarIcon>
+                      <div className='flex'>
+                        <span className='text-[48px] font-[400] text-[black] lg:text-[24px]'>
+                          Give her a unique personality
+                        </span>
+                      </div>
                     </div>
-                    <div className='flex items-center pt-[16px] py-[12px] space-x-2'>
-                        <StarIcon className='fill-[#000000] h-[24px] w-[24px] pr-[8px]'></StarIcon>
-                        <div className='flex'>
-                          <span className='text-[black] text-[24px] font-[400]'>
-                            Design her looks and voice
-                          </span>
-                        </div>
+                    <div className='flex items-center space-x-2 py-[12px] pt-[16px]'>
+                      <StarIcon className='h-[48px] w-[48px] fill-[#000000] pr-[8px] lg:h-[24px] lg:w-[24px]'></StarIcon>
+                      <div className='flex'>
+                        <span className='text-[48px] font-[400] text-[black] lg:text-[24px]'>
+                          Design her looks and voice
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
             <div className='row-start-1 lg:col-start-2'>
-              <NextImage
-                width={700}
-                height={700}
-                src={'/assets/svgImages/howItWorksStep1_1.svg'}
-                alt={'howItWorksStep1 illus'}
-                imgClassName='overflow-hidden'
-              />
+              <div className='lg:hidden'>
+                <NextImage
+                  width={1000}
+                  height={1000}
+                  src={'/assets/svgImages/howItWorksStep1_1.svg'}
+                  alt={'howItWorksStep1 illus'}
+                  imgClassName=''
+                />
+              </div>
+              <div className='hidden lg:block'>
+                <NextImage
+                  width={700}
+                  height={700}
+                  src={'/assets/svgImages/howItWorksStep1_1.svg'}
+                  alt={'howItWorksStep1 illus'}
+                  imgClassName='overflow-hidden'
+                />
+              </div>
             </div>
           </div>
 
-          <div className='w-full lg:px-[60px] grid lg:grid-cols-2 lg:grid-rows-none grid-rows-2 grid-cols-none py-2 justify-items-center items-center'>
+          <div className='grid w-full grid-cols-none grid-rows-2 items-center justify-items-center py-2 lg:grid-cols-2 lg:grid-rows-none lg:px-[60px]'>
             <div className=''>
-              <NextImage
-                width={700}
-                height={700}
-                src={'/assets/svgImages/howItWorksStep2_1.svg'}
-                alt={'howItWorksStep2 illus'}
-                imgClassName='overflow-hidden'
-              />  
+              <div className='lg:hidden'>
+                <NextImage
+                  width={1000}
+                  height={1000}
+                  src={'/assets/svgImages/howItWorksStep2_1.svg'}
+                  alt={'howItWorksStep1 illus'}
+                  imgClassName=''
+                />
+              </div>
+              <div className='hidden lg:block'>
+                <NextImage
+                  width={700}
+                  height={700}
+                  src={'/assets/svgImages/howItWorksStep2_1.svg'}
+                  alt={'howItWorksStep1 illus'}
+                  imgClassName='overflow-hidden'
+                />
+              </div>
             </div>
             <div className='col-span-1'>
               <div className=''>
-                <div className='flex justify-center items-center bg-[#EAE8FD] w-[95px] h-[50px] rounded-lg'>
-                  <span className='text-[#7362C6] text-[18px] font-[500]'>
+                <div className='flex h-[100px] w-[190px] items-center justify-center rounded-lg bg-[#EAE8FD] lg:h-[50px] lg:w-[95px]'>
+                  <span className='text-[36px] font-[500] text-[#7362C6] lg:text-[18px]'>
                     STEP 2
                   </span>
                 </div>
                 <div className='lg"pt-[32px]'>
-                  <span className='text-[black] text-[34px] font-[600]'>
+                  <span className='text-[68px] font-[600] text-[black] lg:text-[34px]'>
                     Customize Your Profile
                   </span>
                 </div>
                 <div>
                   <div>
-                    <div className='flex items-center pt-[32px] py-[12px] space-x-2'>
-                        <StarIcon className='fill-[#000000] h-[24px] w-[24px] pr-[8px]'></StarIcon>
-                        <div className='flex'>
-                          <span className='text-[black] text-[24px] font-[400]'>
-                            Write an eye-catching bio
-                          </span>
-                        </div>
+                    <div className='flex items-center space-x-2 py-[12px] pt-[32px]'>
+                      <StarIcon className='h-[48px] w-[48px] fill-[#000000] pr-[8px] lg:h-[24px] lg:w-[24px]'></StarIcon>
+                      <div className='flex'>
+                        <span className='text-[48px] font-[400] text-[black] lg:text-[24px]'>
+                          Write an eye-catching bio
+                        </span>
+                      </div>
                     </div>
-                    <div className='flex items-center pt-[16px] py-[12px] space-x-2'>
-                        <StarIcon className='fill-[#000000] h-[24px] w-[24px] pr-[8px]'></StarIcon>
-                        <div className='flex'>
-                          <span className='text-[black] text-[24px] font-[400]'>
-                            Select subscription tiers & pricing
-                          </span>
-                        </div>
+                    <div className='flex items-center space-x-2 py-[12px] pt-[16px]'>
+                      <StarIcon className='h-[48px] w-[48px] fill-[#000000] pr-[8px] lg:h-[24px] lg:w-[24px]'></StarIcon>
+                      <div className='flex'>
+                        <span className='text-[48px] font-[400] text-[black] lg:text-[24px]'>
+                          Select subscription tiers & pricing
+                        </span>
+                      </div>
                     </div>
-                    <div className='flex items-center pt-[16px] py-[12px] space-x-2'>
-                        <StarIcon className='fill-[#000000] h-[24px] w-[24px] pr-[8px]'></StarIcon>
-                        <div className='flex'>
-                          <span className='text-[black] text-[24px] font-[400]'>
-                            Choose what your subs can request
-                          </span>
-                        </div>
+                    <div className='flex items-center space-x-2 py-[12px] pt-[16px]'>
+                      <StarIcon className='h-[48px] w-[48px] fill-[#000000] pr-[8px] lg:h-[24px] lg:w-[24px]'></StarIcon>
+                      <div className='flex'>
+                        <span className='text-[48px] font-[400] text-[black] lg:text-[24px]'>
+                          Choose what your subs can request
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -493,437 +536,563 @@ export default function CreatorLanding(): JSX.Element {
             </div>
           </div>
 
-          <div className='w-full lg:px-[60px] grid lg:grid-cols-2 lg:grid-rows-none grid-rows-2 grid-cols-none py-2 justify-items-center items-center'>
-              <div>
-                <div className=''>
-                  <div className='flex justify-center items-center bg-[#EAE8FD] w-[95px] h-[50px] rounded-lg'>
-                    <span className='text-[#7362C6] text-[18px] font-[500]'>
-                      STEP 3
-                    </span>
-                  </div>
-                  <div className='lg:pt-[32px]'>
-                    <span className='text-[black] text-[34px] font-[600]'>
-                      Grow Your Audience
-                    </span>
-                  </div>
+          <div className='grid w-full grid-cols-none grid-rows-2 items-center justify-items-center py-2 lg:grid-cols-2 lg:grid-rows-none lg:px-[60px]'>
+            <div>
+              <div className=''>
+                <div className='flex h-[100px] w-[190px] items-center justify-center rounded-lg bg-[#EAE8FD] lg:h-[50px] lg:w-[95px]'>
+                  <span className='text-[36px] font-[500] text-[#7362C6] lg:text-[18px]'>
+                    STEP 3
+                  </span>
+                </div>
+                <div className='lg:pt-[32px]'>
+                  <span className='text-[64px] font-[600] text-[black] lg:text-[34px]'>
+                    Grow Your Audience
+                  </span>
+                </div>
+                <div>
                   <div>
-                    <div>
-                      <div className='flex items-center pt-[32px] py-[12px] space-x-2'>
-                          <StarIcon className='fill-[#000000] h-[24px] w-[24px] pr-[8px]'></StarIcon>
-                          <div className='flex'>
-                            <span className='text-[black] text-[24px] font-[400]'>
-                              Create spicy content
-                            </span>
-                          </div>
+                    <div className='flex items-center space-x-2 py-[12px] pt-[32px]'>
+                      <StarIcon className='h-[48px] w-[48px] fill-[#000000] pr-[8px] lg:h-[24px] lg:w-[24px]'></StarIcon>
+                      <div className='flex'>
+                        <span className='text-[48px] font-[400] text-[black] lg:text-[24px]'>
+                          Create spicy content
+                        </span>
                       </div>
-                      <div className='flex items-center pt-[16px] py-[12px] space-x-2'>
-                          <StarIcon className='fill-[#000000] h-[24px] w-[24px] pr-[8px]'></StarIcon>
-                          <div className='flex'>
-                            <span className='text-[black] text-[24px] font-[400]'>
-                              Tell followers about your Egirl
-                            </span>
-                          </div>
+                    </div>
+                    <div className='flex items-center space-x-2 py-[12px] pt-[16px]'>
+                      <StarIcon className='h-[48px] w-[48px] fill-[#000000] pr-[8px] lg:h-[24px] lg:w-[24px]'></StarIcon>
+                      <div className='flex'>
+                        <span className='text-[48px] font-[400] text-[black] lg:text-[24px]'>
+                          Tell followers about your Egirl
+                        </span>
                       </div>
-                      <div className='flex items-center pt-[16px] py-[12px] space-x-2'>
-                          <StarIcon className='fill-[#000000] h-[24px] w-[24px] pr-[8px]'></StarIcon>
-                          <div className='flex'>
-                            <span className='text-[black] text-[24px] font-[400]'>
-                              Post updates & stay active
-                            </span>
-                          </div>
+                    </div>
+                    <div className='flex items-center space-x-2 py-[12px] pt-[16px]'>
+                      <StarIcon className='h-[48px] w-[48px] fill-[#000000] pr-[8px] lg:h-[24px] lg:w-[24px]'></StarIcon>
+                      <div className='flex'>
+                        <span className='text-[48px] font-[400] text-[black] lg:text-[24px]'>
+                          Post updates & stay active
+                        </span>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className='row-start-1 lg:col-start-2 oveflow-hidden'>
+            </div>
+            <div className='oveflow-hidden row-start-1 lg:col-start-2'>
+              <div className='lg:hidden'>
+                <NextImage
+                  width={1000}
+                  height={1000}
+                  src={'/assets/svgImages/howItWorksStep3_1.svg'}
+                  alt={'howItWorksStep1 illus'}
+                  imgClassName=''
+                />
+              </div>
+              <div className='hidden lg:block'>
                 <NextImage
                   width={700}
                   height={700}
                   src={'/assets/svgImages/howItWorksStep3_1.svg'}
-                  alt={'howItWorksStep3 illus'}
+                  alt={'howItWorksStep1 illus'}
                   imgClassName='overflow-hidden'
                 />
               </div>
+            </div>
           </div>
-
         </div>
-
       </div>
 
       {/* Creator tools */}
-      <div className='bg-[#FFFFFF] lg:px-[100px] px-24'>
+      <div className='bg-[#FFFFFF] px-24 lg:px-[100px]'>
         <div className=''>
-          <div className='lg:grid lg:grid-cols-2 lg:grid-rows-none grid-rows-2 grid-cols-none justify-items-center items-center w-full'>
+          <div className='w-full grid-cols-none grid-rows-2 items-center justify-items-center lg:grid lg:grid-cols-2 lg:grid-rows-none'>
             <div className=''>
               <div className='flex justify-center lg:justify-start'>
                 <div className=''>
-                  <span className='text-[#949698] text-[18px] font-[500]'>
+                  <span className='text-[36px] font-[500] text-[#949698] lg:text-[18px]'>
                     CREATOR TOOLS
                   </span>
                 </div>
               </div>
-              <div className='space-x-3 flex justify-center lg:justify-start'>
-                <span className='text-[#000000] text-[48px] font-[600]'>
-                  Design without 
+              <div className='flex justify-center space-x-3 lg:justify-start'>
+                <span className='text-[96px] font-[600] text-[#000000] lg:text-[48px]'>
+                  Design without
                 </span>
-                <span className='text-[#000000] text-[48px] font-[400] italic mr-[2px]'>
+                <span className='mr-[2px] text-[96px] font-[400] italic text-[#000000] lg:text-[48px]'>
                   limits
                 </span>
               </div>
               <div className=''>
                 <div className='flex justify-start'>
-                  <div className='flex items-center px-[8px] py-[12px] space-x-[16px] mt-[64px]'>
+                  <div className='mt-[64px] flex items-center space-x-[16px] px-[8px] py-[12px]'>
                     <button onClick={showSection1(section1)}>
                       <div className=''>
-                      {
-                      section1 === true ?
-                      <NextImage
-                        width={60}
-                        height={60}
-                        src={'/assets/creatorLandingIcons/model.png'}
-                        alt={'modellogo'}
-                      /> 
-                      : 
-                      <NextImage
-                        width={60}
-                        height={60}
-                        src={'/assets/creatorLandingIcons/modelBlank.png'}
-                        alt={'modellogoblank'}
-                      /> 
-                      }
+                        {section1 === true ? (
+                          <div>
+                            <div className='lg:hidden'>
+                              <NextImage
+                                width={120}
+                                height={120}
+                                src={'/assets/creatorLandingIcons/model.png'}
+                                alt={'modellogo'}
+                              />
+                            </div>
+                            <div className='hidden lg:block'>
+                              <NextImage
+                                width={60}
+                                height={60}
+                                src={'/assets/creatorLandingIcons/model.png'}
+                                alt={'modellogo'}
+                              />
+                            </div>
+                          </div>
+                        ) : (
+                          <div>
+                            <div className='lg:hidden'>
+                              <NextImage
+                                width={120}
+                                height={120}
+                                src={
+                                  '/assets/creatorLandingIcons/modelBlank.png'
+                                }
+                                alt={'modellogo'}
+                              />
+                            </div>
+                            <div className='hidden lg:block'>
+                              <NextImage
+                                width={60}
+                                height={60}
+                                src={
+                                  '/assets/creatorLandingIcons/modelBlank.png'
+                                }
+                                alt={'modellogo'}
+                              />
+                            </div>
+                          </div>
+                        )}
                       </div>
                     </button>
                     <div>
                       <div>
-                        <span className='text-[#000000] text-[24px] font-[500]'>
+                        <span className='text-[48px] font-[500] text-[#000000] lg:text-[24px]'>
                           Use Existing AI Models
                         </span>
                       </div>
-                      {
-                      section1 && 
-                        <div className='space-x-1 w-[406px]'>
-                          <span className='text-[#000000] text-[18px] font-[400]'>
-                            Use platform or community models to start generating Egirl content at the click of a button.
+                      {section1 && (
+                        <div className='w-[812px] space-x-1 lg:w-[406px]'>
+                          <span className='text-[36px] font-[400] text-[#000000] lg:text-[18px]'>
+                            Use platform or community models to start generating
+                            Egirl content at the click of a button.
                           </span>
                         </div>
-                      }
+                      )}
                     </div>
                   </div>
                 </div>
                 <div className='flex justify-start'>
-                  <div className='flex items-center px-[8px] py-[12px] space-x-[16px]'>
+                  <div className='flex items-center space-x-[16px] px-[8px] py-[12px]'>
                     <button onClick={showSection2(section2)}>
-                        <div className=''>
-                        {
-                        section2 === true ?
-                        <NextImage
-                          width={60}
-                          height={60}
-                          src={'/assets/creatorLandingIcons/pen.png'}
-                          alt={'penlogo'}
-                        /> 
-                        : 
-                        <NextImage
-                          width={60}
-                          height={60}
-                          src={'/assets/creatorLandingIcons/penBlank.png'}
-                          alt={'penBlanklogo'}
-                        /> 
-                        }
-                        </div>
-                      </button>
+                      <div className=''>
+                        {section2 === true ? (
+                          <div>
+                            <div className='lg:hidden'>
+                              <NextImage
+                                width={120}
+                                height={120}
+                                src={'/assets/creatorLandingIcons/pen.png'}
+                                alt={'penlogo'}
+                              />
+                            </div>
+                            <div className='hidden lg:block'>
+                              <NextImage
+                                width={60}
+                                height={60}
+                                src={'/assets/creatorLandingIcons/pen.png'}
+                                alt={'penlogo'}
+                              />
+                            </div>
+                          </div>
+                        ) : (
+                          <div>
+                            <div className='lg:hidden'>
+                              <NextImage
+                                width={120}
+                                height={120}
+                                src={'/assets/creatorLandingIcons/penBlank.png'}
+                                alt={'penlogo'}
+                              />
+                            </div>
+                            <div className='hidden lg:block'>
+                              <NextImage
+                                width={60}
+                                height={60}
+                                src={'/assets/creatorLandingIcons/penBlank.png'}
+                                alt={'penlogo'}
+                              />
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </button>
                     <div>
                       <div>
-                        <span className='text-[#000000] text-[24px] font-[500]'>
+                        <span className='text-[48px] font-[500] text-[#000000] lg:text-[24px]'>
                           Create your Own AI Models
                         </span>
                       </div>
-                      {
-                      section2 && 
-                        <div className='w-[406px]'>
-                          <span className='text-[#000000] text-[18px] font-[400]'>
-                            Build your own unique AI models. With just a few clicks, you can create and adjust prototypes.
+                      {section2 && (
+                        <div className='w-[812px] lg:w-[406px]'>
+                          <span className='text-[36px] font-[400] text-[#000000] lg:text-[18px]'>
+                            Build your own unique AI models. With just a few
+                            clicks, you can create and adjust prototypes.
                           </span>
                         </div>
-                      }
+                      )}
                     </div>
                   </div>
                 </div>
                 <div className='flex justify-start'>
-                  <div className='flex items-center px-[8px] py-[12px] space-x-[16px]'>
+                  <div className='flex items-center space-x-[16px] px-[8px] py-[12px]'>
                     <button onClick={showSection3(section3)}>
-                          <div className=''>
-                          {
-                          section3 === true ?
-                          <NextImage
-                            width={60}
-                            height={60}
-                            src={'/assets/creatorLandingIcons/rocket.png'}
-                            alt={'rocketlogo'}
-                          /> 
-                          : 
-                          <NextImage
-                            width={60}
-                            height={60}
-                            src={'/assets/creatorLandingIcons/rocketBlank.png'}
-                            alt={'rocketBlankLogo'}
-                          /> 
-                          }
+                      <div className=''>
+                        {section3 === true ? (
+                          <div>
+                            <div className='lg:hidden'>
+                              <NextImage
+                                width={120}
+                                height={120}
+                                src={'/assets/creatorLandingIcons/rocket.png'}
+                                alt={'rocketlogo'}
+                              />
+                            </div>
+                            <div className='hidden lg:block'>
+                              <NextImage
+                                width={60}
+                                height={60}
+                                src={'/assets/creatorLandingIcons/rocket.png'}
+                                alt={'rocketlogo'}
+                              />
+                            </div>
                           </div>
-                        </button>
+                        ) : (
+                          <div>
+                            <div className='lg:hidden'>
+                              <NextImage
+                                width={120}
+                                height={120}
+                                src={
+                                  '/assets/creatorLandingIcons/rocketBlank.png'
+                                }
+                                alt={'rocketlogo'}
+                              />
+                            </div>
+                            <div className='hidden lg:block'>
+                              <NextImage
+                                width={60}
+                                height={60}
+                                src={
+                                  '/assets/creatorLandingIcons/rocketBlank.png'
+                                }
+                                alt={'rocketlogo'}
+                              />
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </button>
                     <div>
                       <div>
-                        <span className='text-[#000000] text-[24px] font-[500]'>
+                        <span className='text-[48px] font-[500] text-[#000000] lg:text-[24px]'>
                           Unlimited Growth Potential
                         </span>
                       </div>
-                      {
-                      section3 && 
-                      <div className='w-[406px]'>
-                        <span className='text-[#000000] text-[18px] font-[400]'>
-                          Easy to get started. Those who seek to master their craft have unlimited potential for growth.                         
-                        </span>
-                      </div>
-                      }
+                      {section3 && (
+                        <div className='w-[812px] lg:w-[406px]'>
+                          <span className='text-[36px] font-[400] text-[#000000] lg:text-[18px]'>
+                            Easy to get started. Those who seek to master their
+                            craft have unlimited potential for growth.
+                          </span>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div className='h-[700px]'>
-                {
-                  section1 &&
-                  <div className='flex justify-center oveflow-hidden'>
+            <div className='h-[800px] lg:h-[700px]'>
+              {section1 && (
+                <div>
+                  <div className='oveflow-hidden flex justify-center'>
+                    <div className='lg:hidden'>
+                      <NextImage
+                        width={812}
+                        height={890}
+                        src={'/assets/svgImages/creatorTools1.svg'}
+                        alt={'creatorTools1 illus'}
+                        imgClassName='scale-75 overflow-hidden'
+                      />
+                    </div>
+                    <div className='hidden lg:block'>
+                      <NextImage
+                        width={612}
+                        height={690}
+                        src={'/assets/svgImages/creatorTools1.svg'}
+                        alt={'creatorTools1 illus'}
+                        imgClassName='scale-75 overflow-hidden'
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
+              {section2 && (
+                <div className='oveflow-hidden flex justify-center'>
+                  <div className='lg:hidden'>
                     <NextImage
-                      width={612}
-                      height={690}
-                      src={'/assets/svgImages/creatorTools1.svg'}
-                      alt={'creatorTools1 illus'}
-                      imgClassName='scale-75 overflow-hidden'
+                      width={800}
+                      height={790}
+                      src={'/assets/svgImages/creatorTools2.svg'}
+                      alt={'creatorTools2 illus'}
+                      imgClassName='overflow-hidden'
                     />
                   </div>
-                }
-                {
-                  section2 && 
-                  <div className='flex justify-center oveflow-hidden'>
+                  <div className='hidden lg:block'>
                     <NextImage
                       width={700}
                       height={690}
                       src={'/assets/svgImages/creatorTools2.svg'}
-                      alt={'creatorTools1 illus'}
+                      alt={'creatorTools2 illus'}
                       imgClassName='overflow-hidden'
                     />
                   </div>
-                }
-                {
-                  section3 && 
-                  <div className='flex justify-center oveflow-hidden'>
+                </div>
+              )}
+              {section3 && (
+                <div className='oveflow-hidden flex justify-center'>
+                  <div className='lg:hidden'>
+                    <NextImage
+                      width={800}
+                      height={715}
+                      src={'/assets/svgImages/creatorTools3.svg'}
+                      alt={'creatorTools3 illus'}
+                    />
+                  </div>
+                  <div className='hidden lg:block'>
                     <NextImage
                       width={700}
                       height={615}
                       src={'/assets/svgImages/creatorTools3.svg'}
-                      alt={'creatorTools1 illus'}
-                      imgClassName='scale-75'
+                      alt={'creatorTools3 illus'}
                     />
                   </div>
-                }
+                </div>
+              )}
             </div>
           </div>
         </div>
       </div>
 
       {/* Get Paid */}
-      <div className='bg-[#F7F7F7] lg:px-[100px] px-24'>
+      <div className='bg-[#F7F7F7] px-24 lg:px-[100px]'>
         <div className='py-10'>
           <div className=''>
             <div className=''>
               <div className='flex justify-center lg:justify-start'>
                 <div className=''>
-                  <span className='text-[#949698] text-[18px] font-[500]'>
+                  <span className='text-[36px] font-[500] text-[#949698] lg:text-[18px]'>
                     GET PAID
                   </span>
                 </div>
               </div>
-              <div className='space-x-3 flex justify-center lg:justify-start text-center'>
-                <span className='text-[#000000] text-[48px] font-[600]'>
-                  Turn your passion into 
-                  <span className='font-[400] italic ml-2'>
-                    profit
-                  </span>
+              <div className='flex justify-center space-x-3 text-center lg:justify-start'>
+                <span className='text-[96px] font-[600] text-[#000000] lg:text-[48px]'>
+                  Turn your passion into
+                  <span className='ml-2 font-[400] italic'>profit</span>
                 </span>
               </div>
             </div>
             <div className='mt-[48px] mb-[80px]'>
-              <div className='lg:flex items-center justify-between lg:space-x-2 space-y-8 lg:space-y-0'>
+              <div className='items-center justify-between space-y-8 lg:flex lg:space-x-2 lg:space-y-0'>
                 <div className='flex justify-center'>
-                  <div className='w-[397px] h-[266px] border rounded-lg bg-[#FFFFFF]'>
+                  <div className='h-[400px] rounded-lg border bg-[#FFFFFF] lg:h-[266px] lg:w-[397px]'>
                     <div className='mt-[40px] ml-[24px] mr-[24px]'>
-                      <StarIcon className='fill-[#5848BC] h-[32px] w-[32px] pr-[8px]'></StarIcon>
+                      <StarIcon className='h-[64px] w-[64px] fill-[#5848BC] pr-[8px] lg:h-[32px] lg:w-[32px]'></StarIcon>
                       <div className='mt-[24px]'>
-                        <span className='text-[#000000] text-[24px] font-[600]'>Subscriptions & PPV</span>
+                        <span className='text-[48px] font-[600] text-[#000000] lg:text-[24px]'>
+                          Subscriptions & PPV
+                        </span>
                       </div>
                       <div>
-                        <span className='text-[#000000] text-[18px] font-[400]'>Earn monthly income from fans via subscriptions. Pay-per-view allows you to earn fees on ultra exclusive content.</span>
+                        <span className='text-[36px] font-[400] text-[#000000] lg:text-[18px]'>
+                          Earn monthly income from fans via subscriptions.
+                          Pay-per-view allows you to earn fees on ultra
+                          exclusive content.
+                        </span>
                       </div>
                     </div>
                   </div>
                 </div>
 
                 <div className='flex justify-center'>
-                  <div className='w-[397px] h-[266px] border rounded-lg bg-[#FFFFFF]'>
+                  <div className='h-[400px] rounded-lg border bg-[#FFFFFF] lg:h-[266px] lg:w-[397px]'>
                     <div className='mt-[40px] ml-[24px] mr-[24px]'>
-                    <StarIcon className='fill-[#5848BC] h-[32px] w-[32px] pr-[8px]'></StarIcon>
+                      <StarIcon className='h-[64px] w-[64px] fill-[#5848BC] pr-[8px] lg:h-[32px] lg:w-[32px]'></StarIcon>
                       <div className='mt-[24px]'>
-                        <span className='text-[#000000] text-[24px] font-[600]'>Chatbots</span>
+                        <span className='text-[48px] font-[600] text-[#000000] lg:text-[24px]'>
+                          Chatbots
+                        </span>
                       </div>
                       <div>
-                        <span className='text-[#000000] text-[18px] font-[400]'>Gain a percentage of profit generated each time users chat with your Egirl, and on any requests made to your Egirl.</span>
+                        <span className='text-[36px] font-[400] text-[#000000] lg:text-[18px]'>
+                          Gain a percentage of profit generated each time users
+                          chat with your Egirl, and on any requests made to your
+                          Egirl.
+                        </span>
                       </div>
                     </div>
                   </div>
                 </div>
- 
+
                 <div className='flex justify-center'>
-                  <div className='w-[397px] h-[266px] border rounded-lg bg-[#FFFFFF]'>
+                  <div className='h-[400px] rounded-lg border bg-[#FFFFFF] lg:h-[266px] lg:w-[397px]'>
                     <div className='mt-[40px] ml-[24px] mr-[24px]'>
-                    <StarIcon className='fill-[#5848BC] h-[32px] w-[32px] pr-[8px]'></StarIcon>
+                      <StarIcon className='h-[64px] w-[64px] fill-[#5848BC] pr-[8px] lg:h-[32px] lg:w-[32px]'></StarIcon>
                       <div className='mt-[24px]'>
-                        <span className='text-[#000000] text-[24px] font-[600]'>AI Models</span>
+                        <span className='text-[48px] font-[600] text-[#000000] lg:text-[24px]'>
+                          AI Models
+                        </span>
                       </div>
                       <div>
-                        <span className='text-[#000000] text-[18px] font-[400]'>Create your own unique AI models and list them on our creator marketplace. Earn fees on every image generation.</span>
+                        <span className='text-[36px] font-[400] text-[#000000] lg:text-[18px]'>
+                          Create your own unique AI models and list them on our
+                          creator marketplace. Earn fees on every image
+                          generation.
+                        </span>
                       </div>
                     </div>
-                  </div> 
+                  </div>
                 </div>
-
               </div>
             </div>
           </div>
         </div>
       </div>
 
-    {/* Footer */}
-    <div className='bg-[#000000] lg:px-[100px] px-24'>
+      {/* Footer */}
+      <div className='w-full bg-[#000000] px-24 lg:px-[100px]'>
         <div className='py-20'>
-          <div className='lg:grid lg:grid-cols-2 gap-[100px] md:grid md:grid-cols-2 sm:grid sm:grid-cols-1 md:max-xl:grid md:max-lg:grid-cols-1'>
+          <div className='gap-[100px] sm:grid sm:grid-cols-1 md:grid md:grid-cols-2 md:max-xl:grid md:max-lg:grid-cols-1 lg:grid lg:grid-cols-2'>
             <div className=''>
               <div className='flex justify-center lg:justify-start'>
-                <div className='flex justify-center items-center bg-[#313131] rounded-[8px] h-[40px] w-[135px] px-[8px] py-[12px]'>
-                  <StarIcon className='fill-[#5848BC] h-[20px] w-[20px] pr-[8px]'></StarIcon>
+                <div className='flex h-[80px] w-[270px] items-center justify-center rounded-[8px] bg-[#313131] px-[8px] py-[12px] lg:h-[40px] lg:w-[135px]'>
+                  <StarIcon className='h-[40px] w-[40px] fill-[#5848BC] pr-[8px] lg:h-[20px] lg:w-[20px]'></StarIcon>
                   <div className='flex'>
-                    <span className='text-[white] text-[16px] font-[500]'>
+                    <span className='text-[32px] font-[500] text-[white] lg:text-[16px]'>
                       beta access
                     </span>
                   </div>
                 </div>
-              </div>      
-              <div className='pt-10 space-x-3 flex justify-center lg:justify-start text-center lg:text-start'>
-                <span className='text-white text-[24px] lg:text-[56px] font-[600]'>
-                  More than 3000 people have 
-                  <span className='font-[500] italic mx-2 lg:mx-4'>
-                    joined
-                  </span>
+              </div>
+              <div className='flex justify-center space-x-3 pt-10 text-center lg:justify-start lg:text-start'>
+                <span className='text-[100px] font-[600] text-white lg:text-[56px]'>
+                  More than 3000 people have
+                  <span className='mx-6 font-[500] italic lg:mx-4'>joined</span>
                   the waitlist!
                 </span>
               </div>
-              <div className='pt-[48px] flex justify-center lg:justify-start'>
-                <div className='flex w-[515px]'>
-                  <input type="email" className="bg-[#313131] form-input px-4 py-3 rounded-l-[12px] border-transparent drop-shadow text-[#949698] w-[395px]" placeholder='Enter your email'/>
-                  <div className='flex items-center justify-center w-[158px] px-[24px] py-[16px] bg-[#5848BC] rounded-r-[12px] drop-shadow'>
-                    <span>
-                      Join
-                    </span>
+              <div className='flex justify-center pt-[48px] lg:justify-start'>
+                <div className='flex w-[800px] justify-center lg:w-[515px]'>
+                  <input
+                    type='email'
+                    className='form-input rounded-l-[12px] border-transparent bg-[#313131] px-4 py-3 text-[36px] text-[#949698] drop-shadow lg:w-[395px] lg:text-[24px]'
+                    placeholder='Enter your email'
+                  />
+                  <div className='flex w-[158px] items-center justify-center rounded-r-[12px] bg-[#5848BC] px-[24px] py-[16px] drop-shadow'>
+                    <span className='text-[36px] lg:text-[24px]'>Join</span>
                   </div>
                 </div>
               </div>
             </div>
-            <div className='hidden lg:block min-[200px]:mt-[50px]'>
-              <div className='md:shrink-0 sm:shrink-0'>
+            <div className='hidden min-[200px]:mt-[50px] lg:block'>
+              <div className='sm:shrink-0 md:shrink-0'>
                 <NextImage
-                  width={550}
-                  height={500}
-                  src={'/assets/footerContent.png'}
+                  width={537}
+                  height={522}
+                  src={'/assets/svgImages/footerIllus.svg'}
+                  alt={'footer illus'}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className='space-y-10 py-10 lg:flex lg:justify-between'>
+          <div>
+            <span className='text-[64px] font-semibold text-white lg:text-[32px]'>
+              Egirls
+            </span>
+          </div>
+          <div className='space-y-2'>
+            <div>
+              <span className='text-[28px] font-[500] text-[#646668] lg:text-[14px]'>
+                CHAT WITH US
+              </span>
+            </div>
+            <div>
+              <span className='text-[32px] font-[500] text-[white] lg:text-[16px]'>
+                business@egirls.ai
+              </span>
+            </div>
+          </div>
+          <div>
+            <span className='text-[28px] font-[500] text-[#646668] lg:text-[14px]'>
+              FOLLOW US
+            </span>
+            <div className='mt-[8px] flex items-center justify-items-center space-x-[4px] p-1 lg:grid lg:grid-cols-5'>
+              <div className='p-1'>
+                <NextImage
+                  width={20}
+                  height={22}
+                  src={'/assets/homeIcons/instagramIcon.png'}
+                  alt={'Profile'}
+                />
+              </div>
+              <div className='p-1'>
+                <NextImage
+                  width={20}
+                  height={22}
+                  src={'/assets/homeIcons/tiktokIcon.png'}
+                  alt={'Profile'}
+                />
+              </div>
+              <div className='p-1'>
+                <NextImage
+                  width={22}
+                  height={22}
+                  src={'/assets/homeIcons/redditIcon.png'}
+                  alt={'Profile'}
+                />
+              </div>
+              <div className='p-1'>
+                <NextImage
+                  width={26}
+                  height={22}
+                  src={'/assets/homeIcons/discordIcon.png'}
+                  alt={'Profile'}
+                />
+              </div>
+              <div className='p-1'>
+                <NextImage
+                  width={26}
+                  height={22}
+                  src={'/assets/homeIcons/twitterIcon.png'}
                   alt={'Profile'}
                 />
               </div>
             </div>
           </div>
         </div>
-        <div className='py-10 space-y-10 lg:flex lg:justify-between'>
-          <div>
-            <span className='text-white text-[32px] font-semibold'>
-              Egirls
-            </span>
-          </div>
-          <div className='space-y-2'>
-            <div>
-              <span className='text-[#646668] text-[14px] font-[500]'>
-                CHAT WITH US
-              </span>
-            </div>
-            <div>
-              <span className='text-[white] text-[16px] font-[500]'>
-                business@egirls.ai
-              </span>
-            </div>
-          </div>
-          <div>
-            <span className='text-[#646668] text-[14px] font-[500]'>
-              FOLLOW US
-            </span>
-            <div className='flex space-x-[24px] mt-[15px]'>
-              <div>
-                <NextImage
-                    width={18}
-                    height={18}
-                    src={'/assets/homeIcons/instagramIcon.png'}
-                    alt={'Profile'}
-                    className='rounded-[15px]'
-                  />
-              </div>
-              <div>
-                <NextImage
-                    width={18}
-                    height={18}
-                    src={'/assets/homeIcons/tiktokIcon.png'}
-                    alt={'Profile'}
-                    className='rounded-[15px]'
-                  />
-              </div>
-              <div>
-                <NextImage
-                    width={18}
-                    height={18}
-                    src={'/assets/homeIcons/redditIcon.png'}
-                    alt={'Profile'}
-                    className='rounded-[15px]'
-                  />
-              </div>
-              <div>
-                <NextImage
-                    width={18}
-                    height={18}
-                    src={'/assets/homeIcons/discordIcon.png'}
-                    alt={'Profile'}
-                    className='rounded-[15px]'
-                  />
-              </div>
-              <div>
-                <NextImage
-                    width={18}
-                    height={18}
-                    src={'/assets/homeIcons/twitterIcon.png'}
-                    alt={'Profile'}
-                    className='rounded-[15px]'
-                  />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className='border-t-2 border-[#646668] mb-[15px]'>
-          <div className='py-[25px] flex justify-between'>
+        <div className='mb-[15px] border-t-2 border-[#646668]'>
+          <div className='flex justify-between py-[25px] text-[28px] lg:text-[14px]'>
             <div>
               <span>© 2023 Egirls AI, Inc. All Rights Reserved</span>
             </div>
@@ -932,50 +1101,48 @@ export default function CreatorLanding(): JSX.Element {
             </div>
           </div>
         </div>
-    </div>
+      </div>
 
-    {/* Socials sticky */}
-    <div className='sticky bottom-0 right-0 z-10 float-right w-full flex justify-end'>
-      <div className='bg-[#5848BC] w-[160px] h-[60px] rounded-tl-xl p-1'>
-        <div className='grid grid-cols-3 p-1 h-full justify-items-center items-center '>
-          <div className='hover:bg-[#7367c2] p-2 rounded-lg'>
-            <NextImage
+      {/* Socials sticky */}
+      <div className='sticky bottom-0 right-0 z-10 float-right flex w-full justify-end'>
+        <div className='h-[60px] w-[160px] rounded-tl-xl bg-[#5848BC] p-1'>
+          <div className='grid h-full grid-cols-3 items-center justify-items-center p-1 '>
+            <div className='rounded-lg p-2 hover:bg-[#7367c2]'>
+              <NextImage
                 width={20}
                 height={20}
                 src={'/assets/homeIcons/redditIcon.png'}
                 alt={'Profile'}
                 className=''
               />
-          </div>
-          <div className='hover:bg-[#7367c2] p-2 rounded-lg'>
-            <NextImage
+            </div>
+            <div className='rounded-lg p-2 hover:bg-[#7367c2]'>
+              <NextImage
                 width={24}
                 height={20}
                 src={'/assets/homeIcons/discordIcon.png'}
                 alt={'Profile'}
                 className=''
               />
-          </div>
-          <div className='hover:bg-[#7367c2] p-2 rounded-lg'>
-            <NextImage
+            </div>
+            <div className='rounded-lg p-2 hover:bg-[#7367c2]'>
+              <NextImage
                 width={24}
                 height={20}
                 src={'/assets/homeIcons/twitterIcon.png'}
                 alt={'Profile'}
                 className=''
               />
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
   );
 }
 
 CreatorLanding.getLayout = (page: ReactElement): ReactNode => (
   <AuthLayout>
-    <LandingLayout>
-      {page}
-    </LandingLayout>
+    <LandingLayout>{page}</LandingLayout>
   </AuthLayout>
 );

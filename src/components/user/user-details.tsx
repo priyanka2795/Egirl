@@ -64,10 +64,7 @@ export function UserDetails({
                   ) : index === 2 ? (
                     <button className='custom-underline group relative'>
                       {detail}
-                      <ToolTip
-                        className='translate-y-1'
-                        tip='1 day ago'
-                      />
+                      <ToolTip className='translate-y-1' tip='1 day ago' />
                     </button>
                   ) : (
                     <p>{detail}</p>

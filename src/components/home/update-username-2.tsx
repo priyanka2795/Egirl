@@ -31,22 +31,17 @@ export function UpdateUsername2(): JSX.Element {
   useEffect(() => {
     // const checkAvailability = async (value: string): Promise<void> => {
     //   const empty = await checkUsernameAvailability(value);
-
     //   if (empty) setAvailable(true);
     //   else {
     //     setAvailable(false);
     //     setErrorMessage('This username has been taken. Please choose another.');
     //   }
     // };
-
     // if (!visited && inputValue.length > 0) setVisited(true);
-
     // if (visited) {
     //   if (errorMessage) setErrorMessage('');
-
     //   // const error = isValidUsername(user?.username as string, inputValue);
     //   const error = isValidUsername('dummy', inputValue);
-
     //   if (error) {
     //     setAvailable(false);
     //     setErrorMessage(error);

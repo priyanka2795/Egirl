@@ -168,7 +168,7 @@ export function AuthContextProvider({
   // };
 
   // return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
-  return <>{children}</>
+  return <>{children}</>;
 }
 
 export function useAuth(): AuthContext {

@@ -13,7 +13,7 @@ export function Aside({ children }: AsideProps): JSX.Element | null {
   // if (width < 1024) return null;
 
   return (
-    <aside className='flex flex-col gap-4 pt-1 w-96	'>
+    <aside className='flex w-96 flex-col gap-4 pt-1	'>
       {/* <SearchBar /> */}
       {children}
       {/* <AsideFooter /> */}

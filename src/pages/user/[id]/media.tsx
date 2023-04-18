@@ -31,7 +31,7 @@ export default function UserMedia(): JSX.Element {
   const data = [{}];
 
   // const sortedTweets = mergeData(true, data);
-  const sortedTweets = true
+  const sortedTweets = true;
 
   return (
     <section>

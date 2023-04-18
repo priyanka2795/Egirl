@@ -80,7 +80,6 @@ export function MobileSidebarModal({
   coverPhotoURL,
   closeModal
 }: MobileSidebarModalProps): JSX.Element {
-
   const {
     open: displayOpen,
     openModal: displayOpenModal,

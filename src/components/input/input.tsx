@@ -76,11 +76,13 @@ export function Input({
     const tweetData = {
       text: inputValue.trim() || null,
       parent: isReplying && parent ? parent : null,
-      images: [{
-        id: '1',
-        src: 'src image',
-        alt: 'alt image'
-      }],
+      images: [
+        {
+          id: '1',
+          src: 'src image',
+          alt: 'alt image'
+        }
+      ],
       userLikes: [],
       createdBy: 1,
       createdAt: 123,
@@ -92,14 +94,14 @@ export function Input({
     await sleep(500);
 
     // const [tweetRef] = await Promise.all([
-      // addDoc(tweetsCollection, tweetData),
-      // manageTotalTweets('increment', userId),
-      // tweetData.images && manageTotalPhotos('increment', userId),
-      // isReplying && manageReply('increment', parent?.id as string)
+    // addDoc(tweetsCollection, tweetData),
+    // manageTotalTweets('increment', userId),
+    // tweetData.images && manageTotalPhotos('increment', userId),
+    // isReplying && manageReply('increment', parent?.id as string)
     // ]);
 
     // const { id: tweetId } = await getDoc(tweetRef);
-    const tweetId = 12345
+    const tweetId = 12345;
 
     if (!modal && !replyModal) {
       discardTweet();

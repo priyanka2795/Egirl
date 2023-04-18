@@ -80,24 +80,24 @@ export function WindowContextProvider({
   children
 }: WindowContextProviderProps): JSX.Element {
   // const value = null;
-  
+
   // if (typeof window !== "undefined") {
   //   const [windowSize, setWindowSize] = useState<WindowSize>({
   //     width: window.innerWidth,
   //     height: window.innerHeight
   //   });
-  
+
   //   useEffect(() => {
   //     const handleResize = (): void =>
   //       setWindowSize({
   //         width: window.innerWidth,
   //         height: window.innerHeight
   //       });
-  
+
   //     window.addEventListener('resize', handleResize);
   //     return () => window.removeEventListener('resize', handleResize);
   //   }, []);
-  
+
   //   const value: WindowContext = {
   //     ...windowSize,
   //     isMobile: windowSize.width < 500
@@ -111,9 +111,7 @@ export function WindowContextProvider({
   // return (
   //   <WindowContext.Provider value={value}>{children}</WindowContext.Provider>
   // );
-  return (
-    <>{children}</>
-  );
+  return <>{children}</>;
 }
 
 export function useWindow() {

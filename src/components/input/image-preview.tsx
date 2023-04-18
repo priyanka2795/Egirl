@@ -106,40 +106,40 @@ export function ImagePreview({
         />
       </Modal>
       {/* <AnimatePresence mode='popLayout'> */}
-        {imagesPreview.map(({ id, src, alt }, index) => (
-          <motion.button
-            type='button'
-            className={cn(
-              'accent-tab relative transition-shadow',
+      {imagesPreview.map(({ id, src, alt }, index) => (
+        <motion.button
+          type='button'
+          className={cn(
+            'accent-tab relative transition-shadow',
+            isTweet
+              ? postImageBorderRadius[previewCount][index]
+              : 'rounded-2xl',
+            {
+              'col-span-2 row-span-2': previewCount === 1,
+              'row-span-2':
+                previewCount === 2 || (index === 0 && previewCount === 3)
+            }
+          )}
+          {...variants}
+          onClick={preventBubbling(handleSelectedImage(index))}
+          layout={!isTweet ? true : false}
+          key={id}
+        >
+          <NextImage
+            className='relative h-full w-full cursor-pointer transition 
+                         hover:brightness-75 hover:duration-200'
+            imgClassName={cn(
               isTweet
                 ? postImageBorderRadius[previewCount][index]
-                : 'rounded-2xl',
-              {
-                'col-span-2 row-span-2': previewCount === 1,
-                'row-span-2':
-                  previewCount === 2 || (index === 0 && previewCount === 3)
-              }
+                : 'rounded-2xl'
             )}
-            {...variants}
-            onClick={preventBubbling(handleSelectedImage(index))}
-            layout={!isTweet ? true : false}
-            key={id}
-          >
-            <NextImage
-              className='relative h-full w-full cursor-pointer transition 
-                         hover:brightness-75 hover:duration-200'
-              imgClassName={cn(
-                isTweet
-                  ? postImageBorderRadius[previewCount][index]
-                  : 'rounded-2xl'
-              )}
-              previewCount={previewCount}
-              layout='fill'
-              src={src}
-              alt={alt}
-              useSkeleton={isTweet}
-            />
-            {/* {removeImage && (
+            previewCount={previewCount}
+            layout='fill'
+            src={src}
+            alt={alt}
+            useSkeleton={isTweet}
+          />
+          {/* {removeImage && (
               <Button
                 className='group absolute top-0 left-0 translate-x-1 translate-y-1
                            bg-light-primary/75 p-1 backdrop-blur-sm 
@@ -150,8 +150,8 @@ export function ImagePreview({
                 <ToolTip className='translate-y-2' tip='Remove' />
               </Button>
             )} */}
-          </motion.button>
-        ))}
+        </motion.button>
+      ))}
       {/* </AnimatePresence> */}
     </div>
   );

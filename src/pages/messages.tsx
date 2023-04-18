@@ -56,8 +56,7 @@ export default function Messages(): JSX.Element {
 
   const tweetData = null;
 
-  const sendImageRequestHandler = () => {
-  };
+  const sendImageRequestHandler = () => {};
 
   const loadMessageData = async () => {
     const res = await getFlexUserCharChat(
@@ -151,13 +150,13 @@ export default function Messages(): JSX.Element {
             ) : (
               <>
                 {/* <AnimatePresence mode='popLayout'> */}
-                  {messages?.map((message, index) => (
-                    <Message
-                      key={index}
-                      message={message.message}
-                      sender={message.who_is_sender}
-                    />
-                  ))}
+                {messages?.map((message, index) => (
+                  <Message
+                    key={index}
+                    message={message.message}
+                    sender={message.who_is_sender}
+                  />
+                ))}
                 {/* </AnimatePresence> */}
                 {/* <LoadMore /> */}
               </>

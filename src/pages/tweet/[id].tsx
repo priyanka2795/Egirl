@@ -40,25 +40,20 @@ export default function TweetId(): JSX.Element {
   // );
 
   // const { text, images } = tweetData ?? {};
-  const viewTweetRef = null
+  const viewTweetRef = null;
 
   const tweetData = {
     parent: {
       id: null
     },
     user: {
-      name: null,
+      name: null
     }
-
   };
 
-  const text = {
+  const text = {};
 
-  }
-
-  const images = {
-    
-  }
+  const images = {};
 
   const tweetLoading = false;
 

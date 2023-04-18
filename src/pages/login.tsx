@@ -4,7 +4,11 @@ import { LoginMain } from '@components/login/login-main';
 import { LoginFooter } from '@components/login/login-footer';
 import { ReactElement, ReactNode, useEffect } from 'react';
 import { Auth, ThemeSupa } from '@supabase/auth-ui-react';
-import { useSession, useSupabaseClient, useUser } from '@supabase/auth-helpers-react';
+import {
+  useSession,
+  useSupabaseClient,
+  useUser
+} from '@supabase/auth-helpers-react';
 import Account from '../components/account/account';
 import Router from 'next/router';
 
@@ -88,11 +92,11 @@ export default function Login(): JSX.Element {
   };
 
   useEffect(() => {
-    if(user != null){
+    if (user != null) {
       Router.push('/home');
-    };
+    }
   }, [user]);
-  
+
   return (
     <div className='grid min-h-screen grid-rows-[1fr,auto]'>
       <SEO
@@ -100,19 +104,19 @@ export default function Login(): JSX.Element {
         description='From breaking news and entertainment to sports and politics, get the full story with all the live commentary.'
       />
       <div className='grid grid-cols-5'>
-        <div className='flex items-center justify-center bg-white font-serif font-bold text-8xl italic text-main-red col-span-3'>
+        <div className='col-span-3 flex items-center justify-center bg-white font-serif text-8xl font-bold italic text-main-red'>
           e-Girls
         </div>
-        <div className='flex items-center bg-main-red col-span-2'>
-          <div className='container mx-40 p-10 bg-white shadow-2xl drop-shadow-2xl'>
+        <div className='col-span-2 flex items-center bg-main-red'>
+          <div className='container mx-40 bg-white p-10 shadow-2xl drop-shadow-2xl'>
             {/* {!session ? ( */}
-              <Auth
-                supabaseClient={supabase}
-                appearance={{ theme: customTheme }}
-                providers={['google', 'twitter', 'apple']}
-                theme='default'
-                redirectTo='/home'
-              />
+            <Auth
+              supabaseClient={supabase}
+              appearance={{ theme: customTheme }}
+              providers={['google', 'twitter', 'apple']}
+              theme='default'
+              redirectTo='/home'
+            />
             {/* ) : (
               <Account session={session} />
             )} */}

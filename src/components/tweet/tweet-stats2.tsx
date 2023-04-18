@@ -118,8 +118,7 @@ export function TweetStats2({
           //   userId,
           //   tweetId
           // )}
-          onClick={() => {
-          }}
+          onClick={() => {}}
         />
         <TweetOption
           className={cn(

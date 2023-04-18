@@ -28,7 +28,7 @@ export default function UserWithReplies(): JSX.Element {
   //   }
   // );
 
-  const pinnedData = [{}]
+  const pinnedData = [{}];
 
   // const { data, loading } = useCollection(
   //   query(

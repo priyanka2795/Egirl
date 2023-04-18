@@ -63,8 +63,8 @@ export function UserTooltip({
     // >
     //   {children}
     //   <div
-    //     className='menu-container invisible absolute left-1/2 w-72 -translate-x-1/2 rounded-2xl 
-    //                opacity-0 [transition:visibility_0ms_ease_400ms,opacity_200ms_ease_200ms] group-hover:visible 
+    //     className='menu-container invisible absolute left-1/2 w-72 -translate-x-1/2 rounded-2xl
+    //                opacity-0 [transition:visibility_0ms_ease_400ms,opacity_200ms_ease_200ms] group-hover:visible
     //                group-hover:opacity-100 group-hover:delay-500'
     //   >
     //     <div className='flex flex-col gap-3 p-4'>
@@ -90,7 +90,7 @@ export function UserTooltip({
     //         <div className='flex justify-between'>
     //           <div className='mb-10'>
     //             <UserAvatar
-    //               className='absolute -translate-y-1/2 bg-main-background p-1 
+    //               className='absolute -translate-y-1/2 bg-main-background p-1
     //                          hover:brightness-100 [&>figure>span]:[transition:200ms]
     //                          [&:hover>figure>span]:brightness-75'
     //               src={photoURL}
@@ -119,7 +119,7 @@ export function UserTooltip({
     //         {allStats.map(([id, label, stat]) => (
     //           <Link href={`${userLink}/${id}`} key={id}>
     //             <a
-    //               className='hover-animation flex h-4 items-center gap-1 border-b border-b-transparent 
+    //               className='hover-animation flex h-4 items-center gap-1 border-b border-b-transparent
     //                          outline-none hover:border-b-light-primary focus-visible:border-b-light-primary
     //                          dark:hover:border-b-dark-primary dark:focus-visible:border-b-dark-primary'
     //             >
@@ -134,8 +134,6 @@ export function UserTooltip({
     //     </div>
     //   </div>
     // </div>
-    <>
-      {children}
-    </>
+    <>{children}</>
   );
 }

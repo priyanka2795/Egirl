@@ -1,5 +1,4 @@
-export const getUsername = async () => {
-};
+export const getUsername = async () => {};
 
 // import {
 //   useUser,
