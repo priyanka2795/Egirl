@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useModal } from '@lib/hooks/useModal';
-import { BookmarkLayout,  ProtectedLayout } from '@components/layout/common-layout';
+import {
+  BookmarkLayout,
+  ProtectedLayout
+} from '@components/layout/common-layout';
 import { MainLayout } from '@components/layout/main-layout';
 import { SEO } from '@components/common/seo';
 import { MainHeader } from '@components/home/main-header';
@@ -43,24 +46,26 @@ const suggestionsData: AdminUser[] = [
 ];
 
 type SubsCharacterType = {
-  id: string,
-  bio: string,
-  display_name: string,
-  created_at: number,
-  creator_id: number,
-  infotag_ids: number[],
-  is_verified: boolean,
-  profile_banner_pictures: string,
-  profile_picture: string,
-  username: string,
-}
+  id: string;
+  bio: string;
+  display_name: string;
+  created_at: number;
+  creator_id: number;
+  infotag_ids: number[];
+  is_verified: boolean;
+  profile_banner_pictures: string;
+  profile_picture: string;
+  username: string;
+};
 
 export default function Lists(): JSX.Element {
   const { open, openModal, closeModal } = useModal();
   const supabaseClient = useSupabaseClient();
   const [activeList, setActiveList] = useState<number>(-3);
   const [loading, setLoading] = useState(true);
-  const [subscriptions, setSubscriptions] = useState<SubsCharacterType[] | null>(null);
+  const [subscriptions, setSubscriptions] = useState<
+    SubsCharacterType[] | null
+  >(null);
   const supabaseUser = useUser();
 
   const fetchSubscriptionsList = async () => {
@@ -68,11 +73,13 @@ export default function Lists(): JSX.Element {
     const subslist = await getSubscriptions(
       'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
       supabaseClient
-    ).then((data) => {
-      setSubscriptions(data.characters.data)
-    }).then(() => {
-      setLoading(false);
-    });
+    )
+      .then((data) => {
+        setSubscriptions(data.characters.data);
+      })
+      .then(() => {
+        setLoading(false);
+      });
   };
 
   useEffect(() => {

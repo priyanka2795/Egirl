@@ -69,10 +69,8 @@ export async function manageFollow(
   targetUserId: string
 ): Promise<void> {
   // const batch = writeBatch(db);
-
   // const userDocRef = doc(usersCollection, userId);
   // const targetUserDocRef = doc(usersCollection, targetUserId);
-
   // if (type === 'follow') {
   //   batch.update(userDocRef, {
   //     following: arrayUnion(targetUserId),
@@ -92,7 +90,6 @@ export async function manageFollow(
   //     updatedAt: serverTimestamp()
   //   });
   // }
-
   // await batch.commit();
 }
 
@@ -134,7 +131,6 @@ export async function manageReply(
   tweetId: string
 ): Promise<void> {
   // const tweetRef = doc(tweetsCollection, tweetId);
-
   // try {
   //   await updateDoc(tweetRef, {
   //     userReplies: increment(type === 'increment' ? 1 : -1),
@@ -174,10 +170,8 @@ export function manageRetweet(
 ) {
   // return async (): Promise<void> => {
   //   const batch = writeBatch(db);
-
   //   const tweetRef = doc(tweetsCollection, tweetId);
   //   const userStatsRef = doc(userStatsCollection(userId), 'stats');
-
   //   if (type === 'retweet') {
   //     batch.update(tweetRef, {
   //       userRetweets: arrayUnion(userId),
@@ -197,7 +191,6 @@ export function manageRetweet(
   //       updatedAt: serverTimestamp()
   //     });
   //   }
-
   //   await batch.commit();
   // };
 }
@@ -209,10 +202,8 @@ export function manageLike(
 ) {
   // return async (): Promise<void> => {
   //   const batch = writeBatch(db);
-
   //   const userStatsRef = doc(userStatsCollection(userId), 'stats');
   //   const tweetRef = doc(tweetsCollection, tweetId);
-
   //   if (type === 'like') {
   //     batch.update(tweetRef, {
   //       userLikes: arrayUnion(userId),
@@ -232,7 +223,6 @@ export function manageLike(
   //       updatedAt: serverTimestamp()
   //     });
   //   }
-
   //   await batch.commit();
   // };
 }
@@ -243,7 +233,6 @@ export async function manageBookmark(
   tweetId: string
 ): Promise<void> {
   // const bookmarkRef = doc(userBookmarksCollection(userId), tweetId);
-
   // if (type === 'bookmark') {
   //   const bookmarkData: WithFieldValue<Bookmark> = {
   //     id: tweetId,
@@ -256,10 +245,7 @@ export async function manageBookmark(
 export async function clearAllBookmarks(userId: string): Promise<void> {
   // const bookmarksRef = userBookmarksCollection(userId);
   // const bookmarksSnapshot = await getDocs(bookmarksRef);
-
   // const batch = writeBatch(db);
-
   // bookmarksSnapshot.forEach(({ ref }) => batch.delete(ref));
-
   // await batch.commit();
 }

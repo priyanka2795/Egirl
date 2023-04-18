@@ -14,24 +14,27 @@ export function UserDataLayout({ children }: LayoutProps): JSX.Element {
     back
   } = useRouter();
 
-  const data: User[] = [{
-    id: '1',
-    username: "egirl",
-    name: "E-Girl 1",
-    accent: 'blue',
-    bio: 'Im an Egirl',
-    coverPhotoURL: "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
-    followers: ['100'],
-    following: ['10'],
-    location: 'Metaverse',
-    photoURL: "https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg",
-    pinnedTweet: 'My first tweet',
-    theme: 'dark',
-    totalPhotos: 123,
-    totalTweets: 111,
-    verified: true,
-    website: 'www.egirl.com'
-  }];
+  const data: User[] = [
+    {
+      id: '1',
+      username: 'egirl',
+      name: 'E-Girl 1',
+      accent: 'blue',
+      bio: 'Im an Egirl',
+      coverPhotoURL:
+        'https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png',
+      followers: ['100'],
+      following: ['10'],
+      location: 'Metaverse',
+      photoURL: 'https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg',
+      pinnedTweet: 'My first tweet',
+      theme: 'dark',
+      totalPhotos: 123,
+      totalTweets: 111,
+      verified: true,
+      website: 'www.egirl.com'
+    }
+  ];
 
   const user = data ? data[0] : null;
   const loading = false;

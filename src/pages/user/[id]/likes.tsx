@@ -26,29 +26,31 @@ export default function UserLikes(): JSX.Element {
   // );
 
   const loading = false;
-  const data = [{
-    id: null,
-    key: null,
-    text: null,
-    modal: null,
-    images: null,
-    parent: null,
-    pinned: null,
-    profile: null,
-    userLikes: null,
-    createdBy: null,
-    createdAt: null,
-    parentTweet: null,
-    userReplies: null,
-    userRetweets: null,
-    user: null,
-    customId: null,
-    customCommentsCount: null,
-    customName: null,
-    customImageUrls: null,
-    customLikes: null,
-    customText: null
-  }];
+  const data = [
+    {
+      id: null,
+      key: null,
+      text: null,
+      modal: null,
+      images: null,
+      parent: null,
+      pinned: null,
+      profile: null,
+      userLikes: null,
+      createdBy: null,
+      createdAt: null,
+      parentTweet: null,
+      userReplies: null,
+      userRetweets: null,
+      user: null,
+      customId: null,
+      customCommentsCount: null,
+      customName: null,
+      customImageUrls: null,
+      customLikes: null,
+      customText: null
+    }
+  ];
 
   return (
     <section>

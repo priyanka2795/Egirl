@@ -1,4 +1,3 @@
-
 type UserFollowingProps = {
   userTargetId: string;
 };
@@ -6,7 +5,6 @@ type UserFollowingProps = {
 export function UserFollowing({
   userTargetId
 }: UserFollowingProps): JSX.Element | null {
-
   // const isOwner =
   //   user?.id !== userTargetId && user?.followers.includes(userTargetId);
 

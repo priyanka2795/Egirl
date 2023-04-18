@@ -14,20 +14,21 @@ export default function UserTweets(): JSX.Element {
   // const { user } = useUser();
 
   const id = '123';
-  const username = 'eGirl' 
+  const username = 'eGirl';
   const pinnedTweet = 'My First Tweet';
 
   const user: User = {
     id: '1',
-    username: "egirl",
-    name: "E girl 1",
+    username: 'egirl',
+    name: 'E girl 1',
     accent: 'blue',
     bio: 'Im an Egirl',
-    coverPhotoURL: "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+    coverPhotoURL:
+      'https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png',
     followers: ['100'],
     following: ['10'],
     location: 'Metaverse',
-    photoURL: "https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg",
+    photoURL: 'https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg',
     pinnedTweet: 'My first tweet',
     theme: 'dark',
     totalPhotos: 123,
@@ -45,51 +46,51 @@ export default function UserTweets(): JSX.Element {
   //   }
   // );
 
-  const pinnedData: (TypeTweet & { user: User; }) | null =
+  const pinnedData: (TypeTweet & { user: User }) | null = {
+    createdAt: 12345,
+    createdBy: 'egirl1',
+    id: '1',
+    images: [
       {
-        createdAt: 12345,
-        createdBy: 'egirl1',
-        id: '1',
-        images: [
-          {
-            src: 'https://i.pinimg.com/550x/8d/4f/44/8d4f442214edc01230b38228bad5226f.jpg',
-            alt: 'anime girl',
-            id: '123',
-          },
-          {
-            src: 'https://i.pinimg.com/564x/f4/fb/6b/f4fb6b6dc78c15007f8c16599ce6e03b.jpg',
-            alt: 'anime girl 2',
-            id: '1233',
-          }
-        ],
-        parent: {
-          id: '10',
-          username: 'eGorl'
-        },
-        text: 'Bookmark with image!',
-        updatedAt: 88889,
-        user: {
-          id: '1',
-          username: "egirl",
-          name: "E girl 1",
-          accent: 'blue',
-          bio: 'Im an Egirl',
-          coverPhotoURL: "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
-          followers: ['100'],
-          following: ['10'],
-          location: 'Metaverse',
-          photoURL: "https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg",
-          pinnedTweet: 'My first tweet',
-          theme: 'dark',
-          totalPhotos: 123,
-          totalTweets: 111,
-          verified: true,
-          website: 'www.egirl.com'
-        },
-        userLikes: ['111'],
-        userReplies: 123,
-        userRetweets: ['123']
+        src: 'https://i.pinimg.com/550x/8d/4f/44/8d4f442214edc01230b38228bad5226f.jpg',
+        alt: 'anime girl',
+        id: '123'
+      },
+      {
+        src: 'https://i.pinimg.com/564x/f4/fb/6b/f4fb6b6dc78c15007f8c16599ce6e03b.jpg',
+        alt: 'anime girl 2',
+        id: '1233'
       }
+    ],
+    parent: {
+      id: '10',
+      username: 'eGorl'
+    },
+    text: 'Bookmark with image!',
+    updatedAt: 88889,
+    user: {
+      id: '1',
+      username: 'egirl',
+      name: 'E girl 1',
+      accent: 'blue',
+      bio: 'Im an Egirl',
+      coverPhotoURL:
+        'https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png',
+      followers: ['100'],
+      following: ['10'],
+      location: 'Metaverse',
+      photoURL: 'https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg',
+      pinnedTweet: 'My first tweet',
+      theme: 'dark',
+      totalPhotos: 123,
+      totalTweets: 111,
+      verified: true,
+      website: 'www.egirl.com'
+    },
+    userLikes: ['111'],
+    userReplies: 123,
+    userRetweets: ['123']
+  };
 
   // const { data: ownerTweets, loading: ownerLoading } = useCollection(
   //   query(
@@ -100,8 +101,7 @@ export default function UserTweets(): JSX.Element {
   //   { includeUser: true, allowNull: true }
   // );
 
-  const mergedTweets: (TypeTweet & { user: User; })[] | null =
-  [
+  const mergedTweets: (TypeTweet & { user: User })[] | null = [
     {
       createdAt: 12345,
       createdBy: 'egirl1',
@@ -115,15 +115,16 @@ export default function UserTweets(): JSX.Element {
       updatedAt: 88889,
       user: {
         id: '1',
-        username: "egirl",
-        name: "E girl 1",
+        username: 'egirl',
+        name: 'E girl 1',
         accent: 'blue',
         bio: 'Im an Egirl',
-        coverPhotoURL: "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+        coverPhotoURL:
+          'https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png',
         followers: ['100'],
         following: ['10'],
         location: 'Metaverse',
-        photoURL: "https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg",
+        photoURL: 'https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg',
         pinnedTweet: 'My first tweet',
         theme: 'dark',
         totalPhotos: 123,
@@ -148,15 +149,16 @@ export default function UserTweets(): JSX.Element {
       updatedAt: 88889,
       user: {
         id: '1',
-        username: "egirl",
-        name: "E girl 1",
+        username: 'egirl',
+        name: 'E girl 1',
         accent: 'blue',
         bio: 'Im an Egirl',
-        coverPhotoURL: "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+        coverPhotoURL:
+          'https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png',
         followers: ['100'],
         following: ['10'],
         location: 'Metaverse',
-        photoURL: "https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg",
+        photoURL: 'https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg',
         pinnedTweet: 'My first tweet',
         theme: 'dark',
         totalPhotos: 123,
@@ -176,12 +178,12 @@ export default function UserTweets(): JSX.Element {
         {
           src: 'https://i.pinimg.com/550x/8d/4f/44/8d4f442214edc01230b38228bad5226f.jpg',
           alt: 'anime girl',
-          id: '123',
+          id: '123'
         },
         {
           src: 'https://i.pinimg.com/564x/f4/fb/6b/f4fb6b6dc78c15007f8c16599ce6e03b.jpg',
           alt: 'anime girl 2',
-          id: '1233',
+          id: '1233'
         }
       ],
       parent: {
@@ -192,15 +194,16 @@ export default function UserTweets(): JSX.Element {
       updatedAt: 88889,
       user: {
         id: '1',
-        username: "egirl",
-        name: "E girl 1",
+        username: 'egirl',
+        name: 'E girl 1',
         accent: 'blue',
         bio: 'Im an Egirl',
-        coverPhotoURL: "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+        coverPhotoURL:
+          'https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png',
         followers: ['100'],
         following: ['10'],
         location: 'Metaverse',
-        photoURL: "https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg",
+        photoURL: 'https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg',
         pinnedTweet: 'My first tweet',
         theme: 'dark',
         totalPhotos: 123,
@@ -212,7 +215,7 @@ export default function UserTweets(): JSX.Element {
       userReplies: 123,
       userRetweets: ['123']
     }
-  ]
+  ];
 
   const ownerLoading = false;
   const peopleLoading = false;
@@ -239,14 +242,14 @@ export default function UserTweets(): JSX.Element {
         />
       ) : (
         <>
-        {/*<AnimatePresence mode='popLayout'>*/}
+          {/*<AnimatePresence mode='popLayout'>*/}
           {pinnedData && (
             <Tweet pinned {...pinnedData} key={`pinned-${pinnedData.id}`} />
           )}
           {mergedTweets.map((tweet) => (
             <Tweet {...tweet} profile={user} key={tweet.id} />
           ))}
-        {/*</AnimatePresence>*/}
+          {/*</AnimatePresence>*/}
         </>
       )}
     </section>

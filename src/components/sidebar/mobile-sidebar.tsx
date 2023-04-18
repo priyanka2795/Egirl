@@ -17,7 +17,6 @@ const variant: Variants = {
 };
 
 export function MobileSidebar(): JSX.Element {
-
   // const { photoURL, name } = user as User;
 
   const name = 'John Doe';
