@@ -345,7 +345,7 @@ export default function UserLanding(): JSX.Element {
         className={`fixed top-0 z-10 h-full w-full items-center bg-[black] duration-300 ease-in ${
           showBetaAccess === false ? 'hidden' : 'duration-300 ease-in'
         }`}
-      >
+      > 
         <div className='h-full w-full bg-[url(/assets/svgImages/joinDiscordBg.svg)] bg-cover bg-center bg-no-repeat'>
           <div className='flex w-full justify-end'>
             <div className='p-8'>
