@@ -4,13 +4,21 @@ import { LoginMain } from '@components/login/login-main';
 import { LoginFooter } from '@components/login/login-footer';
 import { ReactElement, ReactNode, useEffect, useState } from 'react';
 import { Auth, ThemeSupa } from '@supabase/auth-ui-react';
-import { useSession, useSupabaseClient, useUser } from '@supabase/auth-helpers-react';
+import {
+  useSession,
+  useSupabaseClient,
+  useUser
+} from '@supabase/auth-helpers-react';
 import Account from '../components/account/account';
 import Router from 'next/router';
 import { LayoutProps } from '@components/layout/common-layout';
 import { StarIcon, Bars2Icon, XMarkIcon } from '@heroicons/react/20/solid';
 import { PencilIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
+import Nav from '../components/landing-user/Nav';
+import Header from '../components/landing-user/Header';
+import Discover from '../components/landing-user/Discover';
+import Chat from '../components/landing-user/Chat';
 
 import { NextImage } from '@components/ui/next-image';
 import Link from 'next/link';
@@ -20,18 +28,13 @@ import BetaAccessCard from '@components/svg-assets/BetaAccessCard';
 import BetaAccessBg from '@components/svg-assets/BetaAccessBg';
 import BetaAccessVector from '@components/svg-assets/BetaAccessVector';
 import SpicyContentPurple from '@components/svg-assets/SpicyContentPurple';
+import Subscribe from '@components/landing-user/Subscribe';
 
 export function LandingLayout({ children }: LayoutProps): JSX.Element {
-  return (
-    <div className='w-full bg-white'>
-      {children}
-    </div>
-  );
+  return <div className='w-full bg-white'>{children}</div>;
 }
 
-
 export default function UserLanding(): JSX.Element {
-
   const [section1, setSection1] = useState(true);
   const [section2, setSection2] = useState(false);
   const [section3, setSection3] = useState(false);
@@ -41,53 +44,52 @@ export default function UserLanding(): JSX.Element {
   const showSection1 = (visibility: boolean) => (): void => {
     setSection2(false);
     setSection3(false);
-    if(!visibility){
-      setSection1(true)
+    if (!visibility) {
+      setSection1(true);
     }
   };
 
   const showSection2 = (visibility: boolean) => (): void => {
     setSection1(false);
     setSection3(false);
-    if(!visibility){
-      setSection2(true)
+    if (!visibility) {
+      setSection2(true);
     }
   };
 
   const showSection3 = (visibility: boolean) => (): void => {
     setSection1(false);
     setSection2(false);
-    if(!visibility){
+    if (!visibility) {
       setSection3(true);
     }
   };
 
   const setSideNav = () => (): void => {
     setHiddenSideDiv(!hiddenSideDiv);
-  }
+  };
 
   const setBetaAccess = () => (): void => {
     setShowBetaAccess(!showBetaAccess);
-  }
+  };
 
   const hideSideShowBeta = () => (): void => {
     setShowBetaAccess(true);
     setHiddenSideDiv(false);
-  }
+  };
 
-  useEffect(() => {
+  useEffect(() => {});
 
-  });
-  
   return (
-    <div className='grid min-h-screen grid-rows-[1fr,auto] bg-white h-screen'>
-      <SEO
-        title='Egirls'
-        description=''
-      />
+    <div className='grid h-screen min-h-screen grid-rows-[1fr,auto] bg-white'>
+      <SEO title='Egirls' description='' />
 
       {/* Nav Bar */}
-      <nav className='bg-[#F6F6F6] lg:px-[100px] px-24 fixed top-0 z-10 w-full'>
+      <Nav
+        setBetaAccess={() => setBetaAccess()}
+        setSideNav={() => setSideNav()}
+      />
+      {/* <nav className='bg-[#F6F6F6] lg:px-[100px] px-24 fixed top-0 z-10 w-full'>
         <div className='lg:py-6 py-3'>
           <div className='flex justify-between items-center'>
             <div className='lg:flex'>
@@ -138,25 +140,32 @@ export default function UserLanding(): JSX.Element {
             </div>
           </div>
         </div>
-      </nav>
+      </nav> */}
 
       {/* Side NavBar */}
-      <nav className={`bg-[black] h-full w-full top-0 z-10 fixed lg:invisible p-20 ease-in duration-300 ${hiddenSideDiv === false ? 'invisible' : 'visible ease-in duration-300'}`}>
+      <nav
+        className={`fixed top-0 z-10 h-full w-full bg-[black] p-20 duration-300 ease-in lg:invisible ${
+          hiddenSideDiv === false ? 'invisible' : 'visible duration-300 ease-in'
+        }`}
+      >
         <div>
           <div className='flex items-center justify-between'>
             <div className=''>
-              <span className='text-[white] xs:text-[104px] sm:text-[104px] text-[52px] font-semibold'>
+              <span className='text-[52px] font-semibold text-[white] xs:text-[104px] sm:text-[104px]'>
                 Egirls
               </span>
             </div>
             <div>
-              <XMarkIcon className='fill-[white] h-16 w-16' onClick={setSideNav()}></XMarkIcon>
+              <XMarkIcon
+                className='h-16 w-16 fill-[white]'
+                onClick={setSideNav()}
+              ></XMarkIcon>
             </div>
           </div>
-          <div className='pt-20 space-y-20'>
+          <div className='space-y-20 pt-20'>
             <div className=''>
               <button>
-                <span className='xs:text-[48px] sm:text-[48px] text-[24px] font-[500] text-[#5848BC] underline hover:decoration-[white] underline-offset-8'>
+                <span className='text-[24px] font-[500] text-[#5848BC] underline underline-offset-8 hover:decoration-[white] xs:text-[48px] sm:text-[48px]'>
                   For users
                 </span>
               </button>
@@ -164,7 +173,7 @@ export default function UserLanding(): JSX.Element {
             <div className=''>
               <button>
                 <Link href='/creator-landing'>
-                  <span className='text-[white] xs:text-[48px] sm:text-[48px] text-[24px] font-[500] hover:text-[#5848BC] hover:underline hover:decoration-[#5848BC] hover:underline-offset-8'>
+                  <span className='text-[24px] font-[500] text-[white] hover:text-[#5848BC] hover:underline hover:decoration-[#5848BC] hover:underline-offset-8 xs:text-[48px] sm:text-[48px]'>
                     For creators
                   </span>
                 </Link>
@@ -173,7 +182,7 @@ export default function UserLanding(): JSX.Element {
             <div className=''>
               <button>
                 <Link href='/contact-us'>
-                  <span className='text-[white] xs:text-[48px] sm:text-[48px] text-[24px] font-[500] hover:text-[#5848BC] hover:underline hover:decoration-[#5848BC] hover:underline-offset-8'>
+                  <span className='text-[24px] font-[500] text-[white] hover:text-[#5848BC] hover:underline hover:decoration-[#5848BC] hover:underline-offset-8 xs:text-[48px] sm:text-[48px]'>
                     Contact
                   </span>
                 </Link>
@@ -181,10 +190,13 @@ export default function UserLanding(): JSX.Element {
             </div>
           </div>
 
-          <div className='flex justify-center bottom-16 absolute inset-x-10'>
-            <div className='lg:hidden w-full flex justify-center px-[18px] py-[10px] bg-[#5848BC] rounded-[12px]' onClick={hideSideShowBeta()}>
+          <div className='absolute inset-x-10 bottom-16 flex justify-center'>
+            <div
+              className='flex w-full justify-center rounded-[12px] bg-[#5848BC] px-[18px] py-[10px] lg:hidden'
+              onClick={hideSideShowBeta()}
+            >
               <button>
-                <span className='text-white xs:text-[64px] sm:text-[64px] text-[32px] font-[500]'>
+                <span className='text-[32px] font-[500] text-white xs:text-[64px] sm:text-[64px]'>
                   Get beta access
                 </span>
               </button>
@@ -193,7 +205,7 @@ export default function UserLanding(): JSX.Element {
         </div>
       </nav>
 
-      {/* Beta Access */} 
+      {/* Beta Access */}
       {/* <div className={`bg-[black] flex h-full w-full top-0 z-10 fixed ease-in duration-300 items-center ${showBetaAccess === false ? 'hidden' : 'ease-in duration-300'}`}>
         <div className='hidden lg:block h-full w-2/5 bg-[black] relative'>
           <div className='w-full h-full absolute bottom-0'>
@@ -331,53 +343,54 @@ export default function UserLanding(): JSX.Element {
         </div>
       </div> */}
 
-      {/* Join Discord */} 
-      <div className={`bg-[black] h-full w-full top-0 z-10 fixed ease-in duration-300 items-center ${showBetaAccess === false ? 'hidden' : 'ease-in duration-300'}`}>
-        <div className='bg-[url(/assets/svgImages/joinDiscordBg.svg)] h-full w-full bg-no-repeat bg-center bg-cover'>
-          <div className='flex justify-end w-full'>
+      {/* Join Discord */}
+      <div
+        className={`fixed top-0 z-10 h-full w-full items-center bg-[black] duration-300 ease-in ${
+          showBetaAccess === false ? 'hidden' : 'duration-300 ease-in'
+        }`}
+      >
+        <div className='h-full w-full bg-[url(/assets/svgImages/joinDiscordBg.svg)] bg-cover bg-center bg-no-repeat'>
+          <div className='flex w-full justify-end'>
             <div className='p-8'>
               <button>
-                <XMarkIcon className='fill-[white] h-10 w-10' onClick={setBetaAccess()}></XMarkIcon>
+                <XMarkIcon
+                  className='h-10 w-10 fill-[white]'
+                  onClick={setBetaAccess()}
+                ></XMarkIcon>
               </button>
             </div>
           </div>
           <div className='w-full p-2'>
             <div className='flex justify-center p-2'>
-              <div className='flex justify-center items-center bg-[#313131] rounded-[8px] h-[40px] w-[135px] px-[8px] py-[12px]'>
-                <StarIcon className='fill-[#5848BC] h-[20px] w-[20px] pr-[8px]'></StarIcon>
+              <div className='flex h-[40px] w-[135px] items-center justify-center rounded-[8px] bg-[#313131] px-[8px] py-[12px]'>
+                <StarIcon className='h-[20px] w-[20px] fill-[#5848BC] pr-[8px]'></StarIcon>
                 <div className='flex'>
-                  <span className='text-[white] text-[16px] font-[500]'>
+                  <span className='text-[16px] font-[500] text-[white]'>
                     Join us
                   </span>
                 </div>
               </div>
             </div>
             <div className='flex justify-center p-2'>
-              <div className='text-[white] text-[64px] font-[600]'>
+              <div className='text-[64px] font-[600] text-[white]'>
                 <div>
                   <span>
-                    Design <span className='italic font-[400]'> without </span>
+                    Design <span className='font-[400] italic'> without </span>
                   </span>
                 </div>
                 <div className='flex justify-center'>
-                  <span>
-                    limits
-                  </span>
+                  <span>limits</span>
                 </div>
               </div>
             </div>
             <div className='flex justify-center p-2'>
-              <div className='text-[#ffffff]/[0.44] text-[18px] font-[400]'>
-                <span>
-                  Join our Discord community and introduce yourself
-                </span>
+              <div className='text-[18px] font-[400] text-[#ffffff]/[0.44]'>
+                <span>Join our Discord community and introduce yourself</span>
               </div>
             </div>
             <div className='flex justify-center p-16'>
-              <div className='flex items-center justify-center w-[158px] px-[24px] py-[16px] bg-[#5848BC] rounded-[12px] drop-shadow'>
-                <span>
-                  Join Discord
-                </span>
+              <div className='flex w-[158px] items-center justify-center rounded-[12px] bg-[#5848BC] px-[24px] py-[16px] drop-shadow'>
+                <span>Join Discord</span>
               </div>
             </div>
           </div>
@@ -385,7 +398,8 @@ export default function UserLanding(): JSX.Element {
       </div>
 
       {/* Header */}
-      <div className='bg-[#F6F6F6] lg:px-[100px] px-24 w-full mt-[96px]'>
+      <Header />
+      {/* <div className='bg-[#F6F6F6] lg:px-[100px] px-24 w-full mt-[96px]'>
         <div className='py-20'>
           <div className='lg:grid lg:grid-cols-2 gap-[100px] md:grid md:grid-cols-2 sm:grid sm:grid-cols-1 md:max-xl:grid md:max-lg:grid-cols-1 md:justify-center sm:justify-center xs:justify-center justify-center'>
             <div className=''>
@@ -432,318 +446,201 @@ export default function UserLanding(): JSX.Element {
             </div>
           </div>
         </div>
-      </div>
-      
-      {/* Discover */}
-      <div className='bg-[#FFFFFF] lg:px-[100px] px-24 w-full'>
-        <div className='py-10'>
-          <div className=''>
-            <div className=''>
-              <div className='flex justify-center lg:justify-start'>
-                <div className=''>
-                  <span className='text-[#949698] text-[36px] md:text-[24px] lg:text-[18px] font-[500]'>
-                    SOMETHING FOR EVERYONE
-                  </span>
-                </div>
-              </div>
-              <div className='space-x-3 flex justify-center lg:justify-start'>
-                <span className='text-[#000000] text-[64px] lg:text-[48px] font-[600]'>
-                  Discover 
-                </span>
-                <span className='text-[#000000] text-[64px] lg:text-[48px] font-[400] italic'>
-                  Egirls
-                </span>
-              </div>
-            </div>
-            <div className='mt-10'>
-              <div className='lg:flex items-center justify-around space-x-4'>
-                <div className='flex justify-center mb-10'>
-                  <div>
-                    <div className='hidden lg:block'>
-                      <NextImage
-                        width={400}
-                        height={465}
-                        src={'/assets/svgImages/discoverEgirl1.svg'}
-                        imgClassName='rounded-[15px]'
-                        alt={'discover e girl1'}
-                      />
-                    </div>
-                    <div className='lg:hidden'>
-                      <NextImage
-                        width={600}
-                        height={665}
-                        src={'/assets/svgImages/discoverEgirl1.svg'}
-                        imgClassName='rounded-[15px]'
-                        alt={'discover e girl1'}
-                      />
-                    </div>
-                    <div className='mt-[12px]'>
-                      <span className='text-[#000000] text-[30px] lg:text-[24px] font-[600]'>Sarah Scarlet</span>
-                    </div>
-                    <div className='mt-[2px]'>
-                      <span className='text-[#949698] text-[28px] lg:text-[14px] font-[500]'>LOS ANGELES, USA</span>
-                    </div>
-                  </div>
-                </div>
-                <div className='flex justify-center mb-10'>
-                  <div>
-                    <div className='hidden lg:block'>
-                      <NextImage
-                        width={400}
-                        height={465}
-                        src={'/assets/svgImages/discoverEgirl2.svg'}
-                        imgClassName='rounded-[15px]'
-                        alt={'discover e girl2'}
-                      />
-                    </div>
-                    <div className='lg:hidden'>
-                      <NextImage
-                        width={600}
-                        height={665}
-                        src={'/assets/svgImages/discoverEgirl2.svg'}
-                        imgClassName='rounded-[15px]'
-                        alt={'discover e girl2'}
-                      />
-                    </div>
-                    
-                    <div className='mt-[12px]'>
-                      <span className='text-[#000000] text-[30px] lg:text-[24px] font-[600]'>Jennie Yoon</span>
-                    </div>
-                    <div className='mt-[2px]'>
-                      <span className='text-[#949698] text-[28px] lg:text-[14px] font-[500]'>Seoul, South Korea </span>
-                    </div>
-                  </div>
-                </div>
-                <div className='flex justify-center mb-10'>
-                  <div>
-                    <div className='hidden lg:block'>
-                      <NextImage
-                        width={400}
-                        height={465}
-                        src={'/assets/svgImages/discoverEgirl3.svg'}
-                        imgClassName='rounded-[15px]'
-                        alt={'discover e girl3'}
-                      />
-                    </div>
-                    <div className='lg:hidden'>
-                      <NextImage
-                        width={600}
-                        height={665}
-                        src={'/assets/svgImages/discoverEgirl3.svg'}
-                        imgClassName='rounded-[15px]'
-                        alt={'discover e girl3'}
-                      />
-                    </div>
+      </div> */}
 
-                    <div className='mt-[12px]'>
-                      <span className='text-[#000000] text-[30px] lg:text-[24px] font-[600]'>Mika-Chan</span>
-                    </div>
-                    <div className='mt-[2px]'>
-                      <span className='text-[#949698] text-[28px] lg:text-[14px] font-[500]'>Tokyo, Japan</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* Discover */}
+      <Discover />
 
       {/* Chat */}
-      <div className='bg-[#FFFFFF] lg:px-[100px] px-24 w-full'>
-        <div className='py-20 w-full'>
-          <div className='w-full lg:grid lg:grid-cols-2 gap-[100px] md:grid md:grid-cols-2 sm:grid sm:grid-cols-1 md:max-xl:grid md:max-lg:grid-cols-1'>
+      <Chat />
+      {/* <div className='w-full bg-[#FFFFFF] px-24 lg:px-[100px]'>
+        <div className='w-full py-20'>
+          <div className='w-full gap-[100px] sm:grid sm:grid-cols-1 md:grid md:grid-cols-2 md:max-xl:grid md:max-lg:grid-cols-1 lg:grid lg:grid-cols-2'>
             <div className='w-full'>
               <div className='flex justify-center lg:justify-start'>
                 <div className=''>
-                  <span className='text-[#949698] text-[36px] lg:text-[18px] font-[500]'>
+                  <span className='text-[36px] font-[500] text-[#949698] lg:text-[18px]'>
                     CHAT AWAY
                   </span>
                 </div>
               </div>
-              <div className='flex justify-center lg:justify-start text-center lg:text-start'>
-                <span className='text-[#000000] text-[64px] lg:text-[48px] font-[600]'>
-                  Easily <span className='font-[400] italic'>chat</span> with any Egirl you link
+              <div className='flex justify-center text-center lg:justify-start lg:text-start'>
+                <span className='text-[64px] font-[600] text-[#000000] lg:text-[48px]'>
+                  Easily <span className='font-[400] italic'>chat</span> with
+                  any Egirl you link
                 </span>
               </div>
               <div>
                 <div>
-                  <div className='flex items-center px-[8px] py-[12px] space-x-[16px] mt-[64px]'>
+                  <div className='mt-[64px] flex items-center space-x-[16px] px-[8px] py-[12px]'>
                     <button onClick={showSection1(section1)}>
                       <div className='hidden lg:block'>
-                      {
-                      section1 === true ?
-                      <NextImage
-                        width={60}
-                        height={60}
-                        src={'/assets/homeIcons/pencilLogo.png'}
-                        alt={'pencilLogo'}
-                      /> 
-                      : 
-                      <NextImage
-                        width={60}
-                        height={60}
-                        src={'/assets/homeIcons/pencilLogoBlank.png'}
-                        alt={'pencilLogo'}
-                      /> 
-                      }
+                        {section1 === true ? (
+                          <NextImage
+                            width={60}
+                            height={60}
+                            src={'/assets/homeIcons/pencilLogo.png'}
+                            alt={'pencilLogo'}
+                          />
+                        ) : (
+                          <NextImage
+                            width={60}
+                            height={60}
+                            src={'/assets/homeIcons/pencilLogoBlank.png'}
+                            alt={'pencilLogo'}
+                          />
+                        )}
                       </div>
                       <div className='lg:hidden'>
-                      {
-                      section1 === true ?
-                      <NextImage
-                        width={120}
-                        height={120}
-                        src={'/assets/homeIcons/pencilLogo.png'}
-                        alt={'pencilLogo'}
-                      /> 
-                      : 
-                      <NextImage
-                        width={120}
-                        height={120}
-                        src={'/assets/homeIcons/pencilLogoBlank.png'}
-                        alt={'pencilLogo'}
-                      /> 
-                      }
+                        {section1 === true ? (
+                          <NextImage
+                            width={120}
+                            height={120}
+                            src={'/assets/homeIcons/pencilLogo.png'}
+                            alt={'pencilLogo'}
+                          />
+                        ) : (
+                          <NextImage
+                            width={120}
+                            height={120}
+                            src={'/assets/homeIcons/pencilLogoBlank.png'}
+                            alt={'pencilLogo'}
+                          />
+                        )}
                       </div>
                     </button>
                     <div>
                       <div>
-                        <span className='text-[#000000] text-[48px] lg:text-[24px] font-[500]'>
+                        <span className='text-[48px] font-[500] text-[#000000] lg:text-[24px]'>
                           Texting
                         </span>
                       </div>
-                      {
-                      section1 && 
+                      {section1 && (
                         <div className='w-3/4'>
-                          <span className='text-[#000000] text-[36px] lg:text-[18px] font-[400]'>
-                            Text any Egirl to get a conversation started. Every Egirl has a unique personality.
+                          <span className='text-[36px] font-[400] text-[#000000] lg:text-[18px]'>
+                            Text any Egirl to get a conversation started. Every
+                            Egirl has a unique personality.
                           </span>
                         </div>
-                      }
+                      )}
                     </div>
                   </div>
                 </div>
                 <div>
-                  <div className='flex items-center px-[8px] py-[12px] space-x-[16px]'>
+                  <div className='flex items-center space-x-[16px] px-[8px] py-[12px]'>
                     <button onClick={showSection2(section2)}>
-                        <div className='hidden lg:block'>
-                        {
-                        section2 === true ?
-                        <NextImage
-                          width={60}
-                          height={60}
-                          src={'/assets/homeIcons/requestLogo.png'}
-                          alt={'requestLogo'}
-                        /> 
-                        : 
-                        <NextImage
-                          width={60}
-                          height={60}
-                          src={'/assets/homeIcons/requestLogoBlank.png'}
-                          alt={'requestLogoBlank'}
-                        /> 
-                        }
-                        </div>
-                        <div className='lg:hidden'>
-                        {
-                        section2 === true ?
-                        <NextImage
-                          width={120}
-                          height={120}
-                          src={'/assets/homeIcons/requestLogo.png'}
-                          alt={'requestLogo'}
-                        /> 
-                        : 
-                        <NextImage
-                          width={120}
-                          height={120}
-                          src={'/assets/homeIcons/requestLogoBlank.png'}
-                          alt={'requestLogoBlank'}
-                        /> 
-                        }
-                        </div>
-                      </button>
+                      <div className='hidden lg:block'>
+                        {section2 === true ? (
+                          <NextImage
+                            width={60}
+                            height={60}
+                            src={'/assets/homeIcons/requestLogo.png'}
+                            alt={'requestLogo'}
+                          />
+                        ) : (
+                          <NextImage
+                            width={60}
+                            height={60}
+                            src={'/assets/homeIcons/requestLogoBlank.png'}
+                            alt={'requestLogoBlank'}
+                          />
+                        )}
+                      </div>
+                      <div className='lg:hidden'>
+                        {section2 === true ? (
+                          <NextImage
+                            width={120}
+                            height={120}
+                            src={'/assets/homeIcons/requestLogo.png'}
+                            alt={'requestLogo'}
+                          />
+                        ) : (
+                          <NextImage
+                            width={120}
+                            height={120}
+                            src={'/assets/homeIcons/requestLogoBlank.png'}
+                            alt={'requestLogoBlank'}
+                          />
+                        )}
+                      </div>
+                    </button>
                     <div>
                       <div>
-                        <span className='text-[#000000] text-[48px] lg:text-[24px] font-[500]'>
+                        <span className='text-[48px] font-[500] text-[#000000] lg:text-[24px]'>
                           Request Images
                         </span>
                       </div>
-                      {
-                      section2 && 
+                      {section2 && (
                         <div className='w-3/4'>
-                          <span className='text-[#000000] text-[36px] lg:text-[18px] font-[400]'>
-                            Make a request for an Egirl to send you a specially made pic of themselves.
+                          <span className='text-[36px] font-[400] text-[#000000] lg:text-[18px]'>
+                            Make a request for an Egirl to send you a specially
+                            made pic of themselves.
                           </span>
                         </div>
-                      }
+                      )}
                     </div>
                   </div>
                 </div>
                 <div>
-                  <div className='flex items-center px-[8px] py-[12px] space-x-[16px]'>
+                  <div className='flex items-center space-x-[16px] px-[8px] py-[12px]'>
                     <button onClick={showSection3(section3)}>
-                          <div className='hidden lg:block'>
-                          {
-                          section3 === true ?
+                      <div className='hidden lg:block'>
+                        {section3 === true ? (
                           <NextImage
                             width={60}
                             height={60}
                             src={'/assets/homeIcons/voiceMessage.png'}
                             alt={'voiceMessage'}
-                          /> 
-                          : 
+                          />
+                        ) : (
                           <NextImage
                             width={60}
                             height={60}
                             src={'/assets/homeIcons/voiceMessageBlank.png'}
                             alt={'voiceMessageBlank'}
-                          /> 
-                          }
-                          </div>
-                          <div className='lg:hidden'>
-                          {
-                          section3 === true ?
+                          />
+                        )}
+                      </div>
+                      <div className='lg:hidden'>
+                        {section3 === true ? (
                           <NextImage
                             width={120}
                             height={120}
                             src={'/assets/homeIcons/voiceMessage.png'}
                             alt={'voiceMessage'}
-                          /> 
-                          : 
+                          />
+                        ) : (
                           <NextImage
                             width={120}
                             height={120}
                             src={'/assets/homeIcons/voiceMessageBlank.png'}
                             alt={'voiceMessageBlank'}
-                          /> 
-                          }
-                          </div>
-                        </button>
+                          />
+                        )}
+                      </div>
+                    </button>
                     <div>
                       <div>
-                        <span className='text-[#000000] text-[48px] lg:text-[24px] font-[500]'>
+                        <span className='text-[48px] font-[500] text-[#000000] lg:text-[24px]'>
                           Voice Messages
                         </span>
                       </div>
-                      {
-                      section3 && 
+                      {section3 && (
                         <div className='w-3/4'>
-                          <span className='text-[#000000] text-[36px] lg:text-[18px] font-[400]'>
-                            Ask an Egirl to send you voice messages instead of regular texts.
+                          <span className='text-[36px] font-[400] text-[#000000] lg:text-[18px]'>
+                            Ask an Egirl to send you voice messages instead of
+                            regular texts.
                           </span>
                         </div>
-                      }
+                      )}
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div className='min-[200px]:mt-[50px] flex justify-center w-full'>
-              <div className='hidden lg:block w-full'>
-                {
-                  section1 && 
+            <div className='flex w-full justify-center min-[200px]:mt-[50px]'>
+              <div className='hidden w-full lg:block'>
+                {section1 && (
                   // <NextImage
                   //     width={800}
                   //     height={842}
@@ -761,10 +658,8 @@ export default function UserLanding(): JSX.Element {
                       layout='responsive'
                     />
                   </figure>
-                  
-                }
-                {
-                  section2 && 
+                )}
+                {section2 && (
                   // <NextImage
                   //   width={800}
                   //   height={842}
@@ -781,9 +676,8 @@ export default function UserLanding(): JSX.Element {
                       layout='responsive'
                     />
                   </figure>
-                }
-                {
-                  section3 && 
+                )}
+                {section3 && (
                   // <NextImage
                   //   width={800}
                   //   height={842}
@@ -800,68 +694,65 @@ export default function UserLanding(): JSX.Element {
                       layout='responsive'
                     />
                   </figure>
-                }
+                )}
               </div>
-              <div className='md:shrink-0 sm:shrink-0 lg:hidden'>
-                {
-                  section1 && 
+              <div className='sm:shrink-0 md:shrink-0 lg:hidden'>
+                {section1 && (
                   <NextImage
-                      width={900}
-                      height={900}
-                      src={'/assets/svgImages/chatAwayIllus.svg'}
-                      alt={'chatAway illus'}
-                    />
-                  
-                }
-                {
-                  section2 && 
+                    width={900}
+                    height={900}
+                    src={'/assets/svgImages/chatAwayIllus.svg'}
+                    alt={'chatAway illus'}
+                  />
+                )}
+                {section2 && (
                   <NextImage
                     width={900}
                     height={900}
                     src={'/assets/svgImages/requestImagesIllus.svg'}
                     alt={'requestImage illus'}
                   />
-                }
-                {
-                  section3 && 
+                )}
+                {section3 && (
                   <NextImage
                     width={900}
                     height={900}
                     src={'/assets/svgImages/voiceMessagesIllus.svg'}
                     alt={'voiceMessage illus'}
                   />
-                }
+                )}
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Subscribe */}
-      <div className='bg-[#F7F7F7] lg:px-[100px] px-24 w-full'>
+      <Subscribe />
+      {/* <div className='w-full bg-[#F7F7F7] px-24 lg:px-[100px]'>
         <div className='py-10'>
           <div className=''>
             <div className=''>
               <div className='flex justify-center lg:justify-start'>
                 <div className=''>
-                  <span className='text-[#949698] text-[36px] lg:text-[18px] font-[500]'>
+                  <span className='text-[36px] font-[500] text-[#949698] lg:text-[18px]'>
                     SPICY CONTENT AWAITS
                   </span>
                 </div>
               </div>
-              <div className='space-x-3 flex justify-center lg:justify-start text-center'>
-                <span className='text-[#000000] text-[64px] lg:text-[48px] font-[600]'>
-                  Subscribe to see <span className='font-[400] italic'>exclusive</span> content
+              <div className='flex justify-center space-x-3 text-center lg:justify-start'>
+                <span className='text-[64px] font-[600] text-[#000000] lg:text-[48px]'>
+                  Subscribe to see{' '}
+                  <span className='font-[400] italic'>exclusive</span> content
                 </span>
               </div>
             </div>
             <div className='mt-10 lg:mt-5'>
-              <div className='lg:flex items-center justify-around space-y-8 lg:space-x-10 lg:space-y-0'>
-                
+              <div className='items-center justify-around space-y-8 lg:flex lg:space-x-10 lg:space-y-0'>
                 <div className='flex justify-center'>
-                  <div className='lg:w-[400px] lg:h-[600px] border rounded-lg'>
-                    <div className='bg-[#6c6e7229] py-10 lg:h-[80px] flex items-center justify-left'>
-                      <div className='ml-[24px] rounded-full hidden lg:block'>
+                  <div className='rounded-lg border lg:h-[600px] lg:w-[400px]'>
+                    <div className='justify-left flex items-center bg-[#6c6e7229] py-10 lg:h-[80px]'>
+                      <div className='ml-[24px] hidden rounded-full lg:block'>
                         <NextImage
                           width={36}
                           height={36}
@@ -880,13 +771,18 @@ export default function UserLanding(): JSX.Element {
                         />
                       </div>
                       <div className='ml-[12px]'>
-                        <span className='text-[#000000] text-[48px] lg:text-[24px] font-[600]'>Mika-Chan</span>
+                        <span className='text-[48px] font-[600] text-[#000000] lg:text-[24px]'>
+                          Mika-Chan
+                        </span>
                       </div>
                     </div>
-                    <div className='mt-[12px] mx-[24px]'>
-                      <span className='text-[#000000] text-[30px] lg:text-[15px] font-[400]'>What do you guys think of my goth cosplay? uwu · 私のゴスコスプレについてどう思いますか？uwu</span>
+                    <div className='mx-[24px] mt-[12px]'>
+                      <span className='text-[30px] font-[400] text-[#000000] lg:text-[15px]'>
+                        What do you guys think of my goth cosplay? uwu ·
+                        私のゴスコスプレについてどう思いますか？uwu
+                      </span>
                     </div>
-                    <div className='flex items-center justify-center mt-[14px] mb-[14px] lg:mb-0'>
+                    <div className='mt-[14px] mb-[14px] flex items-center justify-center lg:mb-0'>
                       <NextImage
                         width={700}
                         height={800}
@@ -899,9 +795,9 @@ export default function UserLanding(): JSX.Element {
                 </div>
 
                 <div className='flex justify-center pt-10 lg:pt-0'>
-                  <div className='lg:w-[400px] lg:h-[600px] border rounded-lg'>
-                    <div className='bg-[#6c6e7229] py-10 lg:h-[80px] flex items-center justify-left'>
-                      <div className='ml-[24px] rounded-full hidden lg:block'>
+                  <div className='rounded-lg border lg:h-[600px] lg:w-[400px]'>
+                    <div className='justify-left flex items-center bg-[#6c6e7229] py-10 lg:h-[80px]'>
+                      <div className='ml-[24px] hidden rounded-full lg:block'>
                         <NextImage
                           width={36}
                           height={36}
@@ -920,13 +816,18 @@ export default function UserLanding(): JSX.Element {
                         />
                       </div>
                       <div className='ml-[12px]'>
-                        <span className='text-[#000000] text-[48px] lg:text-[24px] font-[600]'>Jennie Yoon</span>
+                        <span className='text-[48px] font-[600] text-[#000000] lg:text-[24px]'>
+                          Jennie Yoon
+                        </span>
                       </div>
                     </div>
-                    <div className='mt-[12px] mx-[24px]'>
-                      <span className='text-[#000000] text-[30px] lg:text-[15px] font-[400]'>Do I look cuter with short hair? · 짧은 머리가 더 귀엽게 보이나요?</span>
+                    <div className='mx-[24px] mt-[12px]'>
+                      <span className='text-[30px] font-[400] text-[#000000] lg:text-[15px]'>
+                        Do I look cuter with short hair? · 짧은 머리가 더 귀엽게
+                        보이나요?
+                      </span>
                     </div>
-                    <div className='flex items-center justify-center mt-[14px] mb-[14px] lg:mb-0'>
+                    <div className='mt-[14px] mb-[14px] flex items-center justify-center lg:mb-0'>
                       <NextImage
                         width={700}
                         height={800}
@@ -935,13 +836,13 @@ export default function UserLanding(): JSX.Element {
                         imgClassName='rounded-[15px]'
                       />
                     </div>
-                  </div> 
+                  </div>
                 </div>
-                
+
                 <div className='flex justify-center pt-10 lg:pt-0'>
-                  <div className='lg:w-[400px] lg:h-[600px] border rounded-lg w-full'>
-                    <div className='bg-[#6c6e7229] py-10 lg:h-[80px] flex items-center justify-left'>
-                      <div className='ml-[24px] rounded-full hidden lg:block'>
+                  <div className='w-full rounded-lg border lg:h-[600px] lg:w-[400px]'>
+                    <div className='justify-left flex items-center bg-[#6c6e7229] py-10 lg:h-[80px]'>
+                      <div className='ml-[24px] hidden rounded-full lg:block'>
                         <NextImage
                           width={36}
                           height={36}
@@ -960,13 +861,17 @@ export default function UserLanding(): JSX.Element {
                         />
                       </div>
                       <div className='ml-[12px]'>
-                        <span className='text-[#000000] text-[48px] lg:text-[24px] font-[600]'>Miranda Wilde</span>
+                        <span className='text-[48px] font-[600] text-[#000000] lg:text-[24px]'>
+                          Miranda Wilde
+                        </span>
                       </div>
                     </div>
-                    <div className='mt-[12px] mx-[24px]'>
-                      <span className='text-[#000000] text-[30px] lg:text-[15px] font-[400]'>Trying out my new amber contacts at the beach</span>
+                    <div className='mx-[24px] mt-[12px]'>
+                      <span className='text-[30px] font-[400] text-[#000000] lg:text-[15px]'>
+                        Trying out my new amber contacts at the beach
+                      </span>
                     </div>
-                    <div className='flex items-center justify-center mt-[14px] lg:mt-[30px] mb-[14px] lg:mb-0'>
+                    <div className='mt-[14px] mb-[14px] flex items-center justify-center lg:mt-[30px] lg:mb-0'>
                       <NextImage
                         width={700}
                         height={800}
@@ -975,52 +880,51 @@ export default function UserLanding(): JSX.Element {
                         imgClassName='rounded-[15px]'
                       />
                     </div>
-                  </div> 
+                  </div>
                 </div>
-
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Footer */}
-      <div className='bg-[#000000] lg:px-[100px] px-24 w-full'>
+      <div className='w-full bg-[#000000] px-24 lg:px-[100px]'>
         <div className='py-20'>
-          <div className='lg:grid lg:grid-cols-2 gap-[100px] md:grid md:grid-cols-2 sm:grid sm:grid-cols-1 md:max-xl:grid md:max-lg:grid-cols-1'>
+          <div className='gap-[100px] sm:grid sm:grid-cols-1 md:grid md:grid-cols-2 md:max-xl:grid md:max-lg:grid-cols-1 lg:grid lg:grid-cols-2'>
             <div className=''>
               <div className='flex justify-center lg:justify-start'>
-                <div className='flex justify-center items-center bg-[#313131] rounded-[8px] h-[40px] w-[135px] px-[8px] py-[12px]'>
-                  <StarIcon className='fill-[#5848BC] h-[20px] w-[20px] pr-[8px]'></StarIcon>
+                <div className='flex h-[40px] w-[135px] items-center justify-center rounded-[8px] bg-[#313131] px-[8px] py-[12px]'>
+                  <StarIcon className='h-[20px] w-[20px] fill-[#5848BC] pr-[8px]'></StarIcon>
                   <div className='flex'>
-                    <span className='text-[white] text-[16px] font-[500]'>
+                    <span className='text-[16px] font-[500] text-[white]'>
                       beta access
                     </span>
                   </div>
                 </div>
-              </div>      
-              <div className='pt-10 space-x-3 flex justify-center lg:justify-start text-center lg:text-start'>
-                <span className='text-white text-[24px] lg:text-[56px] font-[600]'>
-                  More than 3000 people have 
-                  <span className='font-[500] italic mx-2 lg:mx-4'>
-                    joined
-                  </span>
+              </div>
+              <div className='flex justify-center space-x-3 pt-10 text-center lg:justify-start lg:text-start'>
+                <span className='text-[24px] font-[600] text-white lg:text-[56px]'>
+                  More than 3000 people have
+                  <span className='mx-2 font-[500] italic lg:mx-4'>joined</span>
                   the waitlist!
                 </span>
               </div>
-              <div className='pt-[48px] flex justify-center lg:justify-start'>
+              <div className='flex justify-center pt-[48px] lg:justify-start'>
                 <div className='flex w-[515px]'>
-                  <input type="email" className="bg-[#313131] form-input px-4 py-3 rounded-l-[12px] border-transparent drop-shadow text-[#949698] w-[395px]" placeholder='Enter your email'/>
-                  <div className='flex items-center justify-center w-[158px] px-[24px] py-[16px] bg-[#5848BC] rounded-r-[12px] drop-shadow'>
-                    <span>
-                      Join
-                    </span>
+                  <input
+                    type='email'
+                    className='form-input w-[395px] rounded-l-[12px] border-transparent bg-[#313131] px-4 py-3 text-[#949698] drop-shadow'
+                    placeholder='Enter your email'
+                  />
+                  <div className='flex w-[158px] items-center justify-center rounded-r-[12px] bg-[#5848BC] px-[24px] py-[16px] drop-shadow'>
+                    <span>Join</span>
                   </div>
                 </div>
               </div>
             </div>
-            <div className='hidden lg:block min-[200px]:mt-[50px]'>
-              <div className='md:shrink-0 sm:shrink-0'>
+            <div className='hidden min-[200px]:mt-[50px] lg:block'>
+              <div className='sm:shrink-0 md:shrink-0'>
                 <NextImage
                   width={537}
                   height={522}
@@ -1031,79 +935,77 @@ export default function UserLanding(): JSX.Element {
             </div>
           </div>
         </div>
-        <div className='py-10 space-y-10 lg:flex lg:justify-between'>
+        <div className='space-y-10 py-10 lg:flex lg:justify-between'>
           <div>
-            <span className='text-white text-[32px] font-semibold'>
-              Egirls
-            </span>
+            <span className='text-[32px] font-semibold text-white'>Egirls</span>
           </div>
           <div className='space-y-2'>
             <div>
-              <span className='text-[#646668] text-[14px] font-[500]'>
+              <span className='text-[14px] font-[500] text-[#646668]'>
                 CHAT WITH US
               </span>
             </div>
             <div>
-              <span className='text-[white] text-[16px] font-[500]'>
+              <span className='text-[16px] font-[500] text-[white]'>
                 business@egirls.ai
               </span>
             </div>
           </div>
           <div>
-            <span className='text-[#646668] text-[14px] font-[500]'>
+            <span className='text-[14px] font-[500] text-[#646668]'>
               FOLLOW US
             </span>
-            <div className='flex space-x-[24px] mt-[15px]'>
+            <div className='mt-[15px] flex space-x-[24px]'>
               <div>
                 <NextImage
-                    width={18}
-                    height={18}
-                    src={'/assets/homeIcons/instagramIcon.png'}
-                    alt={'Profile'}
-                    className='rounded-[15px]'
-                  />
+                  width={18}
+                  height={18}
+                  src={'/assets/homeIcons/instagramIcon.png'}
+                  alt={'Profile'}
+                  className='rounded-[15px]'
+                />
               </div>
               <div>
                 <NextImage
-                    width={18}
-                    height={18}
-                    src={'/assets/homeIcons/tiktokIcon.png'}
-                    alt={'Profile'}
-                    className='rounded-[15px]'
-                  />
+                  width={18}
+                  height={18}
+                  src={'/assets/homeIcons/tiktokIcon.png'}
+                  alt={'Profile'}
+                  className='rounded-[15px]'
+                />
               </div>
               <div>
                 <NextImage
-                    width={18}
-                    height={18}
-                    src={'/assets/homeIcons/redditIcon.png'}
-                    alt={'Profile'}
-                    className='rounded-[15px]'
-                  />
+                  width={18}
+                  height={18}
+                  src={'/assets/homeIcons/redditIcon.png'}
+                  alt={'Profile'}
+                  className='rounded-[15px]'
+                />
               </div>
               <div>
                 <NextImage
-                    width={18}
-                    height={18}
-                    src={'/assets/homeIcons/discordIcon.png'}
-                    alt={'Profile'}
-                    className='rounded-[15px]'
-                  />
+                  width={18}
+                  height={18}
+                  src={'/assets/homeIcons/discordIcon.png'}
+                  alt={'Profile'}
+                  className='rounded-[15px]'
+                />
               </div>
               <div>
                 <NextImage
-                    width={18}
-                    height={18}
-                    src={'/assets/homeIcons/twitterIcon.png'}
-                    alt={'Profile'}
-                    className='rounded-[15px]'
-                  />
+                  width={18}
+                  height={18}
+                  src={'/assets/homeIcons/twitterIcon.png'}
+                  alt={'Profile'}
+                  className='rounded-[15px]'
+                />
               </div>
             </div>
           </div>
         </div>
-        <div className='border-t-2 border-[#646668] mb-[15px]'>
-          <div className='py-[25px] flex justify-between'>
+        <div className='mb-[15px] border-t-2 border-[#646668]'>
+          <div className='flex justify-between py-[25px]'>
             <div>
               <span>© 2023 Egirls AI, Inc. All Rights Reserved</span>
             </div>
@@ -1115,48 +1017,45 @@ export default function UserLanding(): JSX.Element {
       </div>
 
       {/* Socials sticky */}
-      <div className='sticky bottom-0 right-0 z-10 float-right w-full flex justify-end'>
-        <div className='bg-[#5848BC] w-[160px] h-[60px] rounded-tl-xl p-1'>
-          <div className='grid grid-cols-3 p-1 h-full justify-items-center items-center '>
-            <div className='hover:bg-[#7367c2] p-2 rounded-lg'>
+      <div className='sticky bottom-0 right-0 z-10 float-right flex w-full justify-end'>
+        <div className='h-[60px] w-[160px] rounded-tl-xl bg-[#5848BC] p-1'>
+          <div className='grid h-full grid-cols-3 items-center justify-items-center p-1 '>
+            <div className='rounded-lg p-2 hover:bg-[#7367c2]'>
               <NextImage
-                  width={20}
-                  height={20}
-                  src={'/assets/homeIcons/redditIcon.png'}
-                  alt={'Profile'}
-                  className=''
-                />
+                width={20}
+                height={20}
+                src={'/assets/homeIcons/redditIcon.png'}
+                alt={'Profile'}
+                className=''
+              />
             </div>
-            <div className='hover:bg-[#7367c2] p-2 rounded-lg'>
+            <div className='rounded-lg p-2 hover:bg-[#7367c2]'>
               <NextImage
-                  width={24}
-                  height={20}
-                  src={'/assets/homeIcons/discordIcon.png'}
-                  alt={'Profile'}
-                  className=''
-                />
+                width={24}
+                height={20}
+                src={'/assets/homeIcons/discordIcon.png'}
+                alt={'Profile'}
+                className=''
+              />
             </div>
-            <div className='hover:bg-[#7367c2] p-2 rounded-lg'>
+            <div className='rounded-lg p-2 hover:bg-[#7367c2]'>
               <NextImage
-                  width={24}
-                  height={20}
-                  src={'/assets/homeIcons/twitterIcon.png'}
-                  alt={'Profile'}
-                  className=''
-                />
+                width={24}
+                height={20}
+                src={'/assets/homeIcons/twitterIcon.png'}
+                alt={'Profile'}
+                className=''
+              />
             </div>
           </div>
         </div>
       </div>
-
     </div>
   );
 }
 
 UserLanding.getLayout = (page: ReactElement): ReactNode => (
   <AuthLayout>
-    <LandingLayout>
-      {page}
-    </LandingLayout>
+    <LandingLayout>{page}</LandingLayout>
   </AuthLayout>
 );
