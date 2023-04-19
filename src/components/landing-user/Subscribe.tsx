@@ -44,8 +44,8 @@ const Subscribe = () => {
                 <div className='flex flex-col items-center rounded-b-2xl bg-white'>
                   <div className='w-[349px] pt-5'>
                     <span className=' text-[30px] font-[400] text-[#000000] lg:text-[15px]'>
-                      I was worried I would drop my phone in the water · 폰을
-                      물에 빠뜨릴까봐 걱정했는데
+                      Beach days are always so soothing, you guys need to come
+                      relax with me!
                     </span>
                   </div>
                   <SarahPost className='m-6 h-[414px] w-[349px]' />
@@ -64,8 +64,8 @@ const Subscribe = () => {
                 <div className='flex flex-col items-center rounded-b-2xl bg-white'>
                   <div className='w-[349px] pt-5'>
                     <span className='text-[30px] font-[400] text-[#000000] lg:text-[15px]'>
-                      Beach days are always so soothing, you guys need to come
-                      relax with me!
+                      I was worried I would drop my phone in the water · 폰을
+                      물에 빠뜨릴까봐 걱정했는데
                     </span>
                   </div>
                   <JenniePost className='m-6 h-[414px] w-[349px]' />

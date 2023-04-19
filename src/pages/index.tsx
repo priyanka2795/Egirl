@@ -29,6 +29,7 @@ import BetaAccessBg from '@components/svg-assets/BetaAccessBg';
 import BetaAccessVector from '@components/svg-assets/BetaAccessVector';
 import SpicyContentPurple from '@components/svg-assets/SpicyContentPurple';
 import Subscribe from '@components/landing-user/Subscribe';
+import Footer from '@components/landing-user/Footer';
 
 export function LandingLayout({ children }: LayoutProps): JSX.Element {
   return <div className='w-full bg-white'>{children}</div>;
@@ -1022,7 +1023,8 @@ export default function UserLanding(): JSX.Element {
       </div> */}
 
       {/* Footer */}
-      <div className='w-full bg-[#000000] px-24 lg:px-[100px]'>
+      <Footer />
+      {/* <div className='w-full bg-[#000000] px-24 lg:px-[100px]'>
         <div className='py-20'>
           <div className='gap-[100px] sm:grid sm:grid-cols-1 md:grid md:grid-cols-2 md:max-xl:grid md:max-lg:grid-cols-1 lg:grid lg:grid-cols-2'>
             <div className=''>
@@ -1147,7 +1149,7 @@ export default function UserLanding(): JSX.Element {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Socials sticky */}
       <div className='sticky bottom-0 right-0 z-10 float-right flex w-full justify-end'>
