@@ -66,7 +66,7 @@ const SvgComponent = (props: Props) => (
     />
     <mask
       id='mask0_1215_17830'
-      style={{maskType:"alpha"}}
+      style={{ maskType: 'alpha' }}
       maskUnits='userSpaceOnUse'
       x='253'
       y='369'
@@ -122,7 +122,7 @@ const SvgComponent = (props: Props) => (
     />
     <mask
       id='mask1_1215_17830'
-      style={{maskType:"alpha"}}
+      style={{ maskType: 'alpha' }}
       maskUnits='userSpaceOnUse'
       x='153'
       y='146'
