@@ -1,4 +1,7 @@
 import { NextImage } from '@components/ui/next-image';
+import SarahCarter from './assets/Discover/SarahCarter';
+import JennieYoon from './assets/Discover/JennieYoon';
+import MikaChan from './assets/Discover/MikaChan';
 
 const Discover = () => {
   return (
@@ -23,7 +26,8 @@ const Discover = () => {
           <div className='items-center justify-around space-x-4 lg:flex'>
             <div className='flex justify-center'>
               <div>
-                <div className='hidden lg:block'>
+                <SarahCarter />
+                {/* <div className='hidden lg:block'>
                   <NextImage
                     width={400}
                     height={465}
@@ -40,10 +44,10 @@ const Discover = () => {
                     imgClassName='rounded-[15px]'
                     alt={'discover e girl1'}
                   />
-                </div>
+                </div> */}
                 <div className='mt-[12px]'>
                   <span className='text-[30px] font-[600] text-[#000000] lg:text-[24px]'>
-                    Sarah Scarlet
+                    Sarah Carter
                   </span>
                 </div>
                 <div className='mt-[2px]'>
@@ -55,7 +59,7 @@ const Discover = () => {
             </div>
             <div className='flex justify-center'>
               <div>
-                <div className='hidden lg:block'>
+                {/* <div className='hidden lg:block'>
                   <NextImage
                     width={400}
                     height={465}
@@ -72,7 +76,8 @@ const Discover = () => {
                     imgClassName='rounded-[15px]'
                     alt={'discover e girl2'}
                   />
-                </div>
+                </div> */}
+                <JennieYoon></JennieYoon>
 
                 <div className='mt-[12px]'>
                   <span className='text-[30px] font-[600] text-[#000000] lg:text-[24px]'>
@@ -88,7 +93,7 @@ const Discover = () => {
             </div>
             <div className='flex justify-center'>
               <div>
-                <div className='hidden lg:block'>
+                {/* <div className='hidden lg:block'>
                   <NextImage
                     width={400}
                     height={465}
@@ -105,7 +110,8 @@ const Discover = () => {
                     imgClassName='rounded-[15px]'
                     alt={'discover e girl3'}
                   />
-                </div>
+                </div> */}
+                <MikaChan></MikaChan>
 
                 <div className='mt-[12px]'>
                   <span className='text-[30px] font-[600] text-[#000000] lg:text-[24px]'>

@@ -85,7 +85,8 @@ export default function UserLanding(): JSX.Element {
       <SEO title='Egirls' description='' />
 
       {/* Nav Bar */}
-      <nav className='fixed top-0 z-10 w-full bg-[#F6F6F6] px-24 lg:px-[100px]'>
+      <Nav setBetaAccess={setBetaAccess()} setSideNav={setSideNav()} />
+      {/* <nav className='fixed top-0 z-10 w-full bg-[#F6F6F6] px-24 lg:px-[100px]'>
         <div className='py-3 lg:py-6'>
           <div className='flex items-center justify-between'>
             <div className='lg:flex'>
@@ -142,7 +143,7 @@ export default function UserLanding(): JSX.Element {
             </div>
           </div>
         </div>
-      </nav>
+      </nav> */}
 
       {/* Side NavBar */}
       <nav
@@ -400,7 +401,8 @@ export default function UserLanding(): JSX.Element {
       </div>
 
       {/* Header */}
-      <div className='mt-[96px] w-full bg-[#F6F6F6] px-24 lg:px-[100px]'>
+      <Header />
+      {/* <div className='mt-[96px] w-full bg-[#F6F6F6] px-24 lg:px-[100px]'>
         <div className='py-20'>
           <div className='justify-center gap-[100px] xs:justify-center sm:grid sm:grid-cols-1 sm:justify-center md:grid md:grid-cols-2 md:justify-center md:max-xl:grid md:max-lg:grid-cols-1 lg:grid lg:grid-cols-2'>
             <div className=''>
@@ -452,10 +454,11 @@ export default function UserLanding(): JSX.Element {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Discover */}
-      <div className='w-full bg-[#FFFFFF] px-24 lg:px-[100px]'>
+      <Discover />
+      {/* <div className='w-full bg-[#FFFFFF] px-24 lg:px-[100px]'>
         <div className='py-10'>
           <div className=''>
             <div className=''>
@@ -579,10 +582,11 @@ export default function UserLanding(): JSX.Element {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Chat */}
-      <div className='w-full bg-[#FFFFFF] px-24 lg:px-[100px]'>
+      <Chat />
+      {/* <div className='w-full bg-[#FFFFFF] px-24 lg:px-[100px]'>
         <div className='w-full py-20'>
           <div className='w-full gap-[100px] sm:grid sm:grid-cols-1 md:grid md:grid-cols-2 md:max-xl:grid md:max-lg:grid-cols-1 lg:grid lg:grid-cols-2'>
             <div className='w-full'>
@@ -854,10 +858,11 @@ export default function UserLanding(): JSX.Element {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Subscribe */}
-      <div className='w-full bg-[#F7F7F7] px-24 lg:px-[100px]'>
+      <Subscribe />
+      {/* <div className='w-full bg-[#F7F7F7] px-24 lg:px-[100px]'>
         <div className='py-10'>
           <div className=''>
             <div className=''>
@@ -1014,7 +1019,7 @@ export default function UserLanding(): JSX.Element {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Footer */}
       <div className='w-full bg-[#000000] px-24 lg:px-[100px]'>
