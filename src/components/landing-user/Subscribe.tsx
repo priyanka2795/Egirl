@@ -12,7 +12,7 @@ import JenniePost from './assets/Subscribe/JenniePost';
 
 const Subscribe = () => {
   return (
-    <div className='w-full bg-[#F7F7F7] px-24 lg:px-[100px]'>
+    <div className='w-full bg-[#F6F6F6] px-24 lg:px-[100px]'>
       <div className='py-20'>
         <div className=''>
           <div className=''>
@@ -32,92 +32,61 @@ const Subscribe = () => {
           </div>
           <div className='mt-5  lg:mt-10'>
             <div className='items-center justify-around space-y-8 lg:flex lg:space-x-10 lg:space-y-0'>
-              <div className='flex w-[379px] justify-center'>
-                <div className='rounded-t-2xl border'>
-                  <div className='justify-left flex items-center rounded-t-2xl bg-[#6c6e7229] pt-6 pb-5 pl-6 '>
-                    <SarahCarterAvatar />
-
-                    <div className='ml-[12px] '>
-                      <span className='text-lg font-medium text-[#000000]'>
-                        Sarah Carter
-                      </span>
-                    </div>
+              <div className='flex  flex-col items-center shadow-subscribe-card-shadow'>
+                <div className='justify-left flex w-[397px] items-center rounded-t-2xl bg-[#E7E8E8] pt-6 pb-5 pl-6 '>
+                  <SarahCarterAvatar />
+                  <div className='ml-[12px] '>
+                    <span className='text-lg font-medium text-[#000000]'>
+                      Sarah Carter
+                    </span>
                   </div>
-                  <div className=''>
-                    <div className='mx-6 mt-5'>
-                      <span className='text-[30px] font-[400] text-[#000000] lg:text-[15px]'>
-                        What do you guys think of my goth cosplay? uwu ·
-                        私のゴスコスプレについてどう思いますか？uwu
-                      </span>
-                    </div>
-                    {/* <NextImage
-                        width={700}
-                        height={800}
-                        src={'/assets/mikaChanContent.png'}
-                        alt={'mikaChanContent'}
-                        imgClassName='rounded-[15px]'
-                      /> */}
-                    <SarahPost className='m-6' />
+                </div>
+                <div className='flex flex-col items-center rounded-b-2xl bg-white'>
+                  <div className='w-[349px] pt-5'>
+                    <span className=' text-[30px] font-[400] text-[#000000] lg:text-[15px]'>
+                      I was worried I would drop my phone in the water · 폰을
+                      물에 빠뜨릴까봐 걱정했는데
+                    </span>
                   </div>
+                  <SarahPost className='m-6 h-[414px] w-[349px]' />
                 </div>
               </div>
 
-              <div className='flex justify-center pt-10 lg:pt-0'>
-                <div className='rounded-t-2xl border'>
-                  <div className='justify-left flex items-center rounded-t-2xl bg-[#6c6e7229] py-10 pt-6 pb-5 pl-6 lg:h-[80px]'>
-                    <JennieYoonAvatar />
-
-                    <div className='ml-[12px]'>
-                      <span className='text-lg font-medium text-[#000000] '>
-                        Jennie Yoon
-                      </span>
-                    </div>
-                  </div>
-                  <div className='mx-[24px] mt-[12px]'>
-                    <span className='text-[30px] font-[400] text-[#000000] lg:text-[15px]'>
-                      Do I look cuter with short hair? · 짧은 머리가 더 귀엽게
-                      보이나요?
+              <div className='flex  flex-col items-center shadow-subscribe-card-shadow'>
+                <div className='justify-left flex w-[397px] items-center rounded-t-2xl bg-[#E7E8E8] pt-6 pb-5 pl-6 '>
+                  <JennieYoonAvatar />
+                  <div className='ml-[12px] '>
+                    <span className='text-lg font-medium text-[#000000]'>
+                      Yoon Jennie
                     </span>
-                  </div>
-                  <div className='mt-[14px] mb-[14px] flex items-center justify-center lg:mb-0'>
-                    {/* <NextImage
-                      width={700}
-                      height={800}
-                      src={'/assets/jennieContent.png'}
-                      alt={'jennieContent'}
-                      imgClassName='rounded-[15px]'
-                    /> */}
-                    <JenniePost />
                   </div>
                 </div>
-              </div>
-
-              <div className='flex justify-center pt-10 lg:pt-0'>
-                <div className='w-full rounded-t-2xl border'>
-                  <div className='justify-left flex items-center rounded-t-2xl bg-[#6c6e7229] py-10 pt-6 pb-5 pl-6 lg:h-[80px]'>
-                    <MikaChanAvatar />
-
-                    <div className='ml-[12px]'>
-                      <span className='text-lg font-medium text-[#000000]'>
-                        Mika-chan
-                      </span>
-                    </div>
-                  </div>
-                  <div className='mx-[24px] mt-[12px]'>
+                <div className='flex flex-col items-center rounded-b-2xl bg-white'>
+                  <div className='w-[349px] pt-5'>
                     <span className='text-[30px] font-[400] text-[#000000] lg:text-[15px]'>
-                      Trying out my new amber contacts at the beach
+                      Beach days are always so soothing, you guys need to come
+                      relax with me!
                     </span>
                   </div>
-                  <div className='mt-[14px] mb-[14px] flex items-center justify-center lg:mt-[30px] lg:mb-0'>
-                    {/* <NextImage
-                      width={700}
-                      height={800}
-                      src={'/assets/mirandaContent.png'}
-                      alt={'mirandaContent'}
-                      imgClassName='rounded-[15px]'
-                    /> */}
-                    <MikaPost />
+                  <JenniePost className='m-6 h-[414px] w-[349px]' />
+                </div>
+              </div>
+              <div className='flex  flex-col items-center shadow-subscribe-card-shadow'>
+                <div className='justify-left flex w-[397px] items-center rounded-t-2xl bg-[#E7E8E8] pt-6 pb-5 pl-6 '>
+                  <MikaChanAvatar />
+                  <div className='ml-[12px] '>
+                    <span className='text-lg font-medium text-[#000000]'>
+                      Mika-chan
+                    </span>
                   </div>
+                </div>
+                <div className='flex flex-col items-center rounded-b-2xl bg-white'>
+                  <div className='w-[349px] pt-5'>
+                    <span className=' text-[30px] font-[400] text-[#000000] lg:text-[15px]'>
+                      Enjoying the view? uwu · 景色を楽しんでいますか？uwu
+                    </span>
+                  </div>
+                  <MikaPost className='m-6 h-[414px] w-[349px]' />
                 </div>
               </div>
             </div>
