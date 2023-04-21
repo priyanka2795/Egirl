@@ -248,7 +248,8 @@ const Design = () => {
                     alt={'chatAway illus'}
                     layout='responsive'
                   /> */}
-                  <CustomClothing />
+                  {/* <CustomClothing /> */}
+                  <DynamicBackgrounds />
                 </figure>
               )}
               {section2 && (
