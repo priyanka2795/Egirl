@@ -286,7 +286,7 @@ const Design = () => {
                     alt={'voiceMessage illus'}
                     layout='responsive'
                   /> */}
-                  {/* <UniquePersonality /> */}
+                  <UniquePersonality />
                 </figure>
               )}
             </div>
