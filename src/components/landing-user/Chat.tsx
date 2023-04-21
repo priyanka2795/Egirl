@@ -43,13 +43,13 @@ const Chat = () => {
           <div className='w-full'>
             <div className='flex justify-center lg:justify-start'>
               <div className=' '>
-                <span className='text-[36px] font-[500] text-[#949698] lg:text-[18px] select-none'>
+                <span className='select-none text-[36px] font-[500] text-[#949698] lg:text-[18px]'>
                   CHAT AWAY
                 </span>
               </div>
             </div>
             <div className=' mt-1 flex justify-center text-center lg:justify-start lg:text-start'>
-              <span className='text-[64px] font-[600] text-[#000000] lg:text-[48px] select-none'>
+              <span className='select-none text-[64px] font-[600] text-[#000000] lg:text-[48px]'>
                 Easily <span className='font-[400] italic'>chat</span> with any
                 Egirl you like
               </span>

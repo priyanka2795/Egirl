@@ -9,11 +9,11 @@ const Discover = () => {
       <div>
         <div>
           <div className='mb-1 flex justify-center lg:justify-start'>
-            <div className='text-[36px] font-[500] text-[#949698] md:text-[24px] lg:text-[18px] select-none'>
+            <div className='select-none text-[36px] font-[500] text-[#949698] md:text-[24px] lg:text-[18px]'>
               SOMETHING FOR EVERYONE
             </div>
           </div>
-          <div className='flex justify-center space-x-3 lg:justify-start select-none'>
+          <div className='flex select-none justify-center space-x-3 lg:justify-start'>
             <span className='text-[64px] font-[600] text-[#000000] lg:text-[48px]'>
               Discover
             </span>
@@ -46,12 +46,12 @@ const Discover = () => {
                   />
                 </div> */}
                 <div className='mt-[12px]'>
-                  <span className='text-[30px] font-[600] text-[#000000] lg:text-[24px] select-none'>
+                  <span className='select-none text-[30px] font-[600] text-[#000000] lg:text-[24px]'>
                     Sarah Carter
                   </span>
                 </div>
                 <div className='mt-[2px]'>
-                  <span className='text-[28px] font-[500] text-[#949698] lg:text-[14px] select-none'>
+                  <span className='select-none text-[28px] font-[500] text-[#949698] lg:text-[14px]'>
                     LOS ANGELES, USA
                   </span>
                 </div>
@@ -80,12 +80,12 @@ const Discover = () => {
                 <JennieYoon></JennieYoon>
 
                 <div className='mt-[12px]'>
-                  <span className='text-[30px] font-[600] text-[#000000] lg:text-[24px] select-none'>
+                  <span className='select-none text-[30px] font-[600] text-[#000000] lg:text-[24px]'>
                     Jennie Yoon
                   </span>
                 </div>
                 <div className='mt-[2px]'>
-                  <span className='text-[28px] font-[500] text-[#949698] lg:text-[14px] select-none'>
+                  <span className='select-none text-[28px] font-[500] text-[#949698] lg:text-[14px]'>
                     Seoul, South Korea{' '}
                   </span>
                 </div>
@@ -114,12 +114,12 @@ const Discover = () => {
                 <MikaChan></MikaChan>
 
                 <div className='mt-[12px]'>
-                  <span className='text-[30px] font-[600] text-[#000000] lg:text-[24px] select-none'>
+                  <span className='select-none text-[30px] font-[600] text-[#000000] lg:text-[24px]'>
                     Mika-Chan
                   </span>
                 </div>
                 <div className='mt-[2px]'>
-                  <span className='text-[28px] font-[500] text-[#949698] lg:text-[14px] select-none'>
+                  <span className='select-none text-[28px] font-[500] text-[#949698] lg:text-[14px]'>
                     Tokyo, Japan
                   </span>
                 </div>

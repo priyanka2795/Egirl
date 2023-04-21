@@ -20,7 +20,7 @@ module.exports = {
         xs: '279px' // Mobile (iPhone 3 - iPhone XS Max).
       },
       boxShadow: {
-        'subscribe-card-shadow': '0px 44px 50px rgba(112, 109, 129, 0.05)',
+        'subscribe-card-shadow': '0px 44px 50px rgba(112, 109, 129, 0.05)'
       },
       fontFamily: {
         'twitter-chirp': ['TwitterChirp', 'sans-serif'],

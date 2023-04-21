@@ -10,7 +10,7 @@ import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs';
 import { SessionContextProvider, Session } from '@supabase/auth-helpers-react';
 import { useState } from 'react';
 import SupabaseAuthContextProvider from '@lib/context/supabase-auth-context';
-import Script from 'next/script'
+import Script from 'next/script';
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -30,12 +30,18 @@ export default function App({
 
   return (
     <>
-        {/* Google tag (gtag.js) */}
-        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-89E99W1NST"></Script>
-        <Script strategy="lazyOnload" src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`} />
+      {/* Google tag (gtag.js) */}
+      <Script
+        async
+        src='https://www.googletagmanager.com/gtag/js?id=G-89E99W1NST'
+      ></Script>
+      <Script
+        strategy='lazyOnload'
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+      />
 
-        <Script strategy="lazyOnload">
-            {`
+      <Script strategy='lazyOnload'>
+        {`
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
@@ -43,21 +49,21 @@ export default function App({
                     page_path: window.location.pathname,
                 });
             `}
-        </Script>
+      </Script>
 
-        <AppHead />
-        <SessionContextProvider
-            supabaseClient={supabaseClient}
-            initialSession={pageProps.initialSession}
-        >
-            <AuthContextProvider>
-                <SupabaseAuthContextProvider>
-                    <ThemeContextProvider>
-                        {getLayout(<Component {...pageProps} />)}
-                    </ThemeContextProvider>
-                </SupabaseAuthContextProvider>
-            </AuthContextProvider>
-        </SessionContextProvider>
+      <AppHead />
+      <SessionContextProvider
+        supabaseClient={supabaseClient}
+        initialSession={pageProps.initialSession}
+      >
+        <AuthContextProvider>
+          <SupabaseAuthContextProvider>
+            <ThemeContextProvider>
+              {getLayout(<Component {...pageProps} />)}
+            </ThemeContextProvider>
+          </SupabaseAuthContextProvider>
+        </AuthContextProvider>
+      </SessionContextProvider>
     </>
   );
 }
