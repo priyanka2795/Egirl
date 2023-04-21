@@ -30,6 +30,8 @@ import DiscordIcon from '@components/landing-user/assets/Footer/DiscordIcon';
 import TwitterIcon from '@components/landing-user/assets/Footer/TwitterIcon';
 import InstaIcon from '@components/landing-user/assets/Footer/InstaIcon';
 import RedditIcon from '@components/landing-user/assets/Footer/RedditIcon';
+import ContactUs from '@components/landing-creator/ContactUs';
+import HowItWorks from '@components/landing-creator/HowItWorks';
 
 export function LandingLayout({ children }: LayoutProps): JSX.Element {
   return <div className='w-full bg-white'>{children}</div>;
@@ -222,6 +224,8 @@ export default function CreatorLanding(): JSX.Element {
       <Header />
 
       {/* Contact Us */}
+      <ContactUs />
+      {/*       
       <div className='grid-row-2 grid grid-cols-none justify-items-center gap-8 bg-[#F6F6F6] px-24 py-10 lg:grid-cols-4 lg:grid-rows-none lg:px-[100px]'>
         <div className='lg:col-span-3'>
           <div className='border-l-2'>
@@ -243,10 +247,11 @@ export default function CreatorLanding(): JSX.Element {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* How it works */}
-      <div className='bg-[#FFFFFF] px-24 lg:px-[100px]'>
+      <HowItWorks />
+      {/* <div className='bg-[#FFFFFF] px-24 lg:px-[100px]'>
         <div className='flex justify-center pt-[100px] pb-[80px]'>
           <div className='space-x-2'>
             <span className='text-[96px] font-[500] text-[black] lg:text-[48px]'>
@@ -454,7 +459,7 @@ export default function CreatorLanding(): JSX.Element {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Creator tools */}
       <div className='bg-[#FFFFFF] px-24 lg:px-[100px]'>
