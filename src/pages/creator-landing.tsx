@@ -24,6 +24,12 @@ import RoundedCreatingTagIcon from '@components/svg-assets/RoundedCreatingTagIco
 import CreatorRoundIcon1 from '@components/svg-assets/CreatorRoundIcon1';
 import TextingIllustration from '@components/svg-assets/Texting';
 import { StarIcon, Bars2Icon, XMarkIcon } from '@heroicons/react/20/solid';
+import Nav from '@components/landing-creator/Nav';
+import Header from '@components/landing-creator/Header';
+import DiscordIcon from '@components/landing-user/assets/Footer/DiscordIcon';
+import TwitterIcon from '@components/landing-user/assets/Footer/TwitterIcon';
+import InstaIcon from '@components/landing-user/assets/Footer/InstaIcon';
+import RedditIcon from '@components/landing-user/assets/Footer/RedditIcon';
 
 export function LandingLayout({ children }: LayoutProps): JSX.Element {
   return <div className='w-full bg-white'>{children}</div>;
@@ -83,65 +89,7 @@ export default function CreatorLanding(): JSX.Element {
       <SEO title='Egirls' description='' />
 
       {/* Nav Bar */}
-      <nav className='fixed top-0 z-10 w-full bg-[black] px-24 lg:px-[100px]'>
-        <div className='py-3 lg:py-6'>
-          <div className='flex items-center justify-between'>
-            <div className='lg:flex'>
-              <div className='pr-[40px]'>
-                <span className='text-[64px] font-semibold text-[white] lg:text-[32px]'>
-                  Egirls
-                </span>
-              </div>
-              <div className='lg:flex lg:items-center lg:space-x-4'>
-                <div className='hidden lg:flex lg:items-center'>
-                  <Link href='/'>
-                    <span className='text-[32px] font-[500] text-[white] hover:text-[#5848BC] hover:underline hover:decoration-[#5848BC] hover:underline-offset-8 lg:text-[16px]'>
-                      For users
-                    </span>
-                  </Link>
-                </div>
-                <div className='hidden lg:flex lg:items-center'>
-                  <button>
-                    <Link href='/creator-landing'>
-                      <span className='text-[32px] font-[500] text-[#5848BC] underline  decoration-[#5848BC] underline-offset-8 lg:text-[16px]'>
-                        For creators
-                      </span>
-                    </Link>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div className='md:flex md:space-x-4 lg:flex lg:space-x-4'>
-              <div className='hidden lg:flex lg:items-center'>
-                <button>
-                  <Link href='/contact-us'>
-                    <span className='text-[32px] font-[500] text-[white] hover:text-[#5848BC] hover:underline hover:decoration-[#5848BC] hover:underline-offset-8 lg:text-[16px]'>
-                      Contact
-                    </span>
-                  </Link>
-                </button>
-              </div>
-              <div
-                className='justify-center rounded-[12px] bg-[#5848BC] px-[18px] py-[10px] xs:hidden sm:hidden md:flex md:items-center lg:flex lg:w-[158px] lg:items-center'
-                onClick={setBetaAccess()}
-              >
-                <button>
-                  <span className='text-[32px] font-[500] text-white lg:text-[16px]'>
-                    Join Discord
-                  </span>
-                </button>
-              </div>
-              <div
-                className='xs:flex xs:items-center sm:flex sm:items-center md:flex md:items-center lg:flex lg:items-center'
-                onClick={setSideNav()}
-              >
-                <Bars2Icon className='h-[40px] w-[40px] fill-[white] lg:hidden lg:h-[20px] lg:w-[20px]'></Bars2Icon>
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
-
+      <Nav setBetaAccess={setBetaAccess()} setSideNav={setSideNav()} />
       {/* Side NavBar */}
       <nav
         className={`fixed top-0 z-10 h-full w-full bg-[black] p-20 duration-300 ease-in lg:invisible ${
@@ -271,102 +219,7 @@ export default function CreatorLanding(): JSX.Element {
       </div>
 
       {/* Header */}
-      <div className='mt-[96px] bg-[#000000] px-24 lg:px-[100px]'>
-        <div className='py-20'>
-          <div className=''>
-            <div className='lg:hidden'>
-              <EGirlIcon className='overflow-visible' />
-            </div>
-            <div className='flex justify-end lg:hidden'>
-              <RoundedEgirlIcon />
-            </div>
-            <div className='flex items-center justify-center lg:justify-between'>
-              <div className='hidden lg:block'>
-                <EGirlIcon className='overflow-visible' />
-              </div>
-              <div className='flex h-[80px] w-[320px] items-center space-x-2 rounded-[8px] bg-[#313131] px-[8px] py-[12px] lg:h-[40px] lg:w-[175px]'>
-                <StarIcon className='h-[40px] w-[40px] fill-[#5848BC] pr-[8px] lg:h-[20px] lg:w-[20px]'></StarIcon>
-                <div className='flex'>
-                  <span className='text-[30px] font-[500] text-[white] md:text-[24px] lg:text-[15px]'>
-                    become a creator
-                  </span>
-                </div>
-              </div>
-              <div className='hidden lg:block lg:w-[100px]'></div>
-            </div>
-            <div className='flex items-center justify-center pt-[24px] lg:justify-between'>
-              <div className='hidden lg:block lg:w-[80px]'></div>
-              <div className=''>
-                <div className='flex-none items-center justify-center space-x-5 text-center'>
-                  <div className='flex items-center justify-center space-x-3'>
-                    <span className='text-[112px] font-[600] uppercase text-[white] lg:text-[56px]'>
-                      Let
-                    </span>
-                    <div className='flex justify-center'>
-                      <CreatorRoundIcon1 className='l' />
-                    </div>
-                    <span className='text-[112px] font-[600] uppercase text-[white] lg:text-[56px]'>
-                      Your
-                    </span>
-                  </div>
-                  <div className='flex items-center justify-center space-x-3'>
-                    <span className='text-[112px] font-[600] uppercase italic text-[white] lg:text-[56px]'>
-                      Imagination
-                    </span>
-                    <div className='flex justify-center'>
-                      <NextImage
-                        width={40}
-                        height={40}
-                        src={'/assets/svgImages/roundCreatorIcon.svg'}
-                        alt={'round creator icon'}
-                      />
-                    </div>
-                    <span className='text-[112px] font-[600] uppercase text-[white] lg:text-[56px]'>
-                      Run
-                    </span>
-                  </div>
-                  <div>
-                    <span className='text-[112px] font-[600] uppercase text-[white] lg:text-[56px]'>
-                      Wild
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div className='hidden lg:block'>
-                <RoundedEgirlIcon />
-              </div>
-            </div>
-          </div>
-          <div className='pt-[30px]'>
-            <div className='hidden lg:block'>
-              <RoundedCreatingTagIcon />
-            </div>
-            <div className='flex justify-center'>
-              <span className='text-[36px] font-[400] text-[white] lg:text-[18px]'>
-                Join our waitlist for beta access, 3000 people have joined so
-                far!
-              </span>
-            </div>
-            <div className='flex justify-center pt-[20px]'>
-              <div className='flex w-[515px]'>
-                <input
-                  type='email'
-                  className='form-input w-[395px] rounded-l-[12px] border-transparent bg-[#313131] px-4 py-3 text-[36px] text-[#949698] drop-shadow lg:text-[18px]'
-                  placeholder='Enter your email'
-                />
-                <div className='flex w-[158px] items-center justify-center rounded-r-[12px] bg-[#5848BC] px-[24px] py-[16px] drop-shadow'>
-                  <span className='text-[36px] lg:text-[18px]'>Join</span>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div className='mt-10 lg:hidden'>
-                <RoundedCreatingTagIcon />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Header />
 
       {/* Contact Us */}
       <div className='grid-row-2 grid grid-cols-none justify-items-center gap-8 bg-[#F6F6F6] px-24 py-10 lg:grid-cols-4 lg:grid-rows-none lg:px-[100px]'>
@@ -1105,34 +958,19 @@ export default function CreatorLanding(): JSX.Element {
 
       {/* Socials sticky */}
       <div className='sticky bottom-0 right-0 z-10 float-right flex w-full justify-end'>
-        <div className='h-[60px] w-[160px] rounded-tl-xl bg-[#5848BC] p-1'>
-          <div className='grid h-full grid-cols-3 items-center justify-items-center p-1 '>
+        <div className='h-[60px] w-[160px] rounded-tl-xl bg-[#5848BC]'>
+          <div className='grid h-full grid-cols-4 items-center justify-items-center p-3 '>
             <div className='rounded-lg p-2 hover:bg-[#7367c2]'>
-              <NextImage
-                width={20}
-                height={20}
-                src={'/assets/homeIcons/redditIcon.png'}
-                alt={'Profile'}
-                className=''
-              />
+              <DiscordIcon className='h-[20px] w-[20px]' />
             </div>
             <div className='rounded-lg p-2 hover:bg-[#7367c2]'>
-              <NextImage
-                width={24}
-                height={20}
-                src={'/assets/homeIcons/discordIcon.png'}
-                alt={'Profile'}
-                className=''
-              />
+              <TwitterIcon className='h-[20px] w-[20px]' />
             </div>
             <div className='rounded-lg p-2 hover:bg-[#7367c2]'>
-              <NextImage
-                width={24}
-                height={20}
-                src={'/assets/homeIcons/twitterIcon.png'}
-                alt={'Profile'}
-                className=''
-              />
+              <InstaIcon className='h-[20px] w-[20px]' />
+            </div>
+            <div className='rounded-lg p-2 hover:bg-[#7367c2]'>
+              <RedditIcon className='h-[20px] w-[20px]' />
             </div>
           </div>
         </div>
