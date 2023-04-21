@@ -248,7 +248,7 @@ const Design = () => {
                     alt={'chatAway illus'}
                     layout='responsive'
                   /> */}
-                  <CustomClothing />
+                  {/* <CustomClothing /> */}
                 </figure>
               )}
               {section2 && (
@@ -267,7 +267,7 @@ const Design = () => {
                     alt={'requestImage illus'}
                     layout='responsive'
                   /> */}
-                  <DynamicBackgrounds />
+                  {/* <DynamicBackgrounds /> */}
                 </figure>
               )}
               {section3 && (
@@ -286,7 +286,7 @@ const Design = () => {
                     alt={'voiceMessage illus'}
                     layout='responsive'
                   /> */}
-                  <UniquePersonality />
+                  {/* <UniquePersonality /> */}
                 </figure>
               )}
             </div>
