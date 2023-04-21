@@ -183,7 +183,7 @@ export default function CreatorLanding(): JSX.Element {
       <HowItWorks />
 
       {/* Creator tools */}
-      {/* <Design /> */}
+      <Design />
 
       {/* Get Paid */}
       <PassionToProfit />
