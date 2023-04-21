@@ -30,6 +30,10 @@ import BetaAccessVector from '@components/svg-assets/BetaAccessVector';
 import SpicyContentPurple from '@components/svg-assets/SpicyContentPurple';
 import Subscribe from '@components/landing-user/Subscribe';
 import Footer from '@components/landing-user/Footer';
+import DiscordIcon from '@components/landing-user/assets/Footer/DiscordIcon';
+import RedditIcon from '@components/landing-user/assets/Footer/RedditIcon';
+import InstaIcon from '@components/landing-user/assets/Footer/InstaIcon';
+import TwitterIcon from '@components/landing-user/assets/Footer/TwitterIcon';
 
 export function LandingLayout({ children }: LayoutProps): JSX.Element {
   return <div className='w-full bg-white'>{children}</div>;
@@ -1153,34 +1157,19 @@ export default function UserLanding(): JSX.Element {
 
       {/* Socials sticky */}
       <div className='sticky bottom-0 right-0 z-10 float-right flex w-full justify-end'>
-        <div className='h-[60px] w-[160px] rounded-tl-xl bg-[#5848BC] p-1'>
-          <div className='grid h-full grid-cols-3 items-center justify-items-center p-1 '>
+        <div className='h-[60px] w-[160px] rounded-tl-xl bg-[#5848BC]'>
+          <div className='grid h-full grid-cols-4 items-center justify-items-center p-3 '>
             <div className='rounded-lg p-2 hover:bg-[#7367c2]'>
-              <NextImage
-                width={20}
-                height={20}
-                src={'/assets/homeIcons/redditIcon.png'}
-                alt={'Profile'}
-                className=''
-              />
+              <DiscordIcon className='h-[20px] w-[20px]' />
             </div>
             <div className='rounded-lg p-2 hover:bg-[#7367c2]'>
-              <NextImage
-                width={24}
-                height={20}
-                src={'/assets/homeIcons/discordIcon.png'}
-                alt={'Profile'}
-                className=''
-              />
+              <TwitterIcon className='h-[20px] w-[20px]' />
             </div>
             <div className='rounded-lg p-2 hover:bg-[#7367c2]'>
-              <NextImage
-                width={24}
-                height={20}
-                src={'/assets/homeIcons/twitterIcon.png'}
-                alt={'Profile'}
-                className=''
-              />
+              <InstaIcon className='h-[20px] w-[20px]' />
+            </div>
+            <div className='rounded-lg p-2 hover:bg-[#7367c2]'>
+              <RedditIcon className='h-[20px] w-[20px]' />
             </div>
           </div>
         </div>

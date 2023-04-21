@@ -53,7 +53,7 @@ const Nav = ({ setBetaAccess, setSideNav }: Props) => {
             >
               <button>
                 <span className='text-[32px] font-[500] text-white lg:text-[16px]'>
-                  Join Discord
+                  Get Beta Access
                 </span>
               </button>
             </div>

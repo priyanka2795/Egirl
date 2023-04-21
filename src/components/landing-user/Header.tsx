@@ -11,13 +11,13 @@ const Header = () => {
           <div className='flex justify-center lg:justify-start'>
             <div className='flex items-center rounded-[8px] bg-[#EAE8FD] px-[12px] py-[10px]'>
               <ExperienceTheFuture className='mr-2' />
-              <div className='justify-centertext-[32px] flex items-center font-[500] text-[#5848BC] md:text-[24px] lg:text-[16px]'>
+              <div className=' justify-centertext-[32px] flex select-none items-center font-[500] text-[#5848BC] md:text-[24px] lg:text-[15px]'>
                 experience the future
               </div>
             </div>
           </div>
           <div className='pt-6 text-center lg:text-start'>
-            <span className='text-[104px] font-[600] text-black lg:text-[52px]'>
+            <span className='select-none text-[104px] font-[600] text-black lg:text-[52px]'>
               YOUR FAVOURITE <br />
               <span className='font-[500] italic'>EGIRLS</span>, ALL IN ONE
               <br />

@@ -43,13 +43,13 @@ const Chat = () => {
           <div className='w-full'>
             <div className='flex justify-center lg:justify-start'>
               <div className=' '>
-                <span className='text-[36px] font-[500] text-[#949698] lg:text-[18px]'>
+                <span className='text-[36px] font-[500] text-[#949698] lg:text-[18px] select-none'>
                   CHAT AWAY
                 </span>
               </div>
             </div>
             <div className=' mt-1 flex justify-center text-center lg:justify-start lg:text-start'>
-              <span className='text-[64px] font-[600] text-[#000000] lg:text-[48px]'>
+              <span className='text-[64px] font-[600] text-[#000000] lg:text-[48px] select-none'>
                 Easily <span className='font-[400] italic'>chat</span> with any
                 Egirl you like
               </span>
@@ -96,7 +96,7 @@ const Chat = () => {
                       )}
                     </div>
                   </button>
-                  <div>
+                  <div className='select-none'>
                     <div>
                       <span className='text-[48px] font-[500] text-[#000000] lg:text-[24px]'>
                         Texting
@@ -154,7 +154,7 @@ const Chat = () => {
                       )}
                     </div>
                   </button>
-                  <div>
+                  <div className='select-none'>
                     <div>
                       <span className='text-[48px] font-[500] text-[#000000] lg:text-[24px]'>
                         Request Images
@@ -212,7 +212,7 @@ const Chat = () => {
                       )}
                     </div>
                   </button>
-                  <div>
+                  <div className='select-none'>
                     <div>
                       <span className='text-[48px] font-[500] text-[#000000] lg:text-[24px]'>
                         Voice Messages

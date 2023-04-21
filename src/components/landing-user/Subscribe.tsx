@@ -18,13 +18,13 @@ const Subscribe = () => {
           <div className=''>
             <div className='flex justify-center lg:justify-start'>
               <div className='mb-1'>
-                <span className='text-[36px] font-[500] text-[#949698] lg:text-[18px]'>
+                <span className='text-[36px] font-[500] text-[#949698] lg:text-[18px] select-none'>
                   SPICY CONTENT AWAITS
                 </span>
               </div>
             </div>
             <div className='flex justify-center space-x-3 text-center lg:justify-start'>
-              <span className='text-[64px] font-[600] text-[#000000] lg:text-[48px]'>
+              <span className='text-[64px] font-[600] text-[#000000] lg:text-[48px] select-none'>
                 Subscribe to see{' '}
                 <span className='font-[400] italic'>exclusive</span> content
               </span>
@@ -36,14 +36,14 @@ const Subscribe = () => {
                 <div className='justify-left flex w-[397px] items-center rounded-t-2xl bg-[#E7E8E8] pt-6 pb-5 pl-6 '>
                   <SarahCarterAvatar />
                   <div className='ml-[12px] '>
-                    <span className='text-lg font-medium text-[#000000]'>
+                    <span className='text-lg font-medium text-[#000000] select-none'>
                       Sarah Carter
                     </span>
                   </div>
                 </div>
                 <div className='flex flex-col items-center rounded-b-2xl bg-white'>
                   <div className='w-[349px] pt-5'>
-                    <span className=' text-[30px] font-[400] text-[#000000] lg:text-[15px]'>
+                    <span className=' text-[30px] font-[400] text-[#000000] lg:text-[15px] select-none'>
                       Beach days are always so soothing, you guys need to come
                       relax with me!
                     </span>
@@ -56,14 +56,14 @@ const Subscribe = () => {
                 <div className='justify-left flex w-[397px] items-center rounded-t-2xl bg-[#E7E8E8] pt-6 pb-5 pl-6 '>
                   <JennieYoonAvatar />
                   <div className='ml-[12px] '>
-                    <span className='text-lg font-medium text-[#000000]'>
+                    <span className='text-lg font-medium text-[#000000] select-none'>
                       Yoon Jennie
                     </span>
                   </div>
                 </div>
                 <div className='flex flex-col items-center rounded-b-2xl bg-white'>
                   <div className='w-[349px] pt-5'>
-                    <span className='text-[30px] font-[400] text-[#000000] lg:text-[15px]'>
+                    <span className='text-[30px] font-[400] text-[#000000] lg:text-[15px] select-none'>
                       I was worried I would drop my phone in the water · 폰을
                       물에 빠뜨릴까봐 걱정했는데
                     </span>
@@ -75,14 +75,14 @@ const Subscribe = () => {
                 <div className='justify-left flex w-[397px] items-center rounded-t-2xl bg-[#E7E8E8] pt-6 pb-5 pl-6 '>
                   <MikaChanAvatar />
                   <div className='ml-[12px] '>
-                    <span className='text-lg font-medium text-[#000000]'>
+                    <span className='text-lg font-medium text-[#000000] select-none'>
                       Mika-chan
                     </span>
                   </div>
                 </div>
                 <div className='flex flex-col items-center rounded-b-2xl bg-white'>
                   <div className='w-[349px] pt-5'>
-                    <span className=' text-[30px] font-[400] text-[#000000] lg:text-[15px]'>
+                    <span className=' text-[30px] font-[400] text-[#000000] lg:text-[15px] select-none'>
                       Enjoying the view? uwu · 景色を楽しんでいますか？uwu
                     </span>
                   </div>

@@ -213,7 +213,7 @@ const SvgComponent = (props: Props) => (
       rx='20'
       fill='url(#paint0_linear_1215_17793)'
     />
-    <g clip-path='url(#clip0_1215_17793)'>
+    <g clipPath='url(#clip0_1215_17793)'>
       <rect
         x='321'
         y='287'
@@ -246,7 +246,7 @@ const SvgComponent = (props: Props) => (
       rx='20'
       fill='url(#paint1_linear_1215_17793)'
     />
-    <g clip-path='url(#clip1_1215_17793)'>
+    <g clipPath='url(#clip1_1215_17793)'>
       <rect
         x='101'
         y='122'
@@ -315,8 +315,8 @@ const SvgComponent = (props: Props) => (
         y2='465.539'
         gradientUnits='userSpaceOnUse'
       >
-        <stop stop-color='white' />
-        <stop offset='1' stop-color='#F5F4FB' />
+        <stop stopColor='white' />
+        <stop offset='1' stopColor='#F5F4FB' />
       </linearGradient>
       <linearGradient
         id='paint1_linear_1215_17793'
@@ -326,8 +326,8 @@ const SvgComponent = (props: Props) => (
         y2='328.5'
         gradientUnits='userSpaceOnUse'
       >
-        <stop stop-color='white' />
-        <stop offset='1' stop-color='#F5F4FB' />
+        <stop stopColor='white' />
+        <stop offset='1' stopColor='#F5F4FB' />
       </linearGradient>
       <clipPath id='clip0_1215_17793'>
         <rect x='321' y='287' width='178' height='147' rx='8' fill='white' />
