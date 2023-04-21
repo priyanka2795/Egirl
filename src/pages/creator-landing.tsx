@@ -32,6 +32,9 @@ import InstaIcon from '@components/landing-user/assets/Footer/InstaIcon';
 import RedditIcon from '@components/landing-user/assets/Footer/RedditIcon';
 import ContactUs from '@components/landing-creator/ContactUs';
 import HowItWorks from '@components/landing-creator/HowItWorks';
+import Design from '@components/landing-creator/Design';
+import PassionToProfit from '@components/landing-creator/PassionToProfit';
+import Footer from '@components/landing-user/Footer';
 
 export function LandingLayout({ children }: LayoutProps): JSX.Element {
   return <div className='w-full bg-white'>{children}</div>;
@@ -462,7 +465,8 @@ export default function CreatorLanding(): JSX.Element {
       </div> */}
 
       {/* Creator tools */}
-      <div className='bg-[#FFFFFF] px-24 lg:px-[100px]'>
+      <Design />
+      {/* <div className='bg-[#FFFFFF] px-24 lg:px-[100px]'>
         <div className=''>
           <div className='w-full grid-cols-none grid-rows-2 items-center justify-items-center lg:grid lg:grid-cols-2 lg:grid-rows-none'>
             <div className=''>
@@ -748,10 +752,11 @@ export default function CreatorLanding(): JSX.Element {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Get Paid */}
-      <div className='bg-[#F7F7F7] px-24 lg:px-[100px]'>
+      <PassionToProfit />
+      {/* <div className='bg-[#F7F7F7] px-24 lg:px-[100px]'>
         <div className='py-10'>
           <div className=''>
             <div className=''>
@@ -834,10 +839,11 @@ export default function CreatorLanding(): JSX.Element {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Footer */}
-      <div className='w-full bg-[#000000] px-24 lg:px-[100px]'>
+      <Footer />
+      {/* <div className='w-full bg-[#000000] px-24 lg:px-[100px]'>
         <div className='py-20'>
           <div className='gap-[100px] sm:grid sm:grid-cols-1 md:grid md:grid-cols-2 md:max-xl:grid md:max-lg:grid-cols-1 lg:grid lg:grid-cols-2'>
             <div className=''>
@@ -959,7 +965,7 @@ export default function CreatorLanding(): JSX.Element {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Socials sticky */}
       <div className='sticky bottom-0 right-0 z-10 float-right flex w-full justify-end'>

@@ -5,7 +5,7 @@ import ExperienceTheFuture from './assets/ExperienceTheFuture';
 import HeaderImg from './assets/HeaderImg';
 const Header = () => {
   return (
-    <div className='mt-[96px] w-full bg-[#F6F6F6] px-24 lg:px-[100px]'>
+    <div className='w-full bg-[#F6F6F6] px-24 pt-[96px] lg:px-[100px]'>
       <div className='justify-between xs:justify-center sm:grid sm:grid-cols-1 sm:justify-center md:grid md:grid-cols-2 md:justify-center md:max-xl:grid md:max-lg:grid-cols-1 lg:grid lg:grid-cols-2'>
         <div className='mt-[143px]'>
           <div className='flex justify-center lg:justify-start'>

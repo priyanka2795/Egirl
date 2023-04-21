@@ -24,6 +24,12 @@ import RoundedEgirlIcon from '@components/svg-assets/RoundedEgirlTagIcon';
 import RoundedCreatingTagIcon from '@components/svg-assets/RoundedCreatingTagIcon';
 import CreatorRoundIcon1 from '@components/svg-assets/CreatorRoundIcon1';
 import TextingIllustration from '@components/svg-assets/Texting';
+import Nav from '../components/landing-user/Nav';
+import Footer from '@components/landing-user/Footer';
+import DiscordIcon from '@components/landing-user/assets/Footer/DiscordIcon';
+import TwitterIcon from '@components/landing-user/assets/Footer/TwitterIcon';
+import InstaIcon from '@components/landing-user/assets/Footer/InstaIcon';
+import RedditIcon from '@components/landing-user/assets/Footer/RedditIcon';
 
 export function LandingLayout({ children }: LayoutProps): JSX.Element {
   return <div className='w-full bg-white'>{children}</div>;
@@ -53,7 +59,8 @@ export default function CreatorLanding(): JSX.Element {
       <SEO title='Egirls' description='' />
 
       {/* Nav Bar */}
-      <nav className='fixed top-0 z-10 w-full bg-[#F6F6F6] px-24 lg:px-[100px]'>
+      <Nav setBetaAccess={setBetaAccess()} setSideNav={setSideNav()} />
+      {/* <nav className='fixed top-0 z-10 w-full bg-[#F6F6F6] px-24 lg:px-[100px]'>
         <div className='py-3 lg:py-6'>
           <div className='flex items-center justify-between'>
             <div className='lg:flex'>
@@ -112,7 +119,7 @@ export default function CreatorLanding(): JSX.Element {
             </div>
           </div>
         </div>
-      </nav>
+      </nav> */}
 
       {/* Side NavBar */}
       <nav
@@ -239,7 +246,7 @@ export default function CreatorLanding(): JSX.Element {
       </div>
 
       {/* Header */}
-      <div className='mt-[96px] bg-[#F6F6F6] px-24 lg:px-[100px]'>
+      <div className='bg-[#F6F6F6] px-24 pt-[96px] lg:px-[100px]'>
         <div className='py-20'>
           <div className='gap-[50px] sm:grid sm:grid-cols-1 md:grid md:grid-cols-2 md:max-xl:grid md:max-lg:grid-cols-1 lg:grid lg:grid-cols-2'>
             <div className=''>
@@ -323,7 +330,8 @@ export default function CreatorLanding(): JSX.Element {
       </div>
 
       {/* Footer */}
-      <div className='w-full bg-[#000000] px-24 lg:px-[100px]'>
+      <Footer />
+      {/* <div className='w-full bg-[#000000] px-24 lg:px-[100px]'>
         <div className='py-20'>
           <div className='gap-[100px] sm:grid sm:grid-cols-1 md:grid md:grid-cols-2 md:max-xl:grid md:max-lg:grid-cols-1 lg:grid lg:grid-cols-2'>
             <div className=''>
@@ -445,38 +453,23 @@ export default function CreatorLanding(): JSX.Element {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Socials sticky */}
-      <div className='sticky bottom-0 z-10 flex w-full justify-end'>
-        <div className='h-[60px] w-[160px] rounded-tl-xl bg-[#5848BC] p-1'>
-          <div className='grid h-full grid-cols-3 items-center justify-items-center p-1 '>
+      <div className='sticky bottom-0 right-0 z-10 float-right flex w-full justify-end'>
+        <div className='h-[60px] w-[160px] rounded-tl-xl bg-[#5848BC]'>
+          <div className='grid h-full grid-cols-4 items-center justify-items-center p-3 '>
             <div className='rounded-lg p-2 hover:bg-[#7367c2]'>
-              <NextImage
-                width={20}
-                height={20}
-                src={'/assets/homeIcons/redditIcon.png'}
-                alt={'Profile'}
-                className=''
-              />
+              <DiscordIcon className='h-[20px] w-[20px]' />
             </div>
             <div className='rounded-lg p-2 hover:bg-[#7367c2]'>
-              <NextImage
-                width={24}
-                height={20}
-                src={'/assets/homeIcons/discordIcon.png'}
-                alt={'Profile'}
-                className=''
-              />
+              <TwitterIcon className='h-[20px] w-[20px]' />
             </div>
             <div className='rounded-lg p-2 hover:bg-[#7367c2]'>
-              <NextImage
-                width={24}
-                height={20}
-                src={'/assets/homeIcons/twitterIcon.png'}
-                alt={'Profile'}
-                className=''
-              />
+              <InstaIcon className='h-[20px] w-[20px]' />
+            </div>
+            <div className='rounded-lg p-2 hover:bg-[#7367c2]'>
+              <RedditIcon className='h-[20px] w-[20px]' />
             </div>
           </div>
         </div>

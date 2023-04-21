@@ -7,11 +7,13 @@ import RoundedEgirlIcon from '@components/svg-assets/RoundedEgirlTagIcon';
 import CreatorRoundIcon1 from '@components/svg-assets/CreatorRoundIcon1';
 import EGirlIcon from '@components/svg-assets/EGirlIcon';
 import HeaderGraphics from '@components/landing-creator/assets/Header/HeaderGraphics';
+import Chick1 from './assets/Header/Chick1';
+import Chick2 from './assets/Header/Chick2';
 
 const Header = () => {
   return (
     <div className='bg-[#000000] px-[100px]'>
-      <HeaderGraphics className='mt-[221px]  w-full' />
+      <HeaderGraphics className='mt-[196px]  w-full' />
 
       <div className='flex flex-col items-center'>
         <div className='mt-[2px]  flex rounded-[8px] bg-[#141414] px-[12px] py-[10px]'>
@@ -28,7 +30,8 @@ const Header = () => {
                 Let
               </span>
               <div className='flex justify-center'>
-                <CreatorRoundIcon1 className='l' />
+                {/* <CreatorRoundIcon1 className='l' /> */}
+                <Chick1 />
               </div>
               <span className='text-[112px] font-[600] uppercase text-[white] lg:text-[56px]'>
                 Your
@@ -39,12 +42,13 @@ const Header = () => {
                 Imagination
               </span>
               <div className='flex justify-center'>
-                <NextImage
+                {/* <NextImage
                   width={40}
                   height={40}
                   src={'/assets/svgImages/roundCreatorIcon.svg'}
                   alt={'round creator icon'}
-                />
+                /> */}
+                <Chick2 />
               </div>
               <span className='text-[112px] font-[600] uppercase text-[white] lg:text-[56px]'>
                 Run
