@@ -54,11 +54,11 @@ const Header = () => {
                 Run
               </span>
             </div>
-            <div>
+            {/* <div>
               <span className='text-[112px] font-[600] uppercase text-[white] lg:text-[56px]'>
                 Wild
               </span>
-            </div>
+            </div> */}
           </div>
         </div>
         <button className='mb-[176px] mt-12 rounded-xl bg-[#5848BC] py-4 px-[30px] text-lg font-semibold text-white'>

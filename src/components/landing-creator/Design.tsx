@@ -1,7 +1,7 @@
 import { NextImage } from '@components/ui/next-image';
 import CustomClothing from './assets/Design/CustomClothing';
-// import DynamicBackgrounds from './assets/Design/DynamicBackgrounds';
-// import UniquePersonality from './assets/Design/UniquePersonality';
+import DynamicBackgrounds from './assets/Design/DynamicBackgrounds';
+import UniquePersonality from './assets/Design/UniquePersonality';
 
 import React, { useState } from 'react';
 
@@ -274,13 +274,13 @@ const Design = () => {
                     alt={'requestImage illus'}
                     layout='responsive'
                   /> */}
-                  <NextImage
+                  {/* <NextImage
                     width={620}
                     height={555}
                     src={'/assets/creator-landing/DynamicBackgrounds.png'}
                     alt={'DynamicBackgrounds'}
-                  />
-                  {/* <DynamicBackgrounds /> */}
+                  /> */}
+                  <DynamicBackgrounds />
                 </figure>
               )}
               {section3 && (
@@ -299,13 +299,13 @@ const Design = () => {
                     alt={'voiceMessage illus'}
                     layout='responsive'
                   /> */}
-                  <NextImage
+                  {/* <NextImage
                     width={620}
                     height={555}
                     src={'/assets/creator-landing/UniquePersonality.png'}
                     alt={'UniquePersonality'}
-                  />
-                  {/* <UniquePersonality /> */}
+                  /> */}
+                  <UniquePersonality />
                 </figure>
               )}
             </div>

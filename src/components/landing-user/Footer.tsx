@@ -6,6 +6,7 @@ import TwitterIcon from './assets/Footer/TwitterIcon';
 import InstaIcon from './assets/Footer/InstaIcon';
 import FooterImg from './assets/Footer/FooterImg';
 import ExperienceTheFuture from './assets/ExperienceTheFuture';
+import Link from 'next/link';
 
 const Discover = () => {
   return (
@@ -48,10 +49,34 @@ const Discover = () => {
           <div className='select-none'>
             <h3 className='pb-3'>FOLLOW US</h3>
             <div className='flex gap-x-6'>
-              <DiscordIcon />
-              <TwitterIcon />
-              <InstaIcon />
-              <RedditIcon />
+              <a
+                href='https://discord.gg/ECAds8F8Dj'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                <DiscordIcon />
+              </a>
+              <a
+                href='https://twitter.com/egirlsai'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                <TwitterIcon />
+              </a>
+              <a
+                href='https://www.instagram.com/egirls_ai/'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                <InstaIcon />
+              </a>
+              <a
+                href='https://www.reddit.com/r/EgirlsAI/'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                <RedditIcon />
+              </a>
             </div>
           </div>
         </div>

@@ -195,18 +195,42 @@ export default function CreatorLanding(): JSX.Element {
       <div className='sticky bottom-0 right-0 z-10 float-right flex w-full justify-end'>
         <div className='h-[60px] w-[160px] rounded-tl-xl bg-[#5848BC]'>
           <div className='grid h-full grid-cols-4 items-center justify-items-center p-3 '>
-            <div className='rounded-lg p-2 hover:bg-[#7367c2]'>
-              <DiscordIcon className='h-[20px] w-[20px]' />
-            </div>
-            <div className='rounded-lg p-2 hover:bg-[#7367c2]'>
-              <TwitterIcon className='h-[20px] w-[20px]' />
-            </div>
-            <div className='rounded-lg p-2 hover:bg-[#7367c2]'>
-              <InstaIcon className='h-[20px] w-[20px]' />
-            </div>
-            <div className='rounded-lg p-2 hover:bg-[#7367c2]'>
-              <RedditIcon className='h-[20px] w-[20px]' />
-            </div>
+            <a
+              href='https://discord.gg/ECAds8F8Dj'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <div className='rounded-lg p-2 hover:bg-[#7367c2]'>
+                <DiscordIcon className='h-[20px] w-[20px]' />
+              </div>
+            </a>
+            <a
+              href='https://twitter.com/egirlsai'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <div className='rounded-lg p-2 hover:bg-[#7367c2]'>
+                <TwitterIcon className='h-[20px] w-[20px]' />
+              </div>
+            </a>
+            <a
+              href='https://www.instagram.com/egirls_ai/'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <div className='rounded-lg p-2 hover:bg-[#7367c2]'>
+                <InstaIcon className='h-[20px] w-[20px]' />
+              </div>
+            </a>
+            <a
+              href='https://www.reddit.com/r/EgirlsAI/'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <div className='rounded-lg p-2 hover:bg-[#7367c2]'>
+                <RedditIcon className='h-[20px] w-[20px]' />
+              </div>
+            </a>
           </div>
         </div>
       </div>
