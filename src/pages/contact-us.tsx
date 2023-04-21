@@ -1,29 +1,9 @@
 import { AuthLayout } from '@components/layout/auth-layout';
 import { SEO } from '@components/common/seo';
-import { LoginMain } from '@components/login/login-main';
-import { LoginFooter } from '@components/login/login-footer';
 import { ReactElement, ReactNode, useEffect, useState } from 'react';
-import { Auth, ThemeSupa } from '@supabase/auth-ui-react';
-import {
-  useSession,
-  useSupabaseClient,
-  useUser
-} from '@supabase/auth-helpers-react';
-import Account from '../components/account/account';
-import Router from 'next/router';
 import { LayoutProps } from '@components/layout/common-layout';
 import { StarIcon, Bars2Icon, XMarkIcon } from '@heroicons/react/20/solid';
-import { PencilIcon } from '@heroicons/react/24/outline';
-import Image from 'next/image';
-
-import { NextImage } from '@components/ui/next-image';
 import Link from 'next/link';
-import EGirlIcon from '@components/svg-assets/EGirlIcon';
-import CreatorRoundIcon2 from '@components/svg-assets/CreatorRoundIcon2';
-import RoundedEgirlIcon from '@components/svg-assets/RoundedEgirlTagIcon';
-import RoundedCreatingTagIcon from '@components/svg-assets/RoundedCreatingTagIcon';
-import CreatorRoundIcon1 from '@components/svg-assets/CreatorRoundIcon1';
-import TextingIllustration from '@components/svg-assets/Texting';
 import Nav from '../components/landing-user/Nav';
 import Footer from '@components/landing-user/Footer';
 import DiscordIcon from '@components/landing-user/assets/Footer/DiscordIcon';

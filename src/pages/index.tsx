@@ -1,33 +1,15 @@
 import { AuthLayout } from '@components/layout/auth-layout';
 import { SEO } from '@components/common/seo';
-import { LoginMain } from '@components/login/login-main';
-import { LoginFooter } from '@components/login/login-footer';
 import { ReactElement, ReactNode, useEffect, useState } from 'react';
-import { Auth, ThemeSupa } from '@supabase/auth-ui-react';
-import {
-  useSession,
-  useSupabaseClient,
-  useUser
-} from '@supabase/auth-helpers-react';
-import Account from '../components/account/account';
-import Router from 'next/router';
+
 import { LayoutProps } from '@components/layout/common-layout';
 import { StarIcon, Bars2Icon, XMarkIcon } from '@heroicons/react/20/solid';
-import { PencilIcon } from '@heroicons/react/24/outline';
-import Image from 'next/image';
 import Nav from '../components/landing-user/Nav';
 import Header from '../components/landing-user/Header';
 import Discover from '../components/landing-user/Discover';
 import Chat from '../components/landing-user/Chat';
 
-import { NextImage } from '@components/ui/next-image';
 import Link from 'next/link';
-import EGirlIcon from '@components/svg-assets/EGirlIcon';
-import EGirlIconPurple from '@components/svg-assets/EGirlIconPurple';
-import BetaAccessCard from '@components/svg-assets/BetaAccessCard';
-import BetaAccessBg from '@components/svg-assets/BetaAccessBg';
-import BetaAccessVector from '@components/svg-assets/BetaAccessVector';
-import SpicyContentPurple from '@components/svg-assets/SpicyContentPurple';
 import Subscribe from '@components/landing-user/Subscribe';
 import Footer from '@components/landing-user/Footer';
 import DiscordIcon from '@components/landing-user/assets/Footer/DiscordIcon';
