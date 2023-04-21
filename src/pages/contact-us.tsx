@@ -2,7 +2,7 @@ import { AuthLayout } from '@components/layout/auth-layout';
 import { SEO } from '@components/common/seo';
 import { ReactElement, ReactNode, useEffect, useState } from 'react';
 import { LayoutProps } from '@components/layout/common-layout';
-import { StarIcon, Bars2Icon, XMarkIcon } from '@heroicons/react/20/solid';
+import { StarIcon, XMarkIcon } from '@heroicons/react/20/solid';
 import Link from 'next/link';
 import Nav from '../components/landing-user/Nav';
 import Footer from '@components/landing-user/Footer';

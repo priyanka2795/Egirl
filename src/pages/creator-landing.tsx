@@ -1,15 +1,10 @@
 import { AuthLayout } from '@components/layout/auth-layout';
 import { SEO } from '@components/common/seo';
 import { ReactElement, ReactNode, useEffect, useState } from 'react';
-import {
-  useSession,
-  useSupabaseClient,
-  useUser
-} from '@supabase/auth-helpers-react';
 import { LayoutProps } from '@components/layout/common-layout';
 
 import Link from 'next/link';
-import { StarIcon, Bars2Icon, XMarkIcon } from '@heroicons/react/20/solid';
+import { StarIcon, XMarkIcon } from '@heroicons/react/20/solid';
 import Nav from '@components/landing-creator/Nav';
 import Header from '@components/landing-creator/Header';
 import DiscordIcon from '@components/landing-user/assets/Footer/DiscordIcon';
