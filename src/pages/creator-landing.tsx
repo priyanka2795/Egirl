@@ -27,38 +27,9 @@ export function LandingLayout({ children }: LayoutProps): JSX.Element {
 }
 
 export default function CreatorLanding(): JSX.Element {
-  const session = useSession();
-  const supabase = useSupabaseClient();
-  const user = useUser();
-  const [section1, setSection1] = useState(true);
-  const [section2, setSection2] = useState(false);
-  const [section3, setSection3] = useState(false);
   const [hiddenSideDiv, setHiddenSideDiv] = useState(false);
   const [showBetaAccess, setShowBetaAccess] = useState(false);
 
-  const showSection1 = (visibility: boolean) => (): void => {
-    setSection2(false);
-    setSection3(false);
-    if (!visibility) {
-      setSection1(true);
-    }
-  };
-
-  const showSection2 = (visibility: boolean) => (): void => {
-    setSection1(false);
-    setSection3(false);
-    if (!visibility) {
-      setSection2(true);
-    }
-  };
-
-  const showSection3 = (visibility: boolean) => (): void => {
-    setSection1(false);
-    setSection2(false);
-    if (!visibility) {
-      setSection3(true);
-    }
-  };
 
   const setSideNav = () => (): void => {
     setHiddenSideDiv(!hiddenSideDiv);
