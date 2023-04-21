@@ -12,7 +12,7 @@ const Design = () => {
   const [hiddenSideDiv, setHiddenSideDiv] = useState(false);
   const [showBetaAccess, setShowBetaAccess] = useState(false);
 
-  const showSection1 = (visibility: boolean) => (): void => {
+  const showSection1 = (visibility: boolean) => {
     setSection2(false);
     setSection3(false);
     if (!visibility) {
@@ -20,7 +20,7 @@ const Design = () => {
     }
   };
 
-  const showSection2 = (visibility: boolean) => (): void => {
+  const showSection2 = (visibility: boolean) => {
     setSection1(false);
     setSection3(false);
     if (!visibility) {
@@ -28,7 +28,7 @@ const Design = () => {
     }
   };
 
-  const showSection3 = (visibility: boolean) => (): void => {
+  const showSection3 = (visibility: boolean) => {
     setSection1(false);
     setSection2(false);
     if (!visibility) {
@@ -56,7 +56,9 @@ const Design = () => {
               <div>
                 <div
                   className='mt-[64px] flex cursor-pointer items-center space-x-[16px] px-[8px] py-[12px] transition duration-100'
-                  onClick={showSection1(section1)}
+                  onClick={() => {
+                    showSection1(section1);
+                  }}
                 >
                   <button>
                     <div className='hidden lg:block'>
@@ -114,7 +116,9 @@ const Design = () => {
               <div>
                 <div
                   className='flex cursor-pointer items-center space-x-[16px] px-[8px] py-[12px] transition duration-100'
-                  onClick={showSection2(section2)}
+                  onClick={() => {
+                    showSection2(section2);
+                  }}
                 >
                   <button>
                     <div className='hidden lg:block'>
@@ -172,7 +176,9 @@ const Design = () => {
               <div>
                 <div
                   className='flex cursor-pointer items-center space-x-[16px] px-[8px] py-[12px] transition duration-100'
-                  onClick={showSection3(section3)}
+                  onClick={() => {
+                    showSection3(section3);
+                  }}
                 >
                   <button>
                     <div className='hidden lg:block'>
