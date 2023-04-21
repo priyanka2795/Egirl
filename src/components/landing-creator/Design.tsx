@@ -267,7 +267,7 @@ const Design = () => {
                     alt={'requestImage illus'}
                     layout='responsive'
                   /> */}
-                  {/* <DynamicBackgrounds /> */}
+                  <DynamicBackgrounds />
                 </figure>
               )}
               {section3 && (
