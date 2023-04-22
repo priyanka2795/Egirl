@@ -5,11 +5,11 @@ import MikaChan from './assets/Discover/MikaChan';
 
 const Discover = () => {
   return (
-    <div className='w-full bg-[#FFFFFF] px-24 lg:px-[100px] lg:py-[80px]'>
+    <div className='w-full bg-[#FFFFFF] px-[24px] lg:px-[100px] lg:py-[80px]'>
       <div>
         <div>
-          <div className='mb-1 flex justify-center lg:justify-start'>
-            <div className='select-none text-[36px] font-[500] text-[#949698] md:text-[24px] lg:text-[18px]'>
+          <div className='pb-1 flex justify-center lg:justify-start'>
+            <div className='pt-[42px] lg:pt-[0px] select-none text-[36px] font-[500] text-[#949698] md:text-[24px] lg:text-[18px]'>
               SOMETHING FOR EVERYONE
             </div>
           </div>
@@ -23,7 +23,7 @@ const Discover = () => {
           </div>
         </div>
         <div className='mt-10'>
-          <div className='items-center justify-around space-x-4 lg:flex'>
+          <div className='items-center justify-around space-x-4 lg:space-y-0 space-y-[48px] lg:flex'>
             <div className='flex justify-center'>
               <div>
                 <SarahCarter />
@@ -118,7 +118,7 @@ const Discover = () => {
                     Mika-Chan
                   </span>
                 </div>
-                <div className='mt-[2px]'>
+                <div className='mt-[2px] pb-12 lg:pb-0'>
                   <span className='select-none text-[28px] font-[500] text-[#949698] lg:text-[14px]'>
                     Tokyo, Japan
                   </span>
