@@ -285,6 +285,22 @@ CREATE TABLE IF NOT EXISTS mask_images (
 	created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
+-- TODO: Textual Inversion tables
+-- Tags categories
+CREATE TABLE IF NOT EXISTS tag_categories (
+	id SERIAL PRIMARY KEY,
+	category VARCHAR(256) NOT NULL,
+	created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Tags Table (prompt tags)
+CREATE TABLE IF NOT EXISTS tags (
+	id SERIAL PRIMARY KEY,
+	tag VARCHAR(256) NOT NULL,
+	category_id INTEGER NOT NULL REFERENCES tag_categories(id),
+	created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
 -- Affiliate marketing  
 CREATE TABLE IF NOT EXISTS affiliate_links (
 	id SERIAL PRIMARY KEY,
