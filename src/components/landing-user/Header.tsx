@@ -84,13 +84,13 @@ const Header = () => {
                 </button>
               </div>
             </div>
-            <div className='mt-15 pt-32 lg:mt-0 lg:pt-0'>
+            <div className='pt-16 lg:mt-0 lg:pt-0 flex shrink-0 justify-center items-center'>
               <div className='flex shrink-0'>
                 <NextImage
-                  width={700}
-                  height={650}
+                  width={558}
+                  height={540}
                   src={'/assets/svgImages/userHeader.svg'}
-                  alt={'landing user web'}
+                  alt={'user header'}
                 />
               </div>
             </div>
