@@ -48,7 +48,7 @@ const Footer = () => {
               </div>
             </div>
             <div className='hidden min-[200px]:mt-[50px] lg:block'>
-              <div className='sm:shrink-0 md:shrink-0'>
+              <div className='flex shrink-0'>
                 <NextImage
                   width={639}
                   height={577}
