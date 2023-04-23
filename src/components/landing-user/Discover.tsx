@@ -8,8 +8,8 @@ const Discover = () => {
     <div className='w-full bg-[#FFFFFF] px-[24px] lg:px-[100px] lg:py-[80px]'>
       <div>
         <div>
-          <div className='pb-1 flex justify-center lg:justify-start'>
-            <div className='pt-[42px] lg:pt-[0px] select-none text-[36px] font-[500] text-[#949698] md:text-[24px] lg:text-[18px]'>
+          <div className='flex justify-center pb-1 lg:justify-start'>
+            <div className='select-none pt-[42px] text-[36px] font-[500] text-[#949698] md:text-[24px] lg:pt-[0px] lg:text-[18px]'>
               SOMETHING FOR EVERYONE
             </div>
           </div>
@@ -23,7 +23,7 @@ const Discover = () => {
           </div>
         </div>
         <div className='mt-10'>
-          <div className='items-center justify-around space-x-4 lg:space-y-0 space-y-[48px] lg:flex'>
+          <div className='items-center justify-around space-x-4 space-y-[48px] lg:flex lg:space-y-0'>
             <div className='flex justify-center'>
               <div>
                 <SarahCarter />

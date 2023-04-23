@@ -37,7 +37,7 @@ const Chat = () => {
   return (
     <div className='w-full bg-[#FFFFFF] px-24 lg:px-[100px]'>
       <div className='w-full pt-[80px] pb-[120px]'>
-        <div className='w-full gap-[100px] grid grid-cols-1 lg:grid-cols-2'>
+        <div className='grid w-full grid-cols-1 gap-[100px] lg:grid-cols-2'>
           <div className='w-full'>
             <div className='flex justify-center lg:justify-start'>
               <div className=' '>
@@ -230,7 +230,7 @@ const Chat = () => {
             </div>
           </div>
           <div className='flex w-full justify-center'>
-            <div className='hidden lg:w-full lg:transition lg:duration-100 lg:block '>
+            <div className='hidden lg:block lg:w-full lg:transition lg:duration-100 '>
               {section1 && (
                 // <NextImage
                 //     width={800}
