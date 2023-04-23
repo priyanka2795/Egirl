@@ -62,7 +62,9 @@ const Footer = () => {
         </div>
         <div className='space-y-10 py-10 lg:flex lg:justify-between'>
           <div>
-            <span className='text-[32px] font-semibold text-white'>Egirls</span>
+            {/* <span className='text-[32px] font-semibold text-white'>Egirls</span> */}
+            <LogoWhite />
+
           </div>
           <div className='space-y-2'>
             <div>

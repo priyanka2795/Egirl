@@ -11,7 +11,7 @@ import Chat from '../components/landing-user/Chat';
 
 import Link from 'next/link';
 import Subscribe from '@components/landing-user/Subscribe';
-import Footer from '@components/landing-user/Footer';
+import Footer from '@components/landing-common/Footer';
 import DiscordIcon from '@components/landing-user/assets/Footer/DiscordIcon';
 import RedditIcon from '@components/landing-user/assets/Footer/RedditIcon';
 import InstaIcon from '@components/landing-user/assets/Footer/InstaIcon';
