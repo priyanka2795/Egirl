@@ -32,8 +32,8 @@ const Subscribe = () => {
           </div>
           <div className='mt-5  lg:mt-10'>
             <div className='items-center justify-around space-y-8 lg:flex lg:space-x-10 lg:space-y-0'>
-              <div className='flex  flex-col items-center shadow-subscribe-card-shadow'>
-                <div className='justify-left flex w-[397px] items-center rounded-t-2xl bg-[#E7E8E8] pt-6 pb-5 pl-6 '>
+              <div className='flex  flex-col items-center  drop-shadow-xl'>
+                <div className='justify-left flex w-[397px] items-center rounded-t-2xl bg-[#E7E8E8] pt-6 pb-5 pl-6'>
                   <SarahCarterAvatar />
                   <div className='ml-[12px] '>
                     <span className='select-none text-lg font-medium text-[#000000]'>
@@ -52,7 +52,7 @@ const Subscribe = () => {
                 </div>
               </div>
 
-              <div className='flex  flex-col items-center shadow-subscribe-card-shadow'>
+              <div className='flex  flex-col items-center drop-shadow-xl'>
                 <div className='justify-left flex w-[397px] items-center rounded-t-2xl bg-[#E7E8E8] pt-6 pb-5 pl-6 '>
                   <JennieYoonAvatar />
                   <div className='ml-[12px] '>
@@ -71,7 +71,7 @@ const Subscribe = () => {
                   <JenniePost className='m-6 h-[414px] w-[349px]' />
                 </div>
               </div>
-              <div className='flex  flex-col items-center shadow-subscribe-card-shadow'>
+              <div className='flex  flex-col items-center drop-shadow-xl'>
                 <div className='justify-left flex w-[397px] items-center rounded-t-2xl bg-[#E7E8E8] pt-6 pb-5 pl-6 '>
                   <MikaChanAvatar />
                   <div className='ml-[12px] '>
