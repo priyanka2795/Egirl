@@ -10,8 +10,6 @@ const Chat = () => {
   const [section1, setSection1] = useState(true);
   const [section2, setSection2] = useState(false);
   const [section3, setSection3] = useState(false);
-  const [hiddenSideDiv, setHiddenSideDiv] = useState(false);
-  const [showBetaAccess, setShowBetaAccess] = useState(false);
 
   const showSection1 = (visibility: boolean) => (): void => {
     setSection2(false);
@@ -39,7 +37,7 @@ const Chat = () => {
   return (
     <div className='w-full bg-[#FFFFFF] px-24 lg:px-[100px]'>
       <div className='w-full pt-[80px] pb-[120px]'>
-        <div className='w-full gap-[100px] sm:grid sm:grid-cols-1 md:grid md:grid-cols-2 md:max-xl:grid md:max-lg:grid-cols-1 lg:grid lg:grid-cols-2'>
+        <div className='w-full gap-[100px] grid grid-cols-1 lg:grid-cols-2'>
           <div className='w-full'>
             <div className='flex justify-center lg:justify-start'>
               <div className=' '>
@@ -232,7 +230,7 @@ const Chat = () => {
             </div>
           </div>
           <div className='flex w-full justify-center'>
-            <div className='hidden w-full transition duration-100 lg:block '>
+            <div className='hidden lg:w-full lg:transition lg:duration-100 lg:block '>
               {section1 && (
                 // <NextImage
                 //     width={800}
@@ -242,15 +240,15 @@ const Chat = () => {
                 //     className='grow-0 border border-red-600'
                 //   />
                 <figure className='drop-shadow-lg'>
-                  {/* <Image
+                  <Image
                     className='scale-125'
-                    src={'/assets/svgImages/chatAwayIllus.svg'}
+                    src={'/assets/svgImages/userChatSvg.svg'}
                     width={800}
                     height={800}
                     alt={'chatAway illus'}
                     layout='responsive'
-                  /> */}
-                  <Texting />
+                  />
+                  {/* <Texting /> */}
                 </figure>
               )}
               {section2 && (
@@ -261,15 +259,15 @@ const Chat = () => {
                 //   alt={'requestImage illus'}
                 // />
                 <figure className=''>
-                  {/* <Image
+                  <Image
                     className=''
                     src={'/assets/svgImages/requestImagesIllus.svg'}
                     width={800}
                     height={800}
                     alt={'requestImage illus'}
                     layout='responsive'
-                  /> */}
-                  <ImgRequests />
+                  />
+                  {/* <ImgRequests /> */}
                 </figure>
               )}
               {section3 && (
@@ -280,39 +278,40 @@ const Chat = () => {
                 //   alt={'voiceMessage illus'}
                 // />
                 <figure className=''>
-                  {/* <Image
-                    className=''
-                    src={'/assets/svgImages/voiceMessagesIllus.svg'}
+                  <Image
+                    className='scale-150'
+                    src={'/assets/svgImages/userVoiceMsg.svg'}
                     width={800}
                     height={800}
                     alt={'voiceMessage illus'}
                     layout='responsive'
-                  /> */}
-                  <VoiceMessages />
+                  />
+                  {/* <VoiceMessages /> */}
                 </figure>
               )}
             </div>
-            <div className='sm:shrink-0 md:shrink-0 lg:hidden'>
+            <div className='flex shrink-0 lg:hidden'>
               {section1 && (
                 <NextImage
-                  width={900}
-                  height={900}
-                  src={'/assets/svgImages/chatAwayIllus.svg'}
+                  width={650}
+                  height={650}
+                  imgClassName='scale-125'
+                  src={'/assets/svgImages/userChatSvg.svg'}
                   alt={'chatAway illus'}
                 />
               )}
               {section2 && (
                 <NextImage
-                  width={900}
-                  height={900}
+                  width={650}
+                  height={650}
                   src={'/assets/svgImages/requestImagesIllus.svg'}
                   alt={'requestImage illus'}
                 />
               )}
               {section3 && (
                 <NextImage
-                  width={900}
-                  height={900}
+                  width={650}
+                  height={650}
                   src={'/assets/svgImages/voiceMessagesIllus.svg'}
                   alt={'voiceMessage illus'}
                 />
