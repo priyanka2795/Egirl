@@ -3,7 +3,7 @@ import Link from 'next/link';
 const ContactUs = () => {
   return (
     <div className='flex w-full justify-between bg-[#F6F6F6] px-[100px] pt-[100px] pb-[80px]'>
-      <span className='ml-[48px] mr-[198px] text-[48px] font-[400] text-[black] lg:text-[24px]'>
+      <span className='ml-[48px] mr-[198px] select-none text-[48px] font-[400] text-[black] lg:text-[24px]'>
         It’s a new era, and we’re leading the charge. Don’t miss your chance to
         create an established brand in the new creator economy.
       </span>

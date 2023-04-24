@@ -14,7 +14,7 @@ import Right2 from './assets/HowItWorks/Right2';
 const Header = () => {
   return (
     <div className='bg-[#FFFFFF] px-[100px] py-[100px] lg:px-[100px]'>
-      <div className='flex justify-center space-x-2'>
+      <div className='flex select-none justify-center space-x-2'>
         <span className='text-[96px] font-[600] text-[black] lg:text-[48px]'>
           How it
         </span>
@@ -26,7 +26,7 @@ const Header = () => {
       <div className='flex flex-col gap-y-[120px]'>
         <div className='flex flex-col'>
           <div className='mx-[60px] mt-[80px] flex justify-between'>
-            <div className='flex flex-col justify-center'>
+            <div className='flex select-none flex-col justify-center'>
               <button className='mb-[40px] w-min rounded-lg bg-[#EAE8FD] px-[20px] py-[8px] text-[#7362C6]'>
                 <span className='max-lines-1'>STEP&nbsp;1</span>
               </button>
@@ -56,7 +56,7 @@ const Header = () => {
         <div className='flex flex-col'>
           <div className='mx-[60px] flex justify-between'>
             <Left1 className='h-[620px] w-[500px]' />
-            <div className='mr-[60px] flex flex-col items-start justify-center'>
+            <div className='mr-[60px] flex select-none flex-col items-start justify-center'>
               <button className='mb-[40px] w-min rounded-lg bg-[#EAE8FD] px-[20px] py-[8px] text-[#7362C6]'>
                 <span className='max-lines-1'>STEP&nbsp;2</span>
               </button>
@@ -84,7 +84,7 @@ const Header = () => {
         {/* section 3 */}
         <div className='flex flex-col'>
           <div className='mx-[60px] flex justify-between'>
-            <div className='flex flex-col justify-center'>
+            <div className='flex select-none flex-col justify-center'>
               <button className='mb-[40px] w-min rounded-lg bg-[#EAE8FD] px-[20px] py-[8px] text-[#7362C6]'>
                 <span className='max-lines-1'>STEP&nbsp;3</span>
               </button>

@@ -14,12 +14,14 @@ const Nav = ({ setBetaAccess, setSideNav }: Props) => {
       <div className='py-3 lg:py-6'>
         <div className='flex items-center justify-between'>
           <div className='lg:flex'>
-            <div className='pr-[48px]'>
-              {/* <span className='text-[64px] font-semibold text-[white] lg:text-[32px]'>
+            <Link href='/'>
+              <a className=' py-1 pr-[40px]'>
+                {/* <span className='text-[64px] font-semibold text-[#181818] lg:text-[32px]'>
                 Egirls
               </span> */}
-              <Logo />
-            </div>
+                <Logo />
+              </a>
+            </Link>
             <div className='lg:flex lg:items-center lg:space-x-4'>
               <div className='hidden lg:flex lg:items-center'>
                 <Link href='/'>
