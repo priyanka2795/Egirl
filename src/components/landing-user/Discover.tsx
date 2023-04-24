@@ -1,7 +1,19 @@
-import { NextImage } from '@components/ui/next-image';
-import SarahCarter from './assets/Discover/SarahCarter';
-import JennieYoon from './assets/Discover/JennieYoon';
-import MikaChan from './assets/Discover/MikaChan';
+import dynamic from 'next/dynamic';
+
+const SarahCarter = dynamic(() => import('./assets/Discover/SarahCarter'), {
+  loading: () => <div className='h-[466px] w-[397px]'>Loading SVG...</div>,
+  ssr: false
+});
+
+const JennieYoon = dynamic(() => import('./assets/Discover/JennieYoon'), {
+  loading: () => <div className='h-[466px] w-[397px]'>Loading SVG...</div>,
+  ssr: false
+});
+
+const MikaChan = dynamic(() => import('./assets/Discover/MikaChan'), {
+  loading: () => <div className='h-[466px] w-[397px]'>Loading SVG...</div>,
+  ssr: false
+});
 
 const Discover = () => {
   return (

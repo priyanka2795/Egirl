@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import StarIcon from './assets/PassionToProfit/StarIcon';
+
+
+
 
 const PassionToProfit = () => {
   return (
-    <div className='bg-[#F7F7F7] px-[100px] pt-[80px] pb-[80px] select-none'>
+    <div className='select-none bg-[#F7F7F7] px-[100px] pt-[80px] pb-[80px]'>
       <div className=''>
         <div className=''>
           <div className=''>

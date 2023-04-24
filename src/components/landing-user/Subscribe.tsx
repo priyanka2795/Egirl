@@ -6,9 +6,28 @@ import { NextImage } from '@components/ui/next-image';
 import SarahCarterAvatar from './assets/Subscribe/SarahCarterAvatar';
 import JennieYoonAvatar from './assets/Subscribe/JennieYoonAvatar';
 import MikaChanAvatar from './assets/Subscribe/MikaChanAvatar';
-import MikaPost from './assets/Subscribe/MikaPost';
-import SarahPost from './assets/Subscribe/SarahPost';
-import JenniePost from './assets/Subscribe/JenniePost';
+import dynamic from 'next/dynamic';
+
+const MikaPost = dynamic(() => import('./assets/Subscribe/MikaPost'), {
+  loading: () => (
+    <div className='h-[414px] w-[349px] text-black'>Loading SVG...</div>
+  ),
+  ssr: false
+});
+
+const SarahPost = dynamic(() => import('./assets/Subscribe/SarahPost'), {
+  loading: () => (
+    <div className='h-[414px] w-[349px] text-black'>Loading SVG...</div>
+  ),
+  ssr: false
+});
+
+const JenniePost = dynamic(() => import('./assets/Subscribe/JenniePost'), {
+  loading: () => (
+    <div className='h-[414px] w-[349px] text-black'>Loading SVG...</div>
+  ),
+  ssr: false
+});
 
 const Subscribe = () => {
   return (

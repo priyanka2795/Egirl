@@ -4,9 +4,14 @@ import RedditIcon from './assets/Footer/RedditIcon';
 import DiscordIcon from './assets/Footer/DiscordIcon';
 import TwitterIcon from './assets/Footer/TwitterIcon';
 import InstaIcon from './assets/Footer/InstaIcon';
-import FooterImg from './assets/Footer/FooterImg';
 import ExperienceTheFuture from './assets/ExperienceTheFuture';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
+
+const FooterImg = dynamic(() => import('./assets/Footer/FooterImg'), {
+  loading: () => <div className='h-[578px] w-[640px] '>Loading SVG...</div>,
+  ssr: false
+});
 
 const Discover = () => {
   return (

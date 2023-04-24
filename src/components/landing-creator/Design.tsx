@@ -1,9 +1,39 @@
 import { NextImage } from '@components/ui/next-image';
-import CustomClothing from './assets/Design/CustomClothing';
-import DynamicBackgrounds from './assets/Design/DynamicBackgrounds';
-import UniquePersonality from './assets/Design/UniquePersonality';
-
 import React, { useState } from 'react';
+import dynamic from 'next/dynamic';
+
+const DynamicBackgrounds = dynamic(
+  () => import('./assets/Design/DynamicBackgrounds'),
+  {
+    loading: () => (
+      <div className='grid h-[555px] w-[620px] place-items-center text-black'>
+        Loading SVG...
+      </div>
+    ),
+    ssr: false
+  }
+);
+
+const CustomClothing = dynamic(() => import('./assets/Design/CustomClothing'), {
+  loading: () => (
+    <div className='grid h-[555px] w-[620px] place-items-center text-black'>
+      Loading SVG...
+    </div>
+  ),
+  ssr: false
+});
+
+const UniquePersonality = dynamic(
+  () => import('./assets/Design/UniquePersonality'),
+  {
+    loading: () => (
+      <div className='grid h-[555px] w-[620px] place-items-center text-black'>
+        Loading SVG...
+      </div>
+    ),
+    ssr: false
+  }
+);
 
 const Design = () => {
   const [section1, setSection1] = useState(true);

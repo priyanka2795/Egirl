@@ -1,15 +1,33 @@
 import React from 'react';
-import { NextImage } from '@components/ui/next-image';
-import ExperienceTheFuture from '../landing-user/assets/ExperienceTheFuture';
-import RoundedCreatingTagIcon from '@components/svg-assets/RoundedCreatingTagIcon';
-import RoundedEgirlIcon from '@components/svg-assets/RoundedEgirlTagIcon';
-import CreatorRoundIcon1 from '@components/svg-assets/CreatorRoundIcon1';
-import EGirlIcon from '@components/svg-assets/EGirlIcon';
-import HeaderGraphics from '@components/landing-creator/assets/Header/HeaderGraphics';
 import StarIcon from '@components/landing-creator/assets/HowItWorks/StarIcon';
-import Right1 from './assets/HowItWorks/Right1';
-import Left1 from './assets/HowItWorks/Left1';
-import Right2 from './assets/HowItWorks/Right2';
+import dynamic from 'next/dynamic';
+
+const Left1 = dynamic(() => import('./assets/HowItWorks/Left1'), {
+  loading: () => (
+    <div className='grid h-[555px] w-[620px] place-items-center text-black'>
+      Loading SVG...
+    </div>
+  ),
+  ssr: false
+});
+
+const Right1 = dynamic(() => import('./assets/HowItWorks/Right1'), {
+  loading: () => (
+    <div className='grid h-[555px] w-[620px] place-items-center text-black'>
+      Loading SVG...
+    </div>
+  ),
+  ssr: false
+});
+
+const Right2 = dynamic(() => import('./assets/HowItWorks/Right2'), {
+  loading: () => (
+    <div className='grid h-[555px] w-[620px] place-items-center text-black'>
+      Loading SVG...
+    </div>
+  ),
+  ssr: false
+});
 
 const Header = () => {
   return (

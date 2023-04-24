@@ -1,8 +1,34 @@
 import { NextImage } from '@components/ui/next-image';
 import Image from 'next/image';
-import ImgRequests from './assets/Chat/ImgRequests';
-import VoiceMessages from './assets/Chat/VoiceMessages';
-import Texting from './assets/Chat/Texting';
+
+import dynamic from 'next/dynamic';
+
+const ImgRequests = dynamic(() => import('./assets/Chat/ImgRequests'), {
+  loading: () => (
+    <div className='grid h-[555px] w-[620px] place-items-center text-black'>
+      Loading SVG...
+    </div>
+  ),
+  ssr: false
+});
+
+const VoiceMessages = dynamic(() => import('./assets/Chat/VoiceMessages'), {
+  loading: () => (
+    <div className='grid h-[555px] w-[620px] place-items-center text-black'>
+      Loading SVG...
+    </div>
+  ),
+  ssr: false
+});
+
+const Texting = dynamic(() => import('./assets/Chat/Texting'), {
+  loading: () => (
+    <div className='grid h-[555px] w-[620px] place-items-center text-black'>
+      Loading SVG...
+    </div>
+  ),
+  ssr: false
+});
 
 import React, { useState } from 'react';
 
@@ -240,15 +266,15 @@ const Chat = () => {
                 //     className='grow-0 border border-red-600'
                 //   />
                 <figure className='drop-shadow-lg'>
-                  <Image
+                  {/* <Image
                     className='scale-125'
                     src={'/assets/svgImages/userChatSvg.svg'}
                     width={800}
                     height={800}
                     alt={'chatAway illus'}
                     layout='responsive'
-                  />
-                  {/* <Texting /> */}
+                  /> */}
+                  <Texting />
                 </figure>
               )}
               {section2 && (
@@ -259,15 +285,15 @@ const Chat = () => {
                 //   alt={'requestImage illus'}
                 // />
                 <figure className=''>
-                  <Image
+                  {/* <Image
                     className=''
                     src={'/assets/svgImages/requestImagesIllus.svg'}
                     width={800}
                     height={800}
                     alt={'requestImage illus'}
                     layout='responsive'
-                  />
-                  {/* <ImgRequests /> */}
+                  /> */}
+                  <ImgRequests />
                 </figure>
               )}
               {section3 && (
@@ -278,15 +304,15 @@ const Chat = () => {
                 //   alt={'voiceMessage illus'}
                 // />
                 <figure className=''>
-                  <Image
+                  {/* <Image
                     className='scale-150'
                     src={'/assets/svgImages/userVoiceMsg.svg'}
                     width={800}
                     height={800}
                     alt={'voiceMessage illus'}
                     layout='responsive'
-                  />
-                  {/* <VoiceMessages /> */}
+                  /> */}
+                  <VoiceMessages />
                 </figure>
               )}
             </div>
