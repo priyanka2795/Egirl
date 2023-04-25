@@ -40,7 +40,7 @@ export default function CreatorLanding(): JSX.Element {
       <SEO title='Egirls' description='' />
 
       {/* Nav Bar */}
-      <nav className='fixed top-0 z-10 w-full bg-[#F6F6F6] px-24 lg:px-[100px]'>
+      <nav className='fixed top-0 z-10 w-full bg-[#F6F6F6] px-24 lg:px-[100px] 2xl:px-[120px]'>
         <div className='py-3 lg:py-6'>
           <div className='flex items-center justify-between'>
             <div className='lg:flex'>
@@ -281,7 +281,7 @@ export default function CreatorLanding(): JSX.Element {
       </div> */}
 
       {/* Header */}
-      <div className='bg-[#F6F6F6] px-24 pt-[96px] lg:px-[100px]'>
+      <div className='bg-[#F6F6F6] px-24 pt-[96px] lg:px-[100px] 2xl:px-[120px]'>
         <div className='py-20'>
           <div className='gap-[50px] sm:grid sm:grid-cols-1 md:grid md:grid-cols-2 md:max-xl:grid md:max-lg:grid-cols-1 lg:grid lg:grid-cols-2'>
             <div className=''>

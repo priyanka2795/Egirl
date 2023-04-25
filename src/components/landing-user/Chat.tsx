@@ -61,7 +61,7 @@ const Chat = () => {
     }
   };
   return (
-    <div className='w-full bg-[#FFFFFF] px-24 lg:px-[100px]'>
+    <div className='w-full bg-[#FFFFFF] px-24 lg:px-[100px] 2xl:px-[120px]'>
       <div className='w-full pt-[80px] pb-[120px]'>
         <div className='grid w-full grid-cols-1 gap-[100px] lg:grid-cols-2'>
           <div className='w-full'>

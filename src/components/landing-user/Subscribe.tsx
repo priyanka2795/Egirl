@@ -31,7 +31,7 @@ const JenniePost = dynamic(() => import('./assets/Subscribe/JenniePost'), {
 
 const Subscribe = () => {
   return (
-    <div className='w-full bg-[#F6F6F6] px-24 lg:px-[100px]'>
+    <div className='w-full bg-[#F6F6F6] px-24 lg:px-[100px] 2xl:px-[120px]'>
       <div className='py-20'>
         <div className=''>
           <div className=''>

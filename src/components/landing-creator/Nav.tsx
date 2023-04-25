@@ -10,7 +10,7 @@ interface Props {
 
 const Nav = ({ setBetaAccess, setSideNav }: Props) => {
   return (
-    <nav className='fixed top-0 z-10 w-full bg-[black] px-24 lg:px-[100px]'>
+    <nav className='fixed top-0 z-10 w-full bg-[black] px-24 lg:px-[100px] 2xl:px-[120px]'>
       <div className='py-3 lg:py-6'>
         <div className='flex items-center justify-between'>
           <div className='lg:flex'>
@@ -44,14 +44,14 @@ const Nav = ({ setBetaAccess, setSideNav }: Props) => {
           <div className='md:flex'>
             <div className='mr-6 hidden lg:flex lg:items-center'>
               <button>
-                <Link href='/contact-us'  prefetch={false}>
+                <Link href='/contact-us' prefetch={false}>
                   <span className='text-[32px] font-[500] text-[white] transition duration-100 hover:text-[#5848BC] hover:underline hover:decoration-[#5848BC] hover:underline-offset-8 lg:text-[16px]'>
                     Contact
                   </span>
                 </Link>
               </button>
             </div>
-            <Link href='/get-beta-access'  prefetch={false}>
+            <Link href='/get-beta-access' prefetch={false}>
               <a className='justify-center rounded-[12px] bg-[#5848BC] px-[18px] py-[10px] transition duration-100 hover:bg-[#4D37DA] xs:hidden sm:hidden md:flex md:items-center lg:flex lg:w-[158px] lg:items-center'>
                 <span className='text-[32px] font-[500] text-white  lg:text-[16px]'>
                   Get beta access

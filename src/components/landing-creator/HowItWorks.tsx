@@ -31,7 +31,7 @@ const Right2 = dynamic(() => import('./assets/HowItWorks/Right2'), {
 
 const Header = () => {
   return (
-    <div className='bg-[#FFFFFF] px-[100px] py-[100px] lg:px-[100px]'>
+    <div className='bg-[#FFFFFF] px-[100px] py-[100px] lg:px-[100px] 2xl:px-[120px]'>
       <div className='flex select-none justify-center space-x-2'>
         <span className='text-[96px] font-[600] text-[black] lg:text-[48px]'>
           How it

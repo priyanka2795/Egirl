@@ -66,7 +66,7 @@ const Design = () => {
     }
   };
   return (
-    <div className='w-full select-none bg-[#FFFFFF] px-[100px]'>
+    <div className='w-full select-none bg-[#FFFFFF] px-[100px] 2xl:px-[120px]'>
       <div className='w-full pt-[100px] pb-[100px]'>
         <div className='w-full gap-[100px] sm:grid sm:grid-cols-1 md:grid md:grid-cols-2 md:max-xl:grid md:max-lg:grid-cols-1 lg:grid lg:grid-cols-2'>
           <div className='w-full'>

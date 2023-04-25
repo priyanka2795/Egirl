@@ -17,7 +17,7 @@ const MikaChan = dynamic(() => import('./assets/Discover/MikaChan'), {
 
 const Discover = () => {
   return (
-    <div className='w-full bg-[#FFFFFF] px-[24px] lg:px-[100px] lg:py-[80px]'>
+    <div className='w-full bg-[#FFFFFF] px-[24px] lg:px-[100px] lg:py-[80px] 2xl:px-[120px]'>
       <div>
         <div>
           <div className='flex justify-center pb-1 lg:justify-start'>

@@ -15,7 +15,7 @@ const FooterImg = dynamic(() => import('./assets/Footer/FooterImg'), {
 
 const Discover = () => {
   return (
-    <div className='w-full bg-[#000000] px-24 lg:px-[100px]'>
+    <div className='w-full bg-[#000000] px-24 lg:px-[100px] 2xl:px-[120px]'>
       <div className='grid grid-cols-2 pt-[100px]'>
         <div className=''>
           <div className='flex justify-center lg:justify-start'>

@@ -4,7 +4,7 @@ import ExperienceTheFuture from '@components/landing-common/assets/ExperienceThe
 
 const Header = () => {
   return (
-    <div className='w-full bg-[#F6F6F6] px-24 pt-[96px] lg:px-[100px]'>
+    <div className='w-full bg-[#F6F6F6] px-24 pt-[96px] lg:px-[100px] 2xl:px-[120px]'>
       <div className='py-20'>
         <div className='justify-center gap-[100px] xs:justify-center sm:grid sm:grid-cols-1 sm:justify-center md:grid md:grid-cols-2 md:justify-center md:max-xl:grid md:max-lg:grid-cols-1 lg:grid lg:grid-cols-2'>
           <div className=''>
