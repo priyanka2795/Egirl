@@ -86,33 +86,6 @@ const Footer = () => {
               <NextImage
                 width={18}
                 height={18}
-                src={'/assets/homeIcons/instagramIcon.png'}
-                alt={'Profile'}
-                className='rounded-[15px]'
-              />
-            </div>
-            <div className='p-1'>
-              <NextImage
-                width={18}
-                height={18}
-                src={'/assets/homeIcons/tiktokIcon.png'}
-                alt={'Profile'}
-                className='rounded-[15px]'
-              />
-            </div>
-            <div className='p-1'>
-              <NextImage
-                width={18}
-                height={18}
-                src={'/assets/homeIcons/redditIcon.png'}
-                alt={'Profile'}
-                className='rounded-[15px]'
-              />
-            </div>
-            <div className='p-1'>
-              <NextImage
-                width={18}
-                height={18}
                 src={'/assets/homeIcons/discordIcon.png'}
                 alt={'Profile'}
                 className='rounded-[15px]'
@@ -127,13 +100,31 @@ const Footer = () => {
                 className='rounded-[15px]'
               />
             </div>
+            <div className='p-1'>
+              <NextImage
+                width={18}
+                height={18}
+                src={'/assets/homeIcons/instagramIcon.png'}
+                alt={'Profile'}
+                className='rounded-[15px]'
+              />
+            </div>
+            <div className='p-1'>
+              <NextImage
+                width={18}
+                height={18}
+                src={'/assets/homeIcons/redditIcon.png'}
+                alt={'Profile'}
+                className='rounded-[15px]'
+              />
+            </div>
           </div>
         </div>
       </div>
       <div className='mb-[15px] border-t-2 border-[#646668]'>
         <div className='flex justify-between py-[25px]'>
           <div>
-            <span>© 2023 Egirls AI, Inc. All Rights Reserved</span>
+            <span>© 2023 Egirls Inc. All Rights Reserved</span>
           </div>
           <div>
             <span>Privacy Policy</span>

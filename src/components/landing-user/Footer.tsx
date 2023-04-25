@@ -87,7 +87,7 @@ const Discover = () => {
         </div>
       </div>
       <div className='mt-10 flex  select-none justify-between text-[15px] font-[400]'>
-        <p>© 2023 Egirls AI, Inc. All Rights Reserved</p>
+        <p>© 2023 Egirls Inc. All Rights Reserved</p>
         <p>Privacy Policy</p>
       </div>
     </div>
