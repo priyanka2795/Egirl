@@ -8,7 +8,6 @@ const SvgComponent = (props: Props) => (
     viewBox='0 0 620 555'
     fill='none'
     xmlns='http://www.w3.org/2000/svg'
-    {...props}
   >
     <rect x='481' y='423' width='108' height='52' rx='26' fill='#F5F5F5' />
     <path
@@ -86,31 +85,29 @@ const SvgComponent = (props: Props) => (
         rx='10.31'
         fill='#C4C4C4'
       />
-      <g filter='url(#filter0_bd_1567_18945)'>
-        <rect
-          width='215.865'
-          height='42.6199'
-          transform='translate(218.814 77.1484)'
-          fill='#F5F5F5'
-        />
-        <circle cx='240.124' cy='98.458' r='11' fill='#E7E7E7' />
-        <rect
-          x='256.279'
-          y='90.958'
-          width='48'
-          height='7'
-          rx='3.5'
-          fill='#E7E7E7'
-        />
-        <rect
-          x='256.279'
-          y='101.958'
-          width='32'
-          height='4'
-          rx='2'
-          fill='#E7E7E7'
-        />
-      </g>
+      <rect
+        width='215.865'
+        height='42.6199'
+        transform='translate(218.814 77.1484)'
+        fill='#F5F5F5'
+      />
+      <circle cx='240.124' cy='98.458' r='11' fill='#E7E7E7' />
+      <rect
+        x='256.279'
+        y='90.958'
+        width='48'
+        height='7'
+        rx='3.5'
+        fill='#E7E7E7'
+      />
+      <rect
+        x='256.279'
+        y='101.958'
+        width='32'
+        height='4'
+        rx='2'
+        fill='#E7E7E7'
+      />
     </g>
     <rect
       x='219.703'
@@ -151,47 +148,6 @@ const SvgComponent = (props: Props) => (
     <rect x='376.369' y='249.083' width='111' height='8' rx='4' fill='white' />
     <rect x='48' y='113' width='124' height='52' rx='26' fill='#F5F5F5' />
     <defs>
-      <filter
-        id='filter0_bd_1567_18945'
-        x='170.108'
-        y='31.0195'
-        width='313.277'
-        height='140.033'
-        filterUnits='userSpaceOnUse'
-        colorInterpolationFilters='sRGB'
-      >
-        <feFlood flood-opacity='0' result='BackgroundImageFix' />
-        <feGaussianBlur in='BackgroundImageFix' stdDeviation='3.25704' />
-        <feComposite
-          in2='SourceAlpha'
-          operator='in'
-          result='effect1_backgroundBlur_1567_18945'
-        />
-        <feColorMatrix
-          in='SourceAlpha'
-          type='matrix'
-          values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'
-          result='hardAlpha'
-        />
-        <feOffset dy='2.57749' />
-        <feGaussianBlur stdDeviation='24.3532' />
-        <feComposite in2='hardAlpha' operator='out' />
-        <feColorMatrix
-          type='matrix'
-          values='0 0 0 0 0.439216 0 0 0 0 0.427451 0 0 0 0 0.505882 0 0 0 0.07 0'
-        />
-        <feBlend
-          mode='normal'
-          in2='effect1_backgroundBlur_1567_18945'
-          result='effect2_dropShadow_1567_18945'
-        />
-        <feBlend
-          mode='normal'
-          in='SourceGraphic'
-          in2='effect2_dropShadow_1567_18945'
-          result='shape'
-        />
-      </filter>
       <clipPath id='clip0_1567_18945'>
         <rect
           x='219.203'

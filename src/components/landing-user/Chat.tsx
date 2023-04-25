@@ -262,7 +262,7 @@ const Chat = () => {
                 //     alt={'chatAway illus'}
                 //     className='grow-0 border border-red-600'
                 //   />
-                <figure className='drop-shadow-lg'>
+                <figure className=''>
                   {/* <Image
                     className='scale-125'
                     src={'/assets/svgImages/userChatSvg.svg'}
