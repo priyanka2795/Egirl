@@ -34,7 +34,7 @@ const Discover = () => {
               </span>
             </span>
           </div>
-          <button className='mt-12 rounded-xl bg-[#5848BC] py-4 px-[30px] text-lg font-semibold text-white'>
+          <button className='mt-12 rounded-xl bg-[#5848BC] py-4 px-[30px] text-lg font-semibold text-white transition duration-100 hover:bg-[#4D37DA]'>
             Join us
           </button>
         </div>

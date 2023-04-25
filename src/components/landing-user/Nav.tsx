@@ -14,7 +14,7 @@ const Nav = ({ setBetaAccess, setSideNav }: Props) => {
       <div className='py-3 lg:py-6'>
         <div className='flex items-center justify-between'>
           <div className='lg:flex'>
-            <Link href='/'>
+            <Link href='/' prefetch={false}>
               <a className=' py-1 pr-[40px]'>
                 {/* <span className='text-[64px] font-semibold text-[#181818] lg:text-[32px]'>
                 Egirls
@@ -29,7 +29,7 @@ const Nav = ({ setBetaAccess, setSideNav }: Props) => {
                 </button>
               </div>
               <div className='hidden lg:flex lg:items-center'>
-                <Link href='/creator-landing'>
+                <Link href='/creator-landing' prefetch={false}>
                   <a className='text-[32px]	font-[500] text-[#181818] transition duration-100 hover:text-[#5848BC] hover:underline hover:decoration-[#5848BC] hover:underline-offset-8 lg:text-[16px]'>
                     For creators
                   </a>
@@ -40,25 +40,20 @@ const Nav = ({ setBetaAccess, setSideNav }: Props) => {
           <div className='md:flex'>
             <div className='mr-6 hidden lg:flex lg:items-center'>
               <button>
-                <Link href='/contact-us'>
+                <Link href='/contact-us' prefetch={false}>
                   <span className='text-[32px] font-[500] text-[#181818] hover:text-[#5848BC] hover:underline hover:decoration-[#5848BC] hover:underline-offset-8 lg:text-[16px]'>
                     Contact
                   </span>
                 </Link>
               </button>
             </div>
-            <div
-              className='justify-center rounded-[12px] bg-[#5848BC] px-[18px] py-[10px] xs:hidden sm:hidden md:flex md:items-center lg:flex lg:w-[158px] lg:items-center'
-              onClick={() => {
-                setBetaAccess();
-              }}
-            >
-              <button>
-                <span className='text-[32px] font-[500] text-white lg:text-[16px]'>
+            <Link href='/get-beta-access' prefetch={false}>
+              <a className='justify-center rounded-[12px] bg-[#5848BC] px-[18px] py-[10px] transition duration-100 hover:bg-[#4D37DA] xs:hidden sm:hidden md:flex md:items-center lg:flex lg:w-[158px] lg:items-center'>
+                <span className='text-[32px] font-[500] text-white  lg:text-[16px]'>
                   Get beta access
                 </span>
-              </button>
-            </div>
+              </a>
+            </Link>
             <div
               className='xs:flex xs:items-center sm:flex sm:items-center md:flex md:items-center lg:flex lg:items-center'
               onClick={() => {

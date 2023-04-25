@@ -42,7 +42,7 @@ const Header = () => {
                     <span className='text-[36px] lg:text-[18px]'>Join</span>
                   </div>
                 </div> */}
-              <button className='mt-12 rounded-xl bg-[#5848BC] py-4 px-[30px] text-lg font-semibold text-white'>
+              <button className='mt-12 rounded-xl bg-[#5848BC] py-4 px-[30px] text-lg font-semibold text-white transition duration-100 hover:bg-[#4D37DA]'>
                 Join us
               </button>
             </div>
