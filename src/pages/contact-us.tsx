@@ -5,7 +5,7 @@ import { LayoutProps } from '@components/layout/common-layout';
 import { Bars2Icon, StarIcon, XMarkIcon } from '@heroicons/react/20/solid';
 import Link from 'next/link';
 import Nav from '../components/landing-user/Nav';
-import Footer from '@components/landing-user/Footer';
+import Footer from '@components/landing-common/Footer';
 import DiscordIcon from '@components/landing-user/assets/Footer/DiscordIcon';
 import TwitterIcon from '@components/landing-user/assets/Footer/TwitterIcon';
 import InstaIcon from '@components/landing-user/assets/Footer/InstaIcon';

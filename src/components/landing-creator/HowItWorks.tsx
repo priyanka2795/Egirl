@@ -1,31 +1,22 @@
 import React from 'react';
 import StarIcon from '@components/landing-creator/assets/HowItWorks/StarIcon';
 import dynamic from 'next/dynamic';
+import Right1Loading from './assets/HowItWorks/Right1Loading';
+import Left1Loading from './assets/HowItWorks/Left1Loading';
+import Right2Loading from './assets/HowItWorks/Right2Loading';
 
 const Left1 = dynamic(() => import('./assets/HowItWorks/Left1'), {
-  loading: () => (
-    <div className='grid h-[555px] w-[620px] place-items-center text-black'>
-      Loading SVG...
-    </div>
-  ),
+  loading: () => <Left1Loading />,
   ssr: false
 });
 
 const Right1 = dynamic(() => import('./assets/HowItWorks/Right1'), {
-  loading: () => (
-    <div className='grid h-[555px] w-[620px] place-items-center text-black'>
-      Loading SVG...
-    </div>
-  ),
+  loading: () => <Right1Loading />,
   ssr: false
 });
 
 const Right2 = dynamic(() => import('./assets/HowItWorks/Right2'), {
-  loading: () => (
-    <div className='grid h-[555px] w-[620px] place-items-center text-black'>
-      Loading SVG...
-    </div>
-  ),
+  loading: () => <Right2Loading />,
   ssr: false
 });
 

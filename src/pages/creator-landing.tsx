@@ -15,7 +15,7 @@ import ContactUs from '@components/landing-creator/ContactUs';
 import HowItWorks from '@components/landing-creator/HowItWorks';
 import Design from '@components/landing-creator/Design';
 import PassionToProfit from '@components/landing-creator/PassionToProfit';
-import Footer from '@components/landing-user/Footer';
+import Footer from '@components/landing-common/Footer';
 
 export function LandingLayout({ children }: LayoutProps): JSX.Element {
   return <div className='w-full bg-white'>{children}</div>;

@@ -2,23 +2,17 @@ import { NextImage } from '@components/ui/next-image';
 import Image from 'next/image';
 
 import dynamic from 'next/dynamic';
-import TextingLoading from './assets/Loading/TextingLoading';
+import TextingLoading from './assets/Chat/TextingLoading';
+import ImgRequestsLoading from './assets/Chat/ImgRequestsLoading';
+import VoiceMessagesLoading from './assets/Chat/VoiceMessagesLoading';
 
 const ImgRequests = dynamic(() => import('./assets/Chat/ImgRequests'), {
-  loading: () => (
-    <div className='grid h-[555px] w-[620px] place-items-center text-black'>
-      Loading SVG...
-    </div>
-  ),
+  loading: () => <ImgRequestsLoading />,
   ssr: false
 });
 
 const VoiceMessages = dynamic(() => import('./assets/Chat/VoiceMessages'), {
-  loading: () => (
-    <div className='grid h-[555px] w-[620px] place-items-center text-black'>
-      Loading SVG...
-    </div>
-  ),
+  loading: () => <VoiceMessagesLoading />,
   ssr: false
 });
 
