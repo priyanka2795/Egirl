@@ -11,6 +11,7 @@ import TwitterIcon from '@components/landing-user/assets/Footer/TwitterIcon';
 import InstaIcon from '@components/landing-user/assets/Footer/InstaIcon';
 import RedditIcon from '@components/landing-user/assets/Footer/RedditIcon';
 import Logo from '@components/landing-user/assets/Logo';
+import { ChangeEvent } from 'react';
 
 export function LandingLayout({ children }: LayoutProps): JSX.Element {
   return <div className='w-full bg-white'>{children}</div>;
@@ -19,6 +20,40 @@ export function LandingLayout({ children }: LayoutProps): JSX.Element {
 export default function CreatorLanding(): JSX.Element {
   const [hiddenSideDiv, setHiddenSideDiv] = useState(false);
   const [showBetaAccess, setShowBetaAccess] = useState(false);
+
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+
+  const onChangeName = (event: ChangeEvent<HTMLInputElement>): void => {
+    setName(event.target.value);
+  };
+
+  const onChangeEmail = (event: ChangeEvent<HTMLInputElement>): void => {
+    setEmail(event.target.value);
+  };
+  const onChangeMessage = (event: ChangeEvent<HTMLTextAreaElement>): void => {
+    setMessage(event.target.value);
+  };
+
+  const sendEmailFn = (event: React.FormEvent): void => {
+    event?.preventDefault();
+    const subject = name.replace(/\r/g, ' ').replace(/\n/g, ' ');
+    const config = {
+      SecureToken: 'ce44d72d-02a8-44eb-824b-a35540a0bcc3',
+      To: 'email@gmail.com',
+      From: 'hollandpleskac@gmail.com',
+      Subject: 'test',
+      Body: { message }
+    };
+    if ((window as any).Email) {
+      (window as any).Email.send(config).then((message: string) =>
+        console.log(message)
+      );
+    } else {
+      console.log('email does not exist');
+    }
+  };
 
   const setSideNav = () => (): void => {
     setHiddenSideDiv(!hiddenSideDiv);
@@ -314,7 +349,10 @@ export default function CreatorLanding(): JSX.Element {
             </div>
             <div className='min-[200px]:pt-10'>
               <div className='w-full'>
-                <form className='mb-4 rounded bg-white px-8 pt-6 pb-8 shadow-md'>
+                <form
+                  className='mb-4 rounded bg-white px-8 pt-6 pb-8 shadow-md'
+                  onSubmit={sendEmailFn}
+                >
                   <div className='mb-4 flex justify-around space-x-4'>
                     <div className='w-1/2'>
                       <label className='mb-2 text-[32px] font-[500] text-[#646668] lg:text-[13px]'>
@@ -325,6 +363,8 @@ export default function CreatorLanding(): JSX.Element {
                         id='username'
                         type='text'
                         placeholder='Your name'
+                        value={name}
+                        onChange={onChangeName}
                       />
                     </div>
                     <div className='w-1/2'>
@@ -336,6 +376,8 @@ export default function CreatorLanding(): JSX.Element {
                         id='email'
                         type='text'
                         placeholder='example@mail.com'
+                        value={email}
+                        onChange={onChangeEmail}
                       />
                     </div>
                   </div>
@@ -348,6 +390,8 @@ export default function CreatorLanding(): JSX.Element {
                       id='message'
                       placeholder='Your message'
                       style={{ resize: 'none' }}
+                      value={message}
+                      onChange={onChangeMessage}
                     />
                   </div>
                   <div className='flex items-center justify-center'>
