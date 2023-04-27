@@ -38,13 +38,12 @@ export default function CreatorLanding(): JSX.Element {
 
   const sendEmailFn = (event: React.FormEvent): void => {
     event?.preventDefault();
-    const subject = name.replace(/\r/g, ' ').replace(/\n/g, ' ');
     const config = {
       SecureToken: 'ce44d72d-02a8-44eb-824b-a35540a0bcc3',
-      To: 'email@gmail.com',
-      From: 'hollandpleskac@gmail.com',
-      Subject: 'test',
-      Body: { message }
+      To: 'hollandpleskac@gmail.com',
+      From: email,
+      Subject: name,
+      Body: message
     };
     if ((window as any).Email) {
       (window as any).Email.send(config).then((message: string) =>

@@ -11,9 +11,9 @@ interface Props {
 const Nav = ({ setBetaAccess, setSideNav }: Props) => {
   return (
     <nav className=' fixed top-0 z-10 w-full bg-[#F6F6F6] px-24 lg:px-[100px] 2xl:px-[120px]'>
-      <div className='py-3 lg:py-6'>
+      <div className='md: py-[40px] lg:py-6'>
         <div className='flex items-center justify-between'>
-          <div className='lg:flex'>
+          <div className='flex'>
             <Link href='/' prefetch={false}>
               <a className=' py-1 pr-[40px]'>
                 {/* <span className='text-[64px] font-semibold text-[#181818] lg:text-[32px]'>
@@ -55,7 +55,7 @@ const Nav = ({ setBetaAccess, setSideNav }: Props) => {
               </a>
             </Link>
             <div
-              className='xs:flex xs:items-center sm:flex sm:items-center md:flex md:items-center lg:flex lg:items-center'
+              className='ml-[32px] xs:flex xs:items-center sm:flex sm:items-center md:flex md:items-center lg:flex lg:items-center'
               onClick={() => {
                 setSideNav();
               }}
