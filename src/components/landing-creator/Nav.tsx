@@ -53,8 +53,8 @@ const Nav = ({ setBetaAccess, setSideNav }: Props) => {
             </div>
             <Link href='/get-beta-access' prefetch={false}>
               <a className='justify-center rounded-[12px] bg-[#5848BC] px-[18px] py-[10px] transition duration-100 hover:bg-[#4D37DA] xs:hidden sm:hidden md:flex md:items-center lg:w-[158px] lg:items-center'>
-                <span className='text-[32px] font-[500] text-white  lg:text-[16px]'>
-                  Get beta access asdf
+                <span className='text-[16px] font-[500]  text-white'>
+                  Get beta access
                 </span>
               </a>
             </Link>

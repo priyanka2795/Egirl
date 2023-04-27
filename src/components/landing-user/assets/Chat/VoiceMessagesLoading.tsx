@@ -8,6 +8,7 @@ const SvgComponent = (props: Props) => (
     viewBox='0 0 620 555'
     fill='none'
     xmlns='http://www.w3.org/2000/svg'
+    {...props}
   >
     <rect
       width='130'

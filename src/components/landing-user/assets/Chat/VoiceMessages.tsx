@@ -81,14 +81,14 @@ const SvgComponent = (props: Props) => (
         y='369'
         width='56.0002'
         height='62.2224'
-        fill='url(#pattern0)'
+        fill='url(#pattern042985y3ouighjksdfguiyf)'
       />
       <rect
         x='252.041'
         y='368.586'
         width='63.0291'
         height='63.0291'
-        fill='url(#pattern1)'
+        fill='url(#pattern11111111235423456345ygfsdber)'
       />
     </g>
     <path
@@ -137,14 +137,14 @@ const SvgComponent = (props: Props) => (
         y='146'
         width='48.0001'
         height='53.3335'
-        fill='url(#pattern2)'
+        fill='url(#pattern2asdf54ureshqadfasdf)'
       />
       <rect
         x='152.678'
         y='145.645'
         width='54.025'
         height='54.025'
-        fill='url(#pattern3)'
+        fill='url(#pattern3zzz)'
       />
     </g>
     <path
@@ -180,7 +180,7 @@ const SvgComponent = (props: Props) => (
         />
       </filter>
       <pattern
-        id='pattern0'
+        id='pattern042985y3ouighjksdfguiyf'
         patternContentUnits='objectBoundingBox'
         width='1'
         height='1'
@@ -191,7 +191,7 @@ const SvgComponent = (props: Props) => (
         />
       </pattern>
       <pattern
-        id='pattern1'
+        id='pattern11111111235423456345ygfsdber'
         patternContentUnits='objectBoundingBox'
         width='1'
         height='1'
@@ -199,7 +199,7 @@ const SvgComponent = (props: Props) => (
         <use xlinkHref='#image1_1215_17830' transform='scale(0.000932836)' />
       </pattern>
       <pattern
-        id='pattern2'
+        id='pattern2asdf54ureshqadfasdf'
         patternContentUnits='objectBoundingBox'
         width='1'
         height='1'
@@ -210,7 +210,7 @@ const SvgComponent = (props: Props) => (
         />
       </pattern>
       <pattern
-        id='pattern3'
+        id='pattern3zzz'
         patternContentUnits='objectBoundingBox'
         width='1'
         height='1'

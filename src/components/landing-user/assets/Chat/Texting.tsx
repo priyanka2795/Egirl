@@ -51,14 +51,14 @@ const SvgComponent = (props: Props) => (
           y='189.582'
           width='12.89'
           height='14.3223'
-          fill='url(#pattern0)'
+          fill='url(#pattern089067875afdsufhgjkasdhgfjk)'
         />
         <rect
           x='228.904'
           y='189.487'
           width='14.508'
           height='14.508'
-          fill='url(#pattern1)'
+          fill='url(#pattern1asdffkjlh8724yfhabwuidj)'
         />
       </g>
       <path
@@ -171,7 +171,7 @@ const SvgComponent = (props: Props) => (
             y='87.8335'
             width='21.2501'
             height='23.6112'
-            fill='url(#pattern2)'
+            fill='url(#pattern243523463456qeragbfvxdb)'
           />
           <rect
             x='249.381'
@@ -313,7 +313,7 @@ const SvgComponent = (props: Props) => (
     </g>
     <defs>
       <pattern
-        id='pattern0'
+        id='pattern089067875afdsufhgjkasdhgfjk'
         patternContentUnits='objectBoundingBox'
         width='1'
         height='1'
@@ -324,7 +324,7 @@ const SvgComponent = (props: Props) => (
         />
       </pattern>
       <pattern
-        id='pattern1'
+        id='pattern1asdffkjlh8724yfhabwuidj'
         patternContentUnits='objectBoundingBox'
         width='1'
         height='1'
@@ -373,7 +373,7 @@ const SvgComponent = (props: Props) => (
         />
       </filter>
       <pattern
-        id='pattern2'
+        id='pattern243523463456qeragbfvxdb'
         patternContentUnits='objectBoundingBox'
         width='1'
         height='1'

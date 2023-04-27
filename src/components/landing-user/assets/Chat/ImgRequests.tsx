@@ -261,9 +261,9 @@ const SvgComponent = (props: Props) => (
         y='120.576'
         width='212.488'
         height='181.56'
-        fill='url(#pattern2)'
+        fill='url(#pattern22342342342342342356473567456213)'
       />
-      <rect x='101' y='122' width='209' height='209' fill='url(#pattern3)' />
+      <rect x='101' y='122' width='209' height='209' fill='url(#pattern343253426543723hsgfbxcv)' />
     </g>
     <defs>
       <pattern
@@ -289,7 +289,7 @@ const SvgComponent = (props: Props) => (
         />
       </pattern>
       <pattern
-        id='pattern2'
+        id='pattern22342342342342342356473567456213'
         patternContentUnits='objectBoundingBox'
         width='1'
         height='1'
@@ -300,7 +300,7 @@ const SvgComponent = (props: Props) => (
         />
       </pattern>
       <pattern
-        id='pattern3'
+        id='pattern343253426543723hsgfbxcv'
         patternContentUnits='objectBoundingBox'
         width='1'
         height='1'

@@ -7,17 +7,23 @@ import ImgRequestsLoading from './assets/Chat/ImgRequestsLoading';
 import VoiceMessagesLoading from './assets/Chat/VoiceMessagesLoading';
 
 const ImgRequests = dynamic(() => import('./assets/Chat/ImgRequests'), {
-  loading: () => <ImgRequestsLoading />,
+  loading: () => (
+    <ImgRequestsLoading className='h-[314px] w-[320px] lg:h-[555px] lg:w-[620px]' />
+  ),
   ssr: false
 });
 
 const VoiceMessages = dynamic(() => import('./assets/Chat/VoiceMessages'), {
-  loading: () => <VoiceMessagesLoading />,
+  loading: () => (
+    <VoiceMessagesLoading className='h-[314px] w-[320px] lg:h-[555px] lg:w-[620px]' />
+  ),
   ssr: false
 });
 
 const Texting = dynamic(() => import('./assets/Chat/Texting'), {
-  loading: () => <TextingLoading />,
+  loading: () => (
+    <TextingLoading className='h-[314px] w-[320px] lg:h-[555px] lg:w-[620px]' />
+  ),
   ssr: false
 });
 
@@ -52,292 +58,497 @@ const Chat = () => {
     }
   };
   return (
-    <div className='w-full bg-[#FFFFFF] px-24 lg:px-[100px] 2xl:px-[120px]'>
-      <div className='w-full pt-[80px] pb-[120px]'>
-        <div className='grid w-full grid-cols-1 gap-[100px] lg:grid-cols-2'>
-          <div className='w-full'>
-            <div className='flex justify-center lg:justify-start'>
-              <div className=' '>
-                <span className='select-none text-[36px] font-[500] text-[#949698] lg:text-[18px]'>
-                  CHAT AWAY
+    <>
+      <div className='hidden w-full bg-[#FFFFFF] px-[40px] lg:flex lg:px-[100px] 2xl:px-[120px]'>
+        <div className='w-full pt-[80px] pb-[120px]'>
+          <div className='grid w-full grid-cols-1 gap-[100px] md:grid-cols-2'>
+            <div className='w-full'>
+              <div className='flex sm:justify-center md:justify-start'>
+                <div className=' '>
+                  <span className='select-none text-[36px] font-[500] text-[#949698] md:text-[18px]'>
+                    CHAT AWAY
+                  </span>
+                </div>
+              </div>
+              <div className='mt-1 flex justify-center text-center md:justify-start md:text-start'>
+                <span className='select-none text-[64px] font-[600] text-[#000000] md:text-[48px]'>
+                  Easily <span className='font-[400] italic'>chat</span> with
+                  any Egirl you like
                 </span>
               </div>
-            </div>
-            <div className=' mt-1 flex justify-center text-center lg:justify-start lg:text-start'>
-              <span className='select-none text-[64px] font-[600] text-[#000000] lg:text-[48px]'>
-                Easily <span className='font-[400] italic'>chat</span> with any
-                Egirl you like
-              </span>
-            </div>
-            <div>
               <div>
-                <div
-                  className='mt-[64px] flex cursor-pointer items-center space-x-[16px] px-[8px] py-[12px] transition duration-100'
-                  onClick={showSection1(section1)}
-                >
-                  <button>
-                    <div className='hidden lg:block'>
-                      {section1 === true ? (
-                        <NextImage
-                          width={60}
-                          height={60}
-                          src={'/assets/homeIcons/pencilLogo.png'}
-                          alt={'pencilLogo'}
-                        />
-                      ) : (
-                        <NextImage
-                          width={60}
-                          height={60}
-                          src={'/assets/homeIcons/pencilLogoBlank.png'}
-                          alt={'pencilLogo'}
-                        />
-                      )}
-                    </div>
-                    <div className='lg:hidden'>
-                      {section1 === true ? (
-                        <NextImage
-                          width={120}
-                          height={120}
-                          src={'/assets/homeIcons/pencilLogo.png'}
-                          alt={'pencilLogo'}
-                        />
-                      ) : (
-                        <NextImage
-                          width={120}
-                          height={120}
-                          src={'/assets/homeIcons/pencilLogoBlank.png'}
-                          alt={'pencilLogo'}
-                        />
-                      )}
-                    </div>
-                  </button>
-                  <div className='select-none'>
-                    <div>
-                      <span className='text-[48px] font-[500] text-[#000000] lg:text-[24px]'>
-                        Texting
-                      </span>
-                    </div>
-                    {section1 && (
-                      <div className='w-3/4'>
-                        <span className='text-[36px] font-[400] text-[#000000] lg:text-[18px]'>
-                          Text any Egirl to get a conversation started. Every
-                          Egirl has a unique personality.
+                <div>
+                  <div
+                    className='mt-[64px] flex cursor-pointer items-center space-x-[16px] px-[8px] py-[12px] transition duration-100'
+                    onClick={showSection1(section1)}
+                  >
+                    <button>
+                      <div className='hidden md:block'>
+                        {section1 === true ? (
+                          <NextImage
+                            width={60}
+                            height={60}
+                            src={'/assets/homeIcons/pencilLogo.png'}
+                            alt={'pencilLogo'}
+                          />
+                        ) : (
+                          <NextImage
+                            width={60}
+                            height={60}
+                            src={'/assets/homeIcons/pencilLogoBlank.png'}
+                            alt={'pencilLogo'}
+                          />
+                        )}
+                      </div>
+                      <div className='md:hidden'>
+                        {section1 === true ? (
+                          <NextImage
+                            width={120}
+                            height={120}
+                            src={'/assets/homeIcons/pencilLogo.png'}
+                            alt={'pencilLogo'}
+                          />
+                        ) : (
+                          <NextImage
+                            width={120}
+                            height={120}
+                            src={'/assets/homeIcons/pencilLogoBlank.png'}
+                            alt={'pencilLogo'}
+                          />
+                        )}
+                      </div>
+                    </button>
+                    <div className='select-none'>
+                      <div>
+                        <span className='text-[36px] font-[500] text-[#000000] md:text-[24px]'>
+                          Texting
                         </span>
                       </div>
-                    )}
+                      {section1 && (
+                        <div className='w-3/4'>
+                          <span className='text-[36px] font-[400] text-[#000000] md:text-[18px]'>
+                            Text any Egirl to get a conversation started. Every
+                            Egirl has a unique personality.
+                          </span>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div>
-                <div
-                  className='flex cursor-pointer items-center space-x-[16px] px-[8px] py-[12px] transition duration-100'
-                  onClick={showSection2(section2)}
-                >
-                  <button>
-                    <div className='hidden lg:block'>
-                      {section2 === true ? (
-                        <NextImage
-                          width={60}
-                          height={60}
-                          src={'/assets/homeIcons/requestLogo.png'}
-                          alt={'requestLogo'}
-                        />
-                      ) : (
-                        <NextImage
-                          width={60}
-                          height={60}
-                          src={'/assets/homeIcons/requestLogoBlank.png'}
-                          alt={'requestLogoBlank'}
-                        />
-                      )}
-                    </div>
-                    <div className='lg:hidden'>
-                      {section2 === true ? (
-                        <NextImage
-                          width={120}
-                          height={120}
-                          src={'/assets/homeIcons/requestLogo.png'}
-                          alt={'requestLogo'}
-                        />
-                      ) : (
-                        <NextImage
-                          width={120}
-                          height={120}
-                          src={'/assets/homeIcons/requestLogoBlank.png'}
-                          alt={'requestLogoBlank'}
-                        />
-                      )}
-                    </div>
-                  </button>
-                  <div className='select-none'>
-                    <div>
-                      <span className='text-[48px] font-[500] text-[#000000] lg:text-[24px]'>
-                        Request Images
-                      </span>
-                    </div>
-                    {section2 && (
-                      <div className='w-3/4'>
-                        <span className='text-[36px] font-[400] text-[#000000] lg:text-[18px]'>
-                          Make a request for an Egirl to send you a specially
-                          made pic of themselves.
+                <div>
+                  <div
+                    className='flex cursor-pointer items-center space-x-[16px] px-[8px] py-[12px] transition duration-100'
+                    onClick={showSection2(section2)}
+                  >
+                    <button>
+                      <div className='hidden md:block'>
+                        {section2 === true ? (
+                          <NextImage
+                            width={60}
+                            height={60}
+                            src={'/assets/homeIcons/requestLogo.png'}
+                            alt={'requestLogo'}
+                          />
+                        ) : (
+                          <NextImage
+                            width={60}
+                            height={60}
+                            src={'/assets/homeIcons/requestLogoBlank.png'}
+                            alt={'requestLogoBlank'}
+                          />
+                        )}
+                      </div>
+                      <div className='md:hidden'>
+                        {section2 === true ? (
+                          <NextImage
+                            width={120}
+                            height={120}
+                            src={'/assets/homeIcons/requestLogo.png'}
+                            alt={'requestLogo'}
+                          />
+                        ) : (
+                          <NextImage
+                            width={120}
+                            height={120}
+                            src={'/assets/homeIcons/requestLogoBlank.png'}
+                            alt={'requestLogoBlank'}
+                          />
+                        )}
+                      </div>
+                    </button>
+                    <div className='select-none'>
+                      <div>
+                        <span className='text-[48px] font-[500] text-[#000000] md:text-[24px]'>
+                          Request Images
                         </span>
                       </div>
-                    )}
+                      {section2 && (
+                        <div className='w-3/4'>
+                          <span className='text-[36px] font-[400] text-[#000000] md:text-[18px]'>
+                            Make a request for an Egirl to send you a specially
+                            made pic of themselves.
+                          </span>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div>
-                <div
-                  className='flex cursor-pointer items-center space-x-[16px] px-[8px] py-[12px] transition duration-100'
-                  onClick={showSection3(section3)}
-                >
-                  <button>
-                    <div className='hidden lg:block'>
-                      {section3 === true ? (
-                        <NextImage
-                          width={60}
-                          height={60}
-                          src={'/assets/homeIcons/voiceMessage.png'}
-                          alt={'voiceMessage'}
-                        />
-                      ) : (
-                        <NextImage
-                          width={60}
-                          height={60}
-                          src={'/assets/homeIcons/voiceMessageBlank.png'}
-                          alt={'voiceMessageBlank'}
-                        />
-                      )}
-                    </div>
-                    <div className='lg:hidden'>
-                      {section3 === true ? (
-                        <NextImage
-                          width={120}
-                          height={120}
-                          src={'/assets/homeIcons/voiceMessage.png'}
-                          alt={'voiceMessage'}
-                        />
-                      ) : (
-                        <NextImage
-                          width={120}
-                          height={120}
-                          src={'/assets/homeIcons/voiceMessageBlank.png'}
-                          alt={'voiceMessageBlank'}
-                        />
-                      )}
-                    </div>
-                  </button>
-                  <div className='select-none'>
-                    <div>
-                      <span className='text-[48px] font-[500] text-[#000000] lg:text-[24px]'>
-                        Voice Messages
-                      </span>
-                    </div>
-                    {section3 && (
-                      <div className='w-3/4'>
-                        <span className='text-[36px] font-[400] text-[#000000] lg:text-[18px]'>
-                          Ask an Egirl to send you voice messages instead of
-                          regular texts.
+                <div>
+                  <div
+                    className='flex cursor-pointer items-center space-x-[16px] px-[8px] py-[12px] transition duration-100'
+                    onClick={showSection3(section3)}
+                  >
+                    <button>
+                      <div className='hidden md:block'>
+                        {section3 === true ? (
+                          <NextImage
+                            width={60}
+                            height={60}
+                            src={'/assets/homeIcons/voiceMessage.png'}
+                            alt={'voiceMessage'}
+                          />
+                        ) : (
+                          <NextImage
+                            width={60}
+                            height={60}
+                            src={'/assets/homeIcons/voiceMessageBlank.png'}
+                            alt={'voiceMessageBlank'}
+                          />
+                        )}
+                      </div>
+                      <div className='md:hidden'>
+                        {section3 === true ? (
+                          <NextImage
+                            width={120}
+                            height={120}
+                            src={'/assets/homeIcons/voiceMessage.png'}
+                            alt={'voiceMessage'}
+                          />
+                        ) : (
+                          <NextImage
+                            width={120}
+                            height={120}
+                            src={'/assets/homeIcons/voiceMessageBlank.png'}
+                            alt={'voiceMessageBlank'}
+                          />
+                        )}
+                      </div>
+                    </button>
+                    <div className='select-none'>
+                      <div>
+                        <span className='text-[48px] font-[500] text-[#000000] md:text-[24px]'>
+                          Voice Messages
                         </span>
                       </div>
-                    )}
+                      {section3 && (
+                        <div className='w-3/4'>
+                          <span className='text-[36px] font-[400] text-[#000000] md:text-[18px]'>
+                            Ask an Egirl to send you voice messages instead of
+                            regular texts.
+                          </span>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className='flex w-full justify-center'>
-            <div className='hidden lg:block lg:w-full lg:transition lg:duration-100 '>
-              {section1 && (
-                // <NextImage
-                //     width={800}
-                //     height={842}
-                //     src={'/assets/svgImages/chatAwayIllus.svg'}
-                //     alt={'chatAway illus'}
-                //     className='grow-0 border border-red-600'
-                //   />
-                <figure className=''>
-                  {/* <Image
-                    className='scale-125'
+            <div className='flex w-full justify-center'>
+              <div className='hidden md:block md:w-full md:transition md:duration-100 '>
+                {section1 && (
+                  <figure>
+                    <Texting className='h-[314px] w-[320px] lg:h-[555px] lg:w-[620px]' />
+                  </figure>
+                )}
+                {section2 && (
+                  <figure>
+                    <ImgRequests className='h-[314px] w-[320px] lg:h-[555px] lg:w-[620px]' />
+                  </figure>
+                )}
+                {section3 && (
+                  <figure>
+                    <VoiceMessages className='h-[314px] w-[320px] lg:h-[555px] lg:w-[620px]' />
+                  </figure>
+                )}
+              </div>
+              <div className='flex shrink-0 md:hidden'>
+                {section1 && (
+                  <NextImage
+                    width={650}
+                    height={650}
+                    imgClassName='scale-125'
                     src={'/assets/svgImages/userChatSvg.svg'}
-                    width={800}
-                    height={800}
                     alt={'chatAway illus'}
-                    layout='responsive'
-                  /> */}
-                  <Texting />
-                </figure>
-              )}
-              {section2 && (
-                // <NextImage
-                //   width={800}
-                //   height={842}
-                //   src={'/assets/svgImages/requestImagesIllus.svg'}
-                //   alt={'requestImage illus'}
-                // />
-                <figure className=''>
-                  {/* <Image
-                    className=''
+                  />
+                )}
+                {section2 && (
+                  <NextImage
+                    width={650}
+                    height={650}
                     src={'/assets/svgImages/requestImagesIllus.svg'}
-                    width={800}
-                    height={800}
                     alt={'requestImage illus'}
-                    layout='responsive'
-                  /> */}
-                  <ImgRequests />
-                </figure>
-              )}
-              {section3 && (
-                // <NextImage
-                //   width={800}
-                //   height={842}
-                //   src={'/assets/svgImages/voiceMessagesIllus.svg'}
-                //   alt={'voiceMessage illus'}
-                // />
-                <figure className=''>
-                  {/* <Image
-                    className='scale-150'
-                    src={'/assets/svgImages/userVoiceMsg.svg'}
-                    width={800}
-                    height={800}
+                  />
+                )}
+                {section3 && (
+                  <NextImage
+                    width={650}
+                    height={650}
+                    src={'/assets/svgImages/voiceMessagesIllus.svg'}
                     alt={'voiceMessage illus'}
-                    layout='responsive'
-                  /> */}
-                  <VoiceMessages />
-                </figure>
-              )}
-            </div>
-            <div className='flex shrink-0 lg:hidden'>
-              {section1 && (
-                <NextImage
-                  width={650}
-                  height={650}
-                  imgClassName='scale-125'
-                  src={'/assets/svgImages/userChatSvg.svg'}
-                  alt={'chatAway illus'}
-                />
-              )}
-              {section2 && (
-                <NextImage
-                  width={650}
-                  height={650}
-                  src={'/assets/svgImages/requestImagesIllus.svg'}
-                  alt={'requestImage illus'}
-                />
-              )}
-              {section3 && (
-                <NextImage
-                  width={650}
-                  height={650}
-                  src={'/assets/svgImages/voiceMessagesIllus.svg'}
-                  alt={'voiceMessage illus'}
-                />
-              )}
+                  />
+                )}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+      {/* start of medium display */}
+      <div className='flex w-full bg-[#FFFFFF] px-[40px] lg:hidden lg:px-[100px] 2xl:px-[120px]'>
+        <div className='w-full pt-[64px] pb-[120px]'>
+          <div className='flex sm:justify-center md:justify-start'>
+            <div className=' '>
+              <span className='select-none text-[36px] font-[500] text-[#949698] md:text-[18px]'>
+                CHAT AWAY
+              </span>
+            </div>
+          </div>
+          <div className='mt-1 flex justify-center text-center md:justify-start md:text-start'>
+            <span className='select-none text-[64px] font-[600] text-[#000000] md:text-[48px]'>
+              Easily <span className='font-[400] italic'>chat</span> with any
+              Egirl
+              <br />
+              you like
+            </span>
+          </div>
+          <div className='grid w-full grid-cols-1 gap-[20px]  md:grid-cols-2'>
+            <div className='w-full'>
+              <div>
+                <div className=''>
+                  <div
+                    className='mt-[64px] flex cursor-pointer items-center space-x-[16px] px-[8px] py-[12px] transition duration-100'
+                    onClick={showSection1(section1)}
+                  >
+                    <button>
+                      <div className='hidden md:block'>
+                        {section1 === true ? (
+                          <NextImage
+                            width={60}
+                            height={60}
+                            src={'/assets/homeIcons/pencilLogo.png'}
+                            alt={'pencilLogo'}
+                          />
+                        ) : (
+                          <NextImage
+                            width={60}
+                            height={60}
+                            src={'/assets/homeIcons/pencilLogoBlank.png'}
+                            alt={'pencilLogo'}
+                          />
+                        )}
+                      </div>
+                      <div className='md:hidden'>
+                        {section1 === true ? (
+                          <NextImage
+                            width={120}
+                            height={120}
+                            src={'/assets/homeIcons/pencilLogo.png'}
+                            alt={'pencilLogo'}
+                          />
+                        ) : (
+                          <NextImage
+                            width={120}
+                            height={120}
+                            src={'/assets/homeIcons/pencilLogoBlank.png'}
+                            alt={'pencilLogo'}
+                          />
+                        )}
+                      </div>
+                    </button>
+                    <div className='select-none'>
+                      <div>
+                        <span className='text-[36px] font-[500] text-[#000000] md:text-[24px]'>
+                          Texting
+                        </span>
+                      </div>
+                      {section1 && (
+                        <div className='w-3/4'>
+                          <span className='text-[36px] font-[400] text-[#000000] md:text-[18px]'>
+                            Text any Egirl to get a conversation started. Every
+                            Egirl has a unique personality.
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div
+                    className='flex cursor-pointer items-center space-x-[16px] px-[8px] py-[12px] transition duration-100'
+                    onClick={showSection2(section2)}
+                  >
+                    <button>
+                      <div className='hidden md:block'>
+                        {section2 === true ? (
+                          <NextImage
+                            width={60}
+                            height={60}
+                            src={'/assets/homeIcons/requestLogo.png'}
+                            alt={'requestLogo'}
+                          />
+                        ) : (
+                          <NextImage
+                            width={60}
+                            height={60}
+                            src={'/assets/homeIcons/requestLogoBlank.png'}
+                            alt={'requestLogoBlank'}
+                          />
+                        )}
+                      </div>
+                      <div className='md:hidden'>
+                        {section2 === true ? (
+                          <NextImage
+                            width={120}
+                            height={120}
+                            src={'/assets/homeIcons/requestLogo.png'}
+                            alt={'requestLogo'}
+                          />
+                        ) : (
+                          <NextImage
+                            width={120}
+                            height={120}
+                            src={'/assets/homeIcons/requestLogoBlank.png'}
+                            alt={'requestLogoBlank'}
+                          />
+                        )}
+                      </div>
+                    </button>
+                    <div className='select-none'>
+                      <div>
+                        <span className='text-[48px] font-[500] text-[#000000] md:text-[24px]'>
+                          Request Images
+                        </span>
+                      </div>
+                      {section2 && (
+                        <div className='w-3/4'>
+                          <span className='text-[36px] font-[400] text-[#000000] md:text-[18px]'>
+                            Make a request for an Egirl to send you a specially
+                            made pic of themselves.
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div
+                    className='flex cursor-pointer items-center space-x-[16px] px-[8px] py-[12px] transition duration-100'
+                    onClick={showSection3(section3)}
+                  >
+                    <button>
+                      <div className='hidden md:block'>
+                        {section3 === true ? (
+                          <NextImage
+                            width={60}
+                            height={60}
+                            src={'/assets/homeIcons/voiceMessage.png'}
+                            alt={'voiceMessage'}
+                          />
+                        ) : (
+                          <NextImage
+                            width={60}
+                            height={60}
+                            src={'/assets/homeIcons/voiceMessageBlank.png'}
+                            alt={'voiceMessageBlank'}
+                          />
+                        )}
+                      </div>
+                      <div className='md:hidden'>
+                        {section3 === true ? (
+                          <NextImage
+                            width={120}
+                            height={120}
+                            src={'/assets/homeIcons/voiceMessage.png'}
+                            alt={'voiceMessage'}
+                          />
+                        ) : (
+                          <NextImage
+                            width={120}
+                            height={120}
+                            src={'/assets/homeIcons/voiceMessageBlank.png'}
+                            alt={'voiceMessageBlank'}
+                          />
+                        )}
+                      </div>
+                    </button>
+                    <div className='select-none'>
+                      <div>
+                        <span className='text-[48px] font-[500] text-[#000000] md:text-[24px]'>
+                          Voice Messages
+                        </span>
+                      </div>
+                      {section3 && (
+                        <div className='w-3/4'>
+                          <span className='text-[36px] font-[400] text-[#000000] md:text-[18px]'>
+                            Ask an Egirl to send you voice messages instead of
+                            regular texts.
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className='flex w-full items-center justify-center'>
+              <div className='hidden md:block md:w-full md:transition md:duration-100 '>
+                {section1 && (
+                  <figure>
+                    <Texting className='h-[314px] w-[320px] lg:h-[555px] lg:w-[620px]' />
+                  </figure>
+                )}
+                {section2 && (
+                  <figure>
+                    <ImgRequests className='h-[314px] w-[320px] lg:h-[555px] lg:w-[620px]' />
+                  </figure>
+                )}
+                {section3 && (
+                  <figure>
+                    <VoiceMessages className='h-[314px] w-[320px] lg:h-[555px] lg:w-[620px]' />
+                  </figure>
+                )}
+              </div>
+              <div className='flex shrink-0 md:hidden'>
+                {section1 && (
+                  <NextImage
+                    width={650}
+                    height={650}
+                    imgClassName='scale-125'
+                    src={'/assets/svgImages/userChatSvg.svg'}
+                    alt={'chatAway illus'}
+                  />
+                )}
+                {section2 && (
+                  <NextImage
+                    width={650}
+                    height={650}
+                    src={'/assets/svgImages/requestImagesIllus.svg'}
+                    alt={'requestImage illus'}
+                  />
+                )}
+                {section3 && (
+                  <NextImage
+                    width={650}
+                    height={650}
+                    src={'/assets/svgImages/voiceMessagesIllus.svg'}
+                    alt={'voiceMessage illus'}
+                  />
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 
