@@ -10,7 +10,7 @@ interface Props {
 
 const Nav = ({ setBetaAccess, setSideNav }: Props) => {
   return (
-    <nav className=' fixed top-0 z-10 w-full bg-[#F6F6F6] px-24 lg:px-[100px] 2xl:px-[120px]'>
+    <nav className=' fixed top-0 z-10 w-full bg-[#F6F6F6] px-[24px] md:px-[40px] lg:px-[100px] 2xl:px-[120px]'>
       <div className='md: py-[40px] lg:py-6'>
         <div className='flex items-center justify-between'>
           <div className='flex'>

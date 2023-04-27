@@ -303,17 +303,15 @@ const Chat = () => {
         </div>
       </div>
       {/* start of medium display */}
-      <div className='flex w-full bg-[#FFFFFF] px-[40px] lg:hidden lg:px-[100px] 2xl:px-[120px]'>
+      <div className='flex w-full bg-[#FFFFFF] px-[24px] md:px-[40px] lg:hidden lg:px-[100px] 2xl:px-[120px]'>
         <div className='w-full pt-[64px] pb-[120px]'>
-          <div className='flex sm:justify-center md:justify-start'>
-            <div className=' '>
-              <span className='select-none text-[36px] font-[500] text-[#949698] md:text-[18px]'>
-                CHAT AWAY
-              </span>
-            </div>
+          <div className='flex justify-center md:justify-start'>
+            <span className='select-none text-center text-[14px] font-[500] text-[#949698] md:text-start md:text-[18px]'>
+              CHAT AWAY
+            </span>
           </div>
           <div className='mt-1 flex justify-center text-center md:justify-start md:text-start'>
-            <span className='select-none text-[64px] font-[600] text-[#000000] md:text-[48px]'>
+            <span className='select-none text-[24px] font-[600] text-[#000000] md:text-[48px]'>
               Easily <span className='font-[400] italic'>chat</span> with any
               Egirl
               <br />
@@ -324,8 +322,33 @@ const Chat = () => {
             <div className='w-full'>
               <div>
                 <div className=''>
+                  <Texting className='h-[314px] w-[320px] md:hidden' />
+                  <div className='mt-[32px] flex items-center md:hidden'>
+                    <NextImage
+                      width={60}
+                      height={60}
+                      src={'/assets/homeIcons/pencilLogo.png'}
+                      alt={'pencilLogo'}
+                    />
+
+                    <div className='ml-[16px] select-none md:hidden'>
+                      <div>
+                        <span className='text-[18px] font-[500] text-[#000000] md:text-[24px]'>
+                          Texting
+                        </span>
+                      </div>
+                      {section1 && (
+                        <div className='w-3/4'>
+                          <span className='text-[16px] font-[400] text-[#000000] md:text-[18px]'>
+                            Text any Egirl to get a conversation started. Every
+                            Egirl has a unique personality.
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
                   <div
-                    className='mt-[64px] flex cursor-pointer items-center space-x-[16px] px-[8px] py-[12px] transition duration-100'
+                    className='mt-[64px] hidden cursor-pointer  items-center space-x-[16px] px-[8px] py-[12px] transition duration-100 md:flex'
                     onClick={showSection1(section1)}
                   >
                     <button>
@@ -349,15 +372,15 @@ const Chat = () => {
                       <div className='md:hidden'>
                         {section1 === true ? (
                           <NextImage
-                            width={120}
-                            height={120}
+                            width={60}
+                            height={60}
                             src={'/assets/homeIcons/pencilLogo.png'}
                             alt={'pencilLogo'}
                           />
                         ) : (
                           <NextImage
-                            width={120}
-                            height={120}
+                            width={60}
+                            height={60}
                             src={'/assets/homeIcons/pencilLogoBlank.png'}
                             alt={'pencilLogo'}
                           />
@@ -366,13 +389,13 @@ const Chat = () => {
                     </button>
                     <div className='select-none'>
                       <div>
-                        <span className='text-[36px] font-[500] text-[#000000] md:text-[24px]'>
+                        <span className='text-[18px] font-[500] text-[#000000] md:text-[24px]'>
                           Texting
                         </span>
                       </div>
                       {section1 && (
                         <div className='w-3/4'>
-                          <span className='text-[36px] font-[400] text-[#000000] md:text-[18px]'>
+                          <span className='text-[16px] font-[400] text-[#000000] md:text-[18px]'>
                             Text any Egirl to get a conversation started. Every
                             Egirl has a unique personality.
                           </span>
@@ -382,8 +405,33 @@ const Chat = () => {
                   </div>
                 </div>
                 <div>
+                  <ImgRequests className='h-[314px] w-[320px] md:hidden' />
+                  <div className='mt-[32px] flex items-center md:hidden'>
+                    <NextImage
+                      width={60}
+                      height={60}
+                      src={'/assets/homeIcons/pencilLogo.png'}
+                      alt={'pencilLogo'}
+                    />
+
+                    <div className='ml-[16px] select-none md:hidden'>
+                      <div>
+                        <span className='text-[18px] font-[500] text-[#000000] md:text-[24px]'>
+                          Texting
+                        </span>
+                      </div>
+                      {section1 && (
+                        <div className='w-3/4'>
+                          <span className='text-[16px] font-[400] text-[#000000] md:text-[18px]'>
+                            Text any Egirl to get a conversation started. Every
+                            Egirl has a unique personality.
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
                   <div
-                    className='flex cursor-pointer items-center space-x-[16px] px-[8px] py-[12px] transition duration-100'
+                    className='hidden cursor-pointer items-center space-x-[16px] px-[8px] py-[12px] transition duration-100 md:flex'
                     onClick={showSection2(section2)}
                   >
                     <button>
@@ -407,15 +455,15 @@ const Chat = () => {
                       <div className='md:hidden'>
                         {section2 === true ? (
                           <NextImage
-                            width={120}
-                            height={120}
+                            width={60}
+                            height={60}
                             src={'/assets/homeIcons/requestLogo.png'}
                             alt={'requestLogo'}
                           />
                         ) : (
                           <NextImage
-                            width={120}
-                            height={120}
+                            width={60}
+                            height={60}
                             src={'/assets/homeIcons/requestLogoBlank.png'}
                             alt={'requestLogoBlank'}
                           />
@@ -424,13 +472,13 @@ const Chat = () => {
                     </button>
                     <div className='select-none'>
                       <div>
-                        <span className='text-[48px] font-[500] text-[#000000] md:text-[24px]'>
+                        <span className='text-[18px] font-[500] text-[#000000] md:text-[24px]'>
                           Request Images
                         </span>
                       </div>
                       {section2 && (
                         <div className='w-3/4'>
-                          <span className='text-[36px] font-[400] text-[#000000] md:text-[18px]'>
+                          <span className='text-[16px] font-[400] text-[#000000] md:text-[18px]'>
                             Make a request for an Egirl to send you a specially
                             made pic of themselves.
                           </span>
@@ -440,8 +488,33 @@ const Chat = () => {
                   </div>
                 </div>
                 <div>
+                  <VoiceMessages className='h-[314px] w-[320px] md:hidden' />
+                  <div className='mt-[32px] flex items-center md:hidden'>
+                    <NextImage
+                      width={60}
+                      height={60}
+                      src={'/assets/homeIcons/pencilLogo.png'}
+                      alt={'pencilLogo'}
+                    />
+
+                    <div className='ml-[16px] select-none md:hidden'>
+                      <div>
+                        <span className='text-[18px] font-[500] text-[#000000] md:text-[24px]'>
+                          Texting
+                        </span>
+                      </div>
+                      {section1 && (
+                        <div className='w-3/4'>
+                          <span className='text-[16px] font-[400] text-[#000000] md:text-[18px]'>
+                            Text any Egirl to get a conversation started. Every
+                            Egirl has a unique personality.
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
                   <div
-                    className='flex cursor-pointer items-center space-x-[16px] px-[8px] py-[12px] transition duration-100'
+                    className='hidden cursor-pointer items-center space-x-[16px] px-[8px] py-[12px] transition duration-100 md:flex'
                     onClick={showSection3(section3)}
                   >
                     <button>
@@ -465,15 +538,15 @@ const Chat = () => {
                       <div className='md:hidden'>
                         {section3 === true ? (
                           <NextImage
-                            width={120}
-                            height={120}
+                            width={60}
+                            height={60}
                             src={'/assets/homeIcons/voiceMessage.png'}
                             alt={'voiceMessage'}
                           />
                         ) : (
                           <NextImage
-                            width={120}
-                            height={120}
+                            width={60}
+                            height={60}
                             src={'/assets/homeIcons/voiceMessageBlank.png'}
                             alt={'voiceMessageBlank'}
                           />
@@ -482,13 +555,13 @@ const Chat = () => {
                     </button>
                     <div className='select-none'>
                       <div>
-                        <span className='text-[48px] font-[500] text-[#000000] md:text-[24px]'>
+                        <span className='text-[18px] font-[500] text-[#000000] md:text-[24px]'>
                           Voice Messages
                         </span>
                       </div>
                       {section3 && (
                         <div className='w-3/4'>
-                          <span className='text-[36px] font-[400] text-[#000000] md:text-[18px]'>
+                          <span className='text-[16px] font-[400] text-[#000000] md:text-[18px]'>
                             Ask an Egirl to send you voice messages instead of
                             regular texts.
                           </span>
@@ -499,7 +572,7 @@ const Chat = () => {
                 </div>
               </div>
             </div>
-            <div className='flex w-full items-center justify-center'>
+            <div className='hidden w-full items-center justify-center md:flex'>
               <div className='hidden md:block md:w-full md:transition md:duration-100 '>
                 {section1 && (
                   <figure>

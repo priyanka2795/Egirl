@@ -37,19 +37,19 @@ const Subscribe = () => {
           <div className=''>
             <div className='flex justify-center lg:justify-start'>
               <div className='mb-1'>
-                <span className='select-none text-[36px] font-[500] text-[#949698] lg:text-[18px]'>
+                <span className='select-none text-center text-[14px] font-[500] text-[#949698] md:text-start md:text-[18px]'>
                   SPICY CONTENT AWAITS
                 </span>
               </div>
             </div>
             <div className='flex justify-center space-x-3 text-center lg:justify-start'>
-              <span className='select-none text-[64px] font-[600] text-[#000000] lg:text-[48px]'>
+              <span className='select-none text-[24px] font-[600] text-[#000000] lg:text-[48px]'>
                 Subscribe to see{' '}
                 <span className='font-[400] italic'>exclusive</span> content
               </span>
             </div>
           </div>
-          <div className='mt-5  lg:mt-10'>
+          <div className='mt-[32px] md:mt-10'>
             <div className='items-center justify-around space-y-8 lg:flex lg:space-x-10 lg:space-y-0'>
               <div className='flex  flex-col items-center  drop-shadow-xl'>
                 <div className='justify-left flex w-[397px] items-center rounded-t-2xl bg-[#E7E8E8] pt-6 pb-5 pl-6'>
@@ -62,7 +62,7 @@ const Subscribe = () => {
                 </div>
                 <div className='flex flex-col items-center rounded-b-2xl bg-white'>
                   <div className='w-[349px] pt-5'>
-                    <span className=' select-none text-[30px] font-[400] text-[#000000] lg:text-[15px]'>
+                    <span className='select-none text-[16px] font-[400] text-[#000000] md:text-[15px]'>
                       Beach days are always so soothing, you guys need to come
                       relax with me!
                     </span>
@@ -82,7 +82,7 @@ const Subscribe = () => {
                 </div>
                 <div className='flex flex-col items-center rounded-b-2xl bg-white'>
                   <div className='w-[349px] pt-5'>
-                    <span className='select-none text-[30px] font-[400] text-[#000000] lg:text-[15px]'>
+                    <span className='select-none text-[16px] font-[400] text-[#000000] md:text-[15px]'>
                       I was worried I would drop my phone in the water · 폰을
                       물에 빠뜨릴까봐 걱정했는데
                     </span>
@@ -101,7 +101,7 @@ const Subscribe = () => {
                 </div>
                 <div className='flex flex-col items-center rounded-b-2xl bg-white'>
                   <div className='w-[349px] pt-5'>
-                    <span className=' select-none text-[30px] font-[400] text-[#000000] lg:text-[15px]'>
+                    <span className=' select-none text-[16px] font-[400] text-[#000000] md:text-[15px]'>
                       Enjoying the view? uwu · 景色を楽しんでいますか？uwu
                     </span>
                   </div>
