@@ -417,14 +417,14 @@ const Chat = () => {
                     <div className='ml-[16px] select-none md:hidden'>
                       <div>
                         <span className='text-[18px] font-[500] text-[#000000] md:text-[24px]'>
-                          Texting
+                          Voice Messages
                         </span>
                       </div>
                       {section1 && (
                         <div className='w-3/4'>
                           <span className='text-[16px] font-[400] text-[#000000] md:text-[18px]'>
-                            Text any Egirl to get a conversation started. Every
-                            Egirl has a unique personality.
+                            Ask an Egirl to send you voice messages instead of
+                            regular texts.
                           </span>
                         </div>
                       )}
@@ -500,14 +500,14 @@ const Chat = () => {
                     <div className='ml-[16px] select-none md:hidden'>
                       <div>
                         <span className='text-[18px] font-[500] text-[#000000] md:text-[24px]'>
-                          Texting
+                          Image Requests
                         </span>
                       </div>
                       {section1 && (
                         <div className='w-3/4'>
                           <span className='text-[16px] font-[400] text-[#000000] md:text-[18px]'>
-                            Text any Egirl to get a conversation started. Every
-                            Egirl has a unique personality.
+                            Ask an Egirl to send you voice messages instead of
+                            regular texts.
                           </span>
                         </div>
                       )}
