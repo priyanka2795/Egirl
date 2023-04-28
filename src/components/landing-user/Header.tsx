@@ -2,6 +2,7 @@ import React from 'react';
 import { NextImage } from '@components/ui/next-image';
 import ExperienceTheFuture from '@components/landing-common/assets/ExperienceTheFuture';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Header = () => {
   return (
@@ -9,7 +10,15 @@ const Header = () => {
       <div className='flex flex-col justify-center items-center lg:items-start w-full'>
         <div className='flex justify-center lg:justify-start'>
           <div className='flex  items-center rounded-[8px] bg-[#EAE8FD] px-[8px] py-[12px]'>
-            <ExperienceTheFuture className='h-[40px] w-[40px] pr-[8px] lg:h-[20px] lg:w-[20px]' />
+            {/* <ExperienceTheFuture className='h-[40px] w-[40px] pr-[8px] lg:h-[20px] lg:w-[20px]' /> */}
+              <div className='flex justify-center mr-[8px]'>
+                <Image
+                  src='/assets/final/starIcon.svg'
+                  height='20'
+                  width='20'
+                  alt='starIcon'
+                />
+              </div>
             <div className='flex '>
               <span className='text-[14px] font-[500] text-[#5848BC] md:text-[15px]'>
                 experience the future
@@ -35,12 +44,18 @@ const Header = () => {
       <div className='flex justify-center w-full'>
         <div className='flex shrink-0 items-center justify-center pt-[40px] pb-[74px] lg:py-[80px]'>
           <div className='flex shrink-0'>
-            <NextImage
+            {/* <NextImage
               width={558}
               height={540}
               src={'/assets/svgImages/userHeader.svg'}
               alt={'user header'}
-            />
+            /> */}
+              <Image
+                src='/assets/final/userHeader.svg'
+                width='558'
+                height='540'
+                alt='headerIllus'
+              />
           </div>
         </div>
       </div>

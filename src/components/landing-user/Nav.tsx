@@ -2,6 +2,7 @@ import Link from 'next/link';
 import React from 'react';
 import { StarIcon, Bars2Icon, XMarkIcon } from '@heroicons/react/20/solid';
 import Logo from './assets/Logo';
+import Image from 'next/image';
 
 interface Props {
   setBetaAccess: () => void;
@@ -19,7 +20,13 @@ const Nav = ({ setBetaAccess, setSideNav }: Props) => {
                 {/* <span className='text-[64px] font-semibold text-[#181818] lg:text-[32px]'>
                 Egirls
               </span> */}
-                <Logo />
+                {/* <Logo /> */}
+                <Image
+                  src='/assets/final/navLogo.svg'
+                  width='123'
+                  height='32'
+                  alt='Egirls'                  
+                />
               </a>
             </Link>
             <div className='lg:flex lg:items-center lg:space-x-6'>
