@@ -1,22 +1,30 @@
 import dynamic from 'next/dynamic';
+import DiscoverPlaceholder from './assets/Discover/DiscoverPlaceholder';
 
-const SarahCarter = dynamic(() => import('./assets/Discover/SarahCarter'), {
+const SarahCard = dynamic(() => import('./assets/Discover/SarahCard'), {
   loading: () => (
-    <div className='h-[466px] w-[332px] md:w-[397px]'>Loading SVG...</div>
+    <div className='flex items-center justify-center'>
+      <DiscoverPlaceholder />
+    </div>
+  ),
+
+  ssr: false
+});
+
+const JennieCard = dynamic(() => import('./assets/Discover/JennieCard'), {
+  loading: () => (
+    <div className='flex items-center justify-center'>
+      <DiscoverPlaceholder />
+    </div>
   ),
   ssr: false
 });
 
-const JennieYoon = dynamic(() => import('./assets/Discover/JennieYoon'), {
+const MikaCard = dynamic(() => import('./assets/Discover/MikaCard'), {
   loading: () => (
-    <div className='h-[466px] w-[332px] md:w-[397px]'>Loading SVG...</div>
-  ),
-  ssr: false
-});
-
-const MikaChan = dynamic(() => import('./assets/Discover/MikaChan'), {
-  loading: () => (
-    <div className='h-[466px] w-[332px] md:w-[397px]'>Loading SVG...</div>
+    <div className='flex items-center justify-center'>
+      <DiscoverPlaceholder />
+    </div>
   ),
   ssr: false
 });
@@ -42,54 +50,11 @@ const Discover = () => {
         </div>
         <div className='mt-10'>
           <div className='items-center justify-around space-x-4 space-y-[48px] lg:flex lg:space-y-0'>
-            <div className='flex justify-center'>
-              <div>
-                <SarahCarter className='h-[466px] w-[332px] md:w-[397px]' />
-
-                <div className='mt-[12px]'>
-                  <span className='select-none text-[18px] font-[600] text-[#000000] md:text-[24px]'>
-                    Sarah Carter
-                  </span>
-                </div>
-                <div className='mt-[2px]'>
-                  <span className='select-none text-[14px] font-[500] text-[#949698] md:text-[14px]'>
-                    LOS ANGELES, USA
-                  </span>
-                </div>
-              </div>
+            <div className='o-1'>
+              <SarahCard />
             </div>
-            <div className='flex justify-center'>
-              <div>
-                <JennieYoon className='h-[466px] w-[332px] md:w-[397px]'></JennieYoon>
-
-                <div className='mt-[12px]'>
-                  <span className='select-none text-[18px] font-[600] text-[#000000] md:text-[24px]'>
-                    Jennie Yoon
-                  </span>
-                </div>
-                <div className='mt-[2px]'>
-                  <span className='select-none text-[14px] font-[500] text-[#949698] md:text-[14px]'>
-                    Seoul, South Korea{' '}
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div className='flex justify-center'>
-              <div>
-                <MikaChan className='h-[466px] w-[332px] md:w-[397px]'></MikaChan>
-
-                <div className='mt-[12px]'>
-                  <span className='select-none text-[18px] font-[600] text-[#000000] md:text-[24px]'>
-                    Mika-Chan
-                  </span>
-                </div>
-                <div className='mt-[2px] pb-12 lg:pb-0'>
-                  <span className='select-none text-[14px] font-[500] text-[#949698] md:text-[14px]'>
-                    Tokyo, Japan
-                  </span>
-                </div>
-              </div>
-            </div>
+            <JennieCard />
+            <MikaCard />
           </div>
         </div>
       </div>
