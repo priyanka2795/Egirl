@@ -12,7 +12,7 @@ import Chick2 from './assets/Header/Chick2';
 
 const Header = () => {
   return (
-    <div className='pt-[96px] bg-[#000000] px-24 lg:px-[100px] 2xl:px-[140px]'>
+    <div className='bg-[#000000] px-24 pt-[96px] lg:px-[100px] 2xl:px-[140px]'>
       <div className='py-20'>
         <div className=''>
           <div className='lg:hidden'>
