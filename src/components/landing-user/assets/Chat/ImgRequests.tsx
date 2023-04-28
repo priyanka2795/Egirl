@@ -263,7 +263,13 @@ const SvgComponent = (props: Props) => (
         height='181.56'
         fill='url(#pattern22342342342342342356473567456213)'
       />
-      <rect x='101' y='122' width='209' height='209' fill='url(#pattern343253426543723hsgfbxcv)' />
+      <rect
+        x='101'
+        y='122'
+        width='209'
+        height='209'
+        fill='url(#pattern343253426543723hsgfbxcv)'
+      />
     </g>
     <defs>
       <pattern
