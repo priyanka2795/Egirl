@@ -25,7 +25,7 @@ const Nav = ({ setBetaAccess, setSideNav }: Props) => {
                   src='/assets/final/navLogo.svg'
                   width='123'
                   height='32'
-                  alt='Egirls'                  
+                  alt='Egirls'
                 />
               </a>
             </Link>
