@@ -322,29 +322,28 @@ const Chat = () => {
             <div className='w-full'>
               <div>
                 <div className=''>
-                  <Texting className='h-[314px] w-full md:hidden' />
-                  <div className='mt-[32px] flex items-center justify-center md:hidden'>
+                  <Texting className='h-[200px] w-full md:hidden md:h-[314px]' />
+                  <div className='mt-[32px] flex md:hidden'>
                     <NextImage
-                      width={70}
-                      height={70}
+                      width={60}
+                      height={60}
                       src={'/assets/homeIcons/pencilLogo.png'}
                       alt={'pencilLogo'}
                     />
 
-                    <div className='ml-[20px] select-none md:hidden'>
+                    <div className='ml-[16px] select-none md:hidden'>
                       <div>
-                        <span className='text-[22px] font-[500] text-[#000000] md:text-[24px]'>
+                        <span className='text-[18px] font-[500] text-[#000000] md:text-[24px]'>
                           Texting
                         </span>
                       </div>
-                      {section1 && (
-                        <span className='text-[18px] font-[400] text-[#000000] md:text-[18px]'>
-                          Text any Egirl to get a<br />
-                          conversation started. Every Egirl
-                          <br />
-                          has a unique personality.
-                        </span>
-                      )}
+
+                      <span className='text-[16px] font-[400] text-[#000000] md:text-[18px]'>
+                        Text any Egirl to get a<br />
+                        conversation started. Every Egirl
+                        <br />
+                        has a unique personality.
+                      </span>
                     </div>
                   </div>
                   <div
@@ -406,31 +405,30 @@ const Chat = () => {
                 </div>
                 <div>
                   <ImgRequests className='h-[314px] w-full md:hidden' />
-                  <div className='mt-[32px] flex items-center justify-center md:hidden'>
+                  <div className='mt-[32px] flex md:hidden'>
                     <NextImage
-                      width={70}
-                      height={70}
+                      width={60}
+                      height={60}
                       src={'/assets/homeIcons/pencilLogo.png'}
                       alt={'pencilLogo'}
                     />
 
-                    <div className='ml-[20px] select-none md:hidden'>
+                    <div className='ml-[16px] select-none md:hidden'>
                       <div>
-                        <span className='text-[22px] font-[500] text-[#000000] md:text-[24px]'>
+                        <span className='text-[18px] font-[500] text-[#000000] md:text-[24px]'>
                           Image Requests
                         </span>
                       </div>
-                      {section1 && (
-                        <div>
-                          <span className='text-[18px] font-[400] text-[#000000] md:text-[18px]'>
-                            Make a request for an Egirl to
-                            <br />
-                            send you a specially made pic of
-                            <br />
-                            themselves.
-                          </span>
-                        </div>
-                      )}
+
+                      <div>
+                        <span className='text-[16px] font-[400] text-[#000000] md:text-[18px]'>
+                          Make a request for an Egirl to
+                          <br />
+                          send you a specially made pic of
+                          <br />
+                          themselves.
+                        </span>
+                      </div>
                     </div>
                   </div>
                   <div
@@ -492,31 +490,30 @@ const Chat = () => {
                 </div>
                 <div>
                   <VoiceMessages className='h-[314px] w-full md:hidden' />
-                  <div className='mt-[32px] flex items-center justify-center md:hidden'>
+                  <div className='mt-[32px] flex md:hidden'>
                     <NextImage
-                      width={70}
-                      height={70}
+                      width={60}
+                      height={60}
                       src={'/assets/homeIcons/pencilLogo.png'}
                       alt={'pencilLogo'}
                     />
 
-                    <div className='ml-[20px] select-none md:hidden'>
+                    <div className='ml-[16px] select-none md:hidden'>
                       <div>
-                        <span className='text-[22px] font-[500] text-[#000000] md:text-[24px]'>
+                        <span className='text-[18px] font-[500] text-[#000000] md:text-[24px]'>
                           Voice Messages
                         </span>
                       </div>
-                      {section1 && (
-                        <div className=''>
-                          <span className='text-[18px] font-[400] text-[#000000] md:text-[18px]'>
-                            Ask an Egirl to send you a voice
-                            <br />
-                            message instead of regular
-                            <br />
-                            texts.
-                          </span>
-                        </div>
-                      )}
+
+                      <div className=''>
+                        <span className='text-[16px] font-[400] text-[#000000] md:text-[18px]'>
+                          Ask an Egirl to send you a voice
+                          <br />
+                          message instead of regular
+                          <br />
+                          texts.
+                        </span>
+                      </div>
                     </div>
                   </div>
                   <div

@@ -9,6 +9,10 @@ export function AppHead(): JSX.Element {
       <link rel='manifest' href='/site.webmanifest' key='site-manifest' />
       <meta name='egirls:site' content='@ccrsxx' />
       <meta name='egirls:card' content='summary_large_image' />
+      <meta
+        name='viewport'
+        content='width=device-width, initial-scale=1, shrink-to-fit=no'
+      />
     </Head>
   );
 }

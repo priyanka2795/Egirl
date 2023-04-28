@@ -27,7 +27,7 @@ const Footer = () => {
               </span>
             </span>
           </div>
-          <button className='mt-12 rounded-xl bg-[#5848BC] py-4 px-[40px] text-lg font-semibold text-white transition duration-100 hover:bg-[#4D37DA] lg:px-[30px]'>
+          <button className='mt-12 rounded-xl bg-[#5848BC] px-[40px] py-4 text-lg font-semibold text-white transition duration-100 hover:bg-[#4D37DA] lg:px-[30px]'>
             Join us
           </button>
         </div>
@@ -37,9 +37,9 @@ const Footer = () => {
       </div>
       <div className='mt-[75px] flex w-full flex-col justify-between border-b border-white/[.16] lg:flex-row'>
         <LogoWhite className='mb-[40px] lg:mb-0' />
-        <div className='flex pb-[64px]'>
+        <div className='flex justify-between pb-[64px] md:justify-start'>
           <div>
-            <div className='mr-[100px] select-none'>
+            <div className='mr-0 select-none md:mr-[100px]'>
               <h3 className='pb-3 text-[#646668]'>CONTACT US</h3>
               <p>business@egirls.ai</p>
             </div>

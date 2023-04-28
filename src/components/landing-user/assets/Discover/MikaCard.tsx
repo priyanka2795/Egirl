@@ -4,7 +4,7 @@ const MikaCard = () => {
   return (
     <div className='flex justify-center'>
       <div>
-        <MikaChan className='h-[466px] w-[332px] md:w-[397px]'></MikaChan>
+        <MikaChan className='h-[466px] w-full md:w-[397px]'></MikaChan>
 
         <div className='mt-[12px]'>
           <span className='select-none text-[18px] font-[600] text-[#000000] md:text-[24px]'>

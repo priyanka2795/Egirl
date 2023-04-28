@@ -3,10 +3,11 @@ import { NextImage } from '@components/ui/next-image';
 import ExperienceTheFuture from '@components/landing-common/assets/ExperienceTheFuture';
 import Link from 'next/link';
 import Image from 'next/image';
+import HeaderImg from './assets/HeaderImg';
 
 const Header = () => {
   return (
-    <div className='flex w-full flex-col items-center bg-[#F6F6F6] px-[24px] pt-[188px] md:px-[64px] lg:flex-row lg:px-[100px] lg:pt-[96px] 2xl:px-[120px]'>
+    <div className='flex w-full flex-col items-center bg-[#F6F6F6] px-[24px] pt-[188px] md:px-[40px] lg:flex-row lg:px-[100px] lg:pt-[96px] 2xl:px-[120px]'>
       <div className='flex w-full flex-col items-center justify-center lg:items-start'>
         <div className='flex justify-center lg:justify-start'>
           <div className='flex  items-center rounded-[8px] bg-[#EAE8FD] px-[8px] py-[12px]'>
@@ -34,13 +35,13 @@ const Header = () => {
         </div>
 
         <div className='flex justify-center pt-[20px] lg:justify-start'>
-          <button className='mt-12 rounded-xl bg-[#5848BC] py-4 px-[30px] text-[16px] font-semibold text-white transition duration-100 hover:bg-[#4D37DA] md:text-lg'>
+          <button className='mt-12 rounded-xl bg-[#5848BC] px-[30px] py-4 text-[16px] font-semibold text-white transition duration-100 hover:bg-[#4D37DA] md:text-lg'>
             <Link href='https://discord.gg/ECAds8F8Dj'>Join us</Link>
           </button>
         </div>
       </div>
       <div className='flex w-full justify-center'>
-        <div className='flex shrink-0 items-center justify-center pt-[40px] pb-[74px] lg:py-[80px]'>
+        <div className='flex shrink-0 items-center justify-center pb-[74px] pt-[40px] lg:py-[80px]'>
           <div className='flex shrink-0'>
             {/* <NextImage
               width={558}
@@ -48,12 +49,14 @@ const Header = () => {
               src={'/assets/svgImages/userHeader.svg'}
               alt={'user header'}
             /> */}
-            <Image
+            {/* <Image
               src='/assets/final/userHeader.svg'
-              width='558'
+              width='558px'
               height='540'
               alt='headerIllus'
-            />
+              className='h-[540px] w-[558px]'
+            /> */}
+            {/* <HeaderImg className=' w-full  md:h-[540px] md:w-[558px]' /> */}
           </div>
         </div>
       </div>

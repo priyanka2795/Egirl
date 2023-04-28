@@ -4,7 +4,7 @@ import HeaderIllustration from './assets/Header/HeaderIllustration';
 
 const Header = () => {
   return (
-    <div className='flex  bg-[#000000] px-24 pt-[96px] lg:px-[100px] 2xl:px-[140px]'>
+    <div className='flex  bg-[#000000] px-24 pt-[96px] lg:px-[100px] xl:justify-around 2xl:px-[140px]'>
       <div className='flex flex-col justify-center'>
         <div className='flex h-[80px] w-[320px] items-center space-x-2 rounded-[8px] bg-[#1414] px-[8px] py-[12px] lg:h-[40px] lg:w-[175px]'>
           <StarIcon className='h-[40px] w-[40px] fill-[#5848BC] pr-[8px] lg:h-[20px] lg:w-[20px]'></StarIcon>
@@ -20,7 +20,7 @@ const Header = () => {
           RUN WILD
         </h1>
         <div>
-          <button className='mt-12 rounded-xl bg-[#5848BC] py-4 px-[30px] text-lg font-semibold text-white transition duration-100 hover:bg-[#4D37DA]'>
+          <button className='mt-12 rounded-xl bg-[#5848BC] px-[30px] py-4 text-lg font-semibold text-white transition duration-100 hover:bg-[#4D37DA]'>
             Join us
           </button>
         </div>
