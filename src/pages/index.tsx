@@ -170,13 +170,13 @@ export default function UserLanding(): JSX.Element {
       <Header />
 
       {/* Discover */}
-      {/* <Discover /> */}
+      <Discover />
 
       {/* Chat */}
       <Chat />
 
       {/* Subscribe */}
-      {/* <Subscribe /> */}
+      <Subscribe />
 
       {/* Footer */}
       <Footer />
