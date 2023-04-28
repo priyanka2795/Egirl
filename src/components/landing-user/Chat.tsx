@@ -60,7 +60,7 @@ const Chat = () => {
   return (
     <>
       <div className='hidden w-full bg-[#FFFFFF] px-[40px] lg:flex lg:px-[100px] 2xl:px-[120px]'>
-        <div className='w-full pt-[80px] pb-[120px]'>
+        <div className='w-full pb-[120px] pt-[80px]'>
           <div className='grid w-full grid-cols-1 gap-[100px] md:grid-cols-2'>
             <div className='w-full'>
               <div className='flex sm:justify-center md:justify-start'>
@@ -304,7 +304,7 @@ const Chat = () => {
       </div>
       {/* start of medium display */}
       <div className='flex w-full bg-[#FFFFFF] px-[24px] md:px-[40px] lg:hidden lg:px-[100px] 2xl:px-[120px]'>
-        <div className='w-full pt-[64px] pb-[120px]'>
+        <div className='w-full pb-[120px] pt-[64px]'>
           <div className='flex justify-center md:justify-start'>
             <span className='select-none text-center text-[14px] font-[500] text-[#949698] md:text-start md:text-[18px]'>
               CHAT AWAY
@@ -322,28 +322,28 @@ const Chat = () => {
             <div className='w-full'>
               <div>
                 <div className=''>
-                  <Texting className='h-[314px] w-[320px] md:hidden' />
-                  <div className='mt-[32px] flex items-center md:hidden'>
+                  <Texting className='h-[314px] w-full md:hidden' />
+                  <div className='mt-[32px] flex items-center justify-center md:hidden'>
                     <NextImage
-                      width={60}
-                      height={60}
+                      width={70}
+                      height={70}
                       src={'/assets/homeIcons/pencilLogo.png'}
                       alt={'pencilLogo'}
                     />
 
-                    <div className='ml-[16px] select-none md:hidden'>
+                    <div className='ml-[20px] select-none md:hidden'>
                       <div>
-                        <span className='text-[18px] font-[500] text-[#000000] md:text-[24px]'>
+                        <span className='text-[22px] font-[500] text-[#000000] md:text-[24px]'>
                           Texting
                         </span>
                       </div>
                       {section1 && (
-                        <div className='w-3/4'>
-                          <span className='text-[16px] font-[400] text-[#000000] md:text-[18px]'>
-                            Text any Egirl to get a conversation started. Every
-                            Egirl has a unique personality.
-                          </span>
-                        </div>
+                        <span className='text-[18px] font-[400] text-[#000000] md:text-[18px]'>
+                          Text any Egirl to get a<br />
+                          conversation started. Every Egirl
+                          <br />
+                          has a unique personality.
+                        </span>
                       )}
                     </div>
                   </div>
@@ -405,26 +405,29 @@ const Chat = () => {
                   </div>
                 </div>
                 <div>
-                  <ImgRequests className='h-[314px] w-[320px] md:hidden' />
-                  <div className='mt-[32px] flex items-center md:hidden'>
+                  <ImgRequests className='h-[314px] w-full md:hidden' />
+                  <div className='mt-[32px] flex items-center justify-center md:hidden'>
                     <NextImage
-                      width={60}
-                      height={60}
+                      width={70}
+                      height={70}
                       src={'/assets/homeIcons/pencilLogo.png'}
                       alt={'pencilLogo'}
                     />
 
-                    <div className='ml-[16px] select-none md:hidden'>
+                    <div className='ml-[20px] select-none md:hidden'>
                       <div>
-                        <span className='text-[18px] font-[500] text-[#000000] md:text-[24px]'>
-                          Voice Messages
+                        <span className='text-[22px] font-[500] text-[#000000] md:text-[24px]'>
+                          Image Requests
                         </span>
                       </div>
                       {section1 && (
-                        <div className='w-3/4'>
-                          <span className='text-[16px] font-[400] text-[#000000] md:text-[18px]'>
-                            Ask an Egirl to send you voice messages instead of
-                            regular texts.
+                        <div>
+                          <span className='text-[18px] font-[400] text-[#000000] md:text-[18px]'>
+                            Make a request for an Egirl to
+                            <br />
+                            send you a specially made pic of
+                            <br />
+                            themselves.
                           </span>
                         </div>
                       )}
@@ -488,26 +491,29 @@ const Chat = () => {
                   </div>
                 </div>
                 <div>
-                  <VoiceMessages className='h-[314px] w-[320px] md:hidden' />
-                  <div className='mt-[32px] flex items-center md:hidden'>
+                  <VoiceMessages className='h-[314px] w-full md:hidden' />
+                  <div className='mt-[32px] flex items-center justify-center md:hidden'>
                     <NextImage
-                      width={60}
-                      height={60}
+                      width={70}
+                      height={70}
                       src={'/assets/homeIcons/pencilLogo.png'}
                       alt={'pencilLogo'}
                     />
 
-                    <div className='ml-[16px] select-none md:hidden'>
+                    <div className='ml-[20px] select-none md:hidden'>
                       <div>
-                        <span className='text-[18px] font-[500] text-[#000000] md:text-[24px]'>
-                          Image Requests
+                        <span className='text-[22px] font-[500] text-[#000000] md:text-[24px]'>
+                          Voice Messages
                         </span>
                       </div>
                       {section1 && (
-                        <div className='w-3/4'>
-                          <span className='text-[16px] font-[400] text-[#000000] md:text-[18px]'>
-                            Ask an Egirl to send you voice messages instead of
-                            regular texts.
+                        <div className=''>
+                          <span className='text-[18px] font-[400] text-[#000000] md:text-[18px]'>
+                            Ask an Egirl to send you a voice
+                            <br />
+                            message instead of regular
+                            <br />
+                            texts.
                           </span>
                         </div>
                       )}
