@@ -48,7 +48,7 @@ const Footer = () => {
             <h3 className='pb-3 text-[#646668]'>FOLLOW US</h3>
             <div className='flex gap-x-6'>
               <a
-                href='https://discord.gg/ECAds8F8Dj'
+                href='https://discord.gg/uvAaAkbhEm'
                 target='_blank'
                 rel='noopener noreferrer'
               >

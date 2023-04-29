@@ -349,7 +349,7 @@ export default function CreatorLanding(): JSX.Element {
             <div className='min-[200px]:pt-10'>
               <div className='w-full'>
                 <form
-                  className='mb-4 rounded bg-white px-8 pt-6 pb-8 shadow-md'
+                  className='mb-4 rounded bg-white px-8 pb-8 pt-6 shadow-md'
                   onSubmit={sendEmailFn}
                 >
                   <div className='mb-4 flex justify-around space-x-4'>
@@ -358,7 +358,7 @@ export default function CreatorLanding(): JSX.Element {
                         Name
                       </label>
                       <input
-                        className='w-full	rounded border-none bg-[#F6F6F6] py-2 px-3 text-[32px] text-gray-700 lg:text-[13px]'
+                        className='w-full	rounded border-none bg-[#F6F6F6] px-3 py-2 text-[32px] text-gray-700 lg:text-[13px]'
                         id='username'
                         type='text'
                         placeholder='Your name'
@@ -371,7 +371,7 @@ export default function CreatorLanding(): JSX.Element {
                         Email
                       </label>
                       <input
-                        className='w-full	rounded border-none bg-[#F6F6F6] py-2 px-3 text-[32px] text-gray-700 lg:text-[13px]'
+                        className='w-full	rounded border-none bg-[#F6F6F6] px-3 py-2 text-[32px] text-gray-700 lg:text-[13px]'
                         id='email'
                         type='text'
                         placeholder='example@mail.com'
@@ -385,7 +385,7 @@ export default function CreatorLanding(): JSX.Element {
                       Message
                     </label>
                     <textarea
-                      className='mb-3 h-[118px]	w-full rounded border-none bg-[#F6F6F6] py-2 px-3 text-[32px] text-gray-700 lg:text-[13px]'
+                      className='mb-3 h-[118px]	w-full rounded border-none bg-[#F6F6F6] px-3 py-2 text-[32px] text-gray-700 lg:text-[13px]'
                       id='message'
                       placeholder='Your message'
                       style={{ resize: 'none' }}
@@ -415,7 +415,7 @@ export default function CreatorLanding(): JSX.Element {
         <div className='h-[60px] w-[160px] rounded-tl-xl bg-[#5848BC]'>
           <div className='grid h-full grid-cols-4 items-center justify-items-center p-3 '>
             <a
-              href='https://discord.gg/ECAds8F8Dj'
+              href='https://discord.gg/uvAaAkbhEm'
               target='_blank'
               rel='noopener noreferrer'
             >

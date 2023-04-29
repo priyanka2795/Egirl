@@ -186,7 +186,7 @@ export default function UserLanding(): JSX.Element {
         <div className='h-[60px] w-[160px] rounded-tl-xl bg-[#5848BC]'>
           <div className='grid h-full grid-cols-4 items-center justify-items-center p-3 '>
             <a
-              href='https://discord.gg/ECAds8F8Dj'
+              href='https://discord.gg/uvAaAkbhEm'
               target='_blank'
               rel='noopener noreferrer'
             >

@@ -14,10 +14,12 @@ const PassionToProfit = () => {
                 </span>
               </div>
             </div>
-            <div className='flex justify-center space-x-3 md:w-[620px]  md:justify-start lg:w-auto'>
+            <div className='flex justify-center space-x-3  md:justify-start lg:w-auto'>
               <span className='text-[48px] font-[600] text-[#000000]'>
                 Turn your passion into
-                <span className='ml-2 font-[400] italic'>profit</span>
+                <span className='ml-2 block font-[400] italic md:flex'>
+                  profit
+                </span>
               </span>
             </div>
           </div>

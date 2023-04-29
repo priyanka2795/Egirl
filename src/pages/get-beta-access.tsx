@@ -25,7 +25,7 @@ export default function JoinUs(): JSX.Element {
           Select the Beta Tester role when joining the discord
         </h2>
         <a
-          href='https://discord.gg/ECAds8F8Dj'
+          href='https://discord.gg/uvAaAkbhEm'
           target='_blank'
           rel='noopener noreferrer'
           className='flex items-center justify-center rounded-[12px] bg-[#5848BC] px-[24px] py-[16px] drop-shadow'
@@ -34,7 +34,7 @@ export default function JoinUs(): JSX.Element {
         </a>
       </div>
       <Link href='/' className=''>
-        <a className='absolute top-10 right-10'>
+        <a className='absolute right-10 top-10'>
           <XMarkIcon className='h-20 w-20 cursor-pointer fill-[white] lg:h-10 lg:w-10'></XMarkIcon>
         </a>
       </Link>

@@ -1,48 +1,46 @@
 import { NextImage } from '@components/ui/next-image';
-import React, { useState } from 'react';
-import dynamic from 'next/dynamic';
+import Image from 'next/image';
 
-const DynamicBackgrounds = dynamic(
+import dynamic from 'next/dynamic';
+import CustomClothingLoading from './assets/Design/CustomClothingLoading';
+import DynamicBackgroundsLoading from './assets/Design/DynamicBackgroundsLoading';
+import UniquePersonalityLoading from './assets/Design/UniquePersonalityLoading';
+
+const CustomClothing = dynamic(() => import('./assets/Design/CustomClothing'), {
+  loading: () => (
+    <CustomClothingLoading className='h-[314px] w-[320px] lg:h-[555px] lg:w-[620px]' />
+  ),
+  ssr: false
+});
+
+const DynamicBackground = dynamic(
   () => import('./assets/Design/DynamicBackgrounds'),
   {
     loading: () => (
-      <div className='grid h-[555px] w-[620px] place-items-center text-black'>
-        Loading SVG...
-      </div>
+      <DynamicBackgroundsLoading className='h-[314px] w-[320px] lg:h-[555px] lg:w-[620px]' />
     ),
     ssr: false
   }
 );
-
-const CustomClothing = dynamic(() => import('./assets/Design/CustomClothing'), {
-  loading: () => (
-    <div className='grid h-[555px] w-[620px] place-items-center text-black'>
-      Loading SVG...
-    </div>
-  ),
-  ssr: false
-});
 
 const UniquePersonality = dynamic(
   () => import('./assets/Design/UniquePersonality'),
   {
     loading: () => (
-      <div className='grid h-[555px] w-[620px] place-items-center text-black'>
-        Loading SVG...
-      </div>
+      <UniquePersonalityLoading className='h-[314px] w-[320px] lg:h-[555px] lg:w-[620px]' />
     ),
     ssr: false
   }
 );
 
+import React, { useState } from 'react';
+
 const Design = () => {
   const [section1, setSection1] = useState(true);
   const [section2, setSection2] = useState(false);
   const [section3, setSection3] = useState(false);
-  const [hiddenSideDiv, setHiddenSideDiv] = useState(false);
-  const [showBetaAccess, setShowBetaAccess] = useState(false);
 
-  const showSection1 = (visibility: boolean) => {
+  const showSection1 = (visibility: boolean) => (): void => {
     setSection2(false);
     setSection3(false);
     if (!visibility) {
@@ -50,7 +48,7 @@ const Design = () => {
     }
   };
 
-  const showSection2 = (visibility: boolean) => {
+  const showSection2 = (visibility: boolean) => (): void => {
     setSection1(false);
     setSection3(false);
     if (!visibility) {
@@ -58,7 +56,7 @@ const Design = () => {
     }
   };
 
-  const showSection3 = (visibility: boolean) => {
+  const showSection3 = (visibility: boolean) => (): void => {
     setSection1(false);
     setSection2(false);
     if (!visibility) {
@@ -66,309 +64,569 @@ const Design = () => {
     }
   };
   return (
-    <div className='w-full select-none bg-[#FFFFFF] px-[100px] 2xl:px-[120px]'>
-      <div className='w-full pt-[100px] pb-[100px]'>
-        <div className='w-full gap-[100px] sm:grid sm:grid-cols-1 md:grid md:grid-cols-2 md:max-xl:grid md:max-lg:grid-cols-1 lg:grid lg:grid-cols-2'>
-          <div className='w-full'>
-            <div className='flex justify-center lg:justify-start'>
-              <div className=' '>
-                <span className='select-none text-[36px] font-[500] text-[#949698] lg:text-[18px]'>
-                  CREATOR TOOLS
+    <>
+      <div className='hidden w-full bg-[#FFFFFF] px-[40px] lg:flex lg:px-[100px] 2xl:px-[120px]'>
+        <div className='w-full pb-[120px] pt-[80px]'>
+          <div className='grid w-full grid-cols-1 gap-[100px] md:grid-cols-2'>
+            <div className='w-full'>
+              <div className='flex sm:justify-center md:justify-start'>
+                <div className=' '>
+                  <span className='select-none text-[36px] font-[500] text-[#949698] md:text-[18px]'>
+                    CREATOR TOOLS
+                  </span>
+                </div>
+              </div>
+              <div className='mt-1 flex justify-center text-center md:justify-start md:text-start'>
+                <span className='select-none text-[64px] font-[600] text-[#000000] md:text-[48px]'>
+                  Design with <span className='font-[400] italic'>ease</span>
                 </span>
               </div>
-            </div>
-            <div className=' mt-1 flex justify-center text-center lg:justify-start lg:text-start'>
-              <span className='select-none text-[64px] font-[600] text-[#000000] lg:text-[48px]'>
-                Design with <span className='font-[400] italic'>ease</span>
-              </span>
-            </div>
-            <div>
               <div>
-                <div
-                  className='mt-[64px] flex cursor-pointer items-center space-x-[16px] px-[8px] py-[12px] transition duration-100'
-                  onClick={() => {
-                    showSection1(section1);
-                  }}
-                >
-                  <button>
-                    <div className='hidden lg:block'>
-                      {section1 === true ? (
-                        <NextImage
-                          width={60}
-                          height={60}
-                          src={'/assets/homeIcons/pencilLogo.png'}
-                          alt={'pencilLogo'}
-                        />
-                      ) : (
-                        <NextImage
-                          width={60}
-                          height={60}
-                          src={'/assets/homeIcons/pencilLogoBlank.png'}
-                          alt={'pencilLogo'}
-                        />
-                      )}
-                    </div>
-                    <div className='lg:hidden'>
-                      {section1 === true ? (
-                        <NextImage
-                          width={120}
-                          height={120}
-                          src={'/assets/homeIcons/pencilLogo.png'}
-                          alt={'pencilLogo'}
-                        />
-                      ) : (
-                        <NextImage
-                          width={120}
-                          height={120}
-                          src={'/assets/homeIcons/pencilLogoBlank.png'}
-                          alt={'pencilLogo'}
-                        />
-                      )}
-                    </div>
-                  </button>
-                  <div className='select-none'>
-                    <div>
-                      <span className='text-[48px] font-[500] text-[#000000] lg:text-[24px]'>
-                        Custom Clothing
-                      </span>
-                    </div>
-                    {section1 && (
-                      <div className='w-3/4'>
-                        <span className='text-[36px] font-[400] text-[#000000] lg:text-[18px]'>
-                          Create beautiful clothing and accessories for your
-                          Egirl with ease.
+                <div>
+                  <div
+                    className='mt-[64px] flex cursor-pointer items-center space-x-[16px] px-[8px] py-[12px] transition duration-100'
+                    onClick={showSection1(section1)}
+                  >
+                    <button>
+                      <div className='hidden md:block'>
+                        {section1 === true ? (
+                          <NextImage
+                            width={60}
+                            height={60}
+                            src={'/assets/homeIcons/pencilLogo.png'}
+                            alt={'pencilLogo'}
+                          />
+                        ) : (
+                          <NextImage
+                            width={60}
+                            height={60}
+                            src={'/assets/homeIcons/pencilLogoBlank.png'}
+                            alt={'pencilLogo'}
+                          />
+                        )}
+                      </div>
+                      <div className='md:hidden'>
+                        {section1 === true ? (
+                          <NextImage
+                            width={120}
+                            height={120}
+                            src={'/assets/homeIcons/pencilLogo.png'}
+                            alt={'pencilLogo'}
+                          />
+                        ) : (
+                          <NextImage
+                            width={120}
+                            height={120}
+                            src={'/assets/homeIcons/pencilLogoBlank.png'}
+                            alt={'pencilLogo'}
+                          />
+                        )}
+                      </div>
+                    </button>
+                    <div className='select-none'>
+                      <div>
+                        <span className='text-[36px] font-[500] text-[#000000] md:text-[24px]'>
+                          Custom Clothing
                         </span>
                       </div>
-                    )}
+                      {section1 && (
+                        <div className='w-3/4'>
+                          <span className='text-[36px] font-[400] text-[#000000] md:text-[18px]'>
+                            Create beautiful clothing and accessories for your
+                            Egirl with ease.
+                          </span>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div>
-                <div
-                  className='flex cursor-pointer items-center space-x-[16px] px-[8px] py-[12px] transition duration-100'
-                  onClick={() => {
-                    showSection2(section2);
-                  }}
-                >
-                  <button>
-                    <div className='hidden lg:block'>
-                      {section2 === true ? (
-                        <NextImage
-                          width={60}
-                          height={60}
-                          src={'/assets/homeIcons/requestLogo.png'}
-                          alt={'requestLogo'}
-                        />
-                      ) : (
-                        <NextImage
-                          width={60}
-                          height={60}
-                          src={'/assets/homeIcons/requestLogoBlank.png'}
-                          alt={'requestLogoBlank'}
-                        />
-                      )}
-                    </div>
-                    <div className='lg:hidden'>
-                      {section2 === true ? (
-                        <NextImage
-                          width={120}
-                          height={120}
-                          src={'/assets/homeIcons/requestLogo.png'}
-                          alt={'requestLogo'}
-                        />
-                      ) : (
-                        <NextImage
-                          width={120}
-                          height={120}
-                          src={'/assets/homeIcons/requestLogoBlank.png'}
-                          alt={'requestLogoBlank'}
-                        />
-                      )}
-                    </div>
-                  </button>
-                  <div className='select-none'>
-                    <div>
-                      <span className='text-[48px] font-[500] text-[#000000] lg:text-[24px]'>
-                        Dynamic Backgrounds
-                      </span>
-                    </div>
-                    {section2 && (
-                      <div className='w-3/4'>
-                        <span className='text-[36px] font-[400] text-[#000000] lg:text-[18px]'>
-                          Make stunning backgrounds of any real or fictional
-                          environment for your Egirl.
+                <div>
+                  <div
+                    className='flex cursor-pointer items-center space-x-[16px] px-[8px] py-[12px] transition duration-100'
+                    onClick={showSection2(section2)}
+                  >
+                    <button>
+                      <div className='hidden md:block'>
+                        {section2 === true ? (
+                          <NextImage
+                            width={60}
+                            height={60}
+                            src={'/assets/homeIcons/requestLogo.png'}
+                            alt={'requestLogo'}
+                          />
+                        ) : (
+                          <NextImage
+                            width={60}
+                            height={60}
+                            src={'/assets/homeIcons/requestLogoBlank.png'}
+                            alt={'requestLogoBlank'}
+                          />
+                        )}
+                      </div>
+                      <div className='md:hidden'>
+                        {section2 === true ? (
+                          <NextImage
+                            width={120}
+                            height={120}
+                            src={'/assets/homeIcons/requestLogo.png'}
+                            alt={'requestLogo'}
+                          />
+                        ) : (
+                          <NextImage
+                            width={120}
+                            height={120}
+                            src={'/assets/homeIcons/requestLogoBlank.png'}
+                            alt={'requestLogoBlank'}
+                          />
+                        )}
+                      </div>
+                    </button>
+                    <div className='select-none'>
+                      <div>
+                        <span className='text-[48px] font-[500] text-[#000000] md:text-[24px]'>
+                          Dynamic Backgrounds
                         </span>
                       </div>
-                    )}
+                      {section2 && (
+                        <div className='w-3/4'>
+                          <span className='text-[36px] font-[400] text-[#000000] md:text-[18px]'>
+                            Make stunning backgrounds of any real or fictional
+                            environment for your Egirl.
+                          </span>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div>
-                <div
-                  className='flex cursor-pointer items-center space-x-[16px] px-[8px] py-[12px] transition duration-100'
-                  onClick={() => {
-                    showSection3(section3);
-                  }}
-                >
-                  <button>
-                    <div className='hidden lg:block'>
-                      {section3 === true ? (
-                        <NextImage
-                          width={60}
-                          height={60}
-                          src={'/assets/homeIcons/voiceMessage.png'}
-                          alt={'voiceMessage'}
-                        />
-                      ) : (
-                        <NextImage
-                          width={60}
-                          height={60}
-                          src={'/assets/homeIcons/voiceMessageBlank.png'}
-                          alt={'voiceMessageBlank'}
-                        />
-                      )}
-                    </div>
-                    <div className='lg:hidden'>
-                      {section3 === true ? (
-                        <NextImage
-                          width={120}
-                          height={120}
-                          src={'/assets/homeIcons/voiceMessage.png'}
-                          alt={'voiceMessage'}
-                        />
-                      ) : (
-                        <NextImage
-                          width={120}
-                          height={120}
-                          src={'/assets/homeIcons/voiceMessageBlank.png'}
-                          alt={'voiceMessageBlank'}
-                        />
-                      )}
-                    </div>
-                  </button>
-                  <div className='select-none'>
-                    <div>
-                      <span className='text-[48px] font-[500] text-[#000000] lg:text-[24px]'>
-                        Unique Personality
-                      </span>
-                    </div>
-                    {section3 && (
-                      <div className='w-3/4'>
-                        <span className='text-[36px] font-[400] text-[#000000] lg:text-[18px]'>
-                          Build a truly unique voice & personality for your
-                          Egirl. As simple as writing a prompt.
+                <div>
+                  <div
+                    className='flex cursor-pointer items-center space-x-[16px] px-[8px] py-[12px] transition duration-100'
+                    onClick={showSection3(section3)}
+                  >
+                    <button>
+                      <div className='hidden md:block'>
+                        {section3 === true ? (
+                          <NextImage
+                            width={60}
+                            height={60}
+                            src={'/assets/homeIcons/voiceMessage.png'}
+                            alt={'voiceMessage'}
+                          />
+                        ) : (
+                          <NextImage
+                            width={60}
+                            height={60}
+                            src={'/assets/homeIcons/voiceMessageBlank.png'}
+                            alt={'voiceMessageBlank'}
+                          />
+                        )}
+                      </div>
+                      <div className='md:hidden'>
+                        {section3 === true ? (
+                          <NextImage
+                            width={120}
+                            height={120}
+                            src={'/assets/homeIcons/voiceMessage.png'}
+                            alt={'voiceMessage'}
+                          />
+                        ) : (
+                          <NextImage
+                            width={120}
+                            height={120}
+                            src={'/assets/homeIcons/voiceMessageBlank.png'}
+                            alt={'voiceMessageBlank'}
+                          />
+                        )}
+                      </div>
+                    </button>
+                    <div className='select-none'>
+                      <div>
+                        <span className='text-[48px] font-[500] text-[#000000] md:text-[24px]'>
+                          Unique Personality
                         </span>
                       </div>
-                    )}
+                      {section3 && (
+                        <div className='w-3/4'>
+                          <span className='text-[36px] font-[400] text-[#000000] md:text-[18px]'>
+                            Build a truly unique voice & personality for your
+                            Egirl. As simple as writing a prompt.
+                          </span>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className='flex w-full justify-center'>
-            <div className='hidden w-full transition duration-100 lg:block '>
-              {section1 && (
-                // <NextImage
-                //     width={800}
-                //     height={842}
-                //     src={'/assets/svgImages/chatAwayIllus.svg'}
-                //     alt={'chatAway illus'}
-                //     className='grow-0 border border-red-600'
-                //   />
-                <figure className='drop-shadow-lg'>
-                  {/* <Image
-                    className='scale-125'
-                    src={'/assets/svgImages/chatAwayIllus.svg'}
-                    width={800}
-                    height={800}
+            <div className='flex w-full justify-center'>
+              <div className='hidden md:block md:w-full md:transition md:duration-100 '>
+                {section1 && (
+                  <figure>
+                    <CustomClothing className='h-[314px] w-[320px] lg:h-[555px] lg:w-[620px]' />
+                  </figure>
+                )}
+                {section2 && (
+                  <figure>
+                    <DynamicBackground className='h-[314px] w-[320px] lg:h-[555px] lg:w-[620px]' />
+                  </figure>
+                )}
+                {section3 && (
+                  <figure>
+                    <UniquePersonality className='h-[314px] w-[320px] lg:h-[555px] lg:w-[620px]' />
+                  </figure>
+                )}
+              </div>
+              <div className='flex shrink-0 md:hidden'>
+                {section1 && (
+                  <NextImage
+                    width={650}
+                    height={650}
+                    imgClassName='scale-125'
+                    src={'/assets/svgImages/userChatSvg.svg'}
                     alt={'chatAway illus'}
-                    layout='responsive'
-                  /> */}
-                  <CustomClothing />
-                  {/* <DynamicBackgrounds /> */}
-                </figure>
-              )}
-              {section2 && (
-                // <NextImage
-                //   width={800}
-                //   height={842}
-                //   src={'/assets/svgImages/requestImagesIllus.svg'}
-                //   alt={'requestImage illus'}
-                // />
-                <figure className=''>
-                  {/* <Image
-                    className=''
+                  />
+                )}
+                {section2 && (
+                  <NextImage
+                    width={650}
+                    height={650}
                     src={'/assets/svgImages/requestImagesIllus.svg'}
-                    width={800}
-                    height={800}
                     alt={'requestImage illus'}
-                    layout='responsive'
-                  /> */}
-                  {/* <NextImage
-                    width={620}
-                    height={555}
-                    src={'/assets/creator-landing/DynamicBackgrounds.png'}
-                    alt={'DynamicBackgrounds'}
-                  /> */}
-                  <DynamicBackgrounds />
-                </figure>
-              )}
-              {section3 && (
-                // <NextImage
-                //   width={800}
-                //   height={842}
-                //   src={'/assets/svgImages/voiceMessagesIllus.svg'}
-                //   alt={'voiceMessage illus'}
-                // />
-                <figure className=''>
-                  {/* <Image
-                    className=''
+                  />
+                )}
+                {section3 && (
+                  <NextImage
+                    width={650}
+                    height={650}
                     src={'/assets/svgImages/voiceMessagesIllus.svg'}
-                    width={800}
-                    height={800}
                     alt={'voiceMessage illus'}
-                    layout='responsive'
-                  /> */}
-                  {/* <NextImage
-                    width={620}
-                    height={555}
-                    src={'/assets/creator-landing/UniquePersonality.png'}
-                    alt={'UniquePersonality'}
-                  /> */}
-                  <UniquePersonality />
-                </figure>
-              )}
-            </div>
-            <div className='sm:shrink-0 md:shrink-0 lg:hidden'>
-              {section1 && (
-                <NextImage
-                  width={900}
-                  height={900}
-                  src={'/assets/svgImages/chatAwayIllus.svg'}
-                  alt={'chatAway illus'}
-                />
-              )}
-              {section2 && (
-                <NextImage
-                  width={900}
-                  height={900}
-                  src={'/assets/svgImages/requestImagesIllus.svg'}
-                  alt={'requestImage illus'}
-                />
-              )}
-              {section3 && (
-                <NextImage
-                  width={900}
-                  height={900}
-                  src={'/assets/svgImages/voiceMessagesIllus.svg'}
-                  alt={'voiceMessage illus'}
-                />
-              )}
+                  />
+                )}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+      {/* start of medium display */}
+      <div className='flex w-full bg-[#FFFFFF] px-[24px] md:px-[40px] lg:hidden lg:px-[100px] 2xl:px-[120px]'>
+        <div className='w-full pb-[120px] pt-[64px]'>
+          <div className='flex justify-center md:justify-start'>
+            <span className='select-none text-center text-[14px] font-[500] text-[#949698] md:text-start md:text-[18px]'>
+              CREATOR TOOLS
+            </span>
+          </div>
+          <div className='mt-1 flex justify-center text-center md:justify-start md:text-start'>
+            <span className='select-none text-[24px] font-[600] text-[#000000] md:text-[48px]'>
+              Design with <span className='font-[400] italic'>ease</span>
+            </span>
+          </div>
+          <div className='grid w-full grid-cols-1 gap-[20px]  md:grid-cols-2'>
+            <div className='w-full'>
+              <div>
+                <div className=''>
+                  <CustomClothing className='h-[200px] w-full md:hidden md:h-[314px]' />
+                  <div className='mt-[32px] flex md:hidden'>
+                    <NextImage
+                      width={60}
+                      height={60}
+                      src={'/assets/homeIcons/pencilLogo.png'}
+                      alt={'pencilLogo'}
+                    />
+
+                    <div className='ml-[16px] select-none md:hidden'>
+                      <div>
+                        <span className='text-[18px] font-[500] text-[#000000] md:text-[24px]'>
+                          Custom Clothing
+                        </span>
+                      </div>
+
+                      <span className='text-[16px] font-[400] text-[#000000] md:text-[18px]'>
+                        Create beautiful clothing and
+                        <br />
+                        accessories for your Egirl with
+                        <br />
+                        ease.
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    className='mt-[64px] hidden cursor-pointer  items-center space-x-[16px] px-[8px] py-[12px] transition duration-100 md:flex'
+                    onClick={showSection1(section1)}
+                  >
+                    <button>
+                      <div className='hidden md:block'>
+                        {section1 === true ? (
+                          <NextImage
+                            width={60}
+                            height={60}
+                            src={'/assets/homeIcons/pencilLogo.png'}
+                            alt={'pencilLogo'}
+                          />
+                        ) : (
+                          <NextImage
+                            width={60}
+                            height={60}
+                            src={'/assets/homeIcons/pencilLogoBlank.png'}
+                            alt={'pencilLogo'}
+                          />
+                        )}
+                      </div>
+                      <div className='md:hidden'>
+                        {section1 === true ? (
+                          <NextImage
+                            width={60}
+                            height={60}
+                            src={'/assets/homeIcons/pencilLogo.png'}
+                            alt={'pencilLogo'}
+                          />
+                        ) : (
+                          <NextImage
+                            width={60}
+                            height={60}
+                            src={'/assets/homeIcons/pencilLogoBlank.png'}
+                            alt={'pencilLogo'}
+                          />
+                        )}
+                      </div>
+                    </button>
+                    <div className='select-none'>
+                      <div>
+                        <span className='text-[18px] font-[500] text-[#000000] md:text-[24px]'>
+                          Custom Clothing
+                        </span>
+                      </div>
+                      {section1 && (
+                        <div className='w-3/4'>
+                          <span className='text-[16px] font-[400] text-[#000000] md:text-[18px]'>
+                            Create beautiful clothing and accessories for your
+                            Egirl with ease.
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <DynamicBackground className='h-[314px] w-full md:hidden' />
+                  <div className='mt-[32px] flex md:hidden'>
+                    <NextImage
+                      width={60}
+                      height={60}
+                      src={'/assets/homeIcons/pencilLogo.png'}
+                      alt={'pencilLogo'}
+                    />
+
+                    <div className='ml-[16px] select-none md:hidden'>
+                      <div>
+                        <span className='text-[18px] font-[500] text-[#000000] md:text-[24px]'>
+                          Image Requests
+                        </span>
+                      </div>
+
+                      <div>
+                        <span className='text-[16px] font-[400] text-[#000000] md:text-[18px]'>
+                          Make stunning backgrounds of
+                          <br />
+                          any real or fictional environment
+                          <br />
+                          for your Egirl.
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className='hidden cursor-pointer items-center space-x-[16px] px-[8px] py-[12px] transition duration-100 md:flex'
+                    onClick={showSection2(section2)}
+                  >
+                    <button>
+                      <div className='hidden md:block'>
+                        {section2 === true ? (
+                          <NextImage
+                            width={60}
+                            height={60}
+                            src={'/assets/homeIcons/requestLogo.png'}
+                            alt={'requestLogo'}
+                          />
+                        ) : (
+                          <NextImage
+                            width={60}
+                            height={60}
+                            src={'/assets/homeIcons/requestLogoBlank.png'}
+                            alt={'requestLogoBlank'}
+                          />
+                        )}
+                      </div>
+                      <div className='md:hidden'>
+                        {section2 === true ? (
+                          <NextImage
+                            width={60}
+                            height={60}
+                            src={'/assets/homeIcons/requestLogo.png'}
+                            alt={'requestLogo'}
+                          />
+                        ) : (
+                          <NextImage
+                            width={60}
+                            height={60}
+                            src={'/assets/homeIcons/requestLogoBlank.png'}
+                            alt={'requestLogoBlank'}
+                          />
+                        )}
+                      </div>
+                    </button>
+                    <div className='select-none'>
+                      <div>
+                        <span className='text-[18px] font-[500] text-[#000000] md:text-[24px]'>
+                          Dynamic Backgrounds
+                        </span>
+                      </div>
+                      {section2 && (
+                        <div className='w-3/4'>
+                          <span className='text-[16px] font-[400] text-[#000000] md:text-[18px]'>
+                            Make stunning backgrounds of any real or fictional
+                            environment for your Egirl.
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <UniquePersonality className='h-[314px] w-full md:hidden' />
+                  <div className='mt-[32px] flex md:hidden'>
+                    <NextImage
+                      width={60}
+                      height={60}
+                      src={'/assets/homeIcons/pencilLogo.png'}
+                      alt={'pencilLogo'}
+                    />
+
+                    <div className='ml-[16px] select-none md:hidden'>
+                      <div>
+                        <span className='text-[18px] font-[500] text-[#000000] md:text-[24px]'>
+                          Unique Personality
+                        </span>
+                      </div>
+
+                      <div className=''>
+                        <span className='text-[16px] font-[400] text-[#000000] md:text-[18px]'>
+                          Build a truly unique voice &<br />
+                          personality for your Egirl. As
+                          <br />
+                          simple as writing a prompt.
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className='hidden cursor-pointer items-center space-x-[16px] px-[8px] py-[12px] transition duration-100 md:flex'
+                    onClick={showSection3(section3)}
+                  >
+                    <button>
+                      <div className='hidden md:block'>
+                        {section3 === true ? (
+                          <NextImage
+                            width={60}
+                            height={60}
+                            src={'/assets/homeIcons/voiceMessage.png'}
+                            alt={'voiceMessage'}
+                          />
+                        ) : (
+                          <NextImage
+                            width={60}
+                            height={60}
+                            src={'/assets/homeIcons/voiceMessageBlank.png'}
+                            alt={'voiceMessageBlank'}
+                          />
+                        )}
+                      </div>
+                      <div className='md:hidden'>
+                        {section3 === true ? (
+                          <NextImage
+                            width={60}
+                            height={60}
+                            src={'/assets/homeIcons/voiceMessage.png'}
+                            alt={'voiceMessage'}
+                          />
+                        ) : (
+                          <NextImage
+                            width={60}
+                            height={60}
+                            src={'/assets/homeIcons/voiceMessageBlank.png'}
+                            alt={'voiceMessageBlank'}
+                          />
+                        )}
+                      </div>
+                    </button>
+                    <div className='select-none'>
+                      <div>
+                        <span className='text-[18px] font-[500] text-[#000000] md:text-[24px]'>
+                          Unique Personality
+                        </span>
+                      </div>
+                      {section3 && (
+                        <div className='w-3/4'>
+                          <span className='text-[16px] font-[400] text-[#000000] md:text-[18px]'>
+                            Build a truly unique voice & personality for your
+                            Egirl. As simple as writing a prompt.
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className='hidden w-full items-center justify-center md:flex'>
+              <div className='hidden md:block md:w-full md:transition md:duration-100 '>
+                {section1 && (
+                  <figure>
+                    <CustomClothing className='h-[314px] w-[320px] lg:h-[555px] lg:w-[620px]' />
+                  </figure>
+                )}
+                {section2 && (
+                  <figure>
+                    <DynamicBackground className='h-[314px] w-[320px] lg:h-[555px] lg:w-[620px]' />
+                  </figure>
+                )}
+                {section3 && (
+                  <figure>
+                    <UniquePersonality className='h-[314px] w-[320px] lg:h-[555px] lg:w-[620px]' />
+                  </figure>
+                )}
+              </div>
+              <div className='flex shrink-0 md:hidden'>
+                {section1 && (
+                  <NextImage
+                    width={650}
+                    height={650}
+                    imgClassName='scale-125'
+                    src={'/assets/svgImages/userChatSvg.svg'}
+                    alt={'chatAway illus'}
+                  />
+                )}
+                {section2 && (
+                  <NextImage
+                    width={650}
+                    height={650}
+                    src={'/assets/svgImages/requestImagesIllus.svg'}
+                    alt={'requestImage illus'}
+                  />
+                )}
+                {section3 && (
+                  <NextImage
+                    width={650}
+                    height={650}
+                    src={'/assets/svgImages/voiceMessagesIllus.svg'}
+                    alt={'voiceMessage illus'}
+                  />
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 

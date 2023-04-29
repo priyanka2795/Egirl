@@ -35,9 +35,11 @@ const Header = () => {
         </div>
 
         <div className='flex justify-center pt-[20px] lg:justify-start'>
-          <button className='mt-12 rounded-xl bg-[#5848BC] px-[30px] py-4 text-[16px] font-semibold text-white transition duration-100 hover:bg-[#4D37DA] md:text-lg'>
-            <Link href='https://discord.gg/ECAds8F8Dj'>Join us</Link>
-          </button>
+          <Link href='/get-beta-access'>
+            <a className='mt-12 rounded-xl bg-[#5848BC] px-[30px] py-4 text-[16px] font-semibold text-white transition duration-100 hover:bg-[#4D37DA] md:text-lg'>
+              Join us
+            </a>
+          </Link>
         </div>
       </div>
       <div className='flex w-full justify-center'>
