@@ -41,7 +41,7 @@ const Header = () => {
         </div>
       </div>
       <div className='flex w-full justify-center'>
-        <div className='flex shrink-0 items-center justify-center pb-[74px] pt-[40px] lg:py-[80px]'>
+        <div className='flex shrink-0 items-center justify-center pb-[40px] pt-[48px] md:pb-[74px] md:pt-[40px] lg:py-[80px]'>
           <div className='flex shrink-0'>
             {/* <NextImage
               width={558}
@@ -56,7 +56,7 @@ const Header = () => {
               alt='headerIllus'
               className='h-[540px] w-[558px]'
             /> */}
-            {/* <HeaderImg className=' w-full  md:h-[540px] md:w-[558px]' /> */}
+            <HeaderImg className=' h-[290px] w-full md:h-[540px] md:w-[558px]' />
           </div>
         </div>
       </div>
