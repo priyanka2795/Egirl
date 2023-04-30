@@ -16,6 +16,7 @@ import HowItWorks from '@components/landing-creator/HowItWorks';
 import Design from '@components/landing-creator/Design';
 import PassionToProfit from '@components/landing-creator/PassionToProfit';
 import Footer from '@components/landing-common/Footer';
+import PopupJoinDiscord from '@components/landing-common/PopupJoinDiscord';
 
 export function LandingLayout({ children }: LayoutProps): JSX.Element {
   return <div className='w-full bg-white'>{children}</div>;
@@ -114,64 +115,12 @@ export default function CreatorLanding(): JSX.Element {
         </div>
       </nav>
 
-      {/* Join Discord */}
-      <div
-        className={`fixed top-0 z-10 h-full w-full items-center bg-[black] duration-300 ease-in ${
-          showBetaAccess === false ? 'hidden' : 'duration-300 ease-in'
-        }`}
-      >
-        <div className='h-full w-full bg-[url(/assets/svgImages/joinDiscordBg.svg)] bg-cover bg-center bg-no-repeat'>
-          <div className='flex w-full justify-end'>
-            <div className='p-8'>
-              <button>
-                <XMarkIcon
-                  className='h-20 w-20 fill-[white] lg:h-10 lg:w-10'
-                  onClick={setBetaAccess()}
-                ></XMarkIcon>
-              </button>
-            </div>
-          </div>
-          <div className='flex h-full items-center'>
-            <div className='w-full p-2'>
-              <div className='flex justify-center p-2'>
-                <div className='flex items-center justify-center rounded-[8px] bg-[#313131] p-[24px] lg:h-[40px] lg:w-[135px] lg:px-[8px] lg:py-[12px]'>
-                  <StarIcon className='h-[40px] w-[40px] fill-[#5848BC] pr-[8px] lg:h-[20px] lg:w-[20px]'></StarIcon>
-                  <div className='flex'>
-                    <span className='text-[42px] font-[500] text-[white] lg:text-[16px]'>
-                      Join us
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div className='flex justify-center p-2'>
-                <div className='text-center text-[120px] font-[600]  text-[white] lg:text-[64px]'>
-                  <div>
-                    <span>
-                      Design{' '}
-                      <span className='font-[400] italic'> without </span>
-                    </span>
-                  </div>
-                  <div className='flex justify-center'>
-                    <span>limits</span>
-                  </div>
-                </div>
-              </div>
-              <div className='flex justify-center p-2'>
-                <div className='text-[36px] font-[400] text-[#ffffff]/[0.44] lg:text-[18px]'>
-                  <span>Join our Discord community and introduce yourself</span>
-                </div>
-              </div>
-              <div className='flex justify-center p-16'>
-                <div className='flex items-center justify-center rounded-[12px] bg-[#5848BC] px-[24px] py-[16px] drop-shadow'>
-                  <span className='text-[36px] lg:text-[18px]'>
-                    Join Discord
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* Popup Join Discord */}
+
+      <PopupJoinDiscord
+        setBetaAccess={setBetaAccess()}
+        showBetaAccess={showBetaAccess}
+      />
 
       {/* Header */}
       <Header />

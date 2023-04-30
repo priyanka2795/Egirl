@@ -12,6 +12,7 @@ import InstaIcon from '@components/landing-user/assets/Footer/InstaIcon';
 import RedditIcon from '@components/landing-user/assets/Footer/RedditIcon';
 import Logo from '@components/landing-user/assets/Logo';
 import { ChangeEvent } from 'react';
+import PopupJoinDiscord from '@components/landing-common/PopupJoinDiscord';
 
 export function LandingLayout({ children }: LayoutProps): JSX.Element {
   return <div className='w-full bg-white'>{children}</div>;
@@ -74,62 +75,7 @@ export default function CreatorLanding(): JSX.Element {
       <SEO title='Egirls' description='' />
 
       {/* Nav Bar */}
-      <nav className='fixed top-0 z-10 w-full bg-[#F6F6F6] px-24 lg:px-[100px] 2xl:px-[120px]'>
-        <div className='py-3 lg:py-6'>
-          <div className='flex items-center justify-between'>
-            <div className='lg:flex'>
-              <Link href='/' prefetch={false}>
-                <a className=' py-1 pr-[40px]'>
-                  {/* <span className='text-[64px] font-semibold text-[#181818] lg:text-[32px]'>
-                Egirls
-              </span> */}
-                  <Logo />
-                </a>
-              </Link>
-              <div className='lg:flex lg:items-center lg:space-x-6'>
-                <div className='hidden lg:flex lg:items-center'>
-                  <button className='text-[32px] font-[500] text-[#181818] hover:text-[#5848BC] hover:underline hover:decoration-[#5848BC] hover:underline-offset-8 lg:text-[16px]'>
-                    For users
-                  </button>
-                </div>
-                <div className='hidden lg:flex lg:items-center'>
-                  <Link href='/creator-landing' prefetch={false}>
-                    <a className='text-[32px]	font-[500] text-[#181818] transition duration-100 hover:text-[#5848BC] hover:underline hover:decoration-[#5848BC] hover:underline-offset-8 lg:text-[16px]'>
-                      For creators
-                    </a>
-                  </Link>
-                </div>
-              </div>
-            </div>
-            <div className='md:flex'>
-              <div className='mr-6 hidden lg:flex lg:items-center'>
-                <button>
-                  <Link href='/contact-us'>
-                    <span className='text-[32px] font-[500] text-[#5848BC] underline decoration-[#5848BC]  underline-offset-8 lg:text-[16px]'>
-                      Contact
-                    </span>
-                  </Link>
-                </button>
-              </div>
-              <Link href='/get-beta-access'>
-                <a className='justify-center rounded-[12px] bg-[#5848BC] px-[18px] py-[10px] transition duration-100 hover:bg-[#4D37DA] xs:hidden sm:hidden md:flex md:items-center lg:flex lg:w-[158px] lg:items-center'>
-                  <span className='text-[32px] font-[500] text-white  lg:text-[16px]'>
-                    Get beta access
-                  </span>
-                </a>
-              </Link>
-              <div
-                className='xs:flex xs:items-center sm:flex sm:items-center md:flex md:items-center lg:flex lg:items-center'
-                onClick={() => {
-                  setSideNav();
-                }}
-              >
-                <Bars2Icon className='h-[40px] w-[40px] fill-[black] lg:hidden lg:h-[20px] lg:w-[20px]'></Bars2Icon>
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Nav setBetaAccess={setBetaAccess()} setSideNav={setSideNav()} />
 
       {/* Side NavBar */}
       <nav
@@ -198,121 +144,12 @@ export default function CreatorLanding(): JSX.Element {
         </div>
       </nav>
 
-      {/* Join Discord */}
-      <div
-        className={`fixed top-0 z-10 h-full w-full items-center bg-[black] duration-300 ease-in ${
-          showBetaAccess === false ? 'hidden' : 'duration-300 ease-in'
-        }`}
-      >
-        <div className='h-full w-full bg-[url(/assets/svgImages/joinDiscordBg.svg)] bg-cover bg-center bg-no-repeat'>
-          <div className='flex w-full justify-end'>
-            <div className='p-8'>
-              <button>
-                <XMarkIcon
-                  className='h-20 w-20 fill-[white] lg:h-10 lg:w-10'
-                  onClick={setBetaAccess()}
-                ></XMarkIcon>
-              </button>
-            </div>
-          </div>
-          <div className='flex h-full items-center'>
-            <div className='w-full p-2'>
-              <div className='flex justify-center p-2'>
-                <div className='flex items-center justify-center rounded-[8px] bg-[#313131] p-[24px] lg:h-[40px] lg:w-[135px] lg:px-[8px] lg:py-[12px]'>
-                  <StarIcon className='h-[40px] w-[40px] fill-[#5848BC] pr-[8px] lg:h-[20px] lg:w-[20px]'></StarIcon>
-                  <div className='flex'>
-                    <span className='text-[42px] font-[500] text-[white] lg:text-[16px]'>
-                      Join us
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div className='flex justify-center p-2'>
-                <div className='text-center text-[120px] font-[600]  text-[white] lg:text-[64px]'>
-                  <div>
-                    <span>
-                      Design{' '}
-                      <span className='font-[400] italic'> without </span>
-                    </span>
-                  </div>
-                  <div className='flex justify-center'>
-                    <span>limits</span>
-                  </div>
-                </div>
-              </div>
-              <div className='flex justify-center p-2'>
-                <div className='text-[36px] font-[400] text-[#ffffff]/[0.44] lg:text-[18px]'>
-                  <span>Join our Discord community and introduce yourself</span>
-                </div>
-              </div>
-              <div className='flex justify-center p-16'>
-                <div className='flex items-center justify-center rounded-[12px] bg-[#5848BC] px-[24px] py-[16px] drop-shadow'>
-                  <span className='text-[36px] lg:text-[18px]'>
-                    Join Discord
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* <div
-        className={`fixed top-0 z-10 h-full w-full items-center bg-[black] duration-300 ease-in ${
-          showBetaAccess === false ? 'hidden' : 'duration-300 ease-in'
-        }`}
-      >
-        <div className='h-full w-full bg-[url(/assets/svgImages/joinDiscordBg.svg)] bg-cover bg-center bg-no-repeat'>
-          <div className='flex w-full justify-end'>
-            <div className='p-8'>
-              <button>
-                <XMarkIcon
-                  className='h-20 w-20 fill-[white] lg:h-10 lg:w-10'
-                  onClick={setBetaAccess()}
-                ></XMarkIcon>
-              </button>
-            </div>
-          </div>
-          <div className='flex h-full items-center'>
-            <div className='w-full p-2'>
-              <div className='flex justify-center p-2'>
-                <div className='flex items-center justify-center rounded-[8px] bg-[#313131] p-[24px] lg:h-[40px] lg:w-[135px] lg:px-[8px] lg:py-[12px]'>
-                  <StarIcon className='h-[40px] w-[40px] fill-[#5848BC] pr-[8px] lg:h-[20px] lg:w-[20px]'></StarIcon>
-                  <div className='flex'>
-                    <span className='text-[42px] font-[500] text-[white] lg:text-[16px]'>
-                      Join us
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div className='flex justify-center p-2'>
-                <div className='text-center text-[120px] font-[600]  text-[white] lg:text-[64px]'>
-                  <div>
-                    <span>
-                      Design{' '}
-                      <span className='font-[400] italic'> without </span>
-                    </span>
-                  </div>
-                  <div className='flex justify-center'>
-                    <span>limits</span>
-                  </div>
-                </div>
-              </div>
-              <div className='flex justify-center p-2'>
-                <div className='text-[36px] font-[400] text-[#ffffff]/[0.44] lg:text-[18px]'>
-                  <span>Join our Discord community and introduce yourself</span>
-                </div>
-              </div>
-              <div className='flex justify-center p-16'>
-                <div className='flex items-center justify-center rounded-[12px] bg-[#5848BC] px-[24px] py-[16px] drop-shadow'>
-                  <span className='text-[36px] lg:text-[18px]'>
-                    Join Discord
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
+      {/* Popup Join Discord */}
+
+      <PopupJoinDiscord
+        setBetaAccess={setBetaAccess()}
+        showBetaAccess={showBetaAccess}
+      />
 
       {/* Header */}
       <div className='bg-[#F6F6F6] px-24 pt-[96px] lg:px-[100px] 2xl:px-[120px]'>

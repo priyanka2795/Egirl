@@ -54,13 +54,16 @@ const Nav = ({ setBetaAccess, setSideNav }: Props) => {
                 </Link>
               </button>
             </div>
-            <Link href='/get-beta-access' prefetch={false}>
-              <a className='justify-center rounded-[12px] bg-[#5848BC] px-[18px] py-[10px] transition duration-100 hover:bg-[#4D37DA] xs:hidden sm:hidden md:flex md:items-center lg:flex lg:w-[158px] lg:items-center'>
-                <span className='text-[16px] font-[500] text-white'>
-                  Get beta access
-                </span>
-              </a>
-            </Link>
+            <button
+              onClick={() => {
+                setBetaAccess();
+              }}
+              className='justify-center rounded-[12px] bg-[#5848BC] px-[18px] py-[10px] transition duration-100 hover:bg-[#4D37DA] xs:hidden sm:hidden md:flex md:items-center lg:flex lg:w-[158px] lg:items-center'
+            >
+              <span className='text-[16px] font-[500] text-white'>
+                Get beta access
+              </span>
+            </button>
             <div
               className='ml-[32px] xs:flex xs:items-center sm:flex sm:items-center md:flex md:items-center lg:flex lg:items-center'
               onClick={() => {
