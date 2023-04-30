@@ -63,9 +63,9 @@ const SvgComponent = (props: Props) => (
         y2='16.2652'
         gradientUnits='userSpaceOnUse'
       >
-        <stop offset='0.41' stop-color='#7D6BD6' stop-opacity='0' />
-        <stop offset='0.87' stop-color='#7D6BD6' stop-opacity='0.78' />
-        <stop offset='1' stop-color='#7D6BD6' />
+        <stop offset='0.41' stopColor='#7D6BD6' stopOpacity='0' />
+        <stop offset='0.87' stopColor='#7D6BD6' stopOpacity='0.78' />
+        <stop offset='1' stopColor='#7D6BD6' />
       </linearGradient>
     </defs>
   </svg>
