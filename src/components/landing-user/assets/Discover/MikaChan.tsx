@@ -11,32 +11,32 @@ const SvgComponent = (props: Props) => (
     xmlnsXlink='http://www.w3.org/1999/xlink'
     {...props}
   >
-    <g clipPath='url(#clip0_1286_1727912341234)'>
-      <rect width='397' height='466' rx='16' fill='white' />
+    <g clip-path='url(#clip0_1286_17279)'>
+      <rect width='397' height='466' rx='16' fill='#fff' />
       <rect
-        x='-3.66343'
+        x='-3.7'
         y='-3'
-        width='403.661'
+        width='403.7'
         height='472'
         rx='15'
-        fill='url(#pattern032409875)'
+        fill='url(#pattern0234545wu6wtrhetykwsgfsjaaaa)'
       />
     </g>
     <defs>
+      <clipPath id='clip0_1286_17279'>
+        <rect width='397' height='466' rx='16' fill='#fff' />
+      </clipPath>
       <pattern
-        id='pattern032409875'
+        id='pattern0234545wu6wtrhetykwsgfsjaaaa'
         patternContentUnits='objectBoundingBox'
         width='1'
         height='1'
       >
         <use
           xlinkHref='#image0_1286_17279'
-          transform='matrix(0.00251256 0 0 0.00214878 0 -0.000665562)'
+          transform='matrix(.00251 0 0 .00215 0 0)'
         />
       </pattern>
-      <clipPath id='clip0_1286_1727912341234'>
-        <rect width='397' height='466' rx='16' fill='white' />
-      </clipPath>
       <image
         id='image0_1286_17279'
         width='398'

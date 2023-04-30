@@ -14,7 +14,7 @@ const SvgComponent = (props: Props) => (
     <path
       d='M515.6 52c-26-69.3-123.9-69.3-149.8 0L358.9 70a80 80 0 01-46.8 46.8l-18.2 6.9c-69.2 26-69.2 123.8 0 149.8l18.2 6.8a80 80 0 0146.8 46.8l6.9 18.2c26 69.2 123.8 69.2 149.8 0l6.8-18.2a80 80 0 0146.8-46.8l18.2-6.8c69.2-26 69.2-123.9 0-149.8l-18.2-6.9a80 80 0 01-46.8-46.8L515.6 52z'
       fill='#544A48'
-      fill-opacity='.2'
+      fillOpacity='.2'
     />
     <g filter='url(#filter0_b_1215_17533)'>
       <path
@@ -61,7 +61,7 @@ const SvgComponent = (props: Props) => (
       <path
         d='M411.9 508.6c-.7 0-1.3-.1-1.7-.5-.5-.3-.9-.9-1.1-1.5a7 7 0 01-.4-2.5c0-1 .1-1.7.4-2.4.2-.7.6-1.2 1-1.5.5-.4 1.1-.5 1.8-.5.6 0 1.2.1 1.7.5.5.3.8.9 1 1.5a7 7 0 010 4.9c-.2.6-.5 1.2-1 1.5-.5.4-1 .5-1.7.5zm0-1c.6 0 1-.4 1.4-1a5 5 0 00.5-2.5c0-.7-.1-1.3-.3-1.8-.1-.5-.3-.9-.6-1.1-.3-.3-.6-.4-1-.4-.6 0-1 .3-1.4.8-.3.6-.5 1.5-.5 2.5 0 .8 0 1.4.2 1.9s.4.9.7 1.1c.2.3.6.4 1 .4zm7.7 1c-.6 0-1.2-.1-1.7-.5-.5-.3-.8-.9-1.1-1.5a7 7 0 01-.4-2.5c0-1 .2-1.7.4-2.4.3-.7.6-1.2 1.1-1.5.5-.4 1-.5 1.7-.5s1.3.1 1.7.5c.5.3.9.9 1.1 1.5.3.7.4 1.5.4 2.4a7 7 0 01-.4 2.5c-.2.6-.6 1.2-1 1.5-.5.4-1.1.5-1.8.5zm0-1c.6 0 1-.4 1.4-1a5 5 0 00.5-2.5c0-.7 0-1.3-.2-1.8s-.4-.9-.7-1.1c-.3-.3-.6-.4-1-.4-.6 0-1 .3-1.4.8-.3.6-.5 1.5-.5 2.5 0 .8.1 1.4.3 1.9.1.5.3.9.6 1.1.3.3.6.4 1 .4zm5.6-.2c-.2 0-.4 0-.6-.2a.8.8 0 01-.3-.6c0-.3.1-.5.3-.6l.6-.3.6.3c.2.1.2.3.2.6v.4l-.4.3-.4.1zm0-4.4c-.2 0-.4 0-.6-.2a.8.8 0 01-.3-.6l.3-.6.6-.3.6.3c.2.2.2.4.2.6v.4l-.4.3-.4.1zm5.4 5.6c-.5 0-1 0-1.4-.3a2.3 2.3 0 01-1.4-2h1.2c0 .3.2.6.5.8.3.3.7.4 1.1.4.3 0 .6 0 .9-.2.3-.2.5-.4.6-.7.2-.2.2-.5.2-.9s0-.7-.2-1l-.6-.6c-.3-.2-.6-.2-1-.2h-.7l-.7.4-1.2-.1.5-4.4h4.8v1.1h-3.7l-.3 2.4.7-.4 1-.1a2.7 2.7 0 012.4 1.4c.2.4.3 1 .3 1.5s-.1 1-.4 1.5c-.2.4-.6.8-1 1-.5.3-1 .4-1.6.4zm4.9-.1l3.8-7.5v-.1h-4.4v-1.1h5.7v1.1l-3.8 7.6h-1.3z'
         fill='#fff'
-        fill-opacity='.5'
+        fillOpacity='.5'
       />
       <rect
         x='542'
@@ -70,12 +70,12 @@ const SvgComponent = (props: Props) => (
         height='48'
         rx='24'
         fill='#fff'
-        fill-opacity='.2'
+        fillOpacity='.2'
       />
       <path
         d='M563 485.9a1 1 0 00-1.4.8v10.6a1 1 0 001.4.8l9.4-5.3a1 1 0 00.5-.8 1 1 0 00-.5-.8l-9.4-5.3zm-2.6.8c0-1.7 1.8-2.7 3.2-2l9.4 5.4c1.5.8 1.5 3 0 3.8l-9.4 5.3c-1.4.8-3.2-.2-3.2-1.9v-10.6z'
         fill='#fff'
-        fill-opacity='.5'
+        fillOpacity='.5'
       />
     </g>
     <defs>
@@ -87,8 +87,8 @@ const SvgComponent = (props: Props) => (
         y2='167'
         gradientUnits='userSpaceOnUse'
       >
-        <stop stop-color='#fff' />
-        <stop offset='1' stop-color='#fff' stop-opacity='0' />
+        <stop stopColor='#fff' />
+        <stop offset='1' stopColor='#fff' stopOpacity='0' />
       </linearGradient>
       <linearGradient
         id='paint1_linear_1215_17533'
@@ -98,9 +98,9 @@ const SvgComponent = (props: Props) => (
         y2='540'
         gradientUnits='userSpaceOnUse'
       >
-        <stop stop-color='#3A343B' />
-        <stop offset='.5' stop-color='#574B49' />
-        <stop offset='1' stop-color='#353032' />
+        <stop stopColor='#3A343B' />
+        <stop offset='.5' stopColor='#574B49' />
+        <stop offset='1' stopColor='#353032' />
       </linearGradient>
       <pattern
         id='pattern000998855333'
@@ -131,9 +131,9 @@ const SvgComponent = (props: Props) => (
         width='443.3'
         height='443.3'
         filterUnits='userSpaceOnUse'
-        color-interpolation-filters='sRGB'
+        colorInterpolationFilters='sRGB'
       >
-        <feFlood flood-opacity='0' result='BackgroundImageFix' />
+        <feFlood floodOpacity='0' result='BackgroundImageFix' />
         <feGaussianBlur in='BackgroundImageFix' stdDeviation='11.5' />
         <feComposite
           in2='SourceAlpha'
@@ -153,9 +153,9 @@ const SvgComponent = (props: Props) => (
         width='496'
         height='290'
         filterUnits='userSpaceOnUse'
-        color-interpolation-filters='sRGB'
+        colorInterpolationFilters='sRGB'
       >
-        <feFlood flood-opacity='0' result='BackgroundImageFix' />
+        <feFlood floodOpacity='0' result='BackgroundImageFix' />
         <feColorMatrix
           in='SourceAlpha'
           values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'
