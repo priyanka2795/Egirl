@@ -41,7 +41,7 @@ const Footer = () => {
           <div>
             <div className='mr-0 select-none md:mr-[100px]'>
               <h3 className='pb-3 text-[#646668]'>CONTACT US</h3>
-              <p>business@egirls.ai</p>
+              <p className='select-all'>business@egirls.ai</p>
             </div>
           </div>
           <div className='select-none'>

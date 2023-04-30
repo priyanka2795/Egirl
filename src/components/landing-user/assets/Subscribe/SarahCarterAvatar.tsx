@@ -12,7 +12,7 @@ const SvgComponent = (props: Props) => (
     {...props}
   >
     <mask
-      id='mask0_1288_19056'
+      id='a'
       style={{ maskType: 'alpha' }}
       maskUnits='userSpaceOnUse'
       x='0'
@@ -22,24 +22,19 @@ const SvgComponent = (props: Props) => (
     >
       <circle cx='18' cy='18' r='18' fill='#D9D9D9' />
     </mask>
-    <g mask='url(#mask0_1288_19056)'>
-      <rect
-        x='-1'
-        width='41'
-        height='53'
-        fill='url(#pattern084327590872340958743)'
-      />
+    <g mask='url(#a)'>
+      <path fill='url(#pattern0)' d='M-1 0h41v53H-1z' />
     </g>
     <defs>
       <pattern
-        id='pattern084327590872340958743'
+        id='pattern0'
         patternContentUnits='objectBoundingBox'
         width='1'
         height='1'
       >
         <use
           xlinkHref='#image0_1288_19056'
-          transform='matrix(0.00112613 0 0 0.000871154 0 -0.00526942)'
+          transform='matrix(.00113 0 0 .00087 0 0)'
         />
       </pattern>
       <image
