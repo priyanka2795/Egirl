@@ -57,7 +57,7 @@ export default function CreatorLanding(): JSX.Element {
             <div className=''>
               <button>
                 <Link href='/'>
-                  <span className='text-[52px] font-semibold text-[white] xs:text-[104px] sm:text-[104px]'>
+                  <span className='text-[38px] font-semibold text-[white] sm:text-[104px]'>
                     Egirls
                   </span>
                 </Link>
@@ -72,31 +72,25 @@ export default function CreatorLanding(): JSX.Element {
           </div>
           <div className='space-y-20 pt-20'>
             <div className=''>
-              <button>
-                <Link href='/'>
-                  <span className='text-[24px] font-[500] text-[white] hover:text-[#5848BC] hover:underline hover:decoration-[#5848BC] hover:underline-offset-8 xs:text-[48px] sm:text-[48px]'>
-                    For users
-                  </span>
-                </Link>
-              </button>
+              <Link href='/'>
+                <span className='text-[32px] font-[500] text-[white] hover:text-[#5848BC] hover:underline hover:decoration-[#5848BC] hover:underline-offset-8 sm:text-[48px]'>
+                  For users
+                </span>
+              </Link>
             </div>
             <div className=''>
-              <button>
-                <Link href='/creator-landing'>
-                  <span className='text-[24px] font-[500] text-[#5848BC] underline underline-offset-8 hover:decoration-[#5848BC] xs:text-[48px] sm:text-[48px]'>
-                    For creators
-                  </span>
-                </Link>
-              </button>
+              <Link href='/creator-landing'>
+                <span className='text-[32px] font-[500] text-[#5848BC] underline underline-offset-8 hover:decoration-[#5848BC] sm:text-[48px]'>
+                  For creators
+                </span>
+              </Link>
             </div>
             <div className=''>
-              <button>
-                <Link href='/contact-us'>
-                  <span className='text-[24px] font-[500] text-[white] hover:text-[#5848BC] hover:underline hover:decoration-[#5848BC] hover:underline-offset-8 xs:text-[48px] sm:text-[48px]'>
-                    Contact
-                  </span>
-                </Link>
-              </button>
+              <Link href='/contact-us'>
+                <span className='text-[32px] font-[500] text-[white] hover:text-[#5848BC] hover:underline hover:decoration-[#5848BC] hover:underline-offset-8 sm:text-[48px]'>
+                  Contact
+                </span>
+              </Link>
             </div>
           </div>
 
@@ -106,7 +100,7 @@ export default function CreatorLanding(): JSX.Element {
               onClick={hideSideShowBeta()}
             >
               <button>
-                <span className='text-[32px] font-[500] text-white xs:text-[64px] sm:text-[64px]'>
+                <span className='text-[18px] font-[500] text-white sm:text-[64px]'>
                   Join Discord
                 </span>
               </button>
