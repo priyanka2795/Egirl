@@ -10,27 +10,21 @@ import dynamic from 'next/dynamic';
 
 const MikaPost = dynamic(() => import('./assets/Subscribe/MikaPost'), {
   loading: () => (
-    <div className='h-[414px] w-full text-black md:w-[349px]'>
-      Loading SVG...
-    </div>
+    <div className='h-[414px] w-full text-black md:w-[349px]'></div>
   ),
   ssr: false
 });
 
 const SarahPost = dynamic(() => import('./assets/Subscribe/SarahPost'), {
   loading: () => (
-    <div className='h-[414px] w-full text-black md:w-[349px]'>
-      Loading SVG...
-    </div>
+    <div className='h-[414px] w-full text-black md:w-[349px]'></div>
   ),
   ssr: false
 });
 
 const JenniePost = dynamic(() => import('./assets/Subscribe/JenniePost'), {
   loading: () => (
-    <div className='h-[414px] w-full text-black md:w-[349px]'>
-      Loading SVG...
-    </div>
+    <div className='h-[414px] w-full text-black md:w-[349px]'></div>
   ),
   ssr: false
 });

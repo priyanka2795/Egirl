@@ -9,6 +9,7 @@ const SvgComponent = (props: Props) => (
     fill='none'
     xmlns='http://www.w3.org/2000/svg'
     xmlnsXlink='http://www.w3.org/1999/xlink'
+    {...props}
   >
     <g clipPath='url(#clip0_1286_17335)'>
       <rect width='349' height='414' rx='12' fill='#E7E7E7' />
@@ -18,7 +19,7 @@ const SvgComponent = (props: Props) => (
         width='356'
         height='466'
         rx='15'
-        fill='url(#pattern0338855jjfff)'
+        fill='url(#pattern0jjjjjjjjjjjjkkkkkkkksdafasde44)'
       />
     </g>
     <defs>
@@ -26,14 +27,14 @@ const SvgComponent = (props: Props) => (
         <rect width='349' height='414' rx='12' fill='#fff' />
       </clipPath>
       <pattern
-        id='pattern0338855jjfff'
+        id='pattern0jjjjjjjjjjjjkkkkkkkksdafasde44'
         patternContentUnits='objectBoundingBox'
         width='1'
         height='1'
       >
         <use
           xlinkHref='#image0_1286_17335'
-          transform='matrix(.0028 0 0 .00215 0 0)'
+          transform='matrix(.0028 0 0 .00215 -.06 0)'
         />
       </pattern>
       <image
