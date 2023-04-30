@@ -7,6 +7,7 @@ import SarahCarterAvatar from './assets/Subscribe/SarahCarterAvatar';
 import JennieYoonAvatar from './assets/Subscribe/JennieYoonAvatar';
 import MikaChanAvatar from './assets/Subscribe/MikaChanAvatar';
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 
 const MikaPost = dynamic(() => import('./assets/Subscribe/MikaPost'), {
   loading: () => (
@@ -52,7 +53,12 @@ const Subscribe = () => {
         <div className='items-center justify-around space-y-8 lg:flex lg:space-x-10 lg:space-y-0'>
           <div className='flex w-full flex-col items-center drop-shadow-xl md:w-auto'>
             <div className='justify-left flex w-full items-center rounded-t-2xl bg-[#E7E8E8] pb-5 pl-6 pt-6 md:w-[397px]'>
-              <SarahCarterAvatar />
+              <Image
+                src='/avatars/SarahAvatar.png'
+                alt='Sarah Carter'
+                width={36}
+                height={36}
+              />
               <div className='ml-[12px] '>
                 <span className='select-none text-lg font-medium text-[#000000]'>
                   Sarah Carter
@@ -72,7 +78,12 @@ const Subscribe = () => {
 
           <div className='flex w-full flex-col items-center drop-shadow-xl md:w-auto'>
             <div className='justify-left flex w-full items-center rounded-t-2xl bg-[#E7E8E8] pb-5 pl-6 pt-6 md:w-[397px]'>
-              <JennieYoonAvatar />
+              <Image
+                src='/avatars/JennieAvatar.png'
+                alt='Yoon Jennie'
+                width={36}
+                height={36}
+              />
               <div className='ml-[12px] '>
                 <span className='select-none text-lg font-medium text-[#000000]'>
                   Yoon Jennie
@@ -92,7 +103,12 @@ const Subscribe = () => {
 
           <div className='flex w-full flex-col items-center drop-shadow-xl md:w-auto'>
             <div className='justify-left flex w-full items-center rounded-t-2xl bg-[#E7E8E8] pb-5 pl-6 pt-6 md:w-[397px]'>
-              <MikaChanAvatar />
+              <Image
+                src='/avatars/MikaAvatar.png'
+                alt='Mika-chan'
+                width={36}
+                height={36}
+              />
               <div className='ml-[12px] '>
                 <span className='select-none text-lg font-medium text-[#000000]'>
                   Mika-chan
@@ -108,44 +124,6 @@ const Subscribe = () => {
               <MikaPost className='m-6 h-auto w-full md:h-[414px] md:w-[349px]' />
             </div>
           </div>
-
-          {/* <div className='flex  flex-col items-center drop-shadow-xl'>
-                <div className='justify-left flex w-full items-center rounded-t-2xl bg-[#E7E8E8] pb-5 pl-6 pt-6 md:w-[397px] '>
-                  <JennieYoonAvatar />
-                  <div className='ml-[12px] '>
-                    <span className='select-none text-lg font-medium text-[#000000]'>
-                      Yoon Jennie
-                    </span>
-                  </div>
-                </div>
-                <div className='flex flex-col items-center rounded-b-2xl bg-white'>
-                  <div className='w-full pt-5 md:w-[349px]'>
-                    <span className='select-none text-[16px] font-[400] text-[#000000] md:text-[15px]'>
-                      I was worried I would drop my phone in the water · 폰을
-                      물에 빠뜨릴까봐 걱정했는데
-                    </span>
-                  </div>
-                  <JenniePost className='m-6 h-[414px] w-full md:w-[349px]' />
-                </div>
-              </div>
-              <div className='flex  flex-col items-center drop-shadow-xl'>
-                <div className='justify-left flex w-full items-center rounded-t-2xl bg-[#E7E8E8] pb-5 pl-6 pt-6 md:w-[397px] '>
-                  <MikaChanAvatar />
-                  <div className='ml-[12px] '>
-                    <span className='select-none text-lg font-medium text-[#000000]'>
-                      Mika-chan
-                    </span>
-                  </div>
-                </div>
-                <div className='flex flex-col items-center rounded-b-2xl bg-white'>
-                  <div className='w-full pt-5 md:w-[349px]'>
-                    <span className=' select-none text-[16px] font-[400] text-[#000000] md:text-[15px]'>
-                      Enjoying the view? uwu · 景色を楽しんでいますか？uwu
-                    </span>
-                  </div>
-                  <MikaPost className='m-6 h-[414px] w-full md:w-[349px]' />
-                </div>
-              </div> */}
         </div>
       </div>
     </div>

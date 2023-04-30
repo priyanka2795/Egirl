@@ -23,11 +23,11 @@ const SvgComponent = (props: Props) => (
       <circle cx='18' cy='18' r='18' fill='#D9D9D9' />
     </mask>
     <g mask='url(#a)'>
-      <path fill='url(#pattern0)' d='M-2 0h43v50H-2z' />
+      <path fill='url(#pattern0helloworld)' d='M-2 0h43v50H-2z' />
     </g>
     <defs>
       <pattern
-        id='pattern0'
+        id='pattern0helloworld'
         patternContentUnits='objectBoundingBox'
         width='1'
         height='1'
