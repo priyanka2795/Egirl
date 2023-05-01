@@ -76,8 +76,8 @@ const Subscribe = () => {
                   with me!
                 </span>
               </div>
-              {/* <SarahPost className='m-6 h-auto w-full md:h-[414px] md:w-[349px]' /> */}
-              <div className='m-6 md:h-[414px] md:w-[349px]'>
+              <SarahPost className='m-6 h-auto w-full md:h-[414px] md:w-[349px]' />
+              {/* <div className='m-6 md:h-[414px] md:w-[349px]'>
                 <Image
                   loader={customLoader}
                   src='/avatars/SarahPost.png'
@@ -85,7 +85,7 @@ const Subscribe = () => {
                   width={349}
                   height={414}
                 />
-              </div>
+              </div> */}
             </div>
           </div>
 
@@ -110,8 +110,8 @@ const Subscribe = () => {
                   물에 빠뜨릴까봐 걱정했는데
                 </span>
               </div>
-              {/* <JenniePost className='m-6 h-auto w-full md:h-[414px] md:w-[349px]' /> */}
-              <div className='m-6 md:h-[414px] md:w-[349px]'>
+              <JenniePost className='m-6 h-auto w-full md:h-[414px] md:w-[349px]' />
+              {/* <div className='m-6 md:h-[414px] md:w-[349px]'>
                 <Image
                   loader={customLoader}
                   src='/avatars/JenniePost.png'
@@ -119,7 +119,7 @@ const Subscribe = () => {
                   width={349}
                   height={414}
                 />
-              </div>
+              </div> */}
             </div>
           </div>
 
