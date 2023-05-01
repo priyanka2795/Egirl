@@ -6,14 +6,17 @@ import CustomClothingLoading from './assets/Design/CustomClothingLoading';
 import DynamicBackgroundsLoading from './assets/Design/DynamicBackgroundsLoading';
 import UniquePersonalityLoading from './assets/Design/UniquePersonalityLoading';
 
-const CustomClothing = dynamic(() => import('./assets/Design/CustomClothing'), {
-  loading: () => (
-    <CustomClothingLoading className='h-[314px] w-[320px] lg:h-[555px] lg:w-[620px]' />
-  ),
-  ssr: false
-});
+const CustomClothingBase = dynamic(
+  () => import('./assets/Design/CustomClothing'),
+  {
+    loading: () => (
+      <CustomClothingLoading className='h-[314px] w-[320px] lg:h-[555px] lg:w-[620px]' />
+    ),
+    ssr: false
+  }
+);
 
-const DynamicBackground = dynamic(
+const DynamicBackgroundBase = dynamic(
   () => import('./assets/Design/DynamicBackgrounds'),
   {
     loading: () => (
@@ -23,7 +26,7 @@ const DynamicBackground = dynamic(
   }
 );
 
-const UniquePersonality = dynamic(
+const UniquePersonalityBase = dynamic(
   () => import('./assets/Design/UniquePersonality'),
   {
     loading: () => (
@@ -33,7 +36,13 @@ const UniquePersonality = dynamic(
   }
 );
 
-import React, { useState } from 'react';
+interface DynamicComponentProps {
+  className?: string;
+}
+
+type DynamicComponent = (props: DynamicComponentProps) => ReactElement | null;
+
+import React, { ReactElement, useEffect, useState } from 'react';
 
 const Design = () => {
   const [section1, setSection1] = useState(true);
@@ -63,6 +72,54 @@ const Design = () => {
       setSection3(true);
     }
   };
+
+  // Special Load for the Images which are huge (only want to load 1 at once instead of all on page load)
+
+  const [CustomClothing, setCustomClothing] = useState<DynamicComponent | null>(
+    null
+  );
+  const [DynamicBackground, setDynamicBackground] =
+    useState<DynamicComponent | null>(null);
+  const [UniquePersonality, setUniquePersonality] =
+    useState<DynamicComponent | null>(null);
+
+  useEffect(() => {
+    if (section1 && CustomClothing === null) {
+      const CustomClothingComponent = dynamic(
+        () => import('./assets/Design/CustomClothing'),
+        {
+          loading: () => (
+            <CustomClothingLoading className='h-[314px] w-[320px] lg:h-[555px] lg:w-[620px]' />
+          ),
+          ssr: false
+        }
+      );
+      setCustomClothing(() => () => <CustomClothingComponent />);
+    } else if (section2 && DynamicBackground === null) {
+      const DynamicBackgroundComponent = dynamic(
+        () => import('./assets/Design/DynamicBackgrounds'),
+        {
+          loading: () => (
+            <DynamicBackgroundsLoading className='h-[314px] w-[320px] lg:h-[555px] lg:w-[620px]' />
+          ),
+          ssr: false
+        }
+      );
+      setDynamicBackground(() => () => <DynamicBackgroundComponent />);
+    } else if (section3 && UniquePersonality === null) {
+      const UniquePersonalityComponent = dynamic(
+        () => import('./assets/Design/UniquePersonality'),
+        {
+          loading: () => (
+            <UniquePersonalityLoading className='h-[314px] w-[320px] lg:h-[555px] lg:w-[620px]' />
+          ),
+          ssr: false
+        }
+      );
+      setUniquePersonality(() => () => <UniquePersonalityComponent />);
+    }
+  }, [section1, section2, section3]);
+
   return (
     <>
       <div className='hidden w-full bg-[#FFFFFF] px-[40px] lg:flex lg:px-[100px] 2xl:px-[120px]'>
@@ -260,17 +317,17 @@ const Design = () => {
             </div>
             <div className='flex w-full justify-center'>
               <div className='hidden md:block md:w-full md:transition md:duration-100 '>
-                {section1 && (
+                {section1 && CustomClothing && (
                   <figure>
                     <CustomClothing className='h-[314px] w-[320px] lg:h-[555px] lg:w-[620px]' />
                   </figure>
                 )}
-                {section2 && (
+                {section2 && DynamicBackground && (
                   <figure>
                     <DynamicBackground className='h-[314px] w-[320px] lg:h-[555px] lg:w-[620px]' />
                   </figure>
                 )}
-                {section3 && (
+                {section3 && UniquePersonality && (
                   <figure>
                     <UniquePersonality className='h-[314px] w-[320px] lg:h-[555px] lg:w-[620px]' />
                   </figure>
@@ -324,7 +381,7 @@ const Design = () => {
             <div className='w-full'>
               <div>
                 <div className=''>
-                  <CustomClothing className='h-[200px] w-full md:hidden md:h-[314px]' />
+                  <CustomClothingBase className='h-[200px] w-full md:hidden md:h-[314px]' />
                   <div className='mt-[32px] flex md:hidden'>
                     <NextImage
                       width={60}
@@ -407,7 +464,7 @@ const Design = () => {
                   </div>
                 </div>
                 <div>
-                  <DynamicBackground className='h-[314px] w-full md:hidden' />
+                  <DynamicBackgroundBase className='h-[314px] w-full md:hidden' />
                   <div className='mt-[32px] flex md:hidden'>
                     <NextImage
                       width={60}
@@ -492,7 +549,7 @@ const Design = () => {
                   </div>
                 </div>
                 <div>
-                  <UniquePersonality className='h-[314px] w-full md:hidden' />
+                  <UniquePersonalityBase className='h-[314px] w-full md:hidden' />
                   <div className='mt-[32px] flex md:hidden'>
                     <NextImage
                       width={60}
@@ -579,17 +636,17 @@ const Design = () => {
             </div>
             <div className='hidden w-full items-center justify-center md:flex'>
               <div className='hidden md:block md:w-full md:transition md:duration-100 '>
-                {section1 && (
+                {section1 && CustomClothing && (
                   <figure>
                     <CustomClothing className='h-[314px] w-[320px] lg:h-[555px] lg:w-[620px]' />
                   </figure>
                 )}
-                {section2 && (
+                {section2 && DynamicBackground && (
                   <figure>
                     <DynamicBackground className='h-[314px] w-[320px] lg:h-[555px] lg:w-[620px]' />
                   </figure>
                 )}
-                {section3 && (
+                {section3 && UniquePersonality && (
                   <figure>
                     <UniquePersonality className='h-[314px] w-[320px] lg:h-[555px] lg:w-[620px]' />
                   </figure>
