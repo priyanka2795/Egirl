@@ -15,7 +15,7 @@ const Nav = ({ setBetaAccess, setSideNav }: Props) => {
       <div className='md: py-[40px] lg:py-6'>
         <div className='flex items-center justify-between'>
           <div className='flex'>
-            <Link href='/' prefetch={false}>
+            <Link href='/'>
               <a className=' py-1 pr-[40px]'>
                 {/* <span className='text-[64px] font-semibold text-[#181818] lg:text-[32px]'>
                 Egirls
@@ -36,7 +36,7 @@ const Nav = ({ setBetaAccess, setSideNav }: Props) => {
                 </button>
               </div>
               <div className='hidden lg:flex lg:items-center'>
-                <Link href='/creator-landing' prefetch={false}>
+                <Link href='/creator-landing'>
                   <a className='text-[32px]	font-[500] text-[#181818] transition duration-100 hover:text-[#5848BC] hover:underline hover:decoration-[#5848BC] hover:underline-offset-8 lg:text-[16px]'>
                     For creators
                   </a>
@@ -47,7 +47,7 @@ const Nav = ({ setBetaAccess, setSideNav }: Props) => {
           <div className='md:flex'>
             <div className='mr-6 hidden lg:flex lg:items-center'>
               <button>
-                <Link href='/contact-us' prefetch={false}>
+                <Link href='/contact-us'>
                   <span className='text-[32px] font-[500] text-[#181818] hover:text-[#5848BC] hover:underline hover:decoration-[#5848BC] hover:underline-offset-8 lg:text-[16px]'>
                     Contact
                   </span>

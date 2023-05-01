@@ -14,7 +14,7 @@ const Nav = ({ setBetaAccess, setSideNav }: Props) => {
       <div className='md: py-[40px] lg:py-6'>
         <div className='flex items-center justify-between'>
           <div className='flex'>
-            <Link href='/' prefetch={false}>
+            <Link href='/'>
               <a className=' py-1 pr-[40px]'>
                 {/* <span className='text-[64px] font-semibold text-[#181818] lg:text-[32px]'>
                 Egirls
@@ -24,7 +24,7 @@ const Nav = ({ setBetaAccess, setSideNav }: Props) => {
             </Link>
             <div className='lg:flex lg:items-center lg:space-x-4'>
               <div className='hidden lg:flex lg:items-center'>
-                <Link href='/' prefetch={false}>
+                <Link href='/'>
                   <span className='cursor-pointer text-[32px] font-[500] text-[white] transition duration-100 hover:text-[#5848BC] hover:underline hover:decoration-[#5848BC] hover:underline-offset-8 lg:text-[16px]'>
                     For users
                   </span>
@@ -32,7 +32,7 @@ const Nav = ({ setBetaAccess, setSideNav }: Props) => {
               </div>
               <div className='hidden lg:flex lg:items-center'>
                 <button>
-                  <Link href='/creator-landing' prefetch={false}>
+                  <Link href='/creator-landing'>
                     <span className='text-[32px] font-[500] text-[#5848BC] underline  decoration-[#5848BC] underline-offset-8 lg:text-[16px]'>
                       For creators
                     </span>
@@ -44,7 +44,7 @@ const Nav = ({ setBetaAccess, setSideNav }: Props) => {
           <div className='md:flex'>
             <div className='mr-6 hidden lg:flex lg:items-center'>
               <button>
-                <Link href='/contact-us' prefetch={false}>
+                <Link href='/contact-us'>
                   <span className='text-[32px] font-[500] text-[white] transition duration-100 hover:text-[#5848BC] hover:underline hover:decoration-[#5848BC] hover:underline-offset-8 lg:text-[16px]'>
                     Contact
                   </span>

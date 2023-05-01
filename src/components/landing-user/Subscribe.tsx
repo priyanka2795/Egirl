@@ -7,7 +7,7 @@ import SarahCarterAvatar from './assets/Subscribe/SarahCarterAvatar';
 import JennieYoonAvatar from './assets/Subscribe/JennieYoonAvatar';
 import MikaChanAvatar from './assets/Subscribe/MikaChanAvatar';
 import dynamic from 'next/dynamic';
-import Image from 'next/image';
+import Image, { ImageLoader } from 'next/image';
 
 const MikaPost = dynamic(() => import('./assets/Subscribe/MikaPost'), {
   loading: () => (
@@ -29,6 +29,10 @@ const JenniePost = dynamic(() => import('./assets/Subscribe/JenniePost'), {
   ),
   ssr: false
 });
+
+const customLoader: ImageLoader = ({ src }) => {
+  return src;
+};
 
 const Subscribe = () => {
   return (
@@ -72,7 +76,16 @@ const Subscribe = () => {
                   with me!
                 </span>
               </div>
-              <SarahPost className='m-6 h-auto w-full md:h-[414px] md:w-[349px]' />
+              {/* <SarahPost className='m-6 h-auto w-full md:h-[414px] md:w-[349px]' /> */}
+              <div className='m-6 md:h-[414px] md:w-[349px]'>
+                <Image
+                  loader={customLoader}
+                  src='/avatars/SarahPost.png'
+                  alt='Sarah Carter Post'
+                  width={349}
+                  height={414}
+                />
+              </div>
             </div>
           </div>
 
@@ -93,11 +106,20 @@ const Subscribe = () => {
             <div className='flex w-full flex-col items-center rounded-b-2xl bg-white px-[24px] md:w-[397px]'>
               <div className='w-full  pt-5 md:w-[349px]'>
                 <span className='select-none  text-[16px] font-[400] text-[#000000] md:text-[15px]'>
-                  I was worried I would drop my phone in the water · 폰을 물에
-                  빠뜨릴까봐 걱정했는데
+                  I was worried I was going to drop my phone in the water · 폰
+                  물에 빠뜨릴까봐 걱정했는데
                 </span>
               </div>
-              <JenniePost className='m-6 h-auto w-full md:h-[414px] md:w-[349px]' />
+              {/* <JenniePost className='m-6 h-auto w-full md:h-[414px] md:w-[349px]' /> */}
+              <div className='m-6 md:h-[414px] md:w-[349px]'>
+                <Image
+                  loader={customLoader}
+                  src='/avatars/JenniePost.png'
+                  alt='Jennie Post'
+                  width={349}
+                  height={414}
+                />
+              </div>
             </div>
           </div>
 
