@@ -9,7 +9,8 @@ const nextConfig = {
       'www.wikihow.com',
       'pbs.twimg.com',
       'upload.wikimedia.org',
-      'i.pinimg.com'
+      'i.pinimg.com',
+      'localhost'
     ]
   }
 };

@@ -58,7 +58,25 @@ const Header = () => {
               alt='headerIllus'
               className='h-[540px] w-[558px]'
             /> */}
-            <HeaderImg className=' h-[290px] w-full md:h-[540px] md:w-[558px]' />
+            {/* <HeaderImg className=' h-[290px] w-full md:h-[540px] md:w-[558px]' /> */}
+            {/* <div className='relative h-[290px] w-full bg-red-400 md:h-[540px] md:w-[558px]'>
+              <Image
+                alt={'Header Image'}
+                src='/assets2/UserLanding/HeaderImg/Header2x.png'
+                layout='fill'
+                objectFit='cover'
+              />
+            </div> */}
+
+            <div className='relative h-[290px] w-[280px] sm:w-[312px] md:h-[540px] md:w-[558px]'>
+              <Image
+                src={'/assets2/UserLanding/HeaderImg/Header2x.png'}
+                alt='Your image description'
+                width='558'
+                height='540'
+                className='h-[290px] w-[280px] sm:w-[312px] md:h-[540px] md:w-[558px]'
+              />
+            </div>
           </div>
         </div>
       </div>
