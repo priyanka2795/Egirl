@@ -42,24 +42,22 @@ const Header = () => {
           </Link>
         </div>
       </div>
-      <div className='flex w-full justify-center'>
-        <div className='flex shrink-0 items-center justify-center pb-[40px] pt-[48px] md:pb-[74px] md:pt-[40px] lg:py-[80px]'>
-          <div className='flex shrink-0'>
-            {/* <NextImage
+      <div className='flex w-full items-center justify-center pb-[40px] pt-[48px] md:pb-[74px] md:pt-[40px] lg:py-[80px]'>
+        {/* <NextImage
               width={558}
               height={540}
               src={'/assets/svgImages/userHeader.svg'}
               alt={'user header'}
             /> */}
-            {/* <Image
+        {/* <Image
               src='/assets/final/userHeader.svg'
               width='558px'
               height='540'
               alt='headerIllus'
               className='h-[540px] w-[558px]'
             /> */}
-            {/* <HeaderImg className=' h-[290px] w-full md:h-[540px] md:w-[558px]' /> */}
-            {/* <div className='relative h-[290px] w-full bg-red-400 md:h-[540px] md:w-[558px]'>
+        {/* <HeaderImg className=' h-[290px] w-full md:h-[540px] md:w-[558px]' /> */}
+        {/* <div className='relative h-[290px] w-full bg-red-400 md:h-[540px] md:w-[558px]'>
               <Image
                 alt={'Header Image'}
                 src='/assets2/UserLanding/HeaderImg/Header2x.png'
@@ -68,16 +66,22 @@ const Header = () => {
               />
             </div> */}
 
-            <div className='relative h-[290px] w-[280px] sm:w-[312px] md:h-[540px] md:w-[558px]'>
-              <Image
-                src={'/assets2/UserLanding/HeaderImg/Header2x.png'}
-                alt='Your image description'
-                width='558'
-                height='540'
-                className='h-[290px] w-[280px] sm:w-[312px] md:h-[540px] md:w-[558px]'
-              />
-            </div>
-          </div>
+        <div className='hidden md:flex'>
+          <Image
+            src={'/assets2/UserLanding/HeaderImg/Header2x.png'}
+            layout='fixed'
+            width={558}
+            height={540}
+          />
+        </div>
+        <div className='relative h-[300px] w-full sm:h-[400px] md:hidden'>
+          <Image
+            src={'/assets2/UserLanding/HeaderImg/Header2x.png'}
+            layout='fill'
+            objectFit='contain'
+            objectPosition='center'
+            quality={75}
+          />
         </div>
       </div>
     </div>
