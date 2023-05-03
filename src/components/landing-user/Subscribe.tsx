@@ -30,13 +30,8 @@ const JenniePost = dynamic(() => import('./assets/Subscribe/JenniePost'), {
   ssr: false
 });
 
-const customLoader: ImageLoader = ({ src }) => {
-  return src;
-};
-
 const Subscribe = () => {
   return (
-    //
     <div className='bg-[#F6F6F6] px-[24px] py-20 md:px-[40px] lg:px-[100px] 2xl:px-[120px]'>
       <div className=''>
         <div className='flex justify-center lg:justify-start'>
@@ -76,16 +71,23 @@ const Subscribe = () => {
                   with me!
                 </span>
               </div>
-              <SarahPost className='m-6 h-auto w-full md:h-[414px] md:w-[349px]' />
-              {/* <div className='m-6 md:h-[414px] md:w-[349px]'>
+              {/* <SarahPost className='m-6 h-auto w-full md:h-[414px] md:w-[349px]' /> */}
+              <div className='m-6 hidden md:flex'>
                 <Image
-                  loader={customLoader}
-                  src='/avatars/SarahPost.png'
-                  alt='Sarah Carter Post'
+                  src={'/assets2/UserLanding/SarahPost/SarahPost2x.png'}
+                  layout='fixed'
                   width={349}
                   height={414}
                 />
-              </div> */}
+              </div>
+              <div className='m-6 w-full md:hidden'>
+                <Image
+                  src={'/assets2/UserLanding/SarahPost/SarahPost2x.png'}
+                  layout='responsive'
+                  width={349}
+                  height={414}
+                />
+              </div>
             </div>
           </div>
 
@@ -110,16 +112,23 @@ const Subscribe = () => {
                   물에 빠뜨릴까봐 걱정했는데
                 </span>
               </div>
-              <JenniePost className='m-6 h-auto w-full md:h-[414px] md:w-[349px]' />
-              {/* <div className='m-6 md:h-[414px] md:w-[349px]'>
+              {/* <JenniePost className='m-6 h-auto w-full md:h-[414px] md:w-[349px]' /> */}
+              <div className='m-6 hidden md:flex'>
                 <Image
-                  loader={customLoader}
-                  src='/avatars/JenniePost.png'
-                  alt='Jennie Post'
+                  src={'/assets2/UserLanding/JenniePost/JenniePost2x.png'}
+                  layout='fixed'
                   width={349}
                   height={414}
                 />
-              </div> */}
+              </div>
+              <div className='m-6 w-full md:hidden'>
+                <Image
+                  src={'/assets2/UserLanding/JenniePost/JenniePost2x.png'}
+                  layout='responsive'
+                  width={349}
+                  height={414}
+                />
+              </div>
             </div>
           </div>
 
@@ -143,7 +152,23 @@ const Subscribe = () => {
                   Enjoying the view? uwu · 景色を楽しんでいますか？uwu
                 </span>
               </div>
-              <MikaPost className='m-6 h-auto w-full md:h-[414px] md:w-[349px]' />
+              {/* <MikaPost className='m-6 h-auto w-full md:h-[414px] md:w-[349px]' /> */}
+              <div className='m-6 hidden md:flex'>
+                <Image
+                  src={'/assets2/UserLanding/MikaPost/MikaPost2x.png'}
+                  layout='fixed'
+                  width={349}
+                  height={414}
+                />
+              </div>
+              <div className='m-6 w-full md:hidden'>
+                <Image
+                  src={'/assets2/UserLanding/MikaPost/MikaPost2x.png'}
+                  layout='responsive'
+                  width={349}
+                  height={414}
+                />
+              </div>
             </div>
           </div>
         </div>

@@ -5,6 +5,7 @@ import TwitterIcon from './assets/icons/TwitterIcon';
 import InstaIcon from './assets/icons/InstaIcon';
 import FooterImg from './assets/Footer/FooterImg';
 import ExperienceTheFuture from './assets/ExperienceTheFuture';
+import Image from 'next/image';
 
 const Footer = () => {
   return (
@@ -32,7 +33,13 @@ const Footer = () => {
           </button>
         </div>
         <div className='hidden justify-end lg:flex '>
-          <FooterImg />
+          {/* <FooterImg /> */}
+          <Image
+            src={'/assets2/Common/FooterImg/FooterImg2x.png'}
+            layout='fixed'
+            width={667}
+            height={625}
+          />
         </div>
       </div>
       <div className='mt-[75px] flex w-full flex-col justify-between border-b border-white/[.16] lg:flex-row'>
