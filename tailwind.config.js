@@ -8,6 +8,7 @@ module.exports = {
   theme: {
     screens: {
       xs: '300px', // Mobile (iPhone 3 - iPhone XS Max).
+      userCardsXS: '390px', // 390 pixels for card sizing
       sm: '576px', // Mobile (matches max: iPhone 11 Pro Max landscape @ 896px).
       md: '898px', // Tablet (matches max: iPad Pro @ 1112px).
       lg: '1200px', // Desktop smallest.

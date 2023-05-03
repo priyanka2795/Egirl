@@ -14,7 +14,7 @@ const JennieCard = () => {
           />
         </div>
         <div className='flex w-full justify-center md:hidden'>
-          <div className='relative h-[400px] w-full sm:w-[397px]'>
+          <div className='relative h-[390px] w-full min-[380px]:h-[466px] sm:w-[397px]'>
             <Image
               src={'/assets2/UserLanding/JennieCard/JennieCard2x.png'}
               layout='fill'
@@ -24,16 +24,19 @@ const JennieCard = () => {
             />
           </div>
         </div>
-
-        <div className='mt-[12px]'>
-          <span className='select-none text-[18px] font-[600] text-[#000000] md:text-[24px]'>
-            Jennie Yoon
-          </span>
+        <div className='flex justify-center'>
+          <div className='mt-[12px] w-full min-[380px]:w-[390px]'>
+            <span className='select-none text-[18px] font-[600] text-[#000000] md:text-[24px]'>
+              Jennie Yoon
+            </span>
+          </div>
         </div>
-        <div className='mt-[2px]'>
-          <span className='select-none text-[14px] font-[500] text-[#949698] md:text-[14px]'>
-            Seoul, South Korea{' '}
-          </span>
+        <div className='flex justify-center'>
+          <div className='mt-[2px]  w-full min-[380px]:w-[390px]'>
+            <span className='select-none text-[14px] font-[500] text-[#949698] md:text-[14px]'>
+              Seoul, South Korea
+            </span>
+          </div>
         </div>
       </div>
     </div>
