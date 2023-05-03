@@ -1,6 +1,5 @@
 import dynamic from 'next/dynamic';
 import DiscoverPlaceholder from './assets/Discover/DiscoverPlaceholder';
-
 const SarahCard = dynamic(() => import('./assets/Discover/SarahCard'), {
   loading: () => (
     <div className='flex items-center justify-center'>
@@ -50,9 +49,26 @@ const Discover = () => {
         </div>
         <div className='mt-10'>
           <div className='items-center justify-around space-x-4 space-y-[48px] lg:flex lg:space-y-0'>
-            <div className='o-1'>
-              <SarahCard />
+            <SarahCard />
+            {/* <div className='hidden justify-center md:flex'>
+              <Image
+                src={'/assets2/UserLanding/SarahCard/SarahCard2x.png'}
+                layout='fixed'
+                width={397}
+                height={466}
+              />
             </div>
+            <div className='flex shrink-0 justify-center md:hidden'>
+              <div className='relative h-[466px] w-full  sm:w-[397px]'>
+                <Image
+                  src={'/assets2/UserLanding/SarahCard/SarahCard2x.png'}
+                  layout='fill'
+                  objectFit='contain'
+                  objectPosition='center'
+                  quality={75}
+                />
+              </div>
+            </div> */}
             <JennieCard />
             <MikaCard />
           </div>

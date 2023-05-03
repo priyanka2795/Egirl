@@ -1,10 +1,29 @@
-import MikaChan from './MikaChan';
+import Image from 'next/image';
 
 const MikaCard = () => {
   return (
     <div className='flex justify-center'>
-      <div>
-        <MikaChan className='h-[466px] w-full md:w-[397px]'></MikaChan>
+      <div className='w-full'>
+        {/* <MikaChan className='h-[466px] w-full md:w-[397px]'></MikaChan> */}
+        <div className='hidden justify-center md:flex'>
+          <Image
+            src={'/assets2/UserLanding/MikaCard/MikaCard2x.png'}
+            layout='fixed'
+            width={397}
+            height={466}
+          />
+        </div>
+        <div className='flex w-full justify-center md:hidden'>
+          <div className='relative h-[400px] w-full sm:w-[397px]'>
+            <Image
+              src={'/assets2/UserLanding/MikaCard/MikaCard2x.png'}
+              layout='fill'
+              objectFit='contain'
+              objectPosition='center'
+              quality={75}
+            />
+          </div>
+        </div>
 
         <div className='mt-[12px]'>
           <span className='select-none text-[18px] font-[600] text-[#000000] md:text-[24px]'>

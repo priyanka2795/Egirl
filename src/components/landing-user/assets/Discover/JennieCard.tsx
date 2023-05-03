@@ -1,10 +1,29 @@
-import JennieYoon from './JennieYoon';
+import Image from 'next/image';
 
 const JennieCard = () => {
   return (
     <div className='flex justify-center'>
-      <div>
-        <JennieYoon className='h-[466px] w-full md:w-[397px]'></JennieYoon>
+      <div className='w-full'>
+        {/* <JennieYoon className='h-[466px] w-full md:w-[397px]'></JennieYoon> */}
+        <div className='hidden justify-center md:flex'>
+          <Image
+            src={'/assets2/UserLanding/JennieCard/JennieCard2x.png'}
+            layout='fixed'
+            width={397}
+            height={466}
+          />
+        </div>
+        <div className='flex w-full justify-center md:hidden'>
+          <div className='relative h-[400px] w-full sm:w-[397px]'>
+            <Image
+              src={'/assets2/UserLanding/JennieCard/JennieCard2x.png'}
+              layout='fill'
+              objectFit='contain'
+              objectPosition='center'
+              quality={75}
+            />
+          </div>
+        </div>
 
         <div className='mt-[12px]'>
           <span className='select-none text-[18px] font-[600] text-[#000000] md:text-[24px]'>
