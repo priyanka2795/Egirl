@@ -13,7 +13,7 @@ export function AppHead(): JSX.Element {
         name='viewport'
         content='width=device-width, initial-scale=1, shrink-to-fit=no'
       /> */}
-      <meta name='viewport' content='width=1000'></meta>
+      {/* <meta name='viewport' content='width=1000'></meta> */}
     </Head>
   );
 }
