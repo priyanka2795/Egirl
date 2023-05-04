@@ -53,34 +53,34 @@ const Footer = () => {
           </div>
           <div className='select-none'>
             <h3 className='pb-3 text-[#646668]'>FOLLOW US</h3>
-            <div className='flex gap-x-6'>
+            <div className='flex gap-x-4 sm:gap-x-6'>
               <a
                 href='https://discord.gg/uvAaAkbhEm'
                 target='_blank'
                 rel='noopener noreferrer'
               >
-                <DiscordIcon className='h-[24x] w-[24px]' />
+                <DiscordIcon className='h-[20px] w-[20px] sm:h-[24x] sm:w-[24px]' />
               </a>
               <a
                 href='https://twitter.com/egirlsai'
                 target='_blank'
                 rel='noopener noreferrer'
               >
-                <TwitterIcon className='h-[24x] w-[24px]' />
+                <TwitterIcon className='h-[20px] w-[20px] sm:h-[24x] sm:w-[24px]' />
               </a>
               <a
                 href='https://www.instagram.com/egirls_ai/'
                 target='_blank'
                 rel='noopener noreferrer'
               >
-                <InstaIcon className='h-[24x] w-[24px]' />
+                <InstaIcon className='h-[20px] w-[20px] sm:h-[24x] sm:w-[24px]' />
               </a>
               <a
                 href='https://www.reddit.com/r/EgirlsAI/'
                 target='_blank'
                 rel='noopener noreferrer'
               >
-                <RedditIcon className='h-[24x] w-[24px]' />
+                <RedditIcon className='h-[20px] w-[20px] sm:h-[24x] sm:w-[24px]' />
               </a>
             </div>
           </div>
