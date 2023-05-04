@@ -220,24 +220,16 @@ export default function CreatorLanding(): JSX.Element {
       <div className='bg-[#F6F6F6] px-24 pt-[96px] lg:px-[100px] 2xl:px-[120px]'>
         <div className='py-20'>
           <div className='gap-[50px] sm:grid sm:grid-cols-1 md:grid md:grid-cols-2 md:max-xl:grid md:max-lg:grid-cols-1 lg:grid lg:grid-cols-2'>
-            <div className='flex flex-col items-center lg:items-start'>
-              <div className='flex  items-center rounded-[8px] bg-[#EAE8FD] px-[8px] py-[12px]'>
-                {/* <ExperienceTheFuture className='h-[40px] w-[40px] pr-[8px] lg:h-[20px] lg:w-[20px]' /> */}
-                <div className='mr-[8px] flex justify-center'>
-                  <Image
-                    src='/assets/final/starIcon.svg'
-                    height='20'
-                    width='20'
-                    alt='starIcon'
-                  />
-                </div>
+            <div className=''>
+              <div className='flex w-fit select-none items-center justify-start rounded-[8px] bg-[#EAE8FD] px-6 py-2'>
+                <StarIcon className='h-[40px] w-[40px] fill-[#5848BC] pr-[8px] lg:h-[20px] lg:w-[20px]'></StarIcon>
                 <div className='flex '>
-                  <span className='text-[14px] font-[500] text-[#5848BC] md:text-[15px]'>
+                  <span className='text-[32px] font-[500] text-[#5848BC] lg:text-[16px]'>
                     contact us
                   </span>
                 </div>
               </div>
-              <div className='select-none pt-12 text-center lg:text-start'>
+              <div className='select-none pt-12'>
                 <span className='text-[80px] font-[600] text-black sm:text-[70px] md:text-[60px] lg:text-[56px]'>
                   LET'S START A
                 </span>
@@ -248,7 +240,7 @@ export default function CreatorLanding(): JSX.Element {
                 </div>
               </div>
               <div className='w-fit pt-12'>
-                <span className='flex select-none text-center text-[36px] font-[400] text-black lg:text-start lg:text-[18px]'>
+                <span className='select-none text-[36px] font-[400] text-black lg:text-[18px]'>
                   Are you interested in becoming our partner or simply want to
                   share your thoughts about our work? Please feel free to
                   contact us using the form on the right. We’ll get back to you
@@ -262,13 +254,13 @@ export default function CreatorLanding(): JSX.Element {
                   className='mb-4 rounded bg-white px-8 pb-8 pt-6 shadow-md'
                   onSubmit={sendEmailFn}
                 >
-                  <div className='items-around mb-4 flex-col space-y-4 sm:flex sm:items-start sm:justify-around sm:space-x-4 sm:space-y-0'>
-                    <div className='w-full sm:w-1/2'>
+                  <div className='mb-4 flex justify-around space-x-4'>
+                    <div className='w-1/2'>
                       <label className='mb-2 text-[32px] font-[500] text-[#646668] lg:text-[13px]'>
                         Name
                       </label>
                       <input
-                        className='w-full	rounded border-none bg-[#F6F6F6] px-6 py-[16px] text-[32px] text-gray-700 lg:px-3 lg:py-2 lg:text-[13px]'
+                        className='w-full	rounded border-none bg-[#F6F6F6] px-3 py-2 text-[32px] text-gray-700 lg:text-[13px]'
                         id='username'
                         type='text'
                         placeholder='Your name'
@@ -276,12 +268,12 @@ export default function CreatorLanding(): JSX.Element {
                         onChange={onChangeName}
                       />
                     </div>
-                    <div className='w-full sm:w-1/2'>
+                    <div className='w-1/2'>
                       <label className='mb-2 text-[32px] font-[500] text-[#646668] lg:text-[13px]'>
                         Email
                       </label>
                       <input
-                        className='w-full	rounded border-none bg-[#F6F6F6] px-6 py-[16px] text-[32px] text-gray-700 lg:px-3 lg:py-2 lg:text-[13px]'
+                        className='w-full	rounded border-none bg-[#F6F6F6] px-3 py-2 text-[32px] text-gray-700 lg:text-[13px]'
                         id='email'
                         type='text'
                         placeholder='example@mail.com'
@@ -295,7 +287,7 @@ export default function CreatorLanding(): JSX.Element {
                       Message
                     </label>
                     <textarea
-                      className='mb-3 h-[118px]	w-full rounded border-none bg-[#F6F6F6] px-6 py-[16px] text-[32px] text-gray-700 lg:px-3 lg:py-2 lg:text-[13px]'
+                      className='mb-3 h-[118px]	w-full rounded border-none bg-[#F6F6F6] px-3 py-2 text-[32px] text-gray-700 lg:text-[13px]'
                       id='message'
                       placeholder='Your message'
                       style={{ resize: 'none' }}
