@@ -14,7 +14,6 @@ import Logo from '@components/landing-user/assets/Logo';
 import { ChangeEvent } from 'react';
 import PopupJoinDiscord from '@components/landing-common/PopupJoinDiscord';
 import Image from 'next/image';
-import ExperienceTheFuture from '@components/landing-user/assets/ExperienceTheFuture';
 
 export function LandingLayout({ children }: LayoutProps): JSX.Element {
   return <div className='w-full bg-white'>{children}</div>;
@@ -73,7 +72,7 @@ export default function CreatorLanding(): JSX.Element {
   useEffect(() => {});
 
   return (
-    <div className=''>
+    <div className='grid h-screen grid-rows-[1fr,auto] bg-white'>
       <SEO title='Egirls' description='' />
 
       {/* Nav Bar */}
@@ -83,6 +82,9 @@ export default function CreatorLanding(): JSX.Element {
             <div className='flex'>
               <Link href='/'>
                 <a className=' py-1 pr-[40px]'>
+                  {/* <span className='text-[64px] font-semibold text-[#181818] lg:text-[32px]'>
+                Egirls
+              </span> */}
                   {/* <Logo /> */}
                   <Image
                     src='/assets/final/navLogo.svg'
@@ -219,22 +221,26 @@ export default function CreatorLanding(): JSX.Element {
         <div className='py-20'>
           <div className='gap-[50px] sm:grid sm:grid-cols-1 md:grid md:grid-cols-2 md:max-xl:grid md:max-lg:grid-cols-1 lg:grid lg:grid-cols-2'>
             <div className=''>
-              <div className='flex justify-start'>
-                <div className='flex select-none items-center justify-center rounded-lg bg-[#E4E3EC] px-[10px] py-[8px] text-[15px] text-[#5848BC] md:px-[12px]'>
-                  <ExperienceTheFuture className='mr-[6px] h-[16px] w-[16px] md:mr-[8px] md:h-[20px] md:w-[20px]' />
-                  become a creator
+              <div className='flex w-fit select-none items-center justify-start rounded-[8px] bg-[#EAE8FD] px-6 py-2'>
+                <StarIcon className='h-[40px] w-[40px] fill-[#5848BC] pr-[8px] lg:h-[20px] lg:w-[20px]'></StarIcon>
+                <div className='flex '>
+                  <span className='text-[32px] font-[500] text-[#5848BC] lg:text-[16px]'>
+                    contact us
+                  </span>
                 </div>
               </div>
-              <div className='select-none pt-6'>
-                <span className='text-[32px] font-[600] text-black sm:text-[56px] md:text-[60px] lg:text-[56px]'>
-                  LET'S START A{' '}
+              <div className='select-none pt-12'>
+                <span className='text-[80px] font-[600] text-black sm:text-[70px] md:text-[60px] lg:text-[56px]'>
+                  LET'S START A
                 </span>
-                <span className='text-[80px] font-[500] italic text-black sm:text-[70px] md:text-[60px] lg:text-[56px]'>
-                  CONVERSATION!
-                </span>
+                <div>
+                  <span className='text-[80px] font-[500] italic text-black sm:text-[70px] md:text-[60px] lg:text-[56px]'>
+                    CONVERSATION!
+                  </span>
+                </div>
               </div>
-              <div className='w-fit pt-6'>
-                <span className='select-none text-[16px] font-[400] text-black sm:text-[18px] '>
+              <div className='w-fit pt-12'>
+                <span className='select-none text-[36px] font-[400] text-black lg:text-[18px]'>
                   Are you interested in becoming our partner or simply want to
                   share your thoughts about our work? Please feel free to
                   contact us using the form on the right. We’ll get back to you
@@ -242,19 +248,19 @@ export default function CreatorLanding(): JSX.Element {
                 </span>
               </div>
             </div>
-            <div className=''>
+            <div className='min-[200px]:pt-10'>
               <div className='w-full'>
                 <form
-                  className='mb-4 rounded-2xl bg-white px-8 pb-8 pt-6'
+                  className='mb-4 rounded bg-white px-8 pb-8 pt-6 shadow-md'
                   onSubmit={sendEmailFn}
                 >
                   <div className='mb-4 flex justify-around space-x-4'>
                     <div className='w-1/2'>
-                      <label className='mb-[6px] flex text-[13px] font-[500] text-[#646668]'>
+                      <label className='mb-2 text-[32px] font-[500] text-[#646668] lg:text-[13px]'>
                         Name
                       </label>
                       <input
-                        className='w-full rounded-lg border-none bg-[#F6F6F6] px-5 py-[16px] text-[16px] text-gray-700 md:px-6'
+                        className='w-full	rounded border-none bg-[#F6F6F6] px-3 py-2 text-[32px] text-gray-700 lg:text-[13px]'
                         id='username'
                         type='text'
                         placeholder='Your name'
@@ -263,11 +269,11 @@ export default function CreatorLanding(): JSX.Element {
                       />
                     </div>
                     <div className='w-1/2'>
-                      <label className='mb-[6px] flex text-[13px] font-[500] text-[#646668]'>
+                      <label className='mb-2 text-[32px] font-[500] text-[#646668] lg:text-[13px]'>
                         Email
                       </label>
                       <input
-                        className='w-full rounded-lg border-none bg-[#F6F6F6] px-5 py-[16px] text-[16px] text-gray-700 md:px-6'
+                        className='w-full	rounded border-none bg-[#F6F6F6] px-3 py-2 text-[32px] text-gray-700 lg:text-[13px]'
                         id='email'
                         type='text'
                         placeholder='example@mail.com'
@@ -277,11 +283,11 @@ export default function CreatorLanding(): JSX.Element {
                     </div>
                   </div>
                   <div className='mb-6'>
-                    <label className='mb-[6px] flex text-[13px] font-[500] text-[#646668]'>
+                    <label className='mb-2 text-[32px] font-[500] text-[#646668] lg:text-[13px]'>
                       Message
                     </label>
                     <textarea
-                      className='mb-3 h-[118px]	w-full rounded-lg border-none bg-[#F6F6F6] px-5 py-[16px] text-[16px] text-gray-700 md:px-6'
+                      className='mb-3 h-[118px]	w-full rounded border-none bg-[#F6F6F6] px-3 py-2 text-[32px] text-gray-700 lg:text-[13px]'
                       id='message'
                       placeholder='Your message'
                       style={{ resize: 'none' }}
@@ -290,7 +296,7 @@ export default function CreatorLanding(): JSX.Element {
                     />
                   </div>
                   <div className='flex items-center justify-center'>
-                    <button className='w-full rounded-lg bg-[#5848BC] px-[18px] py-[16px] transition duration-100 hover:bg-[#4D37DA]'>
+                    <button className='w-full rounded-[12px] bg-[#5848BC] px-[18px] py-[10px] transition duration-100 hover:bg-[#4D37DA]'>
                       <span className='text-[48px] font-[500] text-white lg:text-[16px]'>
                         Send a message
                       </span>
