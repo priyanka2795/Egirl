@@ -3,6 +3,7 @@ import { StarIcon, Bars2Icon, XMarkIcon } from '@heroicons/react/20/solid';
 import HeaderIllustration from './assets/Header/HeaderIllustration';
 import ExperienceTheFuture from '../landing-user/assets/ExperienceTheFuture';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Header = () => {
   return (
@@ -34,7 +35,24 @@ const Header = () => {
         </div>
       </div>
       <div className='mt-[48px] flex items-center justify-center md:mb-[74px] md:mt-[40px] lg:my-[80px]'>
-        <HeaderIllustration className='h-auto w-full lg:w-[578px]' />
+        {/* <HeaderIllustration className='h-auto w-full lg:w-[578px]' /> */}
+        <div className='hidden md:flex'>
+          <Image
+            src={'/assets2/CreatorLanding/HeaderImg/HeaderImg2x.png'}
+            layout='fixed'
+            width={558}
+            height={540}
+          />
+        </div>
+        <div className='relative h-[300px] w-full sm:h-[400px] md:hidden'>
+          <Image
+            src={'/assets2/CreatorLanding/HeaderImg/HeaderImg2x.png'}
+            layout='fill'
+            objectFit='contain'
+            objectPosition='center'
+            quality={75}
+          />
+        </div>
       </div>
     </div>
   );

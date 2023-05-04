@@ -319,17 +319,77 @@ const Design = () => {
               <div className='hidden md:block md:w-full md:transition md:duration-100 '>
                 {section1 && CustomClothing && (
                   <figure>
-                    <CustomClothing className='h-[314px] w-[320px] lg:h-[555px] lg:w-[620px]' />
+                    {/* <CustomClothing className='h-[314px] w-[320px] lg:h-[555px] lg:w-[620px]' /> */}
+                    <div className='hidden lg:flex'>
+                      <Image
+                        src={
+                          '/assets2/CreatorLanding/CustomClothing/CustomClothing2x.png'
+                        }
+                        layout='fixed'
+                        width={620}
+                        height={555}
+                      />
+                    </div>
+                    <div className='lg:hidden'>
+                      <Image
+                        src={
+                          '/assets2/CreatorLanding/CustomClothing/CustomClothing2x.png'
+                        }
+                        layout='fixed'
+                        width={320}
+                        height={314}
+                      />
+                    </div>
                   </figure>
                 )}
                 {section2 && DynamicBackground && (
                   <figure>
-                    <DynamicBackground className='h-[314px] w-[320px] lg:h-[555px] lg:w-[620px]' />
+                    {/* <DynamicBackground className='h-[314px] w-[320px] lg:h-[555px] lg:w-[620px]' /> */}
+                    <div className='hidden lg:flex'>
+                      <Image
+                        src={
+                          '/assets2/CreatorLanding/DynamicBackgrounds/DynamicBackgrounds2x.png'
+                        }
+                        layout='fixed'
+                        width={620}
+                        height={555}
+                      />
+                    </div>
+                    <div className='lg:hidden'>
+                      <Image
+                        src={
+                          '/assets2/CreatorLanding/DynamicBackgrounds/DynamicBackgrounds2x.png'
+                        }
+                        layout='fixed'
+                        width={320}
+                        height={314}
+                      />
+                    </div>
                   </figure>
                 )}
                 {section3 && UniquePersonality && (
                   <figure>
-                    <UniquePersonality className='h-[314px] w-[320px] lg:h-[555px] lg:w-[620px]' />
+                    {/* <UniquePersonality className='h-[314px] w-[320px] lg:h-[555px] lg:w-[620px]' /> */}
+                    <div className='hidden lg:flex'>
+                      <Image
+                        src={
+                          '/assets2/CreatorLanding/UniquePersonality/UniquePersonality2x.png'
+                        }
+                        layout='fixed'
+                        width={620}
+                        height={555}
+                      />
+                    </div>
+                    <div className='lg:hidden'>
+                      <Image
+                        src={
+                          '/assets2/CreatorLanding/UniquePersonality/UniquePersonality2x.png'
+                        }
+                        layout='fixed'
+                        width={320}
+                        height={314}
+                      />
+                    </div>
                   </figure>
                 )}
               </div>
@@ -381,7 +441,20 @@ const Design = () => {
             <div className='w-full'>
               <div>
                 <div className=''>
-                  <CustomClothingBase className='h-[200px] w-full md:hidden md:h-[314px]' />
+                  {/* <CustomClothingBase className='h-[200px] w-full md:hidden md:h-[314px]' /> */}
+                  <div className='flex w-full justify-center md:hidden'>
+                    <div className='relative h-[241px] w-full min-[380px]:h-[466px]'>
+                      <Image
+                        src={
+                          '/assets2/UserLanding/CustomClothing/CustomClothing2x.png'
+                        }
+                        layout='fill'
+                        objectFit='contain'
+                        objectPosition='center'
+                        quality={75}
+                      />
+                    </div>
+                  </div>
                   <div className='mt-[32px] flex md:hidden'>
                     <NextImage
                       width={60}
@@ -464,7 +537,20 @@ const Design = () => {
                   </div>
                 </div>
                 <div>
-                  <DynamicBackgroundBase className='h-[314px] w-full md:hidden' />
+                  {/* <DynamicBackgroundBase className='h-[314px] w-full md:hidden' /> */}
+                  <div className='flex w-full justify-center md:hidden'>
+                    <div className='relative h-[241px] w-full min-[380px]:h-[466px]'>
+                      <Image
+                        src={
+                          '/assets2/UserLanding/DynamicBackgrounds/DynamicBackgrounds2x.png'
+                        }
+                        layout='fill'
+                        objectFit='contain'
+                        objectPosition='center'
+                        quality={75}
+                      />
+                    </div>
+                  </div>
                   <div className='mt-[32px] flex md:hidden'>
                     <NextImage
                       width={60}
@@ -549,7 +635,20 @@ const Design = () => {
                   </div>
                 </div>
                 <div>
-                  <UniquePersonalityBase className='h-[314px] w-full md:hidden' />
+                  {/* <UniquePersonalityBase className='h-[314px] w-full md:hidden' /> */}
+                  <div className='flex w-full justify-center md:hidden'>
+                    <div className='relative h-[241px] w-full min-[380px]:h-[466px]'>
+                      <Image
+                        src={
+                          '/assets2/UserLanding/UniquePersonality/UniquePersonality2x.png'
+                        }
+                        layout='fill'
+                        objectFit='contain'
+                        objectPosition='center'
+                        quality={75}
+                      />
+                    </div>
+                  </div>
                   <div className='mt-[32px] flex md:hidden'>
                     <NextImage
                       width={60}

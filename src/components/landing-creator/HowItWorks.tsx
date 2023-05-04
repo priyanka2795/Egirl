@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic';
 import Right1Loading from './assets/HowItWorks/Right1Loading';
 import Left1Loading from './assets/HowItWorks/Left1Loading';
 import Right2Loading from './assets/HowItWorks/Right2Loading';
+import Image from 'next/image';
 
 const Left1 = dynamic(() => import('./assets/HowItWorks/Left1'), {
   loading: () => <Left1Loading />,
@@ -34,7 +35,7 @@ const Header = () => {
       {/* section 1 */}
       <div className='flex flex-col gap-y-[120px]'>
         <div className='flex flex-col'>
-          <div className='mx-[60px] mt-[32px] flex flex-col-reverse justify-between md:mt-[80px] lg:flex-row'>
+          <div className='mx-[60px] mt-[32px] flex flex-col-reverse justify-between gap-x-[40px] md:mt-[80px] lg:flex-row'>
             <div className='flex select-none flex-col justify-center'>
               <button className='mb-[40px] w-min rounded-lg bg-[#EAE8FD] px-[20px] py-[8px] text-[#7362C6]'>
                 <span className='max-lines-1'>STEP&nbsp;1</span>
@@ -57,14 +58,46 @@ const Header = () => {
                 </div>
               </div>
             </div>
-            <Right1 className='mb-[40px] h-[620px] w-full p-1 lg:mb-0 lg:w-[500px]' />
+            {/* <Right1 className='mb-[40px] h-[620px] w-full p-1 lg:mb-0 lg:w-[500px]' /> */}
+            <div className='mb-[40px] hidden lg:flex'>
+              <Image
+                src={'/assets2/CreatorLanding/Right1/Right12x.png'}
+                layout='fixed'
+                width={620}
+                height={555}
+              />
+            </div>
+            <div className='mb-[40px] h-auto w-full lg:hidden'>
+              <Image
+                src={'/assets2/CreatorLanding/Right1/Right12x.png'}
+                layout='responsive'
+                width={620}
+                height={555}
+              />
+            </div>
           </div>
         </div>
 
         {/* section 2 */}
         <div className='flex flex-col'>
-          <div className='mx-[60px] flex flex-col justify-between lg:flex-row'>
-            <Left1 className='mb-[40px] h-[620px] w-full lg:mb-0 lg:w-[500px]' />
+          <div className='mx-[60px] flex flex-col justify-between gap-x-[40px] lg:flex-row'>
+            {/* <Left1 className='mb-[40px] h-[620px] w-full lg:mb-0 lg:w-[500px]' /> */}
+            <div className='mb-[40px] hidden lg:flex'>
+              <Image
+                src={'/assets2/CreatorLanding/Left1/Left12x.png'}
+                layout='fixed'
+                width={620}
+                height={555}
+              />
+            </div>
+            <div className='mb-[40px] h-auto w-full lg:hidden'>
+              <Image
+                src={'/assets2/CreatorLanding/Left1/Left12x.png'}
+                layout='responsive'
+                width={620}
+                height={555}
+              />
+            </div>
             <div className='mr-[60px] flex select-none flex-col items-start justify-center'>
               <button className='mb-[40px] w-min rounded-lg bg-[#EAE8FD] px-[20px] py-[8px] text-[#7362C6]'>
                 <span className='max-lines-1'>STEP&nbsp;2</span>
@@ -92,7 +125,7 @@ const Header = () => {
 
         {/* section 3 */}
         <div className='flex flex-col'>
-          <div className='mx-[60px] mt-[32px] flex flex-col-reverse justify-between md:mt-[80px] lg:flex-row'>
+          <div className='mx-[60px] mt-[32px] flex flex-col-reverse justify-between gap-x-[40px] md:mt-[80px] lg:flex-row'>
             <div className='flex select-none flex-col justify-center'>
               <button className='mb-[40px] w-min rounded-lg bg-[#EAE8FD] px-[20px] py-[8px] text-[#7362C6]'>
                 <span className='max-lines-1'>STEP&nbsp;3</span>
@@ -115,7 +148,23 @@ const Header = () => {
                 </div>
               </div>
             </div>
-            <Right2 className='mb-[40px] h-[620px] w-full p-1 lg:mb-0 lg:w-[500px]' />
+            {/* <Right2 className='mb-[40px] h-[620px] w-full p-1 lg:mb-0 lg:w-[500px]' /> */}
+            <div className='mb-[40px] hidden lg:flex'>
+              <Image
+                src={'/assets2/CreatorLanding/Right2/Right22x.png'}
+                layout='fixed'
+                width={620}
+                height={555}
+              />
+            </div>
+            <div className='mb-[40px] h-auto w-full lg:hidden'>
+              <Image
+                src={'/assets2/CreatorLanding/Right2/Right22x.png'}
+                layout='responsive'
+                width={620}
+                height={555}
+              />
+            </div>
           </div>
         </div>
       </div>
