@@ -229,7 +229,7 @@ export default function CreatorLanding(): JSX.Element {
                 <span className='text-[32px] font-[600] text-black sm:text-[56px] md:text-[60px] lg:text-[56px]'>
                   LET'S START A{' '}
                 </span>
-                <span className='text-[80px] font-[500] italic text-black sm:text-[70px] md:text-[60px] lg:text-[56px]'>
+                <span className='text-[32px] font-[500] italic text-black sm:text-[56px] md:text-[60px] lg:text-[56px]'>
                   CONVERSATION!
                 </span>
               </div>
@@ -242,7 +242,7 @@ export default function CreatorLanding(): JSX.Element {
                 </span>
               </div>
             </div>
-            <div className=''>
+            <div className='mt-[48px] sm:mt-0'>
               <div className='w-full'>
                 <form
                   className='mb-4 rounded-2xl bg-white px-8 pb-8 pt-6'
@@ -291,7 +291,7 @@ export default function CreatorLanding(): JSX.Element {
                   </div>
                   <div className='flex items-center justify-center'>
                     <button className='w-full rounded-lg bg-[#5848BC] px-[18px] py-[16px] transition duration-100 hover:bg-[#4D37DA]'>
-                      <span className='text-[48px] font-[500] text-white lg:text-[16px]'>
+                      <span className='text-[16px] font-[500] text-white'>
                         Send a message
                       </span>
                     </button>
