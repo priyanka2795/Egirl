@@ -7,15 +7,15 @@ const ContactUs = () => {
         It’s a new era, and we’re leading the charge. Don’t miss your chance to
         create an established brand in the new creator economy.
       </span>
-      <div className='ml-[60px] hidden md:block'>
-        <div className='flex h-[56px] w-[144px] items-center justify-center rounded-xl border-[2px] p-[12px]'>
-          <div className='text-[18px] font-[600] text-[black] lg:text-[18px]'>
-            <Link href='/contact-us'>
+      <Link href='/contact-us'>
+        <a className='ml-[60px] hidden md:block'>
+          <div className='flex h-[56px] w-[144px] items-center justify-center rounded-xl border-[2px] p-[12px]'>
+            <div className='text-[18px] font-[600] text-[black] lg:text-[18px]'>
               <span> Contact Us </span>
-            </Link>
+            </div>
           </div>
-        </div>
-      </div>
+        </a>
+      </Link>
     </div>
   );
 };
