@@ -215,7 +215,7 @@ export default function CreatorLanding(): JSX.Element {
       />
 
       {/* Header */}
-      <div className='bg-[#F6F6F6] px-24 pt-[96px] lg:px-[100px] 2xl:px-[120px]'>
+      <div className='bg-[#F6F6F6] px-[24px] pt-[96px] md:px-[40px] lg:px-[100px] 2xl:px-[120px]'>
         <div className='py-20'>
           <div className='gap-[50px] sm:grid sm:grid-cols-1 md:grid md:grid-cols-2 md:max-xl:grid md:max-lg:grid-cols-1 lg:grid lg:grid-cols-2'>
             <div className=''>
@@ -248,8 +248,8 @@ export default function CreatorLanding(): JSX.Element {
                   className='mb-4 rounded-2xl bg-white px-8 pb-8 pt-6'
                   onSubmit={sendEmailFn}
                 >
-                  <div className='mb-4 flex justify-around space-x-4'>
-                    <div className='w-1/2'>
+                  <div className='mb-4 flex flex-col justify-around space-x-0 sm:flex-row sm:space-x-4'>
+                    <div className='w-full sm:w-1/2'>
                       <label className='mb-[6px] flex text-[13px] font-[500] text-[#646668]'>
                         Name
                       </label>
@@ -262,7 +262,7 @@ export default function CreatorLanding(): JSX.Element {
                         onChange={onChangeName}
                       />
                     </div>
-                    <div className='w-1/2'>
+                    <div className='w-full sm:w-1/2'>
                       <label className='mb-[6px] flex text-[13px] font-[500] text-[#646668]'>
                         Email
                       </label>
