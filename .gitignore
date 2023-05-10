@@ -41,3 +41,7 @@ next-env.d.ts
 # python
 /.mypy_cache
 *.py
+
+# typesense data 
+src/api/docker/typesense-data/
+src/api/typesense/data
