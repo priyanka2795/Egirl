@@ -6,9 +6,9 @@ import {
   ProtectedLayout
 } from '@components/layout/common-layout';
 import { MainLayout } from '@components/layout/main-layout';
-import { SEO } from '@components/common/seo';
-import { MainHeader } from '@components/home/main-header';
-import { MainBookmarkContainer } from '@components/home/main-container';
+import { SEO } from '@components/common-old/seo';
+import { MainHeader } from '@components/home-old/main-header';
+import { MainBookmarkContainer } from '@components/home-old/main-container';
 import { Modal } from '@components/modal/modal';
 import { StatsEmpty } from '@components/tweet/stats-empty';
 import { Button } from '@components/ui/button';

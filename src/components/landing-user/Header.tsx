@@ -5,7 +5,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import HeaderImg from './assets/HeaderImg';
 
-const Header = () => {
+interface Props {
+  setBetaAccess: () => void;
+}
+
+const Header = ({ setBetaAccess }: Props) => {
   return (
     <div className='flex w-full flex-col items-center bg-[#F6F6F6] px-[24px] pt-[188px] md:px-[40px] lg:flex-row lg:px-[100px] lg:pt-[96px] 2xl:px-[120px]'>
       <div className='flex w-full flex-col items-center justify-center lg:items-start'>
@@ -35,11 +39,14 @@ const Header = () => {
         </div>
 
         <div className='flex justify-center pt-[20px] lg:justify-start'>
-          <Link href='/get-beta-access'>
-            <a className='mt-12 rounded-xl bg-[#5848BC] px-[30px] py-4 text-[16px] font-semibold text-white transition duration-100 hover:bg-[#4D37DA] md:text-lg'>
-              Join us
-            </a>
-          </Link>
+          <button
+            onClick={() => {
+              setBetaAccess();
+            }}
+            className='mt-12 rounded-xl bg-[#5848BC] px-[30px] py-4 text-[16px] font-semibold text-white transition duration-100 hover:bg-[#4D37DA] md:text-lg'
+          >
+            Join us
+          </button>
         </div>
       </div>
       <div className='flex w-full items-center justify-center pb-[40px] pt-[48px] md:pb-[74px] md:pt-[40px] lg:py-[80px]'>

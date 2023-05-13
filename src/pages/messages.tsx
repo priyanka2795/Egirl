@@ -10,10 +10,10 @@ import {
   ProtectedLayout
 } from '@components/layout/common-layout';
 import { MainLayout } from '@components/layout/main-layout';
-import { SEO } from '@components/common/seo';
-import { MainContainer } from '@components/home/main-container';
-import { UpdateUsername } from '@components/home/update-username';
-import { MainHeader } from '@components/home/main-header';
+import { SEO } from '@components/common-old/seo';
+import { MainContainer } from '@components/home-old/main-container';
+import { UpdateUsername } from '@components/home-old/update-username';
+import { MainHeader } from '@components/home-old/main-header';
 import { Tweet } from '@components/tweet/tweet';
 import { Loading } from '@components/ui/loading';
 import { Error } from '@components/ui/error';
@@ -28,7 +28,7 @@ import { User } from '@lib/types/user';
 import type { ImagesPreview, ImageData } from '@lib/types/file';
 import { getFlexUserCharChat } from 'api/messages/messages';
 import { Message } from '@components/messages/Message';
-import { MessagesContainer } from '@components/home/messages-container';
+import { MessagesContainer } from '@components/home-old/messages-container';
 import { CharChat } from '@components/messages/CharChat';
 import { useModal } from '@lib/hooks/useModal';
 import { ImageRequestModal } from '@components/messages/ImageRequestModal';

@@ -11,84 +11,36 @@ import { MainHeader } from '@components/home-old/main-header';
 import { Tweet } from '@components/tweet/tweet';
 import { Loading } from '@components/ui/loading';
 import { Error } from '@components/ui/error';
-import { ReactElement, ReactNode, useEffect, useState } from 'react';
-import {
-  getHomePostsFollowing,
-  getHomePostsSubscribedTo
-} from '../api/home/home';
+import { ReactElement, ReactNode, useEffect } from 'react';
+import { getHomePostsSubscribedTo } from '../api/home/home';
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react';
-import { Tweet as TypeTweet } from '@lib/types/tweet';
 import { User } from '@lib/types/user';
-import type { ImagesPreview, ImageData } from '@lib/types/file';
+import { Tweet as TypeTweet } from '@lib/types/tweet';
+import Router from 'next/router';
 
 export default function Home(): JSX.Element {
   const user = useUser();
   const client = useSupabaseClient();
-  const [postList, setPostList] = useState<any[]>([]);
-  // const { isMobile } = useWindow();
 
-  // const { data, loading, LoadMore } = useInfiniteScroll(
-  //   tweetsCollection,
-  //   [where('parent', '==', null), orderBy('createdAt', 'desc')],
-  //   { includeUser: true, allowNull: true, preserve: true }
-  // );
-
-  // images previe type has src, alt, id
+  console.log('user', user);
 
   const getHomePosts = async () => {
-    // console.log('user id ', user.id);
-    // user!.id
-    const res = await getHomePostsSubscribedTo(user!.id, client);
-
-    setPostList(
-      res.clientData.map((post: any, index: number) => {
-        return {
-          ...post,
-          likes: res.final_post_likes[index],
-          comments: res.final_comments[index],
-          infoTags: res.final_infotags[index],
-          media: res.final_media[index]
-        };
-      })
-    );
+    const data = await getHomePostsSubscribedTo(user!.id, client);
   };
 
   useEffect(() => {
-    // must check for user here first
-    // if (user) {
-    getHomePosts();
-    // }
+    if (user) {
+      getHomePosts();
+    }
   }, [user]);
 
   const isMobile = false;
 
   const loading = false;
   const loadMore = () => {};
-
-  /*
-  const {
-    id: tweetId,
-    text,
-    modal,
-    images,
-    parent,
-    pinned,
-    profile,
-    userLikes,
-    createdBy,
-    createdAt,
-    parentTweet,
-    userReplies,
-    userRetweets,
-    user: tweetUserData
-  } = tweet;
-
-  const { id: ownerId, name, username, verified, photoURL } = tweetUserData;
-  */
-
-  //
-  const tweetData: (TypeTweet & { user: User })[] | null = [
+  const tweetData: (TypeTweet & { user: User; modal?: boolean })[] | null = [
     {
+      modal: false,
       createdAt: 12345,
       createdBy: 'egirl1',
       id: '1',
@@ -123,9 +75,10 @@ export default function Home(): JSX.Element {
       userRetweets: ['123']
     },
     {
+      modal: false,
       createdAt: 12345,
       createdBy: 'egirl1',
-      id: '1',
+      id: '2',
       images: null,
       parent: {
         id: '10',
@@ -157,9 +110,10 @@ export default function Home(): JSX.Element {
       userRetweets: ['123']
     },
     {
+      modal: false,
       createdAt: 12345,
       createdBy: 'egirl1',
-      id: '1',
+      id: '3',
       images: [
         {
           src: 'https://i.pinimg.com/550x/8d/4f/44/8d4f442214edc01230b38228bad5226f.jpg',
@@ -172,10 +126,7 @@ export default function Home(): JSX.Element {
           id: '1233'
         }
       ],
-      parent: {
-        id: '10',
-        username: 'eGorl'
-      },
+      parent: null,
       text: 'Bookmark with image!',
       updatedAt: 88889,
       user: {
@@ -200,8 +151,62 @@ export default function Home(): JSX.Element {
       userLikes: ['111'],
       userReplies: 123,
       userRetweets: ['123']
+    },
+    {
+      modal: false,
+      id: '4',
+      text: 'test holland tweet',
+      // model: false,
+      images: null,
+      parent: null,
+      // pinned: false,
+      updatedAt: 101909,
+      // profile: 'test',
+      userLikes: ['like1'],
+      createdBy: 'test',
+      createdAt: 88889,
+      // parentTweet: false,
+      userReplies: 0,
+
+      userRetweets: [],
+      user: {
+        id: 'ownerId',
+        name: 'Holland Pleskac',
+        username: 'hollandpleskac',
+        verified: false,
+        photoURL:
+          'https://www.wikihow.com/images/thumb/f/fc/Get-the-URL-for-Pictures-Step-1-Version-6.jpg/v4-460px-Get-the-URL-for-Pictures-Step-1-Version-6.jpg.webp',
+        following: ['following1', 'following2'],
+        followers: ['follower1', 'follower2'],
+        accent: 'blue',
+        bio: 'Im Holland',
+        coverPhotoURL:
+          'https://www.wikihow.com/images/thumb/f/fc/Get-the-URL-for-Pictures-Step-1-Version-6.jpg/v4-460px-Get-the-URL-for-Pictures-Step-1-Version-6.jpg.webp',
+        location: 'Hollandland',
+        pinnedTweet: null,
+        theme: 'dark',
+        totalPhotos: 0,
+        totalTweets: 0,
+        website: null
+      }
     }
   ];
+
+  const data: any[] = tweetData;
+
+  const handleLogout = async () => {
+    await client.auth.signOut();
+    if (user == null) {
+      Router.push('/home');
+    }
+  };
+
+  useEffect(() => {
+    if (user == null) {
+      Router.push('/');
+    }
+  }, [user]);
+
   return (
     <MainContainer>
       <SEO title='Home / Twitter' />
@@ -212,43 +217,23 @@ export default function Home(): JSX.Element {
       >
         <UpdateUsername />
       </MainHeader>
-      {/* {!isMobile && <Input />} */}
       <section className='mt-0.5 xs:mt-0'>
         {loading ? (
           <Loading className='mt-5' />
-        ) : !tweetData ? (
+        ) : !data ? (
           <Error message='Something went wrong' />
         ) : (
           <>
-            <AnimatePresence mode='popLayout'>
-              {postList?.map((post, index) => (
-                <Tweet
-                  {...tweetData[0]}
-                  customId={post.id}
-                  customName={'NEED NAME'}
-                  customText={post.description}
-                  images={post.media.map((media: any, index: number) => {
-                    return {
-                      src: 'https://i.pinimg.com/550x/8d/4f/44/8d4f442214edc01230b38228bad5226f.jpg',
-                      alt: 'alt',
-                      id: index.toString()
-                    };
-                  })}
-                  customCommentsCount={post.comments.comments.length}
-                  customLikes={post.likes.total_post_likes as string[]}
-                  //               customId?: string;
-                  // customcreatedBy?: string;
-                  // customText?: string;
-                  // customImageUrls?: string[];
-                  // customCommentsCount?: number;
-                  // customLikesCount?: number;
-                  key={index}
-                />
-              ))}
-            </AnimatePresence>
-            {/* <LoadMore /> */}
+            {/* <AnimatePresence mode='popLayout'> */}
+            {data.map((tweet) => (
+              <Tweet {...tweet} key={tweet.id} />
+            ))}
+            {/* </AnimatePresence> */}
           </>
         )}
+        <div>
+          <button onClick={handleLogout}>Logout</button>
+        </div>
       </section>
     </MainContainer>
   );

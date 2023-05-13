@@ -1,5 +1,5 @@
 import { AuthLayout } from '@components/layout/auth-layout';
-import { SEO } from '@components/common/seo';
+import { SEO } from '@components/common-old/seo';
 import { LoginMain } from '@components/login/login-main';
 import { LoginFooter } from '@components/login/login-footer';
 import type { ReactElement, ReactNode } from 'react';

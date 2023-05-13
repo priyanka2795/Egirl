@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 import { useUser } from '@lib/context/user-context';
-import { SEO } from '@components/common/seo';
+import { SEO } from '@components/common-old/seo';
 import { UserHomeCover } from '@components/user/user-home-cover';
 import { UserHomeAvatar } from '@components/user/user-home-avatar';
 import { UserDetails } from '@components/user/user-details';

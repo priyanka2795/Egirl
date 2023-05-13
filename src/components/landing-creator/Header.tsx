@@ -5,7 +5,11 @@ import ExperienceTheFuture from '../landing-user/assets/ExperienceTheFuture';
 import Link from 'next/link';
 import Image from 'next/image';
 
-const Header = () => {
+interface Props {
+  setBetaAccess: () => void;
+}
+
+const Header = ({ setBetaAccess }: Props) => {
   return (
     <div className='flex flex-col bg-[#000000]  px-[24px] pt-[188px] md:px-[40px] lg:flex-row lg:px-[100px] lg:pt-[96px] xl:justify-around 2xl:px-[140px]'>
       <div className='flex flex-col items-center justify-center lg:items-start'>
@@ -27,11 +31,14 @@ const Header = () => {
           RUN WILD
         </h1>
         <div className='flex'>
-          <Link href='/get-beta-access'>
-            <a className='mt-12 rounded-xl bg-[#5848BC] px-[30px] py-4 text-[16px] font-semibold text-white transition duration-100 hover:bg-[#4D37DA] md:text-lg'>
-              Join us
-            </a>
-          </Link>
+          <button
+            onClick={() => {
+              setBetaAccess();
+            }}
+            className='mt-12 rounded-xl bg-[#5848BC] px-[30px] py-4 text-[16px] font-semibold text-white transition duration-100 hover:bg-[#4D37DA] md:text-lg'
+          >
+            Join us
+          </button>
         </div>
       </div>
       <div className='mt-[48px] flex items-center justify-center md:mb-[74px] md:mt-[40px] lg:my-[80px]'>

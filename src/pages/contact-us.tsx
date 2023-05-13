@@ -1,5 +1,5 @@
 import { AuthLayout } from '@components/layout/auth-layout';
-import { SEO } from '@components/common/seo';
+import { SEO } from '@components/common-old/seo';
 import { ReactElement, ReactNode, useEffect, useState } from 'react';
 import { LayoutProps } from '@components/layout/common-layout';
 import { Bars2Icon, StarIcon, XMarkIcon } from '@heroicons/react/20/solid';

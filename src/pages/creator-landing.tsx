@@ -1,5 +1,5 @@
 import { AuthLayout } from '@components/layout/auth-layout';
-import { SEO } from '@components/common/seo';
+import { SEO } from '@components/common-old/seo';
 import { ReactElement, ReactNode, useEffect, useState } from 'react';
 import { LayoutProps } from '@components/layout/common-layout';
 
@@ -117,7 +117,7 @@ export default function CreatorLanding(): JSX.Element {
       />
 
       {/* Header */}
-      <Header />
+      <Header setBetaAccess={setBetaAccess()} />
 
       {/* Contact Us */}
       <ContactUs />

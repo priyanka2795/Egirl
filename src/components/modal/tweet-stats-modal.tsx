@@ -1,4 +1,4 @@
-import { MainHeader } from '@components/home/main-header';
+import { MainHeader } from '@components/home-old/main-header';
 import type { ReactNode } from 'react';
 import type { StatsType } from '@components/view/view-tweet-stats';
 

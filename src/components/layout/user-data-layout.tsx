@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router';
 import { UserContextProvider } from '@lib/context/user-context';
 import { useCollection } from '@lib/hooks/useCollection';
-import { SEO } from '@components/common/seo';
-import { MainContainer } from '@components/home/main-container';
-import { MainHeader } from '@components/home/main-header';
+import { SEO } from '@components/common-old/seo';
+import { MainContainer } from '@components/home-old/main-container';
+import { MainHeader } from '@components/home-old/main-header';
 import { UserHeader } from '@components/user/user-header';
 import type { LayoutProps } from './common-layout';
 import { User } from '@lib/types/user';

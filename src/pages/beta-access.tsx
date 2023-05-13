@@ -1,5 +1,5 @@
 import { AuthLayout } from '@components/layout/auth-layout';
-import { SEO } from '@components/common/seo';
+import { SEO } from '@components/common-old/seo';
 import { LoginMain } from '@components/login/login-main';
 import { LoginFooter } from '@components/login/login-footer';
 import { ReactElement, ReactNode, useEffect, useState } from 'react';
@@ -223,14 +223,14 @@ export default function CreatorLanding(): JSX.Element {
             </div>
             <div className='min-[200px]:pt-10'>
               <div className='w-full'>
-                <form className='mb-4 rounded bg-white px-8 pt-6 pb-8 shadow-md'>
+                <form className='mb-4 rounded bg-white px-8 pb-8 pt-6 shadow-md'>
                   <div className='mb-4 flex justify-around space-x-4'>
                     <div className='w-1/2'>
                       <label className='mb-2 text-[13px] font-[500] text-[#646668]'>
                         Name
                       </label>
                       <input
-                        className='w-full	rounded border-none bg-[#F6F6F6] py-2 px-3 text-gray-700'
+                        className='w-full	rounded border-none bg-[#F6F6F6] px-3 py-2 text-gray-700'
                         id='username'
                         type='text'
                         placeholder='Your name'
@@ -241,7 +241,7 @@ export default function CreatorLanding(): JSX.Element {
                         Email
                       </label>
                       <input
-                        className='w-full	rounded border-none bg-[#F6F6F6] py-2 px-3 text-gray-700'
+                        className='w-full	rounded border-none bg-[#F6F6F6] px-3 py-2 text-gray-700'
                         id='email'
                         type='text'
                         placeholder='example@mail.com'
@@ -253,7 +253,7 @@ export default function CreatorLanding(): JSX.Element {
                       Message
                     </label>
                     <input
-                      className='mb-3 h-[118px]	w-full rounded border-none bg-[#F6F6F6] py-2 px-3 text-gray-700'
+                      className='mb-3 h-[118px]	w-full rounded border-none bg-[#F6F6F6] px-3 py-2 text-gray-700'
                       id='message'
                       type='text'
                       placeholder='Your message'

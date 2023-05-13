@@ -4,9 +4,9 @@ import {
   ProtectedLayout
 } from '@components/layout/common-layout';
 import { MainLayout } from '@components/layout/main-layout';
-import { SEO } from '@components/common/seo';
-import { MainHeader } from '@components/home/main-header';
-import { MainContainer } from '@components/home/main-container';
+import { SEO } from '@components/common-old/seo';
+import { MainHeader } from '@components/home-old/main-header';
+import { MainContainer } from '@components/home-old/main-container';
 import { AsideTrends } from '@components/aside/aside-trends';
 import { Button } from '@components/ui/button';
 import { ToolTip } from '@components/ui/tooltip';

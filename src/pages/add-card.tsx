@@ -6,9 +6,9 @@ import {
   ProtectedLayout
 } from '@components/layout/common-layout';
 import { MainLayout } from '@components/layout/main-layout';
-import { SEO } from '@components/common/seo';
-import { MainHeader } from '@components/home/main-header';
-import { MainBookmarkContainer } from '@components/home/main-container';
+import { SEO } from '@components/common-old/seo';
+import { MainHeader } from '@components/home-old/main-header';
+import { MainBookmarkContainer } from '@components/home-old/main-container';
 import { Modal } from '@components/modal/modal';
 import { StatsEmpty } from '@components/tweet/stats-empty';
 import { Button } from '@components/ui/button';
@@ -164,7 +164,7 @@ export default function Lists(): JSX.Element {
             />
             <svg
               xmlns='http://www.w3.org/2000/svg'
-              className='absolute bottom-0 left-0 -mb-0.5 h-6 w-6 translate-x-1/2 -translate-y-1/2 transform text-black peer-placeholder-shown:text-gray-300'
+              className='absolute bottom-0 left-0 -mb-0.5 h-6 w-6 -translate-y-1/2 translate-x-1/2 transform text-black peer-placeholder-shown:text-gray-300'
               fill='none'
               viewBox='0 0 24 24'
               stroke='currentColor'
@@ -183,7 +183,7 @@ export default function Lists(): JSX.Element {
             />
             <svg
               xmlns='http://www.w3.org/2000/svg'
-              className='absolute bottom-0 left-0 -mb-0.5 h-6 w-6 translate-x-1/2 -translate-y-1/2 transform text-black peer-placeholder-shown:text-gray-300'
+              className='absolute bottom-0 left-0 -mb-0.5 h-6 w-6 -translate-y-1/2 translate-x-1/2 transform text-black peer-placeholder-shown:text-gray-300'
               fill='none'
               viewBox='0 0 24 24'
               stroke='currentColor'
@@ -196,7 +196,7 @@ export default function Lists(): JSX.Element {
             <span className='mb-3 flex items-center gap-3 font-bold'>
               CVC/CVV
               <span className='group relative'>
-                <span className='absolute -right-2 top-1/2 hidden w-max translate-x-full -translate-y-1/2 transform items-center justify-center bg-black px-2 py-1 text-xs text-white group-hover:flex'>
+                <span className='absolute -right-2 top-1/2 hidden w-max -translate-y-1/2 translate-x-full transform items-center justify-center bg-black px-2 py-1 text-xs text-white group-hover:flex'>
                   {' '}
                   Hey ceci est une infobulle !
                 </span>
@@ -219,7 +219,7 @@ export default function Lists(): JSX.Element {
             />
             <svg
               xmlns='http://www.w3.org/2000/svg'
-              className='absolute bottom-0 left-0 -mb-0.5 h-6 w-6 translate-x-1/2 -translate-y-1/2 transform text-black peer-placeholder-shown:text-gray-300'
+              className='absolute bottom-0 left-0 -mb-0.5 h-6 w-6 -translate-y-1/2 translate-x-1/2 transform text-black peer-placeholder-shown:text-gray-300'
               fill='none'
               viewBox='0 0 24 24'
               stroke='currentColor'

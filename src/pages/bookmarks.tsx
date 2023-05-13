@@ -12,12 +12,12 @@ import {
   ProtectedLayout
 } from '@components/layout/common-layout';
 import { MainLayout } from '@components/layout/main-layout';
-import { SEO } from '@components/common/seo';
-import { MainHeader } from '@components/home/main-header';
+import { SEO } from '@components/common-old/seo';
+import { MainHeader } from '@components/home-old/main-header';
 import {
   MainBookmarkContainer,
   MainContainer
-} from '@components/home/main-container';
+} from '@components/home-old/main-container';
 import { Modal } from '@components/modal/modal';
 import { ActionModal } from '@components/modal/action-modal';
 import { Tweet } from '@components/tweet/tweet';
@@ -472,7 +472,7 @@ export default function Bookmarks(): JSX.Element {
           <div className='w-1/4'>
             <div className='w-full'>
               <button
-                className='w-full rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700'
+                className='w-full rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700'
                 onClick={async () => {
                   const selection = 'all';
                   await handleSelection(selection);
@@ -481,7 +481,7 @@ export default function Bookmarks(): JSX.Element {
                 All Bookmarks
               </button>
               <button
-                className='w-full rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700'
+                className='w-full rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700'
                 onClick={async () => {
                   const selection = 'posts';
                   await handleSelection(selection);
@@ -490,7 +490,7 @@ export default function Bookmarks(): JSX.Element {
                 Posts
               </button>
               <button
-                className='w-full rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700'
+                className='w-full rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700'
                 onClick={async () => {
                   const selection = 'photos';
                   await handleSelection(selection);
@@ -499,7 +499,7 @@ export default function Bookmarks(): JSX.Element {
                 Photos
               </button>
               <button
-                className='w-full rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700'
+                className='w-full rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700'
                 onClick={async () => {
                   const selection = 'locked';
                   await handleSelection(selection);
