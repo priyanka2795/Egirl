@@ -1,54 +1,54 @@
-import React, { useState } from 'react'
-import { useSupabaseClient } from '@supabase/auth-helpers-react'
-import { Database } from '../../types/database'
-import { useRouter } from 'next/router'
+import React, { useState } from 'react';
+import { useSupabaseClient } from '@supabase/auth-helpers-react';
+import { Database } from '../../../types/database';
+import { useRouter } from 'next/router';
 
 export default function Login() {
-  const router = useRouter()
-  const supabase = useSupabaseClient<Database>()
+  const router = useRouter();
+  const supabase = useSupabaseClient<Database>();
 
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const [errorMsg, setErrorMsg] = useState('')
+  const [errorMsg, setErrorMsg] = useState('');
 
   const onEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value)
-  }
+    setEmail(e.target.value);
+  };
 
   const onPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value)
-  }
+    setPassword(e.target.value);
+  };
 
   const signupHandler = async () => {
-    console.log('signing up with - email:', email, '| password:', password)
+    console.log('signing up with - email:', email, '| password:', password);
     const { data, error } = await supabase.auth.signUp({
       email: email,
-      password: password,
-    })
-    console.log('results of signing up: ', data, error)
+      password: password
+    });
+    console.log('results of signing up: ', data, error);
     if (!error) {
-      router.push('/home')
+      router.push('/home');
     } else {
-      setErrorMsg(error.message)
+      setErrorMsg(error.message);
     }
-  }
+  };
 
   const signupWithGoogleHandler = async () => {
-    console.log('signing up with google')
+    console.log('signing up with google');
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: `${new URL(location.href).origin}/logging-in?redirect=/posts`,
-      },
-    })
-    console.log('results of signing up: ', data, error)
-  }
+        redirectTo: `${new URL(location.href).origin}/logging-in?redirect=/home`
+      }
+    });
+    console.log('results of signing up: ', data, error);
+  };
 
   return (
     <>
-      <div className='h-screen grid place-items-center'>
-        <div className='flex flex-col border-2 p-4 gap-4 py-4'>
+      <div className='grid h-screen place-items-center'>
+        <div className='flex flex-col gap-4 border-2 p-4 py-4'>
           <h1 className='text-3xl font-bold underline'>Register Form</h1>
           <input
             type='email'
@@ -74,5 +74,5 @@ export default function Login() {
         </div>
       </div>
     </>
-  )
+  );
 }

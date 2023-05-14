@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
-import { Database } from '../../types/database'
+import { Database } from '../../../types/database'
 import { useRouter } from 'next/router'
 
 export default function SignIn() {
@@ -39,7 +39,7 @@ export default function SignIn() {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: `${new URL(location.href).origin}/logging-in?redirect=/posts`,
+        redirectTo: `${new URL(location.href).origin}/logging-in?redirect=/home`,
       },
     })
     console.log('results of logging in: ', data, error)
