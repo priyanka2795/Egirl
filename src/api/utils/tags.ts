@@ -109,3 +109,23 @@ export async function createPromptTag(
 
   return data;
 }
+
+// Create rows for autocomplete tags
+export async function createAutocompleteTags(
+  autocomplete_tags: any,
+  client: any
+) {
+  console.log('this is autocomplete_tags: ', autocomplete_tags);
+  let { data, error, status } = await client
+    .from('autocomplete_tags')
+    .insert(autocomplete_tags);
+
+  if (error && status !== 201) {
+    console.log('this is error: ', error);
+    throw error;
+  }
+
+  console.log('returning, this is data: ', data);
+
+  return data;
+}

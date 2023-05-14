@@ -301,6 +301,16 @@ CREATE TABLE IF NOT EXISTS tags (
 	created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Autocomplete Tags Table (autocomplete tags) - danbooru, E621 etc. 
+CREATE TABLE IF NOT EXISTS autocomplete_tags (
+	id SERIAL PRIMARY KEY,
+	tag VARCHAR(256) NOT NULL,
+	color_scheme INTEGER,
+	frequency INTEGER,
+	related_terms TEXT,
+	created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
 -- Affiliate marketing  
 CREATE TABLE IF NOT EXISTS affiliate_links (
 	id SERIAL PRIMARY KEY,
