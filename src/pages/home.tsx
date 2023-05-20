@@ -14,16 +14,19 @@ export default function Home({ user }: { user: User }) {
 
   return (
     <>
-      <div>
-        HOME PAGE
-        <button
-          onClick={() => {
-            console.log(user);
-          }}
-        >
-          click
-        </button>
-      </div>
+      <Layout>
+        <div>
+          HOME PAGE
+          <button
+            onClick={() => {
+              console.log(user);
+            }}
+          >
+            click
+          </button>
+        </div>
+      </Layout>
+      ;
     </>
   );
 }

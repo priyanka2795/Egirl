@@ -29,9 +29,13 @@ module.exports = {
       },
       // prettier-ignore
       colors: {
+        'main-purple': '#6E00FF',
+        'main-gray': '#E7E9EA',
+        'main-gray-text': '#71767B',
+        'main-background': '#0F1419',
         'main-primary': 'rgb(var(--main-primary) / <alpha-value>)',
         'main-secondary': 'rgb(var(--main-secondary) / <alpha-value>)',
-        'main-background': 'rgb(var(--main-background) / <alpha-value>)',
+        // 'main-background': 'rgb(var(--main-background) / <alpha-value>)',
         'main-search-background': 'rgb(var(--main-search-background) / <alpha-value>)',
         'main-sidebar-background': 'rgb(var(--main-sidebar-background) / <alpha-value>)',
         'main-accent': 'rgb(var(--main-accent) / <alpha-value>)',
@@ -52,7 +56,9 @@ module.exports = {
         'light-line-reply': '#CFD9DE',
         'twitter-icon': '#D6D9DB',
         'image-preview-hover': '#272C30',
-        'main-red': '#E75858',
+        'main-red': '#E75858'
+
+
       }
     }
   },
