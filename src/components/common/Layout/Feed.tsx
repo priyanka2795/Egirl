@@ -2,9 +2,9 @@ import React from 'react';
 
 export default function Feed() {
   return (
-    <div className='max-w-xl flex-grow border-l border-r  border-gray-200 sm:ml-[73px] lg:min-w-[576px] xl:ml-[370px]'>
+    <div className='max-w-xl flex-grow sm:ml-[40px] lg:min-w-[576px] xl:ml-[338px]'>
       <div className='sticky top-0 z-50 '>
-        <div className='h-[72px] items-center border-b-[1px] border-b-[#242424] bg-main-bar '></div>
+        <div className='h-[72px] items-center border-b-[1px] border-b-[#242424] bg-main-bar'></div>
         <div className='flex border-b border-gray-200 px-3 py-2'>
           <h2 className='cursor-pointer text-lg font-bold sm:text-xl'>Home</h2>
           <div className='hoverEffect ml-auto flex h-9 w-9 items-center justify-center px-0'>
@@ -21,3 +21,7 @@ export default function Feed() {
     </div>
   );
 }
+
+// dimensions with padding
+// there is a 32 pixel padding diff on xl screens ml:370px -> ml:338px
+// <div className='max-w-xl flex-grow border-l border-r border-gray-200  bg-green-400 sm:ml-[73px] lg:min-w-[576px] xl:ml-[370px]'>

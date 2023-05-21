@@ -4,14 +4,17 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 export default function Widgets() {
   return (
-    <div className='ml-8 hidden space-y-5 lg:inline xl:w-[600px]'>
-      <div className='sticky top-0 z-50 w-[90%] bg-white py-1.5 xl:w-[75%]'>
-        <div className='relative flex items-center rounded-full  p-3'>
-          <input
-            className='absolute inset-0 rounded-full border-gray-500 bg-gray-100 pl-11 text-gray-700 focus:bg-white focus:shadow-lg '
-            type='text'
-            placeholder='Search Twitter'
-          />
+    <div className='hidden space-y-5 lg:inline xl:w-[600px]'>
+      <div className='sticky top-0 z-50'>
+        <div className='h-[72px] items-center border-b-[1px] border-b-[#242424] bg-main-bar'></div>
+        <div className='w-[90%] bg-white py-1.5 xl:w-[75%]'>
+          <div className='relative flex items-center rounded-full  p-3'>
+            <input
+              className='absolute inset-0 rounded-full border-gray-500 bg-gray-100 pl-11 text-gray-700 focus:bg-white focus:shadow-lg '
+              type='text'
+              placeholder='Search Twitter'
+            />
+          </div>
         </div>
       </div>
 
@@ -67,3 +70,6 @@ export default function Widgets() {
     </div>
   );
 }
+
+// used to have margin left of 8 (32px)
+// <div className='ml-8 hidden space-y-5 bg-orange-400 lg:inline xl:w-[600px]'>
