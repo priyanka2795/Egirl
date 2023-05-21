@@ -4,29 +4,18 @@ import React from 'react';
 import { GetServerSidePropsContext } from 'next';
 import { Database } from '../../types/database';
 import { User, useSupabaseClient } from '@supabase/auth-helpers-react';
-
-// const Home = () => {
-//   return <Layout>test</Layout>;
-// };
-
-export default function Home({ user }: { user: User }) {
+export default function Home({
+  user,
+}: {
+  user: User;
+}) {
   const supabase = useSupabaseClient<Database>();
 
   return (
     <>
-      <Layout>
-        <div>
-          HOME PAGE
-          <button
-            onClick={() => {
-              console.log(user);
-            }}
-          >
-            click
-          </button>
-        </div>
-      </Layout>
-      ;
+      <div>
+        <Layout >t</Layout>
+      </div>
     </>
   );
 }
@@ -51,7 +40,7 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
   return {
     props: {
       initialSession: session,
-      user: session.user
+      user: session.user,
     }
   };
 };

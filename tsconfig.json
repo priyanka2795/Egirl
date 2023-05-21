@@ -21,7 +21,7 @@
       "@styles/*": ["styles/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/test.jsx", "src/components/common/Layout/SidebarMenuItem.tsx", "src/components/common/Layout/Sidebar.tsx"],
   "exclude": ["node_modules", "functions"],
   "ts-node": {
     "compilerOptions": {
