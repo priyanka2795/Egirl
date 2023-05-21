@@ -14,6 +14,7 @@ module.exports = {
       lg: '1200px', // Desktop smallest.
       xl: '1259px', // Desktop wide.
       '2xl': '1359px', // Desktop widescreen.
+      '3xl': '1582px',
       ...defaultTheme.screens
     },
     extend: {
