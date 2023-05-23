@@ -10,7 +10,8 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <>
-      <main className=' mx-auto flex min-h-screen max-w-[1580px]'>
+      {/*  max-w-[1650px] */}
+      <main className=' mx-auto flex min-h-screen max-w-[1440px] '>
         {/* mx-auto flex min-h-screen max-w-7xl */}
         <Sidebar />
         <Feed />

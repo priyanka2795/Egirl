@@ -33,7 +33,7 @@ module.exports = {
         'main-purple': '#6E00FF',
         'main-gray': '#E7E9EA',
         'main-gray-text': '#71767B',
-        'main-background': '#0F1419',
+        'main-background': '#070707',
         'main-bar': "#121212",
         'main-primary': 'rgb(var(--main-primary) / <alpha-value>)',
         'main-secondary': 'rgb(var(--main-secondary) / <alpha-value>)',

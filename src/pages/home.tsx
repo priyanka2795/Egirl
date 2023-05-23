@@ -4,17 +4,13 @@ import React from 'react';
 import { GetServerSidePropsContext } from 'next';
 import { Database } from '../../types/database';
 import { User, useSupabaseClient } from '@supabase/auth-helpers-react';
-export default function Home({
-  user,
-}: {
-  user: User;
-}) {
+export default function Home({ user }: { user: User }) {
   const supabase = useSupabaseClient<Database>();
 
   return (
     <>
-      <div>
-        <Layout >t</Layout>
+      <div className=''>
+        <Layout>t</Layout>
       </div>
     </>
   );
@@ -40,7 +36,7 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
   return {
     props: {
       initialSession: session,
-      user: session.user,
+      user: session.user
     }
   };
 };

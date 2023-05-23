@@ -11,7 +11,9 @@ const nextConfig = {
       'upload.wikimedia.org',
       'i.pinimg.com',
       'localhost',
-      "help.twitter.com"
+      "help.twitter.com",
+      "media.istockphoto.com",
+      "www.shutterstock.com"
     ]
   },
   webpack: (config) => {
