@@ -23,7 +23,7 @@ export default function Feed() {
       <div
         className={`fixed z-50 ${
           scrollDirection == 'down' ? '-translate-y-[96px] transform' : 'top-0'
-        } h-[96px] max-w-[640px] bg-blue-400 transition-all duration-200 lg:min-w-[640px]`}
+        } h-[96px] max-w-[640px] bg-main-background transition-all duration-[150ms] ease-linear lg:min-w-[640px]`}
       >
         <div className='ml-8 pb-3 pt-5'>
           <div className='flex h-[64px] items-center justify-between rounded-l-[14px] bg-main-bar'>
@@ -56,7 +56,7 @@ export default function Feed() {
             <p key={i}>Main content line {i + 1}</p>
           ))} */}
 
-        <div className='flex w-full flex-col gap-y-4 rounded-[14px] bg-orange-400 p-6'>
+        <div className='flex w-full flex-col gap-y-4 rounded-[14px] bg-main-bar p-6'>
           {/* Profile Section */}
           <div className='flex items-center'>
             <Image
