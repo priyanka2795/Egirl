@@ -6,7 +6,7 @@ import Slider from './svg/slider.svg';
 
 const YouMightLike = () => {
   return (
-    <div className='flex w-full flex-col rounded-[14px] bg-main-bar '>
+    <div className='flex w-full max-w-[376px] flex-col rounded-[14px] bg-main-bar'>
       <div className='flex items-center justify-between border-b border-gray-200 border-opacity-[0.08] py-6'>
         <p className='ml-6 text-lg font-bold leading-6'>You might like</p>
         <div className='mr-6 flex items-center'>

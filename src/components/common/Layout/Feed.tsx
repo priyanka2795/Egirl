@@ -23,7 +23,7 @@ export default function Feed() {
       <div
         className={`fixed z-50 ${
           scrollDirection == 'down' ? '-translate-y-[96px] transform' : 'top-0'
-        } h-[96px] transition-all duration-200`}
+        } h-[96px] max-w-[640px] bg-blue-400 transition-all duration-200 lg:min-w-[640px]`}
       >
         <div className='ml-8 pb-3 pt-5'>
           <div className='flex h-[64px] items-center justify-between rounded-l-[14px] bg-main-bar'>

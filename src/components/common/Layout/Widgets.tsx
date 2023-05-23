@@ -15,9 +15,9 @@ export default function Widgets() {
       <div
         className={`fixed z-50 ${
           scrollDirection == 'down' ? '-translate-y-[96px] transform' : 'top-0'
-        } h-[96px]  transition-all duration-200 `}
+        } flex  h-[96px] w-full max-w-[376px] bg-yellow-400 transition-all duration-200 `}
       >
-        <div className='pb-3 pt-5'>
+        <div className='mr-2 w-full pb-3 pt-5'>
           <div className='flex h-[64px] items-center justify-between rounded-r-[14px] bg-main-bar'>
             <div className='relative w-full '>
               <div className='absolute left-4 top-3'>
@@ -33,7 +33,7 @@ export default function Widgets() {
         </div>
       </div>
 
-      <div className='sticky top-0 mt-[96px] bg-red-400'>
+      <div className='sticky top-0 mt-[96px] max-w-[376px] bg-red-400'>
         <YouMightLike />
       </div>
     </div>
