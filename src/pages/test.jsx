@@ -5,7 +5,7 @@ import Discover from '@components/landing-user/Discover';
 const App = () => {
   return (
     <div>
-      
+      test
     </div>
   );
 };
