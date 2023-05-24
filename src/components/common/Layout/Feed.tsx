@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import RightSide from './Right side.svg';
 
-import useScrollDirection from '../../../../hooks/useScrollDirection';
-import useScroll from '../../../../hooks/useScrollDirection';
+import useScroll from '../../../../hooks/useScroll';
 
 export default function Feed() {
   const [showForYou, setShowForYou] = useState(true);
-  const scrollDirection = useScrollDirection();
+  const [sticky, animate] = useScroll();
 
   const handleFeedSwitch = (feedType: string) => {
     if (feedType === 'forYou' && !showForYou) {
@@ -21,11 +20,11 @@ export default function Feed() {
     <div className='max-w-[640px] flex-grow bg-main-background sm:ml-[40px] lg:min-w-[640px] xl:ml-[380px]'>
       {/* 108px topbar with margins */}
       <div
-        className={`fixed z-50 ${
-          scrollDirection == 'down' ? '-translate-y-[96px] transform' : 'top-0'
-        } h-[96px] max-w-[640px] bg-main-background transition-all duration-[150ms] ease-linear lg:min-w-[640px]`}
+        className={` z-50  ${sticky ? 'sticky ' : ''}  ${
+          animate ? 'top-0' : '-top-[71px]'
+        } h-[108px] max-w-[640px] bg-main-background transition-all duration-[300ms] ease-linear lg:min-w-[640px]`}
       >
-        <div className='ml-8 pb-3 pt-5'>
+        <div className='ml-8 pb-5 pt-6'>
           <div className='flex h-[64px] items-center justify-between rounded-l-[14px] bg-main-bar'>
             <div className=''>
               <button
@@ -49,7 +48,7 @@ export default function Feed() {
         </div>
       </div>
 
-      <div className='mt-[96px] px-[32px]'>
+      <div className='px-[32px]'>
         {/* {Array(100)
           .fill(0)
           .map((_, i) => (
