@@ -1,4 +1,4 @@
-import Layout from '@components/common/Layout';
+import HomeContent from '@components/home';
 import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs';
 import React from 'react';
 import { GetServerSidePropsContext } from 'next';
@@ -9,8 +9,8 @@ export default function Home({ user }: { user: User }) {
 
   return (
     <>
-      <div className=''>
-        <Layout>t</Layout>
+      <div>
+        <HomeContent />
       </div>
     </>
   );
