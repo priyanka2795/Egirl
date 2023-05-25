@@ -28,16 +28,16 @@ export default function Widgets() {
         </div>
       </div>
 
-      {/* <div
+      <div
         className={`sticky  ${
           sticky && animate ? 'top-[108px]' : 'top-4'
         } max-w-[376px] transition-all duration-300 ease-in `}
       >
         <YouMightLike />
-      </div> */}
-      <div className={`sticky top-0 max-w-[376px] `}>
-        <YouMightLike />
       </div>
+      {/* <div className={`sticky top-0 max-w-[376px] `}>
+        <YouMightLike />
+      </div> */}
     </div>
   );
 }

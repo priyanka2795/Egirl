@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import RightSide from './Right side.svg';
-import SearchIcon from './SearchIcon.svg';
+import SearchIcon from './svg/search-icon.svg';
 import useScroll from '../../../hooks/useScroll';
-import MailPlus from './mail-plus.svg';
+import MailPlus from './svg/mail-plus-icon.svg';
 import TestIcon from './TestIcon';
-import Message from './Message';
+import Character from './Character';
 
 interface MessageData {
   isActive: boolean;
@@ -37,9 +36,9 @@ export default function Feed() {
   const [sticky, animate] = useScroll();
 
   return (
-    <div className='h-screen max-w-[375px] flex-grow border-r border-[#252525] bg-main-background sm:ml-[88px] lg:min-w-[375px] xl:ml-[300px]'>
+    <div className='z-50 max-w-[375px] flex-grow border-r border-[#252525] bg-main-background sm:ml-[88px] lg:min-w-[375px] xl:ml-[300px]'>
       {/* 108px topbar with margins */}
-      <div className='flex w-[375px] items-center gap-x-2 border-r border-[#252525] px-4 py-4'>
+      <div className='sticky top-0 flex w-[375px] items-center gap-x-2 border-r border-[#252525] px-4 py-4'>
         <div className='relative w-full'>
           <div className='absolute left-4 top-3'>
             <SearchIcon />
@@ -55,16 +54,21 @@ export default function Feed() {
         </div>
       </div>
 
-      {messages.map((message) => (
-        <Message
-          key={message.username}
-          isActive={message.isActive}
-          name={message.name}
-          username={message.username}
-          messagePreview={message.messagePreview}
-          newMessages={message.newMessages}
-        />
-      ))}
+      <div
+        style={{ height: 'calc(100vh - 82px)' }}
+        className='sticky top-[82px] overflow-auto'
+      >
+        {messages.map((message) => (
+          <Character
+            key={message.username}
+            isActive={message.isActive}
+            name={message.name}
+            username={message.username}
+            messagePreview={message.messagePreview}
+            newMessages={message.newMessages}
+          />
+        ))}
+      </div>
     </div>
   );
 }
