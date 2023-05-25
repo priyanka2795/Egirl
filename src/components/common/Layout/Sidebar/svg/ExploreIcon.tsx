@@ -5,15 +5,15 @@ type SvgIconProps = {
 export default function ExploreIcon({ stroke }: SvgIconProps) {
   return (
     <svg
-      width='30'
-      height='30'
-      viewBox='0 0 30 30'
+      width='24'
+      height='24'
+      viewBox='0 0 24 24'
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
     >
       <path
-        d='M15 15H15.0125M26.25 15C26.25 21.2132 21.2132 26.25 15 26.25C8.7868 26.25 3.75 21.2132 3.75 15C3.75 8.7868 8.7868 3.75 15 3.75C21.2132 3.75 26.25 8.7868 26.25 15ZM20 10L11.875 11.875L10 20L18.125 18.125L20 10Z'
-        stroke='#515151'
+        d='M12 12H12.01M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12ZM16 8L9.5 9.5L8 16L14.5 14.5L16 8Z'
+        stroke={stroke}
         strokeWidth='1.8'
         strokeLinecap='round'
         strokeLinejoin='round'

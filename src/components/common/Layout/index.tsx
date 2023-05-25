@@ -11,7 +11,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <>
       {/*  max-w-[1650px] */}
-      <main className=' mx-auto flex min-h-screen max-w-[1440px] '>
+      <main className=' mx-auto flex min-h-screen max-w-[1288px] '>
         {/* mx-auto flex min-h-screen max-w-7xl */}
         <Sidebar />
         <Feed />

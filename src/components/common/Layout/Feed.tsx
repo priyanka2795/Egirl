@@ -17,12 +17,12 @@ export default function Feed() {
   };
 
   return (
-    <div className='max-w-[640px] flex-grow bg-main-background sm:ml-[40px] lg:min-w-[640px] xl:ml-[380px]'>
+    <div className='max-w-[640px] flex-grow bg-main-background sm:ml-[88px] lg:min-w-[640px] xl:ml-[300px]'>
       {/* 108px topbar with margins */}
       <div
-        className={` z-50  ${sticky ? 'sticky ' : ''}  ${
-          animate ? 'top-0' : '-top-[71px]'
-        } h-[108px] max-w-[640px] bg-main-background transition-all duration-[300ms] ease-linear lg:min-w-[640px]`}
+        className={`sticky z-50  ${
+          sticky && animate ? 'top-0' : '-top-[108px]'
+        } h-[108px] max-w-[640px] bg-main-background transition-all duration-[300ms] ease-in lg:min-w-[640px]`}
       >
         <div className='ml-8 pb-5 pt-6'>
           <div className='flex h-[64px] items-center justify-between rounded-l-[14px] bg-main-bar'>

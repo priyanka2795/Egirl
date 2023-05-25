@@ -21,7 +21,7 @@ export default function SidebarMenuItem({
   return (
     <a
       href={href}
-      className={`hoverEffect duraiton-100 mb-3 flex cursor-pointer items-center justify-center space-x-3 rounded-[14px] py-2 pl-3 text-lg text-white transition hover:bg-[#252525] xl:w-[276px] xl:justify-start ${
+      className={`hoverEffect duraiton-100 mb-2 flex cursor-pointer items-center justify-center space-x-3 rounded-[14px] py-3 pl-3 text-lg text-white transition hover:bg-[#252525] xl:w-[256px] xl:justify-start ${
         active && 'bg-[#252525]'
       }`}
     >
@@ -30,15 +30,10 @@ export default function SidebarMenuItem({
         <span
           className={`${active && 'font-bold'} ${
             text == 'Home' ? 'font-semibold' : 'text-light'
-          } hidden text-[26px] font-light leading-8 xl:inline`}
+          } hidden text-[18px] font-light leading-8 xl:inline`}
         >
           {text}
         </span>
-        {text == 'Lists' && (
-          <span className='hidden text-[16px] font-light leading-[18px] text-[#979797] xl:inline'>
-            Subscriptions, Following, etc.
-          </span>
-        )}
       </div>
     </a>
   );
