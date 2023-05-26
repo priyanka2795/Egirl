@@ -20,9 +20,9 @@ const Character: React.FC<MyComponentProps> = ({
       onClick={() => console.log('clicked')}
       className={`${
         isActive
-          ? ' border-[#393557] bg-[#282348]'
-          : 'border-[#252525] bg-main-background'
-      } cursor-pointer border-b border-r px-0`}
+          ? ' border-[#252525] bg-[#282348]'
+          : 'border-[#252525] bg-[#121212]'
+      } border-r-none cursor-pointer border-b px-0`}
     >
       <div className='flex items-center justify-between px-4 py-[22px]'>
         <div className='flex items-center'>
@@ -35,7 +35,7 @@ const Character: React.FC<MyComponentProps> = ({
             className='rounded-full'
           />
           <div className='ml-3 flex flex-col'>
-            <div className='mb-1 flex'>
+            <div className='mb-1 flex items-center'>
               <h3 className='mr-2 text-[16px] font-bold leading-[22px]'>
                 {name}
               </h3>

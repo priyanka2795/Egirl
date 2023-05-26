@@ -32,7 +32,7 @@ const YouMightLike = () => {
               />
             ))}
         </div>
-        <button className='text-normal mt-6 w-full rounded-[14px] bg-gray-400 py-[13px] text-base	'>
+        <button className='text-normal mt-6 w-full rounded-[14px] bg-[#252525] py-[13px] text-base	'>
           Show more
         </button>
         <Slider className='mb-6 mt-[40px]' />
