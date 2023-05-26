@@ -7,10 +7,19 @@ import { useEffect, useRef } from 'react';
 import Button from './Button.svg';
 import VoiceIcon from './svg/voice-icon.svg';
 import SmileIcon from './svg/smile-icon.svg';
+import SendIcon from './svg/send-icon.svg';
+import PlusIcon from './svg/PlusIcon';
+import RedCircle from './svg/red-circle.svg';
+
+import SendWhiteIcon from './svg/send-white-icon.svg';
+
+import { useState } from 'react';
 
 export default function ChatScreen() {
   const [sticky, animate] = useScroll();
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const [message, setMessage] = useState('');
+  const [showInput, setShowInput] = useState(true);
 
   useEffect(() => {
     if (containerRef.current) {
@@ -89,25 +98,64 @@ export default function ChatScreen() {
           </div>
         </div>
       </div>
-      <div className='flex h-[92px] items-center border-t  border-[#252525] bg-[red-400] px-6'>
-        <div className='mr-[10px]'>
-          <Button />
-        </div>
-        <div className='relative w-full'>
-          <div className='absolute right-4 top-3'>
-            <SmileIcon />
+      {showInput && (
+        <div className='flex h-[92px] items-center border-t  border-[#252525] bg-[red-400] px-6'>
+          <div className='mr-[10px] grid h-[32px] w-[32px] min-w-[32px] cursor-pointer place-items-center rounded-full bg-[#5848BC] transition duration-100 hover:bg-[#4b3abd]'>
+            <PlusIcon strokeClasses='stroke-[#ffffff]' />
           </div>
-          <input
-            className='h-[48px] w-full rounded-[14px] border-none bg-[#1E1E1E] py-4 pl-4 pr-[50px] text-[15px] font-light leading-6 text-[#979797] transition-all duration-100 focus:ring-1 focus:ring-transparent'
-            type='text'
-            placeholder='Type a message'
-            style={{ outline: 'none' }}
-          />
+          <div className='relative w-full'>
+            <div className='absolute right-4 top-3'>
+              <SmileIcon />
+            </div>
+            <input
+              className='h-[48px] w-full rounded-[14px] border-none bg-[#1E1E1E] py-4 pl-4 pr-[50px] text-[15px] font-light leading-6 text-[#979797] transition-all duration-100 focus:ring-1 focus:ring-transparent'
+              type='text'
+              placeholder='Type a message'
+              value={message}
+              onChange={(event) => setMessage(event.target.value)}
+              style={{ outline: 'none' }}
+            />
+          </div>
+          <div className='ml-[10px] transition-all duration-100'>
+            {message ? (
+              <button
+                onClick={() => {
+                  console.log("sending message");
+                }}
+              >
+                <SendIcon />
+              </button>
+            ) : (
+              <button
+                onClick={() => {
+                  setShowInput(false);
+                }}
+              >
+                <VoiceIcon />
+              </button>
+            )}
+          </div>
         </div>
-        <div className='ml-[10px]'>
-          <VoiceIcon />
+      )}
+      {!showInput && (
+        <div className='flex h-[92px] items-center justify-between border-t border-[#252525] bg-[red-400] px-6'>
+          <button
+            onClick={() => {
+              setShowInput(true);
+            }}
+            className='text-[15px] font-light leading-5 text-[#979797]'
+          >
+            Cancel
+          </button>
+          <div className='flex items-center text-[15px] font-light leading-5'>
+            <RedCircle />
+            <span className='ml-2 text-[15px] font-light leading-5'>00:12</span>
+          </div>
+          <button className='grid h-[54px] min-h-[54px] w-[54px] min-w-[54px] place-items-center rounded-full bg-[#5848BC] transition duration-100 hover:bg-[#4b3abd]'>
+            <SendWhiteIcon />
+          </button>
         </div>
-      </div>
+      )}
     </div>
   );
 }
