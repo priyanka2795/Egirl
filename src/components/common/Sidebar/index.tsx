@@ -15,6 +15,7 @@ import MoreIcon from './svg/MoreIcon';
 import HomeIcon from './svg/HomeIcon';
 import DotsVerticalIcon from './svg/dots-vertical-icon.svg';
 import EgirlsPlusIcon from './svg/EgirlsPlusIcon';
+import EyeIcon from '../../home/Post/svg/eye.svg';
 
 export default function Sidebar() {
   return (

@@ -22,6 +22,7 @@ export default function AddCardIcon({
         stroke-width='1.8'
         stroke-linecap='round'
         stroke-linejoin='round'
+        stroke='currentColor'
       />
     </svg>
   );
