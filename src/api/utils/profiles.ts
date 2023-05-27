@@ -38,11 +38,11 @@ export async function getProfilesByIds(user_ids: string, client: any) {
   return { data };
 }
 
-// Get profile interests by user id
+// Get profile tag based interests by user id
 export async function getProfileInterests(user_id: string, client: any) {
   let { data, error, status } = await client
-    .from('interests')
-    .select(`id, user_id, infotag_id, created_at`)
+    .from('user_interests')
+    .select(`id, user_id, profile_tag_id, created_at`)
     .filter('user_id', 'eq', user_id);
   if ((error && status !== 406) || !data) {
     throw error;
@@ -125,16 +125,16 @@ export async function createUserProfile(
 // Add user interest
 export async function addUserInterest(
   user_id: string,
-  infotag_id: number,
+  profile_tag_id: number,
   client: any
 ) {
   let interest_data = {
     user_id,
-    infotag_id
+    profile_tag_id
   };
 
   let { data, error, status } = await client
-    .from('interests')
+    .from('user_interests')
     .insert([interest_data])
     .single();
 

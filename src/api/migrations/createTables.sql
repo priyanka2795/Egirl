@@ -26,8 +26,21 @@ CREATE TABLE IF NOT EXISTS characters (
 	creator_id INTEGER NOT NULL REFERENCES creators(id),
 	profile_picture VARCHAR(500) NOT NULL,
 	profile_banner_picture VARCHAR(500) NOT NULL,
-	infotag_ids INTEGER [] NOT NULL,
+	character_profile_tag_ids INTEGER [] NOT NULL,
 	created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS profile_tags (
+	id SERIAL PRIMARY KEY,
+	name VARCHAR(256) NOT NULL,
+	created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS character_profile_tags (
+	id SERIAL PRIMARY KEY,
+	character_id INTEGER NOT NULL REFERENCES characters(id),
+	character_profile_tag_id INTEGER NOT NULL REFERENCES profile_tags(id),
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS subscriptions (
@@ -64,14 +77,14 @@ CREATE TABLE IF NOT EXISTS followers (
 	created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE IF NOT EXISTS infotags (
-	id SERIAL PRIMARY KEY,
-	created_by INTEGER NOT NULL REFERENCES characters(id),
-	name VARCHAR(256) NOT NULL,
-	is_hashtag BOOL NOT NULL,
-	created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
-
+-- deprecated
+-- CREATE TABLE IF NOT EXISTS infotags (
+-- 	id SERIAL PRIMARY KEY,
+-- 	created_by INTEGER NOT NULL REFERENCES characters(id),
+-- 	name VARCHAR(256) NOT NULL,
+-- 	is_hashtag BOOL NOT NULL,
+-- 	created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+-- );
 CREATE TABLE IF NOT EXISTS posts (
 	id SERIAL PRIMARY KEY,
 	user_id uuid NOT NULL REFERENCES profile(user_id),
@@ -81,7 +94,7 @@ CREATE TABLE IF NOT EXISTS posts (
 	prompt_description VARCHAR(256) NOT NULL,
 	is_ppv BOOL NOT NULL,
 	is_character_post BOOL NOT NULL,
-	infotag_ids INTEGER [] NOT NULL,
+	profile_tag_ids INTEGER [] NOT NULL,
 	created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -130,10 +143,10 @@ CREATE TABLE IF NOT EXISTS bookmarks (
 	UNIQUE (user_id, post_id, media_id)
 );
 
-CREATE TABLE IF NOT EXISTS interests (
+CREATE TABLE IF NOT EXISTS user_interests (
 	id SERIAL PRIMARY KEY,
 	user_id uuid NOT NULL REFERENCES profile(user_id),
-	infotag_id INTEGER NOT NULL REFERENCES infotags(id),
+	profile_tag_id INTEGER NOT NULL REFERENCES profile_tags(id),
 	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 

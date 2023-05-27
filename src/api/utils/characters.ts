@@ -8,7 +8,7 @@ export async function getCharacterById(character_id: number, client: any) {
   let { data, error, status } = await client
     .from('characters')
     .select(
-      `username, display_name, is_verified, bio, creator_id, profile_picture, profile_banner_picture, infotag_ids, created_at`
+      `username, display_name, is_verified, bio, creator_id, profile_picture, profile_banner_picture, character_profile_tag_ids, created_at`
     )
     .filter('id', 'eq', character_id);
 
@@ -58,10 +58,10 @@ export async function getCharacterById(character_id: number, client: any) {
     [0, 0, 0, 0] // Total, Tier 1, Tier 2, Tier 3
   );
 
-  const infotag_ids = data[0]['infotag_ids'];
+  const character_profile_tag_ids = data[0]['character_profile_tag_ids'];
 
-  const infotags = await getInfoTagsByInfoTagIds(
-    '(' + infotag_ids.join(',') + ')',
+  const character_profile_tags = await getCharacterProfileTagsByProfileTagIds(
+    '(' + character_profile_tag_ids.join(',') + ')',
     client
   );
 
@@ -75,32 +75,33 @@ export async function getCharacterById(character_id: number, client: any) {
     posts,
     total_subscriptions,
     user_subscriptions,
-    infotags,
+    character_profile_tags,
     follower_count,
     followers
   };
 }
 
-// Get characters by info tags
-export async function getCharactersByInfoTags(
-  infotags: string,
+// Get characters by profile tag ids
+export async function getCharactersByProfileTags(
+  character_profile_tag_ids: string,
   limit: number,
   client: any
 ) {
   let { data, error, status } = await client
     .from('characters')
     .select(
-      `id, username, display_name, is_verified, bio, creator_id, profile_picture, profile_banner_picture, infotag_ids, created_at`
+      `id, username, display_name, is_verified, bio, creator_id, profile_picture, profile_banner_picture, character_profile_tag_ids, created_at`
     )
-    .filter('infotag_ids', 'cs', infotags)
+    .filter('character_profile_tag_ids', 'cs', character_profile_tag_ids)
     .limit(limit);
 
   if ((error && status !== 406) || !data) {
+    console.log('Error getting characters by profile tags: ', error);
     throw error;
   }
 
   let final_subscriptions: any = {};
-  let final_infotags: any = {};
+  let final_profile_tags: any = {};
   let final_follower_count: any = {};
 
   for (let i = 0; i < data.length; i++) {
@@ -130,14 +131,17 @@ export async function getCharactersByInfoTags(
 
     final_subscriptions[i] = total_subscriptions;
 
-    const infotag_ids = data[0]['infotag_ids'];
+    const character_profile_tag_ids = data[0]['character_profile_tag_ids'];
+    console.log('character_profile_tag_ids: ', character_profile_tag_ids);
 
-    const infotags = await getInfoTagsByInfoTagIds(
-      '(' + infotag_ids.join(',') + ')',
+    const character_profile_tags = await getCharacterProfileTagsByProfileTagIds(
+      '(' + character_profile_tag_ids.join(',') + ')',
       client
     );
 
-    final_infotags[i] = infotags;
+    console.log('character_profile_tags: ', character_profile_tags);
+
+    final_profile_tags[i] = character_profile_tags;
 
     // Can extend this later for loading list of followers
     const followers = await getFollowersByCharacterId(character_id, client);
@@ -146,7 +150,12 @@ export async function getCharactersByInfoTags(
     final_follower_count[i] = follower_count;
   }
 
-  return { data, final_subscriptions, final_infotags, final_follower_count };
+  return {
+    data,
+    final_subscriptions,
+    final_profile_tags,
+    final_follower_count
+  };
 }
 
 // Get characters by ids
@@ -182,17 +191,21 @@ export async function getUserSubscriptionsByCharacterId(
   return data;
 }
 
-// Get info tags by info tag ids
-export async function getInfoTagsByInfoTagIds(
-  infotag_ids: string,
+// Get character profile tags by info tag ids
+export async function getCharacterProfileTagsByProfileTagIds(
+  character_profile_tag_ids: string,
   client: any
 ) {
   let { data, error, status } = await client
-    .from('infotags')
-    .select(`id, created_by, name, created_at`)
-    .filter('id', 'in', infotag_ids);
+    .from('profile_tags')
+    .select(`id, name, created_at`)
+    .filter('id', 'in', character_profile_tag_ids);
 
   if ((error && status !== 406) || !data) {
+    console.log(
+      'Error getting character profile tags by profile tag ids: ',
+      error
+    );
     throw error;
   }
 

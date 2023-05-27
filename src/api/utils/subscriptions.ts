@@ -1,5 +1,6 @@
 import { getUserSubscriptionsByUserId } from './profiles';
 import { getCharactersByIds } from './characters';
+import { getUserSubscriptionsByCharacterId } from '../utils/characters';
 
 /// Getters
 

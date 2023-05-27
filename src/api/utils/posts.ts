@@ -24,10 +24,11 @@ export async function getPosts(
       let { data, error, status } = await client
         .from('posts')
         .select(
-          `id, user_id, character_id, title, description, is_ppv, infotag_ids, created_at`
+          `id, user_id, character_id, title, description, is_ppv, character_profile_tag_ids, created_at`
         )
         .filter('is_character_post', 'eq', true)
         .filter('character_id', 'in', character_ids)
+        .order('created_at', { ascending: false })
         .limit(limit);
       clientData = data;
       clientError = error;
@@ -37,9 +38,10 @@ export async function getPosts(
       let { data, error, status } = await client
         .from('posts')
         .select(
-          `id, user_id, character_id, title, description, is_ppv, infotag_ids, created_at`
+          `id, user_id, character_id, title, description, is_ppv, character_profile_tag_ids, created_at`
         )
         .filter('is_character_post', 'eq', true)
+        .order('created_at', { ascending: false })
         .limit(limit);
       clientData = data;
       clientError = error;
@@ -51,10 +53,11 @@ export async function getPosts(
       let { data, error, status } = await client
         .from('posts')
         .select(
-          `id, user_id, character_id, title, description, is_ppv, infotag_ids, created_at`
+          `id, user_id, character_id, title, description, is_ppv, profile_tag_ids, created_at`
         )
         .filter('is_character_post', 'eq', false)
         .filter('user_id', 'in', user_ids)
+        .order('created_at', { ascending: false })
         .limit(limit);
       clientData = data;
       clientError = error;
@@ -64,9 +67,10 @@ export async function getPosts(
       let { data, error, status } = await client
         .from('posts')
         .select(
-          `id, user_id, character_id, title, description, is_ppv, hashtags_id, infotags_id, created_at`
+          `id, user_id, character_id, title, description, is_ppv, profile_tag_ids, created_at`
         )
         .filter('is_character_post', 'eq', false)
+        .order('created_at', { ascending: false })
         .limit(limit);
       clientData = data;
       clientError = error;
@@ -81,7 +85,7 @@ export async function getPosts(
   let final_post_likes: any = {};
   let final_comments: any = {};
   let final_media: any = {};
-  let final_infotags: any = {};
+  let final_profile_tags: any = {};
 
   // Get all post likes - likes & super likes
   // Alo comments
@@ -109,10 +113,10 @@ export async function getPosts(
 
     const media = await getPostMedia(post_id, client);
 
-    const infotag_ids = clientData[0]['infotag_ids'];
+    const profile_tag_ids = clientData[0]['profile_tag_ids'];
 
-    const infotags = await getInfoTagsByInfoTagIds(
-      '(' + infotag_ids.join(',') + ')',
+    const profile_tags = await getProfileTagsByProfileTagIds(
+      '(' + profile_tag_ids.join(',') + ')',
       client
     );
 
@@ -128,7 +132,7 @@ export async function getPosts(
 
     final_media[i] = media;
 
-    final_infotags[i] = infotags;
+    final_profile_tags[i] = profile_tags;
   }
 
   return {
@@ -136,32 +140,33 @@ export async function getPosts(
     final_post_likes,
     final_comments,
     final_media,
-    final_infotags
+    final_profile_tags
   };
 }
 
-// Get posts by infotags
-export async function getPostsByInfoTags(
-  infotags: string,
+// Get posts by profile tags
+export async function getPostsByProfileTags(
+  profile_tags: string,
   limit: number,
   client: any
 ) {
   let { data, error, status } = await client
     .from('posts')
     .select(
-      `id, user_id, character_id, title, description, is_ppv, infotag_ids, created_at`
+      `id, user_id, character_id, title, description, is_ppv, profile_tag_ids, created_at`
     )
     .filter('is_character_post', 'eq', true)
-    .filter('infotag_ids', 'cs', infotags)
+    .filter('profile_tag_ids', 'cs', profile_tags)
     .limit(limit);
   if ((error && status !== 406) || !data) {
+    console.log('Error getting posts by profile tags: ', error);
     throw error;
   }
 
   let final_post_likes: any = {};
   let final_comments: any = {};
   let final_media: any = {};
-  let final_infotags: any = {};
+  let final_profile_tags: any = {};
 
   // Get all post likes - likes & super likes
   // Alo comments
@@ -189,10 +194,10 @@ export async function getPostsByInfoTags(
 
     const media = await getPostMedia(post_id, client);
 
-    const infotag_ids = data[0]['infotag_ids'];
+    const profile_tag_ids = data[0]['profile_tag_ids'];
 
-    const infotags = await getInfoTagsByInfoTagIds(
-      '(' + infotag_ids.join(',') + ')',
+    const profile_tags = await getProfileTagsByProfileTagIds(
+      '(' + profile_tag_ids.join(',') + ')',
       client
     );
 
@@ -208,7 +213,7 @@ export async function getPostsByInfoTags(
 
     final_media[i] = media;
 
-    final_infotags[i] = infotags;
+    final_profile_tags[i] = profile_tags;
   }
 
   return {
@@ -216,7 +221,7 @@ export async function getPostsByInfoTags(
     final_post_likes,
     final_comments,
     final_media,
-    final_infotags
+    final_profile_tags
   };
 }
 
@@ -254,7 +259,7 @@ export async function getPost(post_id: number, client: any) {
   let { data, error, status } = await client
     .from('posts')
     .select(
-      `id, user_id, character_id, title, description, is_ppv, hashtags_id, infotags_id, created_at`
+      `id, user_id, character_id, title, description, is_ppv, profile_tag_ids, created_at`
     )
     .filter('post_id', 'eq', post_id);
 
@@ -295,14 +300,14 @@ export async function getPostMedia(post_id: number, client: any) {
 }
 
 // Get info tags by info tag ids
-export async function getInfoTagsByInfoTagIds(
-  infotag_ids: string,
+export async function getProfileTagsByProfileTagIds(
+  profile_tag_ids: string,
   client: any
 ) {
   let { data, error, status } = await client
-    .from('infotags')
-    .select(`id, created_by, name, created_at`)
-    .filter('id', 'in', infotag_ids);
+    .from('profile_tags')
+    .select(`id, name, created_at`)
+    .filter('id', 'in', profile_tag_ids);
 
   if ((error && status !== 406) || !data) {
     throw error;
@@ -312,6 +317,40 @@ export async function getInfoTagsByInfoTagIds(
 }
 
 //getPosts(true, 20, '()', '(1)').then((res) => console.log(res));
+
+// Get posts by post id
+export async function getPostsByPostIds(post_ids: string, client: any) {
+  let { data, error, status } = await client
+    .from('posts')
+    .select(
+      `id, user_id, character_id, title, description, is_ppv, profile_tag_ids, created_at`
+    )
+    .filter('id', 'in', post_ids);
+
+  if ((error && status !== 406) || !data) {
+    throw error;
+  }
+
+  return data;
+}
+
+// Get posts liked by user
+export async function getPostsLikedByUser(user_id: string, client: any) {
+  let { data, error, status } = await client
+    .from('post_likes')
+    .select(`post_id`)
+    .filter('user_id', 'eq', user_id)
+    .filter('is_like', 'eq', true);
+
+  if ((error && status !== 406) || !data) {
+    throw error;
+  }
+
+  let post_ids = data.map((post: any) => post.post_id);
+
+  let posts = await getPostsByPostIds('(' + post_ids.join(',') + ')', client);
+  return posts;
+}
 
 /// Setters
 
@@ -324,7 +363,7 @@ export async function createPost(
   prompt_description: string,
   is_ppv: boolean,
   is_character_post: boolean,
-  infotags_id: number[],
+  profile_tag_ids: number[],
   client: any
 ) {
   let postData = {
@@ -335,7 +374,7 @@ export async function createPost(
     prompt_description,
     is_ppv,
     is_character_post,
-    infotags_id
+    profile_tag_ids
   };
   let { data, error, status } = await client.from('posts').insert([postData]);
 
