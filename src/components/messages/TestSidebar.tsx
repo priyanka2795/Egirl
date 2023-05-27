@@ -3,41 +3,32 @@ import React, { useState, useRef, useEffect } from 'react';
 
 const ResizableSidebar: React.FC = () => {
   const [isDragging, setDragging] = useState<boolean>(false);
-  const [sidebarWidth, setSidebarWidth] = useState<number>(500);
-  const [newWidth, setNewWidth] = useState<number>(500);
+  const [sidebarWidth, setSidebarWidth] = useState<number>(375);
   const [changeWidth, setChangeWidth] = useState<boolean>(false);
 
-  const resizerRef = useRef<HTMLDivElement | null>(null);
   const sidebarRef = useRef<HTMLDivElement | null>(null);
 
   const handleMouseDown = (e: React.MouseEvent): void => {
     setDragging(true);
+    document.body.style.cursor = 'col-resize';
   };
 
   const handleMouseUp = (): void => {
+    if (!isDragging) return;
     setDragging(false);
-
-    if (changeWidth && sidebarWidth == 500) {
-      setSidebarWidth(200);
-    } else if (changeWidth && sidebarWidth == 200) {
-      setSidebarWidth(500);
-    }
+    document.body.style.cursor = 'auto';
   };
 
   const handleMouseMove = (e: MouseEvent): void => {
     if (!isDragging || !sidebarRef.current) return;
     const dx = e.clientX - sidebarRef.current.getBoundingClientRect().right;
-    console.log('dx: ', dx);
+    const newWidth = sidebarWidth + dx;
+    console.log(newWidth);
 
-    if (sidebarWidth == 500 && dx < 0) {
-      console.log('change wid');
-      setChangeWidth(true);
-    } else if (sidebarWidth == 200 && dx > 0) {
-      console.log('change wid');
-      setChangeWidth(true);
-    } else {
-      console.log('not!');
-      setChangeWidth(false);
+    if (sidebarWidth == 375 && dx < 0 && newWidth <= 227.5) {
+      setSidebarWidth(80);
+    } else if (sidebarWidth == 80 && dx > 0 && newWidth >= 227.5) {
+      setSidebarWidth(375);
     }
   };
 
@@ -48,31 +39,23 @@ const ResizableSidebar: React.FC = () => {
     document.addEventListener('mousemove', mouseMoveHandler);
     document.addEventListener('mouseup', mouseUpHandler);
 
-    // Add this section
-    if (isDragging) {
-      document.body.style.cursor = 'col-resize';
-    } else {
-      document.body.style.cursor = 'auto';
-    }
-
     return () => {
       document.removeEventListener('mousemove', mouseMoveHandler);
       document.removeEventListener('mouseup', mouseUpHandler);
     };
-  }, [isDragging, sidebarWidth]);
+  }, [isDragging, sidebarWidth, changeWidth]);
 
   return (
     <div className='flex h-full w-full select-none bg-white'>
       <div
-        className={`relative h-full overflow-x-hidden bg-gray-300 transition-all duration-300`}
+        className={`relative h-full overflow-x-hidden bg-red-300 w-[${sidebarWidth}px] `}
         ref={sidebarRef}
-        style={{ width: `${sidebarWidth}px` }}
+        // style={{ width: `${sidebarWidth}px` }}
       >
         <div
           className={`${
             isDragging ? 'bg-blue-400' : 'bg-green-400'
-          } hover:bg-blue-400b absolute -top-[1px] right-0 h-full w-1 cursor-col-resize transition duration-100`}
-          ref={resizerRef}
+          } absolute -top-[1px] right-0 h-full w-1 cursor-col-resize transition duration-100 hover:bg-blue-400`}
           onMouseDown={handleMouseDown}
         ></div>
         <div className='bg-white p-5'>
