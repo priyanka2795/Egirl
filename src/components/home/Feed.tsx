@@ -1,15 +1,8 @@
 import React, { useState } from 'react';
-import Image from 'next/image';
-import DotsHorizontalIcon from './Post/svg/dots-horizontal.svg';
-import useScroll from '../../../hooks/useScroll';
-import LocationPinIcon from './Post/svg/location-pin.svg';
-import CommentIcon from './Post/svg/comment.svg';
-import HeartIcon from './Post/svg/heart.svg';
-import SaveIcon from './Post/svg/save.svg';
-import ReturnIcon from './Post/svg/return-icon.svg';
-import EyeIcon from './Post/svg/eye.svg';
 
-CommentIcon;
+import useScroll from '../../../hooks/useScroll';
+import Post from './Post';
+
 export default function Feed() {
   const [showForYou, setShowForYou] = useState(true);
   const [sticky, animate] = useScroll();
@@ -53,85 +46,25 @@ export default function Feed() {
           </div>
         </div>
       </div>
-
       <div className='px-[32px]'>
         {/* {Array(100)
           .fill(0)
           .map((_, i) => (
             <p key={i}>Main content line {i + 1}</p>
           ))} */}
-
-        <div className='flex w-full flex-col gap-y-4 rounded-[14px] bg-main-bar p-6'>
-          {/* Profile Section */}
-          <div className='flex items-center'>
-            <Image
-              src='https://media.istockphoto.com/id/638756792/photo/beautiful-woman-posing-against-dark-background.jpg?s=612x612&w=0&k=20&c=AanwEr0pmrS-zhkVJEgAwxHKwnx14ywNh5dmzwbpyLk=' // Change to your image path
-              alt='Character Profile Picture' // Change to your alt text
-              width={48}
-              height={48}
-              className='rounded-full'
-            />
-            <div className='ml-4 flex items-center'>
-              <h3 className='mr-2 text-lg font-bold leading-6'>Mika-chan</h3>
-              <p className='size-[15px] font-light leading-5 text-[#979797]'>
-                @mikachan • 6h
-              </p>
-            </div>
-            <div className='ml-auto'>
-              <DotsHorizontalIcon />
-            </div>
-          </div>
-          <div>
-            <p className='w-full text-sm leading-[18px] text-white'>
-              Hello dears, my mood today is 🤗
-            </p>
-            <div className='flex items-center gap-x-[6px]'>
-              <p className='mt-1 text-sm font-light leading-[18px] text-[#8476C4]'>
-                #girl
-              </p>
-              <p className='mt-1 text-sm font-light leading-[18px] text-[#8476C4]'>
-                #mood
-              </p>
-              <p className='mt-1 text-sm font-light leading-[18px] text-[#8476C4]'>
-                #relaxtime
-              </p>
-            </div>
-          </div>
-          <div className='flex h-auto w-full flex-col gap-y-5'>
-            <Image
-              // src='https://www.shutterstock.com/image-vector/lock-glass-morphism-trendy-style-260nw-2047414109.jpg' // Change to your image path
-              src='/dummy-img.png'
-              alt='Locked Post' // Change to your alt text
-              width={512}
-              height={512}
-              className='rounded-xl'
-            />
-            <div className='flex w-full'>
-              <LocationPinIcon />
-              <span className='ml-2'>Warsaw, Old Town</span>
-            </div>
-            <div className='flex w-full gap-x-3 text-[15px] font-light leading-5'>
-              <button className='transition-duration-100 flex items-center rounded-full bg-[#282828] px-3 py-2 hover:bg-[#252525]'>
-                <HeartIcon className='text-[#979797]' />
-                <span className='ml-[6px] '>6.2k</span>
-              </button>
-              <button className='transition-duration-100 flex items-center rounded-full bg-[#282828] px-3 py-2 hover:bg-[#252525]'>
-                <CommentIcon className='text-[#979797]' />
-                <span className='ml-[6px]'>98</span>
-              </button>
-              <button className='transition-duration-100 flex items-center rounded-full bg-[#282828] px-3 py-2 hover:bg-[#252525]'>
-                <SaveIcon className='text-[#979797]' />
-              </button>
-              <button className='transition-duration-100 flex items-center rounded-full bg-[#282828] px-3 py-2 hover:bg-[#252525]'>
-                <ReturnIcon className='text-[#979797]' />
-              </button>
-              <button className='transition-duration-100 ml-auto flex items-center rounded-full bg-[#282828] px-3 py-2 hover:bg-[#252525]'>
-                <EyeIcon className='text-[#979797]' />
-                <span className='ml-[6px]'>1.8k</span>
-              </button>
-            </div>
-          </div>
-        </div>
+        <Post
+          imageUrl='https://media.istockphoto.com/id/638756792/photo/beautiful-woman-posing-against-dark-background.jpg?s=612x612&w=0&k=20&c=AanwEr0pmrS-zhkVJEgAwxHKwnx14ywNh5dmzwbpyLk='
+          altText='Character Profile Picture'
+          name='Mika-chan'
+          username='@mikachan'
+          postText='Hello dears, my mood today is 🤗'
+          commentsNumber='98'
+          heartsNumber='6.2k'
+          viewsNumber='1.8k'
+          tags={['#girl', '#mood', '#relaxtime']}
+          location='Warsaw, Old Town'
+          hours="6h"
+        />
       </div>
     </div>
   );
