@@ -29,7 +29,7 @@ export default function SidebarMenuItem({
         <Icon
           strokeClasses={`${
             active ? 'stroke-white' : 'stroke-[#515151]'
-          } transition-all duration-100`}
+          } transition duration-100`}
         />
         <div className='flex flex-col'>
           <span

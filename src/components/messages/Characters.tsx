@@ -60,7 +60,7 @@ export default function Feed() {
             placeholder='Search'
           />
         </div>
-        <div className='rounded-[14px] bg-[#1E1E1E] p-4'>
+        <div className='rounded-[14px] bg-[#1E1E1E] p-4 cursor-pointer'>
           <MailPlus />
         </div>
       </div>

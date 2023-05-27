@@ -43,14 +43,14 @@ export default function ChatScreen() {
             Mika-chan
           </h3>
         </div>
-        <div className='flex items-center'>
+        <div className='flex cursor-pointer items-center bg-red-400'>
           <DotsHorizontalIcon />
         </div>
       </div>
       <div
         style={{ height: 'calc(100vh - 72px - 92px)' }}
         ref={containerRef}
-        className='overflow-auto bg-[#121212] px-6 pt-4'
+        className='flex flex-col justify-end overflow-auto bg-[#121212] px-6 pt-4'
       >
         <div className='flex w-full justify-center text-[12px] font-light leading-4 text-[#979797] '>
           May, 11 2023
@@ -120,7 +120,7 @@ export default function ChatScreen() {
             {message ? (
               <button
                 onClick={() => {
-                  console.log("sending message");
+                  console.log('sending message');
                 }}
               >
                 <SendIcon />
