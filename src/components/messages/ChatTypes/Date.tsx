@@ -1,9 +1,15 @@
-import React from 'react'
+import React from 'react';
 
-const Date = () => {
-  return (
-    <div>Date</div>
-  )
+interface DateProps {
+  date: string;
 }
 
-export default Date
+const Date: React.FC<DateProps> = ({ date }) => {
+  return (
+    <div className='flex w-full justify-center text-[12px] font-light leading-4 text-[#979797] '>
+      {date}
+    </div>
+  );
+};
+
+export default Date;

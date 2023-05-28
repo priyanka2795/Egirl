@@ -71,10 +71,3 @@ export default function Feed() {
     </div>
   );
 }
-
-// dimensions with padding
-// there is a 32 pixel padding diff on xl screens ml:370px -> ml:338px
-// <div className='max-w-xl flex-grow border-l border-r border-gray-200  bg-green-400 sm:ml-[73px] lg:min-w-[576px] xl:ml-[370px]'>
-
-// dimensions where width of this is 576 (like twitter) I changed it to 640 (576 + 32 + 32) to have 32 padding on either side
-// <div className='max-w-xl flex-grow bg-main-background sm:ml-[40px] lg:min-w-[576px] xl:ml-[476px]'>

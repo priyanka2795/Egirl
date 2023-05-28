@@ -14,6 +14,8 @@ import RedCircle from './svg/red-circle.svg';
 import SendWhiteIcon from './svg/send-white-icon.svg';
 
 import { useState } from 'react';
+import Date from './ChatTypes/Date';
+import Message from './ChatTypes/Message';
 
 export default function ChatScreen() {
   const [sticky, animate] = useScroll();
@@ -52,51 +54,21 @@ export default function ChatScreen() {
         ref={containerRef}
         className='flex flex-col justify-end overflow-auto bg-[#121212] px-6 pt-4'
       >
-        <div className='flex w-full justify-center text-[12px] font-light leading-4 text-[#979797] '>
-          May, 11 2023
-        </div>
-        <div className='flex w-full items-center py-4'>
-          <Image
-            key={0}
-            src='/dummy-char.png' // Change to your image path
-            alt={`Character Profile Picture ${0 + 1}`} // Change to your alt text
-            width={40}
-            height={40}
-            className='rounded-full'
-          />
-          <div className='ml-3 flex flex-col'>
-            <div className='mb-[2px] flex items-center'>
-              <span className='mr-2 text-[15px] font-semibold leading-5'>
-                You
-              </span>
-              <span className='text-xs font-light text-[#979797]'>09:22</span>
-            </div>
-            <span className='text-xs font-light leading-[18px]'>
-              Hey, how are you?
-            </span>
-          </div>
-        </div>
-        <div className='flex w-full items-center py-4'>
-          <Image
-            key={0}
-            src='/dummy-char.png' // Change to your image path
-            alt={`Character Profile Picture ${0 + 1}`} // Change to your alt text
-            width={40}
-            height={40}
-            className='rounded-full'
-          />
-          <div className='ml-3 flex flex-col'>
-            <div className='mb-[2px] flex items-center'>
-              <span className='mr-2 text-[15px] font-semibold leading-5'>
-                Mika-chan
-              </span>
-              <span className='text-xs font-light text-[#979797]'>09:23</span>
-            </div>
-            <span className='text-xs font-light leading-[18px]'>
-              Doing well, thank you. How may I assist you?
-            </span>
-          </div>
-        </div>
+        <Date date='May, 11 2023' />
+        <Message
+          src='/dummy-char.png'
+          alt={`Character Profile Picture ${0}`}
+          time='09:22'
+          message='hey, how are you?'
+          name='You'
+        />
+        <Message
+          src='/dummy-char.png'
+          alt={`Character Profile Picture ${1}`}
+          time='09:23'
+          message='Doing well, thank you. How may I assist you?'
+          name='Mika-chan'
+        />
       </div>
       {showInput && (
         <div className='flex h-[92px] items-center border-t  border-[#252525] bg-[red-400] px-6'>

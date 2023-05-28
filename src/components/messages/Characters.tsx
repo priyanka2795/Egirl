@@ -5,35 +5,43 @@ import useScroll from '../../../hooks/useScroll';
 import MailPlus from './svg/mail-plus-icon.svg';
 import TestIcon from './TestIcon';
 import Character from './Character';
+import CharacterSmall from './CharacterSmall';
+import SearchAltIcon from './svg/search-alt.svg';
 
 interface MessageData {
-  isActive: boolean;
   name: string;
   username: string;
   messagePreview: string;
   newMessages: number;
+  timeLastSeen: string;
 }
 
 const messages: MessageData[] = [
   {
-    isActive: true,
     name: 'Mika-chan',
-    username: '@mikachan • 6h',
+    username: '@mikachan',
     messagePreview: 'Doing well, thank...',
-    newMessages: 3
+    newMessages: 3,
+    timeLastSeen: '6h'
   },
   {
-    isActive: false,
-    name: 'Mika-chan',
-    username: '@mikachan • 22 May',
+    name: 'Mika-chan2',
+    username: '@mikachan2',
     messagePreview: 'Doing well, thank...',
-    newMessages: 14
+    newMessages: 14,
+    timeLastSeen: '22 May'
   }
 ];
 
-export default function Feed() {
-  const [showForYou, setShowForYou] = useState(true);
-  const [sticky, animate] = useScroll();
+export default function Characters() {
+  // active character state
+  const [activeUsername, setActiveUsername] = useState<string>(
+    messages[0].username
+  );
+
+  const handleUpdateUsername = (username: string) => {
+    setActiveUsername(username);
+  };
 
   // search state
   const [isInputActive, setInputActive] = useState(false);
@@ -95,13 +103,13 @@ export default function Feed() {
   return (
     <div
       ref={sidebarRef}
-      className={`relative z-50 max-w-[${sidebarWidth}px] flex-grow border-r-[2px] border-[#252525] bg-[#121212] sm:ml-[88px] lg:min-w-[${sidebarWidth}px] xl:ml-[300px]`}
+      className={`relative z-50 max-w-[${sidebarWidth}px] w-[${sidebarWidth}px] flex-grow border-r-[2px] border-[#252525] bg-[#121212] sm:ml-[88px] lg:min-w-[${sidebarWidth}px] xl:ml-[300px]`}
     >
       {/* draggable portion */}
       <div
         className={`${
           isDragging ? 'bg-blue-400' : 'bg-transparent'
-        } absolute -top-[1px] right-0 z-50 h-full w-1 cursor-col-resize transition duration-100 hover:bg-blue-400`}
+        } absolute -right-[3px] z-50 h-full w-1 cursor-col-resize transition duration-100 hover:bg-blue-400`}
         onMouseDown={handleMouseDown}
       ></div>
       {/* topbar with margins */}
@@ -110,44 +118,71 @@ export default function Feed() {
       >
         chicago
       </div> */}
-      <div
-        className={`sticky top-0 flex w-${sidebarWidth}px] items-center gap-x-2 px-4 py-4`}
-      >
-        <div className='relative w-full'>
-          <div className='absolute left-4 top-3'>
-            <SearchIcon
-              strokeClasses={`${
-                isInputActive ? 'stroke-[#5848BC]' : 'stroke-[#515151]'
-              } transition duration-100`}
+      {sidebarWidth == 375 && (
+        <div
+          className={`sticky top-0 flex w-[375px] min-w-[375px] max-w-[375px] items-center gap-x-2 px-4 py-4`}
+        >
+          <div className='relative w-full'>
+            <div className='absolute left-4 top-3'>
+              <SearchIcon
+                strokeClasses={`${
+                  isInputActive ? 'stroke-[#5848BC]' : 'stroke-[#515151]'
+                } transition duration-100`}
+              />
+            </div>
+            <input
+              onFocus={handleInputFocus}
+              onBlur={handleInputBlur}
+              className='py-auto h-[48px] w-full rounded-[14px] border-none bg-[#1E1E1E] pl-[50px] text-[15px] font-light leading-6 text-[#979797] transition duration-100 focus:ring-1 focus:ring-[#5848BC]'
+              type='text'
+              placeholder='Search'
             />
           </div>
-          <input
-            onFocus={handleInputFocus}
-            onBlur={handleInputBlur}
-            className='py-auto h-[48px] w-full rounded-[14px] border-none bg-[#1E1E1E] pl-[50px] text-[15px] font-light leading-6 text-[#979797] transition duration-100 focus:ring-1 focus:ring-[#5848BC]'
-            type='text'
-            placeholder='Search'
-          />
+          <div className='cursor-pointer rounded-[14px] bg-[#1E1E1E] p-4'>
+            <MailPlus />
+          </div>
         </div>
-        <div className='cursor-pointer rounded-[14px] bg-[#1E1E1E] p-4'>
-          <MailPlus />
+      )}
+
+      {sidebarWidth == 80 && (
+        <div
+          className={`sticky top-0 flex w-[80px] min-w-[80px] max-w-[80px] flex-col items-center gap-x-2 gap-y-2 border-b-[1px] border-r-[2px] border-[#252525] bg-[#111111] px-4 py-4`}
+        >
+          <div className='mx-4 cursor-pointer rounded-[14px] bg-[#1E1E1E] p-[15px]'>
+            <MailPlus />
+          </div>
+          <div className='mx-4 cursor-pointer rounded-[14px] bg-[#1E1E1E]  p-[15px]'>
+            <SearchAltIcon />
+          </div>
         </div>
-      </div>
+      )}
 
       <div
         style={{ height: 'calc(100vh - 82px)' }}
-        className='sticky top-[82px] overflow-auto'
+        className='sticky top-[82px] overflow-auto transition-all duration-100'
       >
-        {messages.map((message) => (
-          <Character
-            key={message.username}
-            isActive={message.isActive}
-            name={message.name}
-            username={message.username}
-            messagePreview={message.messagePreview}
-            newMessages={message.newMessages}
-          />
-        ))}
+        {sidebarWidth == 375 &&
+          messages.map((message) => (
+            <Character
+              key={message.username}
+              isActive={message.username === activeUsername}
+              name={message.name}
+              username={message.username}
+              messagePreview={message.messagePreview}
+              newMessages={message.newMessages}
+              timeLastSeen={message.timeLastSeen}
+              onClick={handleUpdateUsername}
+            />
+          ))}
+        {sidebarWidth == 80 &&
+          messages.map((message) => (
+            <CharacterSmall
+              key={message.username}
+              username={message.username}
+              isActive={message.username === activeUsername}
+              onClick={handleUpdateUsername}
+            />
+          ))}
       </div>
     </div>
   );

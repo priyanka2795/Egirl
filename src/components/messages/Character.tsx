@@ -7,17 +7,21 @@ interface MyComponentProps {
   username: string;
   messagePreview: string;
   newMessages: number;
+  timeLastSeen: string;
+  onClick: (username: string) => void;
 }
 const Character: React.FC<MyComponentProps> = ({
   isActive,
   name,
   username,
   messagePreview,
-  newMessages
+  newMessages,
+  timeLastSeen,
+  onClick 
 }) => {
   return (
     <div
-      onClick={() => console.log('clicked')}
+      onClick={() => onClick(username)}
       className={`${
         isActive
           ? ' border-[#252525] bg-[#282348]'
@@ -40,7 +44,7 @@ const Character: React.FC<MyComponentProps> = ({
                 {name}
               </h3>
               <h4 className='text-sm font-light leading-[18px] text-[#979797]'>
-                {username}
+                {username} {' • ' + timeLastSeen}
               </h4>
             </div>
             <div className='text-smibold text-[14px] leading-[18px]'>
