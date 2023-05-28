@@ -1,13 +1,13 @@
 import { Sidebar } from '@components/sidebar/sidebar';
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react';
 import { WindowContextProvider } from '@lib/context/window-context';
-import { MainHeader } from '@components/home/main-header';
-import { UpdateUsername } from '@components/home/update-username';
-import { MainContainer } from '@components/home/main-container';
+import { MainHeader } from '@components/home-old/main-header';
+import { UpdateUsername } from '@components/home-old/update-username';
+import { MainContainer } from '@components/home-old/main-container';
 import { MainLayout } from '@components/layout/main-layout';
 import { HomeLayout, ProtectedLayout } from '@components/layout/common-layout';
 import { ReactElement, ReactNode } from 'react';
-import { UpdateUsername2 } from '@components/home/update-username-2';
+import { UpdateUsername2 } from '@components/home-old/update-username-2';
 import { Loading } from '@components/ui/loading';
 import { Error } from '@components/ui/error';
 import { AnimatePresence } from 'framer-motion';

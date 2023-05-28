@@ -25,13 +25,14 @@ export function TweetDate({
               viewTweet && 'text-light-secondary dark:text-dark-secondary'
             )}
           >
-            {formatDate(createdAt, viewTweet ? 'full' : 'tweet')}
+            {/* {formatDate(createdAt, viewTweet ? 'full' : 'tweet')} */}
           </a>
         </Link>
         <ToolTip
           className='translate-y-1 peer-focus:opacity-100 peer-focus-visible:visible
                      peer-focus-visible:delay-200'
-          tip={formatDate(createdAt, 'full')}
+          // tip={formatDate(createdAt, 'full')}
+          tip='123'
         />
       </div>
     </div>

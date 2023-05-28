@@ -97,18 +97,15 @@ export function TweetActions({
     //       await sleep(50);
     //     } else await push('/home');
     //   } else await push('/home');
-
     // await Promise.all([
     //   removeTweet(tweetId),
     //   manageTotalTweets('decrement', ownerId),
     //   hasImages && manageTotalPhotos('decrement', createdBy),
     //   parentId && manageReply('decrement', parentId)
     // ]);
-
     // toast.success(
     //   `${isInAdminControl ? `@${username}'s` : 'Your'} Tweet was deleted`
     // );
-
     // removeCloseModal();
   };
 
@@ -243,9 +240,10 @@ export function TweetActions({
                     <Popover.Button
                       className='accent-tab flex w-full gap-3 rounded-md rounded-t-none p-4 hover:bg-main-sidebar-background'
                       as={Button}
-                      onClick={preventBubbling(
+                      onClick={
+                        preventBubbling()
                         // handleFollow(close, 'unfollow', userId, createdBy)
-                      )}
+                      }
                     >
                       <HeroIcon iconName='UserMinusIcon' />
                       Unfollow @{username}
@@ -254,9 +252,10 @@ export function TweetActions({
                     <Popover.Button
                       className='accent-tab flex w-full gap-3 rounded-md rounded-t-none p-4 hover:bg-main-sidebar-background'
                       as={Button}
-                      onClick={preventBubbling(
+                      onClick={
+                        preventBubbling()
                         // handleFollow(close, 'follow', userId, createdBy)
-                      )}
+                      }
                     >
                       <HeroIcon iconName='UserPlusIcon' />
                       Follow @{username}

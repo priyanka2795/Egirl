@@ -23,8 +23,7 @@ export function SidebarProfile(): JSX.Element {
   const photoURL =
     'https://www.wikihow.com/images/thumb/f/fc/Get-the-URL-for-Pictures-Step-1-Version-6.jpg/v4-460px-Get-the-URL-for-Pictures-Step-1-Version-6.jpg.webp';
 
-  const signOut = () => {
-  };
+  const signOut = () => {};
 
   return (
     <>

@@ -21,7 +21,6 @@ export function TweetShare({
   tweetId,
   viewTweet
 }: TweetShareProps): JSX.Element {
-
   // const handleBookmark =
   //   (closeMenu: () => void, ...args: Parameters<typeof manageBookmark>) =>
   //   async (): Promise<void> => {
@@ -95,9 +94,10 @@ export function TweetShare({
                   <Popover.Button
                     className='accent-tab flex w-full gap-3 rounded-md rounded-t-none p-4 hover:bg-main-sidebar-background'
                     as={Button}
-                    onClick={preventBubbling(
+                    onClick={
+                      preventBubbling()
                       // handleBookmark(close, 'bookmark', userId, tweetId)
-                    )}
+                    }
                   >
                     <HeroIcon iconName='BookmarkIcon' />
                     Bookmark
@@ -106,9 +106,10 @@ export function TweetShare({
                   <Popover.Button
                     className='accent-tab flex w-full gap-3 rounded-md rounded-t-none p-4 hover:bg-main-sidebar-background'
                     as={Button}
-                    onClick={preventBubbling(
+                    onClick={
+                      preventBubbling()
                       // handleBookmark(close, 'unbookmark', userId, tweetId)
-                    )}
+                    }
                   >
                     <HeroIcon iconName='BookmarkSlashIcon' />
                     Remove Tweet from Bookmarks

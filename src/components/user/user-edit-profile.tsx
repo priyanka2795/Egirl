@@ -40,10 +40,11 @@ export function UserEditProfile({ hide }: UserEditProfileProps): JSX.Element {
 
   const bio = 'I am an egirl';
   const name = 'E Girl 1';
-  const website = 'www.egirl.com'; 
+  const website = 'www.egirl.com';
   const location = 'Metaverse';
-  const photoURL = "https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg"; 
-  const coverPhotoURL = "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png";
+  const photoURL = 'https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg';
+  const coverPhotoURL =
+    'https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png';
 
   const [editUserData, setEditUserData] = useState<EditableUserData>({
     bio,

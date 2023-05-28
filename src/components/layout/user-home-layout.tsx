@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 import { useUser } from '@lib/context/user-context';
-import { SEO } from '@components/common/seo';
+import { SEO } from '@components/common-old/seo';
 import { UserHomeCover } from '@components/user/user-home-cover';
 import { UserHomeAvatar } from '@components/user/user-home-avatar';
 import { UserDetails } from '@components/user/user-details';
@@ -18,25 +18,31 @@ import type { LayoutProps } from './common-layout';
 import type { User } from '@lib/types/user';
 
 export function UserHomeLayout({ children }: LayoutProps): JSX.Element {
+  const coverData = {
+    src: 'https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png',
+    alt: 'cover'
+  };
 
-  const coverData = { src: "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png", alt: "cover" };
-
-  const profileData = { src: "https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg", alt: "profile" };
+  const profileData = {
+    src: 'https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg',
+    alt: 'profile'
+  };
 
   const isOwner = true;
   const isAdmin = true;
 
   const userData: User = {
     id: '1',
-    username: "egirl",
-    name: "E-Girl 1",
+    username: 'egirl',
+    name: 'E-Girl 1',
     accent: 'blue',
     bio: 'Im an Egirl',
-    coverPhotoURL: "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+    coverPhotoURL:
+      'https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png',
     followers: ['100'],
     following: ['10'],
     location: 'Metaverse',
-    photoURL: "https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg",
+    photoURL: 'https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg',
     pinnedTweet: 'My first tweet',
     theme: 'dark',
     totalPhotos: 123,
@@ -49,11 +55,7 @@ export function UserHomeLayout({ children }: LayoutProps): JSX.Element {
 
   return (
     <>
-      {userData && (
-        <SEO
-          title={`${`E Girl 1 (@egirl)`} / Twitter`}
-        />
-      )}
+      {userData && <SEO title={`${`E Girl 1 (@egirl)`} / Twitter`} />}
       <motion.section {...variants} exit={undefined}>
         {loading ? (
           <Loading className='mt-5' />

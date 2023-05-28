@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { sleep } from '@lib/utils';
-import { Placeholder } from '@components/common/placeholder';
+import { Placeholder } from '@components/common-old/placeholder';
 import type { LayoutProps } from './common-layout';
 
 export function AuthLayout({ children }: LayoutProps): JSX.Element {

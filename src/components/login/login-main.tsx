@@ -3,7 +3,6 @@ import { CustomIcon } from '@components/ui/custom-icon';
 import { Button } from '@components/ui/button';
 
 export function LoginMain(): JSX.Element {
-
   return (
     <main className='grid lg:grid-cols-[1fr,45vw]'>
       <div className='relative hidden items-center justify-center  lg:flex'>

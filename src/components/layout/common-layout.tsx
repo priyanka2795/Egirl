@@ -2,7 +2,7 @@ import { useRequireAuth } from '@lib/hooks/useRequireAuth';
 import { Aside } from '@components/aside/aside';
 import { AsideTrends } from '@components/aside/aside-trends';
 import { Suggestions } from '@components/aside/suggestions';
-import { Placeholder } from '@components/common/placeholder';
+import { Placeholder } from '@components/common-old/placeholder';
 import type { ReactNode } from 'react';
 
 export type LayoutProps = {
@@ -31,11 +31,7 @@ export function HomeLayout({ children }: LayoutProps): JSX.Element {
 }
 
 export function BookmarkLayout({ children }: LayoutProps): JSX.Element {
-  return (
-    <>
-      {children}
-    </>
-  );
+  return <>{children}</>;
 }
 
 export function BlankLayout({ children }: LayoutProps): JSX.Element {

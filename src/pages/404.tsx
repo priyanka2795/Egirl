@@ -1,6 +1,6 @@
 import Error from 'next/error';
 import { useTheme } from '@lib/context/theme-context';
-import { SEO } from '@components/common/seo';
+import { SEO } from '@components/common-old/seo';
 
 export default function NotFound(): JSX.Element {
   const { theme } = useTheme();

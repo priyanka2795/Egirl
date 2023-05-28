@@ -111,21 +111,21 @@ export function Tweet(tweet: TweetProps): JSX.Element {
           onClick={delayScroll(200)}
         >
           <div className='grid grid-cols-[auto,1fr] gap-x-3 gap-y-1'>
-              {modal ? null : pinned ? (
-                <TweetStatus type='pin'>
-                  <p className='text-sm font-bold'>Pinned Tweet</p>
+            {modal ? null : pinned ? (
+              <TweetStatus type='pin'>
+                <p className='text-sm font-bold'>Pinned Tweet</p>
+              </TweetStatus>
+            ) : (
+              tweetIsRetweeted && (
+                <TweetStatus type='tweet'>
+                  <Link href={profileUsername as string}>
+                    <a className='custom-underline truncate text-sm font-bold'>
+                      {userId === profileId ? 'You' : profileName} Retweeted
+                    </a>
+                  </Link>
                 </TweetStatus>
-              ) : (
-                tweetIsRetweeted && (
-                  <TweetStatus type='tweet'>
-                    <Link href={profileUsername as string}>
-                      <a className='custom-underline truncate text-sm font-bold'>
-                        {userId === profileId ? 'You' : profileName} Retweeted
-                      </a>
-                    </Link>
-                  </TweetStatus>
-                )
-              )}
+              )
+            )}
             <div className='flex flex-col items-center gap-2'>
               {parentTweet && (
                 <i className='hover-animation h-full w-0.5 bg-light-line-reply dark:bg-dark-line-reply' />

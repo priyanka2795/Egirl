@@ -2,17 +2,16 @@ import { useRef } from 'react';
 import { useRouter } from 'next/router';
 import { AnimatePresence } from 'framer-motion';
 import { doc, query, where, orderBy } from 'firebase/firestore';
-import { tweetsCollection } from '@lib/firebase/collections';
 import { useCollection } from '@lib/hooks/useCollection';
 import { useDocument } from '@lib/hooks/useDocument';
 import { isPlural } from '@lib/utils';
 import { HomeLayout, ProtectedLayout } from '@components/layout/common-layout';
 import { MainLayout } from '@components/layout/main-layout';
-import { MainContainer } from '@components/home/main-container';
-import { MainHeader } from '@components/home/main-header';
+import { MainContainer } from '@components/home-old/main-container';
+import { MainHeader } from '@components/home-old/main-header';
 import { Tweet } from '@components/tweet/tweet';
 import { ViewTweet } from '@components/view/view-tweet';
-import { SEO } from '@components/common/seo';
+import { SEO } from '@components/common-old/seo';
 import { Loading } from '@components/ui/loading';
 import { Error } from '@components/ui/error';
 import { ViewParentTweet } from '@components/view/view-parent-tweet';
@@ -24,25 +23,42 @@ export default function TweetId(): JSX.Element {
     back
   } = useRouter();
 
-  const { data: tweetData, loading: tweetLoading } = useDocument(
-    doc(tweetsCollection, id as string),
-    { includeUser: true, allowNull: true }
-  );
+  // const { data: tweetData, loading: tweetLoading } = useDocument(
+  //   doc(tweetsCollection, id as string),
+  //   { includeUser: true, allowNull: true }
+  // );
 
-  const viewTweetRef = useRef<HTMLElement>(null);
+  // const viewTweetRef = useRef<HTMLElement>(null);
 
-  const { data: repliesData, loading: repliesLoading } = useCollection(
-    query(
-      tweetsCollection,
-      where('parent.id', '==', id),
-      orderBy('createdAt', 'desc')
-    ),
-    { includeUser: true, allowNull: true }
-  );
+  // const { data: repliesData, loading: repliesLoading } = useCollection(
+  //   query(
+  //     tweetsCollection,
+  //     where('parent.id', '==', id),
+  //     orderBy('createdAt', 'desc')
+  //   ),
+  //   { includeUser: true, allowNull: true }
+  // );
 
-  const { text, images } = tweetData ?? {};
+  // const { text, images } = tweetData ?? {};
+  const viewTweetRef = null;
 
-  const imagesLength = images?.length ?? 0;
+  const tweetData = {
+    parent: {
+      id: null
+    },
+    user: {
+      name: null
+    }
+  };
+
+  const text = {};
+
+  const images = {};
+
+  const tweetLoading = false;
+
+  // const imagesLength = images?.length ?? 0;
+  const imagesLength = 0;
   const parentId = tweetData?.parent?.id;
 
   const pageTitle = tweetData
@@ -68,7 +84,7 @@ export default function TweetId(): JSX.Element {
           </>
         ) : (
           <>
-            {pageTitle && <SEO title={pageTitle} />}
+            {/* {pageTitle && <SEO title={pageTitle} />}
             {parentId && (
               <ViewParentTweet
                 parentId={parentId}
@@ -85,7 +101,7 @@ export default function TweetId(): JSX.Element {
                     <Tweet {...tweet} key={tweet.id} />
                   ))}
                 </AnimatePresence>
-              ))}
+              ))} */}
           </>
         )}
       </section>

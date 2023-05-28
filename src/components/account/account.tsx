@@ -15,9 +15,9 @@ export default function Account({ session }: { session: Session }) {
   const [username, setUsername] = useState<Users['username']>('');
   const [password, setPassword] = useState<Users['password']>('');
 
-  useEffect(() => {
-    getUsername(setLoading, setUsername);
-  }, [session]);
+  // useEffect(() => {
+  //   getUsername(setLoading, setUsername);
+  // }, [session]);
 
   return (
     <div className='form-widget'>
