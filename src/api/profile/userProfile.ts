@@ -1,4 +1,7 @@
-import { getCharacterById, getCharactersByInfoTags } from '../utils/characters';
+import {
+  getCharacterById,
+  getCharactersByProfileTags
+} from '../utils/characters';
 import {
   getProfile,
   getProfileInterests,
@@ -54,10 +57,10 @@ export async function createUserProfile(
 // Add interest to user profile
 export async function addUserInterest(
   user_id: string,
-  infotag_id: number,
+  profile_tag_id: number,
   client: any
 ) {
-  addUserInterestHelper(user_id, infotag_id, client);
+  addUserInterestHelper(user_id, profile_tag_id, client);
   return;
 }
 

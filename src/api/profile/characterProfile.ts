@@ -1,6 +1,6 @@
 import {
   getCharacterById,
-  getCharactersByInfoTags,
+  getCharactersByProfileTags,
   createCharacterProfile as createCharacterProfileHelper
 } from '../utils/characters';
 

@@ -40,7 +40,7 @@ export async function createOrRetrieveCustomer(
   client: any
 ) {
   const { data, error } = await client
-    .from('customers')
+    .from('stripe_customers')
     .select('stripe_customer_id')
     .eq('id', uuid)
     .single();
@@ -56,13 +56,15 @@ export async function createOrRetrieveCustomer(
     const customer = await stripe.customers.create(customerData);
     console.log('This is new customer from Stripe: ', customer);
     // Insert customer id into Supabase
-    const { error: supabaseError } = await client.from('customers').insert([
-      {
-        user_id: uuid,
-        stripe_customer_id: customer.id,
-        created_at: new Date()
-      }
-    ]);
+    const { error: supabaseError } = await client
+      .from('stripe_customers')
+      .insert([
+        {
+          user_id: uuid,
+          stripe_customer_id: customer.id,
+          created_at: new Date()
+        }
+      ]);
     if (supabaseError) {
       console.log(
         'In createOrRetrieveCustomer(), supabaseError: ',
@@ -77,16 +79,27 @@ export async function createOrRetrieveCustomer(
 }
 
 // Process card payment
-export async function processCardPayment(data: any) {
-  const { amount, currency, cardNumber, cardExpMonth, cardExpYear, cardCVC } =
-    data;
+export async function processCardPayment(data: any, client: any) {
+  const {
+    amount,
+    currency,
+    customerId,
+    cardNumber,
+    cardExpMonth,
+    cardExpYear,
+    cardCVC
+  } = data;
 
   // Create payment intent
   const paymentIntent = await stripe.paymentIntents.create({
-    amount: 1000, // cents
+    amount: amount, // cents
     currency: 'usd',
+    customer: customerId,
     payment_method_types: ['card']
   });
+
+  console.log('this is paymentIntent: ', paymentIntent);
+  console.log('this is paymentIntent.customer: ', paymentIntent.customer);
 
   // Collect the customer card details and create payment method
   const paymentMethod = await stripe.paymentMethods.create({
@@ -111,6 +124,27 @@ export async function processCardPayment(data: any) {
       payment_method: paymentMethod.id
     }
   );
+
+  console.log('this is confirmedPaymentIntent: ', confirmedPaymentIntent);
+
+  const { data: any, error: paymentError } = await client
+    .from('stripe_payments')
+    .insert([
+      {
+        customer: paymentIntent.customer as string,
+        payment_intent_id: paymentIntent.id,
+        amount: amount,
+        currency: currency,
+        card_number: cardNumber,
+        payment_method_id: paymentMethod.id,
+        created_at: toDateTime(paymentIntent.created)
+      }
+    ]);
+
+  if (paymentError) {
+    console.log('In processCardPayment(), paymentError: ', paymentError);
+    throw paymentError;
+  }
 
   return confirmedPaymentIntent;
 }
@@ -142,9 +176,9 @@ export async function upsertPriceRecord(price: Stripe.Price, client: any) {
     active: price.active,
     currency: price.currency,
     description: price.nickname ?? undefined,
-    type: price.type,
+    price_type: price.type,
     unit_amount: price.unit_amount ?? undefined,
-    interval: price.recurring?.interval,
+    price_interval: price.recurring?.interval,
     interval_count: price.recurring?.interval_count,
     trial_period_days: price.recurring?.trial_period_days,
     metadata: price.metadata
@@ -186,7 +220,7 @@ export async function manageSubscriptionStatusChange(
 ) {
   // Get customer's UUID from customers table
   const { data: customerData, error: noCustomerError } = await client
-    .from('customers')
+    .from('stripe_customers')
     .select('id')
     .eq('stripe_customer_id', customerId)
     .single();
@@ -203,7 +237,7 @@ export async function manageSubscriptionStatusChange(
     id: subscription.id,
     user_id: uuid,
     metadata: subscription.metadata,
-    status: subscription.status,
+    subscription_status: subscription.status,
     price_id: subscription.items.data[0].price.id,
     //TODO check quantity on subscription
     // @ts-ignore
@@ -258,3 +292,14 @@ export async function manageSubscriptionStatusChange(
 //   'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
 //   supabaseClient
 // );
+
+// const sampleCardData = {
+//   amount: 100,
+//   currency: 'usd',
+//   customerId: 'cus_NNR5759XKBZrq8',
+//   cardNumber: '4242424242424242',
+//   cardExpMonth: '12',
+//   cardExpYear: '2023',
+//   cardCVC: '424'
+// };
+// processCardPayment(sampleCardData, supabaseClient);

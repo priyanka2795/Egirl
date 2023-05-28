@@ -97,7 +97,7 @@ async function characters() {
       creator_id: 1,
       profile_picture: 'www.character-image.com',
       profile_banner_picture: 'www.character-imagebanner.com',
-      infotag_ids: [1, 2],
+      character_profile_tag_ids: [1, 2],
       created_at: '2016-07-24T03:32:45.678Z'
     },
     {
@@ -109,7 +109,7 @@ async function characters() {
       creator_id: 2,
       profile_picture: 'www.character-image.com',
       profile_banner_picture: 'www.character-imagebanner.com',
-      infotag_ids: [2, 3],
+      character_profile_tag_ids: [2, 3],
       created_at: '2016-07-24T03:32:45.678Z'
     },
     {
@@ -121,7 +121,7 @@ async function characters() {
       creator_id: 3,
       profile_picture: 'www.character-image.com',
       profile_banner_picture: 'www.character-imagebanner.com',
-      infotag_ids: [1, 3],
+      character_profile_tag_ids: [1, 3],
       created_at: '2016-07-24T03:32:45.678Z'
     }
   ];
@@ -306,37 +306,38 @@ async function followers() {
   }
 }
 
-async function infotags() {
-  const data = [
-    {
-      id: 1,
-      created_by: 1,
-      name: 'dom',
-      is_hashtag: false,
-      created_at: '2016-07-24T03:32:45.678Z'
-    },
-    {
-      id: 2,
-      created_by: 2,
-      name: '#kinky',
-      is_hashtag: true,
-      created_at: '2017-07-24T03:32:45.678Z'
-    },
-    {
-      id: 3,
-      created_by: 3,
-      name: 'bdsm',
-      is_hashtag: false,
-      created_at: '2018-07-24T03:32:45.678Z'
-    }
-  ];
+// NOTE: deprecated
+// async function infotags() {
+//   const data = [
+//     {
+//       id: 1,
+//       created_by: 1,
+//       name: 'dom',
+//       is_hashtag: false,
+//       created_at: '2016-07-24T03:32:45.678Z'
+//     },
+//     {
+//       id: 2,
+//       created_by: 2,
+//       name: '#kinky',
+//       is_hashtag: true,
+//       created_at: '2017-07-24T03:32:45.678Z'
+//     },
+//     {
+//       id: 3,
+//       created_by: 3,
+//       name: 'bdsm',
+//       is_hashtag: false,
+//       created_at: '2018-07-24T03:32:45.678Z'
+//     }
+//   ];
 
-  const { error } = await supabaseClient.from('infotags').insert(data);
+//   const { error } = await supabaseClient.from('infotags').insert(data);
 
-  if (error) {
-    console.log(error);
-  }
-}
+//   if (error) {
+//     console.log(error);
+//   }
+// }
 
 async function posts() {
   const data = [
@@ -859,6 +860,34 @@ async function rooms() {
   }
 }
 
+// Updated profile tags
+
+async function profile_tags() {
+  const data = [
+    {
+      id: 1,
+      name: 'cat girl',
+      created_at: '2023-01-23T03:32:45.678Z'
+    },
+    {
+      id: 2,
+      name: 'blue eyes',
+      created_at: '2023-01-24T03:32:45.678Z'
+    },
+    {
+      id: 3,
+      name: 'red hair',
+      created_at: '2023-01-25T03:32:45.678Z'
+    }
+  ];
+
+  const { error } = await supabaseClient.from('profile_tags').insert(data);
+
+  if (error) {
+    console.log(error);
+  }
+}
+
 async function main() {
   await profile();
   console.log('profile done');
@@ -881,8 +910,8 @@ async function main() {
   await followers();
   console.log('followers done');
 
-  await infotags();
-  console.log('infotags done');
+  ////await infotags();
+  ////console.log('infotags done');
 
   await posts();
   console.log('posts done');
@@ -928,6 +957,9 @@ async function main() {
 
   await rooms();
   console.log('rooms done');
+
+  await profile_tags();
+  console.log('profile_tags done');
 }
 
 main();

@@ -1,18 +1,28 @@
-import { getCharacterById, getCharactersByInfoTags } from '../utils/characters';
-import { getPostsByInfoTags, getPosts, createPost } from '../utils/posts';
+import {
+  getCharacterById,
+  getCharactersByProfileTags
+} from '../utils/characters';
+import {
+  getPostsByProfileTags,
+  getPosts,
+  createPost,
+  getPostsLikedByUser
+} from '../utils/posts';
 import {
   getProfileInterests,
   getUserSubscriptionsByUserId,
   getCharacterFollowsByUserId
 } from '../utils/profiles';
 import { getBlockedCharacterIdsByUser } from '../utils/blocks';
-//import { supabaseClient } from '../../config/supabaseClient';
+import { supabaseClient } from '../../config/supabaseClient';
 
 /// Getters
 
+/// For you posts
+
 /// Character posts
 
-// Get posts for characters that user is subscribed to
+// Get posts for characters that user is subscribed to, i.e. subscription feed
 export async function getHomePostsSubscribedTo(user_id: string, client: any) {
   const subscriptions = await getUserSubscriptionsByUserId(user_id, client);
   const character_ids = subscriptions.map(
@@ -39,12 +49,23 @@ export async function getHomePostsFollowing(user_id: string, client: any) {
   return posts;
 }
 
-// Get posts by infotags based on user interests
-export async function getHomePostsByInfoTags(user_id: string, client: any) {
+// Get posts by profile tags based on user interests
+// i.e. if interested in cat girl profiles, get posts of such profiles
+export async function getHomePostsByProfileTags(user_id: string, client: any) {
   const interests = await getProfileInterests(user_id, client);
-  const infotags = interests.map((interest: any) => interest.infotag_id);
-  const infotags_str = '{' + infotags.join(',') + '}';
-  const posts = await getPostsByInfoTags(infotags_str, 20, client);
+  const profile_tags = interests.map(
+    (interest: any) => interest.profile_tag_id
+  );
+  const profile_tags_str = '{' + profile_tags.join(',') + '}';
+  const posts = await getPostsByProfileTags(profile_tags_str, 20, client);
+  console.log('getHomePostsByProfileTags posts:', posts);
+  return posts;
+}
+
+// Get posts liked by user
+export async function getHomePostsLikedByUser(user_id: string, client: any) {
+  const posts = await getPostsLikedByUser(user_id, client);
+  console.log('getHomePostsLikedByUser posts:', posts);
   return posts;
 }
 
@@ -54,17 +75,28 @@ export async function getHomePostsLatest(client: any) {
   return posts;
 }
 
-/// Character profiles
+/// For you profiles
 
-// Get suggested characters by infotags based on user interests
-export async function getHomeCharacterSuggestionsByInfotags(
+// Get suggested characters by profile tags based on user interests
+export async function getHomeCharacterSuggestionsByProfileTags(
   user_id: string,
   client: any
 ) {
   const interests = await getProfileInterests(user_id, client);
-  const infotags = interests.map((interest: any) => interest.infotag_id);
-  const infotags_str = '{' + infotags.join(',') + '}';
-  const characters = await getCharactersByInfoTags(infotags_str, 20, client);
+  const profile_tag_ids = interests.map(
+    (interest: any) => interest.profile_tag_id
+  );
+  const profile_tags_str = '{' + profile_tag_ids.join(',') + '}';
+  console.log('THIS IS PROFILE TAGS STR', profile_tags_str);
+  const characters = await getCharactersByProfileTags(
+    profile_tags_str,
+    20,
+    client
+  );
+  console.log(
+    'getHomeCharacterSuggestionsByProfileTags characters:',
+    characters
+  );
   return characters;
 }
 
@@ -78,7 +110,7 @@ export async function createCharacterPost(
   prompt_description: string,
   is_ppv: boolean,
   is_character_post: boolean,
-  infotags_id: number[],
+  profile_tag_ids: number[],
   client: any
 ) {
   // TODO: validation
@@ -90,7 +122,7 @@ export async function createCharacterPost(
     prompt_description,
     is_ppv,
     is_character_post,
-    infotags_id,
+    profile_tag_ids,
     client
   );
   return post;
@@ -102,9 +134,13 @@ export async function createCharacterPost(
 // );
 //getHomePostsSubscribedTo('e8a2be37-76f6-4ebb-bfd8-b9e370046a41');
 //getHomePostsFollowing('e8a2be37-76f6-4ebb-bfd8-b9e370046a41', supabaseClient);
-//getHomePostsByInfoTags('e8a2be37-76f6-4ebb-bfd8-b9e370046a41', supabaseClient);
-//getHomePostsLatest(supabaseClient);
-// getHomeCharacterSuggestionsByInfotags(
+// getHomePostsByProfileTags(
 //   'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
 //   supabaseClient
 // );
+//getHomePostsLatest(supabaseClient);
+// getHomeCharacterSuggestionsByProfileTags(
+//   'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
+//   supabaseClient
+// );
+//getHomePostsLikedByUser('e8a2be37-76f6-4ebb-bfd8-b9e370046a41', supabaseClient);
