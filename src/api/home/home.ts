@@ -93,10 +93,6 @@ export async function getHomeCharacterSuggestionsByProfileTags(
     20,
     client
   );
-  console.log(
-    'getHomeCharacterSuggestionsByProfileTags characters:',
-    characters
-  );
   return characters;
 }
 
@@ -132,7 +128,6 @@ export async function createCharacterPost(
 //   'e05b8c71-a5e0-41c5-96e7-549c0d7a4a04',
 //   supabaseClient
 // );
-//getHomePostsSubscribedTo('e8a2be37-76f6-4ebb-bfd8-b9e370046a41');
 //getHomePostsFollowing('e8a2be37-76f6-4ebb-bfd8-b9e370046a41', supabaseClient);
 // getHomePostsByProfileTags(
 //   'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',

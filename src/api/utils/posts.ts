@@ -1,3 +1,4 @@
+import { getCharactersByIds } from './characters';
 /// Getters
 
 // Get posts, with fiilters for user_ids, character_ids
@@ -24,7 +25,7 @@ export async function getPosts(
       let { data, error, status } = await client
         .from('posts')
         .select(
-          `id, user_id, character_id, title, description, is_ppv, character_profile_tag_ids, created_at`
+          `id, user_id, character_id, title, description, is_ppv, profile_tag_ids, created_at`
         )
         .filter('is_character_post', 'eq', true)
         .filter('character_id', 'in', character_ids)
@@ -38,7 +39,7 @@ export async function getPosts(
       let { data, error, status } = await client
         .from('posts')
         .select(
-          `id, user_id, character_id, title, description, is_ppv, character_profile_tag_ids, created_at`
+          `id, user_id, character_id, title, description, is_ppv, profile_tag_ids, created_at`
         )
         .filter('is_character_post', 'eq', true)
         .order('created_at', { ascending: false })
@@ -79,6 +80,7 @@ export async function getPosts(
   }
 
   if (clientError && clientStatus !== 406) {
+    console.log("in getPosts(), this is err: ", clientError)
     throw error;
   }
 
@@ -135,13 +137,26 @@ export async function getPosts(
     final_profile_tags[i] = profile_tags;
   }
 
-  return {
-    clientData,
-    final_post_likes,
-    final_comments,
-    final_media,
-    final_profile_tags
-  };
+  let characterIds = clientData.map((post: any) => post.character_id);
+  characterIds = '(' + characterIds.join(',') + ')';
+  let characterData = await getCharactersByIds(characterIds, client);
+
+  // final combo
+  for (let i = 0; i < clientData.length; i++) {
+    const character_id = clientData[i].character_id;
+    const character = characterData['data'].find(
+      (character: any) => character.id === character_id
+    );
+    clientData[i]['character_profile_pic_url'] = character['profile_picture'];
+    clientData[i]['character_name'] = character['display_name'];
+    clientData[i]['num_likes'] = final_post_likes[i]['total_post_likes'][0];
+    clientData[i]['num_comments'] = final_comments[i]['total_comments'];
+    clientData[i]['img_url'] = final_media[i]['media_url'];
+    clientData[i]['profile_tags'] = final_profile_tags[i];
+    clientData[i]['comments'] = final_comments[i]['comments'];
+  }
+
+  return clientData
 }
 
 // Get posts by profile tags
@@ -150,6 +165,11 @@ export async function getPostsByProfileTags(
   limit: number,
   client: any
 ) {
+
+  let clientData: any;
+  let clientError: any;
+  let clientStatus: any;
+
   let { data, error, status } = await client
     .from('posts')
     .select(
@@ -163,6 +183,10 @@ export async function getPostsByProfileTags(
     throw error;
   }
 
+  clientData = data;
+  clientError = error;
+  clientStatus = status;
+
   let final_post_likes: any = {};
   let final_comments: any = {};
   let final_media: any = {};
@@ -170,8 +194,8 @@ export async function getPostsByProfileTags(
 
   // Get all post likes - likes & super likes
   // Alo comments
-  for (let i = 0; i < data.length; i++) {
-    const post_id = data[i].id;
+  for (let i = 0; i < clientData.length; i++) {
+    const post_id = clientData[i].id;
     const post_likes: any = await getPostLikes(post_id, client);
     const total_post_likes = post_likes.reduce(
       (count: number[], like: any) => {
@@ -216,13 +240,26 @@ export async function getPostsByProfileTags(
     final_profile_tags[i] = profile_tags;
   }
 
-  return {
-    data,
-    final_post_likes,
-    final_comments,
-    final_media,
-    final_profile_tags
-  };
+  let characterIds = clientData.map((post: any) => post.character_id);
+  characterIds = '(' + characterIds.join(',') + ')';
+  let characterData = await getCharactersByIds(characterIds, client);
+
+  // final combo
+  for (let i = 0; i < clientData.length; i++) {
+    const character_id = clientData[i].character_id;
+    const character = characterData['data'].find(
+      (character: any) => character.id === character_id
+      );
+    clientData[i]['character_profile_pic_url'] = character['profile_picture'];
+    clientData[i]['character_name'] = character['display_name'];
+    clientData[i]['num_likes'] = final_post_likes[i]['total_post_likes'][0];
+    clientData[i]['num_comments'] = final_comments[i]['total_comments'];
+    clientData[i]['img_url'] = final_media[i]['media_url'];
+    clientData[i]['profile_tags'] = final_profile_tags[i];
+    clientData[i]['comments'] = final_comments[i]['comments'];
+  }
+
+  return clientData;
 }
 
 // Get post likes

@@ -150,12 +150,14 @@ export async function getCharactersByProfileTags(
     final_follower_count[i] = follower_count;
   }
 
-  return {
-    data,
-    final_subscriptions,
-    final_profile_tags,
-    final_follower_count
-  };
+  // combine clientData, final_post_likes, final_comments, final_media, final_profile_tags into one list of Post JSON
+  for (let i = 0; i < data.length; i++) {
+    data[i]['total_subscriptions'] = final_subscriptions[i];
+    data[i]['character_profile_tags'] = final_profile_tags[i];
+    data[i]['follower_count'] = final_follower_count[i];
+  }
+
+  return data;
 }
 
 // Get characters by ids
@@ -163,7 +165,7 @@ export async function getCharactersByIds(character_ids: string, client: any) {
   let { data, error, status } = await client
     .from('characters')
     .select(
-      `id, username, display_name, is_verified, bio, creator_id, profile_picture, profile_banner_picture, infotag_ids, created_at`
+      `id, username, display_name, is_verified, bio, creator_id, profile_picture, profile_banner_picture, character_profile_tag_ids, created_at`
     )
     .filter('id', 'in', character_ids);
 
