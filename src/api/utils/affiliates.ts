@@ -18,7 +18,7 @@ export async function getAffiliateLinkId(affiliate_link: string, client: any) {
 export async function getAffiliateLink(user_id: string, client: any) {
   let { data, error, status } = await client
     .from('affiliate_links')
-    .select(`affiliate_link, created_at`)
+    .select(`id, affiliate_link, created_at`)
     .filter('user_id', 'eq', user_id);
 
   if ((error && status !== 406) || !data) {
@@ -30,17 +30,21 @@ export async function getAffiliateLink(user_id: string, client: any) {
 
 // Get affiliate joins for user
 export async function getAffiliateJoinsByUser(user_id: string, client: any) {
-  let affiliate_link_id = getAffiliateLink(user_id, client);
+  let affiliate_link_id_data = await getAffiliateLink(user_id, client);
+  console.log("this is affiliate_link_id_data: ", affiliate_link_id_data)
+  let affiliate_link_id = affiliate_link_id_data['id'];
+  console.log("this is affiliate_link_id: ", affiliate_link_id)
   let { data, error, status } = await client
     .from('affiliate_joins')
     .select(`affiliate_link_id, affiliate_user_id, created_at`)
     .filter('affiliate_link_id', 'eq', affiliate_link_id);
 
   if ((error && status !== 406) || !data) {
+    console.log('this is getAffiliateJoinsByUser error: ', error);
     throw error;
   }
 
-  return { data };
+  return data;
 }
 
 // Get referral id for given referral code
@@ -61,7 +65,7 @@ export async function getReferralId(referral_code: string, client: any) {
 export async function getReferralLink(user_id: string, client: any) {
   let { data, error, status } = await client
     .from('referrals')
-    .select(`referral_code, created_at`)
+    .select(`id, referral_code, created_at`)
     .filter('user_id', 'eq', user_id);
 
   if ((error && status !== 406) || !data) {
@@ -73,17 +77,19 @@ export async function getReferralLink(user_id: string, client: any) {
 
 // Get referral joins for user
 export async function getReferralJoinsByUser(user_id: string, client: any) {
-  let referral_code = getReferralLink(user_id, client);
+  let referral_code_data = await getReferralLink(user_id, client);
+  let referral_code_id = referral_code_data['id'];
+  console.log("this is referral_code_id: ", referral_code_id)
   let { data, error, status } = await client
     .from('referral_joins')
-    .select(`referral_code, affiliate_user_id, created_at`)
-    .filter('referral_code', 'eq', referral_code);
+    .select(`referral_id, referral_user_id, created_at`)
+    .filter('referral_id', 'eq', referral_code_id);
 
   if ((error && status !== 406) || !data) {
     throw error;
   }
 
-  return { data };
+  return data;
 }
 
 /// Setters

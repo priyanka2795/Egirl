@@ -1,15 +1,34 @@
-import { getSubscriptionsByUser } from '../utils/subscriptions';
+import { getSubscriptionsByUser, createUserSubscription } from '../utils/subscriptions';
 
 import { getUserSubscriptionsByCharacterId } from '../utils/characters';
 
-// import { supabaseClient } from '../../config/supabaseClient';
+import { supabaseClient } from '../../config/supabaseClient';
 
 /// Subscriptions
 
 // Get subscriptions
 export async function getSubscriptions(user_id: string, client: any) {
   const subscriptions = await getSubscriptionsByUser(user_id, client);
+  console.log('this is subscriptions: ', subscriptions);
   return subscriptions;
+}
+
+// Create subscription
+export async function createSubscription(
+  user_id: string,
+  character_id: number,
+  subscription_id: number,
+  stripe_subscription_id: string,
+  client: any
+) {
+  const subscription = await createUserSubscription(
+    user_id,
+    character_id,
+    subscription_id,
+    stripe_subscription_id,
+    client
+  );
+  return subscription;
 }
 
 // TODO:
@@ -31,4 +50,4 @@ export async function getSubscriptions(user_id: string, client: any) {
 //     - Same thing we do for For you
 //         - but instead of posts, we do the actual profiles (characters)
 
-// getSubscriptions('e8a2be37-76f6-4ebb-bfd8-b9e370046a41', supabaseClient);
+getSubscriptions('e8a2be37-76f6-4ebb-bfd8-b9e370046a41', supabaseClient);

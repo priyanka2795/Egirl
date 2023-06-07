@@ -68,25 +68,6 @@ export async function getCharacterFollowsByUserId(
   return data;
 }
 
-// Get user subscriptions by user id
-export async function getUserSubscriptionsByUserId(
-  user_id: string,
-  client: any
-) {
-  let { data, error, status } = await client
-    .from('user_subscriptions')
-    .select(
-      `id, user_id, character_id, subscription_id, stripe_subscription_id, created_at`
-    )
-    .filter('user_id', 'eq', user_id);
-
-  if ((error && status !== 406) || !data) {
-    throw error;
-  }
-
-  return data;
-}
-
 /// Setters
 
 // Create user profile

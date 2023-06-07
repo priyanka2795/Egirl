@@ -10,11 +10,15 @@ import {
 } from '../utils/posts';
 import {
   getProfileInterests,
-  getUserSubscriptionsByUserId,
   getCharacterFollowsByUserId
 } from '../utils/profiles';
+import {
+  getUserSubscriptionsByUserId
+} from '../utils/subscriptions';
 import { getBlockedCharacterIdsByUser } from '../utils/blocks';
 import { supabaseClient } from '../../config/supabaseClient';
+
+import { getBookmarkedPostIdsByUser } from '../utils/bookmarks';
 
 /// Getters
 
@@ -36,7 +40,11 @@ export async function getHomePostsSubscribedTo(user_id: string, client: any) {
     (character: any) => !blockedCharacterIds.includes(character)
   );
   const character_ids_str = '(' + final_character_ids.join(',') + ')';
-  const posts = await getPosts(true, 20, client, undefined, character_ids_str);
+  let posts = await getPosts(true, 20, client, undefined, character_ids_str);
+
+  // Add bookmarked bool to each post
+  posts = await addBookmarkedPostIdsToPosts(posts, user_id, client);
+  console.log('getHomePostsSubscribedTo posts:', posts);
   return posts;
 }
 
@@ -45,7 +53,9 @@ export async function getHomePostsFollowing(user_id: string, client: any) {
   const follows = await getCharacterFollowsByUserId(user_id, client);
   const character_ids = follows.map((character: any) => character.followed_id);
   const character_ids_str = '(' + character_ids.join(',') + ')';
-  const posts = await getPosts(true, 20, client, undefined, character_ids_str);
+  let posts = await getPosts(true, 20, client, undefined, character_ids_str);
+  posts = await addBookmarkedPostIdsToPosts(posts, user_id, client);
+  console.log('getHomePostsFollowing posts:', posts);
   return posts;
 }
 
@@ -57,7 +67,10 @@ export async function getHomePostsByProfileTags(user_id: string, client: any) {
     (interest: any) => interest.profile_tag_id
   );
   const profile_tags_str = '{' + profile_tags.join(',') + '}';
-  const posts = await getPostsByProfileTags(profile_tags_str, 20, client);
+  let posts = await getPostsByProfileTags(profile_tags_str, 20, client);
+  
+  // Add bookmarked bool to each post
+  posts = await addBookmarkedPostIdsToPosts(posts, user_id, client);
   console.log('getHomePostsByProfileTags posts:', posts);
   return posts;
 }
@@ -122,6 +135,28 @@ export async function createCharacterPost(
     client
   );
   return post;
+}
+
+/// Utils
+
+// Add bookmarked bool to each post
+export async function addBookmarkedPostIdsToPosts(
+  posts: any[],
+  user_id: string,
+  client: any
+) {
+  const bookmarkedPostIds = await getBookmarkedPostIdsByUser(user_id, client);
+  const bookmarkedPostIdsArr = bookmarkedPostIds.map(
+    (bookmark: any) => bookmark.post_id
+  );
+  posts.forEach((post: any) => {
+    if (bookmarkedPostIdsArr.includes(post.id)) {
+      post.is_bookmarked = true;
+    } else {
+      post.is_bookmarked = false;
+    }
+  });
+  return posts;
 }
 
 // getHomePostsSubscribedTo(

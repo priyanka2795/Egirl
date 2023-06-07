@@ -20,3 +20,44 @@ export async function getBookmarksByUser(user_id: string, client: any) {
 
   return { data, posts };
 }
+
+// Get bookmarked post ids by user
+export async function getBookmarkedPostIdsByUser(user_id: string, client: any) {
+  let { data, error, status } = await client
+    .from('bookmarks')
+    .select(`user_id, post_id, media_id, created_at`)
+    .filter('user_id', 'eq', user_id);
+
+  if ((error && status !== 406) || !data) {
+    throw error;
+  }
+  return data;
+}
+
+/// Setters
+
+// Create user bookmark
+export async function createUserBookmark(
+  user_id: string,
+  post_id: number,
+  media_id: number,
+  client: any
+) {
+  let { data, error, status } = await client
+    .from('bookmarks')
+    .insert([
+      {
+        user_id,
+        post_id,
+        media_id,
+        created_at: new Date().toISOString(),
+      },
+    ])
+    .single();
+
+  if ((error && status !== 406) || !data) {
+    throw error;
+  }
+
+  return data;
+}
