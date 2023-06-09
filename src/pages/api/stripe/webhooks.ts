@@ -2,7 +2,8 @@ import {
   stripe,
   upsertProductRecord,
   upsertPriceRecord,
-  manageSubscriptionStatusChange
+  manageSubscriptionStatusChange,
+  createOrRetrieveCustomer
 } from '../../../api/utils/stripe';
 import { NextApiRequest, NextApiResponse } from 'next';
 import Stripe from 'stripe';
@@ -29,6 +30,7 @@ const relevantEvents = new Set([
   'price.created',
   'price.updated',
   'checkout.session.completed',
+  'customer.created',
   'customer.subscription.created',
   'customer.subscription.updated',
   'customer.subscription.deleted'
@@ -70,6 +72,13 @@ export default async function webhookHandler(
           case 'price.updated':
             await upsertPriceRecord(event.data.object as Stripe.Price, client);
             break;
+          case 'customer.created':
+            const object = event.data.object as Stripe.Customer;
+            await createOrRetrieveCustomer(
+              object.email as string,
+              object.id,
+              client
+            );
           case 'customer.subscription.created':
             let created_subscription = event.data.object as Stripe.Subscription;
             await manageSubscriptionStatusChange(
@@ -79,12 +88,27 @@ export default async function webhookHandler(
               client
             );
           case 'customer.subscription.updated':
+            let updated_subscription = event.data.object as Stripe.Subscription;
+            await manageSubscriptionStatusChange(
+              updated_subscription.id,
+              updated_subscription.customer as string,
+              event.type === 'customer.subscription.updated',
+              client
+            );
+          case 'customer.subscription.canceled':
+            let canceled_subscription = event.data.object as Stripe.Subscription;
+            await manageSubscriptionStatusChange(
+              canceled_subscription.id,
+              canceled_subscription.customer as string,
+              event.type === 'customer.subscription.canceled',
+              client
+            );
           case 'customer.subscription.deleted':
             let deleted_subscription = event.data.object as Stripe.Subscription;
             await manageSubscriptionStatusChange(
               deleted_subscription.id,
               deleted_subscription.customer as string,
-              event.type === 'customer.subscription.created',
+              event.type === 'customer.subscription.deleted',
               client
             );
             break;

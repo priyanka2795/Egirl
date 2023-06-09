@@ -21,7 +21,6 @@ export function getStripe() {
   return stripePromise;
 }
 
-// TODO: edit
 export const stripe = new Stripe(
   process.env.STRIPE_SECRET_KEY_LIVE ?? process.env.STRIPE_SECRET_KEY ?? '',
   {
@@ -78,7 +77,135 @@ export async function createOrRetrieveCustomer(
   return data.stripe_customer_id;
 }
 
-// Process card payment
+// Create Stripe Connect account for creator
+export async function createConnectAccount(creatorId: string): Promise<string> {
+  try {
+    const account = await stripe.accounts.create({
+      type: 'express',
+      capabilities: {
+        card_payments: { requested: true },
+        transfers: { requested: true },
+      },
+      metadata: {
+        creatorId: creatorId,
+      },
+    });
+
+    return account.id;
+  } catch (error) {
+    console.log('Error creating Connect account:', error);
+    throw error;
+  }
+}
+
+// Create Stripe Connect account link for creator
+export async function createAccountLink(creatorId: string): Promise<string> {
+  try {
+    const accountLink = await stripe.accountLinks.create({
+      account: creatorId,
+      refresh_url: 'https://TODO.com/refresh', // URL to redirect users if they need to refresh the page
+      return_url: 'https://TODO.com/success', // URL to redirect users after completing the account connection
+      type: 'account_onboarding',
+    });
+
+    return accountLink.url;
+  } catch (error) {
+    console.log('Error creating account link:', error);
+    throw error;
+  }
+}
+
+// Create checkout session to set up payouts to creators
+export async function createCheckoutSession(customerId: string, creatorAccountId: string): Promise<string> {
+  try {
+    const session = await stripe.checkout.sessions.create({
+      customer: customerId,
+      payment_method_types: ['card'],
+      line_items: [
+        {
+          price: 'SUBSCRIPTION_PRICE_ID',
+          quantity: 1,
+        },
+      ],
+      payment_intent_data: {
+        application_fee_amount: 1000, // TODO: specify fee
+        transfer_data: {
+          destination: creatorAccountId, // creator Stripe Connect accountID
+        },
+      },
+      mode: 'subscription',
+      success_url: 'https://TODO.com/success', // URL to redirect users if successful payment
+      cancel_url: 'https://TODO.com/cancel', // URL to redirect users if cancel payment
+    });
+
+    return session.id;
+  } catch (error) {
+    console.log('Error creating checkout session:', error);
+    throw error;
+  }
+}
+
+// Create recurring subscription
+export async function createSubscription(
+  email: string,
+  uuid: string,
+  planId: string,
+  client: any
+) {
+  const stripeCustomerId = await createOrRetrieveCustomer(email, uuid, client);
+  const subscription = await stripe.subscriptions.create({
+    customer: stripeCustomerId,
+    items: [{ plan: planId }]
+  });
+  console.log('This is new subscription from Stripe: ', subscription);
+  if (subscription.status !== 'active') {
+    throw new Error('Sorry, your card was declined. Please try another card.')
+  }
+
+  // Insert subscription id into Supabase
+  const { error } = await client
+    .from('stripe_subscriptions')
+    .insert([
+      {
+        stripe_subscription_id: subscription.id,
+        stripe_customer_id: stripeCustomerId,
+        created_at: new Date()
+      }
+    ]);
+  if (error) {
+    console.log('In createSubscription(), error: ', error);
+    throw error;
+  }
+  console.log(`New subscription created and inserted for ${stripeCustomerId}.`);
+  return subscription;
+}
+
+// Cancel recurring subscription
+export async function cancelSubscription(
+  subscriptionId: string,
+  client: any
+) {
+  const subscription = await stripe.subscriptions.cancel(subscriptionId);
+  console.log('This is cancelled subscription from Stripe: ', subscription);
+  if (subscription.status !== 'canceled') {
+    throw new Error('Sorry, your subscription could not be cancelled. Please try again.')
+  }
+
+  // Delete subscription id from Supabase
+  const { error } = await client
+    .from('stripe_subscriptions')
+    .delete()
+    .eq('stripe_subscription_id', subscriptionId);
+  if (error) {
+    console.log('In cancelSubscription(), error: ', error);
+    throw error;
+  }
+  console.log(`Subscription cancelled for ${subscriptionId}.`);
+  return subscription;
+}
+
+
+// Process one-time card payment
 export async function processCardPayment(data: any, client: any) {
   const {
     amount,
