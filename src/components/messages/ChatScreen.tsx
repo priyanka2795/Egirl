@@ -16,12 +16,15 @@ import SendWhiteIcon from './svg/send-white-icon.svg';
 import { useState } from 'react';
 import Date from './ChatTypes/Date';
 import Message from './ChatTypes/Message';
+import VoiceModeToggle from './VoiceModeToggle';
+import DefaultChatViewDropdown from './DefaultChatViewDropdown';
 
 export default function ChatScreen() {
   const [sticky, animate] = useScroll();
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [message, setMessage] = useState('');
   const [showInput, setShowInput] = useState(true);
+  const [voiceMode, setVoiceMode] = useState(true);
 
   useEffect(() => {
     if (containerRef.current) {
@@ -45,7 +48,15 @@ export default function ChatScreen() {
             Mika-chan
           </h3>
         </div>
-        <div className='flex cursor-pointer items-center bg-red-400'>
+        {/* <div className='flex items-center bg-red-400 cursor-pointer'>
+          <DotsHorizontalIcon />          
+        </div> */}
+        <div className='flex items-center gap-8'>
+          <VoiceModeToggle
+            handleVoiceMode={() => setVoiceMode(!voiceMode)}
+            voiceModeState={voiceMode}
+          />
+          <DefaultChatViewDropdown />
           <DotsHorizontalIcon />
         </div>
       </div>
@@ -55,7 +66,7 @@ export default function ChatScreen() {
         className='flex flex-col justify-end overflow-auto bg-[#121212] px-6 pt-4'
       >
         <Date date='May, 11 2023' />
-        <Message
+        {/* <Message
           src='/dummy-char.png'
           alt={`Character Profile Picture ${0}`}
           time='09:22'
@@ -68,6 +79,42 @@ export default function ChatScreen() {
           time='09:23'
           message='Doing well, thank you. How may I assist you?'
           name='Mika-chan'
+        /> */}
+        <Message
+          src='/dummy-char.png'
+          alt={`Character Profile Picture ${0}`}
+          time='09:24'
+          message='It’s me :) '
+          name='Mika-chan'
+          gridImage={true}
+        />
+
+        <Message
+          src='/dummy-char.png'
+          alt={`Character Profile Picture ${1}`}
+          time='09:23'
+          message='Some text'
+          name='Mika-chan'
+          messageIcons={true}
+        />
+
+        <Message
+          src='/dummy-char.png'
+          alt={`Character Profile Picture ${2}`}
+          time='09:23'
+          message='Hey Mika-chan, can you send me a picture of you with your arms raised while wearing a black |'
+          name='You'
+          messageIcons={true}
+        />
+
+        <Message
+          src='/dummy-char.png'
+          alt={`Character Profile Picture ${2}`}
+          time='09:23'
+          message='Hey Mika-chan, can you send me a picture of you with your arms raised while wearing a black dress and black bow?'
+          name='Mika-chan'
+          messageIcons={true}
+          rateResponse={true}
         />
       </div>
       {showInput && (
