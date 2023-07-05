@@ -10,6 +10,11 @@ import EmojiIcon from '../svg/emoji-icon.svg';
 import CopyIcon from '../svg/copy-icon.svg';
 import StarIcon from '../svg/star-icon.svg';
 import Link from 'next/link';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Slider from 'react-slick';
+import MessageSlider from '../MessageSlider';
+import { Modal } from '@components/modal/modal';
 
 interface MessageProps {
   src: string;
@@ -32,6 +37,14 @@ const Message: React.FC<MessageProps> = ({
   messageIcons,
   rateResponse
 }) => {
+  var settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1
+  };
+  const handkeCloseModal = () => {};
   return (
     <div className='flex w-full items-start py-4'>
       <Image
@@ -51,7 +64,7 @@ const Message: React.FC<MessageProps> = ({
         </div>
 
         {messageIcons ? (
-          <span className='flex w-full items-start justify-between text-xs font-light leading-[18px]'>
+          <span className='flex w-full items-start justify-between gap-2 text-xs font-light leading-[18px]'>
             {message}
             <div className='flex gap-1'>
               <Link href='#'>
@@ -86,8 +99,8 @@ const Message: React.FC<MessageProps> = ({
         )}
 
         {rateResponse ? (
-          <div className='mt-3 flex'>
-            <div className='item-center flex gap-4 bg-[#1E1E1E] px-4 py-[5px]'>
+          <div className='mt-3 flex items-center justify-between'>
+            <div className='item-center flex gap-4 rounded-xl bg-[#1E1E1E] px-4 py-[5px]'>
               <p className='text-[13px] '>Rate this response</p>
               <div className='flex'>
                 <Link href='#'>
@@ -111,12 +124,58 @@ const Message: React.FC<MessageProps> = ({
                 </Link>
               </div>
             </div>
-            <div></div>
+            <div className='flex gap-2 rounded-xl bg-[#1E1E1E] px-4 py-[5px]'>
+              <svg
+                width='20'
+                height='20'
+                viewBox='0 0 20 20'
+                fill='none'
+                xmlns='http://www.w3.org/2000/svg'
+              >
+                <path
+                  d='M12.5 5L7.5 10L12.5 15'
+                  stroke='#979797'
+                  stroke-linecap='round'
+                  stroke-linejoin='round'
+                />
+              </svg>
+              <p className='text-[13px] text-[#979797]'>2/2</p>
+              <svg
+                width='20'
+                height='20'
+                viewBox='0 0 20 20'
+                fill='none'
+                xmlns='http://www.w3.org/2000/svg'
+              >
+                <path
+                  d='M7.5 5L12.5 10L7.5 15'
+                  stroke='white'
+                  stroke-opacity='0.12'
+                  stroke-linecap='round'
+                  stroke-linejoin='round'
+                />
+              </svg>
+            </div>
           </div>
         ) : (
           ''
         )}
       </div>
+      {/* <MessageSlider /> */}
+      {/* open: boolean;
+  children: ReactNode;
+  className?: string;
+  modalAnimation?: Variants;
+  modalClassName?: string;
+  closePanelOnClick?: boolean;
+  closeModal: () => void; */}
+      {/* <Modal
+        open={true}
+        modalClassName='flex flex-col gap-6 max-w-xl bg-main-background w-full p-8 rounded-2xl h-[576px]'
+        closeModal={handkeCloseModal}
+      >
+        Hello
+      </Modal> */}
     </div>
   );
 };

@@ -5,7 +5,6 @@ interface Props {
   voiceModeState: boolean;
 }
 const VoiceModeToggle = ({ handleVoiceMode, voiceModeState }: Props) => {
-  console.log(voiceModeState, 'voiceModeState');
   return (
     <div className='flex items-center gap-2'>
       <div

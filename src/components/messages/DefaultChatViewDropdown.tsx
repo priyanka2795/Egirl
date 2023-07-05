@@ -3,12 +3,20 @@ import ArrowDown from './svg/arrow-down.svg';
 import ArrowUp from './svg/arrow-up.svg';
 import CheckIcon from './svg/check-icon.svg';
 
-const viewOptions = ['Default view', 'Expanded view', ' Focused view'];
-const DefaultChatViewDropdown = () => {
+const viewOptions = ['Default view', 'Expanded view', 'Focused view'];
+type chartViewProps = {
+  chartScreenView: string | undefined;
+  setChartScreenView: React.Dispatch<React.SetStateAction<string>>;
+};
+const DefaultChatViewDropdown = ({
+  chartScreenView,
+  setChartScreenView
+}: chartViewProps) => {
   const [chatView, setChatView] = useState(false);
-  const [selectedChatView, setSelectedChatView] = useState('');
+  const [selectedChatView, setSelectedChatView] = useState('Default view');
   const handleSelectedOption = (items: string) => {
     setSelectedChatView(items);
+    setChartScreenView(items);
     setChatView(false);
   };
   return (

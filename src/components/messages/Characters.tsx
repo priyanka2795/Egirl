@@ -14,6 +14,7 @@ interface MessageData {
   messagePreview: string;
   newMessages: number;
   timeLastSeen: string;
+  currentlyActive?: boolean;
 }
 
 const messages: MessageData[] = [
@@ -30,6 +31,14 @@ const messages: MessageData[] = [
     messagePreview: 'Doing well, thank...',
     newMessages: 14,
     timeLastSeen: '22 May'
+  },
+  {
+    name: 'Mika-chan3',
+    username: '@mikachan3',
+    messagePreview: 'Doing well, thank...',
+    newMessages: 14,
+    timeLastSeen: '22 May',
+    currentlyActive: true
   }
 ];
 
@@ -120,9 +129,16 @@ export default function Characters() {
       </div> */}
       {sidebarWidth == 375 && (
         <div
-          className={`sticky top-0 flex w-[375px] min-w-[375px] max-w-[375px] items-center gap-x-2 px-4 py-4`}
+          className={`sticky top-0 w-[260px] min-w-[260px] max-w-[260px] flex-col items-center gap-x-2 px-4 py-4`}
         >
-          <div className='relative w-full'>
+          <div className='flex w-full justify-between'>
+            <div className='text-[22px] font-bold'>Chats</div>
+            <div className='cursor-pointer rounded-[14px] bg-[#1E1E1E] p-4'>
+              <MailPlus />
+            </div>
+          </div>
+
+          <div className='relative mt-2 flex w-full'>
             <div className='absolute left-4 top-3'>
               <SearchIcon
                 strokeClasses={`${
@@ -137,9 +153,6 @@ export default function Characters() {
               type='text'
               placeholder='Search'
             />
-          </div>
-          <div className='cursor-pointer rounded-[14px] bg-[#1E1E1E] p-4'>
-            <MailPlus />
           </div>
         </div>
       )}
@@ -172,6 +185,7 @@ export default function Characters() {
               newMessages={message.newMessages}
               timeLastSeen={message.timeLastSeen}
               onClick={handleUpdateUsername}
+              currentlyActive={message.currentlyActive}
             />
           ))}
         {sidebarWidth == 80 &&

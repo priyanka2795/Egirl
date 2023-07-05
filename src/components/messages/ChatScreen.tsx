@@ -18,8 +18,20 @@ import Date from './ChatTypes/Date';
 import Message from './ChatTypes/Message';
 import VoiceModeToggle from './VoiceModeToggle';
 import DefaultChatViewDropdown from './DefaultChatViewDropdown';
+import MessageSlider from './MessageSlider';
 
-export default function ChatScreen() {
+type chatProps = {
+  chatScreenClassName?: string;
+  chatScreenMsgClassName?: string;
+  chartScreenView?: string;
+  setChartScreenView: React.Dispatch<React.SetStateAction<string>>;
+};
+export default function ChatScreen({
+  chatScreenClassName,
+  chatScreenMsgClassName,
+  chartScreenView,
+  setChartScreenView
+}: chatProps) {
   const [sticky, animate] = useScroll();
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [message, setMessage] = useState('');
@@ -33,7 +45,9 @@ export default function ChatScreen() {
   }, []);
 
   return (
-    <div className='w-full border-r-[2px] border-[#252525] bg-[#121212] lg:inline'>
+    <div
+      className={`w-full border-r-[2px] border-[#252525] bg-[#121212] lg:inline ${chatScreenClassName}`}
+    >
       <div className='flex h-[72px] w-full items-center justify-between border-b border-[#252525] px-6'>
         <div className='flex items-center'>
           <Image
@@ -56,17 +70,26 @@ export default function ChatScreen() {
             handleVoiceMode={() => setVoiceMode(!voiceMode)}
             voiceModeState={voiceMode}
           />
-          <DefaultChatViewDropdown />
+          <DefaultChatViewDropdown
+            chartScreenView={chartScreenView}
+            setChartScreenView={setChartScreenView}
+          />
           <DotsHorizontalIcon />
         </div>
       </div>
       <div
-        style={{ height: 'calc(100vh - 72px - 92px)' }}
-        ref={containerRef}
-        className='flex flex-col justify-end overflow-auto bg-[#121212] px-6 pt-4'
+        className={`custom-scroll-bar overflow-y-auto ${
+          chatScreenMsgClassName
+            ? chatScreenMsgClassName
+            : 'h-[calc(100vh-72px-92px)] '
+        }`}
       >
-        <Date date='May, 11 2023' />
-        {/* <Message
+        <div
+          ref={containerRef}
+          className={`flex flex-col justify-end bg-[#121212] px-6 pt-4`}
+        >
+          <Date date='May, 11 2023' />
+          {/* <Message
           src='/dummy-char.png'
           alt={`Character Profile Picture ${0}`}
           time='09:22'
@@ -80,42 +103,44 @@ export default function ChatScreen() {
           message='Doing well, thank you. How may I assist you?'
           name='Mika-chan'
         /> */}
-        <Message
-          src='/dummy-char.png'
-          alt={`Character Profile Picture ${0}`}
-          time='09:24'
-          message='It’s me :) '
-          name='Mika-chan'
-          gridImage={true}
-        />
+          <Message
+            src='/dummy-char.png'
+            alt={`Character Profile Picture ${0}`}
+            time='09:24'
+            message='It’s me :) '
+            name='Mika-chan'
+            gridImage={true}
+          />
 
-        <Message
-          src='/dummy-char.png'
-          alt={`Character Profile Picture ${1}`}
-          time='09:23'
-          message='Some text'
-          name='Mika-chan'
-          messageIcons={true}
-        />
+          <Message
+            src='/dummy-char.png'
+            alt={`Character Profile Picture ${1}`}
+            time='09:23'
+            message='Some text'
+            name='Mika-chan'
+            messageIcons={true}
+          />
 
-        <Message
-          src='/dummy-char.png'
-          alt={`Character Profile Picture ${2}`}
-          time='09:23'
-          message='Hey Mika-chan, can you send me a picture of you with your arms raised while wearing a black |'
-          name='You'
-          messageIcons={true}
-        />
+          <Message
+            src='/dummy-char.png'
+            alt={`Character Profile Picture ${2}`}
+            time='09:23'
+            message='Hey Mika-chan, can you send me a picture of you with your arms raised while wearing a black |'
+            name='You'
+            messageIcons={true}
+          />
 
-        <Message
-          src='/dummy-char.png'
-          alt={`Character Profile Picture ${2}`}
-          time='09:23'
-          message='Hey Mika-chan, can you send me a picture of you with your arms raised while wearing a black dress and black bow?'
-          name='Mika-chan'
-          messageIcons={true}
-          rateResponse={true}
-        />
+          <Message
+            src='/dummy-char.png'
+            alt={`Character Profile Picture ${2}`}
+            time='09:23'
+            message='Hey Mika-chan, can you send me a picture of you with your arms raised while wearing a black dress and black bow?'
+            name='Mika-chan'
+            messageIcons={true}
+            rateResponse={true}
+          />
+          {/* <MessageSlider /> */}
+        </div>
       </div>
       {showInput && (
         <div className='flex h-[92px] items-center border-t  border-[#252525] bg-[red-400] px-6'>

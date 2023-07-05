@@ -6,12 +6,14 @@ import Link from 'next/link';
 type SidebarMenuItemProps = {
   text: string;
   href: string;
+  sideBarMenuText?: string;
   Icon: (props: { svgClasses?: string; strokeClasses?: string }) => JSX.Element;
 };
 
 export default function SidebarMenuItem({
   text,
   href,
+  sideBarMenuText,
   Icon
 }: SidebarMenuItemProps) {
   const router = useRouter();
@@ -22,9 +24,9 @@ export default function SidebarMenuItem({
   return (
     <Link href={href}>
       <a
-        className={`mb-2 flex cursor-pointer items-center justify-center space-x-3 rounded-[14px] py-3 pl-3 text-lg text-white transition-all duration-100 hover:bg-[#252525] xl:w-[256px] xl:justify-start ${
-          active && 'bg-[#252525]'
-        }`}
+        className={`mb-2 flex cursor-pointer items-center justify-center space-x-3 rounded-[14px] py-3 pl-3 text-lg text-white transition-all duration-100 hover:bg-[#252525] ${
+          sideBarMenuText ? 'w-max' : 'xl:w-[256px] '
+        } xl:justify-start ${active && 'bg-[#252525]'}`}
       >
         <Icon
           strokeClasses={`${
@@ -35,7 +37,7 @@ export default function SidebarMenuItem({
           <span
             className={`${
               active ? 'font-bold' : 'font-semibold'
-            } hidden text-[18px] leading-8 xl:inline`}
+            } ${sideBarMenuText} hidden text-[18px] leading-8 xl:inline`}
           >
             {text}
           </span>
