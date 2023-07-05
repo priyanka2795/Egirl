@@ -22,11 +22,13 @@ type sideBarProp = {
   sideBarClasses?: string;
   sideBarMenuText?: string;
   sideBarLogoClasses?: string;
+  sideBarMenuArrowClasses?: string;
 };
 export default function Sidebar({
   sideBarClasses,
   sideBarMenuText,
-  sideBarLogoClasses
+  sideBarLogoClasses,
+  sideBarMenuArrowClasses
 }: sideBarProp) {
   return (
     // border: border-r border-[#2F2F2F]
@@ -36,9 +38,13 @@ export default function Sidebar({
       <div className='flex h-[72px] w-full items-center justify-between px-6'>
         <Logo className={`hidden xl:inline ${sideBarLogoClasses}`} />
 
-        <div className='flex items-center'>
+        <div
+          className={`flex items-center  ${
+            sideBarMenuArrowClasses ? 'w-full justify-center' : ''
+          }`}
+        >
           {/* <NavMenuIcon /> */}
-          <NavMenuArrow />
+          <NavMenuArrow className={`${sideBarMenuArrowClasses}`} />
         </div>
       </div>
 

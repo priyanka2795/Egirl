@@ -25,6 +25,7 @@ const Messages = () => {
             sideBarClasses={'!w-[88px]'}
             sideBarLogoClasses={'!hidden'}
             sideBarMenuText={'!hidden'}
+            sideBarMenuArrowClasses={'rotate-180'}
           />
         ) : (
           <>
@@ -46,7 +47,7 @@ const Messages = () => {
           >
             <ChatScreen
               chatScreenClassName='!rounded-none max-h-[90vh]'
-              chatScreenMsgClassName='!max-h-[70vh] overflow-y-scroll custom-scroll-bar'
+              chatScreenMsgClassName='!max-h-[62vh] overflow-y-scroll custom-scroll-bar'
               setChartScreenView={setChartScreenView}
             />
           </Modal>
