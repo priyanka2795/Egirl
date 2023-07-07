@@ -124,7 +124,7 @@ export default function Messages(): JSX.Element {
             <button className='rounded bg-gray-200 p-2 text-sm text-black hover:bg-gray-300 focus:bg-gray-300'>
               Followed
             </button>
-            <button className='rounded bg-gray-200 p-2 text-sm text-black hover:bg-gray-300  focus:bg-gray-300'>
+            <button className='rounded bg-gray-200 p-2 text-sm text-black hover:bg-gray-300 focus:bg-gray-300'>
               Subscribed
             </button>
             <button className='rounded bg-gray-200 p-2 text-sm text-black hover:bg-gray-300 focus:bg-gray-300'>

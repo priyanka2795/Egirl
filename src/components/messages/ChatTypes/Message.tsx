@@ -25,6 +25,7 @@ interface MessageProps {
   gridImage?: boolean;
   messageIcons?: boolean;
   rateResponse?: boolean;
+  isLast?: boolean;
 }
 
 const Message: React.FC<MessageProps> = ({
@@ -35,7 +36,8 @@ const Message: React.FC<MessageProps> = ({
   message,
   gridImage,
   messageIcons,
-  rateResponse
+  rateResponse,
+  isLast
 }) => {
   var settings = {
     dots: true,
@@ -68,9 +70,11 @@ const Message: React.FC<MessageProps> = ({
           <span className='refresh-icon flex w-full items-start justify-between gap-2 text-xs font-light leading-[18px] '>
             {message}
             <div className='flex gap-1'>
-              <Link href='#'>
-                <RefreshIcon />
-              </Link>
+              {isLast ? (
+                <Link href='#'>
+                  <RefreshIcon />
+                </Link>
+              ) : null}
               <Link href='#'>
                 <EmojiIcon />
               </Link>

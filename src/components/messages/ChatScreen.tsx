@@ -56,7 +56,10 @@ export default function ChatScreen({
       containerRef.current.scrollTop = containerRef.current.scrollHeight;
     }
   }, []);
-
+  // const handleImage = (e: any) => {
+  //   const { files } = e.target;
+  //   console.log(files, 'ee');
+  // };
   return (
     <div
       className={`w-full border-r-[2px] border-[#252525] bg-[#121212] lg:inline ${chatScreenClassName}`}
@@ -166,6 +169,7 @@ export default function ChatScreen({
             src='/dummy-char.png'
             alt={`Character Profile Picture ${2}`}
             time='09:23'
+            isLast={true}
             message='Hey Mika-chan, can you send me a picture of you with your arms raised while wearing a black dress and black bow?'
             name='Mika-chan'
             messageIcons={true}
@@ -195,6 +199,7 @@ export default function ChatScreen({
                   </div>
                   <div className='flex gap-2 px-4 py-[10px] text-sm'>
                     <UploadIcon />
+                    {/* <input type={'file'} onChange={handleImage} /> */}
                     Upload image
                   </div>
                 </div>

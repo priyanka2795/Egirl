@@ -60,7 +60,7 @@ const Messages = () => {
           </>
         ) : (
           <>
-            {chartScreenView === 'Expanded view' ? (
+            {chartScreenView === 'FullScreen view' ? (
               <Sidebar
                 sideBarClasses={'!w-[88px]'}
                 sideBarLogoClasses={'!hidden'}

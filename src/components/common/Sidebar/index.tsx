@@ -79,6 +79,14 @@ export default function Sidebar({
 
       <div className='mb-2.5 mt-3 w-full pr-6 xl:items-start xl:pl-4'>
         <SidebarMenuItem
+          text='Home'
+          href='/home'
+          Icon={HomeIcon}
+          sideBarMenuText={`${sideBarMenuText} ${
+            shrinkSidebar === true ? '!hidden' : 'w-full'
+          }`}
+        />
+        <SidebarMenuItem
           text='Explore'
           href='/explore'
           Icon={ExploreIcon}

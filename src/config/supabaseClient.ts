@@ -22,4 +22,4 @@ const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
 console.log('url:' + supabaseURL, 'key:' + supabaseKey);
 
-export const supabaseClient = createClient(supabaseURL, supabaseKey);
+export const supabaseClient = createClient('supabaseURL', 'supabaseKey');

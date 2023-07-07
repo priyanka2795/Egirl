@@ -3,7 +3,7 @@ import ArrowDown from './svg/arrow-down.svg';
 import ArrowUp from './svg/arrow-up.svg';
 import CheckIcon from './svg/check-icon.svg';
 
-const viewOptions = ['Default view', 'Expanded view', 'Focused view'];
+const viewOptions = ['Default view', 'Focused view', 'FullScreen view'];
 type chartViewProps = {
   chartScreenView: string | undefined;
   setChartScreenView: React.Dispatch<React.SetStateAction<string>>;
