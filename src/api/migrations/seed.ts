@@ -718,6 +718,7 @@ async function messages_user_to_character() {
   const data = [
     {
       id: 1,
+      room_id: 1,
       sender_id: 'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
       recipient_id: 1,
       message: 'hey bb what is up',
@@ -725,6 +726,7 @@ async function messages_user_to_character() {
     },
     {
       id: 2,
+      room_id: 2,
       sender_id: 'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
       recipient_id: 1,
       message: 'yo this is a 2nd message',
@@ -732,6 +734,7 @@ async function messages_user_to_character() {
     },
     {
       id: 3,
+      room_id: 1,
       sender_id: 'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
       recipient_id: 2,
       message: 'it is morbin time',
@@ -752,6 +755,7 @@ async function messages_character_to_user() {
   const data = [
     {
       id: 1,
+      room_id: 1,
       sender_id: 1,
       recipient_id: 'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
       message: 'hey uwu uwu something something',
@@ -759,6 +763,7 @@ async function messages_character_to_user() {
     },
     {
       id: 2,
+      room_id: 2,
       sender_id: 2,
       recipient_id: 'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
       message: 'did u like my uwu?',
