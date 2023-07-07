@@ -22,10 +22,10 @@ export default function SidebarMenuItem({
   const active = router.pathname === href;
 
   return (
-    <Link href={href}>
+    <Link href={href} className='w-full'>
       <a
         className={`mb-2 flex cursor-pointer items-center justify-center space-x-3 rounded-[14px] py-3 pl-3 text-lg text-white transition-all duration-100 hover:bg-[#252525] ${
-          sideBarMenuText ? 'w-max' : 'xl:w-[256px] '
+          sideBarMenuText ? 'w-full' : 'xl:w-[256px] '
         } xl:justify-start ${active && 'bg-[#252525]'}`}
       >
         <Icon

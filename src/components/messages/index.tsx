@@ -12,6 +12,7 @@ const Messages = () => {
   const [modalView, setModalView] = useState(false);
   const [startConversationModal, setStartConversationModal] = useState(false);
   const [selectUserState, setSelectUserState] = useState(false);
+  const [shrinkSidebar, setShrinkSidebar] = useState(false);
   console.log(chartScreenView, 'chartScreenView');
   const handleCloseModal = () => {
     setModalView(!modalView);
@@ -26,6 +27,11 @@ const Messages = () => {
     setStartConversationModal(false);
   };
 
+  const handleSidebarWidth = () => {
+    setShrinkSidebar(!shrinkSidebar);
+    console.log('reduce');
+  };
+
   return (
     <>
       <main className='fixed bottom-0 left-0 right-0 top-0 mx-auto flex min-h-screen max-w-[1276px]'>
@@ -38,8 +44,11 @@ const Messages = () => {
         /> */}
         {selectUserState === false ? (
           <>
-            <Sidebar />
-            <Characters />
+            <Sidebar
+              shrinkSidebar={shrinkSidebar}
+              sideBarWidth={handleSidebarWidth}
+            />
+            <Characters shrinkSidebar={shrinkSidebar} />
             <StartConversation
               startConversationModal={startConversationModal}
               handleCloseConversationModal={handleCloseConversationModal}
@@ -71,6 +80,7 @@ const Messages = () => {
               <Modal
                 open={true}
                 modalClassName='flex flex-col gap-6 max-w-xl bg-main-background w-full p-0 max-h-[90vh] min-w-[800px] relative'
+                modalOverlayStyle='!bg-black/80'
                 closeModal={handleCloseModal}
               >
                 <ChatScreen
@@ -81,7 +91,7 @@ const Messages = () => {
               </Modal>
             ) : (
               <ChatScreen
-                chatScreenClassName={`ml-[100px]`}
+                chatScreenClassName={`ml-[80px]`}
                 chartScreenView={chartScreenView}
                 setChartScreenView={setChartScreenView}
               />

@@ -187,6 +187,7 @@ const Message: React.FC<MessageProps> = ({
         open={true}
         modalClassName='flex flex-col gap-6 max-w-xl bg-main-background w-full p-8 rounded-2xl h-[576px]'
         closeModal={handkeCloseModal}
+        modalOverlayStyle='!bg-black/80'
       >
         Hello
       </Modal> */}

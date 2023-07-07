@@ -11,6 +11,7 @@ type ModalProps = {
   modalAnimation?: Variants;
   modalClassName?: string;
   closePanelOnClick?: boolean;
+  modalOverlayStyle?: string;
   closeModal: () => void;
 };
 
@@ -40,6 +41,7 @@ export function Modal({
   modalAnimation,
   modalClassName,
   closePanelOnClick,
+  modalOverlayStyle,
   closeModal
 }: ModalProps): JSX.Element {
   return (
@@ -52,7 +54,7 @@ export function Modal({
           static
         >
           <motion.div
-            className='hover-animation fixed inset-0 bg-black/40 dark:bg-[#5B7083]/40'
+            className={`hover-animation fixed inset-0 bg-black/40 dark:bg-[#5B7083]/40 ${modalOverlayStyle}`}
             aria-hidden='true'
             {...backdrop}
           />

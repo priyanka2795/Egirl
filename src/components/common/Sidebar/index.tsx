@@ -17,87 +17,129 @@ import HomeIcon from './svg/HomeIcon';
 import DotsVerticalIcon from './svg/dots-vertical-icon.svg';
 import EgirlsPlusIcon from './svg/EgirlsPlusIcon';
 import EyeIcon from '../../home/Post/svg/eye.svg';
+import { useState } from 'react';
+
+// sideBarClasses={'!w-[88px]'}
+// sideBarLogoClasses={'!hidden'}
+// sideBarMenuText={'!hidden'}
+// sideBarMenuArrowClasses={'rotate-180'}
 
 type sideBarProp = {
   sideBarClasses?: string;
   sideBarMenuText?: string;
   sideBarLogoClasses?: string;
   sideBarMenuArrowClasses?: string;
+  shrinkSidebar?: boolean;
+  sideBarWidth?: () => void;
 };
 export default function Sidebar({
   sideBarClasses,
   sideBarMenuText,
   sideBarLogoClasses,
-  sideBarMenuArrowClasses
+  sideBarMenuArrowClasses,
+  sideBarWidth,
+  shrinkSidebar
 }: sideBarProp) {
+  // const [shrinkSidebar, setShrinkSidebar] = useState(false);
   return (
     // border: border-r border-[#2F2F2F]
     <div
-      className={`custom-scroll-bar fixed hidden h-full w-[88px] flex-col overflow-y-auto border-r-[2px] border-[rgb(37,37,37)] bg-[#070707] sm:flex xl:w-[300px] xl:items-start ${sideBarClasses}`}
+      className={`custom-scroll-bar fixed hidden h-full w-[88px] flex-col overflow-y-auto border-r-[2px] border-[rgb(37,37,37)] bg-[#070707] sm:flex xl:w-[300px] xl:items-start ${sideBarClasses} ${
+        shrinkSidebar === true ? '!w-[88px]' : ''
+      }`}
     >
-      <div className='flex h-[72px] w-full items-center justify-between px-6'>
-        <Logo className={`hidden xl:inline ${sideBarLogoClasses}`} />
+      <div
+        className={`flex h-[72px] w-full items-center  px-6 ${
+          shrinkSidebar ? 'justify-center' : 'justify-between'
+        }`}
+      >
+        <Logo
+          className={`hidden xl:inline ${sideBarLogoClasses} ${
+            shrinkSidebar === true ? '!hidden' : ''
+          }`}
+        />
 
         <div
-          className={`flex items-center  ${
+          className={`flex cursor-pointer  items-center ${
             sideBarMenuArrowClasses ? 'w-full justify-center' : ''
           }`}
         >
           {/* <NavMenuIcon /> */}
-          <NavMenuArrow className={`${sideBarMenuArrowClasses}`} />
+          <NavMenuArrow
+            className={`${sideBarMenuArrowClasses} ${
+              shrinkSidebar === true ? 'rotate-180' : ''
+            }`}
+            onClick={sideBarWidth}
+          />
         </div>
       </div>
 
       {/* Menu */}
 
-      <div className='mb-2.5 mt-3 xl:ml-4 xl:items-start'>
+      <div className='mb-2.5 mt-3 w-full pr-6 xl:items-start xl:pl-4'>
         <SidebarMenuItem
           text='Explore'
           href='/explore'
           Icon={ExploreIcon}
-          sideBarMenuText={sideBarMenuText}
+          sideBarMenuText={`${sideBarMenuText} ${
+            shrinkSidebar === true ? '!hidden' : 'w-full'
+          }`}
         />
         <SidebarMenuItem
           text='Messages'
           href='/messages'
           Icon={MessagesIcon}
-          sideBarMenuText={sideBarMenuText}
+          sideBarMenuText={`${sideBarMenuText} ${
+            shrinkSidebar === true ? '!hidden' : 'w-full'
+          }`}
         />
         <SidebarMenuItem
           text='Lists'
           href='/asdf'
           Icon={ListsIcon}
-          sideBarMenuText={sideBarMenuText}
+          sideBarMenuText={`${sideBarMenuText} ${
+            shrinkSidebar === true ? '!hidden' : 'w-full'
+          }`}
         />
         <SidebarMenuItem
           text='Add Card'
           href='/asdf'
           Icon={AddCardIcon}
-          sideBarMenuText={sideBarMenuText}
+          sideBarMenuText={`${sideBarMenuText} ${
+            shrinkSidebar === true ? '!hidden' : 'w-full'
+          }`}
         />
         <SidebarMenuItem
           text='Referrals'
           href='/asdf'
           Icon={ReferralsIcon}
-          sideBarMenuText={sideBarMenuText}
+          sideBarMenuText={`${sideBarMenuText} ${
+            shrinkSidebar === true ? '!hidden' : 'w-full'
+          }`}
         />
         <SidebarMenuItem
           text='Egirls+'
           href='/explore'
           Icon={EgirlsPlusIcon}
-          sideBarMenuText={sideBarMenuText}
+          sideBarMenuText={`${sideBarMenuText} ${
+            shrinkSidebar === true ? '!hidden' : 'w-full'
+          }`}
         />
         <SidebarMenuItem
           text='Creator Studio'
           href='/asdf'
           Icon={CreatorStudioIcon}
-          sideBarMenuText={sideBarMenuText}
+          sideBarMenuText={`${sideBarMenuText} ${
+            shrinkSidebar === true ? '!hidden' : 'w-full'
+          }`}
         />
         <SidebarMenuItem
           text='More'
           href='/asdf'
           Icon={MoreIcon}
-          sideBarMenuText={sideBarMenuText}
+          sideBarMenuText={`${sideBarMenuText} ${
+            shrinkSidebar === true ? '!hidden' : 'w-full'
+          }`}
         />
       </div>
 
@@ -129,7 +171,11 @@ export default function Sidebar({
             alt='user-img'
             className='h-10 w-10 rounded-full xl:mr-2'
           />
-          <div className={`hidden leading-5 xl:inline ${sideBarLogoClasses}`}>
+          <div
+            className={`hidden leading-5 xl:inline ${sideBarLogoClasses} ${
+              shrinkSidebar ? '!hidden' : ''
+            }`}
+          >
             <h4 className='text-sm font-bold leading-[18px]'>Username</h4>
             <p className='text-[13px] font-light leading-[18px] text-[#979797]'>
               @Username
@@ -138,7 +184,9 @@ export default function Sidebar({
         </div>
         {/* <TestIcon className='hidden h-5 xl:inline' /> */}
         <DotsVerticalIcon
-          className={`hidden h-5 xl:inline ${sideBarLogoClasses}`}
+          className={`hidden h-5 xl:inline ${sideBarLogoClasses} ${
+            shrinkSidebar ? '!hidden' : ''
+          }`}
         />
       </div>
     </div>

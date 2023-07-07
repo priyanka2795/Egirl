@@ -42,7 +42,11 @@ const messages: MessageData[] = [
   }
 ];
 
-export default function Characters() {
+type props = {
+  shrinkSidebar?: boolean;
+};
+
+export default function Characters({ shrinkSidebar }: props) {
   // active character state
   const [activeUsername, setActiveUsername] = useState<string>(
     messages[0].username
@@ -108,11 +112,15 @@ export default function Characters() {
       document.removeEventListener('mouseup', mouseUpHandler);
     };
   }, [isDragging, sidebarWidth, changeWidth]);
-
+  {
+    console.log(shrinkSidebar, 'shrinkSidebar');
+  }
   return (
     <div
       ref={sidebarRef}
-      className={`relative z-50 max-w-[${sidebarWidth}px] w-[${sidebarWidth}px] flex-grow border-r-[2px] border-[#252525] bg-[#121212] sm:ml-[88px] lg:min-w-[${sidebarWidth}px] xl:ml-[300px]`}
+      className={`relative z-50 max-w-[${sidebarWidth}px] w-[${sidebarWidth}px] flex-grow border-r-[2px] border-[#252525] bg-[#121212] sm:ml-[88px] lg:min-w-[${sidebarWidth}px] ${
+        shrinkSidebar === true ? 'xl:!ml-[88px]' : 'xl:ml-[300px]'
+      }`}
     >
       {/* draggable portion */}
       <div

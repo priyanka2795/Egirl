@@ -10,6 +10,9 @@ import SmileIcon from './svg/smile-icon.svg';
 import SendIcon from './svg/send-icon.svg';
 import PlusIcon from './svg/PlusIcon';
 import RedCircle from './svg/red-circle.svg';
+import DeleteIcon from './svg/delete-icon.svg';
+import ChatIcon from './svg/chat-icon-small.svg';
+import UploadIcon from './svg/uplaod-icon.svg';
 
 import SendWhiteIcon from './svg/send-white-icon.svg';
 
@@ -37,6 +40,8 @@ export default function ChatScreen({
   const [message, setMessage] = useState('');
   const [showInput, setShowInput] = useState(true);
   const [voiceMode, setVoiceMode] = useState(true);
+  const [moreOptionDropdown, setMoreOptionDropdown] = useState(false);
+  const [sendUploadImgState, setSendUploadImgState] = useState(false);
 
   useEffect(() => {
     if (containerRef.current) {
@@ -75,7 +80,25 @@ export default function ChatScreen({
             chartScreenView={chartScreenView}
             setChartScreenView={setChartScreenView}
           />
-          <DotsHorizontalIcon />
+          <div className='relative'>
+            <div onClick={() => setMoreOptionDropdown(!moreOptionDropdown)}>
+              <DotsHorizontalIcon className='cursor-pointer' />
+            </div>
+            {moreOptionDropdown && (
+              <div className='absolute right-0 top-[100%] mt-2 inline-flex w-[218px] flex-col items-start justify-start rounded-2xl bg-zinc-900 py-2 shadow'>
+                <div className='cursor-pointer flex-col items-center justify-start gap-2 self-stretch '>
+                  <div className='flex gap-2 px-4 py-[10px] text-sm'>
+                    <ChatIcon />
+                    Chat view
+                  </div>
+                  <div className='flex gap-2 px-4 py-[10px] text-sm'>
+                    <DeleteIcon />
+                    Clear chat
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
       <div
@@ -145,8 +168,27 @@ export default function ChatScreen({
       </div>
       {showInput && (
         <div className='flex h-[92px] items-center border-t  border-[#252525] bg-[red-400] px-6'>
-          <div className='mr-[10px] grid h-[32px] w-[32px] min-w-[32px] cursor-pointer place-items-center rounded-full bg-[#5848BC] transition duration-100 hover:bg-[#4b3abd]'>
-            <PlusIcon strokeClasses='stroke-[#ffffff]' />
+          <div className='relative'>
+            <div
+              className='plus-icon mr-[10px] grid h-[32px] w-[32px] min-w-[32px] cursor-pointer place-items-center rounded-full bg-[#5848BC] transition duration-100 hover:bg-[#4b3abd]'
+              onClick={() => setSendUploadImgState(!sendUploadImgState)}
+            >
+              <PlusIcon strokeClasses='stroke-[#ffffff]' />
+            </div>
+            {sendUploadImgState && (
+              <div className='absolute -top-[120px] left-0 mt-2 inline-flex w-[218px] flex-col items-start justify-start rounded-2xl bg-zinc-900 py-2 shadow'>
+                <div className='cursor-pointer flex-col items-center justify-start gap-2 self-stretch '>
+                  <div className='flex gap-2 px-4 py-[10px] text-sm'>
+                    <SendIcon />
+                    Send image request
+                  </div>
+                  <div className='flex gap-2 px-4 py-[10px] text-sm'>
+                    <UploadIcon />
+                    Upload image
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
           <div className='relative w-full'>
             <div className='absolute right-4 top-3'>

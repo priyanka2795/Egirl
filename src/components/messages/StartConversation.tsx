@@ -41,6 +41,7 @@ const StartConversation = ({
         <Modal
           open={startConversationModal}
           modalClassName='flex flex-col gap-5 max-w-xl bg-zinc-900 !w-[517px] rounded-2xl shadow relative bg-[#1A1A1A] rounded-[20px]'
+          modalOverlayStyle='!bg-black/80'
           closeModal={handleCloseConversationModal}
         >
           <div className='flex justify-between border-b border-[#515151] p-6'>
@@ -70,9 +71,16 @@ const StartConversation = ({
             </div>
             <UserList userSelected={userSelected} />
           </div>
-          {/* <ImageRequestModal /> */}
         </Modal>
       )}
+      {/* <Modal
+        open={startConversationModal}
+        modalClassName='flex flex-col gap-5 max-w-xl bg-zinc-900 !w-[517px] rounded-2xl shadow relative bg-[#1A1A1A] rounded-[20px]'
+        modalOverlayStyle='!bg-black/80'
+        closeModal={handleCloseConversationModal}
+      >
+        <ImageRequestModal />
+      </Modal> */}
     </div>
   );
 };
