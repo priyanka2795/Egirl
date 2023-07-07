@@ -8,6 +8,7 @@ import Button from './Button.svg';
 import VoiceIcon from './svg/voice-icon.svg';
 import SmileIcon from './svg/smile-icon.svg';
 import SendIcon from './svg/send-icon.svg';
+import SendTransparentIcon from './svg/send-transparent-icon.svg';
 import PlusIcon from './svg/PlusIcon';
 import RedCircle from './svg/red-circle.svg';
 import DeleteIcon from './svg/delete-icon.svg';
@@ -22,6 +23,8 @@ import Message from './ChatTypes/Message';
 import VoiceModeToggle from './Toggler';
 import DefaultChatViewDropdown from './DefaultChatViewDropdown';
 import MessageSlider from './MessageSlider';
+import { Modal } from '@components/modal/modal';
+import ImageRequestModal from './ImageRequestModal';
 
 type chatProps = {
   chatScreenClassName?: string;
@@ -42,6 +45,11 @@ export default function ChatScreen({
   const [voiceMode, setVoiceMode] = useState(true);
   const [moreOptionDropdown, setMoreOptionDropdown] = useState(false);
   const [sendUploadImgState, setSendUploadImgState] = useState(false);
+  const [chatViewOption, setChatVierwOption] = useState(false);
+
+  const handleChatViewModal = () => {
+    setChatVierwOption(!chatViewOption);
+  };
 
   useEffect(() => {
     if (containerRef.current) {
@@ -178,8 +186,11 @@ export default function ChatScreen({
             {sendUploadImgState && (
               <div className='absolute -top-[120px] left-0 mt-2 inline-flex w-[218px] flex-col items-start justify-start rounded-2xl bg-zinc-900 py-2 shadow'>
                 <div className='cursor-pointer flex-col items-center justify-start gap-2 self-stretch '>
-                  <div className='flex gap-2 px-4 py-[10px] text-sm'>
-                    <SendIcon />
+                  <div
+                    className='flex gap-2 px-4 py-[10px] text-sm'
+                    onClick={handleChatViewModal}
+                  >
+                    <SendTransparentIcon />
                     Send image request
                   </div>
                   <div className='flex gap-2 px-4 py-[10px] text-sm'>
@@ -188,6 +199,16 @@ export default function ChatScreen({
                   </div>
                 </div>
               </div>
+            )}
+            {chatViewOption && (
+              <Modal
+                open={chatViewOption}
+                modalClassName='flex flex-col gap-5 max-w-xl bg-zinc-900 !w-[517px] rounded-2xl shadow relative bg-[#1A1A1A] rounded-[20px]'
+                modalOverlayStyle='!bg-black/80'
+                closeModal={handleChatViewModal}
+              >
+                <ImageRequestModal closeModal={handleChatViewModal} />
+              </Modal>
             )}
           </div>
           <div className='relative w-full'>

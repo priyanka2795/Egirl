@@ -12,7 +12,10 @@ import gridImg7 from '../../../public/assets/messages/grid-img-12.png';
 import gridImg8 from '../../../public/assets/messages/grid-img-13.png';
 import Image from 'next/image';
 
-const ImageRequestModal = () => {
+type ImageRequestModal = {
+  closeModal?: () => void;
+};
+const ImageRequestModal = ({ closeModal }: ImageRequestModal) => {
   const [randomImageState, setRandomImageState] = useState(true);
   return (
     <div className='flex h-[618px] w-[530px] flex-col items-center justify-start rounded-2xl bg-zinc-900'>
@@ -159,10 +162,16 @@ const ImageRequestModal = () => {
           </div>
         </div>
         <div className='inline-flex items-end justify-end gap-3 self-stretch bg-neutral-900 p-6'>
-          <button className='rounded-2xl border border-white border-opacity-30 px-5 py-[13px] text-[16px] font-bold leading-snug text-white'>
+          <button
+            className='rounded-2xl border border-white border-opacity-30 px-5 py-[13px] text-[16px] font-bold leading-snug text-white'
+            onClick={closeModal}
+          >
             Cancel
           </button>
-          <button className='rounded-2xl bg-indigo-700 px-5 py-[13px] text-[16px] font-bold leading-snug text-white'>
+          <button
+            className='rounded-2xl bg-indigo-700 px-5 py-[13px] text-[16px] font-bold leading-snug text-white'
+            onClick={closeModal}
+          >
             Send request
           </button>
         </div>

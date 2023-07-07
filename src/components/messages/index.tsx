@@ -48,7 +48,10 @@ const Messages = () => {
               shrinkSidebar={shrinkSidebar}
               sideBarWidth={handleSidebarWidth}
             />
-            <Characters shrinkSidebar={shrinkSidebar} />
+            <Characters
+              shrinkSidebar={shrinkSidebar}
+              selectUserState={selectUserState}
+            />
             <StartConversation
               startConversationModal={startConversationModal}
               handleCloseConversationModal={handleCloseConversationModal}

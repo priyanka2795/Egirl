@@ -47,7 +47,7 @@ const Message: React.FC<MessageProps> = ({
   const handkeCloseModal = () => {};
   const [goldenSvg, setGoldenSvg] = useState(false);
   return (
-    <div className='flex w-full items-start py-4'>
+    <div className='refresh-icon-parent flex w-full items-start py-4 '>
       <Image
         key={0}
         src={src} // Change to your image path
@@ -65,7 +65,7 @@ const Message: React.FC<MessageProps> = ({
         </div>
 
         {messageIcons ? (
-          <span className='flex w-full items-start justify-between gap-2 text-xs font-light leading-[18px]'>
+          <span className='refresh-icon flex w-full items-start justify-between gap-2 text-xs font-light leading-[18px] '>
             {message}
             <div className='flex gap-1'>
               <Link href='#'>

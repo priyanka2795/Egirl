@@ -41,6 +41,7 @@ export default function Sidebar({
   shrinkSidebar
 }: sideBarProp) {
   // const [shrinkSidebar, setShrinkSidebar] = useState(false);
+  console.log(shrinkSidebar, 'shrinkSidebar');
   return (
     // border: border-r border-[#2F2F2F]
     <div

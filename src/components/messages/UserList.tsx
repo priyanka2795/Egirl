@@ -30,8 +30,9 @@ type props = {
 const UserList = ({ userSelected }: props) => {
   return (
     <div>
-      {messages.map((message) => (
+      {messages.map((message, index) => (
         <div
+          key={index}
           className='mb-6 flex cursor-pointer items-center'
           onClick={userSelected}
         >

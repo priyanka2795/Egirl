@@ -44,9 +44,14 @@ const messages: MessageData[] = [
 
 type props = {
   shrinkSidebar?: boolean;
+  selectUserState?: boolean;
+  handleSeletedUser?: () => void;
 };
 
-export default function Characters({ shrinkSidebar }: props) {
+export default function Characters({
+  shrinkSidebar,
+  handleSeletedUser
+}: props) {
   // active character state
   const [activeUsername, setActiveUsername] = useState<string>(
     messages[0].username
@@ -112,9 +117,7 @@ export default function Characters({ shrinkSidebar }: props) {
       document.removeEventListener('mouseup', mouseUpHandler);
     };
   }, [isDragging, sidebarWidth, changeWidth]);
-  {
-    console.log(shrinkSidebar, 'shrinkSidebar');
-  }
+
   return (
     <div
       ref={sidebarRef}
@@ -142,7 +145,10 @@ export default function Characters({ shrinkSidebar }: props) {
         >
           <div className='flex w-full justify-between'>
             <div className='text-[22px] font-bold'>Chats</div>
-            <div className='cursor-pointer rounded-[14px] bg-[#1E1E1E] p-4'>
+            <div
+              className='cursor-pointer rounded-[14px] bg-[#1E1E1E] p-4'
+              onClick={handleSeletedUser}
+            >
               <MailPlus />
             </div>
           </div>
