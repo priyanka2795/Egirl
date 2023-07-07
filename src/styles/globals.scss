@@ -49,6 +49,12 @@
     background: #555;
   }
 
+  .rating:hover svg path {
+    fill: goldenrod;
+  }
+  .rating svg.goldenSvg path {
+    fill: goldenrod;
+  }
   a,
   input,
   button,

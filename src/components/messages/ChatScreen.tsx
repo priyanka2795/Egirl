@@ -16,7 +16,7 @@ import SendWhiteIcon from './svg/send-white-icon.svg';
 import { useState } from 'react';
 import Date from './ChatTypes/Date';
 import Message from './ChatTypes/Message';
-import VoiceModeToggle from './VoiceModeToggle';
+import VoiceModeToggle from './Toggler';
 import DefaultChatViewDropdown from './DefaultChatViewDropdown';
 import MessageSlider from './MessageSlider';
 
@@ -67,8 +67,9 @@ export default function ChatScreen({
         </div> */}
         <div className='flex items-center gap-8'>
           <VoiceModeToggle
-            handleVoiceMode={() => setVoiceMode(!voiceMode)}
-            voiceModeState={voiceMode}
+            handleToggleState={() => setVoiceMode(!voiceMode)}
+            toggleState={voiceMode}
+            toggleText={'Voice Mode'}
           />
           <DefaultChatViewDropdown
             chartScreenView={chartScreenView}

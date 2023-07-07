@@ -29,8 +29,8 @@ const DefaultChatViewDropdown = ({
         <div className='ml-1'>{chatView ? <ArrowUp /> : <ArrowDown />}</div>
       </div>
       {chatView && (
-        <div className='absolute right-0 top-[100%] inline-flex h-[130px] w-[218px] flex-col items-start justify-start rounded-2xl bg-zinc-900 py-2 shadow'>
-          <div className='cursor-pointer flex-col items-center justify-start gap-2 self-stretch bg-white bg-opacity-5'>
+        <div className='absolute right-0 top-[100%] mt-2 inline-flex h-[130px] w-[218px] flex-col items-start justify-start rounded-2xl bg-zinc-900 py-2 shadow'>
+          <div className='cursor-pointer flex-col items-center justify-start gap-2 self-stretch '>
             {viewOptions.map((items) => {
               return (
                 <div

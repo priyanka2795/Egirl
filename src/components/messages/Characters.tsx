@@ -125,6 +125,7 @@ export default function Characters() {
       {/* <div
         className={`w-${sidebarWidth}px] min-w-[${sidebarWidth}px] max-w-[${sidebarWidth}px]`}
       >
+      
         chicago
       </div> */}
       {sidebarWidth == 375 && (

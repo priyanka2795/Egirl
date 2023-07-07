@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import gridImgFirst from '../../../../public/assets/messages/grid-img-1.png';
 import gridImgSecond from '../../../../public/assets/messages/grid-img-2.png';
@@ -45,6 +45,7 @@ const Message: React.FC<MessageProps> = ({
     slidesToScroll: 1
   };
   const handkeCloseModal = () => {};
+  const [goldenSvg, setGoldenSvg] = useState(false);
   return (
     <div className='flex w-full items-start py-4'>
       <Image
@@ -102,25 +103,38 @@ const Message: React.FC<MessageProps> = ({
           <div className='mt-3 flex items-center justify-between'>
             <div className='item-center flex gap-4 rounded-xl bg-[#1E1E1E] px-4 py-[5px]'>
               <p className='text-[13px] '>Rate this response</p>
-              <div className='flex'>
+              <div
+                className='rating flex cursor-pointer'
+                onClick={() => setGoldenSvg(!goldenSvg)}
+              >
                 <Link href='#'>
-                  <StarIcon />
+                  <StarIcon
+                    className={`${goldenSvg === true ? 'goldenSvg' : ''}`}
+                  />
                 </Link>
 
                 <Link href='#'>
-                  <StarIcon />
+                  <StarIcon
+                    className={`${goldenSvg === true ? 'goldenSvg' : ''}`}
+                  />
                 </Link>
 
                 <Link href='#'>
-                  <StarIcon />
+                  <StarIcon
+                    className={`${goldenSvg === true ? 'goldenSvg' : ''}`}
+                  />
                 </Link>
 
                 <Link href='#'>
-                  <StarIcon />
+                  <StarIcon
+                    className={`${goldenSvg === true ? 'goldenSvg' : ''}`}
+                  />
                 </Link>
 
                 <Link href='#'>
-                  <StarIcon />
+                  <StarIcon
+                    className={`${goldenSvg === true ? 'goldenSvg' : ''}`}
+                  />
                 </Link>
               </div>
             </div>
@@ -150,9 +164,9 @@ const Message: React.FC<MessageProps> = ({
                 <path
                   d='M7.5 5L12.5 10L7.5 15'
                   stroke='white'
-                  stroke-opacity='0.12'
-                  stroke-linecap='round'
-                  stroke-linejoin='round'
+                  strokeOpacity='0.12'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
                 />
               </svg>
             </div>
