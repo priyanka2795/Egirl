@@ -58,7 +58,7 @@ const Message: React.FC<MessageProps> = ({
         height={40}
         className='rounded-full'
       />
-      <div className='ml-3 flex w-full flex-col'>
+      <div className='group ml-3 flex w-full flex-col'>
         <div className='mb-[2px] flex items-center'>
           <span className='mr-2 text-[15px] font-semibold leading-5'>
             {name}
@@ -71,16 +71,27 @@ const Message: React.FC<MessageProps> = ({
             {message}
             <div className='flex gap-1'>
               {isLast ? (
-                <Link href='#'>
-                  <RefreshIcon />
-                </Link>
-              ) : null}
-              <Link href='#'>
-                <EmojiIcon />
-              </Link>
-              <Link href='#'>
-                <CopyIcon />
-              </Link>
+                <>
+                  <Link href='#'>
+                    <RefreshIcon />
+                  </Link>
+                  <Link href='#'>
+                    <EmojiIcon />
+                  </Link>
+                  <Link href='#'>
+                    <CopyIcon />
+                  </Link>
+                </>
+              ) : (
+                <div className='hidden group-hover:flex'>
+                  <Link href='#'>
+                    <EmojiIcon />
+                  </Link>
+                  <Link href='#'>
+                    <CopyIcon />
+                  </Link>
+                </div>
+              )}
             </div>
           </span>
         ) : (
@@ -105,72 +116,67 @@ const Message: React.FC<MessageProps> = ({
 
         {rateResponse ? (
           <div className='mt-3 flex items-center justify-between'>
-            <div className='item-center flex gap-4 rounded-xl bg-[#1E1E1E] px-4 py-[5px]'>
-              <p className='text-[13px] '>Rate this response</p>
-              <div
-                className='rating flex cursor-pointer'
-                onClick={() => setGoldenSvg(!goldenSvg)}
-              >
-                <Link href='#'>
-                  <StarIcon
-                    className={`${goldenSvg === true ? 'goldenSvg' : ''}`}
-                  />
-                </Link>
+            {/* <div className='item-center flex gap-4 rounded-xl bg-[#1E1E1E] px-4 py-[5px]'> */}
+            {/* <p className='text-[13px] '>Rate this response</p> */}
+            <div
+              className='rating flex cursor-pointer'
+              onClick={() => setGoldenSvg(!goldenSvg)}
+            >
+              <Link href='#'>
+                <StarIcon
+                  className={`${goldenSvg === true ? 'goldenSvg' : ''}`}
+                />
+              </Link>
 
-                <Link href='#'>
-                  <StarIcon
-                    className={`${goldenSvg === true ? 'goldenSvg' : ''}`}
-                  />
-                </Link>
+              <Link href='#'>
+                <StarIcon
+                  className={`${goldenSvg === true ? 'goldenSvg' : ''}`}
+                />
+              </Link>
 
-                <Link href='#'>
-                  <StarIcon
-                    className={`${goldenSvg === true ? 'goldenSvg' : ''}`}
-                  />
-                </Link>
+              <Link href='#'>
+                <StarIcon
+                  className={`${goldenSvg === true ? 'goldenSvg' : ''}`}
+                />
+              </Link>
 
-                <Link href='#'>
-                  <StarIcon
-                    className={`${goldenSvg === true ? 'goldenSvg' : ''}`}
-                  />
-                </Link>
-
-                <Link href='#'>
-                  <StarIcon
-                    className={`${goldenSvg === true ? 'goldenSvg' : ''}`}
-                  />
-                </Link>
-              </div>
+              <Link href='#'>
+                <StarIcon
+                  className={`${goldenSvg === true ? 'goldenSvg' : ''}`}
+                />
+              </Link>
             </div>
-            <div className='flex gap-2 rounded-xl bg-[#1E1E1E] px-4 py-[5px]'>
+            {/* </div> */}
+            <div className='flex gap-2'>
               <svg
+                xmlns='http://www.w3.org/2000/svg'
                 width='20'
                 height='20'
                 viewBox='0 0 20 20'
                 fill='none'
-                xmlns='http://www.w3.org/2000/svg'
               >
                 <path
                   d='M12.5 5L7.5 10L12.5 15'
                   stroke='#979797'
+                  stroke-width='1.8'
                   stroke-linecap='round'
                   stroke-linejoin='round'
                 />
               </svg>
-              <p className='text-[13px] text-[#979797]'>2/2</p>
+              <p className='text-[13px] font-semibold text-[#979797]'>2/2</p>
               <svg
+                xmlns='http://www.w3.org/2000/svg'
                 width='20'
                 height='20'
                 viewBox='0 0 20 20'
                 fill='none'
-                xmlns='http://www.w3.org/2000/svg'
               >
                 <path
                   d='M7.5 5L12.5 10L7.5 15'
-                  stroke='white'
-                  strokeOpacity='0.12'
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
+                  stroke='#979797'
+                  stroke-width='1.8'
+                  stroke-linecap='round'
+                  stroke-linejoin='round'
                 />
               </svg>
             </div>

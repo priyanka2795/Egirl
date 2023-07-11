@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import ActiveIcon from './svg/active-icon.svg';
+import ThreeDots from './svg/three-dots.svg';
 
 interface MyComponentProps {
   isActive: boolean;
@@ -28,8 +29,8 @@ const Character: React.FC<MyComponentProps> = ({
       className={`${
         isActive
           ? ' relative border-[#252525] bg-[#0d0c15] before:absolute before:left-0 before:top-0 before:block before:h-full before:w-[3px] before:bg-[#5848BC]'
-          : 'border-[#252525] bg-[#121212]'
-      } border-r-none cursor-pointer border-b px-0`}
+          : 'group border-[#252525] bg-[#121212] text-[#979797] hover:bg-[#0d0c15] hover:text-white '
+      } border-r-none cursor-pointer border-b px-0 text-[15px]`}
     >
       <div className='flex items-center justify-between px-4 py-[22px]'>
         <div className='flex items-center'>
@@ -43,13 +44,13 @@ const Character: React.FC<MyComponentProps> = ({
               className='rounded-full'
             />
             {currentlyActive && (
-              <div className='absolute top-0 right-0'>
+              <div className='absolute right-0 top-0'>
                 <ActiveIcon />
               </div>
             )}
           </div>
-          <div className='flex flex-col ml-3'>
-            <div className='flex items-center mb-1'>
+          <div className='ml-3 flex flex-col'>
+            <div className='mb-1 flex items-center'>
               <h3
                 className={`mr-2 text-[16px] leading-[22px] ${
                   isActive ? 'font-semibold' : 'font-normal'
@@ -65,6 +66,9 @@ const Character: React.FC<MyComponentProps> = ({
               {messagePreview}
             </div> */}
           </div>
+        </div>
+        <div className='three-dots hidden group-hover:flex'>
+          <ThreeDots />
         </div>
         {/* <div className='grid w-6 place-items-center rounded-[10px] bg-[#3E347E] py-[2px] text-[12px] font-semibold leading-[16px]'>
           {newMessages}

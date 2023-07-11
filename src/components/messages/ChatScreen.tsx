@@ -179,7 +179,7 @@ export default function ChatScreen({
         </div>
       </div>
       {showInput && (
-        <div className='flex h-[92px] items-center border-t  border-[#252525] bg-[red-400] px-6'>
+        <div className='mt-5 flex h-[92px] items-center  border-t border-[#252525] bg-[red-400] px-6'>
           <div className='relative'>
             <div
               className='plus-icon mr-[10px] grid h-[32px] w-[32px] min-w-[32px] cursor-pointer place-items-center rounded-full bg-[#5848BC] transition duration-100 hover:bg-[#4b3abd]'
