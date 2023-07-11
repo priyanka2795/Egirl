@@ -25,6 +25,8 @@ import DefaultChatViewDropdown from './DefaultChatViewDropdown';
 import MessageSlider from './MessageSlider';
 import { Modal } from '@components/modal/modal';
 import ImageRequestModal from './ImageRequestModal';
+import Picker from 'emoji-picker-react';
+import Theme from 'emoji-picker-react';
 
 type chatProps = {
   chatScreenClassName?: string;
@@ -46,6 +48,7 @@ export default function ChatScreen({
   const [moreOptionDropdown, setMoreOptionDropdown] = useState(false);
   const [sendUploadImgState, setSendUploadImgState] = useState(false);
   const [chatViewOption, setChatVierwOption] = useState(false);
+  const [emojiPicker, setEmojiPicker] = useState(false);
 
   const handleChatViewModal = () => {
     setChatVierwOption(!chatViewOption);
@@ -113,7 +116,7 @@ export default function ChatScreen({
         </div>
       </div>
       <div
-        className={`custom-scroll-bar overflow-y-auto ${
+        className={`custom-scroll-bar overflow-y-auto pb-5 ${
           chatScreenMsgClassName
             ? chatScreenMsgClassName
             : 'h-[calc(100vh-72px-92px)] '
@@ -179,7 +182,7 @@ export default function ChatScreen({
         </div>
       </div>
       {showInput && (
-        <div className='mt-5 flex h-[92px] items-center  border-t border-[#252525] bg-[red-400] px-6'>
+        <div className='flex h-[92px] items-center  border-t border-[#252525] bg-[red-400] px-6'>
           <div className='relative'>
             <div
               className='plus-icon mr-[10px] grid h-[32px] w-[32px] min-w-[32px] cursor-pointer place-items-center rounded-full bg-[#5848BC] transition duration-100 hover:bg-[#4b3abd]'
@@ -217,17 +220,40 @@ export default function ChatScreen({
             )}
           </div>
           <div className='relative w-full'>
-            <div className='absolute right-4 top-3'>
-              <SmileIcon />
-            </div>
             <input
               className='h-[48px] w-full rounded-[14px] border-none bg-[#1E1E1E] py-4 pl-4 pr-[50px] text-[15px] font-light leading-6 text-[#979797] transition-all duration-100 focus:ring-1 focus:ring-transparent'
               type='text'
               placeholder='Type a message'
+              // value={message}
+              // onChange={(event) => setMessage(event.target.value)}
               value={message}
-              onChange={(event) => setMessage(event.target.value)}
+              onChange={(e) => setMessage(e.target.value)}
               style={{ outline: 'none' }}
             />
+
+            <div
+              className='absolute right-4 top-3'
+              onClick={() => setEmojiPicker((val) => !val)}
+            >
+              <SmileIcon />
+            </div>
+
+            <div className='absolute bottom-5 right-[50px]'>
+              {emojiPicker && (
+                <Picker
+                  searchDisabled={true}
+                  theme='dark'
+                  autoFocusSearch={true}
+                  skinTonesDisabled={true}
+                  width='302px'
+                  // height='224px'
+                  size='16'
+                  onEmojiClick={(emojiObject) =>
+                    setMessage((prevMsg) => prevMsg + emojiObject.emoji)
+                  }
+                />
+              )}
+            </div>
           </div>
           <div className='ml-[10px] transition-all duration-100'>
             {message ? (
