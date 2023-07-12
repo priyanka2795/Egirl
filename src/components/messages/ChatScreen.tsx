@@ -47,11 +47,12 @@ export default function ChatScreen({
   const [voiceMode, setVoiceMode] = useState(true);
   const [moreOptionDropdown, setMoreOptionDropdown] = useState(false);
   const [sendUploadImgState, setSendUploadImgState] = useState(false);
-  const [chatViewOption, setChatVierwOption] = useState(false);
+  const [chatViewOption, setChatViewOption] = useState(false);
   const [emojiPicker, setEmojiPicker] = useState(false);
 
   const handleChatViewModal = () => {
-    setChatVierwOption(!chatViewOption);
+    setChatViewOption(!chatViewOption);
+    setSendUploadImgState(false);
   };
 
   useEffect(() => {

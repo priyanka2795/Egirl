@@ -104,7 +104,7 @@ export default function Sidebar({
         />
         <SidebarMenuItem
           text='Lists'
-          href='/asdf'
+          href='/lists'
           Icon={ListsIcon}
           sideBarMenuText={`${sideBarMenuText} ${
             shrinkSidebar === true ? '!hidden' : 'w-full'

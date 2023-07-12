@@ -60,6 +60,26 @@
     -webkit-tap-highlight-color: transparent;
   }
 
+  .explore-slider .slick-arrow.slick-next::before{
+    content: '';
+     background-image: url("../../public/assets/right-slick-arrow.png");
+     background-repeat:no-repeat;
+     background-size: cover ;
+     width: 40px;
+     height: 40px;
+     display: block;
+  }
+  .explore-slider .slick-arrow.slick-prev::before{
+    content:'';
+    background-image: url("../../public/assets/left-slick-arrow.png");
+    background-repeat:no-repeat;
+    background-size: cover ;
+    display: block;
+    width: 40px;
+    height: 40px;
+    margin-left: 58px;
+  }
+
   body {
     @apply hover-animation bg-main-background font-twitter-chirp text-light-primary dark:text-dark-primary;
   }
