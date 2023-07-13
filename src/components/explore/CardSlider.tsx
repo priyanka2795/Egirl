@@ -6,10 +6,11 @@ import UserIcon from './svg/user-icon.svg';
 import GreenHeartIcon from './svg/green-heart-icon.svg';
 import VerifiedIcon from './svg/verified-icon.svg';
 import InfoIcon from './svg/info-icon.svg';
+import Card from './Card';
 
 const CardSlider = () => {
   return (
-    <div className='relative mx-auto w-max pt-[77px]'>
+    <div className='relative mx-auto mt-[77px] w-max'>
       <Image src={cardImg} alt='' />
       <div className='absolute bottom-0 right-0 inline-flex w-full items-center justify-start bg-gradient-to-b from-transparent to-black px-6 pb-6 pt-[205px]'>
         <div className='w-full flex-col items-center justify-start gap-8 self-stretch '>

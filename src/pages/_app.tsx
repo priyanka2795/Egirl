@@ -8,7 +8,7 @@ import type { NextPage } from 'next';
 import type { AppProps } from 'next/app';
 import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs';
 import { SessionContextProvider, Session } from '@supabase/auth-helpers-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import SupabaseAuthContextProvider from '@lib/context/supabase-auth-context';
 import Script from 'next/script';
 import { Database } from '../../types/database';
@@ -27,10 +27,18 @@ export default function App({
 }: AppPropsWithLayout): ReactNode {
   const getLayout = Component.getLayout ?? ((page): ReactNode => page);
 
+  const [initialRenderComplete, setInitialRenderComplete] =
+    useState<boolean>(false);
+
+  useEffect(() => {
+    setInitialRenderComplete(true);
+  }, []);
+
   // Create a new supabase browser client on every first render.
   const [supabaseClient] = useState(() =>
     createBrowserSupabaseClient<Database>()
   );
+  if (!initialRenderComplete) return <></>;
   return (
     <>
       {/* Google tag (gtag.js) */}
