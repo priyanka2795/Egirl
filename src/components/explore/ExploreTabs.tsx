@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
 
 interface props {
-  tabContentData: Array<String>;
+  // tabContentData: Array<String>;
+  exploreTab: string;
+  setExploreSelectedTab: any;
 }
 
-const ExploreTabs = () => {
+const ExploreTabs = ({ exploreTab, setExploreSelectedTab }: props) => {
   const tabContent = ['Swipe', 'Gallery'];
-  const [exploreSelectedTab, setExploreSelected] = useState('Swipe');
-  const [filterOptionShow, setFilterOptionShow] = useState(true);
-
+  const [exploreSelectedTab, setExploreSelected] = useState(exploreTab);
+  // const [filterOptionShow, setFilterOptionShow] = useState(true);
+  const handleExploreSelected = (e: any) => {
+    setExploreSelected(e.target.innerText);
+    setExploreSelectedTab(e.target.innerText);
+  };
+  console.log(exploreSelectedTab, 'test 1');
   return (
     <>
       <div className='border-b border-white border-opacity-10'>
@@ -18,7 +24,7 @@ const ExploreTabs = () => {
               return (
                 <div
                   key={index}
-                  onClick={() => setExploreSelected(items)}
+                  onClick={(e) => handleExploreSelected(e)}
                   className={`flex cursor-pointer gap-2.5 rounded-xl px-4 py-2 text-[15px] font-bold ${
                     exploreSelectedTab === items
                       ? ' bg-white bg-opacity-20 text-white  '
