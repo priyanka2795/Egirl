@@ -1,4 +1,6 @@
+import { Modal } from '@components/modal/modal';
 import React, { useState } from 'react';
+import SubscriptionModal from './SubscriptionModal';
 
 interface props {
   // tabContentData: Array<String>;
@@ -9,6 +11,7 @@ interface props {
 const ExploreTabs = ({ exploreTab, setExploreSelectedTab }: props) => {
   const tabContent = ['Swipe', 'Gallery'];
   const [exploreSelectedTab, setExploreSelected] = useState(exploreTab);
+  const [subLeftModal, setsubLeftModal] = useState(false);
   // const [filterOptionShow, setFilterOptionShow] = useState(true);
   const handleExploreSelected = (e: any) => {
     setExploreSelected(e.target.innerText);
@@ -38,10 +41,16 @@ const ExploreTabs = ({ exploreTab, setExploreSelectedTab }: props) => {
           </div>
 
           <div className='inline-flex cursor-pointer items-center justify-center gap-1.5 rounded-xl border border-white border-opacity-30 px-4 py-2.5'>
-            <div className='text-sm font-bold leading-tight text-white'>
+            <div
+              className='text-sm font-bold leading-tight text-white'
+              onClick={() => {
+                setsubLeftModal(!subLeftModal);
+              }}
+            >
               2 subs left
             </div>
           </div>
+          {subLeftModal && <SubscriptionModal closeState={setsubLeftModal} />}
         </div>
       </div>
     </>

@@ -1,8 +1,13 @@
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
 import circleInformation from '../../../public/assets/circle-information.png';
 
 const GalleryFilterCheckbox = () => {
+  const [viewAllTags, setViewAllTags] = useState(false);
+
+  const handleClick = (event: any) => {
+    setViewAllTags((current) => !current);
+  };
   return (
     <div className='absolute -right-[103px] z-[3] mt-2 flex flex-col items-center rounded-[14px] bg-[#272727] pb-5'>
       <div className='flex w-[346px] flex-col items-start justify-center gap-3 px-6 py-5 text-[#FFFFFF]'>
@@ -59,7 +64,7 @@ const GalleryFilterCheckbox = () => {
 
           <div className='mt-5 flex w-full flex-col items-start gap-3 self-stretch border-b border-[#ffffff14]'>
             <div className='self-stretch text-[11px] font-semibold text-[#979797]'>
-              GENDER
+              STYLE
             </div>
             <div className='mb-5 flex flex-col items-start gap-4 self-stretch'>
               <div className='flex items-center gap-2 self-stretch'>
@@ -94,57 +99,161 @@ const GalleryFilterCheckbox = () => {
 
           <div className='mt-5 flex w-full flex-col items-start gap-3 self-stretch'>
             <div className='self-stretch text-[11px] font-semibold text-[#979797]'>
-              GENDER
+              TAGS
             </div>
-            <div className='mb-5 flex flex-col items-start gap-4 self-stretch'>
-              <div className='flex items-center gap-2 self-stretch'>
-                <input
-                  className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
-                  type='checkbox'
-                />
-                <div className='text-[14px] font-normal text-[#FFFFFF]'>
-                  Furry
+            <div>
+              {viewAllTags ? (
+                <div className='mb-5 flex flex-col items-start gap-4 self-stretch'>
+                  <div className='flex items-center gap-2 self-stretch'>
+                    <input
+                      className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727] focus:outline-none'
+                      type='checkbox'
+                    />
+                    <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                      Furry
+                    </div>
+                  </div>
+                  <div className='flex items-center gap-2 self-stretch'>
+                    <input
+                      className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
+                      type='checkbox'
+                    />
+                    <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                      Ahegao
+                    </div>
+                  </div>
+                  <div className='flex items-center gap-2 self-stretch'>
+                    <input
+                      className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
+                      type='checkbox'
+                    />
+                    <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                      NSFW
+                    </div>
+                  </div>
+                  <div className='flex items-center gap-2 self-stretch'>
+                    <input
+                      className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
+                      type='checkbox'
+                    />
+                    <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                      Roleplay
+                    </div>
+                  </div>
+                  <div className='flex items-center gap-2 self-stretch'>
+                    <input
+                      className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
+                      type='checkbox'
+                    />
+                    <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                      Fashion Model
+                    </div>
+                  </div>
+                  <div className='flex items-center gap-2 self-stretch'>
+                    <input
+                      className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727] focus:outline-none'
+                      type='checkbox'
+                    />
+                    <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                      Furry
+                    </div>
+                  </div>
+                  <div className='flex items-center gap-2 self-stretch'>
+                    <input
+                      className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
+                      type='checkbox'
+                    />
+                    <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                      Ahegao
+                    </div>
+                  </div>
+                  <div className='flex items-center gap-2 self-stretch'>
+                    <input
+                      className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
+                      type='checkbox'
+                    />
+                    <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                      NSFW
+                    </div>
+                  </div>
+                  <div className='flex items-center gap-2 self-stretch'>
+                    <input
+                      className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
+                      type='checkbox'
+                    />
+                    <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                      Roleplay
+                    </div>
+                  </div>
+                  <div className='flex items-center gap-2 self-stretch'>
+                    <input
+                      className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
+                      type='checkbox'
+                    />
+                    <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                      Fashion Model
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div className='flex items-center gap-2 self-stretch'>
-                <input
-                  className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
-                  type='checkbox'
-                />
-                <div className='text-[14px] font-normal text-[#FFFFFF]'>
-                  Ahegao
+              ) : (
+                <div className='mb-5 flex flex-col items-start gap-4 self-stretch'>
+                  <div className='flex items-center gap-2 self-stretch'>
+                    <input
+                      className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727] focus:outline-none'
+                      type='checkbox'
+                    />
+                    <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                      Furry
+                    </div>
+                  </div>
+                  <div className='flex items-center gap-2 self-stretch'>
+                    <input
+                      className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
+                      type='checkbox'
+                    />
+                    <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                      Ahegao
+                    </div>
+                  </div>
+                  <div className='flex items-center gap-2 self-stretch'>
+                    <input
+                      className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
+                      type='checkbox'
+                    />
+                    <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                      NSFW
+                    </div>
+                  </div>
+                  <div className='flex items-center gap-2 self-stretch'>
+                    <input
+                      className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
+                      type='checkbox'
+                    />
+                    <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                      Roleplay
+                    </div>
+                  </div>
+                  <div className='flex items-center gap-2 self-stretch'>
+                    <input
+                      className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
+                      type='checkbox'
+                    />
+                    <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                      Fashion Model
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div className='flex items-center gap-2 self-stretch'>
-                <input
-                  className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
-                  type='checkbox'
-                />
-                <div className='text-[14px] font-normal text-[#FFFFFF]'>
-                  NSFW
+              )}
+              {!viewAllTags ? (
+                <div
+                  onClick={handleClick}
+                  className='mb-5 cursor-pointer text-sm font-semibold text-[#8C7DD0]'
+                >
+                  View all
                 </div>
-              </div>
-              <div className='flex items-center gap-2 self-stretch'>
-                <input
-                  className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
-                  type='checkbox'
-                />
-                <div className='text-[14px] font-normal text-[#FFFFFF]'>
-                  Roleplay
-                </div>
-              </div>
-              <div className='flex items-center gap-2 self-stretch'>
-                <input
-                  className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
-                  type='checkbox'
-                />
-                <div className='text-[14px] font-normal text-[#FFFFFF]'>
-                  Fashion Model
-                </div>
-              </div>
-              <div className='text-sm font-semibold text-[#8C7DD0]'>
-                View all
-              </div>
+              ) : (
+                ''
+              )}
             </div>
           </div>
         </form>

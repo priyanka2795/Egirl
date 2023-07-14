@@ -82,6 +82,9 @@
   .white-stroke path{
     stroke:white
   }
+  .blue-gradient{
+    background: linear-gradient(324deg, rgba(64, 59, 172, 0.08) 0%, rgba(88, 72, 188, 0.48) 82.08%);
+  }
 
   body {
     @apply hover-animation bg-main-background font-twitter-chirp text-light-primary dark:text-dark-primary;
