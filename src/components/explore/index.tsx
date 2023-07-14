@@ -19,6 +19,7 @@ import mikaChan from '../../../public/assets/mikaChan.png';
 import Image from 'next/image';
 import Card from './Card';
 import GalleryTabFilter from './GalleryTabFilter';
+import SubscriptionPlan from './subscriptionPlan';
 
 const settings = {
   dots: true,
@@ -98,6 +99,7 @@ const exploreGallery = [
 const ExploreIndex = () => {
   const [filterOptionShow, setFilterOptionShow] = useState(true);
   const [exploreSelectedTab, setExploreSelected] = useState('Swipe');
+  const [defaultModal, setDefaultModal] = useState(false);
 
   return (
     <>
@@ -106,6 +108,10 @@ const ExploreIndex = () => {
           exploreTab={exploreSelectedTab}
           setExploreSelectedTab={setExploreSelected}
         />
+        <p onClick={() => setDefaultModal(true)}>Default Modal</p>
+        {defaultModal && (
+          <SubscriptionPlan closeDefaulModal={setDefaultModal} />
+        )}
 
         {exploreSelectedTab === 'Swipe' ? (
           <>
