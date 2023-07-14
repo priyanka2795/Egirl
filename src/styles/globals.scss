@@ -79,6 +79,9 @@
     height: 40px;
     margin-left: 58px;
   }
+  .white-stroke path{
+    stroke:white
+  }
 
   body {
     @apply hover-animation bg-main-background font-twitter-chirp text-light-primary dark:text-dark-primary;

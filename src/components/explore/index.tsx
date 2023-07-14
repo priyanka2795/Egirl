@@ -140,9 +140,9 @@ const ExploreIndex = () => {
             </div>
           </>
         ) : (
-          <>
+          <div className='px-8'>
             <GalleryTabFilter />
-            <div className='grid grid-cols-3 gap-4 px-8'>
+            <div className='grid grid-cols-3 gap-4'>
               {exploreGallery.map((items) => {
                 return (
                   <div className='relative'>
@@ -180,7 +180,7 @@ const ExploreIndex = () => {
                 );
               })}
             </div>
-          </>
+          </div>
         )}
       </div>
     </>
