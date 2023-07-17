@@ -31,6 +31,8 @@ import {
 import type { User as AdminUser } from '@lib/types/user';
 import { UserCard } from '@components/user/user-card';
 import { AddListModal } from '@components/modal/add-list-model';
+import ListIndex from '@components/list';
+import Sidebar from '@components/common/Sidebar';
 
 const suggestionsData: AdminUser[] = [
   {
@@ -295,160 +297,167 @@ export default function Lists(): JSX.Element {
   };
 
   return (
-    <MainContainer>
-      <SEO title='Lists / Twitter' />
-      <Modal
-        modalClassName='max-w-xs bg-main-background w-full p-8 rounded-2xl'
-        open={open}
-        closeModal={closeModal}
-      >
-        <AddListModal
-          title='Add List'
-          description='This can’t be undone and you’ll remove all Tweets you’ve added to your Lists.'
-          mainBtnClassName='bg-accent-red hover:bg-accent-red/90 active:bg-accent-red/75 accent-tab 
-                            focus-visible:bg-accent-red/90'
-          mainBtnLabel='Clear'
-          action={action}
-          closeModal={closeModal}
-        />
-      </Modal>
-      {/* <Modal
-        className='flex items-start justify-center'
-        modalClassName='bg-main-background rounded-2xl max-w-xl w-full my-8 overflow-hidden'
-        open={open}
-        closeModal={closeModal}
-      >
-        TWEET REPLY MODEL NEEDS TO BE IMPLIMENTED
-      </Modal> */}
-      <MainHeader className='flex items-center justify-between'>
-        <div className='-mb-1 flex flex-col'>
-          <h2 className='-mt-1 text-xl font-bold'>Lists</h2>
-          <p className='text-xs text-light-secondary dark:text-dark-secondary'>
-            @{user?.username}
-          </p>
-        </div>
-        <Button
-          className='dark-bg-tab group relative p-2 hover:bg-light-primary/10
-                     active:bg-light-primary/20 dark:hover:bg-dark-primary/10 
-                     dark:active:bg-dark-primary/20'
-          onClick={openModal}
-        >
-          <HeroIcon className='h-5 w-5' iconName='ArchiveBoxXMarkIcon' />
-          <ToolTip
-            className='!-translate-x-20 translate-y-3 md:-translate-x-1/2'
-            tip='Clear lists'
-          />
-        </Button>
-      </MainHeader>
+    // <MainContainer>
+    //   <SEO title='Lists / Twitter' />
+    //   <Modal
+    //     modalClassName='max-w-xs bg-main-background w-full p-8 rounded-2xl'
+    //     open={open}
+    //     closeModal={closeModal}
+    //   >
+    //     <AddListModal
+    //       title='Add List'
+    //       description='This can’t be undone and you’ll remove all Tweets you’ve added to your Lists.'
+    //       mainBtnClassName='bg-accent-red hover:bg-accent-red/90 active:bg-accent-red/75 accent-tab 
+    //                         focus-visible:bg-accent-red/90'
+    //       mainBtnLabel='Clear'
+    //       action={action}
+    //       closeModal={closeModal}
+    //     />
+    //   </Modal>
+    //   {/* <Modal
+    //     className='flex items-start justify-center'
+    //     modalClassName='bg-main-background rounded-2xl max-w-xl w-full my-8 overflow-hidden'
+    //     open={open}
+    //     closeModal={closeModal}
+    //   >
+    //     TWEET REPLY MODEL NEEDS TO BE IMPLIMENTED
+    //   </Modal> */}
+    //   <MainHeader className='flex items-center justify-between'>
+    //     <div className='flex flex-col -mb-1'>
+    //       <h2 className='-mt-1 text-xl font-bold'>Lists</h2>
+    //       <p className='text-xs text-light-secondary dark:text-dark-secondary'>
+    //         @{user?.username}
+    //       </p>
+    //     </div>
+    //     <Button
+    //       className='relative p-2 dark-bg-tab group hover:bg-light-primary/10 // active:bg-light-primary/20 dark:hover:bg-dark-primary/10 dark:active:bg-dark-primary/20'
+    //       onClick={openModal}
+    //     >
+    //       <HeroIcon className='w-5 h-5' iconName='ArchiveBoxXMarkIcon' />
+    //       <ToolTip
+    //         className='!-translate-x-20 translate-y-3 md:-translate-x-1/2'
+    //         tip='Clear lists'
+    //       />
+    //     </Button>
+    //   </MainHeader>
 
-      <section className='mt-0.5'>
-        <div className='flex'>
-          <button
-            onClick={() => {
-              fetchFollowersList();
-            }}
-            className={`border-2 border-black p-4 text-white hover:border-white ${
-              activeList == -2 && 'bg-accent-blue'
-            }`}
-          >
-            Following
-          </button>
-          <button
-            onClick={() => {
-              fetchBlockedList();
-            }}
-            className={`border-2 border-black p-4 text-white hover:border-white ${
-              activeList == -1 && 'bg-accent-blue'
-            }`}
-          >
-            Blocked
-          </button>
-          {lists &&
-            lists.map((list, listIndex) => {
-              return (
-                <button
-                  onClick={() => {
-                    changeCustomListHandler(listIndex);
-                  }}
-                  className={`border-2 border-black p-4 text-white hover:border-white ${
-                    activeList == listIndex && 'bg-accent-blue'
-                  }`}
-                  key={listIndex}
-                >
-                  {list}
-                </button>
-              );
-            })}
-          <button
-            onClick={() => {
-              openModal();
-            }}
-            className='border-2 border-black p-4 text-white hover:border-white'
-          >
-            Add List
-          </button>
-        </div>
-      </section>
-      <section className='mt-0.5'>
-        {/* <StatsEmpty
-          title='Save Profiles'
-          description='Don’t let the good ones fly away! Bookmark Tweets to easily find them again in the future.'
-          imageData={{
-            src: '/assets/no-bookmarks.png',
-            alt: 'No bookmarks'
-          }}
-        /> */}
-        {/* <AnimatePresence mode='popLayout'> */}
-        {characters &&
-          characters?.map((char: any) => (
-            <UserCard
-              {...suggestionsData[0]}
-              key={char.id}
-              customName={char.display_name}
-              customTwitterHandle={char.username}
-              // customAlt={'EGIRL'}
-              // customSrcUrl={char.profile_banner_picture}
-              // customUrl={char.profile_picture}
-            />
-          ))}
-        {characters.length == 0 && !loading && (
-          <StatsEmpty
-            title='Save Profiles in a list'
-            description='Don’t let the good ones fly away! Save Profiles to easily find them again in the future.'
-            imageData={{
-              src: '/assets/no-bookmarks.png',
-              alt: 'No bookmarks'
-            }}
-          />
-        )}
-        {/* </AnimatePresence> */}
-      </section>
-      {/* {(pageState == 'posts' ||
-        pageState == 'locked-posts' ||
-        pageState == 'other') && (
-        <section className='mt-0.5'>
-          {bookmarksRefLoading || tweetLoading ? (
-            <Loading className='mt-5' />
-          ) : !bookmarksRef ? (
-            <StatsEmpty
-              title='Save Tweets for later'
-              description='Don’t let the good ones fly away! Bookmark Tweets to easily find them again in the future.'
-              imageData={{
-                src: '/assets/no-bookmarks.png',
-                alt: 'No bookmarks'
-              }}
-            />
-          ) : (
-            <AnimatePresence mode='popLayout'>
-              {tweetData?.map((tweet) => (
-                <Tweet {...tweet} key={tweet.id} />
-              ))}
-            </AnimatePresence>
-          )}
-        </section>
-      )} */}
-      <section className='mt-0.5'></section>
-    </MainContainer>
+    //   <section className='mt-0.5'>
+    //     <div className='flex'>
+    //       <button
+    //         onClick={() => {
+    //           fetchFollowersList();
+    //         }}
+    //         className={`border-2 border-black p-4 text-white hover:border-white ${
+    //           activeList == -2 && 'bg-accent-blue'
+    //         }`}
+    //       >
+    //         Following
+    //       </button>
+    //       <button
+    //         onClick={() => {
+    //           fetchBlockedList();
+    //         }}
+    //         className={`border-2 border-black p-4 text-white hover:border-white ${
+    //           activeList == -1 && 'bg-accent-blue'
+    //         }`}
+    //       >
+    //         Blocked
+    //       </button>
+    //       {lists &&
+    //         lists.map((list, listIndex) => {
+    //           return (
+    //             <button
+    //               onClick={() => {
+    //                 changeCustomListHandler(listIndex);
+    //               }}
+    //               className={`border-2 border-black p-4 text-white hover:border-white ${
+    //                 activeList == listIndex && 'bg-accent-blue'
+    //               }`}
+    //               key={listIndex}
+    //             >
+    //               {list}
+    //             </button>
+    //           );
+    //         })}
+    //       <button
+    //         onClick={() => {
+    //           openModal();
+    //         }}
+    //         className='p-4 text-white border-2 border-black hover:border-white'
+    //       >
+    //         Add List
+    //       </button>
+    //     </div>
+    //   </section>
+    //   <section className='mt-0.5'>
+    //     {/* <StatsEmpty
+    //       title='Save Profiles'
+    //       description='Don’t let the good ones fly away! Bookmark Tweets to easily find them again in the future.'
+    //       imageData={{
+    //         src: '/assets/no-bookmarks.png',
+    //         alt: 'No bookmarks'
+    //       }}
+    //     /> */}
+    //     {/* <AnimatePresence mode='popLayout'> */}
+    //     {characters &&
+    //       characters?.map((char: any) => (
+    //         <UserCard
+    //           {...suggestionsData[0]}
+    //           key={char.id}
+    //           customName={char.display_name}
+    //           customTwitterHandle={char.username}
+    //           // customAlt={'EGIRL'}
+    //           // customSrcUrl={char.profile_banner_picture}
+    //           // customUrl={char.profile_picture}
+    //         />
+    //       ))}
+    //     {characters.length == 0 && !loading && (
+    //       <StatsEmpty
+    //         title='Save Profiles in a list'
+    //         description='Don’t let the good ones fly away! Save Profiles to easily find them again in the future.'
+    //         imageData={{
+    //           src: '/assets/no-bookmarks.png',
+    //           alt: 'No bookmarks'
+    //         }}
+    //       />
+    //     )}
+    //     {/* </AnimatePresence> */}
+    //   </section>
+    //   {/* {(pageState == 'posts' ||
+    //     pageState == 'locked-posts' ||
+    //     pageState == 'other') && (
+    //     <section className='mt-0.5'>
+    //       {bookmarksRefLoading || tweetLoading ? (
+    //         <Loading className='mt-5' />
+    //       ) : !bookmarksRef ? (
+    //         <StatsEmpty
+    //           title='Save Tweets for later'
+    //           description='Don’t let the good ones fly away! Bookmark Tweets to easily find them again in the future.'
+    //           imageData={{
+    //             src: '/assets/no-bookmarks.png',
+    //             alt: 'No bookmarks'
+    //           }}
+    //         />
+    //       ) : (
+    //         <AnimatePresence mode='popLayout'>
+    //           {tweetData?.map((tweet) => (
+    //             <Tweet {...tweet} key={tweet.id} />
+    //           ))}
+    //         </AnimatePresence>
+    //       )}
+    //     </section>
+    //   )} */}
+    //   <section className='mt-0.5'></section>
+    // </MainContainer>
+      <main className='mx-auto flex min-h-screen max-w-[1276px] '>
+      <div>
+        <Sidebar />
+      </div>
+      <div className='max-w-[1020px] flex-grow bg-main-background sm:ml-[88px] lg:min-w-[600px] xl:ml-[300px]'>
+      <ListIndex/>
+      </div>
+    </main>
+    
   );
 }
 

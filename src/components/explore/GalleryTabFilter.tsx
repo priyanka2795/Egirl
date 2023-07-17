@@ -62,13 +62,15 @@ const GalleryTabFilter = () => {
 
   return (
     <>
-      <div className='mb-8 mt-8 flex'>
+      <div className='flex mt-8 mb-8'>
         {galleryArray.map((items) => {
           return (
             <div
               onClick={(e) => handleSelectedFilter(e)}
               key={items.id}
-              className={`relative z-10 mr-4 inline-flex h-[56px] w-max cursor-pointer items-center justify-start gap-2 rounded-full py-3 pl-3 pr-4  ${
+              className={`w-max relative z-10 mr-3 inline-flex h-[56px] w-max cursor-pointer items-center justify-start gap-2 rounded-full py-3 pl-3 pr-4 
+              last:bg-gradient-to-r
+              last:from-bg-white/10 last:to-bg-white/90 last:mr-0 list-last-item ${
                 selectedFilter === items.filterText
                   ? '!bg-[#5848BC]'
                   : 'bg-white bg-opacity-10 '
@@ -81,13 +83,13 @@ const GalleryTabFilter = () => {
                   <UserProfile className='white-stroke' />
                 ) : (
                   <Image
-                    className='h-8 w-16 rounded-full'
+                    className='w-16 h-8 rounded-full'
                     src={items.filterImg}
                     alt=''
                   />
                 )}
               </div>
-              <div className='text-base font-semibold leading-tight text-white'>
+              <div className='text-[15px] font-semibold leading-tight text-white'>
                 <p>{items.filterText}</p>
               </div>
             </div>
@@ -116,7 +118,7 @@ const GalleryTabFilter = () => {
             />
             {filterForm && <GalleryFilterCheckbox />}
           </div>
-          <div className='flex gap-2 border-l border-white/10 pl-2'>
+          <div className='flex gap-2 pl-2 border-l border-white/10'>
             <p>Newest</p>
             <Image src={arrowDown} alt='' className='object-cover' />
           </div>

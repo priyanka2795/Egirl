@@ -19,7 +19,7 @@ import mikaChan from '../../../public/assets/mikaChan.png';
 import Image from 'next/image';
 import Card from './Card';
 import GalleryTabFilter from './GalleryTabFilter';
-import SubscriptionPlan from './subscriptionPlan';
+import SubscriptionPlan from './SubscriptionPlan';
 
 const settings = {
   dots: true,
@@ -123,17 +123,17 @@ const ExploreIndex = () => {
               </Slider>
             </div>
 
-            <div className='mb-[32px] mt-[77px] flex justify-center gap-2'>
+            <div className='mb-[32px] mt-[77px] flex justify-center gap-2 items-start'>
               <div
                 className='flex cursor-pointer gap-2 rounded-[10px] bg-white/10 px-4 py-[7px] font-bold text-white'
                 onClick={() => setFilterOptionShow(!filterOptionShow)}
               >
                 <p>Hide</p>
               </div>
-              {filterOptionShow &&
+              {
                 exploreOptions.map((item) => {
                   return (
-                    <div className='pointer-events-none flex cursor-pointer gap-2 rounded-[10px] px-4 py-[7px] font-semibold text-[#979797]'>
+                    <div className={`${filterOptionShow === true ? "opacity-100" : "opacity-0 invisible"} pointer-events-none flex cursor-pointer gap-2 rounded-[10px] px-4 py-[7px] font-semibold text-[#979797]`}>
                       <Image
                         src={item.images}
                         alt=''
