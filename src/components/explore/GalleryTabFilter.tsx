@@ -68,9 +68,8 @@ const GalleryTabFilter = () => {
             <div
               onClick={(e) => handleSelectedFilter(e)}
               key={items.id}
-              className={`w-max relative z-10 mr-3 inline-flex h-[56px] w-max cursor-pointer items-center justify-start gap-2 rounded-full py-3 pl-3 pr-4 
-              last:bg-gradient-to-r
-              last:from-bg-white/10 last:to-bg-white/90 last:mr-0 list-last-item ${
+              className={`w-max relative z-10 mr-3 inline-flex h-[56px] w-max cursor-pointer items-center justify-start gap-2 rounded-full py-3 pl-3 pr-4 last:filter-bg-gradient
+              last:mr-0 list-last-item ${
                 selectedFilter === items.filterText
                   ? '!bg-[#5848BC]'
                   : 'bg-white bg-opacity-10 '

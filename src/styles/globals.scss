@@ -85,6 +85,14 @@
   .blue-gradient{
     background: linear-gradient(324deg, rgba(64, 59, 172, 0.08) 0%, rgba(88, 72, 188, 0.48) 82.08%);
   }
+  .filter-bg-gradient{
+    background: linear-gradient(to right, #202020 , #0b0b0b)
+  }
+  .filter-bg-gradient p{
+    background: linear-gradient(to right ,#989898, #373737);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 
   body {
     @apply hover-animation bg-main-background font-twitter-chirp text-light-primary dark:text-dark-primary;

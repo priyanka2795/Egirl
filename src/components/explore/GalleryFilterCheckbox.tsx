@@ -11,7 +11,7 @@ const GalleryFilterCheckbox = () => {
   return (
     <div className='absolute -right-[103px] z-[3] mt-2 flex flex-col items-center rounded-[14px] bg-[#272727] pb-5'>
       <div className='flex w-[346px] flex-col items-start justify-center gap-3 px-6 py-5 text-[#FFFFFF]'>
-        <div className='flex items-center justify-between self-stretch'>
+        <div className='flex items-center self-stretch justify-between'>
           <div className='text-lg font-bold'>Filters</div>
           <div className='text-sm font-normal text-[#979797]'>Clear all</div>
         </div>
@@ -25,23 +25,23 @@ const GalleryFilterCheckbox = () => {
         </div>
       </div>
 
-      <div className='flex flex-col items-start gap-5 self-stretch px-6'>
+      <div className='flex flex-col items-start self-stretch gap-5 px-6'>
         <form className='w-full'>
           <div className='flex w-full flex-col items-start gap-3 self-stretch border-b border-[#ffffff14]'>
             <div className='self-stretch text-[11px] font-semibold text-[#979797]'>
               GENDER
             </div>
-            <div className='mb-5 flex flex-col items-start gap-4 self-stretch'>
-              <div className='flex items-center gap-2 self-stretch'>
+            <div className='flex flex-col items-start self-stretch gap-4 mb-5'>
+              <div className='flex items-center self-stretch gap-2'>
                 <input
-                  className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
+                  className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727] focus:outline-transparent focus:ring-0 focus:outline-0'
                   type='checkbox'
                 />
                 <div className='text-[14px] font-normal text-[#FFFFFF]'>
                   Female
                 </div>
               </div>
-              <div className='flex items-center gap-2 self-stretch'>
+              <div className='flex items-center self-stretch gap-2'>
                 <input
                   className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                   type='checkbox'
@@ -50,7 +50,7 @@ const GalleryFilterCheckbox = () => {
                   Male
                 </div>
               </div>
-              <div className='flex items-center gap-2 self-stretch'>
+              <div className='flex items-center self-stretch gap-2'>
                 <input
                   className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                   type='checkbox'
@@ -66,8 +66,8 @@ const GalleryFilterCheckbox = () => {
             <div className='self-stretch text-[11px] font-semibold text-[#979797]'>
               STYLE
             </div>
-            <div className='mb-5 flex flex-col items-start gap-4 self-stretch'>
-              <div className='flex items-center gap-2 self-stretch'>
+            <div className='flex flex-col items-start self-stretch gap-4 mb-5'>
+              <div className='flex items-center self-stretch gap-2'>
                 <input
                   className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                   type='checkbox'
@@ -76,7 +76,7 @@ const GalleryFilterCheckbox = () => {
                   Anime
                 </div>
               </div>
-              <div className='flex items-center gap-2 self-stretch'>
+              <div className='flex items-center self-stretch gap-2'>
                 <input
                   className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                   type='checkbox'
@@ -85,7 +85,7 @@ const GalleryFilterCheckbox = () => {
                   Realistic
                 </div>
               </div>
-              <div className='flex items-center gap-2 self-stretch'>
+              <div className='flex items-center self-stretch gap-2'>
                 <input
                   className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                   type='checkbox'
@@ -97,14 +97,14 @@ const GalleryFilterCheckbox = () => {
             </div>
           </div>
 
-          <div className='mt-5 flex w-full flex-col items-start gap-3 self-stretch'>
+          <div className='flex flex-col items-start self-stretch w-full gap-3 mt-5'>
             <div className='self-stretch text-[11px] font-semibold text-[#979797]'>
               TAGS
             </div>
             <div>
               {viewAllTags ? (
-                <div className='mb-5 flex flex-col items-start gap-4 self-stretch'>
-                  <div className='flex items-center gap-2 self-stretch'>
+                <div className='flex flex-col items-start self-stretch gap-4 mb-5'>
+                  <div className='flex items-center self-stretch gap-2'>
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727] focus:outline-none'
                       type='checkbox'
@@ -113,7 +113,7 @@ const GalleryFilterCheckbox = () => {
                       Furry
                     </div>
                   </div>
-                  <div className='flex items-center gap-2 self-stretch'>
+                  <div className='flex items-center self-stretch gap-2'>
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                       type='checkbox'
@@ -122,7 +122,7 @@ const GalleryFilterCheckbox = () => {
                       Ahegao
                     </div>
                   </div>
-                  <div className='flex items-center gap-2 self-stretch'>
+                  <div className='flex items-center self-stretch gap-2'>
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                       type='checkbox'
@@ -131,7 +131,7 @@ const GalleryFilterCheckbox = () => {
                       NSFW
                     </div>
                   </div>
-                  <div className='flex items-center gap-2 self-stretch'>
+                  <div className='flex items-center self-stretch gap-2'>
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                       type='checkbox'
@@ -140,7 +140,7 @@ const GalleryFilterCheckbox = () => {
                       Roleplay
                     </div>
                   </div>
-                  <div className='flex items-center gap-2 self-stretch'>
+                  <div className='flex items-center self-stretch gap-2'>
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                       type='checkbox'
@@ -149,7 +149,7 @@ const GalleryFilterCheckbox = () => {
                       Fashion Model
                     </div>
                   </div>
-                  <div className='flex items-center gap-2 self-stretch'>
+                  <div className='flex items-center self-stretch gap-2'>
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727] focus:outline-none'
                       type='checkbox'
@@ -158,7 +158,7 @@ const GalleryFilterCheckbox = () => {
                       Furry
                     </div>
                   </div>
-                  <div className='flex items-center gap-2 self-stretch'>
+                  <div className='flex items-center self-stretch gap-2'>
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                       type='checkbox'
@@ -167,7 +167,7 @@ const GalleryFilterCheckbox = () => {
                       Ahegao
                     </div>
                   </div>
-                  <div className='flex items-center gap-2 self-stretch'>
+                  <div className='flex items-center self-stretch gap-2'>
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                       type='checkbox'
@@ -176,7 +176,7 @@ const GalleryFilterCheckbox = () => {
                       NSFW
                     </div>
                   </div>
-                  <div className='flex items-center gap-2 self-stretch'>
+                  <div className='flex items-center self-stretch gap-2'>
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                       type='checkbox'
@@ -185,7 +185,7 @@ const GalleryFilterCheckbox = () => {
                       Roleplay
                     </div>
                   </div>
-                  <div className='flex items-center gap-2 self-stretch'>
+                  <div className='flex items-center self-stretch gap-2'>
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                       type='checkbox'
@@ -196,8 +196,8 @@ const GalleryFilterCheckbox = () => {
                   </div>
                 </div>
               ) : (
-                <div className='mb-5 flex flex-col items-start gap-4 self-stretch'>
-                  <div className='flex items-center gap-2 self-stretch'>
+                <div className='flex flex-col items-start self-stretch gap-4 mb-5'>
+                  <div className='flex items-center self-stretch gap-2'>
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727] focus:outline-none'
                       type='checkbox'
@@ -206,7 +206,7 @@ const GalleryFilterCheckbox = () => {
                       Furry
                     </div>
                   </div>
-                  <div className='flex items-center gap-2 self-stretch'>
+                  <div className='flex items-center self-stretch gap-2'>
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                       type='checkbox'
@@ -215,7 +215,7 @@ const GalleryFilterCheckbox = () => {
                       Ahegao
                     </div>
                   </div>
-                  <div className='flex items-center gap-2 self-stretch'>
+                  <div className='flex items-center self-stretch gap-2'>
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                       type='checkbox'
@@ -224,7 +224,7 @@ const GalleryFilterCheckbox = () => {
                       NSFW
                     </div>
                   </div>
-                  <div className='flex items-center gap-2 self-stretch'>
+                  <div className='flex items-center self-stretch gap-2'>
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                       type='checkbox'
@@ -233,7 +233,7 @@ const GalleryFilterCheckbox = () => {
                       Roleplay
                     </div>
                   </div>
-                  <div className='flex items-center gap-2 self-stretch'>
+                  <div className='flex items-center self-stretch gap-2'>
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                       type='checkbox'
