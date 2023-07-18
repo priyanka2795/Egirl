@@ -26,7 +26,7 @@ const NewCollectionModal = ({closeModalItem} : CollectionModalProp) => {
         <div className='flex items-center w-full gap-4 px-6 pt-6 pb-3'>
             <div className='relative'>
                 <Image className='w-[72px] h-[72px]' src={avatar} alt={''} />
-                <div className="absolute left-[17px] top-[16px] h-4">
+                <div className="absolute left-[19px] top-[19px] h-4">
                 <Image className='w-[16px] h-[16px] bottom-4 right-[51px]' src={cameraIcon} alt={''} />
                 </div>
             </div>
