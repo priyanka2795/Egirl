@@ -20,6 +20,8 @@ import Image from 'next/image';
 import Card from './Card';
 import GalleryTabFilter from './GalleryTabFilter';
 import SubscriptionPlan from './SubscriptionPlan';
+import TinderCard from './TinderCardSlider';
+import TinderCardSlider from './TinderCardSlider';
 
 const settings = {
   dots: true,
@@ -122,6 +124,7 @@ const ExploreIndex = () => {
                 <CardSlider />
               </Slider>
             </div>
+            {/* <TinderCardSlider /> */}
 
             <div className='mb-[32px] mt-[77px] flex justify-center gap-2 items-start'>
               <div

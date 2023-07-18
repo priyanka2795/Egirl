@@ -1,5 +1,5 @@
 import { Modal } from '@components/modal/modal'
-import React from 'react'
+import React ,{useState} from 'react'
 import Image from 'next/image';
 import xMark from '../../../public/assets/xmark.png';
 import cameraIcon from '../../../public/assets/camera-icon.png';
@@ -12,16 +12,16 @@ const NewCollectionModal = ({closeModalItem} : CollectionModalProp) => {
   return (
     <Modal
     open={true}
-    // flex flex-col items-start absolute rounded-[20px] bg-[#1A1A1A] w-[500px]
-    modalClassName='flex flex-col max-w-xl w-full rounded-2xl h-max bg-[#1A1A1A] max-w-[468px]'
+    modalClassName='flex flex-col w-full rounded-[20px] h-max bg-[#1A1A1A] max-w-[468px]'
     closeModal={() => closeModalItem(false)}
     modalOverlayStyle='!bg-black/80'
   >    
-  <>
-  <div className='flex justify-between w-full gap-2 p-6 border-b border-white/[0.08]'>
-            <div className='flex flex-col items-start gap-1 text-[#FFFFFF] text-lg font-bold w-[286px]'>Custom List</div>
-            <Image className='flex top-[7px] items-start gap-4 w-[24px] h-[24px] object-contain' src={xMark} alt={''}/>
+  <div>  
+     <div className='flex justify-between w-full gap-2 p-6 border-b border-white/[0.08]'>
+        <div className='flex flex-col items-start gap-1 text-[#FFFFFF] text-lg font-bold w-[286px]'>Custom List
         </div>
+            <Image className='flex top-[7px] items-start gap-4 w-[24px] h-[24px] object-contain' src={xMark} alt={''}/>
+    </div>
 
         <div className='flex items-center w-full gap-4 px-6 pt-6 pb-3'>
             <div className='relative'>
@@ -43,8 +43,10 @@ const NewCollectionModal = ({closeModalItem} : CollectionModalProp) => {
                 <button className='rounded-[14px] w-1/2 px-[20px] py-[13px] border border-white/[0.32] text-[16px] font-bold' onClick={() => closeModalItem(false)}>Cancel</button>
                 <button className='rounded-[14px] w-1/2 px-[20px] py-[13px] bg-[#5848BC] text-[16px] text-[#FFFFFF] font-bold' onClick={() => closeModalItem(false)}>Create</button>
             </div>
-        </div>
-  </>
+        </div>    
+  
+    
+  </div>
   
   </Modal>
   )
