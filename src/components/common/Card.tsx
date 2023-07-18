@@ -1,6 +1,5 @@
 import React from 'react'
 import blueTick from '../../../public/assets/badge-check.png'
-import micaChan from '../../../public/assets/mikaChan.png'
 import Image from 'next/image'
 
 interface CardProps{
@@ -19,9 +18,11 @@ const Card = ({cardMainImg ,verified, characterName, characterType, availableCou
     <div className='flex flex-col items-start self-stretch gap-2 p-4'>
         <div className='flex items-center self-stretch gap-1'>
             <div className='text-[#FFFFFF] text-sm font-semibold'>{characterName}</div>
-            <Image className={`w-[16px] h-[16px]  ${verified === true ? "show" : "hidden"}`} src={blueTick} alt={''}/>
+            <Image className={`w-[16px] h-[16px]  ${verified === true ? "show" : "!hidden"}`} src={blueTick} alt={''}/>
         </div>
-        <div className='flex items-center self-stretch gap-1'>
+        {
+            characterType &&
+            <div className='flex items-center self-stretch gap-1'>
             <div className='flex items-center gap-1 px-[10px] py-[4px] rounded-lg bg-white/10'>
                 <div className='text-[#FFFFFF] text-center text-xs font-normal'>{characterType}</div>
             </div>
@@ -29,6 +30,8 @@ const Card = ({cardMainImg ,verified, characterName, characterType, availableCou
                 <div className='text-[#FFFFFF] text-center text-xs font-normal'>{availableCount}</div>
             </div>
         </div>
+        }
+       
     </div>
 </div>
   )

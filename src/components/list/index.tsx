@@ -1,18 +1,20 @@
 import React,{useState} from 'react'
-import GalleryFilter from './GalleryFilter'
-import ListTab from './ListTab'
-
+import SubscriptionOptions from './SubscriptionOptions'
+import DefaultTab from '@components/common/DefaultTab'
+import CollectionOptions from './CollectionOptions'
 
 const ListIndex = () => {
   const [activeListTab, setActiveListTab] = useState("Subscriptions")
+  const tabContent = ['Subscriptions', 'Following' , 'Bookmarks' , 'Collections'];
   return (
     <div>
-     <ListTab activeListTab={activeListTab} setActiveTab={setActiveListTab}/>
-     {activeListTab === "Subscriptions" ?
-     <GalleryFilter/> : 
-     null
-     }
-     
+      <DefaultTab activeListTab={activeListTab} setActiveTab={setActiveListTab} tabContentArray={tabContent}/>
+      <div className="px-8 py-4">
+      {activeListTab !== "Collections" ?
+     <SubscriptionOptions/> : 
+      <CollectionOptions />
+     }   
+      </div>
     </div>
   )
 }

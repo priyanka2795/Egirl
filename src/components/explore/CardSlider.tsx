@@ -13,9 +13,9 @@ const CardSlider = () => {
     <div className='relative mx-auto mt-[77px] w-max'>
       <Image src={cardImg} alt='' />
       <div className='absolute bottom-0 right-0 inline-flex w-full items-center justify-start bg-gradient-to-b from-transparent to-black px-6 pb-6 pt-[205px]'>
-        <div className='w-full flex-col items-center justify-start gap-8 self-stretch '>
+        <div className='flex-col items-center self-stretch justify-start w-full gap-8 '>
           <div className='flex flex-col items-start justify-center gap-2'>
-            <div className='flex w-full items-center justify-between'>
+            <div className='flex items-center justify-between w-full'>
               <div className='flex items-center text-[26px] font-bold leading-[26px] leading-loose text-white'>
                 Mika-chan
                 <VerifiedIcon />
@@ -57,9 +57,9 @@ const CardSlider = () => {
               </div>
             </div>
           </div>
-          <div className='mt-8 inline-flex w-full items-center justify-center gap-8'>
+          <div className='inline-flex items-center justify-center w-full gap-8 mt-8'>
             <div className='flex items-start justify-start gap-2.5 rounded-[100px] border-2 border-red-500 p-6 backdrop-blur-[15px]'>
-              <div className='relative h-8 w-8'>
+              <div className='relative w-8 h-8'>
                 <RedCloseIcon />
               </div>
             </div>
@@ -69,7 +69,7 @@ const CardSlider = () => {
               </div>
             </div>
             <div className='flex h-20 w-20 items-center justify-center gap-2.5 rounded-[100px] border-2   border-lime-500 px-6 pb-6 pt-[26px] backdrop-blur-[15px]'>
-              <div className='relative h-8 w-8'>
+              <div className='relative w-8 h-8'>
                 <GreenHeartIcon />
               </div>
             </div>
