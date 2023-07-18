@@ -83,7 +83,8 @@
     stroke:white
   }
   .blue-gradient{
-    background: linear-gradient(324deg, rgba(64, 59, 172, 0.08) 0%, rgba(88, 72, 188, 0.48) 82.08%);
+    // background: linear-gradient(324deg, rgba(64, 59, 172, 0.08) 0%, rgba(88, 72, 188, 0.48) 82.08%);
+    background: linear-gradient(to bottom right, #6150B9, #29244e);
   }
   .filter-bg-gradient{
     background: linear-gradient(to right, #202020 , #0b0b0b)

@@ -1,13 +1,16 @@
 import React , {useState} from 'react'
 
-const ListTab = () => {
+interface ListTabProp{
+  activeListTab: any,
+  setActiveTab: any
+}
+const ListTab = ({activeListTab , setActiveTab}: ListTabProp) => {
     const tabContent = ['Subscriptions', 'Following' , 'Bookmarks' , 'Collections'];
-    const [exploreSelectedTab, setExploreSelected] = useState("Subscriptions");
-    const [subLeftModal, setsubLeftModal] = useState(false);
+    const [exploreSelectedTab, setExploreSelected] = useState(activeListTab);
 
     const handleExploreSelected = (e: any) => {
         setExploreSelected(e.target.innerText);
-        // setExploreSelectedTab(e.target.innerText);
+        setActiveTab(e.target.innerText)
       };
 
   return (

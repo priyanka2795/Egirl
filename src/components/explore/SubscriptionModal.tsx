@@ -55,7 +55,7 @@ const SubscriptionModal = ({ closeState }: subscription) => {
             <HeartIcon />
             <h4 className='text-[26px] font-bold'>Egirls+</h4>
           </div>
-          <button className='flex h-max items-center gap-1 rounded-[10px] border-none bg-[#5848BC]/50 px-3 py-[7px] outline-none text-sm'>
+          <button className='flex h-max items-center gap-1 rounded-[10px] border-none bg-[#5848bc]/[0.48] px-3 py-[7px] outline-none text-sm'>
             <StarIcon />
             Subscription
           </button>
