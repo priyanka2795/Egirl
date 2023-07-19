@@ -79,6 +79,36 @@
     height: 40px;
     margin-left: 58px;
   }
+
+  .list-slider .slick-arrow.slick-next::before {
+    content: '';
+    background-image: url("../../public/assets/right-slick-arrow.png");
+     background-repeat:no-repeat;
+     background-size: cover ;
+     width: 20px;
+     height: 20px;
+     display: block;
+    //  display: inline-flex;
+  }
+
+  .list-slider .slick-arrow.slick-prev::before {
+    content: '';
+    background-image: url("../../public/assets/left-slick-arrow.png");
+    background-repeat:no-repeat;
+    background-size: cover ;
+    display: block;
+    width: 20px;
+    height: 20px;
+    // display: inline-flex;
+    margin-left: 12px;
+    // z-index: 10;
+  }
+
+  .list-slider-dots .slick-dots {
+    //background-color: #989898;
+  }
+
+
   .white-stroke path{
     stroke:white
   }

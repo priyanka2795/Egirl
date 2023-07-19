@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import CardSlider from './CardSlider';
 import ExploreTabs from './ExploreTabs';
-import Slider from 'react-slick';
+import Slider from 'react-slick'; 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import arrowLeftImg from '../../../public/assets/img-arrow-left.png';
@@ -120,8 +120,8 @@ const ExploreIndex = () => {
             <div className='explore-slider'>
               <Slider {...settings}>
                 <CardSlider />
+                <CardSlider /> 
                 <CardSlider />
-                 
               </Slider>
             </div>
             {/* <TinderCardSlider /> */}
