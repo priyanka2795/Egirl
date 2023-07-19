@@ -124,6 +124,53 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+  .custom-checkbox {
+    display: block;
+    margin-bottom: 15px;
+
+    input {
+      padding: 0;
+      height: initial;
+      width: initial;
+      margin-bottom: 0;
+      display: none;
+      cursor: pointer;
+    }
+
+    label {
+      position: relative;
+      cursor: pointer;
+    }
+
+    label:before {
+      content:'';
+      -webkit-appearance: none;
+      background-color: rgba(255,255,255,0.5);
+      border: 1px solid white;
+      padding: 11px;
+      display: inline-block;
+      position: relative;
+      vertical-align: middle;
+      cursor: pointer;
+      border-radius: 50%;
+    }
+
+    input:checked + label::before{
+      background-color: #8C7DD0;
+      border-color:#8C7DD0;
+    }
+
+    input:checked + label:after  {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 7px;
+      left: 8px;
+      background: url("../../public/assets/checked-icon.png") no-repeat center;
+      width: 10.7px;
+      height: 8px;
+    }
+  } 
 
   body {
     @apply hover-animation bg-main-background font-twitter-chirp text-light-primary dark:text-dark-primary;
