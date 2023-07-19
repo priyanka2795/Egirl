@@ -449,7 +449,7 @@ export default function Lists(): JSX.Element {
     //   )} */}
     //   <section className='mt-0.5'></section>
     // </MainContainer>
-      <main className='mx-auto flex min-h-screen max-w-[1276px] '>
+      <main className='mx-auto flex min-h-screen max-w-[1320px] '>
       <div>
         <Sidebar />
       </div>

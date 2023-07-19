@@ -121,7 +121,7 @@ const ExploreIndex = () => {
               <Slider {...settings}>
                 <CardSlider />
                 <CardSlider />
-                <CardSlider />
+                 
               </Slider>
             </div>
             {/* <TinderCardSlider /> */}

@@ -4,7 +4,7 @@ import React from 'react';
 
 const explore = () => {
   return (
-    <main className='mx-auto flex min-h-screen max-w-[1276px] '>
+    <main className='mx-auto flex min-h-screen max-w-[1320px] '>
       <div>
         {' '}
         <Sidebar />

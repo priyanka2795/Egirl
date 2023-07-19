@@ -3,6 +3,7 @@ import SubscriptionOptions from './SubscriptionOptions'
 import DefaultTab from '@components/common/DefaultTab'
 import CollectionOptions from './CollectionOptions'
 import RemoveProfile from './RemoveProfile'
+import EditCollectionModal from './EditCollectionModal'
 
 const ListIndex = () => {
   const [activeListTab, setActiveListTab] = useState("Subscriptions")
@@ -11,7 +12,7 @@ const ListIndex = () => {
   return (
     <div>
      
-      <div onClick={() => setRemovePage(true)}>Remove Page</div>
+      <div onClick={() => setRemovePage(!removePage)}>Remove Page</div>
       {removePage === true ?
         <RemoveProfile/> : 
         <>
