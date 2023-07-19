@@ -120,13 +120,12 @@
 
   .bookmark-img-onhover {
     transition: .5s ease;
-  opacity: 1;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  text-align: center;
+    opacity: 1;
+    position: absolute;
+    // transform: translate(-50%, -50%);
+    // -ms-transform: translate(-50%, -50%);
+    padding: 16px;
+    
   }
 
   .list-bookmark-container:hover .list-bookmark-img {
