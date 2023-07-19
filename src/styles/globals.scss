@@ -108,6 +108,36 @@
     //background-color: #989898;
   }
 
+  .list-bookmark-container {
+    position: relative;
+  }
+
+  .list-bookmark-img {
+    opacity: 1;
+    transition: .5s ease;
+    backface-visibility: hidden;
+  }
+
+  .bookmark-img-onhover {
+    transition: .5s ease;
+  opacity: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+  }
+
+  .list-bookmark-container:hover .list-bookmark-img {
+    opacity: 0.3;
+  }
+
+  .list-bookmark-container:hover .bookmark-img-onhover {
+    opacity: 1;
+  }
+
+
 
   .white-stroke path{
     stroke:white

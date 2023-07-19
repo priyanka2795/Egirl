@@ -4,6 +4,7 @@ import DefaultTab from '@components/common/DefaultTab';
 import CollectionOptions from './CollectionOptions';
 import RemoveProfile from './RemoveProfile';
 import EditCollectionModal from './EditCollectionModal';
+import BookMarks from './BookMarks';
 
 const ListIndex = () => {
   const [activeListTab, setActiveListTab] = useState('Subscriptions');
@@ -27,7 +28,7 @@ const ListIndex = () => {
             ) : activeListTab === 'Collections' ? (
               <CollectionOptions />
             ) : activeListTab === 'Bookmarks' ? (
-              <></>
+              <BookMarks />
             ) : (
               <SubscriptionOptions />
             )}
