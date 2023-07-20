@@ -59,44 +59,7 @@ const exploreOptions = [
   }
 ];
 
-const exploreGallery = [
-  {
-    id: 1,
-    userName: 'Leela',
-    userProfile: mikaChanImg,
-    mainImg: sarahScarlet
-  },
-  {
-    id: 2,
-    userName: 'Leela',
-    userProfile: mikaChanImg,
-    mainImg: mikaChanImg
-  },
-  {
-    id: 3,
-    userName: 'Leela',
-    userProfile: mikaChanImg,
-    mainImg: galleryTabImg3
-  },
-  {
-    id: 4,
-    userName: 'Leela',
-    userProfile: mikaChanImg,
-    mainImg: galleryTabImg4
-  },
-  {
-    id: 5,
-    userName: 'Leela',
-    userProfile: mikaChanImg,
-    mainImg: galleryTabImg5
-  },
-  {
-    id: 6,
-    userName: 'Leela',
-    userProfile: mikaChanImg,
-    mainImg: galleryTabImg6
-  }
-];
+
 
 const ExploreIndex = () => {
   const [filterOptionShow, setFilterOptionShow] = useState(true);
@@ -151,44 +114,6 @@ const ExploreIndex = () => {
         ) : (
           <div className='px-8'>
             <GalleryTabFilter />
-            <div className='grid grid-cols-3 gap-4'>
-              {exploreGallery.map((items) => {
-                return (
-                  <div className='relative'>
-                    <Image
-                      src={items.mainImg}
-                      alt=''
-                      className='object-cover'
-                    />
-                    <div className='absolute bottom-0 right-0 w-full flex-col items-center justify-start bg-gradient-to-b from-transparent to-black px-6 pb-6 pt-[205px]'>
-                      <div className='inline-flex h-6 w-[276px] items-center justify-start gap-1.5'>
-                        <div className='relative flex h-6 w-6 rounded-[100px]'>
-                          <Image
-                            className='absolute left-0 top-0 h-6 w-6 rounded-[100px]'
-                            src={items.userProfile}
-                            alt=''
-                          />
-                        </div>
-                        <div className='text-[15px] font-semibold text-white'>
-                          {items.userName}
-                        </div>
-                      </div>
-                      <div className='flex items-start justify-start gap-1.5'>
-                        <div className='flex items-center justify-start gap-1 rounded-md bg-white bg-opacity-10 px-2 py-[3px] text-center text-sm font-normal leading-[18px] text-white'>
-                          Anime
-                        </div>
-                        <div className='flex items-center justify-start gap-1 rounded-md bg-white bg-opacity-10 px-2 py-[3px] text-center text-sm font-normal leading-[18px] text-white'>
-                          Fashion Model
-                        </div>
-                        <div className='flex items-center justify-start gap-1 rounded-md bg-white bg-opacity-10 px-2 py-[3px] text-center text-sm font-normal leading-[18px] text-white'>
-                          +2
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
           </div>
         )}
       </div>

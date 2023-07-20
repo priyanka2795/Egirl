@@ -5,7 +5,8 @@ import blockIcon from '../../../public/assets/block-icon.png'
 import bookmarkIcon from '../../../public/assets/bookmark.png'
 import linkIcon from '../../../public/assets/link-icon.png'
 import Cover from '../../../public/assets/cover.png'
-import avatar from '../../../public/assets/avatar.png'
+// import avatar from '../../../public/assets/avatar.png'
+import avatar from '../../../public/assets/mika-chan-sub-banner.png'
 import userCheckIcon from '../../../public/assets/user-check-icon.png'
 import threeDotsIcon from '../../../public/assets/three-dots-icon.png'
 import blueTickIcon from '../../../public/assets/badge-check.png'
@@ -92,11 +93,11 @@ const Banner = () => {
         
         <div className='block w-full'>
             <Image className='w-full h-full' src={Cover} alt='' />
-            <div className='flex w-full px-[24px] justify-between items-center'>
-                <div className="relative -top-[46px] w-[120px] h-[120px]">
+            <div className='flex w-full px-[24px] justify-between items-center mb-5 mt-[-62px]'>
+                <div className="relative w-[120px] h-[120px] rounded-full overflow-hidden">
                     <Image className='w-full h-full' src={avatar} alt='' />
                 </div>
-                <div className='flex gap-[12px] -mt-[43px]'>
+                <div className='flex gap-[12px] self-end'>
                     <button className='h-max flex rounded-[14px] px-[20px] py-[13px] gap-2 bg-white/[0.08]'>
                         <Image src={userCheckIcon} alt='' />
                         <div className='text-[#FFFFFF] font-bold text-[16px]'>Following</div>
@@ -108,7 +109,7 @@ const Banner = () => {
         </div>
         
         <div className='flex pb-[24px] px-6'>
-            <div className='-mt-[46px] '>
+            <div className=''>
                 <div className='flex gap-[2px]'>
                 <div className='text-[#FFFFFF] text-[22px] font-bold'>Mika-chan</div>
                 <div className='mt-2 w-[24px] h-[24px]'>

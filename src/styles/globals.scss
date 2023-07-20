@@ -150,21 +150,32 @@
     }
 
     input:checked + label::before{
-      background-color: #8C7DD0;
-      border-color:#8C7DD0;
+      @apply border-[#8C7DD0] bg-[#8C7DD0]
     }
 
     input:checked + label:after  {
-      content: '';
-      display: block;
-      position: absolute;
+      content: '';    
       top: 7px;
-      left: 8px;
       background: url("../../public/assets/checked-icon.png") no-repeat center;
       width: 10.7px;
-      height: 8px;
+      @apply h-2 left-2 absolute block bg-cover bg-no-repeat
     }
   } 
+
+  .explore-gallery-filter {
+    .slick-slide{
+      @apply mr-3
+    }
+
+    .slick-arrow.slick-next::before{
+      content: '';
+      background-image: url("../../public/assets/arrow-right.png");
+      @apply block w-6 h-6 bg-cover bg-no-repeat
+    }
+    .slick-arrow.slick-prev::before{
+      @apply hidden
+    }
+  }
 
   body {
     @apply hover-animation bg-main-background font-twitter-chirp text-light-primary dark:text-dark-primary;
