@@ -2,92 +2,95 @@ import React from 'react'
 import Image from 'next/image';
 import deleteIcon from '../../../public/assets/delete-icon.png';
 import arrowDown from '../../../public/assets/arrow-down.png';
-import micaChanFullImg from '../../../public/assets/mica-chan-full-img.png';
 import micaChanAvatar from '../../../public/assets/avatar.png';
 import bookmarkFilled from '../../../public/assets/bookmark-filled.png';
-import robotImg from '../../../public/assets/robot-img.png';
+import bookmarkImg1 from '../../../public/assets/bookmark-img1.png';
+import bookmarkImg2 from '../../../public/assets/bookmark-img2.png';
+import bookmarkImg3 from '../../../public/assets/bookmark-img3.png';
+import bookmarkImg4 from '../../../public/assets/bookmark-img4.png';
+
 
 
 const userFrame = [
     {
-        image: micaChanFullImg,
+        image: bookmarkImg1,
         reaction: bookmarkFilled,
         avatar: micaChanAvatar,
         name: 'Mica-chan',
         userName: '@mikachan • 6h'
     },
     {
-        image: robotImg,
+        image: bookmarkImg2,
         reaction: bookmarkFilled,
         avatar: micaChanAvatar,
         name: 'Mica-chan',
         userName: '@mikachan • 6h'
     },
     {
-        image: robotImg,
+        image: bookmarkImg3,
         reaction: bookmarkFilled,
         avatar: micaChanAvatar,
         name: 'Mica-chan',
         userName: '@mikachan • 6h'
     },
     {
-        image: robotImg,
+        image: bookmarkImg4,
         reaction: bookmarkFilled,
         avatar: micaChanAvatar,
         name: 'Mica-chan',
         userName: '@mikachan • 6h'
     },
     {
-        image: robotImg,
+        image: bookmarkImg4,
         reaction: bookmarkFilled,
         avatar: micaChanAvatar,
         name: 'Mica-chan',
         userName: '@mikachan • 6h'
     },
     {
-        image: robotImg,
+        image: bookmarkImg3,
         reaction: bookmarkFilled,
         avatar: micaChanAvatar,
         name: 'Mica-chan',
         userName: '@mikachan • 6h'
     },
     {
-        image: robotImg,
+        image: bookmarkImg2,
         reaction: bookmarkFilled,
         avatar: micaChanAvatar,
         name: 'Mica-chan',
         userName: '@mikachan • 6h'
     },
     {
-        image: robotImg,
+        image: bookmarkImg1,
         reaction: bookmarkFilled,
         avatar: micaChanAvatar,
         name: 'Mica-chan',
         userName: '@mikachan • 6h'
     },
     {
-        image: robotImg,
+        image: bookmarkImg2,
         reaction: bookmarkFilled,
         avatar: micaChanAvatar,
         name: 'Mica-chan',
         userName: '@mikachan • 6h'
     },
     {
-        image: robotImg,
+        image: bookmarkImg1,
         reaction: bookmarkFilled,
         avatar: micaChanAvatar,
         name: 'Mica-chan',
         userName: '@mikachan • 6h'
     },
     {
-        image: robotImg,
+        image: bookmarkImg4,
         reaction: bookmarkFilled,
         avatar: micaChanAvatar,
         name: 'Mica-chan',
         userName: '@mikachan • 6h'
     },
     {
-        image: robotImg,
+        image: bookmarkImg3,
         reaction: bookmarkFilled,
         avatar: micaChanAvatar,
         name: 'Mica-chan',
@@ -121,7 +124,7 @@ const BookMarks = () => {
                                 <div className='flex list-bookmark-container'>
                                     <Image className='list-bookmark-img rounded-[14px]' src={item.image} alt={''} />
                                 </div>
-                                <div className='absolute top-0 left-0 w-full h-full p-4 opacity-0 bookmark-img-onhover group-hover:opacity-100 bg-[#000]/50'>
+                                <div className='absolute -top-[2px] -right-[2px] w-full h-full p-4 opacity-0 bookmark-img-onhover group-hover:opacity-100 bg-[#000]/50'>
                                     <div className='flex flex-col justify-between'>
                                         <div className='flex flex-col items-end '>
                                             <Image className='w-[20px] h-[20px]' src={item.reaction} alt={''} />
