@@ -4,16 +4,51 @@ import circleInformation from '../../../public/assets/circle-information.png';
 
 const GalleryFilterCheckbox = () => {
   const [viewAllTags, setViewAllTags] = useState(false);
+  const [filterValues, setFilterValues] = useState({});
 
   const handleClick = (event: any) => {
     setViewAllTags((current) => !current);
   };
+
+  const handleChange = (e:any) => {
+    const { value, checked } = e.target;
+      
+    console.log(`${value} is ${checked}`);
+
+    if (checked) {
+      setFilterValues({
+        ...filterValues,
+        [value]: true
+      });
+    }
+  
+    // Case 2  : The user unchecks the box
+    else {
+      setFilterValues({
+        ...filterValues,
+        [value]: false
+      });
+    }
+  };
+
+  const onSubmit = (e:any) => {
+    console.log(filterValues);
+  }
+
+  const handleReset = (e:any) => {
+    setFilterValues({});
+  }
+
+
   return (
     <div className='absolute -right-[103px] z-[3] mt-2 flex flex-col items-center rounded-[14px] bg-[#272727] pb-5'>
+      <form>
       <div className='flex w-[346px] flex-col items-start justify-center gap-3 px-6 py-5 text-[#FFFFFF]'>
         <div className='flex items-center self-stretch justify-between'>
+        
           <div className='text-lg font-bold'>Filters</div>
-          <div className='text-sm font-normal text-[#979797]'>Clear all</div>
+          
+          <button onClick={handleReset} type="reset" className='text-sm font-normal text-[#979797]'>Clear all</button>
         </div>
         <div className='flex items-start gap-1'>
           <div>
@@ -26,7 +61,7 @@ const GalleryFilterCheckbox = () => {
       </div>
 
       <div className='flex flex-col items-start self-stretch gap-5 px-6'>
-        <form className='w-full'>
+        
           <div className='flex w-full flex-col items-start gap-3 self-stretch border-b border-[#ffffff14]'>
             <div className='self-stretch text-[11px] font-semibold text-[#979797]'>
               GENDER
@@ -36,6 +71,8 @@ const GalleryFilterCheckbox = () => {
                 <input
                   className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727] focus:outline-transparent focus:ring-0 focus:outline-0'
                   type='checkbox'
+                  value='Female'
+                  onChange={handleChange}
                 />
                 <div className='text-[14px] font-normal text-[#FFFFFF]'>
                   Female
@@ -45,6 +82,8 @@ const GalleryFilterCheckbox = () => {
                 <input
                   className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                   type='checkbox'
+                  value='Male'
+                  onChange={handleChange}
                 />
                 <div className='text-[14px] font-normal text-[#FFFFFF]'>
                   Male
@@ -54,6 +93,8 @@ const GalleryFilterCheckbox = () => {
                 <input
                   className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                   type='checkbox'
+                  value='Other'
+                  onChange={handleChange}
                 />
                 <div className='text-[14px] font-normal text-[#FFFFFF]'>
                   Other
@@ -71,6 +112,8 @@ const GalleryFilterCheckbox = () => {
                 <input
                   className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                   type='checkbox'
+                  value='Anime'
+                  onChange={handleChange}
                 />
                 <div className='text-[14px] font-normal text-[#FFFFFF]'>
                   Anime
@@ -80,6 +123,8 @@ const GalleryFilterCheckbox = () => {
                 <input
                   className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                   type='checkbox'
+                  value='Realistic'
+                  onChange={handleChange}
                 />
                 <div className='text-[14px] font-normal text-[#FFFFFF]'>
                   Realistic
@@ -89,6 +134,8 @@ const GalleryFilterCheckbox = () => {
                 <input
                   className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                   type='checkbox'
+                  value='Semi-Realistic'
+                  onChange={handleChange}
                 />
                 <div className='text-[14px] font-normal text-[#FFFFFF]'>
                   Semi-Realistic
@@ -108,6 +155,8 @@ const GalleryFilterCheckbox = () => {
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727] focus:outline-none'
                       type='checkbox'
+                      value='Furry'
+                      onChange={handleChange}
                     />
                     <div className='text-[14px] font-normal text-[#FFFFFF]'>
                       Furry
@@ -117,6 +166,8 @@ const GalleryFilterCheckbox = () => {
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                       type='checkbox'
+                      value='Ahegao'
+                      onChange={handleChange}
                     />
                     <div className='text-[14px] font-normal text-[#FFFFFF]'>
                       Ahegao
@@ -126,6 +177,8 @@ const GalleryFilterCheckbox = () => {
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                       type='checkbox'
+                      value='NSFW'
+                      onChange={handleChange}
                     />
                     <div className='text-[14px] font-normal text-[#FFFFFF]'>
                       NSFW
@@ -135,6 +188,8 @@ const GalleryFilterCheckbox = () => {
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                       type='checkbox'
+                      value='Roleplay'
+                      onChange={handleChange}
                     />
                     <div className='text-[14px] font-normal text-[#FFFFFF]'>
                       Roleplay
@@ -144,6 +199,8 @@ const GalleryFilterCheckbox = () => {
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                       type='checkbox'
+                      value='Fashion Model'
+                      onChange={handleChange}
                     />
                     <div className='text-[14px] font-normal text-[#FFFFFF]'>
                       Fashion Model
@@ -153,6 +210,8 @@ const GalleryFilterCheckbox = () => {
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727] focus:outline-none'
                       type='checkbox'
+                      value='Furry'
+                      onChange={handleChange}
                     />
                     <div className='text-[14px] font-normal text-[#FFFFFF]'>
                       Furry
@@ -162,6 +221,8 @@ const GalleryFilterCheckbox = () => {
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                       type='checkbox'
+                      value='Ahegao'
+                      onChange={handleChange}
                     />
                     <div className='text-[14px] font-normal text-[#FFFFFF]'>
                       Ahegao
@@ -171,6 +232,8 @@ const GalleryFilterCheckbox = () => {
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                       type='checkbox'
+                      value='NSFW'
+                      onChange={handleChange}
                     />
                     <div className='text-[14px] font-normal text-[#FFFFFF]'>
                       NSFW
@@ -180,6 +243,8 @@ const GalleryFilterCheckbox = () => {
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                       type='checkbox'
+                      value='Roleplay'
+                      onChange={handleChange}
                     />
                     <div className='text-[14px] font-normal text-[#FFFFFF]'>
                       Roleplay
@@ -189,6 +254,8 @@ const GalleryFilterCheckbox = () => {
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                       type='checkbox'
+                      value='Fashion Model'
+                      onChange={handleChange}
                     />
                     <div className='text-[14px] font-normal text-[#FFFFFF]'>
                       Fashion Model
@@ -201,6 +268,8 @@ const GalleryFilterCheckbox = () => {
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727] focus:outline-none'
                       type='checkbox'
+                      value='Furry'
+                      onChange={handleChange}
                     />
                     <div className='text-[14px] font-normal text-[#FFFFFF]'>
                       Furry
@@ -210,6 +279,8 @@ const GalleryFilterCheckbox = () => {
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                       type='checkbox'
+                      value='Ahegao'
+                      onChange={handleChange}
                     />
                     <div className='text-[14px] font-normal text-[#FFFFFF]'>
                       Ahegao
@@ -219,6 +290,8 @@ const GalleryFilterCheckbox = () => {
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                       type='checkbox'
+                      value='NSFW'
+                      onChange={handleChange}
                     />
                     <div className='text-[14px] font-normal text-[#FFFFFF]'>
                       NSFW
@@ -228,6 +301,8 @@ const GalleryFilterCheckbox = () => {
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                       type='checkbox'
+                      value='Roleplay'
+                      onChange={handleChange}
                     />
                     <div className='text-[14px] font-normal text-[#FFFFFF]'>
                       Roleplay
@@ -237,6 +312,8 @@ const GalleryFilterCheckbox = () => {
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                       type='checkbox'
+                      value='Fashion Model'
+                      onChange = {handleChange}
                     />
                     <div className='text-[14px] font-normal text-[#FFFFFF]'>
                       Fashion Model
@@ -256,11 +333,12 @@ const GalleryFilterCheckbox = () => {
               )}
             </div>
           </div>
-        </form>
+        
       </div>
+      </form>
 
       <div className='flex flex-col items-start gap-[10px] self-stretch border-t border-[#ffffff14] p-6'>
-        <button className='text-[#FFFFFF ] flex h-[40px] items-center justify-center self-stretch rounded-xl bg-[#5848BC] text-sm  font-bold'>
+        <button onClick={onSubmit} className='text-[#FFFFFF ] flex h-[40px] items-center justify-center self-stretch rounded-xl bg-[#5848BC] text-sm  font-bold'>
           Apply
         </button>
       </div>
