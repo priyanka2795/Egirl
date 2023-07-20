@@ -157,7 +157,7 @@
   .custom-checkbox {
     display: block;
     margin-bottom: 15px;
-
+    
     input {
       padding: 0;
       height: initial;
@@ -195,10 +195,13 @@
       display: block;
       position: absolute;
       top: 7px;
-      left: 8px;
+      left: 7px;
       background: url("../../public/assets/checked-icon.png") no-repeat center;
       width: 10.7px;
       height: 8px;
+    }
+    &:has(input:checked){
+      background: rgba(0, 0, 0, 0.80);
     }
   } 
 

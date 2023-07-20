@@ -10,7 +10,8 @@ import ListFilter from './ListFilter';
 import CollectionCard from './CollectionCard';
 const CollectionOptions = () => {
   const [newCollectionModal, setNewCollectionModal] = useState(false);
-  const [imageDropdown, setImageDropdown] = useState(false);
+  const [imageDropdown, setImageDropdown] = useState('');
+  const [selectedCardId, setSelectedCardId] = useState('false');
   return (
     <>
       <ListFilter />
