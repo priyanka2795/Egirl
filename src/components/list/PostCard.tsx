@@ -13,7 +13,7 @@ import heartIcon from '../../../public/assets/unfilled-heart.png'
 import Slider from 'react-slick';
 
 
-const settings = {
+const settings = { 
     dots: true,
     infinite: true,
     speed: 500,
@@ -103,7 +103,7 @@ const PostCard = () => {
                     </div>
                 </div>
             </div>
-            </div>
+        </div>
     </div>
   )
 }

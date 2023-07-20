@@ -4,7 +4,8 @@ import DefaultTab from '@components/common/DefaultTab';
 import CollectionOptions from './CollectionOptions';
 import RemoveProfile from './RemoveProfile';
 import EditCollectionModal from './EditCollectionModal';
-import BookMarks from './BookMarks';
+import BookMarks from './BookMarks1';
+import BookMarks2 from './BookMarks2';
 
 const ListIndex = () => {
   const [activeListTab, setActiveListTab] = useState('Subscriptions');
@@ -35,6 +36,7 @@ const ListIndex = () => {
           </div>
         </>
       )}
+      <BookMarks2 />
     </div>
   );
 };
