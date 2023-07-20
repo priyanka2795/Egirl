@@ -117,24 +117,24 @@ const BookMarks = () => {
                 {userFrame.map((item) => {
                     return(
                         <>
-                            <div className='relative'>
+                            <div className='relative group'>
                                 <div className='flex list-bookmark-container'>
-                                <Image className='list-bookmark-img rounded-[14px]' src={item.image} alt={''} />
+                                    <Image className='list-bookmark-img rounded-[14px]' src={item.image} alt={''} />
                                 </div>
-                                <div className='w-full h-full p-4 bookmark-img-onhover'>
+                                <div className='absolute top-0 left-0 w-full h-full p-4 opacity-0 bookmark-img-onhover group-hover:opacity-100 bg-[#000]/50'>
                                     <div className='flex flex-col justify-between'>
-                                    <div className='flex flex-col items-end '>
-                                        <Image className='w-[20px] h-[20px]' src={item.reaction} alt={''} />
-                                    </div>
-                                    <div className='flex gap-3'>
-                                        <div className='w-[40px] h-[40px]'>
-                                            <Image className='w-full h-full' src={item.avatar} alt={''} />
+                                        <div className='flex flex-col items-end '>
+                                            <Image className='w-[20px] h-[20px]' src={item.reaction} alt={''} />
                                         </div>
-                                        <div className='flex flex-col gap-[2px]'>
-                                            <div className='text-[#FFFFFF] text-[16px] font-bold'>{item.name}</div>
-                                            <div className='text-white/[0.80] text-[14px] font-normal'>{item.userName}</div>
+                                        <div className='flex gap-3 mt-[104px]'>
+                                            <div className='w-[40px] h-[40px]'>
+                                                <Image className='w-full h-full' src={item.avatar} alt={''} />
+                                            </div>
+                                            <div className='flex flex-col gap-[2px]'>
+                                                <div className='text-[#FFFFFF] text-[16px] font-bold'>{item.name}</div>
+                                                <div className='text-white/[0.80] text-[14px] font-normal'>{item.userName}</div>
+                                            </div>
                                         </div>
-                                    </div>
                                     </div>
                                 </div>
                             </div>
