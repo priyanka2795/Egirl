@@ -10,7 +10,7 @@ import robotImg from '../../../public/assets/robot-img.png';
 
 const userFrame = [
     {
-        image: robotImg,
+        image: micaChanFullImg,
         reaction: bookmarkFilled,
         avatar: micaChanAvatar,
         name: 'Mica-chan',
@@ -118,10 +118,17 @@ const BookMarks = () => {
                     return(
                         <>
                             <div className='flex list-bookmark-container'>
-                                <Image className='list-bookmark-img' src={item.image} alt={''} />
+                                <Image className='list-bookmark-img rounded-[14px]' src={item.image} alt={''} />
                             </div>
                             <div className='bookmark-img-onhover'>
-                                {/* <div className='text-white bg-pink'>Hello</div> */}
+                                <div className='flex flex-col items-end justify-between'>
+                                    <div>
+                                        <Image className='w-[20px] h-[20px]' src={item.reaction} alt={''} />
+                                    </div>
+                                    <div className='flex w-[40px] h-[40px]'>
+                                        <Image className='w-full h-full' src={item.avatar} alt={''} />
+                                    </div>
+                                </div>
                             </div>
                         </>
                     );
