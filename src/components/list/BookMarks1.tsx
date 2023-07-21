@@ -105,15 +105,19 @@ const BookMarks = () => {
             <div>
                 <div className='flex justify-between w-full'>
                     <div className='text-[#FFFFFF] text-lg font-bold'>All bookmarks</div>
-                    <button className='flex px-3 py-[7px] gap-[6px] rounded-[10px] bg-white/[0.08]'>
+                    {/* <button className='flex px-3 py-[7px] gap-[6px] rounded-[10px] bg-white/[0.08]'>
                         <Image className='w-[16px] h-[16px]' src={deleteIcon} alt={''} />
                         <div className='text-xs font-bold text-[#979797]'>Clear All</div>
-                    </button>
+                    </button> */}
+                    <div className='flex gap-2'>
+                        <div className='text-[#FFFFFF] text-[15px] font-normal'>Newest bookmarks</div>
+                        <div className='w-[20px] h-[20px]'>
+                            <Image className='object-cover' src={arrowDown} alt={''} />
+                        </div>
+                        
+                     </div>
                 </div>
-                <div className='flex gap-2'>
-                    <div className='text-[#FFFFFF] text-[15px] font-normal'>Newest bookmarks</div>
-                    <Image className='w-[20px] h-[20px]' src={arrowDown} alt={''} />
-                </div>
+              
             </div>
 
             <div className='grid w-full grid-cols-4 gap-3 mt-6'>
