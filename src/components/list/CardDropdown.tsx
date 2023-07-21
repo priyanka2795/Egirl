@@ -19,12 +19,12 @@ const CardDropdown = () => {
           Edit
         </div>
       </div>
-      <div className='flex items-center justify-start gap-2 self-stretch bg-[#1A1A1A] px-4 py-2.5  cursor-pointer' onClick={() => setAddCollectionState(!addCollectionState)}>
+      {/* <div className='flex items-center justify-start gap-2 self-stretch bg-[#1A1A1A] px-4 py-2.5  cursor-pointer' onClick={() => setAddCollectionState(!addCollectionState)}>
         <AddIcon/>
         <div className='text-sm font-normal leading-none text-white shrink grow basis-0'>
           Add to collection
         </div>
-      </div>
+      </div> */}
       <div className='flex items-center justify-start gap-2 self-stretch bg-[#1A1A1A] px-4 py-2.5  cursor-pointer' onClick={() => setDeleteCollectionState(!deleteCollectionState)}>
        <DeleteIcon/>
         <div className='text-sm font-normal leading-none text-red-500 shrink grow basis-0'>

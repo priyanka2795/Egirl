@@ -118,6 +118,24 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+
+  .custom-checkbox.custom-checkbox-circle{
+    @apply mb-0
+  }
+  .custom-checkbox.custom-checkbox-circle label::before{
+      background-color: transparent;
+      @apply rounded border border-white border-opacity-25 mr-2
+  }
+  .custom-checkbox.custom-checkbox-circle label::after{
+    top:5px
+  }
+  .custom-checkbox.custom-checkbox-circle label{
+    @apply w-5 h-5
+  }
+  .custom-checkbox.custom-checkbox-circle input:checked + label::before{
+    @apply bg-[#5848BC] border-[#5848BC]
+  }
+
   .custom-checkbox {
     display: block;
     margin-bottom: 15px;

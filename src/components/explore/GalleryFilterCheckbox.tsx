@@ -71,16 +71,17 @@ const GalleryFilterCheckbox = ({filterCloseForm}:prop) => {
               GENDER
             </div>
             <div className='flex flex-col items-start self-stretch gap-4 mb-5'>
-              <div className='flex items-center self-stretch gap-2'>
+              <div className='block custom-checkbox custom-checkbox-circle'>
                 <input
                   className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727] focus:outline-transparent focus:ring-0 focus:outline-0'
                   type='checkbox'
                   value='Female'
                   onChange={handleChange}
+                  id='female'
                 />
-                <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                <label className="text-[14px] font-normal text-[#FFFFFF]" htmlFor="female">
                   Female
-                </div>
+                </label>
               </div>
               <div className='flex items-center self-stretch gap-2'>
                 <input

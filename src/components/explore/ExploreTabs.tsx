@@ -1,6 +1,7 @@
+import SubscriptionModal from '@components/common/SubscriptionModal';
 import { Modal } from '@components/modal/modal';
 import React, { useState } from 'react';
-import SubscriptionModal from './SubscriptionModal';
+// import SubscriptionModal from './SubscriptionModal';
 
 interface props {
   // tabContentData: Array<String>;
@@ -11,7 +12,7 @@ interface props {
 const ExploreTabs = ({ exploreTab, setExploreSelectedTab }: props) => {
   const tabContent = ['Swipe', 'Gallery'];
   const [exploreSelectedTab, setExploreSelected] = useState(exploreTab);
-  const [subLeftModal, setsubLeftModal] = useState(false);
+  const [subLeftModal, setsubLeftModal] = useState(true);
   // const [filterOptionShow, setFilterOptionShow] = useState(true);
   const handleExploreSelected = (e: any) => {
     setExploreSelected(e.target.innerText);
@@ -50,6 +51,7 @@ const ExploreTabs = ({ exploreTab, setExploreSelectedTab }: props) => {
               2 subs left
             </div>
           </div>
+
           {subLeftModal && <SubscriptionModal closeState={setsubLeftModal} />}
         </div>
       </div>

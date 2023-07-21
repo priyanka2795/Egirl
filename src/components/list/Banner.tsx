@@ -12,6 +12,7 @@ import threeDotsIcon from '../../../public/assets/three-dots-icon.png'
 import blueTickIcon from '../../../public/assets/badge-check.png'
 import locationIcon from '../../../public/assets/location-icon.png'
 import calendarIcon from '../../../public/assets/calendar-icon.png'
+import CollectionCoverModal from './CollectionCoverModal'
 
 
 const posts = [
@@ -62,7 +63,7 @@ const actions = [
     },
     {
         icon: bookmarkIcon,
-        name: 'Remove from collection'
+        name: 'Add to collections'
     },
     {
         icon: blockIcon,
@@ -78,6 +79,7 @@ const actions = [
 const Banner = () => {
     const [actionDivShow, setActionDivShow] = useState(false);
     const [exploreSelectedTab, setExploreSelected] = useState("Remove from collection");
+    const [collectionModalState , setCollectionModalState] = useState(false);
 
     const handleExploreSelected = (e: any) => {
         setExploreSelected(e.target.innerText);
@@ -88,6 +90,7 @@ const Banner = () => {
     };
 
   return (
+    <>
     <div>
         <div className='w-full rounded-[16px] bg-[#121212] h-max overflow-hidden'>
         
@@ -178,6 +181,11 @@ const Banner = () => {
         </div>
         </div>
     </div>
+
+    {/* {exploreSelectedTab === "Add to collections" && 
+    <CollectionCoverModal closeAddCollectionModal={setCollectionModalState} />
+    } */}
+    </>
   )
 }
 

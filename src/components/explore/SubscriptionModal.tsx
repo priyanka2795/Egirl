@@ -15,7 +15,7 @@ const featureOpt = [
   'Faster generation times',
   'Access to all premium features, present and future'
 ];
-const SubscriptionModal = ({ closeState }: subscription) => {
+const SubscriptionModals = ({ closeState }: subscription) => {
   const [tabSelectedOpt, setTabSelectedOpt] = useState('Egirls+');
   return (
     <div>
@@ -81,4 +81,4 @@ const SubscriptionModal = ({ closeState }: subscription) => {
   );
 };
 
-export default SubscriptionModal;
+export default SubscriptionModals;
