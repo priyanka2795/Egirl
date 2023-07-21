@@ -5,14 +5,11 @@ import CollectionOptions from './CollectionOptions';
 import RemoveProfile from './RemoveProfile';
 import EditCollectionModal from './EditCollectionModal';
 import BookMarks from './BookMarks1';
-<<<<<<< Updated upstream
 import AddToCollectionModal from './AddToCollectionModal';
-=======
 import BookMarks3 from './BookMarks3';
 import BookMarks2 from './BookMarks2';
 import BookMarkModal from './BookMarkModal';
 import ClearBookMarkModal from './ClearBookMarkModal';
->>>>>>> Stashed changes
 
 const ListIndex = () => {
   const [activeListTab, setActiveListTab] = useState('Subscriptions');
