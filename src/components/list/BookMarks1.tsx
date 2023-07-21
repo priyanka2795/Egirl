@@ -124,12 +124,12 @@ const BookMarks = () => {
                                 <div className='flex list-bookmark-container'>
                                     <Image className='list-bookmark-img rounded-[14px]' src={item.image} alt={''} />
                                 </div>
-                                <div className='absolute -top-[2px] -right-[2px] w-full h-full p-4 opacity-0 bookmark-img-onhover group-hover:opacity-100 bg-[#000]/50'>
-                                    <div className='flex flex-col justify-between'>
-                                        <div className='flex flex-col items-end '>
+                                <div className='absolute top-0 left-0 w-full h-full p-4 opacity-0 bookmark-img-onhover group-hover:opacity-100 bg-[#000]/50'>
+                                    <div className='relative flex flex-col justify-between w-full h-full '>
+                                        <div className='absolute flex flex-col items-end top-1 right-1'>
                                             <Image className='w-[20px] h-[20px]' src={item.reaction} alt={''} />
                                         </div>
-                                        <div className='flex gap-3 mt-[104px]'>
+                                        <div className='flex items-end w-full h-full gap-3'>
                                             <div className='w-[40px] h-[40px]'>
                                                 <Image className='w-full h-full' src={item.avatar} alt={''} />
                                             </div>

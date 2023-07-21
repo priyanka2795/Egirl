@@ -139,7 +139,7 @@ const GalleryTabFilter = () => {
               onClick={() => setFilterForm(!filterForm)}
               className={`${filterForm && 'white-stroke'}`}
             />
-            {filterForm && <GalleryFilterCheckbox />}
+            {filterForm && <GalleryFilterCheckbox filterCloseForm={setFilterForm} />}
           </div>
           <div className='flex gap-2 pl-2 border-l border-white/10'>
             <p>Newest</p>

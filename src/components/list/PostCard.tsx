@@ -30,8 +30,8 @@ const PostCard = () => {
     };
 
   return (
-    <div>
-        <div className='w-[560px] bg-[#121212] rounded-[14px] mt-5'>
+   
+        <div className='w-[59%] bg-[#121212] rounded-[14px] mt-5'>
             <div className='flex w-full gap-3 px-6 pt-6 pb-[20px] border-b border-white/[0.08]'>
             {tabContent.map((items, index) => {
              return (
@@ -104,7 +104,7 @@ const PostCard = () => {
                 </div>
             </div>
         </div>
-    </div>
+   
   )
 }
 

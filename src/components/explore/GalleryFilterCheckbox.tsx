@@ -2,7 +2,10 @@ import Image from 'next/image';
 import React, { useState } from 'react';
 import circleInformation from '../../../public/assets/circle-information.png';
 
-const GalleryFilterCheckbox = () => {
+interface prop{
+  filterCloseForm:any
+}
+const GalleryFilterCheckbox = ({filterCloseForm}:prop) => {
   const [viewAllTags, setViewAllTags] = useState(false);
   const [filterValues, setFilterValues] = useState({});
 
@@ -13,7 +16,7 @@ const GalleryFilterCheckbox = () => {
   const handleChange = (e:any) => {
     const { value, checked } = e.target;
       
-    console.log(`${value} is ${checked}`);
+    //console.log(`${value} is ${checked}`);
 
     if (checked) {
       setFilterValues({
@@ -33,6 +36,7 @@ const GalleryFilterCheckbox = () => {
 
   const onSubmit = (e:any) => {
     console.log(filterValues);
+    filterCloseForm(false)
   }
 
   const handleReset = (e:any) => {
