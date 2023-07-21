@@ -18,6 +18,7 @@ import threeDotsWhite from '../../../public/assets/three-dots-white.png'
 import pinkPhnGirlAvatar from '../../../public/assets/pink-phn-girl-avatar.png'
 import heartIcon from '../../../public/assets/unfilled-heart.png'
 import smileyIcon from '../../../public/assets/face-smile-icon.png';
+import CloseIconSvg from '../../../public/assets/svgImages/close-icon.svg';
 
 const settings = { 
     dots: true,
@@ -65,7 +66,8 @@ const BookMarkModal = ({closeModalState}:BookMarkModalProp) => {
                             <Image className='object-contain' src={threeDotsIcon} alt={''} />
                         </div>
                         <div className='w-[24px] h-[24px]' onClick={() => closeModalState(false)}>
-                            <Image className='object-contain' src={crossIcon} alt={''} />
+                            <CloseIconSvg/>
+                            {/* <Image className='object-contain' src={crossIcon} alt={''} /> */}
                         </div>
                     </div>
                 </div>
