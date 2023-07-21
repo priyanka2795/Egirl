@@ -26,7 +26,7 @@ const EditCollectionModal = ({closeEditModal}: EditModalProp) => {
             </div>           
     </div>
 
-        <div className='flex items-center w-full gap-4 px-6 pt-6 pb-3'>
+        {/* <div className='flex items-center w-full gap-4 px-6 pt-6 pb-3'>
             <div className='relative'>
                 <Image className='w-[72px] h-[72px]' src={avatar} alt={''} />
                 <div className="absolute left-[19px] top-[19px] h-4">
@@ -37,7 +37,7 @@ const EditCollectionModal = ({closeEditModal}: EditModalProp) => {
                 <div className='self-stretch text-[#FFFFFF] text-[15px] font-bold'>Collection Cover</div>
                 <div className='text-sm font-normal text-[#979797]'>Click on the photo to edit</div>
             </div>
-        </div>
+        </div> */}
 
         <div className='w-full px-6 pt-3 pb-6'>
             <div className='w-full text-[#979797] text-[13px] font-semibold'>Name of List</div>
