@@ -31,9 +31,9 @@ const ClearBookMarkModal = ({closeModalItem}: clearBookMarkProp) => {
 
         <div className='flex gap-3 px-6 py-4'>
             <button className='w-1/2 flex px-5 py-[13px] rounded-[14px] border border-white/[0.32] justify-center'>
-                <div className='text-white text-[16px] font-bold'>Cancel</div>
+                <div className='text-white text-[16px] font-bold' onClick={() => closeModalItem(false)}>Cancel</div>
             </button>
-            <button className='w-1/2 flex px-5 py-[13px] rounded-[14px] bg-[#FF5336] text-white text-[16px] font-bold justify-center'>Clear</button>
+            <button className='w-1/2 flex px-5 py-[13px] rounded-[14px] bg-[#FF5336] text-white text-[16px] font-bold justify-center' onClick={() => closeModalItem(false)}>Clear</button>
         </div>
     </>
   </Modal>

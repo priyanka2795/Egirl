@@ -27,13 +27,15 @@ const settings = {
     slidesToScroll: 1
 };
 
-const BookMarkModal = () => {
+interface BookMarkModalProp{
+    closeModalState: any
+}
+const BookMarkModal = ({closeModalState}:BookMarkModalProp) => {
   return (
     <Modal
     open={true}
     modalClassName='flex flex-col h-max  w-[1248px] rounded-[20px] bg-[#121212] overflow-hidden mt-10 mb-10 ml-5 bookmark-img-text'
-    // closeModal={() => closeModalItem(false)}
-    closeModal={() => {}}
+    closeModal={() => closeModalState(false)}
     modalOverlayStyle='!bg-black/80'
   >    
     <div className='flex '>
@@ -62,7 +64,7 @@ const BookMarkModal = () => {
                         <div className='w-[24px] h-[24px]'>
                             <Image className='object-contain' src={threeDotsIcon} alt={''} />
                         </div>
-                        <div className='w-[24px] h-[24px]'>
+                        <div className='w-[24px] h-[24px]' onClick={() => closeModalState(false)}>
                             <Image className='object-contain' src={crossIcon} alt={''} />
                         </div>
                     </div>
