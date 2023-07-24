@@ -122,7 +122,7 @@ export default function Sidebar({
         />
         <SidebarMenuItem
           text='Referrals'
-          href='/asdf'
+          href='/referrals'
           Icon={ReferralsIcon}
           sideBarMenuText={`${sideBarMenuText} ${
             shrinkSidebar === true ? '!hidden' : 'w-full'

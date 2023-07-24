@@ -5,6 +5,7 @@ import searchIcon from '../../../public/assets/search-icon.png'
 import plusIcon from '../../../public/assets/plus-block-icon.png';
 import MainImage from '../../../public/assets/gallery-tab-img-3.png';
 import pinkMobGirl from '../../../public/assets/gallery-tab-img-2.png';
+import { Modal } from '@components/modal/modal';
 
 
 const collectionFrame = [
@@ -33,9 +34,16 @@ const collectionFrame = [
 const AddToCollectionModal = () => {
     const [newCollectionModal, setNewCollectionModal] = useState(false);
   return (
-    <div className='flex flex-col w-[753px] h-max rounded-[20px] bg-[#1A1A1A] ml-20 mb-5'>
+    <Modal
+    open={true}
+    modalClassName='flex flex-col h-max w-[753px] rounded-[20px] bg-[#121212] overflow-hidden mt-10 mb-10 ml-5 bookmark-img-text'
+    // closeModal={() => closeModalState(false)}
+    closeModal={() => {}}
+    modalOverlayStyle='!bg-black/80'
+  >    
+    {/* <div className=' h-max rounded-[20px] bg-[#1A1A1A] ml-20 mb-5'> */}
         <div className='flex gap-2 p-6 border-b border-white/[0.08]'>
-            <div className='flex text-[#FFFFFF] text-[18px] leading-6 font-bold'>Add to collection</div>
+            <div className='flex text-white text-[18px] leading-6 font-bold'>Add to collection</div>
             <div className='w-6 h-6 mt-1 ml-[528px]'>
                 <Image className='w-full h-full' src={crossIcon} alt={''} />
             </div>
@@ -47,8 +55,8 @@ const AddToCollectionModal = () => {
                     <div className='w-6 h-6 mt-[10px]'>
                         <Image className='w-full h-full' src={searchIcon} alt={''} />
                     </div>
-                    <div>
-                        <input type='text' placeholder='Search' className='bg-white/[0.05] border-none text-[#979797] text-[15px] font-normal' />
+                    <div className="w-full">
+                        <input type='text' placeholder='Search' className='w-full bg-transparent border-none text-[#979797] text-[15px] font-normal focus:outline-0 focus:ring-0' />
                     </div>
                 </div>
             </div>
@@ -71,7 +79,7 @@ const AddToCollectionModal = () => {
 
                 {collectionFrame.map((item, index) => {
                     return(
-                        <div className='flex flex-col items-start h-[279px] overflow-hidden group rounded-2xl bg-white/[0.05]'>
+                        <div className='flex flex-col items-start h-[279px] overflow-hidden group rounded-2xl bg-white/[0.05] add-to-collection'>
                             <div className='relative flex items-center justify-center overflow-hidden'>
                                 <div className='w-full'>
                                   <Image src={item.image} alt='' className='object-cover' />
@@ -100,7 +108,8 @@ const AddToCollectionModal = () => {
             <button className='flex px-4 py-[10px] justify-center items-center rounded-xl border border-white/[0.32] text-[#FFFFFF] text-[14px] font-bold'>Cancel</button>
             <button className='flex px-4 py-[10px] justify-center items-center rounded-xl bg-[#5848BC] text-[#FFFFFF] text-[14px] font-bold'>Save</button>
         </div>
-    </div>
+    {/* </div> */}
+    </Modal>
   )
 }
 

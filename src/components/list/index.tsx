@@ -44,7 +44,7 @@ const ListIndex = () => {
       )}
       {/* <BookMarkModal /> */}
       {/* <ClearBookMarkModal/> */}
-      <AddToCollectionModal />
+      {/* <AddToCollectionModal /> */}
       {/* <CollectionCoverModal /> */}
     </div>
   );
