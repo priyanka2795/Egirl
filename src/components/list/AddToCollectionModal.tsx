@@ -4,13 +4,38 @@ import crossIcon from '../../../public/assets/xmark.png'
 import searchIcon from '../../../public/assets/search-icon.png'
 import plusIcon from '../../../public/assets/plus-block-icon.png';
 import MainImage from '../../../public/assets/gallery-tab-img-3.png';
+import pinkMobGirl from '../../../public/assets/gallery-tab-img-2.png';
+
+
+const collectionFrame = [
+    {
+        image: MainImage,
+        imageName: 'Realistic'
+    },
+    {
+        image: MainImage,
+        imageName: 'Realistic'
+    },
+    {
+        image: MainImage,
+        imageName: 'Catgirls'
+    },
+    {
+        image: MainImage,
+        imageName: 'Realistic'
+    },
+    {
+        image: pinkMobGirl,
+        imageName: 'One more long name...'
+    },
+];
 
 const AddToCollectionModal = () => {
     const [newCollectionModal, setNewCollectionModal] = useState(false);
   return (
-    <div className='flex flex-col w-[753px] h-[800px] rounded-[20px] bg-[#1A1A1A] ml-20 mb-5'>
+    <div className='flex flex-col w-[753px] h-max rounded-[20px] bg-[#1A1A1A] ml-20 mb-5'>
         <div className='flex gap-2 p-6 border-b border-white/[0.08]'>
-            <div className='flex text-[#FFFFFF] text-[18px] font-bold'>Add to collection</div>
+            <div className='flex text-[#FFFFFF] text-[18px] leading-6 font-bold'>Add to collection</div>
             <div className='w-6 h-6 mt-1 ml-[528px]'>
                 <Image className='w-full h-full' src={crossIcon} alt={''} />
             </div>
@@ -29,7 +54,7 @@ const AddToCollectionModal = () => {
             </div>
 
             <div className='grid grid-cols-3 gap-3 px-6 py-4'>
-                <div className='flex h-[279px] flex-col items-center justify-center rounded-[16px] border border-white/[0.08] bg-[#121212]'>
+                <div className='flex h-[279px] flex-col items-center justify-center rounded-[16px] border border-white/[0.08] bg-white/[0.05]'>
                         <Image src={plusIcon} alt='' className='object-contain mb-4' />
                         <div
                             className='flex flex-col items-center justify-center cursor-pointer'
@@ -44,31 +69,37 @@ const AddToCollectionModal = () => {
                         </div>
                 </div>
 
-                <div className='flex flex-col items-start overflow-hidden group rounded-2xl bg-white/10'>
-                    <div className='relative flex items-center justify-center overflow-hidden'>
-                        <div className='h-[237px] w-full'>
-                          <Image src={MainImage} alt='' className='object-cover' />
-                        </div>
-                        <div className='absolute top-0 right-0 w-full h-full custom-checkbox'>
-                          <div className='pt-4 pr-4 text-right'>
-                            <input type='checkbox' id={`checked1`} />
-                            <label htmlFor={`checked1`}></label>
-                          </div>
-                        </div>
-                    </div>
-                    <div className='flex flex-col items-start self-stretch gap-3 p-4'>
-                        <div className='flex items-center self-stretch gap-1'>
-                            <div className='text-sm font-semibold text-[#FFFFFF]'>
-                               Realistic
+                {collectionFrame.map((item, index) => {
+                    return(
+                        <div className='flex flex-col items-start h-[279px] overflow-hidden group rounded-2xl bg-white/[0.05]'>
+                            <div className='relative flex items-center justify-center overflow-hidden'>
+                                <div className='w-full'>
+                                  <Image src={item.image} alt='' className='object-cover' />
+                                </div>
+                                <div className='absolute top-0 right-0 w-full h-full custom-checkbox'>
+                                  <div className='pt-4 pr-4 text-right'>
+                                    <input type='checkbox' id={`checked-${index}`} />
+                                    <label htmlFor={`checked-${index}`}></label>
+                                  </div>
+                                </div>
+                            </div>
+                            <div className='flex flex-col items-start self-stretch gap-3 p-4'>
+                                <div className='flex items-center self-stretch gap-1'>
+                                    <div className='text-sm font-semibold text-[#FFFFFF]'>
+                                       {item.imageName}
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div></div>
+                    );
+                })}
             </div>
         </div>
 
-        <div></div>
+        <div className='flex items-end justify-end gap-3 px-6 py-4'>
+            <button className='flex px-4 py-[10px] justify-center items-center rounded-xl border border-white/[0.32] text-[#FFFFFF] text-[14px] font-bold'>Cancel</button>
+            <button className='flex px-4 py-[10px] justify-center items-center rounded-xl bg-[#5848BC] text-[#FFFFFF] text-[14px] font-bold'>Save</button>
+        </div>
     </div>
   )
 }
