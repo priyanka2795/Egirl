@@ -7,10 +7,10 @@ import CloseIcon from '../../../public/assets/svgImages/close-icon.svg';
 
 interface EditModalProp{
     closeEditModal: any
-}
+} 
 const EditCollectionModal = ({closeEditModal}: EditModalProp) => {
   return (
-    <Modal
+    <Modal 
     open={true}
     modalClassName='flex flex-col w-full rounded-[20px] h-max bg-[#1A1A1A] max-w-[468px]'
     // closeModal={() => closeModalItem(false)}

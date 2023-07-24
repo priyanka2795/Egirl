@@ -19,7 +19,7 @@ const CollectionCard = ({
   toggleDropdown,
   dropdownState,
   cardId
-}: CollectionCardProps) => {
+}: CollectionCardProps) => {   
   return (
     <div className='flex flex-col items-start self-stretch overflow-hidden group rounded-2xl bg-white/10'>
       <div

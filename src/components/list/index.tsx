@@ -11,6 +11,7 @@ import BookMarks2 from './BookMarks2';
 import BookMarkModal from './BookMarkModal';
 import ClearBookMarkModal from './ClearBookMarkModal';
 
+
 const ListIndex = () => {
   const [activeListTab, setActiveListTab] = useState('Subscriptions');
   const [removePage, setRemovePage] = useState(false);
@@ -42,6 +43,7 @@ const ListIndex = () => {
       )}
       {/* <BookMarkModal /> */}
       {/* <ClearBookMarkModal/> */}
+      <AddToCollectionModal />
     </div>
   );
 };
