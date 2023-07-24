@@ -10,6 +10,7 @@ import BookMarks3 from './BookMarks3';
 import BookMarks2 from './BookMarks2';
 import BookMarkModal from './BookMarkModal';
 import ClearBookMarkModal from './ClearBookMarkModal';
+import CollectionCoverModal from './CollectionCoverModal';
 
 
 const ListIndex = () => {
@@ -44,6 +45,7 @@ const ListIndex = () => {
       {/* <BookMarkModal /> */}
       {/* <ClearBookMarkModal/> */}
       <AddToCollectionModal />
+      {/* <CollectionCoverModal /> */}
     </div>
   );
 };
