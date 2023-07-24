@@ -129,16 +129,17 @@
   .custom-checkbox.custom-checkbox-circle label::after{
     top:5px
   }
-  .bookmark-img-text .slick-dots{
+  .bookmark-img-text .slick-dots ,  .post-card-slider .slick-dots{
      @apply absolute bottom-3
   }
-  .bookmark-img-text .slick-dots li{
+  .bookmark-img-text .slick-dots li , .post-card-slider .slick-dots li{
      @apply m-0     
   }
-  .bookmark-img-text .slick-dots li button{
+  .bookmark-img-text .slick-dots li button , .post-card-slider .slick-dots li button{
       @apply p-0
      }
-  .bookmark-img-text .slick-dots li button::before , .bookmark-img-text .slick-dots li.slick-active button::before{
+  .bookmark-img-text .slick-dots li button::before , .bookmark-img-text .slick-dots li.slick-active button::before,
+  .post-card-slider .slick-dots li button::before , .post-card-slider .slick-dots li.slick-active button::before{
     @apply text-white;
   }
   .custom-checkbox.custom-checkbox-circle label{
@@ -149,6 +150,43 @@
   }
   .add-to-collection > div:has(input[type="checkbox"]:checked){    
     background-color: rgba(0,0,0,0.8);
+  }
+  .post-card-slider{
+    .slick-next , .slick-prev{
+      background-color: rgba(0,0,0,0.3);
+      border-radius: 50%;
+      z-index: 1;
+      &:hover{
+        background-color: rgba(0,0,0,0.6);
+      }
+    }
+    .slick-next{
+      right: 8px;
+    }    
+    .slick-prev{
+      left: 8px;
+      &::before{
+        margin-left:0px !important;
+      }
+    }
+  }
+  .profile-like-slider {
+    .slick-next, .slick-prev{
+      top: -61px;
+      width: 25px; 
+      height: 25px;   
+      opacity: 0;
+    }
+    .slick-next {
+      right: 0;
+    }
+    .slick-prev{
+      left: calc(100% - 60px);
+    }
+    .slick-dots{
+      bottom:-66px
+    }
+   
   }
 
   .custom-checkbox {

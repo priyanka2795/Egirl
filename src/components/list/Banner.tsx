@@ -77,8 +77,10 @@ const actions = [
     },
 ];
 
-
-const Banner = () => {
+interface BannerProp{
+    backFromProfile: React.Dispatch<React.SetStateAction<boolean>>
+  }
+const Banner = ({backFromProfile}:BannerProp) => {
     const [actionDivShow, setActionDivShow] = useState(false);
     const [exploreSelectedTab, setExploreSelected] = useState("");
     const [collectionModalState , setCollectionModalState] = useState(false);
@@ -103,7 +105,7 @@ const Banner = () => {
 
   return (
     <>
-    <div className="flex gap-2 my-4 text-lg font-bold">
+    <div className="flex gap-2 my-4 text-lg font-bold cursor-pointer" onClick={() =>{backFromProfile(false)}}>
         <LeftArrow/>
         Mika-chan
     </div>
@@ -118,7 +120,7 @@ const Banner = () => {
                 </div>
                 <div className='flex gap-[12px] self-end'>
                     <button className='h-max flex rounded-[14px] px-[20px] py-[13px] gap-2 bg-white/[0.08]'>
-                        <Image src={userCheckIcon} alt='' />
+                        <Image src={userCheckIcon} alt='' className="object-contain"/>
                         <div className='text-[#FFFFFF] font-bold text-[16px]'>Following</div>
                     </button>
                     <button className='h-max px-[20px] py-[13px] bg-[#5848BC] rounded-[14px] text-[#FFFFFF] text-base font-bold'>Subscribe</button>
@@ -176,7 +178,7 @@ const Banner = () => {
 
             {actionDivShow ? 
             ( <>
-                <div className='py-2 px-2 rounded-[14px] bg-[#1A1A1A] w-[500px] flex flex-col items-start'>
+                <div className='py-2 px-2 rounded-[14px] bg-[#1A1A1A] w-[500px] flex flex-col items-start h-max'>
                 {actions.map((item , index) => {
                     return(
                         <div key={index}

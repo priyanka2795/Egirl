@@ -15,13 +15,13 @@ import CollectionCoverModal from './CollectionCoverModal';
 
 const ListIndex = () => {
   const [activeListTab, setActiveListTab] = useState('Subscriptions');
-  const [removePage, setRemovePage] = useState(false);
   const tabContent = ['Subscriptions', 'Following', 'Bookmarks', 'Collections'];
+  const [profileSectionState , setProfileSectionState] = useState(false)
   return (
     <div>
-      <div onClick={() => setRemovePage(!removePage)}>Remove Page</div>
-      {removePage === true ? (
-        <RemoveProfile />
+      {/* <div onClick={() => setRemovePage(!removePage)}>Remove Page</div> */}
+      {profileSectionState === true ? (
+        <RemoveProfile backFromProfile={setProfileSectionState}/>
       ) : (
         <>
           <DefaultTab
@@ -31,13 +31,13 @@ const ListIndex = () => {
           />
           <div className='px-8 py-4'>
             {activeListTab === 'Subscriptions' ? (
-              <SubscriptionOptions />
+              <SubscriptionOptions showProfile={setProfileSectionState}/>
             ) : activeListTab === 'Collections' ? (
               <CollectionOptions />
             ) : activeListTab === 'Bookmarks' ? (
               <BookMarks />
             ) : (
-              <SubscriptionOptions />
+              <SubscriptionOptions showProfile={setProfileSectionState}/>
             )}
           </div>
         </>

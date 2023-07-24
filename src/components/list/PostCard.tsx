@@ -72,7 +72,7 @@ const PostCard = () => {
                     <div className='text-[#8C7DD0] text-sm font-normal'>#relaxtime</div>
                 </div>
                 </div>
-                <div className='mt-4 w-full h-[512px] rounded-[14px] list-slider list-slider-dots'>
+                <div className='mt-4 w-full h-[512px] rounded-[14px] list-slider list-slider-dots post-card-slider'>
                 <Slider {...settings}>
                 <Image className='rounded-[14px]' src={micaChanFullImg} alt={''} />
                 <Image className='rounded-[14px]' src={micaChanFullImg} alt={''} />
