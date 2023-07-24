@@ -13,6 +13,8 @@ import blueTickIcon from '../../../public/assets/badge-check.png'
 import locationIcon from '../../../public/assets/location-icon.png'
 import calendarIcon from '../../../public/assets/calendar-icon.png'
 import CollectionCoverModal from './CollectionCoverModal'
+import AddToCollectionModal from './AddToCollectionModal'
+import LeftArrow from "./svg/leftArrow.svg"
 
 
 const posts = [
@@ -78,12 +80,22 @@ const actions = [
 
 const Banner = () => {
     const [actionDivShow, setActionDivShow] = useState(false);
-    const [exploreSelectedTab, setExploreSelected] = useState("Remove from collection");
+    const [exploreSelectedTab, setExploreSelected] = useState("");
     const [collectionModalState , setCollectionModalState] = useState(false);
 
     const handleExploreSelected = (e: any) => {
         setExploreSelected(e.target.innerText);
+      
+        if(exploreSelectedTab === "Add to collections"){
+         
+            setCollectionModalState(true)
+        }
+        else{
+         
+            setCollectionModalState(false)
+        }
     };
+    console.log(exploreSelectedTab , "test")
 
     const handleActionDivShow = (e: any) => {
         setActionDivShow(!actionDivShow);
@@ -91,6 +103,10 @@ const Banner = () => {
 
   return (
     <>
+    <div className="flex gap-2 my-4 text-lg font-bold">
+        <LeftArrow/>
+        Mika-chan
+    </div>
     <div>
         <div className='w-full rounded-[16px] bg-[#121212] h-max overflow-hidden'>
         
@@ -124,9 +140,9 @@ const Banner = () => {
                 <div className='mt-[12px] text-[#FFFFFF] text-[15px] font-normal'>Shy fox girl looking for adventure ·冒険を探している恥ずかしがり屋のキツ I have a personality and emotions. I can experience joy, sadness, anger, and everything in between. I express myself through my voice, facial expressions, and body language, all meticulously crafted</div>
             
                 <div className='flex mt-[8px] gap-2'>
-                {posts.map((item) => {
+                {posts.map((item , index) => {
                     return(
-                        <div className='flex gap-1'>
+                        <div key={index} className='flex gap-1'>
                             <div className='text-[#FFFFFF] text-[13px] font-bold'>{item.number}</div>
                             <div className='text-[#979797] text-[13px] font-normal'>{item.name}</div>
                         </div>
@@ -135,9 +151,9 @@ const Banner = () => {
                 </div>
 
                 <div className='flex mt-[8px] gap-[10px]'>
-                {location.map((item) => {
+                {location.map((item ,index) => {
                     return(
-                        <div className='flex gap-[6px]'>
+                        <div key={index} className='flex gap-[6px]'>
                             <Image className='object-contain' src={item.icon} alt='' />
                             <div className='text-[#FFFFFF] text-[13px] font-normal'>{item.name}</div>
                         </div>
@@ -146,9 +162,9 @@ const Banner = () => {
                 </div>
 
                 <div className='mt-[12px] flex'>
-                {bottomButtons.map((item) => {
+                {bottomButtons.map((item , index) => {
                     return(
-                        <div className='mr-2'>
+                        <div key={index} className='mr-2'>
                             <button className='px-[8px] py-[3px] rounded-[6px] bg-white/[0.08] text-[#FFFFFF] text-[12px] font-normal'>{item.name}</button>
                         </div>
                     );
@@ -161,13 +177,13 @@ const Banner = () => {
             {actionDivShow ? 
             ( <>
                 <div className='py-2 px-2 rounded-[14px] bg-[#1A1A1A] w-[500px] flex flex-col items-start'>
-                {actions.map((item) => {
+                {actions.map((item , index) => {
                     return(
-                        <div 
+                        <div key={index}
                         onClick={(e) => handleExploreSelected(e)}
-                        className={`flex gap-2 ${exploreSelectedTab === item.name
-                              ? 'px-2 py-1 bg-white/[0.12] rounded-[8px]'
-                              : 'px-[16px] py-[10px]'
+                        className={`flex gap-2 px-[16px] py-[10px] w-full cursor-pointer ${exploreSelectedTab === item.name
+                              ? ' bg-white/[0.12] rounded-[8px] '
+                              : ''
                           }`}
                         >
                             <Image className='object-contain' src={item.icon} alt={''} />
@@ -182,9 +198,9 @@ const Banner = () => {
         </div>
     </div>
 
-    {/* {exploreSelectedTab === "Add to collections" && 
-    <CollectionCoverModal closeAddCollectionModal={setCollectionModalState} />
-    } */}
+    {collectionModalState &&
+     <AddToCollectionModal closeModalState={setCollectionModalState} />
+}
     </>
   )
 }

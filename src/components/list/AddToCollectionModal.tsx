@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
-import crossIcon from '../../../public/assets/xmark.png'
+import CloseIcon from '../../../public/assets/svgImages/close-icon.svg'
 import searchIcon from '../../../public/assets/search-icon.png'
 import plusIcon from '../../../public/assets/plus-block-icon.png';
 import MainImage from '../../../public/assets/gallery-tab-img-3.png';
@@ -31,21 +31,24 @@ const collectionFrame = [
     },
 ];
 
-const AddToCollectionModal = () => {
+interface AddToCollectionProps{
+    closeModalState:  any
+}
+const AddToCollectionModal = ({closeModalState} : AddToCollectionProps) => {
     const [newCollectionModal, setNewCollectionModal] = useState(false);
   return (
     <Modal
     open={true}
     modalClassName='flex flex-col h-max w-[753px] rounded-[20px] bg-[#121212] overflow-hidden mt-10 mb-10 ml-5 bookmark-img-text'
-    // closeModal={() => closeModalState(false)}
-    closeModal={() => {}}
+    closeModal={() => closeModalState(false)}
     modalOverlayStyle='!bg-black/80'
   >    
     {/* <div className=' h-max rounded-[20px] bg-[#1A1A1A] ml-20 mb-5'> */}
         <div className='flex gap-2 p-6 border-b border-white/[0.08]'>
             <div className='flex text-white text-[18px] leading-6 font-bold'>Add to collection</div>
-            <div className='w-6 h-6 mt-1 ml-[528px]'>
-                <Image className='w-full h-full' src={crossIcon} alt={''} />
+            <div className='w-6 h-6 mt-1 ml-[528px] cursor-pointer' onClick={() => closeModalState(false)}>
+                {/* <Image className='w-full h-full' src={crossIcon} alt={''} /> */}
+                <CloseIcon/>
             </div>
         </div>
 
@@ -79,9 +82,9 @@ const AddToCollectionModal = () => {
 
                 {collectionFrame.map((item, index) => {
                     return(
-                        <div className='flex flex-col items-start h-[279px] overflow-hidden group rounded-2xl bg-white/[0.05] add-to-collection'>
-                            <div className='relative flex items-center justify-center overflow-hidden'>
-                                <div className='w-full'>
+                        <div className='flex flex-col items-start h-[279px] overflow-hidden group rounded-2xl bg-white/[0.05]'>
+                            <div className='relative flex items-center justify-center overflow-hidden add-to-collection'>
+                                <div className='w-full h-[227px]'>
                                   <Image src={item.image} alt='' className='object-cover' />
                                 </div>
                                 <div className='absolute top-0 right-0 w-full h-full custom-checkbox'>
@@ -105,8 +108,8 @@ const AddToCollectionModal = () => {
         </div>
 
         <div className='flex items-end justify-end gap-3 px-6 py-4'>
-            <button className='flex px-4 py-[10px] justify-center items-center rounded-xl border border-white/[0.32] text-[#FFFFFF] text-[14px] font-bold'>Cancel</button>
-            <button className='flex px-4 py-[10px] justify-center items-center rounded-xl bg-[#5848BC] text-[#FFFFFF] text-[14px] font-bold'>Save</button>
+            <button className='flex px-4 py-[10px] justify-center items-center rounded-xl border border-white/[0.32] text-[#FFFFFF] text-[14px] font-bold' onClick={() => closeModalState(false)}>Cancel</button>
+            <button className='flex px-4 py-[10px] justify-center items-center rounded-xl bg-[#5848BC] text-[#FFFFFF] text-[14px] font-bold' onClick={() => closeModalState(false)}>Save</button>
         </div>
     {/* </div> */}
     </Modal>

@@ -147,8 +147,8 @@
   .custom-checkbox.custom-checkbox-circle input:checked + label::before{
     @apply bg-[#5848BC] border-[#5848BC]
   }
-  .add-to-collection:has(div input[type="checkbox"]:checked) .custom-checkbox{    
-    background-color: rgba(0,0,0,0.5);
+  .add-to-collection > div:has(input[type="checkbox"]:checked){    
+    background-color: rgba(0,0,0,0.8);
   }
 
   .custom-checkbox {
