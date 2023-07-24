@@ -3,6 +3,7 @@ import blueTick from '../../../public/assets/badge-check.png';
 import ThreeDotsIcon from '../../../public/assets/svgImages/three-dots.svg';
 import Image from 'next/image';
 import CardDropdown from './CardDropdown';
+import CollectionFilterContent from './CollectionFilterContent';
 
 interface CollectionCardProps {
   cardMainImg: any;
@@ -11,6 +12,7 @@ interface CollectionCardProps {
   dropdownState?: any;
   toggleDropdown?: any;
   cardId?: string;
+  filterFunction?: any
 }
 const CollectionCard = ({
   cardMainImg,
@@ -18,9 +20,16 @@ const CollectionCard = ({
   cardImgClasses,
   toggleDropdown,
   dropdownState,
-  cardId
+  cardId,
+  filterFunction
 }: CollectionCardProps) => {   
-  return (
+  const [filterByType , setFilterByType] = useState(false);
+  let filterTitle = "";
+  const handleFilterContent = (e:any) =>{
+    setFilterByType(true);
+    filterTitle= e.target.innerHTML;
+  }
+  return (<>
     <div className='flex flex-col items-start self-stretch overflow-hidden group rounded-2xl bg-white/10'>
       <div
         className={`flex h-full max-h-[180px] w-full justify-center self-stretch overflow-hidden ${cardImgClasses}`}
@@ -43,14 +52,14 @@ const CollectionCard = ({
           </>
         ) :  null}
       </div>
-      <div className='flex flex-col items-start self-stretch gap-2 p-4'>
-        <div className='flex items-center self-stretch gap-1'>
-          <div className='text-sm font-semibold text-[#FFFFFF]'>
+      <div className='flex items-start w-full cursor-pointer'>     
+          <div className='w-full gap-1 gap-2 p-4 text-sm font-semibold text-white ' onClick={(e) => filterFunction(e)}>
             {characterName}
-          </div>
-        </div>
+          </div>        
       </div>
     </div>
+  
+    </>
   );
 };
 
