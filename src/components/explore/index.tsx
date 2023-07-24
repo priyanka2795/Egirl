@@ -73,10 +73,10 @@ const ExploreIndex = () => {
           exploreTab={exploreSelectedTab}
           setExploreSelectedTab={setExploreSelected}
         />
-        <p onClick={() => setDefaultModal(true)}>Default Modal</p>
-        {defaultModal && (
+        {/* <p onClick={() => setDefaultModal(true)}>Default Modal</p> */}
+        {/* {defaultModal && (
           <SubscriptionPlan closeDefaulModal={setDefaultModal} />
-        )}
+        )} */}
 
         {exploreSelectedTab === 'Swipe' ? (
           <>

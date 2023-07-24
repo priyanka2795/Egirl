@@ -3,16 +3,16 @@ import { Modal } from '@components/modal/modal';
 import React, { useState } from 'react';
 // import SubscriptionModal from './SubscriptionModal';
 
-interface props {
+interface ExploreTabsProps {
   // tabContentData: Array<String>;
   exploreTab: string;
-  setExploreSelectedTab: any;
+  setExploreSelectedTab: React.Dispatch<React.SetStateAction<string>> ;
 }
 
-const ExploreTabs = ({ exploreTab, setExploreSelectedTab }: props) => {
+const ExploreTabs = ({ exploreTab, setExploreSelectedTab }: ExploreTabsProps) => {
   const tabContent = ['Swipe', 'Gallery'];
   const [exploreSelectedTab, setExploreSelected] = useState(exploreTab);
-  const [subLeftModal, setsubLeftModal] = useState(true);
+  const [subLeftModal, setsubLeftModal] = useState(false);
   // const [filterOptionShow, setFilterOptionShow] = useState(true);
   const handleExploreSelected = (e: any) => {
     setExploreSelected(e.target.innerText);

@@ -18,6 +18,7 @@ import DotsVerticalIcon from './svg/dots-vertical-icon.svg';
 import EgirlsPlusIcon from './svg/EgirlsPlusIcon';
 import EyeIcon from '../../home/Post/svg/eye.svg';
 import { useState } from 'react';
+import SubscriptionModal from '../SubscriptionModal';
 
 // sideBarClasses={'!w-[88px]'}
 // sideBarLogoClasses={'!hidden'}
@@ -42,6 +43,7 @@ export default function Sidebar({
 }: sideBarProp) {
   // const [shrinkSidebar, setShrinkSidebar] = useState(false);
   console.log(shrinkSidebar, 'shrinkSidebar');
+  const [subscribeModal, setSubscribeModal] = useState(false)
   return (
     // border: border-r border-[#2F2F2F]
     <div
@@ -126,14 +128,15 @@ export default function Sidebar({
             shrinkSidebar === true ? '!hidden' : 'w-full'
           }`}
         />
-        <SidebarMenuItem
+       <div onClick={() =>setSubscribeModal(true)}>
+       <SidebarMenuItem
           text='Egirls+'
-          href='/explore'
           Icon={EgirlsPlusIcon}
           sideBarMenuText={`${sideBarMenuText} ${
             shrinkSidebar === true ? '!hidden' : 'w-full'
           }`}
         />
+       </div>
         <SidebarMenuItem
           text='Creator Studio'
           href='/asdf'
@@ -151,6 +154,8 @@ export default function Sidebar({
           }`}
         />
       </div>
+
+      {subscribeModal && <SubscriptionModal closeState={setSubscribeModal} />}
 
       {/* Button */}
 
@@ -173,12 +178,12 @@ export default function Sidebar({
         <TestIcon className='hidden h-5 xl:ml-8 xl:inline' />
       </div> */}
 
-      <div className='mb-6 mt-auto flex w-full items-center justify-between px-6'>
+      <div className='flex items-center justify-between w-full px-6 mt-auto mb-6'>
         <div className='flex items-center'>
           <img
             src='https://www.adscientificindex.com/pictures/0b/50734.jpg'
             alt='user-img'
-            className='h-10 w-10 rounded-full xl:mr-2'
+            className='w-10 h-10 rounded-full xl:mr-2'
           />
           <div
             className={`hidden leading-5 xl:inline ${sideBarLogoClasses} ${

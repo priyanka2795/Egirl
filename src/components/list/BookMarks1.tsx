@@ -127,7 +127,7 @@ const BookMarks = () => {
                 {userFrame.map((item) => {
                     return(
                         <>
-                            <div className='relative group' onClick={() => setProfileModalState(true)}>
+                            <div className='relative cursor-pointer group' onClick={() => setProfileModalState(true)}>
                                 <div className='flex list-bookmark-container'>
                                     <Image className='list-bookmark-img rounded-[14px]' src={item.image} alt={''} />
                                 </div>
