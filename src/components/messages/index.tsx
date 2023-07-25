@@ -34,7 +34,7 @@ const Messages = () => {
 
   return (
     <>
-      <main className='fixed bottom-0 left-0 right-0 top-0 mx-auto flex min-h-screen max-w-[1276px]'>
+      <main className='flex max-w-full min-h-screen mx-auto'>
         {/* mx-auto flex min-h-screen max-w-7xl */}
         {/* <TestSidebar /> */}
 
@@ -44,10 +44,10 @@ const Messages = () => {
         /> */}
         {selectUserState === false ? (
           <>
-            <Sidebar
-              shrinkSidebar={shrinkSidebar}
-              sideBarWidth={handleSidebarWidth}
-            />
+            {/* <Sidebar
+              // shrinkSidebar={shrinkSidebar}
+              // sideBarWidth={handleSidebarWidth}
+            /> */}
             <Characters
               shrinkSidebar={shrinkSidebar}
               selectUserState={selectUserState}
@@ -61,15 +61,16 @@ const Messages = () => {
         ) : (
           <>
             {chartScreenView === 'FullScreen view' ? (
-              <Sidebar
-                sideBarClasses={'!w-[88px]'}
-                sideBarLogoClasses={'!hidden'}
-                sideBarMenuText={'!hidden'}
-                sideBarMenuArrowClasses={'rotate-180'}
-              />
+              // <Sidebar
+              //   sideBarClasses={'!w-[88px]'}
+              //   sideBarLogoClasses={'!hidden'}
+              //   sideBarMenuText={'!hidden'}
+              //   sideBarMenuArrowClasses={'rotate-180'}
+              // />
+              sessionStorage.setItem("sideBarCollapse" , "true")
             ) : (
               <>
-                <Sidebar />
+                {/* <Sidebar /> */}
                 <Characters />
               </>
             )}
@@ -94,7 +95,7 @@ const Messages = () => {
               </Modal>
             ) : (
               <ChatScreen
-                chatScreenClassName={`ml-[80px]`}
+                // chatScreenClassName={`ml-[80px]`}
                 chartScreenView={chartScreenView}
                 setChartScreenView={setChartScreenView}
               />

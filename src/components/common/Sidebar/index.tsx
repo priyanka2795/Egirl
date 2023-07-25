@@ -30,25 +30,40 @@ type sideBarProp = {
   sideBarMenuText?: string;
   sideBarLogoClasses?: string;
   sideBarMenuArrowClasses?: string;
-  shrinkSidebar?: boolean;
-  sideBarWidth?: () => void;
+  // shrinkSidebar?: boolean;
+  // sideBarWidth?: () => void;
 };
 export default function Sidebar({
   sideBarClasses,
   sideBarMenuText,
   sideBarLogoClasses,
   sideBarMenuArrowClasses,
-  sideBarWidth,
-  shrinkSidebar
+  // sideBarWidth,
+  // shrinkSidebar
 }: sideBarProp) {
   // const [shrinkSidebar, setShrinkSidebar] = useState(false);
-  console.log(shrinkSidebar, 'shrinkSidebar');
+  // console.log(shrinkSidebar, 'shrinkSidebar');
   const [subscribeModal, setSubscribeModal] = useState(false)
+  const sidebarVariable = sessionStorage.getItem('sideBarCollapse');
+  const [shrinkSidebar, setShrinkSidebar] = useState(sidebarVariable? sidebarVariable:"");
+ console.log(sidebarVariable , "shrinkSidebar sidebarVariable")
+  const handleSidebarWidth = () => {
+    if(shrinkSidebar){
+      setShrinkSidebar("");
+      console.log('reduce');
+      sessionStorage.setItem("sideBarCollapse" , "")
+    }
+    else{
+      setShrinkSidebar("true");
+      console.log('reduce');
+      sessionStorage.setItem("sideBarCollapse" , "true")
+    }
+  };
   return (
     // border: border-r border-[#2F2F2F]
     <div
-      className={`custom-scroll-bar fixed hidden h-full w-[88px] flex-col overflow-y-auto border-r-[2px] border-[rgb(37,37,37)] bg-[#070707] sm:flex xl:w-[300px] xl:items-start ${sideBarClasses} ${
-        shrinkSidebar === true ? '!w-[88px]' : ''
+      className={`custom-scroll-bar sticky hidden h-full w-[88px] flex-col overflow-y-auto border-r-[2px] border-[rgb(37,37,37)] bg-[#070707] sm:flex xl:w-[300px] xl:items-start ${sideBarClasses} ${
+        shrinkSidebar === "true" ? '!w-[88px]' : ''
       }`}
     >
       <div
@@ -58,7 +73,7 @@ export default function Sidebar({
       >
         <Logo
           className={`hidden xl:inline ${sideBarLogoClasses} ${
-            shrinkSidebar === true ? '!hidden' : ''
+            shrinkSidebar === "true" ? '!hidden' : ''
           }`}
         />
 
@@ -70,9 +85,10 @@ export default function Sidebar({
           {/* <NavMenuIcon /> */}
           <NavMenuArrow
             className={`${sideBarMenuArrowClasses} ${
-              shrinkSidebar === true ? 'rotate-180' : ''
+              shrinkSidebar === "true" ? 'rotate-180' : ''
             }`}
-            onClick={sideBarWidth}
+            onClick={handleSidebarWidth}
+            // onClick={sideBarWidth}
           />
         </div>
       </div>
@@ -85,7 +101,7 @@ export default function Sidebar({
           href='/home'
           Icon={HomeIcon}
           sideBarMenuText={`${sideBarMenuText} ${
-            shrinkSidebar === true ? '!hidden' : 'w-full'
+            shrinkSidebar === "true" ? '!hidden' : 'w-full'
           }`}
         />
         <SidebarMenuItem
@@ -93,7 +109,7 @@ export default function Sidebar({
           href='/explore'
           Icon={ExploreIcon}
           sideBarMenuText={`${sideBarMenuText} ${
-            shrinkSidebar === true ? '!hidden' : 'w-full'
+            shrinkSidebar === "true" ? '!hidden' : 'w-full'
           }`}
         />
         <SidebarMenuItem
@@ -101,7 +117,7 @@ export default function Sidebar({
           href='/messages'
           Icon={MessagesIcon}
           sideBarMenuText={`${sideBarMenuText} ${
-            shrinkSidebar === true ? '!hidden' : 'w-full'
+            shrinkSidebar === "true" ? '!hidden' : 'w-full'
           }`}
         />
         <SidebarMenuItem
@@ -109,7 +125,7 @@ export default function Sidebar({
           href='/lists'
           Icon={ListsIcon}
           sideBarMenuText={`${sideBarMenuText} ${
-            shrinkSidebar === true ? '!hidden' : 'w-full'
+            shrinkSidebar === "true" ? '!hidden' : 'w-full'
           }`}
         />
         <SidebarMenuItem
@@ -117,7 +133,7 @@ export default function Sidebar({
           href='/asdf'
           Icon={AddCardIcon}
           sideBarMenuText={`${sideBarMenuText} ${
-            shrinkSidebar === true ? '!hidden' : 'w-full'
+            shrinkSidebar === "true" ? '!hidden' : 'w-full'
           }`}
         />
         <SidebarMenuItem
@@ -125,7 +141,7 @@ export default function Sidebar({
           href='/referrals'
           Icon={ReferralsIcon}
           sideBarMenuText={`${sideBarMenuText} ${
-            shrinkSidebar === true ? '!hidden' : 'w-full'
+            shrinkSidebar === "true" ? '!hidden' : 'w-full'
           }`}
         />
        <div onClick={() =>setSubscribeModal(true)}>
@@ -133,7 +149,7 @@ export default function Sidebar({
           text='Egirls+'
           Icon={EgirlsPlusIcon}
           sideBarMenuText={`${sideBarMenuText} ${
-            shrinkSidebar === true ? '!hidden' : 'w-full'
+            shrinkSidebar === "true" ? '!hidden' : 'w-full'
           }`}
         />
        </div>
@@ -142,7 +158,7 @@ export default function Sidebar({
           href='/asdf'
           Icon={CreatorStudioIcon}
           sideBarMenuText={`${sideBarMenuText} ${
-            shrinkSidebar === true ? '!hidden' : 'w-full'
+            shrinkSidebar === "true" ? '!hidden' : 'w-full'
           }`}
         />
         <SidebarMenuItem
@@ -150,7 +166,7 @@ export default function Sidebar({
           href='/asdf'
           Icon={MoreIcon}
           sideBarMenuText={`${sideBarMenuText} ${
-            shrinkSidebar === true ? '!hidden' : 'w-full'
+            shrinkSidebar === "true" ? '!hidden' : 'w-full'
           }`}
         />
       </div>

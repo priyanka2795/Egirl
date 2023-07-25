@@ -33,6 +33,7 @@ import { UserCard } from '@components/user/user-card';
 import { AddListModal } from '@components/modal/add-list-model';
 import ListIndex from '@components/list';
 import Sidebar from '@components/common/Sidebar';
+import Layout from '@components/common/Layout';
 
 const suggestionsData: AdminUser[] = [
   {
@@ -449,14 +450,9 @@ export default function Lists(): JSX.Element {
     //   )} */}
     //   <section className='mt-0.5'></section>
     // </MainContainer>
-      <main className='mx-auto flex min-h-screen max-w-[1320px] '>
-      <div>
-        <Sidebar />
-      </div>
-      <div className='max-w-[1020px] flex-grow bg-main-background sm:ml-[88px] lg:min-w-[600px] xl:ml-[300px]'>
-      <ListIndex/>
-      </div>
-    </main>
+    <Layout>           
+        <ListIndex/>     
+    </Layout>
     
   );
 }

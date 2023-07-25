@@ -121,9 +121,7 @@ export default function Characters({
   return (
     <div
       ref={sidebarRef}
-      className={`relative z-50 max-w-[${sidebarWidth}px] w-[${sidebarWidth}px] flex-grow border-r-[2px] border-[#252525] bg-[#121212] sm:ml-[88px] lg:min-w-[${sidebarWidth}px] ${
-        shrinkSidebar === true ? 'xl:!ml-[88px]' : 'xl:ml-[300px]'
-      }`}
+      className={`relative z-50 max-w-[${sidebarWidth}px] w-[${sidebarWidth}px] flex-grow border-r-[2px] border-[#252525] bg-[#121212] lg:min-w-[${sidebarWidth}px]`}
     >
       {/* draggable portion */}
       <div
@@ -141,9 +139,9 @@ export default function Characters({
       </div> */}
       {sidebarWidth == 375 && (
         <div
-          className={`sticky top-0 w-[260px] min-w-[260px] max-w-[260px] flex-col items-center gap-x-2 px-4 py-4`}
+          className={`sticky top-0 w-[260px] min-w-[260px] max-w-[260px] flex-col items-center gap-x-2 px-4 py-3 `}
         >
-          <div className='flex w-full justify-between'>
+          <div className='flex justify-between w-full'>
             <div className='text-[22px] font-bold'>Chats</div>
             <div
               className='cursor-pointer rounded-[14px] bg-[#1E1E1E] p-4'
@@ -153,7 +151,7 @@ export default function Characters({
             </div>
           </div>
 
-          <div className='relative mt-2 flex w-full'>
+          <div className='relative flex w-full mt-2'>
             <div className='absolute left-4 top-3'>
               <SearchIcon
                 strokeClasses={`${
@@ -174,7 +172,7 @@ export default function Characters({
 
       {sidebarWidth == 80 && (
         <div
-          className={`sticky top-0 flex w-[80px] min-w-[80px] max-w-[80px] flex-col items-center gap-x-2 gap-y-2 border-b-[1px] border-r-[2px] border-[#252525] bg-[#111111] px-4 py-4`}
+          className={`sticky top-0 flex w-[80px] min-w-[80px] max-w-[80px] flex-col items-center gap-x-2 gap-y-2 border-b-[1px] border-r-[2px] border-[#252525] bg-[#111111] px-4 py-3`}
         >
           <div className='mx-4 cursor-pointer rounded-[14px] bg-[#1E1E1E] p-[15px]'>
             <MailPlus />
@@ -186,8 +184,8 @@ export default function Characters({
       )}
 
       <div
-        style={{ height: 'calc(100vh - 82px)' }}
-        className='sticky top-[82px] overflow-auto transition-all duration-100'
+        style={{ height: 'calc(100vh - 132px)' }}
+        className='fixed top-[130px] overflow-auto transition-all duration-100 w-[260px] custom-scroll-bar'
       >
         {sidebarWidth == 375 &&
           messages.map((message) => (
