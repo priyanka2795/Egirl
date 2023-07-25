@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import sendIcon from '../../../public/assets/send-icon.png'
 import userAddIcon from '../../../public/assets/user-add-icon.png'
@@ -8,7 +8,8 @@ import graph from '../../../public/assets/referral-graph.png';
 import informationIcon from '../../../public/assets/circle-information2.png';
 import arc1 from '../../../public/assets/referral-arc2.png';
 import arc2 from '../../../public/assets/referral-arc1.png';
-import ReferralModal from './ReferralModal';
+import TierModal from './TierModal';
+import ConvertCredits1 from './ConvertCredits1';
 
 const programSteps = [
   {
@@ -42,17 +43,19 @@ const array2 = [
   },
 ];
 
-const buttons = [
-  {
-    button: 'Convert to credits'
-  },
-  {
-    button: 'Cash out'
-  },
-];
+// const buttons = [
+//   {
+//     button: 'Convert to credits'
+//   },
+//   {
+//     button: 'Cash out'
+//   },
+// ];
 
 
 const ReferralsIndex = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [showConvertCredits, setshowConvertCredits] = useState(false);
   return (
     <>
     <div className='flex flex-col items-center gap-20 w-[1020px] px-40 py-20'>
@@ -116,7 +119,7 @@ const ReferralsIndex = () => {
               <div className='text-[#FFFFFF] text-[36px] font-bold leading-12'>$0</div>
               <div className='text-[#FFFFFF] text-[18px] font-bold leading-6'>Available to cash out</div>
               <div className='flex gap-1'>
-                <div className='text-[#979797] text-[14px] font-normal leading-[18px]'>Earnings – Tier 1</div>
+                <div className='text-[#979797] text-[14px] font-normal leading-[18px]' onClick={() =>{setShowModal(true)}}>Earnings – Tier 1</div>
                 <div className='w-[18px] h-[18px]'>
                   <Image className='w-full h-full' src={informationIcon} alt={''} />
                 </div>
@@ -136,17 +139,20 @@ const ReferralsIndex = () => {
           </div>
           
           <div className='grid grid-cols-2 gap-2'>
-            {buttons.map((item) => {
-              return(
-                <button className='flex items-center justify-center rounded-[16px] bg-[#5848BC] text-[#FFFFFF] text-[18px] font-bold leading-6 px-6 py-4'>{item.button}</button>
-              );
-            })}
-            
+            <button className='flex items-center justify-center rounded-[16px] bg-[#5848BC] text-[#FFFFFF] text-[18px] font-bold leading-6 px-6 py-4' onClick={() =>{setshowConvertCredits(true)}}>Convert to credits</button>
+            <button className='flex items-center justify-center rounded-[16px] bg-[#5848BC] text-[#FFFFFF] text-[18px] font-bold leading-6 px-6 py-4'>Cash out</button>
           </div>
         </div>
       </div>
     </div>
-    <ReferralModal />
+    {
+      showModal && 
+      <TierModal closeModalState={setShowModal} />
+    }
+    {
+      showConvertCredits && 
+      <ConvertCredits1 closeConvertCredits={setshowConvertCredits}/>
+    }
     </>
   )
 }

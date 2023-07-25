@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
 import crossIcon from '../../../public/assets/xmark (1).png'
 
@@ -20,17 +21,28 @@ const tierInfo = [
     }
 ];
 
-const ReferralModal = () => {
+interface TierModalProp{
+    closeModalState: React.Dispatch<React.SetStateAction<boolean>>
+}
+const TierModal = ({closeModalState}: TierModalProp) => {
+
   return (
-    <div className='ml-5 mb-5 flex flex-col w-[400px] rounded-[20px] bg-[#1A1A1A]'>
-        <div className='flex p-6 gap-2 border-b border-white/[0.08]'>
+    <div>
+        <Modal
+            open={true}
+            modalClassName='flex flex-col gap-6 w-full rounded-2xl h-max bg-[#121212] max-w-[400px] pb-2'
+            closeModal={() => closeModalState(false)}
+            modalOverlayStyle='!bg-black/80'
+        >
+            <div className='flex flex-col w-full'>
+            <div className='px-6 flex py-6 gap-2 justify-between border-b border-white/[0.08]'>
             <div className='text-[#FFFFFF] text-[18px] font-bold leading-6'>Tier info</div>
-            <div className='w-6 h-6 ml-[250px]'>
+            <div className='w-6 h-6' onClick={() => closeModalState(false)} >
                 <Image className='w-full h-full' src={crossIcon} alt={''} />
             </div>
         </div>
 
-        <div className='flex flex-col gap-6 px-6 pt-6 pb-2'>
+        <div className='flex flex-col gap-6 px-6 mt-6 '>
         {tierInfo.map((item) => {
             return(
                 <div className={`flex flex-col gap-2 pb-6 ${item.tier !== 'Tier 3'
@@ -46,8 +58,11 @@ const ReferralModal = () => {
             );
         })}
         </div>
+            </div>
+        </Modal>
     </div>
+    
   )
 }
 
-export default ReferralModal;
+export default TierModal;
