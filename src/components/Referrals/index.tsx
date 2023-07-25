@@ -8,6 +8,7 @@ import graph from '../../../public/assets/referral-graph.png';
 import informationIcon from '../../../public/assets/circle-information2.png';
 import arc1 from '../../../public/assets/referral-arc2.png';
 import arc2 from '../../../public/assets/referral-arc1.png';
+import ReferralModal from './ReferralModal';
 
 const programSteps = [
   {
@@ -53,6 +54,7 @@ const buttons = [
 
 const ReferralsIndex = () => {
   return (
+    <>
     <div className='flex flex-col items-center gap-20 w-[1020px] px-40 py-20'>
       <div className='flex flex-col items-center gap-10'>
         <div className='flex flex-col gap-3 w-[417px]'>
@@ -144,6 +146,8 @@ const ReferralsIndex = () => {
         </div>
       </div>
     </div>
+    <ReferralModal />
+    </>
   )
 }
 

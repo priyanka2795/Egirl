@@ -176,7 +176,7 @@ const Banner = ({backFromProfile}:BannerProp) => {
                 </div>
             </div>
 
-            {actionDivShow ? 
+            {actionDivShow ?  
             ( <>
                 <div className='py-2 px-2 rounded-[14px] bg-[#1A1A1A] w-[500px] flex flex-col items-start h-max'>
                 {actions.map((item , index) => {
