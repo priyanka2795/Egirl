@@ -6,6 +6,8 @@ import percentageIcon from '../../../public/assets/percentage-icon.png'
 import linkIcon from '../../../public/assets/link-icon2.png';
 import graph from '../../../public/assets/referral-graph.png';
 import informationIcon from '../../../public/assets/circle-information2.png';
+import arc1 from '../../../public/assets/referral-arc2.png';
+import arc2 from '../../../public/assets/referral-arc1.png';
 
 const programSteps = [
   {
@@ -57,7 +59,7 @@ const ReferralsIndex = () => {
           <div className='text-[#FFFFFF] text-[32px] font-bold leading-10 text-center'>Affiliate Program</div>
           <div className='text-center text-[#979797] text-[15px] font-normal leading-5'>Earn up to 15% of what people spend on Egirls.ai when you refer them and they signup</div>
         </div>
-        <div className='w-[700px] justify-between items-center grid grid-cols-3'>
+        <div className='w-[700px] justify-between items-center grid grid-cols-3 relative'>
           {programSteps.map((item) => {
             return(
               <div className='flex w-[182px] flex-col items-center gap-5'>
@@ -74,6 +76,12 @@ const ReferralsIndex = () => {
               </div>
             );
           })}
+          <div className='absolute top-[24px] left-[169px] w-[77px] h-[6px]'>
+            <Image className='w-full h-full' src={arc1} alt={''} />
+          </div>
+          <div className='absolute top-[28px] right-[221px] w-[77px] h-[6px]'>
+            <Image className='w-full h-full' src={arc2} alt={''} />
+          </div>
         </div>
       </div>
 
@@ -95,14 +103,12 @@ const ReferralsIndex = () => {
         <div className='flex flex-col w-full gap-2'>
           <div className='flex items-center justify-center gap-12 py-8 px-14 rounded-[20px] bg-white/[0.05]'>
             <div className='w-[49%] h-[144px] relative '>
-              <div className='flex flex-col items-center gap-2 absolute top-[39px] left-[1px] bottom-[10px] left-[50%] w-full h-full'>
+              <div className='flex flex-col items-center gap-2 absolute top-[39px] left-[1px] bottom-[10px] w-full h-full'>
                 <div className='text-[#FFFFFF] text-center text-[26px] font-bold leading-8'>5%</div>
                 <div className='text-[#FFFFFF] text-center text-[26px] font-bold leading-8'>Earnings</div>
                 <div className='text-[#979797] text-[14px] font-normal leading-[18px]'>0/100 people referred</div>
               </div>
-              
-                <Image className='w-full h-full' src={graph} alt={''} />
-         
+              <Image className='w-full h-full' src={graph} alt={''} />
             </div>
             <div className='w-[49%] flex flex-col items-start gap-1'>
               <div className='text-[#FFFFFF] text-[36px] font-bold leading-12'>$0</div>
