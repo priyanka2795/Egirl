@@ -6,7 +6,10 @@ import EditCollectionModal from './EditCollectionModal';
 import DeleteCollection from './DeleteCollection';
 import CollectionCoverModal from './CollectionCoverModal';
 
-const CardDropdown = () => {
+interface cardDropdownProp{
+  closeDropdown?: any;
+}
+const CardDropdown = ({closeDropdown}:cardDropdownProp) => {
     const [editCollectionState, setEditCollectionState] = useState(false)
     const [deleteCollectionState , setDeleteCollectionState] = useState(false)
     const [addCollectionState , setAddCollectionState] = useState(false)
@@ -41,11 +44,11 @@ const CardDropdown = () => {
   </div>
   {
     editCollectionState &&
-    <EditCollectionModal closeEditModal={setEditCollectionState} />
+    <EditCollectionModal closeEditModal={setEditCollectionState} closeDropdown={closeDropdown}/>
   }
   {
     deleteCollectionState &&
-    <DeleteCollection closeDeleteModal={setDeleteCollectionState} />
+    <DeleteCollection closeDeleteModal={setDeleteCollectionState} closeDropdown={closeDropdown}/>
   }
   {addCollectionState &&
     <CollectionCoverModal closeAddCollectionModal={setAddCollectionState}/>

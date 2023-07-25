@@ -9,8 +9,8 @@ interface CollectionCardProps {
   cardMainImg: any;
   characterName: string;
   cardImgClasses?: string;
-  dropdownState?: any;
-  toggleDropdown?: any;
+  dropdownCardId?: any;
+  getCardId?: any;
   cardId?: string;
   filterFunction?: any
 }
@@ -18,8 +18,8 @@ const CollectionCard = ({
   cardMainImg,
   characterName,
   cardImgClasses,
-  toggleDropdown,
-  dropdownState,
+  getCardId,
+  dropdownCardId,
   cardId,
   filterFunction
 }: CollectionCardProps) => {   
@@ -29,6 +29,7 @@ const CollectionCard = ({
     setFilterByType(true);
     filterTitle= e.target.innerHTML;
   }
+  
   return (<>
     <div className='flex flex-col items-start self-stretch overflow-hidden group rounded-2xl bg-white/10'>
       <div
@@ -40,15 +41,15 @@ const CollectionCard = ({
             id={`${cardId}`}
             className='${cardId} invisible absolute right-[15px] top-3 flex h-10 w-10 cursor-pointer items-start justify-start gap-3.5 rounded-full bg-black bg-opacity-40 p-2 opacity-0 group-hover:visible group-hover:opacity-100'
             onClick={(e) => {
-              toggleDropdown(e.currentTarget.id);             
+              getCardId(e.currentTarget.id);             
             }}
           >
             <ThreeDotsIcon />
           </div>
         )}
-        {dropdownState === cardId ? (
+        {dropdownCardId === cardId ? (
           <>
-            <CardDropdown />
+            <CardDropdown closeDropdown={getCardId}/>
           </>
         ) :  null}
       </div>

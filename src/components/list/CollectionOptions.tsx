@@ -11,7 +11,7 @@ import CollectionCard from './CollectionCard';
 import CollectionFilterContent from './CollectionFilterContent';
 const CollectionOptions = () => {
   const [newCollectionModal, setNewCollectionModal] = useState(false);
-  const [imageDropdown, setImageDropdown] = useState('');
+  const [imageDropdownId, setImageDropdownId] = useState('');
   const [selectedCardId, setSelectedCardId] = useState('false');
   const [filterByType , setFilterByType] = useState(false);
 const [titleText , setTitleText] = useState("");
@@ -49,8 +49,8 @@ const [titleText , setTitleText] = useState("");
         characterName='Realistic'
         cardImgClasses='relative !max-h-[230px]'
         cardId='card-1'
-        toggleDropdown={setImageDropdown}
-        dropdownState={imageDropdown}
+        getCardId={setImageDropdownId}
+        dropdownCardId={imageDropdownId}
         filterFunction={(e : any) => handleFilterContent(e)}
       />
 
@@ -59,8 +59,8 @@ const [titleText , setTitleText] = useState("");
         characterName='Catgirls'
         cardImgClasses='relative !max-h-[230px]'
         cardId='card-2'
-        toggleDropdown={setImageDropdown}
-        dropdownState={imageDropdown}
+        getCardId={setImageDropdownId}
+        dropdownCardId={imageDropdownId}
         filterFunction={(e : any) => handleFilterContent(e)}
       />
          
@@ -69,8 +69,8 @@ const [titleText , setTitleText] = useState("");
         characterName='One more long name...'
         cardImgClasses='relative !max-h-[230px]'
         cardId='card-3'
-        toggleDropdown={setImageDropdown}
-        dropdownState={imageDropdown}
+        getCardId={setImageDropdownId}
+        dropdownCardId={imageDropdownId}
         filterFunction={(e : any) => handleFilterContent(e)}
       />
       </div>
