@@ -31,16 +31,13 @@ interface ConvertCredits1Prop{
 const ConvertCredits1 = ({closeConvertCredits}: ConvertCredits1Prop) => {
   const [inputLength, setinputLength] = useState(0);
   const [confirmModal, setconfirmModal] = useState(false);
+  const [convertedCoin, setconvertedCoin] = useState(0.00);
 
   const checkLength = (event:any) => {
-    // var element = document.getElementById('input');
-    // var length = element.value.length;
-    // alert(length);
     setinputLength(event.target.value.length);
-    console.log(event.target.value.length,">>>>>length");
-    
-
+    setconvertedCoin(event.target.value*10);
   }
+
 
   return (
     <>
@@ -76,7 +73,7 @@ const ConvertCredits1 = ({closeConvertCredits}: ConvertCredits1Prop) => {
                     <div className='w-6 h-6'>
                       <Image className='w-full h-full' src={coin} alt={''} /> 
                     </div>
-                    <input type='text' placeholder={'0.00'} className='h-0 mt-1 text-[#979797] focus:ring-0 text-15px font-normal leading-6 bg-transparent border-none'/>
+                    <input type='text' value={convertedCoin} placeholder={'0.00'} className='h-0 mt-1 text-[#979797] focus:ring-0 text-15px font-normal leading-6 bg-transparent border-none'/>
                   </div>
                   <div className='absolute flex p-[6px] top-[33px] left-[149px] rounded-[100px] border-2 border-[#1A1A1A] bg-[#272727]'>
                     <Image className='w-5 h-5' src={arrowDown} alt={''} />
