@@ -1,4 +1,4 @@
-import React from 'react';
+import React , {useState} from 'react';
 import Image from 'next/image';
 import creditCard from '../../../public/assets/credit-card.png'
 import circleInformation from '../../../public/assets/circle-information2.png'
@@ -12,6 +12,7 @@ import Error from './Error';
 import DeleteModal from './DeleteModal';
 
 const AddCard = () => {
+    const [deleteCardState , setDeleteCardState] = useState(false)
   return (
     <>
     <div className='flex'>
@@ -130,7 +131,11 @@ const AddCard = () => {
     </div>
     <Success />
     <Error />
-    <DeleteModal />
+    <p onClick={() => setDeleteCardState(true)}>delete card</p>
+    {deleteCardState &&
+      <DeleteModal closeDeleteModal={setDeleteCardState}/>
+    }
+  
     </>
   )
 }
