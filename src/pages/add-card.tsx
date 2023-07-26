@@ -1,10 +1,12 @@
+import AddCard from '@components/add-card'
+import Layout from '@components/common/Layout'
 import React from 'react'
 
 const addCard = () => {
   return (
-    <div>
-      Hello
-    </div>
+    <Layout>
+      <AddCard />
+    </Layout>
   )
 }
 
