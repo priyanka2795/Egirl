@@ -119,7 +119,7 @@ const ReferralsIndex = () => {
               <div className='text-[#FFFFFF] text-[36px] font-bold leading-12'>$0</div>
               <div className='text-[#FFFFFF] text-[18px] font-bold leading-6'>Available to cash out</div>
               <div className='flex gap-1'>
-                <div className='text-[#979797] text-[14px] font-normal leading-[18px]' onClick={() =>{setShowModal(true)}}>Earnings – Tier 1</div>
+                <div className='text-[#979797] text-[14px] font-normal leading-[18px] cursor-pointer' onClick={() =>{setShowModal(true)}}>Earnings – Tier 1</div>
                 <div className='w-[18px] h-[18px]'>
                   <Image className='w-full h-full' src={informationIcon} alt={''} />
                 </div>

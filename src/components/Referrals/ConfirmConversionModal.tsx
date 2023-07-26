@@ -29,7 +29,7 @@ const ConfirmConversionModal = ({closeConfirmModal}:ConfirmConversionProp) => {
 
             <div className='flex gap-3 px-6 py-4'>
                 <button className='w-1/2 px-5 py-[13px] justify-center items-center flex rounded-[14px] border border-white/[0.32] text-[#FFFFFF] text-[16px] font-bold leading-[22px]' onClick={() => closeConfirmModal(false)}>Cancel</button>
-                <button className='w-1/2 px-5 py-[13px] justify-center items-center flex rounded-[14px] bg-[#5848BC] text-[#FFFFFF] text-[16px] font-bold leading-[22px]'>Confirm</button>
+                <button className='w-1/2 px-5 py-[13px] justify-center items-center flex rounded-[14px] bg-[#5848BC] text-[#FFFFFF] text-[16px] font-bold leading-[22px]' onClick={() => closeConfirmModal(false)}>Confirm</button>
             </div>
         </Modal>
     </div>
