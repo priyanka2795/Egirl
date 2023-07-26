@@ -24,18 +24,26 @@ const button = [
 ];
 
 
-interface ConvertCredits1Prop{
+interface ConvertCreditsModalProp{
   closeConvertCredits: React.Dispatch<React.SetStateAction<boolean>>
+  confirmModal:React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const ConvertCredits1 = ({closeConvertCredits}: ConvertCredits1Prop) => {
+const ConvertCreditsModal = ({closeConvertCredits , confirmModal}: ConvertCreditsModalProp) => {
   const [inputLength, setinputLength] = useState(0);
-  const [confirmModal, setconfirmModal] = useState(false);
+  // const [confirmModal, setconfirmModal] = useState(false);
   const [convertedCoin, setconvertedCoin] = useState(0.00);
 
   const checkLength = (event:any) => {
     setinputLength(event.target.value.length);
     setconvertedCoin(event.target.value*10);
+  }
+
+  const handleModal = () =>{
+    confirmModal(true) ,
+   setTimeout(() =>{
+    closeConvertCredits(false)
+   },400)
   }
 
 
@@ -44,7 +52,7 @@ const ConvertCredits1 = ({closeConvertCredits}: ConvertCredits1Prop) => {
     <div>
       <Modal
             open={true}
-            modalClassName='flex flex-col w-full rounded-2xl h-max bg-[#121212] max-w-[400px]'
+            modalClassName='flex flex-col w-full rounded-2xl h-max bg-[#121212] max-w-[400px] confirm'
             closeModal={() => closeConvertCredits(false)}
             modalOverlayStyle='!bg-black/80'
         >
@@ -88,19 +96,12 @@ const ConvertCredits1 = ({closeConvertCredits}: ConvertCredits1Prop) => {
                 })}
               </div>
             </div>
-            <button className={`flex items-center justify-center px-6 py-4 rounded-[16px] text-[18px] font-bold leading-6 ${inputLength > 0 ? 'bg-[#5848BC] text-[#FFFFFF]' : 'bg-[#515151] text-[#979797] pointer-events-none'}`} onClick={() =>{setconfirmModal(true)}}>Convert</button>
+            <button className={`flex items-center justify-center px-6 py-4 rounded-[16px] text-[18px] font-bold leading-6 ${inputLength > 0 ? 'bg-[#5848BC] text-[#FFFFFF]' : 'bg-[#515151] text-[#979797] pointer-events-none'}`} onClick={() =>{handleModal()}}>Convert</button>
           </div>
       </Modal>
     </div>
-    {
-    confirmModal &&
-    
-    <div onClick={() => {closeConvertCredits(false), console.log("test>>>>")}}>
-       <ConfirmConversionModal closeConfirmModal={setconfirmModal} />
-    </div>
-    }
     </>
   )
 }
 
-export default ConvertCredits1
+export default ConvertCreditsModal

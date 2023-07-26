@@ -9,7 +9,8 @@ import informationIcon from '../../../public/assets/circle-information2.png';
 import arc1 from '../../../public/assets/referral-arc2.png';
 import arc2 from '../../../public/assets/referral-arc1.png';
 import TierModal from './TierModal';
-import ConvertCredits1 from './ConvertCredits1';
+import ConvertCreditsModal from './ConvertCreditsModal';
+import ConfirmConversionModal from './ConfirmConversionModal';
 
 const programSteps = [
   {
@@ -56,6 +57,7 @@ const array2 = [
 const ReferralsIndex = () => {
   const [showModal, setShowModal] = useState(false);
   const [showConvertCredits, setshowConvertCredits] = useState(false);
+  const [confirmModal, setconfirmModal] = useState(false);
   return (
     <>
     <div className='flex flex-col items-center gap-20 w-[1020px] px-40 py-20'>
@@ -151,7 +153,11 @@ const ReferralsIndex = () => {
     }
     {
       showConvertCredits && 
-      <ConvertCredits1 closeConvertCredits={setshowConvertCredits}/>
+      <ConvertCreditsModal closeConvertCredits={setshowConvertCredits} confirmModal={setconfirmModal}/>
+    }
+     {
+    confirmModal &&      
+       <ConfirmConversionModal closeConfirmModal={setconfirmModal} convertCredits={setshowConvertCredits}/>  
     }
     </>
   )

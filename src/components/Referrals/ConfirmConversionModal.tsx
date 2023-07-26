@@ -6,8 +6,9 @@ import greenArrows from '../../../public/assets/arrows-horizontal-green.png'
 
 interface ConfirmConversionProp{
     closeConfirmModal: React.Dispatch<React.SetStateAction<boolean>>
+    convertCredits: React.Dispatch<React.SetStateAction<boolean>>
 }
-const ConfirmConversionModal = ({closeConfirmModal}:ConfirmConversionProp) => {
+const ConfirmConversionModal = ({closeConfirmModal , convertCredits}:ConfirmConversionProp) => {
   return (
     <div>
       <Modal
@@ -28,7 +29,7 @@ const ConfirmConversionModal = ({closeConfirmModal}:ConfirmConversionProp) => {
             </div>
 
             <div className='flex gap-3 px-6 py-4'>
-                <button className='w-1/2 px-5 py-[13px] justify-center items-center flex rounded-[14px] border border-white/[0.32] text-[#FFFFFF] text-[16px] font-bold leading-[22px]' onClick={() => closeConfirmModal(false)}>Cancel</button>
+                    <button className='w-1/2 px-5 py-[13px] justify-center items-center flex rounded-[14px] border border-white/[0.32] text-[#FFFFFF] text-[16px] font-bold leading-[22px]' onClick={() => {closeConfirmModal(false), convertCredits(true)}}>Cancel</button>
                 <button className='w-1/2 px-5 py-[13px] justify-center items-center flex rounded-[14px] bg-[#5848BC] text-[#FFFFFF] text-[16px] font-bold leading-[22px]' onClick={() => closeConfirmModal(false)}>Confirm</button>
             </div>
         </Modal>

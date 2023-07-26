@@ -30,22 +30,27 @@
     --accent-orange: 255 122 0;
     --accent-green: 0 184 122;
   }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+     margin: 0;
+  }
 
-  .custom-scroll-bar::-webkit-scrollbar {
+  .custom-scroll-bar::-webkit-scrollbar, *::-webkit-scrollbar {
     width: 8px;
   }
 
-  .custom-scroll-bar::-webkit-scrollbar-track {
+  .custom-scroll-bar::-webkit-scrollbar-track ,*::-webkit-scrollbar-track {
     background: #888;
     border-radius: 5px;
   }
 
-  .custom-scroll-bar::-webkit-scrollbar-thumb {
+  .custom-scroll-bar::-webkit-scrollbar-thumb ,*::-webkit-scrollbar-thumb{
     background: #3A3A3A;
     border-radius: 5px;
   }
 
-  .custom-scroll-bar::-webkit-scrollbar-thumb:hover {
+  .custom-scroll-bar::-webkit-scrollbar-thumb:hover, *::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
 
