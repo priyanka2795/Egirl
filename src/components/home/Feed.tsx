@@ -67,6 +67,22 @@ export default function Feed() {
           location='Warsaw, Old Town'
           hours='6h'
         />
+        
+        <div className="mt-5">
+        <Post
+          imageUrl='https://media.istockphoto.com/id/638756792/photo/beautiful-woman-posing-against-dark-background.jpg?s=612x612&w=0&k=20&c=AanwEr0pmrS-zhkVJEgAwxHKwnx14ywNh5dmzwbpyLk='
+          altText='Character Profile Picture'
+          name='Mika-chan'
+          username='@mikachan'
+          postText='Hello dears, my mood today is 🤗'
+          commentsNumber='98'
+          heartsNumber='6.2k'
+          viewsNumber='1.8k'
+          tags={['#girl', '#mood', '#relaxtime']}
+          location='Warsaw, Old Town'
+          hours='6h'
+        />
+        </div>
       </div>
     </div>
   );

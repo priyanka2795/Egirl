@@ -68,7 +68,7 @@ export default function Sidebar({
   return (
     // border: border-r border-[#2F2F2F]
     <div
-      className={`custom-scroll-bar sticky hidden h-full w-[88px] flex-col overflow-y-auto border-r-[2px] border-[rgb(37,37,37)] bg-[#070707] sm:flex xl:w-[300px] xl:items-start ${sideBarClasses} ${
+      className={`h-full w-[88px] flex-col overflow-y-auto border-r-[2px] border-[rgb(37,37,37)] bg-[#070707] sm:flex xl:w-[300px] xl:items-start ${sideBarClasses} ${
         shrinkSidebar === "true" ? '!w-[88px]' : ''
       }`}
     >
