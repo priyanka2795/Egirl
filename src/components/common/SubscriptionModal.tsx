@@ -4,6 +4,8 @@ import Bolt from './svg/boltIcon.svg';
 import HeartIcon from './svg/heart-icon.svg';
 import StarIcon from './svg/star-icon.svg';
 import PointedStarIcon from './svg/pointed-star-icon.svg';
+import SubscriptionEgirlContent from './SubscriptionEgirlContent';
+import SubscriptionBuyContent from './SubscriptionBuyContent';
 
 interface subscription {
   closeState: any;
@@ -17,6 +19,10 @@ const featureOpt = [
 ];
 const SubscriptionModal = ({ closeState }: subscription) => {
   const [tabSelectedOpt, setTabSelectedOpt] = useState('Egirls+');
+  const handleActiveTab = (items: any) =>{
+    setTabSelectedOpt(items)
+    console.log(items , "hweee>>>>")
+  }
   return (
     <div>
       <Modal
@@ -29,7 +35,7 @@ const SubscriptionModal = ({ closeState }: subscription) => {
           {tabOption.map((items) => {
             return (
               <div
-                onClick={() => setTabSelectedOpt(items)}
+                onClick={(e) => handleActiveTab(items)}
                 className={`w-[188px] cursor-pointer px-4 py-[10px] text-center ${
                   tabSelectedOpt === items
                     ? 'rounded-full bg-white text-[#121212] '
@@ -50,7 +56,7 @@ const SubscriptionModal = ({ closeState }: subscription) => {
           </div>
         </div>
 
-        <div className='flex items-center justify-between p-8 blue-gradient rounded-xl '>
+        {/* <div className='flex items-center justify-between p-8 blue-gradient rounded-xl '>
           <div className='flex gap-4'>
             <HeartIcon />
             <h4 className='text-[26px] font-bold'>Egirls+</h4>
@@ -75,7 +81,11 @@ const SubscriptionModal = ({ closeState }: subscription) => {
 
         <button className='mt-4 w-full rounded-[14px] bg-[#5848BC] py-5 py-[13px] font-bold'>
           $14.99 per month
-        </button>
+        </button> */}
+        {
+          tabSelectedOpt === "Egirls+" ? <SubscriptionEgirlContent /> : <SubscriptionBuyContent/>
+        }
+        
       </Modal>
     </div>
   );
