@@ -8,13 +8,18 @@ type SidebarMenuItemProps = {
   href?: string;
   sideBarMenuText?: string;
   Icon: (props: { svgClasses?: string; strokeClasses?: string }) => JSX.Element;
+  IconActive: (props: {
+    svgClasses?: string;
+    strokeClasses?: string;
+  }) => JSX.Element;
 };
 
 export default function SidebarMenuItem({
   text,
   href,
   sideBarMenuText,
-  Icon
+  Icon,
+  IconActive
 }: SidebarMenuItemProps) {
   const router = useRouter();
 
@@ -30,11 +35,14 @@ export default function SidebarMenuItem({
               sideBarMenuText ? 'w-full' : 'xl:w-[256px] '
             } xl:justify-start ${active && 'bg-[#252525]'}`}
           >
-            <Icon
-              strokeClasses={`${
-                active ? 'stroke-black fill-white' : 'stroke-[#515151]'
-              } transition duration-100`}
-            />
+            {active ? (
+              <IconActive />
+            ) : (
+              <Icon
+                strokeClasses={`stroke-[#515151] transition duration-100`}
+              />
+            )}
+
             <div className='flex flex-col'>
               <span
                 className={`${

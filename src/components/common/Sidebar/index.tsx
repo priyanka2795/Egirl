@@ -19,6 +19,12 @@ import EgirlsPlusIcon from './svg/EgirlsPlusIcon';
 import EyeIcon from '../../home/Post/svg/eye.svg';
 import { useState } from 'react';
 import SubscriptionModal from '../SubscriptionModal';
+import ReferalWhiteIcon from './svg/ReferalWhiteIcon';
+import HomeActiveIcon from './svg/HomeActiveIcon';
+import ExploreActiveIcon from './svg/ExploreActiveIcon';
+import MessageActiveIcon from './svg/MessageActiveIcon';
+import ListsIconActive from './svg/ListIconActive';
+import AddCardActiveIcon from './svg/AddCardActiveIcon';
 
 // sideBarClasses={'!w-[88px]'}
 // sideBarLogoClasses={'!hidden'}
@@ -100,6 +106,7 @@ export default function Sidebar({
           text='Home'
           href='/home'
           Icon={HomeIcon}
+          IconActive={HomeActiveIcon}
           sideBarMenuText={`${sideBarMenuText} ${
             shrinkSidebar === "true" ? '!hidden' : 'w-full'
           }`}
@@ -108,6 +115,7 @@ export default function Sidebar({
           text='Explore'
           href='/explore'
           Icon={ExploreIcon}
+          IconActive={ExploreActiveIcon}
           sideBarMenuText={`${sideBarMenuText} ${
             shrinkSidebar === "true" ? '!hidden' : 'w-full'
           }`}
@@ -116,6 +124,7 @@ export default function Sidebar({
           text='Messages'
           href='/messages'
           Icon={MessagesIcon}
+          IconActive={MessageActiveIcon}
           sideBarMenuText={`${sideBarMenuText} ${
             shrinkSidebar === "true" ? '!hidden' : 'w-full'
           }`}
@@ -124,14 +133,16 @@ export default function Sidebar({
           text='Lists'
           href='/lists'
           Icon={ListsIcon}
+          IconActive={ListsIconActive}
           sideBarMenuText={`${sideBarMenuText} ${
             shrinkSidebar === "true" ? '!hidden' : 'w-full'
           }`}
         />
         <SidebarMenuItem
           text='Add Card'
-          href='/asdf'
+          href='/add-card'
           Icon={AddCardIcon}
+          IconActive={AddCardActiveIcon}
           sideBarMenuText={`${sideBarMenuText} ${
             shrinkSidebar === "true" ? '!hidden' : 'w-full'
           }`}
@@ -140,12 +151,14 @@ export default function Sidebar({
           text='Referrals'
           href='/referrals'
           Icon={ReferralsIcon}
+          IconActive={ReferalWhiteIcon}
           sideBarMenuText={`${sideBarMenuText} ${
             shrinkSidebar === "true" ? '!hidden' : 'w-full'
           }`}
         />
        <div onClick={() =>setSubscribeModal(true)}>
        <SidebarMenuItem
+         IconActive={ReferalWhiteIcon}
           text='Egirls+'
           Icon={EgirlsPlusIcon}
           sideBarMenuText={`${sideBarMenuText} ${
@@ -154,6 +167,7 @@ export default function Sidebar({
         />
        </div>
         <SidebarMenuItem
+          IconActive={ReferalWhiteIcon}
           text='Creator Studio'
           href='/asdf'
           Icon={CreatorStudioIcon}
@@ -162,6 +176,7 @@ export default function Sidebar({
           }`}
         />
         <SidebarMenuItem
+          IconActive={ReferalWhiteIcon}
           text='More'
           href='/asdf'
           Icon={MoreIcon}
