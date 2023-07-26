@@ -9,6 +9,7 @@ import masterrCard from '../../../public/assets/master-card.png'
 import visaCard from '../../../public/assets/visa-card.png'
 import Success from './Success';
 import Error from './Error';
+import DeleteModal from './DeleteModal';
 
 const AddCard = () => {
   return (
@@ -129,6 +130,7 @@ const AddCard = () => {
     </div>
     <Success />
     <Error />
+    <DeleteModal />
     </>
   )
 }
