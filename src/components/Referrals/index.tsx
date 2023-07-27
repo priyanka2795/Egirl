@@ -11,6 +11,7 @@ import arc2 from '../../../public/assets/referral-arc1.png';
 import TierModal from './TierModal';
 import ConvertCreditsModal from './ConvertCreditsModal';
 import ConfirmConversionModal from './ConfirmConversionModal';
+import Chart from './Chart';
 
 const programSteps = [
   {
@@ -115,7 +116,8 @@ const ReferralsIndex = () => {
                 <div className='text-[#FFFFFF] text-center text-[26px] font-bold leading-8'>Earnings</div>
                 <div className='text-[#979797] text-[14px] font-normal leading-[18px]'>0/100 people referred</div>
               </div>
-              <Image className='w-full h-full' src={graph} alt={''} />
+              {/* <Image className='w-full h-full' src={graph} alt={''} /> */}
+              <Chart/>
             </div>
             <div className='w-[49%] flex flex-col items-start gap-1'>
               <div className='text-[#FFFFFF] text-[36px] font-bold leading-12'>$0</div>

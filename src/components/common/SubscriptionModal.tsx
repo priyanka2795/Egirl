@@ -6,6 +6,7 @@ import StarIcon from './svg/star-icon.svg';
 import PointedStarIcon from './svg/pointed-star-icon.svg';
 import SubscriptionEgirlContent from './SubscriptionEgirlContent';
 import SubscriptionBuyContent from './SubscriptionBuyContent';
+import CloseIcon from '../../../public/assets/svgImages/close-icon.svg'
 
 interface subscription {
   closeState: any;
@@ -27,11 +28,16 @@ const SubscriptionModal = ({ closeState }: subscription) => {
     <div>
       <Modal
         open={true}
-        modalClassName='flex flex-col gap-6 max-w-xl w-full p-8 rounded-2xl h-max bg-[#121212] max-w-[550px]'
+        modalClassName='flex flex-col gap-6 max-w-xl w-full p-8 rounded-2xl h-max bg-[#121212] max-w-[550px] relative'
         closeModal={() => closeState(false)}
         modalOverlayStyle='!bg-black/80'
       >
+         <div className='absolute cursor-pointer right-5 top-5' onClick={() => closeState(false)}>
+              <CloseIcon/>
+          </div>
+         
         <div className='mx-auto flex max-w-[376px] items-center rounded-full bg-white/10'>
+       
           {tabOption.map((items) => {
             return (
               <div
