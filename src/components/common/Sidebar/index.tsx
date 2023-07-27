@@ -25,6 +25,8 @@ import ExploreActiveIcon from './svg/ExploreActiveIcon';
 import MessageActiveIcon from './svg/MessageActiveIcon';
 import ListsIconActive from './svg/ListIconActive';
 import AddCardActiveIcon from './svg/AddCardActiveIcon';
+import UserImg from './svg/user-img.svg';
+import MoreMenuOption from './MoreMenuOption';
 
 // sideBarClasses={'!w-[88px]'}
 // sideBarLogoClasses={'!hidden'}
@@ -36,6 +38,8 @@ type sideBarProp = {
   sideBarMenuText?: string;
   sideBarLogoClasses?: string;
   sideBarMenuArrowClasses?: string;
+  moreOptionItem?:React.Dispatch<React.SetStateAction<string>>
+  activeMoreOption?:string
   // shrinkSidebar?: boolean;
   // sideBarWidth?: () => void;
 };
@@ -44,12 +48,15 @@ export default function Sidebar({
   sideBarMenuText,
   sideBarLogoClasses,
   sideBarMenuArrowClasses,
+  moreOptionItem,
+  activeMoreOption
   // sideBarWidth,
   // shrinkSidebar
 }: sideBarProp) {
   // const [shrinkSidebar, setShrinkSidebar] = useState(false);
   // console.log(shrinkSidebar, 'shrinkSidebar');
   const [subscribeModal, setSubscribeModal] = useState(false)
+  const [moreOption, setMoreOption] = useState(false)
   const sidebarVariable = sessionStorage.getItem('sideBarCollapse');
   const [shrinkSidebar, setShrinkSidebar] = useState(sidebarVariable? sidebarVariable:"");
  console.log(sidebarVariable , "shrinkSidebar sidebarVariable")
@@ -175,17 +182,20 @@ export default function Sidebar({
             shrinkSidebar === "true" ? '!hidden' : 'w-full'
           }`}
         />
-        <SidebarMenuItem
+       <div onClick={() => setMoreOption(!moreOption)} className="relative">
+       <SidebarMenuItem
           IconActive={ReferalWhiteIcon}
-          text='More'
-          href='/asdf'
+         text='More'
+          // href='/asdf'
           Icon={MoreIcon}
           sideBarMenuText={`${sideBarMenuText} ${
             shrinkSidebar === "true" ? '!hidden' : 'w-full'
           }`}
-        />
+          />
+          {moreOption && <MoreMenuOption activeMoreOption={activeMoreOption} moreOptionItem={moreOptionItem}/>}
+       </div>
       </div>
-
+      
       {subscribeModal && <SubscriptionModal closeState={setSubscribeModal} />}
 
       {/* Button */}
@@ -210,12 +220,16 @@ export default function Sidebar({
       </div> */}
 
       <div className='flex items-center justify-between w-full px-6 mt-auto mb-6'>
-        <div className='flex items-center'>
-          <img
+        <div className='flex items-center gap-1'>
+          {/* <img
             src='https://www.adscientificindex.com/pictures/0b/50734.jpg'
             alt='user-img'
             className='w-10 h-10 rounded-full xl:mr-2'
-          />
+          /> */}
+          <UserImg/>
+          {/* <div className="w-10 h-10 rounded-full">
+              
+          </div> */}
           <div
             className={`hidden leading-5 xl:inline ${sideBarLogoClasses} ${
               shrinkSidebar ? '!hidden' : ''
