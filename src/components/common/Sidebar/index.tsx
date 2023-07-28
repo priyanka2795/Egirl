@@ -27,6 +27,7 @@ import ListsIconActive from './svg/ListIconActive';
 import AddCardActiveIcon from './svg/AddCardActiveIcon';
 import UserImg from './svg/user-img.svg';
 import MoreMenuOption from './MoreMenuOption';
+import UserDetailModal from './userDetailModal';
 
 // sideBarClasses={'!w-[88px]'}
 // sideBarLogoClasses={'!hidden'}
@@ -57,6 +58,7 @@ sideBarProp) {
   // console.log(shrinkSidebar, 'shrinkSidebar');
   const [subscribeModal, setSubscribeModal] = useState(false);
   const [moreOption, setMoreOption] = useState(false);
+  const [userAccountMenu , setUserAccountMenu] = useState(false)
   const sidebarVariable = sessionStorage.getItem('sideBarCollapse');
   const [shrinkSidebar, setShrinkSidebar] = useState(
     sidebarVariable ? sidebarVariable : ''
@@ -236,7 +238,9 @@ sideBarProp) {
             alt='user-img'
             className='w-10 h-10 rounded-full xl:mr-2'
           /> */}
-          <UserImg />
+          <div onClick={() =>{setUserAccountMenu(!userAccountMenu)}}>
+           <UserImg />
+          </div>
           {/* <div className="w-10 h-10 rounded-full">
               
           </div> */}
@@ -252,11 +256,18 @@ sideBarProp) {
           </div>
         </div>
         {/* <TestIcon className='hidden h-5 xl:inline' /> */}
-        <DotsVerticalIcon
+     <div onClick={() =>{setUserAccountMenu(!userAccountMenu)}}>
+     <DotsVerticalIcon 
           className={`hidden h-5 xl:inline ${sideBarLogoClasses} ${
             shrinkSidebar ? '!hidden' : ''
           }`}
         />
+         {
+      userAccountMenu &&
+     <UserDetailModal styleClasses={`${shrinkSidebar === 'true' ? 'fixed left-[18px]' : 'absolute  right-[34px] '}`}/>
+     }
+     </div>
+    
       </div>
     </div>
   );
