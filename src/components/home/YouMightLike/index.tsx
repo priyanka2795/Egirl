@@ -31,7 +31,7 @@ const YouMightLike = () => {
     <div className='flex w-full max-w-[376px] flex-col rounded-[14px] bg-main-bar '>
       <div className='flex items-center justify-between border-b border-gray-200 border-opacity-[0.08] py-6'>
         <p className='ml-6 text-lg font-bold leading-6'>You might like</p>
-        <div className='mr-6 flex items-center'>
+        <div className='flex items-center mr-6'>
           <button>
             <ArrowLeft onClick={moveStateBack} className='mr-3' />
           </button>
@@ -41,11 +41,11 @@ const YouMightLike = () => {
         </div>
       </div>
       {state !== StateType.State4 && (
-        <div className='mt-6 flex flex-col items-center justify-center px-6'>
+        <div className='flex flex-col items-center justify-center px-6 mt-6'>
           <p className='ml-6 text-lg font-bold leading-6'>
             Want to explore further?
           </p>
-          <div className='mt-4 grid w-full grid-cols-4 grid-rows-2 gap-4 px-2'>
+          <div className='grid w-full grid-cols-4 grid-rows-2 gap-4 px-2 mt-4'>
             {Array(8)
               .fill(0)
               .map((_, index) => (
@@ -66,7 +66,7 @@ const YouMightLike = () => {
         </div>
       )}
       {state === StateType.State4 && (
-        <div className='mt-6 flex flex-col items-center px-6'>
+        <div className='flex flex-col items-center px-6 mt-6'>
           <div className='relative flex'>
             <Image
               src='/assets2/Home/ExploreMorePic.png'
