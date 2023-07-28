@@ -11,13 +11,13 @@ const optionList = [
 interface MoreMenuProps{
     activeMoreOption:string | undefined,
     moreOptionItem: any   
-
+    classes:string
 }
-const MoreMenuOption = ({moreOptionItem , activeMoreOption }: MoreMenuProps) => {
+const MoreMenuOption = ({moreOptionItem , activeMoreOption , classes }: MoreMenuProps) => {
 
   return (
     <>
-      <div className="absolute left-[10px] top-[60px] inline-flex w-[218px] flex-col items-start justify-start rounded-[14px] bg-[#1A1A1A] bg-zinc-900 py-2 shadow">
+      <div className={` inline-flex w-[218px] flex-col items-start justify-start rounded-[14px] bg-[#1A1A1A] bg-zinc-900 py-2 shadow ${classes}`}>
         {optionList.map((items) => {
           return (
             <>

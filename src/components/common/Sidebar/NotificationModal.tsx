@@ -74,8 +74,8 @@ const NotificationModal = ({ selectedMoreOption }: NotificationModal) => {
     <div
       className={`transitions absolute z-[80] mt-4 inline-flex h-[804px] w-[425px] flex-col items-start justify-start rounded-[14px] bg-zinc-900 pb-6 ${
         selectedMoreOption === 'Notifications'
-          ? 'ml-4'
-          : 'invisible -ml-[430px] w-0'
+          ? 'ml-4 fixed'
+          : 'invisible -ml-[430px] w-0 '
       }`}
     >
       <div className='sticky top-0'>
@@ -97,7 +97,7 @@ const NotificationModal = ({ selectedMoreOption }: NotificationModal) => {
                 </div>
                 <div className='w-full'>
                   <div className='flex flex-col gap-[5px]'>
-                    <div className='flex gap-[5px]'>
+                    <div className='flex gap-[5px] items-center'>
                       {items.reviewIcon && (
                         <div>
                           <Image src={items.reviewIcon} alt='' />
@@ -107,6 +107,12 @@ const NotificationModal = ({ selectedMoreOption }: NotificationModal) => {
                       <h5 className='text-base font-bold leading-tight text-white '>
                         {items.reviewUserAction}
                       </h5>
+                      {
+                        items.active &&
+                        <div className='relative w-2 h-2 ml-auto'>
+                        <div className='absolute top-0 left-0 w-2 h-2 bg-red-500 border rounded-full border-neutral-900'></div>
+                      </div>
+                      }
                     </div>
 
                     {items.reviewOnPost && (

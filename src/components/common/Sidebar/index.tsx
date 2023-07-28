@@ -197,6 +197,7 @@ sideBarProp) {
           </div>
           {moreOption && (
             <MoreMenuOption
+              classes={`${shrinkSidebar === 'true' ? 'fixed ' : 'absolute left-[10px] top-[60px] '}`}
               activeMoreOption={activeMoreOption}
               moreOptionItem={moreOptionItem}
              
