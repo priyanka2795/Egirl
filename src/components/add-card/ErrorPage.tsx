@@ -10,7 +10,7 @@ interface errorPageProp {
 const ErrorPage = ( {closeErrorPage} : errorPageProp) => {
   return (
    
-    <div className='flex flex-col border-r border-white/[0.08] bg-[#121212] w-full h-inherit mt-5'>
+    <div className='flex flex-col border-r border-white/[0.08] bg-[#121212] w-full h-inherit'>
             <div className='flex flex-col items-center justify-center gap-10 p-8 grow'>
                <div className='flex flex-col items-center justify-center gap-4'>
                     <div className='flex justify-center items-center pt-[26px] pb-6 px-6 rounded-full bg-[#FF5336]/[0.16]'>

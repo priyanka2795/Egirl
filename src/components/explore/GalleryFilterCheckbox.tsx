@@ -83,27 +83,29 @@ const GalleryFilterCheckbox = ({filterCloseForm}:prop) => {
                   Female
                 </label>
               </div>
-              <div className='flex items-center self-stretch gap-2'>
+              <div className='block custom-checkbox custom-checkbox-circle'>
                 <input
-                  className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
+                  className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727] focus:outline-transparent focus:ring-0 focus:outline-0'
                   type='checkbox'
                   value='Male'
                   onChange={handleChange}
+                  id='male'
                 />
-                <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                <label className="text-[14px] font-normal text-[#FFFFFF]" htmlFor="male">
                   Male
-                </div>
+                </label>
               </div>
-              <div className='flex items-center self-stretch gap-2'>
+              <div className='block custom-checkbox custom-checkbox-circle'>
                 <input
                   className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                   type='checkbox'
                   value='Other'
                   onChange={handleChange}
+                  id='Other'
                 />
-                <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                <label className='text-[14px] font-normal text-[#FFFFFF]' htmlFor="Other">
                   Other
-                </div>
+                </label>
               </div>
             </div>
           </div>
@@ -113,38 +115,41 @@ const GalleryFilterCheckbox = ({filterCloseForm}:prop) => {
               STYLE
             </div>
             <div className='flex flex-col items-start self-stretch gap-4 mb-5'>
-              <div className='flex items-center self-stretch gap-2'>
+              <div className='block custom-checkbox custom-checkbox-circle'>
                 <input
                   className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                   type='checkbox'
                   value='Anime'
                   onChange={handleChange}
+                  id='Anime'
                 />
-                <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                <label className='text-[14px] font-normal text-[#FFFFFF]' htmlFor="Anime">
                   Anime
-                </div>
+                </label>
               </div>
-              <div className='flex items-center self-stretch gap-2'>
+              <div className='block custom-checkbox custom-checkbox-circle'>
                 <input
                   className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                   type='checkbox'
                   value='Realistic'
                   onChange={handleChange}
+                  id='Realistic'
                 />
-                <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                <label className='text-[14px] font-normal text-[#FFFFFF]' htmlFor="Realistic">
                   Realistic
-                </div>
+                </label>
               </div>
-              <div className='flex items-center self-stretch gap-2'>
+              <div className='block custom-checkbox custom-checkbox-circle'>
                 <input
                   className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                   type='checkbox'
                   value='Semi-Realistic'
                   onChange={handleChange}
+                  id='Semi-Realistic'
                 />
-                <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                <label className='text-[14px] font-normal text-[#FFFFFF]' htmlFor="Semi-Realistic">
                   Semi-Realistic
-                </div>
+                </label>
               </div>
             </div>
           </div>
@@ -156,173 +161,188 @@ const GalleryFilterCheckbox = ({filterCloseForm}:prop) => {
             <div>
               {viewAllTags ? (
                 <div className='flex flex-col items-start self-stretch gap-4 mb-5'>
-                  <div className='flex items-center self-stretch gap-2'>
+                  <div className='block custom-checkbox custom-checkbox-circle'>
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727] focus:outline-none'
                       type='checkbox'
                       value='Furry'
                       onChange={handleChange}
-                    />
-                    <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                      id='Furry'
+                    /> 
+                    <label className='text-[14px] font-normal text-[#FFFFFF]' htmlFor="Furry">
                       Furry
-                    </div>
+                    </label>
                   </div>
-                  <div className='flex items-center self-stretch gap-2'>
+                  <div className='block custom-checkbox custom-checkbox-circle'>
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                       type='checkbox'
                       value='Ahegao'
                       onChange={handleChange}
+                      id='Ahegao'
                     />
-                    <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                    <label className='text-[14px] font-normal text-[#FFFFFF]' htmlFor="Ahegao">
                       Ahegao
-                    </div>
+                    </label>
                   </div>
-                  <div className='flex items-center self-stretch gap-2'>
+                  <div className='block custom-checkbox custom-checkbox-circle'>
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                       type='checkbox'
                       value='NSFW'
                       onChange={handleChange}
+                      id='NSFW'
                     />
-                    <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                    <label className='text-[14px] font-normal text-[#FFFFFF]' htmlFor="NSFW">
                       NSFW
-                    </div>
+                    </label>
                   </div>
-                  <div className='flex items-center self-stretch gap-2'>
+                  <div className='block custom-checkbox custom-checkbox-circle'>
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                       type='checkbox'
                       value='Roleplay'
                       onChange={handleChange}
+                      id='Roleplay'
                     />
-                    <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                    <label className='text-[14px] font-normal text-[#FFFFFF]' htmlFor="Roleplay">
                       Roleplay
-                    </div>
+                    </label>
                   </div>
-                  <div className='flex items-center self-stretch gap-2'>
+                  <div className='block custom-checkbox custom-checkbox-circle'>
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                       type='checkbox'
                       value='Fashion Model'
                       onChange={handleChange}
+                      id='Fashion Model'
                     />
-                    <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                    <label className='text-[14px] font-normal text-[#FFFFFF]' htmlFor="Fashion Model">
                       Fashion Model
-                    </div>
+                    </label>
                   </div>
-                  <div className='flex items-center self-stretch gap-2'>
+                  <div className='block custom-checkbox custom-checkbox-circle'>
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727] focus:outline-none'
-                      type='checkbox'
+                      type='Fashion Model'
                       value='Furry'
                       onChange={handleChange}
+                      id='Furry'
                     />
-                    <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                    <label className='text-[14px] font-normal text-[#FFFFFF]' htmlFor="Fashion Model">
                       Furry
-                    </div>
+                    </label>
                   </div>
-                  <div className='flex items-center self-stretch gap-2'>
+                  <div className='block custom-checkbox custom-checkbox-circle'>
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                       type='checkbox'
                       value='Ahegao'
                       onChange={handleChange}
+                      id='Ahegao'
                     />
-                    <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                    <label className='text-[14px] font-normal text-[#FFFFFF]' htmlFor="Ahegao">
                       Ahegao
-                    </div>
+                    </label>
                   </div>
-                  <div className='flex items-center self-stretch gap-2'>
+                  <div className='block custom-checkbox custom-checkbox-circle'>
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                       type='checkbox'
                       value='NSFW'
                       onChange={handleChange}
+                      id='NSFW'
                     />
-                    <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                    <label className='text-[14px] font-normal text-[#FFFFFF]' htmlFor="NSFW">
                       NSFW
-                    </div>
+                    </label>
                   </div>
-                  <div className='flex items-center self-stretch gap-2'>
+                  <div className='block custom-checkbox custom-checkbox-circle'>
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                       type='checkbox'
                       value='Roleplay'
                       onChange={handleChange}
+                      id='Roleplay'
                     />
-                    <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                    <label className='text-[14px] font-normal text-[#FFFFFF]' htmlFor="Roleplay">
                       Roleplay
-                    </div>
+                    </label>
                   </div>
-                  <div className='flex items-center self-stretch gap-2'>
+                  <div className='block custom-checkbox custom-checkbox-circle'>
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                       type='checkbox'
                       value='Fashion Model'
                       onChange={handleChange}
+                      id='Fashion Model'
                     />
-                    <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                    <label className='text-[14px] font-normal text-[#FFFFFF]' htmlFor="Fashion Model">
                       Fashion Model
-                    </div>
+                    </label>
                   </div>
                 </div>
               ) : (
                 <div className='flex flex-col items-start self-stretch gap-4 mb-5'>
-                  <div className='flex items-center self-stretch gap-2'>
+                  <div className='block custom-checkbox custom-checkbox-circle'>
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727] focus:outline-none'
                       type='checkbox'
                       value='Furry'
                       onChange={handleChange}
+                      id='Furry'
                     />
-                    <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                    <label className='text-[14px] font-normal text-[#FFFFFF]' htmlFor="Furry">
                       Furry
-                    </div>
+                    </label>
                   </div>
-                  <div className='flex items-center self-stretch gap-2'>
+                  <div className='block custom-checkbox custom-checkbox-circle'>
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                       type='checkbox'
                       value='Ahegao'
                       onChange={handleChange}
+                      id='Ahegao'
                     />
-                    <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                    <label className='text-[14px] font-normal text-[#FFFFFF]' htmlFor="Ahegao">
                       Ahegao
-                    </div>
+                    </label>
                   </div>
-                  <div className='flex items-center self-stretch gap-2'>
+                  <div className='block custom-checkbox custom-checkbox-circle'>
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                       type='checkbox'
                       value='NSFW'
                       onChange={handleChange}
+                      id='NSFW'
                     />
-                    <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                    <label className='text-[14px] font-normal text-[#FFFFFF]' htmlFor="NSFW">
                       NSFW
-                    </div>
+                    </label>
                   </div>
-                  <div className='flex items-center self-stretch gap-2'>
+                  <div className='block custom-checkbox custom-checkbox-circle'>
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                       type='checkbox'
                       value='Roleplay'
                       onChange={handleChange}
+                      id='Roleplay'
                     />
-                    <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                    <label className='text-[14px] font-normal text-[#FFFFFF]' htmlFor="Roleplay">
                       Roleplay
-                    </div>
+                    </label>
                   </div>
-                  <div className='flex items-center self-stretch gap-2'>
+                  <div className='block custom-checkbox custom-checkbox-circle'>
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
                       type='checkbox'
                       value='Fashion Model'
                       onChange = {handleChange}
+                      id='Fashion Model'
                     />
-                    <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                    <label className='text-[14px] font-normal text-[#FFFFFF]' htmlFor="Fashion Model">
                       Fashion Model
-                    </div>
+                    </label>
                   </div>
                 </div>
               )}

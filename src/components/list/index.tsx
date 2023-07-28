@@ -15,7 +15,7 @@ import CollectionCoverModal from './CollectionCoverModal';
 
 const ListIndex = () => {
   const [activeListTab, setActiveListTab] = useState('Subscriptions');
-  const tabContent = ['Subscriptions', 'Following', 'Bookmarks', 'Collections'];
+  const tabContent = ['Subscriptions', 'Following', 'Bookmarks', 'Collections']; 
   const [profileSectionState , setProfileSectionState] = useState(false)
   return (
     <div>

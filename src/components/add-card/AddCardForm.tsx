@@ -77,12 +77,15 @@ const AddCardForm = ( {showSucess, showError} : AddCardFormProp ) => {
                             </div>
                         </div>
                     </div>
-                    <div className='flex gap-2'>
+                    <div className='block custom-checkbox custom-checkbox-circle'>
                         <input
-                            className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
+                            className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727] focus:outline-transparent focus:ring-0 focus:outline-0'
                             type='checkbox'
+                            value='age'
+                            //onChange={handleChange}
+                            id='age'
                         />
-                        <div className='text-[#979797] text-[14px] font-normal leading-[18px]'>Tick here to confirm that you are at least 18 years old and the age of majority in your place of residence</div>
+                        <label className='text-[#979797] text-[14px] font-normal leading-[18px]' htmlFor='age'>Tick here to confirm that you are at least 18 years old and the age of majority in your place of residence</label>
                     </div>
                 </div>
                 <div className='flex flex-col gap-6'>
