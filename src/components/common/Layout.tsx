@@ -6,7 +6,7 @@ const Layout = ({ children }: any) => {
   const [activeMoreMenuItem, setActiveMoreMenuItem] = useState('');
   return (
     <React.Fragment>
-      <main className='mx-auto flex h-screen min-h-screen  max-w-[1320px]'>
+      <main className='mx-auto flex h-screen min-h-screen max-w-[1320px]'>
         <div className='sticky top-0 flex h-screen'>
           <Sidebar
             activeMoreOption={activeMoreMenuItem}
@@ -14,18 +14,20 @@ const Layout = ({ children }: any) => {
           />
         </div>
 
-        <div className='relative'>
-          {/* test code */}
-          {/* {activeMoreMenuItem === 'Notifications' ? ( */}
+      
+          
+          <div className='main-content-scroller flex-grow overflow-y-auto bg-main-background lg:min-w-[600px]  h-screen'>
+            
+          {activeMoreMenuItem === 'Notifications' ? (
             <div className={`absolute z-[100] ml-0 transition duration-150 ease-out `}>
               <NotificationModal />
             </div>
-          {/* ) : null} */}
-          <div className='main-content-scroller flex-grow overflow-y-auto bg-main-background lg:min-w-[600px]'>
-            {/* test code end */}
+         ) : null} 
+           
             {children}
           </div>
-        </div>
+          
+        
       </main>
     </React.Fragment>
   );
