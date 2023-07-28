@@ -39,6 +39,9 @@
       width: 0;
   }
 
+  .transitions{
+    transition: all .4s ease-in
+  }
   .custom-scroll-bar::-webkit-scrollbar, *::-webkit-scrollbar {
     width: 8px;
   }
