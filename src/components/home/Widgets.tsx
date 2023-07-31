@@ -58,7 +58,7 @@ export default function Widgets() {
       </div>
 
       <div className={`sticky top-0 max-w-[376px]`}>
-      <div className='bg-[#121212] rounded-[14px] w-full h-max mt-5'>
+      <div className='bg-[#121212] rounded-[14px] w-full h-max'>
                 <div className='flex justify-between p-6 border-b border-white/[0.08]'>
                     <div className='text-[#FFFFFF] text-[18px] font-bold'>You might like</div>
                     <div className='flex gap-3'>
@@ -66,8 +66,8 @@ export default function Widgets() {
                         <Image src={arrowRight} alt={''} />
                     </div>
                 </div>
-                <div className='px-6 pb-6 bookmark-img-text'>
-                    <div className='mt-6 h-[286px] profile-like-slider'>
+                <div className='px-6 py-6 bookmark-img-text'>
+                    <div className='h-[286px] profile-like-slider'>
                     <Slider {...settings}>
                     <UserFrame />
                     <UserFrame />
