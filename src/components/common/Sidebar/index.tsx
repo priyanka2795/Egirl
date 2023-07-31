@@ -27,7 +27,7 @@ import ListsIconActive from './svg/ListIconActive';
 import AddCardActiveIcon from './svg/AddCardActiveIcon';
 import UserImg from './svg/user-img.svg';
 import MoreMenuOption from './MoreMenuOption';
-import UserDetailModal from './userDetailModal';
+import UserDetailModal from './UserDetailModal';
 
 // sideBarClasses={'!w-[88px]'}
 // sideBarLogoClasses={'!hidden'}

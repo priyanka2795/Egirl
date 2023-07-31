@@ -1,27 +1,20 @@
-import React , {useState} from 'react';
-import Image from 'next/image';
-import creditCard from '../../../public/assets/credit-card.png'
-import cardCircles from '../../../public/assets/card-circles.png';
-import threeDotsIcon from '../../../public/assets/dots-horizontal.png';
-import SuccessPage from './SuccessPage';
-import ErrorPage from './ErrorPage';
-import DeleteModal from './DeleteModal';
+import React, { useState } from 'react'
 import AddCardForm from './AddCardForm';
 
-const AddCard = () => {
+interface DefaultCardProp {
+    closeDefaultPage: React.Dispatch<React.SetStateAction<boolean>> ;
+}
+
+const DefaultCard = ( {closeDefaultPage} : DefaultCardProp ) => {
     const tabContent = ['Add card', 'Latest transactions'];
     const [activeListTab, setActiveListTab] = useState('Add card');
-    const [deleteCardState , setDeleteCardState] = useState(false);
-    const [showSuccessPage , setShowSuccessPage] = useState(false);
-    const [showErrorPage , setShowErrorPage] = useState(false);
-    
 
     const handleExploreSelected = (e: any) => {
         //setExploreSelected(e.target.innerText);
         setActiveListTab(e.target.innerText);
       };
+
   return (
-    <>
     <div className='flex'>
         <div className='border-r border-white/[0.08] bg-[#121212] w-full h-full'>
         <div className='w-full px-8 pt-[18px] pb-[14px] border-b border-white/[0.08]'>
@@ -43,14 +36,10 @@ const AddCard = () => {
             })}
             </div>
             </div>
-            {
-                showSuccessPage ?
-                <SuccessPage closeSuccessPage={setShowSuccessPage}/> : ( 
-                showErrorPage ? <ErrorPage closeErrorPage={setShowErrorPage} /> : <AddCardForm showSucess={setShowSuccessPage} showError={setShowErrorPage}/> )
-            } 
+            <AddCardForm />
         </div>
       
-        <div className='flex flex-col gap-4 p-4'>
+        {/* <div className='flex flex-col gap-4 p-4'>
             <div className='text-[#FFFFFF] text-[18px] font-bold leading-6'>Added cards</div>
             {
                 showSuccessPage ? (
@@ -96,16 +85,9 @@ const AddCard = () => {
                 ))
             }
             
-        </div>
+        </div> */}
     </div>
-    
-    <p onClick={() => setDeleteCardState(true)}>delete card</p>
-    {deleteCardState &&
-      <DeleteModal closeDeleteModal={setDeleteCardState}/>
-    }
-  
-    </>
   )
 }
 
-export default AddCard;
+export default DefaultCard

@@ -8,6 +8,9 @@ import UserFrame from '@components/list/UserFrame';
 import arrowLeft from '../../../public/assets/arrow-narrow-left.png'
 import arrowRight from '../../../public/assets/arrow-narrow-right.png'
 import Image from 'next/image';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
 
 const settings = {
   dots: true,
@@ -54,16 +57,8 @@ export default function Widgets() {
         </div> 
       </div>
 
-      {/* <div
-        className={`sticky  ${
-          sticky && animate ? 'top-[108px]' : 'top-4'
-        } max-w-[376px] transition-all duration-300 ease-in `}
-      >
-        <YouMightLike />
-        
-      </div> */}
       <div className={`sticky top-0 max-w-[376px]`}>
-      <div className='bg-[#121212] rounded-[14px] w-[39%] h-max w-full'>
+      <div className='bg-[#121212] rounded-[14px] w-full h-max mt-5'>
                 <div className='flex justify-between p-6 border-b border-white/[0.08]'>
                     <div className='text-[#FFFFFF] text-[18px] font-bold'>You might like</div>
                     <div className='flex gap-3'>
@@ -72,7 +67,7 @@ export default function Widgets() {
                     </div>
                 </div>
                 <div className='px-6 pb-6 bookmark-img-text'>
-                    <div className='h-[286px] profile-like-slider'>
+                    <div className='mt-6 h-[286px] profile-like-slider'>
                     <Slider {...settings}>
                     <UserFrame />
                     {/* <UserFrame />
@@ -82,12 +77,7 @@ export default function Widgets() {
                     </div>
                 </div>
             </div>
-   
       </div>
-      {/* <div className='w-400px'>
-        
-      </div>
-       */}
     </div>
   );
 }

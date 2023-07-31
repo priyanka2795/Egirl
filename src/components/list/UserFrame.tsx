@@ -34,8 +34,8 @@ const UserFrame = () => {
                                 <Image className='w-full h-full rounded-[100px]' src={item.image} alt={''} />
                             </div>
                             <div className='flex flex-col gap-[2px] w-[126px]'>
-                                <div className='text-[#FFFFFF] text-[15px] font-semibold'>{item.name}</div>
-                                <div className='text-[#979797] text-sm font-normal'>{item.userName}</div>
+                                <div className='text-[#FFFFFF] text-[15px] font-semibold leading-5'>{item.name}</div>
+                                <div className='text-[#979797] text-sm font-normal leading-[18px]'>{item.userName}</div>
                             </div>
                         </div>
                     </>
