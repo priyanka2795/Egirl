@@ -30,7 +30,7 @@ const DefaultChatViewDropdown = ({
       </div>
       {chatView && (
         <div className='absolute right-0 top-[100%] mt-2 inline-flex h-[130px] w-[218px] flex-col items-start justify-start rounded-2xl bg-zinc-900 py-2 shadow'>
-          <div className='cursor-pointer flex-col items-center justify-start gap-2 self-stretch '>
+          <div className='flex-col items-center self-stretch justify-start gap-2 cursor-pointer '>
             {viewOptions.map((items) => {
               return (
                 <div

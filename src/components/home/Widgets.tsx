@@ -10,6 +10,7 @@ import arrowRight from '../../../public/assets/arrow-narrow-right.png'
 import Image from 'next/image';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import blueDressGirl from '../../../public/assets/blue-dress-girl.png';
 
 
 const settings = {
@@ -69,10 +70,9 @@ export default function Widgets() {
                 <div className='px-6 py-6 bookmark-img-text'>
                     <div className='h-[286px] profile-like-slider'>
                     <Slider {...settings}>
-                    <UserFrame />
-                    <UserFrame />
-                    <UserFrame />
-                    <UserFrame />
+                      <div className='h-[286px] w-[328px]'>
+                        <Image className='h-[286px] w-[328px]' src={blueDressGirl} alt={''} />
+                      </div>
                     </Slider>
                     </div>
                 </div>

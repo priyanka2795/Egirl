@@ -12,7 +12,8 @@ interface CollectionCardProps {
   dropdownCardId?: any;
   getCardId?: any;
   cardId?: string;
-  filterFunction?: any
+  filterFunction?: any;
+  subscription?: string;
 }
 const CollectionCard = ({
   cardMainImg,

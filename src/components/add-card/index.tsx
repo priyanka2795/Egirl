@@ -4,6 +4,7 @@ import ErrorPage from './ErrorPage';
 import DeleteModal from './DeleteModal';
 import AddCardForm from './AddCardForm';
 import DefaultAddCard from './DefaultAddCard';
+import LatestTransactions from './LatestTransactions';
 
 const AddCard = () => {
   const tabContent = ['Add card', 'Latest transactions'];
@@ -49,7 +50,7 @@ const AddCard = () => {
               showError={setShowErrorPage}
             />
           ) : (
-            <h1>Hello</h1>
+            <LatestTransactions />
           )}
         </div>
         {activeListTab === 'Add card' ? (
@@ -57,7 +58,10 @@ const AddCard = () => {
             showSuccessPage={showSuccessPage}
             showErrorPage={showErrorPage}
           />
-        ) : null}
+        ) : <DefaultAddCard 
+        showSuccessPage={showSuccessPage}
+        showErrorPage={showErrorPage}/>
+        }
       </div>
 
       <p onClick={() => setDeleteCardState(true)}>delete card</p>

@@ -231,42 +231,30 @@ sideBarProp) {
         <TestIcon className='hidden h-5 xl:ml-8 xl:inline' />
       </div> */}
 
-      <div className='flex items-center justify-between w-full px-6 mt-auto mb-6'>
+      <div className='flex items-center justify-between w-full px-6 mt-auto mb-6 cursor-pointer' onClick={() =>{setUserAccountMenu(!userAccountMenu)}}>
         <div className='flex items-center gap-1'>
           {/* <img
             src='https://www.adscientificindex.com/pictures/0b/50734.jpg'
             alt='user-img'
             className='w-10 h-10 rounded-full xl:mr-2'
           /> */}
-          <div onClick={() =>{setUserAccountMenu(!userAccountMenu)}}>
+          <div>
            <UserImg />
           </div>
-          {/* <div className="w-10 h-10 rounded-full">
-              
-          </div> */}
-          <div
-            className={`hidden leading-5 xl:inline ${sideBarLogoClasses} ${
-              shrinkSidebar ? '!hidden' : ''
-            }`}
-          >
+          <div className={`hidden leading-5 xl:inline ${sideBarLogoClasses} ${shrinkSidebar ? '!hidden' : ''}`}>
             <h4 className='text-sm font-bold leading-[18px]'>Username</h4>
             <p className='text-[13px] font-light leading-[18px] text-[#979797]'>
               @Username
             </p>
           </div>
         </div>
-        {/* <TestIcon className='hidden h-5 xl:inline' /> */}
-     <div onClick={() =>{setUserAccountMenu(!userAccountMenu)}}>
-     <DotsVerticalIcon 
-          className={`hidden h-5 xl:inline ${sideBarLogoClasses} ${
-            shrinkSidebar ? '!hidden' : ''
-          }`}
-        />
-         {
-      userAccountMenu &&
-     <UserDetailModal styleClasses={`${shrinkSidebar === 'true' ? 'fixed left-[18px]' : 'absolute  right-[34px] '}`}/>
-     }
-     </div>
+        <div>
+          <DotsVerticalIcon className={`hidden h-5 xl:inline ${sideBarLogoClasses} ${shrinkSidebar ? '!hidden' : ''}`}/>
+          {
+            userAccountMenu &&
+            <UserDetailModal styleClasses={`${shrinkSidebar === 'true' ? 'fixed left-[18px]' : 'absolute  right-[34px] '}`}/>
+          }
+        </div>
     
       </div>
     </div>

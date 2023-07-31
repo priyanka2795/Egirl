@@ -243,10 +243,10 @@
 
     input:checked + label:after  {
       content: '';    
-      top: 7px;
+      top: 6px;
       background: url("../../public/assets/checked-icon.png") no-repeat center;
       width: 10.7px;
-      @apply h-2 left-2 absolute block bg-cover bg-no-repeat
+      @apply h-2 left-[7px] absolute block bg-cover bg-no-repeat
     }
   } 
 
@@ -261,7 +261,9 @@
       @apply block w-6 h-6 bg-cover bg-no-repeat
     }
     .slick-arrow.slick-prev::before{
-      @apply hidden
+      content: '';
+      background-image: url("../../public/assets/arrow-right.png");
+      @apply block rotate-180 w-6 h-6 bg-cover bg-no-repeat
     }
   }
 
