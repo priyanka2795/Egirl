@@ -46,4 +46,4 @@ const UserFrame = () => {
   )
 }
 
-export default UserFrame
+export default UserFrame;

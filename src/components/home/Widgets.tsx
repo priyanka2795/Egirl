@@ -70,9 +70,9 @@ export default function Widgets() {
                     <div className='mt-6 h-[286px] profile-like-slider'>
                     <Slider {...settings}>
                     <UserFrame />
-                    {/* <UserFrame />
                     <UserFrame />
-                    <UserFrame /> */}
+                    <UserFrame />
+                    <UserFrame />
                     </Slider>
                     </div>
                 </div>
