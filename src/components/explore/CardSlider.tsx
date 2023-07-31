@@ -12,8 +12,8 @@ import SubscriptionPlan from './SubscriptionPlan';
 const CardSlider = () => {
   const [subscriptionModalState, setSubscriptionModalState] = useState(false);
   return (<>
-    <div className='relative mx-auto mt-[77px] w-max'>
-      <Image src={cardImg} alt='' />
+    {/* <div className='relative mx-auto mt-[77px] w-max'> */}
+      {/* <Image src={cardImg} alt='' /> */}
       <div className='absolute bottom-0 right-0 inline-flex w-full items-center justify-start bg-gradient-to-b from-transparent to-black px-6 pb-6 pt-[205px]'>
         <div className='flex-col items-center self-stretch justify-start w-full gap-8 '>
           <div className='flex flex-col items-start justify-center gap-2'>
@@ -65,7 +65,7 @@ const CardSlider = () => {
                 <RedCloseIcon />
               </div>
             </div>
-            <div className='flex items-start justify-start gap-2.5 rounded-[100px] border-2 border-indigo-700 p-6' onClick={() =>{setSubscriptionModalState(true)}}>
+            <div className='flex items-start justify-start gap-2.5 rounded-[100px] border-2 border-indigo-700 p-6 relative z-[40]' onClick={() =>{setSubscriptionModalState(true)}}>
               <div className='relative h-8 w-8 backdrop-blur-[88px]'>
                 <UserIcon />
               </div>
@@ -78,7 +78,7 @@ const CardSlider = () => {
           </div>
         </div>
       </div>
-    </div>
+    {/* </div> */}
     {
       subscriptionModalState &&
     <SubscriptionPlan closeDefaulModal={setSubscriptionModalState} />

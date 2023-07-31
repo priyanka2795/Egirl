@@ -1,32 +1,45 @@
 import React, { useState, useRef, useMemo, useEffect } from 'react';
-import TinderCard from 'react-tinder-card';
+// import TinderCard from 'react-tinder-card';
 import mikaChanImg from '../../../public/assets/mikaChan.png';
+import cardImg from '../../../public/assets/explore/explore-img.png';
+import Image from 'next/image';
+import CardSlider from './CardSlider';
 
 const db = [
   {
     name: 'Richard Hendricks',
-    url: '../../../public/assets/mikaChan.png'
+    url: '../../../public/assets/mikaChan.png',
+    userImg: mikaChanImg
   },
   {
     name: 'Erlich Bachman',
-    url: './img/erlich.jpg'
+    url: '../../../public/assets/mikaChan.png',
+    userImg: mikaChanImg
+    // url: './img/erlich.jpg'
   },
   {
     name: 'Monica Hall',
-    url: './img/monica.jpg'
+    url: '../../../public/assets/mikaChan.png',
+    userImg: mikaChanImg
+    // url: './img/monica.jpg'
   },
   {
     name: 'Jared Dunn',
-    url: './img/jared.jpg'
+    url: '../../../public/assets/mikaChan.png',
+    userImg: mikaChanImg
+    // url: './img/jared.jpg'
   },
   {
     name: 'Dinesh Chugtai',
-    url: './img/dinesh.jpg'
+    url: '../../../public/assets/mikaChan.png',
+    userImg: mikaChanImg
+    // url: './img/dinesh.jpg'
   }
 ];
 const TinderCardSlider = () => {
   const [currentIndex, setCurrentIndex] = useState(db.length - 1);
   const [lastDirection, setLastDirection] = useState();
+  const [TinderCard, setTinderCard] = useState<any>();
   const [initialRenderComplete, setInitialRenderComplete] =
     useState<boolean>(false);
   // used for outOfFrame closure
@@ -54,32 +67,15 @@ const TinderCardSlider = () => {
     setLastDirection(direction);
     updateCurrentIndex(index - 1);
   };
-  const newTinderCard = useMemo(( ) => {
-    { console.log(window , 'test')}
-    {typeof window !== undefined ? (
-      <>
-     
-       <TinderCard
-         ref={childRefs[0]}
-         className='swipe'
-         key={character.name}
-         onSwipe={(dir) => swiped(dir, "Richard Hendricks", 0)}
-         onCardLeftScreen={() => outOfFrame("Richard Hendricks", 0)}
-       >
-         <div
-          //  style={{ backgroundImage: 'url(' + "../../../public/assets/mikaChan.png" + ')' }}
-           className='card'
-         >
-           <h3>{"Richard Hendricks"}</h3>
-         </div>
-       </TinderCard>
-      </>
-       
-     ) : null}
-  },[])
+ 
   
   useEffect(() => {
     setInitialRenderComplete(true);
+    if (typeof window !== 'undefined') {
+    const tinderCard  = require('react-tinder-card');
+    setTinderCard(tinderCard)
+    }
+    
   }, []);
   const outOfFrame = (name: any, idx: any) => {
     console.log(`${name} (${idx}) left the screen!`, currentIndexRef.current);
@@ -106,50 +102,44 @@ const TinderCardSlider = () => {
   if (!initialRenderComplete) return <></>;
  
   return (
-    <div>
-      {/* <link
+<div className="mt-[99px]">
+<link
         href='https://fonts.googleapis.com/css?family=Damion&display=swap'
         rel='stylesheet'
       />
       <link
         href='https://fonts.googleapis.com/css?family=Alatsi&display=swap'
         rel='stylesheet'
-      /> */}
-      <h1>React Tinder Card</h1>
+      />
+    <div className="flex flex-col items-center justify-center app-test">    
       <div className='cardContainer'>
         {db.map((character, index) => (
-          <>
-          {typeof window !== undefined &&
-          newTinderCard
-          }
-          {/* {newTinderCard} */}
-            {/* {typeof window !== undefined ? (
-             <>
-             { console.log(window , 'test')}
-              <TinderCard
-                ref={childRefs[index]}
-                className='swipe'
-                key={character.name}
-                onSwipe={(dir) => swiped(dir, character.name, index)}
-                onCardLeftScreen={() => outOfFrame(character.name, index)}
-              >
-                <div
-                  style={{ backgroundImage: 'url(' + character.url + ')' }}
-                  className='card'
-                >
-                  <h3>{character.name}</h3>
-                </div>
-              </TinderCard>
-             </>
-              
-            ) : null} */}
-          </>
+          <TinderCard
+            ref={childRefs[index]}
+            className='swipe'
+            key={character.name}
+            onSwipe={(dir:any) => swiped(dir, character.name, index)}
+            onCardLeftScreen={() => outOfFrame(character.name, index)}
+          >
+            <div
+             style={{
+              backgroundImage: `url(${cardImg.src})`,
+              width: '437px',
+              height: '735px',
+            }}
+              className='relative card'
+            >
+            <CardSlider/>
+              {/* <h3>{character.name}</h3> */}
+            </div>
+          </TinderCard>
         ))}
       </div>
-      <div className='buttons'>
-        <button onClick={() => swipe('left')}>Swipe left!</button>
-        <button onClick={() => goBack()}>Undo swipe!</button>
-        <button onClick={() => swipe('right')}>Swipe right!</button>
+
+      <div className='flex buttons !mt-[-108px] w-[342px] h-[84px] opacity-0'>
+        <button className="h-[84px] w-[84px] rounded-full margin-0 z-30 " onClick={() => swipe('left')}>Swipe left!</button>
+        <button className="h-[84px] w-[84px] rounded-full margin-0 z-0" onClick={() => goBack()}>Undo swipe!</button>
+        <button className="h-[84px] w-[84px] rounded-full margin-0 z-30 " onClick={() => swipe('right')}>Swipe right!</button>
       </div>
       {lastDirection ? (
         <h2 key={lastDirection} className='infoText'>
@@ -161,6 +151,7 @@ const TinderCardSlider = () => {
         </h2>
       )}
     </div>
+   </div>
   );
 };
 

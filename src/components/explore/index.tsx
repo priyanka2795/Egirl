@@ -80,14 +80,14 @@ const ExploreIndex = () => {
 
         {exploreSelectedTab === 'Swipe' ? (
           <>
-            <div className='explore-slider'>
+            {/* <div className='explore-slider'>
               <Slider {...settings}>
                 <CardSlider />
                 <CardSlider /> 
                 <CardSlider />
               </Slider>
-            </div>
-            {/* <TinderCardSlider /> */}
+            </div> */}
+            <TinderCardSlider />
 
             <div className='mb-[32px] mt-[77px] flex justify-center gap-2 items-start'>
               <div
