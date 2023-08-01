@@ -11,7 +11,7 @@ interface CardProps{
 }
 const Card = ({cardMainImg ,verified, characterName, characterType, availableCount }:CardProps) => {
   return (
-    <div className='flex flex-col items-start self-stretch overflow-hidden rounded-2xl bg-white/10'>
+    <div className='flex flex-col items-start self-stretch overflow-hidden cursor-pointer rounded-2xl bg-white/10'>
     <div className='flex self-stretch justify-center max-h-[180px] h-full overflow-hidden'>
         <Image className='object-cover' src={cardMainImg} alt={''} />
     </div>
