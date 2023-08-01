@@ -32,11 +32,11 @@ const MoreMenuOption = ({moreOptionItem , activeMoreOption , classes }: MoreMenu
                 <div className='w-max text-sm font-normal leading-[18px] text-white'>
                   {items}
                 </div>
-                {activeMoreOption === items && (
+                {/* {activeMoreOption === items && (
                   <div className='relative w-2 h-2'>
                     <div className='absolute top-0 left-0 w-2 h-2 bg-red-500 border rounded-full border-neutral-800'></div>
                   </div>
-                )}
+                )} */}
               </div>
             </>
           );

@@ -4,7 +4,7 @@ import PostCard from './PostCard';
 import UserSection from './UserSection';
 
 interface RemoveProfileProp{
-  backFromProfile: React.Dispatch<React.SetStateAction<boolean>>
+  backFromProfile?: React.Dispatch<React.SetStateAction<boolean>>
 }
 const RemoveProfile = ({backFromProfile} : RemoveProfileProp) => {
 

@@ -231,7 +231,7 @@ sideBarProp) {
         <TestIcon className='hidden h-5 xl:ml-8 xl:inline' />
       </div> */}
 
-      <div className='flex items-center justify-between w-full px-6 mt-auto mb-6 cursor-pointer' onClick={() =>{setUserAccountMenu(!userAccountMenu)}}>
+      <div className='flex items-center justify-between w-full px-6 mt-auto mb-6 cursor-pointer' onClick={() =>{setUserAccountMenu(true)}}>
         <div className='flex items-center gap-1'>
           {/* <img
             src='https://www.adscientificindex.com/pictures/0b/50734.jpg'
@@ -252,7 +252,7 @@ sideBarProp) {
           <DotsVerticalIcon className={`hidden h-5 xl:inline ${sideBarLogoClasses} ${shrinkSidebar ? '!hidden' : ''}`}/>
           {
             userAccountMenu &&
-            <UserDetailModal styleClasses={`${shrinkSidebar === 'true' ? 'fixed left-[18px]' : 'absolute  right-[34px] '}`}/>
+            <UserDetailModal setUserAccountMenu={setUserAccountMenu} userAccountMenu={userAccountMenu} styleClasses={`${shrinkSidebar === 'true' ? 'fixed left-[18px]' : 'absolute  right-[34px] '}`}/>
           }
         </div>
     

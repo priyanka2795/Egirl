@@ -9,7 +9,8 @@ import SubscriptionBuyContent from './SubscriptionBuyContent';
 import CloseIcon from '../../../public/assets/svgImages/close-icon.svg'
 
 interface subscription {
-  closeState: any;
+  closeState?: any;
+  showSubscription: boolean;
 }
 const tabOption = ['Egirls+', 'Buy Tokens'];
 const featureOpt = [
@@ -18,8 +19,8 @@ const featureOpt = [
   'Faster generation times',
   'Access to all premium features, present and future'
 ];
-const SubscriptionModal = ({ closeState }: subscription) => {
-  const [tabSelectedOpt, setTabSelectedOpt] = useState('Egirls+');
+const SubscriptionModal = ({ closeState, showSubscription }: subscription) => {
+  const [tabSelectedOpt, setTabSelectedOpt] = useState(showSubscription ? 'Buy Tokens' : 'Egirls+');
   const handleActiveTab = (items: any) =>{
     setTabSelectedOpt(items)
     console.log(items , "hweee>>>>")
@@ -89,7 +90,7 @@ const SubscriptionModal = ({ closeState }: subscription) => {
           $14.99 per month
         </button> */}
         {
-          tabSelectedOpt === "Egirls+" ? <SubscriptionEgirlContent /> : <SubscriptionBuyContent/>
+          showSubscription ? (<> {() => {handleActiveTab('Buy Tokens')}} <SubscriptionBuyContent/> </>) : (tabSelectedOpt === "Egirls+" ? <SubscriptionEgirlContent /> : <SubscriptionBuyContent/>)
         }
         
       </Modal>
