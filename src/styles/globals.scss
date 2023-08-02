@@ -444,31 +444,14 @@ h2 {
 // }
 
 .swipe.left{
-  // animation-name: swipeLeft;
   transition: all 2s ease-in;
-  transform: translate3d(-2629.78px, 383.761px, 0px) rotate(-58.5deg) !important;
-  // transform: translate3d(-2629.78px, 383.761px, 0px) rotate(-58.5deg);
+    transform: translate3d(-2629.78px, 383.761px, 0px) rotate(-58.5deg) !important;
+
 }
 .swipe.right{
-  // animation-name: swipeRight;
-  // animation-duration: 800ms;
   transition: all 2s ease-in;
   transform: translate3d(2629.78px, 356.17px, 0px) rotate(58.5deg) !important;
 }
-
-// @keyframes swipeLeft {
-//   0%{
-//     transform: translate3d(0px, 0px, 0px) rotate(0) !important;
-//   }
-//   100%{
-//     transform: translate3d(-2629.78px, 383.761px, 0px) rotate(-58.5deg) !important;
-//   }
-// }
-// @keyframes swipeRight {
-//   0%{
-//     transform: translate3d(0px, 0px, 0px) rotate(0) !important;
-//   }
-//   100%{
-//     transform: translate3d(2629.78px, 356.17px, 0px) rotate(58.5deg) !important;
-//   }
-// }
+.swipe.right .card-bottom-button, .swipe.left .card-bottom-button{
+  opacity: 0.5;
+}

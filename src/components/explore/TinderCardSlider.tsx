@@ -40,6 +40,7 @@ const TinderCardSlider = () => {
   const [TinderCard, setTinderCard] = useState<any>();
   const [removedDirectionState, setRemovedDirectionState] = useState('');
   const [checkForDrag , setCheckForDrag] = useState(-1);
+  const [infoModal , setInfoModal] = useState(false);
   const [subscriptionModalState, setSubscriptionModalState] = useState(false);
   const [initialRenderComplete, setInitialRenderComplete] =
     useState<boolean>(false);
@@ -163,20 +164,20 @@ const TinderCardSlider = () => {
                       <TinderLikeBtn/>
                     )
                   : null}
-                <CardSlider />
+                <CardSlider infoModalCard={infoModal} setInfoModalCard={setInfoModal}/>
 
               
               </div>
-              <button
+              {/* <button
                   className='margin-0 z-7 absolute top-0 z-30 h-[525px] w-[100%] rounded-full'               
                   // onClick={() => swipe('left')}
                   onMouseDown={(e) => mouseDown(e)} onMouseUp={(e:any) => mouseUp(e)}
-                ></button> 
+                ></button>  */}
             </TinderCard>
           ))}
         </div>
 
-        <div className='buttons !mt-[-108px] flex h-[84px] w-[342px] opacity-0'>
+        <div className='card-bottom-button buttons !mt-[-108px] flex h-[84px] w-[342px] opacity-0'>
           <button
             className='margin-0 z-30 h-[84px] w-[84px] rounded-full '
             onClick={() => swipe('left')}
@@ -192,7 +193,7 @@ const TinderCardSlider = () => {
           </button>
         </div>
      
-      <div className="absolute top-0 left-0 w-full h-[525px]" onMouseDown={(e) => mouseDown(e)} onMouseUp={(e:any) => mouseUp(e)} />
+      <div className="absolute top-0 left-0 w-full h-[520px]" onMouseDown={(e) => mouseDown(e)} onMouseUp={(e:any) => mouseUp(e)} />
       </div>
     </div>
 
@@ -200,6 +201,7 @@ const TinderCardSlider = () => {
       subscriptionModalState &&
     <SubscriptionPlan closeDefaulModal={setSubscriptionModalState} />
     }
+    
 </>
   );
 };
