@@ -92,7 +92,7 @@ const Messages = () => {
                   chatScreenMsgClassName='!max-h-[62vh] overflow-y-scroll custom-scroll-bar'
                   setChartScreenView={setChartScreenView}
                 />
-              </Modal>
+              </Modal> 
             ) : (
               <ChatScreen
                 // chatScreenClassName={`ml-[80px]`}

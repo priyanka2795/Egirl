@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ArrowDown from './svg/arrow-down.svg';
 import ArrowUp from './svg/arrow-up.svg';
 import CheckIcon from './svg/check-icon.svg';
+import ChatScreen from './ChatScreen';
 
 const viewOptions = ['Default view', 'Focused view', 'FullScreen view'];
 type chartViewProps = {
@@ -14,10 +15,20 @@ const DefaultChatViewDropdown = ({
 }: chartViewProps) => {
   const [chatView, setChatView] = useState(false);
   const [selectedChatView, setSelectedChatView] = useState('Default view');
+  const [selectedState, setSelectedState] = useState('');
   const handleSelectedOption = (items: string) => {
+    console.log('>>>>items', items);
+
     setSelectedChatView(items);
+    console.log('>>>>SelectedChatView', selectedChatView);
+
+    setSelectedState(items);
+    console.log('##### selectedState', selectedState);
+
     setChartScreenView(items);
-    setChatView(false);
+    console.log('>>>>ChartScreenView', chartScreenView);
+
+    setChatView(false);  
   };
   return (
     <div className='relative'>
@@ -47,6 +58,10 @@ const DefaultChatViewDropdown = ({
           </div>
         </div>
       )}
+      
+      {/* <ChatScreen
+      chatView={chatView}
+      setChatView={setChatView} /> */}
     </div>
   );
 };

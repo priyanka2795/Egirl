@@ -32,13 +32,17 @@ type chatProps = {
   chatScreenClassName?: string;
   chatScreenMsgClassName?: string;
   chartScreenView?: string;
-  setChartScreenView: React.Dispatch<React.SetStateAction<string>>;
+  setChartScreenView?: React.Dispatch<React.SetStateAction<string>>;
+  chatView: boolean;
+  setChatView: React.Dispatch<React.SetStateAction<boolean>>;
 };
 export default function ChatScreen({
   chatScreenClassName,
   chatScreenMsgClassName,
   chartScreenView,
-  setChartScreenView
+  setChartScreenView,
+  chatView,
+  setChatView
 }: chatProps) {
   const [sticky, animate] = useScroll();
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -96,12 +100,20 @@ export default function ChatScreen({
             setChartScreenView={setChartScreenView}
           />
           <div className='relative'>
-            <div onClick={() => setMoreOptionDropdown(!moreOptionDropdown)}>
+          {chatView ? (
+            <div>
+            <DotsHorizontalIcon className='cursor-pointer' />
+           </div>
+            ) : (
+            <div onClick={() => {setMoreOptionDropdown(!moreOptionDropdown);console.log('>>>chatView', chatView)}}>
               <DotsHorizontalIcon className='cursor-pointer' />
             </div>
+            )}
+
+            
             {moreOptionDropdown && (
               <div className='absolute right-0 top-[100%] mt-2 inline-flex w-[218px] flex-col items-start justify-start rounded-2xl bg-zinc-900 py-2 shadow'>
-                <div className='cursor-pointer flex-col items-center justify-start gap-2 self-stretch '>
+                <div className='flex-col items-center self-stretch justify-start gap-2 cursor-pointer '>
                   <div className='flex gap-2 px-4 py-[10px] text-sm'>
                     <ChatIcon />
                     Chat view
@@ -193,7 +205,7 @@ export default function ChatScreen({
             </div>
             {sendUploadImgState && (
               <div className='absolute -top-[120px] left-0 mt-2 inline-flex w-[218px] flex-col items-start justify-start rounded-2xl bg-zinc-900 py-2 shadow'>
-                <div className='cursor-pointer flex-col items-center justify-start gap-2 self-stretch '>
+                <div className='flex-col items-center self-stretch justify-start gap-2 cursor-pointer '>
                   <div
                     className='flex gap-2 px-4 py-[10px] text-sm'
                     onClick={handleChatViewModal}

@@ -57,7 +57,7 @@ const ConvertCreditsModal = ({closeConvertCredits , confirmModal}: ConvertCredit
             modalOverlayStyle='!bg-black/80'
         >
           <div className='flex justify-between p-6 border-b border-white/[0.08]'>
-            <div className='text-[#FFFFFF] text-[18px] font-bold leading-6'>Convert to credits</div>
+            <div className='text-[#FFFFFF] text-[18px] font-bold leading-6'>Convert to tokens</div>
             <div className='w-6 h-6' onClick={() => closeConvertCredits(false)}>
               <Image className='w-full h-full' src={crossIcon} alt={''} />
             </div>
@@ -75,7 +75,7 @@ const ConvertCreditsModal = ({closeConvertCredits , confirmModal}: ConvertCredit
                     <div className='w-6 h-6'>
                       <Image className='w-full h-full' src={dollarSign} alt={''} /> 
                     </div>
-                    <input type='number' id='input' onChange={checkLength} placeholder={'0.00'} className='h-0 mt-1 text-[#979797] focus:ring-0 text-15px font-normal leading-6 bg-transparent border-none'/>
+                    <input type='number' id='input' onChange={checkLength} placeholder={'0.00'} className='h-0 mt-1 placeholder:text-[#979797] text-[#979797] focus:ring-0 text-15px font-normal leading-6 bg-transparent border-none'/>
                   </div>
                   <div className='flex px-4 py-3 rounded-[14px] bg-white/[0.05]'>
                     <div className='w-6 h-6'>

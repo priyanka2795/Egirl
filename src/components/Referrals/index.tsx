@@ -100,7 +100,7 @@ const ReferralsIndex = () => {
             <div className='w-6 h-6'>
               <Image className='w-full h-full' src={linkIcon} alt={''} />
             </div>
-            <input type='text' className='text-[#979797] text-[14px] font-normal leading-5 bg-transparent border-none h-0' placeholder='egirls.com/qwert1234' />
+            <div className='text-[#979797] text-[14px] font-normal leading-5'>egirls.com/qwert1234</div>
           </div>
           <button className='w-max flex items-center justify-center px-6 py-4 bg-[#5848BC] rounded-[16px] text-[#FFFFFF] text-[18px] font-bold leading-6'>Copy link</button>
         </div>
@@ -111,7 +111,7 @@ const ReferralsIndex = () => {
         <div className='flex flex-col w-full gap-2'>
           <div className='flex items-center justify-center gap-12 py-8 px-14 rounded-[20px] bg-white/[0.05]'>
             <div className='w-[49%] h-[144px] relative '>
-              <div className='flex flex-col items-center gap-2 absolute top-[39px] left-[1px] bottom-[10px] w-full h-full'>
+              <div className='mt-2 flex flex-col items-center gap-2 absolute top-[39px] left-[1px] bottom-[10px] w-full h-full'>
                 <div className='text-[#FFFFFF] text-center text-[26px] font-bold leading-8'>5%</div>
                 <div className='text-[#FFFFFF] text-center text-[26px] font-bold leading-8'>Earnings</div>
                 <div className='text-[#979797] text-[14px] font-normal leading-[18px]'>0/100 people referred</div>
@@ -143,7 +143,7 @@ const ReferralsIndex = () => {
           </div>
           
           <div className='grid grid-cols-2 gap-2'>
-            <button className='flex items-center justify-center rounded-[16px] bg-[#5848BC] text-[#FFFFFF] text-[18px] font-bold leading-6 px-6 py-4' onClick={() =>{setshowConvertCredits(true)}}>Convert to credits</button>
+            <button className='flex items-center justify-center rounded-[16px] bg-[#5848BC] text-[#FFFFFF] text-[18px] font-bold leading-6 px-6 py-4' onClick={() =>{setshowConvertCredits(true)}}>Convert to tokens</button>
             <button className='flex items-center justify-center rounded-[16px] bg-[#5848BC] text-[#FFFFFF] text-[18px] font-bold leading-6 px-6 py-4'>Cash out</button>
           </div>
         </div>

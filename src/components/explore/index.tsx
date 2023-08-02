@@ -65,6 +65,7 @@ const ExploreIndex = () => {
   const [filterOptionShow, setFilterOptionShow] = useState(true);
   const [exploreSelectedTab, setExploreSelected] = useState('Swipe');
   const [defaultModal, setDefaultModal] = useState(false);
+  const [singleProfileState ,setSingleProfileState] = useState(false);
 
   return (
     <>
@@ -113,7 +114,7 @@ const ExploreIndex = () => {
           </>
         ) : (
           <div className='px-8'>
-            <GalleryTabFilter />
+            <GalleryTabFilter singleProfileState={singleProfileState}  setSingleProfileState={setSingleProfileState}/>
           </div>
         )}
       </div>

@@ -90,7 +90,7 @@ const SubscriptionModal = ({ closeState, showSubscription }: subscription) => {
           $14.99 per month
         </button> */}
         {
-          showSubscription ? (<> {() => {handleActiveTab('Buy Tokens')}} <SubscriptionBuyContent/> </>) : (tabSelectedOpt === "Egirls+" ? <SubscriptionEgirlContent /> : <SubscriptionBuyContent/>)
+          showSubscription ? <SubscriptionBuyContent/> : (tabSelectedOpt === "Egirls+" ? <SubscriptionEgirlContent /> : <SubscriptionBuyContent/>)
         }
         
       </Modal>
