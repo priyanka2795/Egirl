@@ -429,31 +429,46 @@ h2 {
   }
 }
 
-// .buttons button {
-//   flex-shrink: 0;
-//   padding: 10px;
- 
-
-//   color: #fff;
-//   font-size: 18px;
-//   background-color: #9198e5;
-//   transition: 200ms;
-//   margin: 10px;
-//   font-weight: bolder;
-//   width: 160px;
-//   box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.10);
-// }
-
 .buttons button:hover {
   transform: scale(1.05);
 }
 
-@keyframes popup {
-  0%   { transform: scale(1,1) }
-  10%  { transform: scale(1.1,1.1) }
-  30%  { transform: scale(.9,.9) }
-  50%  { transform: scale(1,1) }
-  57%  { transform: scale(1,1) }
-  64%  { transform: scale(1,1) }
-  100% { transform: scale(1,1) }
+// @keyframes popup {
+//   0%   { transform: scale(1,1) }
+//   10%  { transform: scale(1.1,1.1) }
+//   30%  { transform: scale(.9,.9) }
+//   50%  { transform: scale(1,1) }
+//   57%  { transform: scale(1,1) }
+//   64%  { transform: scale(1,1) }
+//   100% { transform: scale(1,1) }
+// }
+
+.swipe.left{
+  // animation-name: swipeLeft;
+  transition: all 2s ease-in;
+  transform: translate3d(-2629.78px, 383.761px, 0px) rotate(-58.5deg) !important;
+  // transform: translate3d(-2629.78px, 383.761px, 0px) rotate(-58.5deg);
 }
+.swipe.right{
+  // animation-name: swipeRight;
+  // animation-duration: 800ms;
+  transition: all 2s ease-in;
+  transform: translate3d(2629.78px, 356.17px, 0px) rotate(58.5deg) !important;
+}
+
+// @keyframes swipeLeft {
+//   0%{
+//     transform: translate3d(0px, 0px, 0px) rotate(0) !important;
+//   }
+//   100%{
+//     transform: translate3d(-2629.78px, 383.761px, 0px) rotate(-58.5deg) !important;
+//   }
+// }
+// @keyframes swipeRight {
+//   0%{
+//     transform: translate3d(0px, 0px, 0px) rotate(0) !important;
+//   }
+//   100%{
+//     transform: translate3d(2629.78px, 356.17px, 0px) rotate(58.5deg) !important;
+//   }
+// }

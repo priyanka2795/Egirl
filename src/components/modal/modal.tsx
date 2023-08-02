@@ -48,7 +48,7 @@ export function Modal({
     <AnimatePresence>
       {open && (
         <Dialog
-          className='relative z-50'
+          className='relative z-[100]'
           open={open}
           onClose={closeModal}
           static
