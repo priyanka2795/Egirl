@@ -68,7 +68,7 @@ const GalleryCardCollection = ({ selectedFilter ,singleProfileState , setSingleP
         <div className='grid grid-cols-3 gap-4'>
         {exploreGallery.map((items) => {
           return (
-            <div className='relative gallery-card-collection' onClick={() => setSingleProfileState(true)}>
+            <div className='relative cursor-pointer gallery-card-collection' onClick={() => setSingleProfileState(true)}>
               <Image src={items.mainImg} alt='' className='object-cover'/>
               <div className='absolute bottom-0 right-0 w-full flex-col items-center justify-start bg-gradient-to-b from-transparent to-black px-6 pb-6 pt-[205px]'>
                 <div className='inline-flex h-6 w-[276px] items-center justify-start gap-1.5'>

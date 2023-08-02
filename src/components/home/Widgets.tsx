@@ -70,9 +70,11 @@ export default function Widgets() {
                 <div className='px-6 py-6 bookmark-img-text'>
                     <div className='h-[286px] profile-like-slider'>
                     <Slider {...settings}>
-                      <div className='h-[286px] w-[328px]'>
-                        <Image className='h-[286px] w-[328px]' src={blueDressGirl} alt={''} />
-                      </div>
+                      <Image className='w-full h-full h-max' src={blueDressGirl} alt={''} />
+                      <Image className='w-full h-full h-max' src={blueDressGirl} alt={''} />
+                      <Image className='w-full h-full h-max' src={blueDressGirl} alt={''} />
+                      <Image className='w-full h-full h-max' src={blueDressGirl} alt={''} />
+                      <Image className='w-full h-full h-max' src={blueDressGirl} alt={''} />
                     </Slider>
                     </div>
                 </div>
