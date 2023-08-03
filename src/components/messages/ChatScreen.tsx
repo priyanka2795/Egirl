@@ -33,16 +33,12 @@ type chatProps = {
   chatScreenMsgClassName?: string;
   chartScreenView?: string;
   setChartScreenView?: React.Dispatch<React.SetStateAction<string>>;
-  chatView: boolean;
-  setChatView: React.Dispatch<React.SetStateAction<boolean>>;
 };
 export default function ChatScreen({
   chatScreenClassName,
   chatScreenMsgClassName,
   chartScreenView,
   setChartScreenView,
-  chatView,
-  setChatView
 }: chatProps) {
   const [sticky, animate] = useScroll();
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -53,6 +49,7 @@ export default function ChatScreen({
   const [sendUploadImgState, setSendUploadImgState] = useState(false);
   const [chatViewOption, setChatViewOption] = useState(false);
   const [emojiPicker, setEmojiPicker] = useState(false);
+  const [chatView, setChatView] = useState(false);
 
   const handleChatViewModal = () => {
     setChatViewOption(!chatViewOption);
@@ -64,10 +61,25 @@ export default function ChatScreen({
       containerRef.current.scrollTop = containerRef.current.scrollHeight;
     }
   }, []);
-  // const handleImage = (e: any) => {
-  //   const { files } = e.target;
-  //   console.log(files, 'ee');
-  // };
+  const handleViews = (e: any) => {
+console.log(e);
+if(e==="chatView"){
+  if(moreOptionDropdown){
+    setChatView(!chatView)
+    setMoreOptionDropdown(!moreOptionDropdown)
+  }else{
+    setChatView(!chatView)
+  }
+}else{
+  if(chatView){
+    setMoreOptionDropdown(!moreOptionDropdown)
+    setChatView(!chatView)
+  }else{
+    setMoreOptionDropdown(!moreOptionDropdown)
+  }
+}
+
+  };
   return (
     <div
       className={`w-full border-r-[2px] border-[#252525] bg-[#121212] lg:inline ${chatScreenClassName}`}
@@ -98,19 +110,14 @@ export default function ChatScreen({
           <DefaultChatViewDropdown
             chartScreenView={chartScreenView}
             setChartScreenView={setChartScreenView}
+            chatView={chatView}
+            setChatView={handleViews}
           />
           <div className='relative'>
-          {chatView ? (
-            <div>
-            <DotsHorizontalIcon className='cursor-pointer' />
-           </div>
-            ) : (
-            <div onClick={() => {setMoreOptionDropdown(!moreOptionDropdown);console.log('>>>chatView', chatView)}}>
+            <div onClick={() => handleViews("dots")}>
               <DotsHorizontalIcon className='cursor-pointer' />
             </div>
-            )}
-
-            
+         
             {moreOptionDropdown && (
               <div className='absolute right-0 top-[100%] mt-2 inline-flex w-[218px] flex-col items-start justify-start rounded-2xl bg-zinc-900 py-2 shadow'>
                 <div className='flex-col items-center self-stretch justify-start gap-2 cursor-pointer '>
@@ -268,7 +275,7 @@ export default function ChatScreen({
               )}
             </div>
           </div>
-          <div className='ml-[10px] transition-all duration-100'>
+          <div className='ml-[10px] transition-all duration-100 mt-[8px]'>
             {message ? (
               <button
                 onClick={() => {

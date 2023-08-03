@@ -80,7 +80,7 @@ const GalleryTabFilter = ({singleProfileState ,setSingleProfileState}:GalleryTab
     arrows:true,
     speed: 500,
     slidesToShow: 6,
-    slidesToScroll: 1,
+    slidesToScroll: 2,
     variableWidth: true
   };
 

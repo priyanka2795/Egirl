@@ -18,7 +18,7 @@ const programSteps = [
     image: sendIcon,
     step: 'Step 1',
     action: 'Share referral link',
-    work: 'Share your link to as many people as you want'
+    work: 'Share your link to as many people as you wish'
   },
   {
     image: userAddIcon,
@@ -64,8 +64,8 @@ const ReferralsIndex = () => {
     <div className='flex flex-col items-center gap-20 w-[1020px] px-40 py-20'>
       <div className='flex flex-col items-center gap-10'>
         <div className='flex flex-col gap-3 w-[417px]'>
-          <div className='text-[#FFFFFF] text-[32px] font-bold leading-10 text-center'>Affiliate Program</div>
-          <div className='text-center text-[#979797] text-[15px] font-normal leading-5'>Earn up to 15% of what people spend on Egirls.ai when you refer them and they signup</div>
+          <div className='text-[#FFFFFF] text-[32px] font-bold leading-10 text-center'>Referral Program</div>
+          <div className='text-center text-[#979797] text-[15px] font-normal leading-5'>Earn up to 15% of your referrals spending on Egirls.ai</div>
         </div>
         <div className='w-[700px] justify-between items-center grid grid-cols-3 relative'>
           {programSteps.map((item) => {

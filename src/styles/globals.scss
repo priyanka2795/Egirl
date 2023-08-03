@@ -265,6 +265,16 @@
       background-image: url("../../public/assets/arrow-right.png");
       @apply block rotate-180 w-6 h-6 bg-cover bg-no-repeat
     }
+
+    .slick-prev.slick-disabled:before {
+      opacity: 0;
+    }
+
+    .slick-next.slick-disabled:before {
+      opacity: 0;
+    }
+
+
   }
 
   body {

@@ -8,14 +8,18 @@ const viewOptions = ['Default view', 'Focused view', 'FullScreen view'];
 type chartViewProps = {
   chartScreenView: string | undefined;
   setChartScreenView: React.Dispatch<React.SetStateAction<string>>;
+  chatView: boolean | undefined;
+  setChatView: any;
 };
 const DefaultChatViewDropdown = ({
   chartScreenView,
-  setChartScreenView
+  setChartScreenView,
+  chatView,
+  setChatView
 }: chartViewProps) => {
-  const [chatView, setChatView] = useState(false);
-  const [selectedChatView, setSelectedChatView] = useState('Default view');
-  const [selectedState, setSelectedState] = useState('');
+  // const [chatView, setChatView] = useState(false);
+  const [selectedChatView, setSelectedChatView] = useState(chartScreenView);
+  const [selectedState, setSelectedState] = useState(chartScreenView);
   const handleSelectedOption = (items: string) => {
     console.log('>>>>items', items);
 
@@ -28,15 +32,15 @@ const DefaultChatViewDropdown = ({
     setChartScreenView(items);
     console.log('>>>>ChartScreenView', chartScreenView);
 
-    setChatView(false);  
+    setChatView("chatView");  
   };
   return (
     <div className='relative'>
       <div
         className='flex cursor-pointer text-[14px] font-normal leading-none text-neutral-400'
-        onClick={() => setChatView(!chatView)}
+        onClick={() => {setChatView("chatView")}}
       >
-        {selectedChatView.length > 1 ? selectedChatView : 'Default view'}
+        {selectedChatView ? selectedChatView : 'Default view'}
         <div className='ml-1'>{chatView ? <ArrowUp /> : <ArrowDown />}</div>
       </div>
       {chatView && (
@@ -58,10 +62,7 @@ const DefaultChatViewDropdown = ({
           </div>
         </div>
       )}
-      
-      {/* <ChatScreen
-      chatView={chatView}
-      setChatView={setChatView} /> */}
+        
     </div>
   );
 };

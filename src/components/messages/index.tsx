@@ -88,6 +88,7 @@ const Messages = () => {
                 closeModal={handleCloseModal}
               >
                 <ChatScreen
+                  chartScreenView={chartScreenView}
                   chatScreenClassName='!rounded-none max-h-[90vh]'
                   chatScreenMsgClassName='!max-h-[62vh] overflow-y-scroll custom-scroll-bar'
                   setChartScreenView={setChartScreenView}
