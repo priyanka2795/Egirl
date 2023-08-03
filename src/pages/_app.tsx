@@ -1,4 +1,5 @@
 import '@styles/globals.scss';
+import "../components/explore/CardStack.scss"
 
 import { AuthContextProvider } from '@lib/context/auth-context';
 import { ThemeContextProvider } from '@lib/context/theme-context';

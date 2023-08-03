@@ -40,7 +40,12 @@ const TinderCardSlider = () => {
   const [TinderCard, setTinderCard] = useState<any>();
   const [removedDirectionState, setRemovedDirectionState] = useState('');
   const [checkForDrag , setCheckForDrag] = useState(-1);
+  const [checkSecondaryDrag, setCheckSecondaryDrag] = useState(-1)
   const [infoModal , setInfoModal] = useState(false);
+  const [mousePosition, setMousePosition] = useState({
+    left: '',
+    top: ''
+    })
   const [subscriptionModalState, setSubscriptionModalState] = useState(false);
   const [initialRenderComplete, setInitialRenderComplete] =
     useState<boolean>(false);
@@ -109,21 +114,39 @@ const TinderCardSlider = () => {
 
   const mouseDown =(e:any) =>{
     setCheckForDrag(e.clientX);
-   console.log('test mouseDown')
+  //  console.log('test mouseDown')
   }
-  
+
   const mouseUp =(e:any) =>{
-    const test1 = e.clientX;
-    if(checkForDrag > test1){
+    setCheckSecondaryDrag(e.clientX);
+    console.log(e.clientX , "mouse up")
+    if(checkForDrag > checkSecondaryDrag){
       swipe('left')
-    }else if(checkForDrag < test1){
+    }else if(checkForDrag < checkSecondaryDrag){
       swipe('right')
     }else{
       null
     }
    
-    console.log('test Up key' , checkForDrag , test1)
+    // console.log('test Up key' , checkForDrag , checkSecondaryDrag)
    }
+   const mouseLeave = (e:any)=>{
+    // console.log('mouse leave fire')
+   }
+ 
+ const MouseOver= function(event:any) {
+  console.log("inside mouse over")
+    setMousePosition({
+    left: event.pageX,
+    top: event.pageY
+          });
+  }
+  console.log(mousePosition)
+  const updatedTransform = { 
+    transform: `translate3d(${mousePosition.left}px, ${mousePosition.top}px , 0px) rotate(20deg) !important` ,
+    background: 'red'
+};
+
 
   if (!initialRenderComplete) return <></>;
 
@@ -137,6 +160,11 @@ const TinderCardSlider = () => {
               className={`swipe ${
                 removeCardIndex === index ? lastDirection : ''
               }`}
+              style={
+                updatedTransform                
+                // transform: `translate3d(${mousePosition.left}, ${mousePosition.top}, 0px) rotate(20deg) !important`,
+                // transform: `translate(${mousePosition.left}px, ${mousePosition.top}px) rotate(20deg) !important` 
+              }
               key={character.name}
               onSwipe={(dir: any) => swiped(dir, character.name, index)}
               onCardLeftScreen={() => outOfFrame(character.name, index)}
@@ -148,11 +176,7 @@ const TinderCardSlider = () => {
                 onPointerDown={preventHold} // Disable touch event that initiates holding behavior
                 onPointerMove={preventHold} // Disable touch move event
                 onMouseDown={preventHold} // Disable mouse down event
-                style={{
-                  backgroundImage: `url(${cardImg.src})`,
-                  width: '437px',
-                  height: '735px'
-                }}
+                style={updatedTransform}
                 className={`card relative ${removingCard}`}
               >
                 {lastDirection === 'left'
@@ -193,7 +217,12 @@ const TinderCardSlider = () => {
           </button>
         </div>
      
-      <div className="absolute top-0 left-0 w-full h-[520px]" onMouseDown={(e) => mouseDown(e)} onMouseUp={(e:any) => mouseUp(e)} />
+      <div className="absolute top-0 left-0 w-full h-[520px]" 
+      onMouseDown={(e) => mouseDown(e)} 
+      onMouseUp={(e:any) => mouseUp(e)}  
+      onMouseLeave={(e:any) => mouseLeave(e)}
+      onMouseOver={(e:any) => MouseOver(e)}
+      ></div>
       </div>
     </div>
 

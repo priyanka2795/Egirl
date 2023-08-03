@@ -22,6 +22,7 @@ import GalleryTabFilter from './GalleryTabFilter';
 import SubscriptionPlan from './SubscriptionPlan';
 import TinderCard from './TinderCardSlider';
 import TinderCardSlider from './TinderCardSlider';
+import CardStack from './CardStack';
 
 const settings = {
   dots: true,
@@ -88,8 +89,8 @@ const ExploreIndex = () => {
                 <CardSlider />
               </Slider>
             </div> */}
-            <TinderCardSlider />
-
+            {/* <TinderCardSlider /> */}
+<CardStack/>
             <div className='mb-[32px] mt-[77px] flex justify-center gap-2 items-start'>
               <div
                 className='flex cursor-pointer gap-2 rounded-[10px] bg-white/10 px-4 py-[7px] font-bold text-white'

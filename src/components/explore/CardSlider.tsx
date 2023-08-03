@@ -23,7 +23,7 @@ const CardSlider = ({ infoModalCard, setInfoModalCard }: cardSliderProp) => {
       {/* <div className='relative mx-auto mt-[77px] w-max'> */}
       {/* <Image src={cardImg} alt='' /> */}
       <div className={`absolute bottom-0 right-0 inline-flex w-full items-center justify-start px-6 pb-6 ${largeContentState ? 'bg-[#121212] pt-6': 'bg-gradient-to-b from-transparent to-black pt-[205px]'}`}>
-        <div className='flex-col items-center self-stretch justify-start w-full gap-8 '>
+        <div className='flex-col items-center self-stretch justify-start w-full gap-8 z-[10]'>
           <div className='flex flex-col items-start justify-center gap-2'>
             {infoModalCard === false ? (
               <>
