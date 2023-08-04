@@ -58,26 +58,26 @@ export default function Widgets() {
         </div> 
       </div>
 
-      <div className={`sticky top-0 max-w-[376px]`}>
-      <div className='bg-[#121212] rounded-[14px] w-full h-max'>
-                <div className='flex justify-between p-6 border-b border-white/[0.08]'>
-                    <div className='text-[#FFFFFF] text-[18px] font-bold'>You might like</div>
-                    <div className='flex gap-3'>
-                        <Image src={arrowLeft} alt={''} />
-                        <Image src={arrowRight} alt={''} />
-                    </div>
-                </div>
-                <div className='px-6 py-6 bookmark-img-text'>
-                    <div className='relative h-[286px] profile-like-slider'>
-                    <Slider {...settings}>
-                    <HomePageSlider />
-                    <HomePageSlider />
-                    <HomePageSlider />
-                    <HomePageSlider />
-                    </Slider>
-                    </div>
-                </div>
+      <div className={`sticky top-0 max-w-[376px] max-h-[426px]`}>
+        <div className='bg-[#121212] rounded-[14px] w-full h-full'>
+          <div className='flex justify-between p-6 border-b border-white/[0.08]'>
+            <div className='text-[#FFFFFF] text-[18px] font-bold'>You might like</div>
+            <div className='flex gap-3'>
+              <Image src={arrowLeft} alt={''} />
+              <Image src={arrowRight} alt={''} />
             </div>
+          </div>
+          <div className='h-full p-6 bookmark-img-text'>
+            <div className='h-full relative profile-like-slider'>
+              <Slider {...settings}>
+                <HomePageSlider />
+                <HomePageSlider />
+                <HomePageSlider />
+                <HomePageSlider />
+              </Slider>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

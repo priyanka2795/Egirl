@@ -46,8 +46,20 @@ const Message: React.FC<MessageProps> = ({
     slidesToShow: 1,
     slidesToScroll: 1
   };
-  const handkeCloseModal = () => {};
+  // const handkeCloseModal = () => {};
   const [goldenSvg, setGoldenSvg] = useState(false);
+  const [selectedStars, setSelectedStars] = useState(0);
+
+  const handleStarClick = (starCount: number) => {
+    setSelectedStars(starCount);
+  };
+
+  const handleStarHover = (starCount: number) => {
+    if (selectedStars !== starCount) {
+      setSelectedStars(starCount);
+    }
+  };
+
   return (
     <div className='flex items-start w-full py-4 refresh-icon-parent '>
       <Image
@@ -60,17 +72,19 @@ const Message: React.FC<MessageProps> = ({
       />
       <div className='flex flex-col w-full ml-3 group'>
         <div className='mb-[2px] flex items-center'>
-          <span className='mr-2 text-[15px] font-medium leading-5'>
+          <span className='mr-2 text-[15px] font-semibold leading-5'>
             {name}
           </span>
-          <span className='text-xs font-light text-[#979797]'>{time}</span>
+          <span className='text-[12px] leading-4 font-normal text-[#979797]'>{time}</span>
         </div>
 
         {messageIcons ? (
-          <span className='flex items-start justify-between w-full gap-[56px] text-sm font-light leading-5 refresh-icon '>
-            {message}
-            <div className='flex gap-1'>
-                <div className='hidden group-hover:flex'>
+          <div className='flex gap-[18px]'>
+            <span className='items-start justify-between w-full text-[16px] font-normal leading-6 refresh-icon '>
+              {message}
+            </span>
+            <div className=''>
+                <div className='flex gap-3 opacity-0 group-hover:flex group-hover:opacity-100'>
                   <Link href='#'>
                     <RefreshIcon />
                   </Link>
@@ -82,9 +96,10 @@ const Message: React.FC<MessageProps> = ({
                   </Link>
                 </div>
             </div>
-          </span>
+          </div>
+          
         ) : (
-          <span className='text-xs font-light leading-[18px]'>{message}</span>
+          <span className='text-[16px] font-normal leading-6'>{message}</span>
         )}
 
         {gridImage === true ? (
@@ -109,29 +124,37 @@ const Message: React.FC<MessageProps> = ({
             {/* <p className='text-[13px] '>Rate this response</p> */}
             <div
               className='flex cursor-pointer rating'
-              onClick={() => setGoldenSvg(!goldenSvg)}
+              // onClick={() => setGoldenSvg(!goldenSvg)}
             >
               <Link href='#'>
                 <StarIcon
-                  className={`${goldenSvg === true ? 'goldenSvg' : ''}`}
+                  className={`${selectedStars >= 1 ? 'goldenSvg' : ''}`}
+                  onMouseEnter={() => handleStarHover(1)}
+                  onClick={() => handleStarClick(1)}
                 />
               </Link>
 
               <Link href='#'>
                 <StarIcon
-                  className={`${goldenSvg === true ? 'goldenSvg' : ''}`}
+                  className={`${selectedStars >= 2 ? 'goldenSvg' : ''}`}
+                  onMouseEnter={() => handleStarHover(2)}
+                  onClick={() => handleStarClick(2)}
                 />
               </Link>
 
               <Link href='#'>
                 <StarIcon
-                  className={`${goldenSvg === true ? 'goldenSvg' : ''}`}
+                  className={`${selectedStars >= 3 ? 'goldenSvg' : ''}`}
+                  onMouseEnter={() => handleStarHover(3)}
+                  onClick={() => handleStarClick(3)}
                 />
               </Link>
 
               <Link href='#'>
                 <StarIcon
-                  className={`${goldenSvg === true ? 'goldenSvg' : ''}`}
+                  className={`${selectedStars >= 4 ? 'goldenSvg' : ''}`}
+                  onMouseEnter={() => handleStarHover(4)}
+                  onClick={() => handleStarClick(4)}
                 />
               </Link>
             </div>
