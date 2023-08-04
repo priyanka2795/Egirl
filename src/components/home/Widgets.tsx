@@ -68,7 +68,7 @@ export default function Widgets() {
             </div>
           </div>
           <div className='h-full p-6 bookmark-img-text'>
-            <div className='h-full relative profile-like-slider'>
+            <div className='relative h-full profile-like-slider'>
               <Slider {...settings}>
                 <HomePageSlider />
                 <HomePageSlider />

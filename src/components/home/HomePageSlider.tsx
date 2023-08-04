@@ -7,19 +7,15 @@ import arrowNext from '../../../public/assets/arrow-next.png';
 
 const HomePageSlider = () => {
   return (
-    <div className='rounded-[14px] max-h-[274px] bg-[#5848BC14]/[0.08] relative'>
+    <div className='rounded-[14px] max-h-[274px] bg-[#5848BC14]/[0.08] relative overflow-hidden'>
         <Image className='w-full h-full' src={blueDressGirl} alt={''} />
-        <div className='absolute w-full h-full ml-auto top-[7px] right-[131px] -rotate-[27deg]'>
-            <div className='ml-auto mr-5 mt-[47px] flex h-[50px] w-[100px] rotate-[12deg] items-center justify-start gap-4 rounded-3xl border-2 border-orange-700 px-8 py-5'>
-                <div className='text-[23px] font-bold text-orange-700 uppercase -ml-[15px]'>Nope</div>
-            </div>
+        <div className='absolute px-4 py-[10px] justify-center items-center top-[57px] right-[244px] -rotate-[10deg] rounded-[12px] border-[3px] border-[#FF5336]'>
+            <div className='text-[20px] font-bold text-[#FF5336] uppercase'>Nope</div>
         </div>
-        <div className='absolute top-[205px] -right-[130px] rotate-[27deg] w-full h-full ml-auto'>
-            <div className='flex h-[50px] w-[86px] rotate-[-12deg] items-center justify-start gap-4 rounded-3xl border-2 border-green-600 px-8 py-5'>
-                <div className='text-[23px] -ml-[14px] font-bold uppercase text-green-600'>like</div>
-            </div>
+        <div className='absolute top-[143px] -right-[14px] rotate-[17deg] px-4 py-[10px] justify-center items-center rounded-[12px] border-[3px] border-[#5AD02E]'>
+            <div className='text-[20px] font-bold text-[#5AD02E] uppercase'>like</div>
         </div>
-        <button className='relative flex gap-[6px] w-[296px] justify-center items-center bg-[#5848BC] px-4 py-[10px] rounded-[12px] text-[#FFFFFF]'>
+        <button className='absolute top-[220px] right-[16px] flex gap-[6px] w-[296px] justify-center items-center bg-[#5848BC] px-4 py-[10px] rounded-[12px] text-[#FFFFFF]'>
             <div className='text-[14px] font-bold leading-5'>Explore more</div>
             <Image className='w-[18px] h-[18px]' src={arrowNext} alt={''} />
         </button>
