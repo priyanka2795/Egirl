@@ -1,6 +1,4 @@
 .card-holder{
-    // max-width: 500px;
-    // margin: 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,13 +9,8 @@
   position: relative;
   width:434px;
   height:735px;
-  
-//   width: 400px;
-//   height: 400px;
-//   max-width: 400px;
-//   max-height: 600px;
+
   z-index: 1;
-//   margin: 0 auto;
 }
 
 .icons {
@@ -47,11 +40,11 @@
   justify-content: center;
   width: 100%;
   height: 100%;
-  color: #f1f1f1;
-  border-radius: 10px;
+  // color: #f1f1f1;
+  // border-radius: 10px;
+  // overflow: hidden;
   user-select: none;
   cursor: pointer;
-  overflow: hidden;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -150,12 +143,12 @@
 }
 
 .card.animation-added-left{
-    transition: all .2s ease-in;
+    transition: all .9s ease-in;
     transform: translate3d(-2629.78px, 383.761px, 0px) rotate(-58.5deg) !important;
 }
 
 .card.animation-added-right{
-    transition: all .2s ease-in;
+    transition: all .9s ease-in;
   transform: translate3d(2629.78px, 356.17px, 0px) rotate(58.5deg) !important; 
 }
 

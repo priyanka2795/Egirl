@@ -87,7 +87,7 @@ const Card = ({ data, onLike, onHate , zIndex , isActive }: any) => {
 
     >
       <CardSlider infoModalCard={infoModal} setInfoModalCard={setInfoModal} />
-      <div className={`is-like ${moveX > 0 ? 'like' : moveX < 0 ? 'nope': ''} ${Math.abs((moveX / innerWidth * 2.1))}`}
+      <div className={`is-like ${moveX > 0 || animation === "animation-added-right" ? 'like' : moveX < 0 || animation === "animation-added-left" ? 'nope': ''} ${Math.abs((moveX / innerWidth * 2.1))}`}
        ></div>
          <div className='relative w-full h-[84px] mb-6'>      
         <div id='like' className="w-[84px] h-full absolute right-[61px] z-50" onClick={handleLikeBtn}/>        

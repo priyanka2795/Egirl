@@ -17,46 +17,40 @@ interface cardSliderProp {
 }
 const CardSlider = ({ infoModalCard, setInfoModalCard }: cardSliderProp) => {
   const [subscriptionModalState, setSubscriptionModalState] = useState(false);
-  const [largeContentState ,setLargeContentState] = useState(false)
+  const [largeContentState, setLargeContentState] = useState(false);
   return (
     <>
       {/* <div className='relative mx-auto mt-[77px] w-max'> */}
       {/* <Image src={cardImg} alt='' /> */}
-      <div className={`absolute bottom-0 right-0 inline-flex w-full items-center justify-start px-6 pb-6 ${largeContentState ? 'bg-[#121212] pt-6': 'bg-gradient-to-b from-transparent to-black pt-[205px]'}`}>
-        <div className='flex-col items-center self-stretch justify-start w-full gap-8 z-[10]'>
+      <div
+        className={`absolute bottom-0 right-0 inline-flex w-full items-center justify-start px-6 pb-6 ${
+          largeContentState
+            ? 'bg-[#121212] pt-6'
+            : 'bg-gradient-to-b from-transparent to-black pt-[205px]'
+        }`}
+      >
+        <div className='z-[10] w-full flex-col items-center justify-start gap-8 self-stretch'>
           <div className='flex flex-col items-start justify-center gap-2'>
-            {infoModalCard === false ? (
-              <>
-                <div className='flex items-center justify-between w-full'>
-                  <div className='flex items-center text-[26px] font-bold leading-[26px] leading-loose text-white'>
-                    Mika-chan
-                    <VerifiedIcon />
-                  </div>
-                  <div className="cursor-pointer" 
-                  onClick={() => {setInfoModalCard(true) , setLargeContentState(true) }}
-                  >
-                    <InfoIcon />
-                  </div>
-                </div>
+            <div className='flex items-center justify-between w-full'>
+              <div className='flex items-center text-[26px] font-bold leading-[26px] leading-loose text-white'>
+                Mika-chan
+                <VerifiedIcon />
+              </div>
+              <div
+                className='cursor-pointer'
+                onClick={() => {
+                  setInfoModalCard(!infoModalCard),
+                    setLargeContentState(!infoModalCard);
+                }}
+              >
+                {infoModalCard === false ? <InfoIcon /> : <CardArrowDown />}
+              </div>
+            </div>
 
-                <TinderCardTab largeContentState={largeContentState} largeContent={setLargeContentState}/>
-               </>
-           ) : 
-           <>
-           <div className='flex items-center justify-between w-full'>
-                  <div className='flex items-center text-[26px] font-bold leading-[26px] leading-loose text-white'>
-                    Mika-chan
-                    <VerifiedIcon />
-                  </div>
-                  <div className="cursor-pointer" 
-                  // onClick={() => {setInfoModalCard(false) , setLargeContentState(false) }}
-                  >
-                    <CardArrowDown />
-                  </div>
-                </div>
-           <TinderCardTab largeContentState={largeContentState} largeContent={setLargeContentState}/></>
-           
-           }
+            <TinderCardTab
+              largeContentState={largeContentState}
+              largeContent={setLargeContentState}
+            />
           </div>
           <div className='inline-flex items-center justify-center w-full gap-8 mt-8'>
             <div className='card-bottom-button flex items-start justify-start gap-2.5 rounded-[100px] border-2 border-red-500 p-6 backdrop-blur-[15px]'>
