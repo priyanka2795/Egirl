@@ -70,7 +70,7 @@ const CardSlider = ({ infoModalCard, setInfoModalCard }: cardSliderProp) => {
                 setSubscriptionModalState(true);
               }}
             >
-              <div className='relative h-8 w-8 backdrop-blur-[88px]'>
+              <div className='relative w-8 h-8'>
                 <UserIcon />
               </div>
             </div>

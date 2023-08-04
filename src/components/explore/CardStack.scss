@@ -64,6 +64,9 @@
   position: absolute;
 
 }
+.animate-smooth{
+ transform: all 2s ease;
+}
 .card .is-like::after {
   position: absolute; 
   transition: all .5s ease-in;
@@ -146,12 +149,14 @@
   }
 }
 
-// .card.left-animation{
-//     transition: all 2s ease-in;
-//     transform: translate3d(-2629.78px, 383.761px, 0px) rotate(-58.5deg) !important;
-// }
+.card.animation-added-left{
+    transition: all .2s ease-in;
+    transform: translate3d(-2629.78px, 383.761px, 0px) rotate(-58.5deg) !important;
+}
 
-// .card.right-animation{
-//     transition: all 2s ease-in;
-//   transform: translate3d(2629.78px, 356.17px, 0px) rotate(58.5deg) !important; 
-// }
+.card.animation-added-right{
+    transition: all .2s ease-in;
+  transform: translate3d(2629.78px, 356.17px, 0px) rotate(58.5deg) !important; 
+}
+
+
