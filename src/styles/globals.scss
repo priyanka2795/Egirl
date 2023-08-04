@@ -64,6 +64,12 @@
     fill: goldenrod;
     stroke:goldenrod;
   }
+  .home-page-slider{
+    ul.slick-dots {
+      position: unset;
+      margin-top: 15px;
+    }
+  } 
   a,
   input,
   button,
@@ -201,7 +207,9 @@
       left: calc(100% - 60px);
     }
     .slick-dots{
-      margin-top:17px;
+      // margin-top:17px;
+      position: relative;
+      margin-top: 48px;
     }
    
   }
