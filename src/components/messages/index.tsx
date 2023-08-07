@@ -13,7 +13,7 @@ const Messages = () => {
   const [startConversationModal, setStartConversationModal] = useState(false);
   const [selectUserState, setSelectUserState] = useState('');
   const [shrinkSidebar, setShrinkSidebar] = useState(false);
-  console.log(chartScreenView, 'chartScreenView');
+  // console.log(chartScreenView, 'chartScreenView');
   const handleCloseModal = () => {
     setModalView(!modalView);
     setChartScreenView('Default view');
@@ -22,21 +22,10 @@ const Messages = () => {
     setStartConversationModal(!startConversationModal);
   };
 
-  // const handleSeletedUser = (e:any) => {
-  //   setSelectUserState(e);
-  //   setStartConversationModal(false);
-
-  //   console.log(e.target , "test ")
-  // };
-  if(selectUserState === "One More Mika"){
-    console.log('new chat')
-  }
-
   const handleSidebarWidth = () => {
     setShrinkSidebar(!shrinkSidebar);
     console.log('reduce');
   };
-  // console.log(selectUserState , "re check")
 
   return (
     <>

@@ -51,6 +51,7 @@ const Message: React.FC<MessageProps> = ({
   // const handkeCloseModal = () => {};
   const [goldenSvg, setGoldenSvg] = useState(false);
   const [selectedStars, setSelectedStars] = useState(0);
+  const [emojiPicker, setEmojiPicker] = useState(false);
 
   const handleStarClick = (starCount: number) => {
     setSelectedStars(starCount);
@@ -89,21 +90,14 @@ const Message: React.FC<MessageProps> = ({
             </span>
             <div className=''>
               <div className='flex gap-3 opacity-0 group-hover:flex group-hover:opacity-100'>
-                {regenerateIcon && (
-                  <Link href='#'>
-                    <RefreshIcon />
-                  </Link>
-                )}
-
-                
-                {name === 'You' ? (
-                  <Link href='#'>
-                    <CopyIcon />
-                  </Link>
-                ):
-                <Link href='#'>
-                  <EmojiIcon />
-                </Link>
+                {regenerateIcon && (                  
+                    <RefreshIcon />                 
+                )}              
+                 {/* <div onClick={() => setEmojiPicker((val) => !val)}> */}
+                <EmojiIcon />               
+                 {/* </div> */}
+                {name === 'You' &&                  
+                  <CopyIcon className="h-5" />                                             
                 }
               </div>
             </div>

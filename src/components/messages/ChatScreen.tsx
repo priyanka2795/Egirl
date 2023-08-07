@@ -28,6 +28,9 @@ import ImageRequestModal from './ImageRequestModal';
 import Picker from 'emoji-picker-react';
 import Theme from 'emoji-picker-react';
 import NewConversationWithUser from './NewConversationWithUser';
+import DummyMessage from './DummyMessage';
+import Emoji from './Emoji';
+import ThreeDotsDropdown from './ThreeDotsDropdown';
 
 type chatProps = {
   chatScreenClassName?: string;
@@ -53,7 +56,8 @@ export default function ChatScreen({
   const [chatViewOption, setChatViewOption] = useState(false);
   const [emojiPicker, setEmojiPicker] = useState(false);
   const [chatView, setChatView] = useState(false);
-
+  const [clearChat, setClearChat] = useState(false);
+  const [showMessage , setShowMessge] = useState(false)
   const handleChatViewModal = () => {
     setChatViewOption(!chatViewOption);
     setSendUploadImgState(false);
@@ -64,6 +68,11 @@ export default function ChatScreen({
       containerRef.current.scrollTop = containerRef.current.scrollHeight;
     }
   }, []);
+
+  const handleMessage = () => {
+    setShowMessge(true)
+    // console.log(message , "test the target")
+  }
   const handleViews = (e: any) => {
     console.log(e);
     if (e === 'chatView') {
@@ -121,18 +130,22 @@ export default function ChatScreen({
             </div>
 
             {moreOptionDropdown && (
-              <div className='absolute right-0 top-[100%] mt-2 inline-flex w-[218px] flex-col items-start justify-start rounded-2xl bg-zinc-900 py-2 shadow'>
-                <div className='flex-col items-center self-stretch justify-start gap-2 cursor-pointer '>
-                  <div className='flex gap-2 px-4 py-[10px] text-sm'>
-                    <ChatIcon />
-                    Chat view
-                  </div>
-                  <div className='flex gap-2 px-4 py-[10px] text-sm'>
-                    <DeleteIcon />
-                    Clear chat
-                  </div>
-                </div>
-              </div>
+              // <div className='absolute right-0 top-[100%] mt-2 inline-flex w-[218px] flex-col items-start justify-start rounded-2xl bg-zinc-900 py-2 shadow'>
+              //   <div className='flex-col items-center self-stretch justify-start gap-2 cursor-pointer '>
+              //     <div className='flex gap-2 px-4 py-[10px] text-sm'>
+              //       <ChatIcon />
+              //       Chat view
+              //     </div>
+              //     <div
+              //       className='flex gap-2 px-4 py-[10px] text-sm'
+              //       onClick={() => {setClearChat(true), setMoreOptionDropdown(false)}}
+              //     >
+              //       <DeleteIcon />
+              //       Clear chat
+              //     </div>
+              //   </div>
+              // </div>
+              <ThreeDotsDropdown setClearChat={setClearChat} setMoreOptionDropdown={setMoreOptionDropdown}/>
             )}
           </div>
         </div>
@@ -148,65 +161,25 @@ export default function ChatScreen({
           ref={containerRef}
           className={`flex h-full flex-col justify-end bg-[#121212] px-6 pt-4`}
         >
-          {/* <Message
-          src='/dummy-char.png'
-          alt={`Character Profile Picture ${0}`}
-          time='09:22'
-          message='hey, how are you?'
-          name='You'
-        />
-        <Message
-          src='/dummy-char.png'
-          alt={`Character Profile Picture ${1}`}
-          time='09:23'
-          message='Doing well, thank you. How may I assist you?'
-          name='Mika-chan'
-        /> */}
           {selectUserState === 'One More Mika' ? (
+           <>
             <NewConversationWithUser />
-          ) : (
-            <>
-              <Date date='May, 11 2023' />
+            {showMessage &&
               <Message
-                src='/dummy-char.png'
-                alt={`Character Profile Picture ${0}`}
-                time='09:24'
-                message='It’s me :) '
-                name='Mika-chan'
-                gridImage={true}
-              />
-
-              <Message
-                src='/dummy-char.png'
-                alt={`Character Profile Picture ${1}`}
-                time='09:23'
-                message='Some text'
-                name='Mika-chan'
-                messageIcons={true}
-              />
-
-              <Message
-                src='/dummy-char.png'
-                alt={`Character Profile Picture ${2}`}
-                time='09:23'
-                message='Hey Mika-chan, can you send me a picture of you with your arms raised while wearing a black |'
-                name='You'
-                messageIcons={true}
-              />
-
-              <Message
-                src='/dummy-char.png'
-                alt={`Character Profile Picture ${2}`}
-                time='09:23'
-                isLast={true}
-                message='Hey Mika-chan, can you send me a picture of you with your arms raised while wearing a black dress and black bow?'
-                name='Mika-chan'
-                messageIcons={true}
-                regenerateIcon={true}
-                rateResponse={true}
-              />
-            </>
-          )}
+              src='/dummy-char.png'
+              alt={`Character Profile Picture ${2}`}
+              time='09:23'
+              isLast={true}
+              message={message}
+              name='You'
+              messageIcons={true}             
+             
+            />
+            }
+           </>
+          ) : clearChat === false &&           
+             <DummyMessage/>
+          }
 
           {/* <MessageSlider /> */}
         </div>
@@ -270,27 +243,16 @@ export default function ChatScreen({
 
             <div className='absolute bottom-5 right-[50px]'>
               {emojiPicker && (
-                <Picker
-                  searchDisabled={true}
-                  theme='dark'
-                  autoFocusSearch={true}
-                  skinTonesDisabled={true}
-                  width='302px'
-                  // height='224px'
-                  size='16'
-                  onEmojiClick={(emojiObject) =>
-                    setMessage((prevMsg) => prevMsg + emojiObject.emoji)
-                  }
-                />
+                <Emoji setMessage={setMessage}/>
               )}
             </div>
           </div>
           <div className='ml-[10px] mt-[8px] transition-all duration-100'>
             {message ? (
               <button
-                onClick={() => {
-                  console.log('sending message');
-                }}
+                onClick={
+                 handleMessage
+                }
               >
                 <SendIcon />
               </button>
