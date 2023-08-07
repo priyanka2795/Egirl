@@ -44,7 +44,7 @@ const messages: MessageData[] = [
 
 type props = {
   shrinkSidebar?: boolean;
-  selectUserState?: boolean;
+  selectUserState?: string;
   handleSeletedUser?: () => void;
 };
 
@@ -185,7 +185,9 @@ export default function Characters({
 
       <div
         style={{ height: 'calc(100vh - 132px)' }}
-        className='fixed top-[130px] overflow-auto transition-all duration-100 w-[260px] custom-scroll-bar'
+        className={`fixed top-[130px] overflow-auto transition-all duration-100 custom-scroll-bar w-[260px] w-[${sidebarWidth}px] 
+    
+        `}
       >
         {sidebarWidth == 375 &&
           messages.map((message) => (

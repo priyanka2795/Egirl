@@ -72,7 +72,7 @@ const Message: React.FC<MessageProps> = ({
         height={40}
         className='rounded-full'
       />
-      <div className='flex flex-col w-full ml-3 group'>
+      <div className='flex flex-col w-full ml-3 cursor-pointer group'>
         <div className='mb-[2px] flex items-center'>
           <span className='mr-2 text-[15px] font-semibold leading-5'>
             {name}

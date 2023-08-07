@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import CardSlider from './CardSlider';
 import ExploreTabs from './ExploreTabs';
-import Slider from 'react-slick'; 
+import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import arrowLeftImg from '../../../public/assets/img-arrow-left.png';
@@ -23,6 +23,7 @@ import SubscriptionPlan from './SubscriptionPlan';
 import TinderCard from './TinderCardSlider';
 import TinderCardSlider from './TinderCardSlider';
 import CardStack from './CardStack';
+import Banner from '@components/list/Banner';
 
 const settings = {
   dots: true,
@@ -60,48 +61,54 @@ const exploreOptions = [
   }
 ];
 
-
-
 const ExploreIndex = () => {
   const [filterOptionShow, setFilterOptionShow] = useState(true);
   const [exploreSelectedTab, setExploreSelected] = useState('Swipe');
   const [defaultModal, setDefaultModal] = useState(false);
-  const [singleProfileState ,setSingleProfileState] = useState(false);
+  const [singleProfileState, setSingleProfileState] = useState(false);
 
   return (
     <>
-      <div>
-        <ExploreTabs
-          exploreTab={exploreSelectedTab}
-          setExploreSelectedTab={setExploreSelected}
-        />
-        {/* <p onClick={() => setDefaultModal(true)}>Default Modal</p> */}
-        {/* {defaultModal && (
+      {singleProfileState ? (
+        <Banner backFromProfile={() => setSingleProfileState(false)} />
+      ) : (
+        <div>
+          <ExploreTabs
+            exploreTab={exploreSelectedTab}
+            setExploreSelectedTab={setExploreSelected}
+          />
+          {/* <p onClick={() => setDefaultModal(true)}>Default Modal</p> */}
+          {/* {defaultModal && (
           <SubscriptionPlan closeDefaulModal={setDefaultModal} />
         )} */}
 
-        {exploreSelectedTab === 'Swipe' ? (
-          <>
-            {/* <div className='explore-slider'>
+          {exploreSelectedTab === 'Swipe' ? (
+            <>
+              {/* <div className='explore-slider'>
               <Slider {...settings}>
                 <CardSlider />
                 <CardSlider /> 
                 <CardSlider />
               </Slider>
             </div> */}
-            {/* <TinderCardSlider /> */}
-            <CardStack showSingleProfile={setSingleProfileState}/>
-            <div className='mb-[32px] mt-[77px] flex justify-center gap-2 items-start'>
-              <div
-                className='flex cursor-pointer gap-2 rounded-[10px] bg-white/10 px-4 py-[7px] font-bold text-white'
-                onClick={() => setFilterOptionShow(!filterOptionShow)}
-              >
-                <p>Hide</p>
-              </div>
-              {
-                exploreOptions.map((item) => {
+              {/* <TinderCardSlider /> */}
+              <CardStack showSingleProfile={setSingleProfileState} />
+              <div className='mb-[32px] mt-[77px] flex items-start justify-center gap-2'>
+                <div
+                  className='flex cursor-pointer gap-2 rounded-[10px] bg-white/10 px-4 py-[7px] font-bold text-white'
+                  onClick={() => setFilterOptionShow(!filterOptionShow)}
+                >
+                  <p>Hide</p>
+                </div>
+                {exploreOptions.map((item) => {
                   return (
-                    <div className={`${filterOptionShow === true ? "opacity-100" : "opacity-0 invisible"} pointer-events-none flex cursor-pointer gap-2 rounded-[10px] px-4 py-[7px] font-semibold text-[#979797]`}>
+                    <div
+                      className={`${
+                        filterOptionShow === true
+                          ? 'opacity-100'
+                          : 'invisible opacity-0'
+                      } pointer-events-none flex cursor-pointer gap-2 rounded-[10px] px-4 py-[7px] font-semibold text-[#979797]`}
+                    >
                       <Image
                         src={item.images}
                         alt=''
@@ -111,14 +118,18 @@ const ExploreIndex = () => {
                     </div>
                   );
                 })}
+              </div>
+            </>
+          ) : (
+            <div className='px-8'>
+              <GalleryTabFilter
+                singleProfileState={singleProfileState}
+                setSingleProfileState={setSingleProfileState}
+              />
             </div>
-          </>
-        ) : (
-          <div className='px-8'>
-            <GalleryTabFilter singleProfileState={singleProfileState}  setSingleProfileState={setSingleProfileState}/>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
+      )}
     </>
   );
 };

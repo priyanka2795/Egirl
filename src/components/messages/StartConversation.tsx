@@ -10,7 +10,7 @@ type startConversation = {
   startConversationModal: boolean;
   //   setStartConversationModal: boolean;
   handleCloseConversationModal: () => void;
-  userSelected: () => void;
+  userSelected: any;
 };
 
 const StartConversation = ({
@@ -45,7 +45,7 @@ const StartConversation = ({
           closeModal={handleCloseConversationModal}
         >
           <div className='flex justify-between border-b border-[#515151] p-6'>
-            <div className='children font-bold'>New Message</div>
+            <div className='font-bold children'>New Message</div>
             <CloseIcon
               onClick={handleCloseConversationModal}
               className='cursor-pointer'
@@ -53,7 +53,7 @@ const StartConversation = ({
           </div>
 
           <div className='px-6 pb-6'>
-            <div className='relative mb-3 mt-2 flex w-full'>
+            <div className='relative flex w-full mt-2 mb-3'>
               <div className='absolute left-4 top-3'>
                 <SearchIcon
                   strokeClasses={`${

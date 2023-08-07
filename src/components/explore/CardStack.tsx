@@ -18,7 +18,10 @@ const dataCard = [
   }
 ];
 
-const Card = ({ data, onLike, onHate , zIndex , isActive }: any) => {
+interface CardStackprops {
+  showSingleProfile:  React.Dispatch<React.SetStateAction<boolean>>
+}
+const Card = ({ data, onLike, onHate , zIndex , isActive ,showSingleProfile}: any) => {
  
   const [startX, setStartX] = useState(0);
   const [startY, setStartY] = useState(0);
@@ -84,9 +87,10 @@ const Card = ({ data, onLike, onHate , zIndex , isActive }: any) => {
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}
       onPointerLeave={onPointerUp}
-
     >
-      <CardSlider infoModalCard={infoModal} setInfoModalCard={setInfoModal} />
+      <CardSlider infoModalCard={infoModal} setInfoModalCard={setInfoModal} 
+      showSingleProfile={showSingleProfile}
+      />
       <div className={`is-like ${moveX > 0 || animation === "animation-added-right" ? 'like' : moveX < 0 || animation === "animation-added-left" ? 'nope': ''} ${Math.abs((moveX / innerWidth * 2.1))}`}
        ></div>
          <div className='relative w-full h-[84px] mb-6'>      
@@ -97,7 +101,7 @@ const Card = ({ data, onLike, onHate , zIndex , isActive }: any) => {
   );
 };
 
-const CardStack = () => {
+const CardStack = ({showSingleProfile}: CardStackprops ) => {
    
   const [cardData, setCardData] = useState(dataCard);
   const [currentCard, setCurrentCard] = useState(0);
@@ -130,7 +134,8 @@ const CardStack = () => {
               onLike={onLike} 
               onHate={onHate}
               zIndex={cardData.length-index} 
-              isActive = {index === currentCard}           
+              isActive = {index === currentCard}         
+              showSingleProfile={showSingleProfile}  
               />              
             );      
         })}

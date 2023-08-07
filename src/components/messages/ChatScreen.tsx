@@ -27,18 +27,21 @@ import { Modal } from '@components/modal/modal';
 import ImageRequestModal from './ImageRequestModal';
 import Picker from 'emoji-picker-react';
 import Theme from 'emoji-picker-react';
+import NewConversationWithUser from './NewConversationWithUser';
 
 type chatProps = {
   chatScreenClassName?: string;
   chatScreenMsgClassName?: string;
   chartScreenView?: string;
   setChartScreenView?: React.Dispatch<React.SetStateAction<string>>;
+  selectUserState?: any;
 };
 export default function ChatScreen({
   chatScreenClassName,
   chatScreenMsgClassName,
   chartScreenView,
   setChartScreenView,
+  selectUserState
 }: chatProps) {
   const [sticky, animate] = useScroll();
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -62,23 +65,22 @@ export default function ChatScreen({
     }
   }, []);
   const handleViews = (e: any) => {
-console.log(e);
-if(e==="chatView"){
-  if(moreOptionDropdown){
-    setChatView(!chatView)
-    setMoreOptionDropdown(!moreOptionDropdown)
-  }else{
-    setChatView(!chatView)
-  }
-}else{
-  if(chatView){
-    setMoreOptionDropdown(!moreOptionDropdown)
-    setChatView(!chatView)
-  }else{
-    setMoreOptionDropdown(!moreOptionDropdown)
-  }
-}
-
+    console.log(e);
+    if (e === 'chatView') {
+      if (moreOptionDropdown) {
+        setChatView(!chatView);
+        setMoreOptionDropdown(!moreOptionDropdown);
+      } else {
+        setChatView(!chatView);
+      }
+    } else {
+      if (chatView) {
+        setMoreOptionDropdown(!moreOptionDropdown);
+        setChatView(!chatView);
+      } else {
+        setMoreOptionDropdown(!moreOptionDropdown);
+      }
+    }
   };
   return (
     <div
@@ -114,10 +116,10 @@ if(e==="chatView"){
             setChatView={handleViews}
           />
           <div className='relative'>
-            <div onClick={() => handleViews("dots")}>
+            <div onClick={() => handleViews('dots')}>
               <DotsHorizontalIcon className='cursor-pointer' />
             </div>
-         
+
             {moreOptionDropdown && (
               <div className='absolute right-0 top-[100%] mt-2 inline-flex w-[218px] flex-col items-start justify-start rounded-2xl bg-zinc-900 py-2 shadow'>
                 <div className='flex-col items-center self-stretch justify-start gap-2 cursor-pointer '>
@@ -144,9 +146,8 @@ if(e==="chatView"){
       >
         <div
           ref={containerRef}
-          className={`flex flex-col justify-end bg-[#121212] px-6 pt-4 h-full`}
+          className={`flex h-full flex-col justify-end bg-[#121212] px-6 pt-4`}
         >
-          <Date date='May, 11 2023' />
           {/* <Message
           src='/dummy-char.png'
           alt={`Character Profile Picture ${0}`}
@@ -161,44 +162,52 @@ if(e==="chatView"){
           message='Doing well, thank you. How may I assist you?'
           name='Mika-chan'
         /> */}
-          <Message
-            src='/dummy-char.png'
-            alt={`Character Profile Picture ${0}`}
-            time='09:24'
-            message='It’s me :) '
-            name='Mika-chan'
-            gridImage={true}
-          />
+          {selectUserState === 'One More Mika' ? (
+            <NewConversationWithUser />
+          ) : (
+            <>
+              <Date date='May, 11 2023' />
+              <Message
+                src='/dummy-char.png'
+                alt={`Character Profile Picture ${0}`}
+                time='09:24'
+                message='It’s me :) '
+                name='Mika-chan'
+                gridImage={true}
+              />
 
-          <Message
-            src='/dummy-char.png'
-            alt={`Character Profile Picture ${1}`}
-            time='09:23'
-            message='Some text'
-            name='Mika-chan'
-            messageIcons={true}
-          />
+              <Message
+                src='/dummy-char.png'
+                alt={`Character Profile Picture ${1}`}
+                time='09:23'
+                message='Some text'
+                name='Mika-chan'
+                messageIcons={true}
+              />
 
-          <Message
-            src='/dummy-char.png'
-            alt={`Character Profile Picture ${2}`}
-            time='09:23'
-            message='Hey Mika-chan, can you send me a picture of you with your arms raised while wearing a black |'
-            name='You'
-            messageIcons={true}
-          />
+              <Message
+                src='/dummy-char.png'
+                alt={`Character Profile Picture ${2}`}
+                time='09:23'
+                message='Hey Mika-chan, can you send me a picture of you with your arms raised while wearing a black |'
+                name='You'
+                messageIcons={true}
+              />
 
-          <Message
-            src='/dummy-char.png'
-            alt={`Character Profile Picture ${2}`}
-            time='09:23'
-            isLast={true}
-            message='Hey Mika-chan, can you send me a picture of you with your arms raised while wearing a black dress and black bow?'
-            name='Mika-chan'
-            messageIcons={true}
-            regenerateIcon={true}
-            rateResponse={true}
-          />
+              <Message
+                src='/dummy-char.png'
+                alt={`Character Profile Picture ${2}`}
+                time='09:23'
+                isLast={true}
+                message='Hey Mika-chan, can you send me a picture of you with your arms raised while wearing a black dress and black bow?'
+                name='Mika-chan'
+                messageIcons={true}
+                regenerateIcon={true}
+                rateResponse={true}
+              />
+            </>
+          )}
+
           {/* <MessageSlider /> */}
         </div>
       </div>
@@ -276,7 +285,7 @@ if(e==="chatView"){
               )}
             </div>
           </div>
-          <div className='ml-[10px] transition-all duration-100 mt-[8px]'>
+          <div className='ml-[10px] mt-[8px] transition-all duration-100'>
             {message ? (
               <button
                 onClick={() => {

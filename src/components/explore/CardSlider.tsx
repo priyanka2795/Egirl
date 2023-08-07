@@ -14,8 +14,9 @@ import TinderCardTab from './TinderCardTab';
 interface cardSliderProp {
   infoModalCard: boolean;
   setInfoModalCard: React.Dispatch<React.SetStateAction<boolean>>;
+  showSingleProfile: React.Dispatch<React.SetStateAction<boolean>>;
 }
-const CardSlider = ({ infoModalCard, setInfoModalCard }: cardSliderProp) => {
+const CardSlider = ({ infoModalCard, setInfoModalCard ,showSingleProfile}: cardSliderProp) => {
   const [subscriptionModalState, setSubscriptionModalState] = useState(false);
   const [largeContentState, setLargeContentState] = useState(false);
   return (
@@ -50,6 +51,7 @@ const CardSlider = ({ infoModalCard, setInfoModalCard }: cardSliderProp) => {
             <TinderCardTab
               largeContentState={largeContentState}
               largeContent={setLargeContentState}
+              showSingleProfile={showSingleProfile}
             />
           </div>
           <div className='inline-flex items-center justify-center w-full gap-8 mt-8'>

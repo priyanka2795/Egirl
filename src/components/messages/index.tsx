@@ -11,7 +11,7 @@ const Messages = () => {
   const [chartScreenView, setChartScreenView] = useState('Default view');
   const [modalView, setModalView] = useState(false);
   const [startConversationModal, setStartConversationModal] = useState(false);
-  const [selectUserState, setSelectUserState] = useState(false);
+  const [selectUserState, setSelectUserState] = useState('');
   const [shrinkSidebar, setShrinkSidebar] = useState(false);
   console.log(chartScreenView, 'chartScreenView');
   const handleCloseModal = () => {
@@ -22,32 +22,28 @@ const Messages = () => {
     setStartConversationModal(!startConversationModal);
   };
 
-  const handleSeletedUser = () => {
-    setSelectUserState(!selectUserState);
-    setStartConversationModal(false);
-  };
+  // const handleSeletedUser = (e:any) => {
+  //   setSelectUserState(e);
+  //   setStartConversationModal(false);
+
+  //   console.log(e.target , "test ")
+  // };
+  if(selectUserState === "One More Mika"){
+    console.log('new chat')
+  }
 
   const handleSidebarWidth = () => {
     setShrinkSidebar(!shrinkSidebar);
     console.log('reduce');
   };
+  // console.log(selectUserState , "re check")
 
   return (
     <>
       <main className='flex max-w-full min-h-screen mx-auto'>
-        {/* mx-auto flex min-h-screen max-w-7xl */}
-        {/* <TestSidebar /> */}
-
-        {/* <ChatScreen
-          chartScreenView={chartScreenView}
-          setChartScreenView={setChartScreenView}
-        /> */}
-        {selectUserState === false ? (
+        {selectUserState === '' ? (
           <>
-            {/* <Sidebar
-              // shrinkSidebar={shrinkSidebar}
-              // sideBarWidth={handleSidebarWidth}
-            /> */}
+         
             <Characters
               shrinkSidebar={shrinkSidebar}
               selectUserState={selectUserState}
@@ -55,25 +51,26 @@ const Messages = () => {
             <StartConversation
               startConversationModal={startConversationModal}
               handleCloseConversationModal={handleCloseConversationModal}
-              userSelected={handleSeletedUser}
+              userSelected={setSelectUserState}
             />
           </>
-        ) : (
+        ) :
+        selectUserState === 'One More Mika' ? 
+        <>
+        <Characters /> 
+        <ChatScreen 
+        selectUserState={selectUserState}
+                // chartScreenView={chartScreenView}
+                // setChartScreenView={setChartScreenView}
+              />
+        </>
+        :
+        (
           <>
-            {chartScreenView === 'FullScreen view' ? (
-              // <Sidebar
-              //   sideBarClasses={'!w-[88px]'}
-              //   sideBarLogoClasses={'!hidden'}
-              //   sideBarMenuText={'!hidden'}
-              //   sideBarMenuArrowClasses={'rotate-180'}
-              // />
-              // sessionStorage.setItem("sideBarCollapse" , "true")
-              ""
-            ) : (
-              <>
-                {/* <Sidebar /> */}
-                <Characters />
-              </>
+            {chartScreenView === 'FullScreen view' ? (            
+              sessionStorage.setItem("sideBarCollapse" , "true")
+            ) : (         
+                <Characters />             
             )}
 
             {chartScreenView === 'Default view' ? (
@@ -103,7 +100,10 @@ const Messages = () => {
               />
             )}
           </>
-        )}
+        )
+        
+      
+      }
       </main>
     </>
   );

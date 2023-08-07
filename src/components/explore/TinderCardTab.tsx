@@ -3,8 +3,11 @@ import React from 'react';
 interface TinderTabProps {
     largeContentState:boolean
   largeContent?: React.Dispatch<React.SetStateAction<boolean>>;
+  // showSingleProfile?: React.Dispatch<React.SetStateAction<boolean>> | undefined;
+  showSingleProfile?: any;
 }
-const TinderCardTab = ({ largeContent ,largeContentState }: TinderTabProps) => {
+const TinderCardTab = ({ largeContent ,largeContentState ,showSingleProfile }: TinderTabProps) => {
+
   return (
     <>
       <div className='inline-flex items-start justify-start gap-1.5'>
@@ -44,7 +47,7 @@ const TinderCardTab = ({ largeContent ,largeContentState }: TinderTabProps) => {
             What do you guys think of my goth cosplay? uwu -
             私のゴスコスプレについてどう思いますか？
           </div>
-          <div className='inline-flex h-10 w-full items-center justify-center gap-1.5 rounded-xl bg-white bg-opacity-10 px-4 py-2.5'>
+          <div className='inline-flex h-10 w-full items-center justify-center gap-1.5 rounded-xl bg-white bg-opacity-10 px-4 py-2.5' onClick={() => {showSingleProfile(true)}}>
             <div className='text-sm font-bold leading-tight text-white'>
               View profile
             </div>

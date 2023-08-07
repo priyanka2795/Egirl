@@ -24,35 +24,35 @@ const messages: MessageData[] = [
 ];
 
 type props = {
-  userSelected: () => void;
+  userSelected: any;
 };
 
 const UserList = ({ userSelected }: props) => {
   return (
     <div>
-      {messages.map((message, index) => (
-        <div
-          key={index}
-          className='mb-6 flex cursor-pointer items-center'
-          onClick={userSelected}
-        >
-          <Image
-            key={0}
-            src='/dummy-char.png'
-            alt={`Character Profile Picture`}
-            width={68}
-            height={68}
-            className='rounded-full'
-          />
-          <div className='ml-4'>
-            <h4 className='font-white text-sm font-semibold leading-[18px] text-[#fff]'>
-              {message.name}
-            </h4>
-            <div className='text-smibold text-[14px] leading-[18px] text-[#979797]'>
-              {message.username}
-            </div>
-          </div>
-        </div>
+      {messages.map((message, index) => (              
+            <div
+              key={index}
+              className='flex items-center mb-6 cursor-pointer'
+              onClick={(e:any) => {userSelected(message.name) , console.log(message.name , "reupdate")}}
+            >
+              <Image
+                key={0}
+                src='/dummy-char.png'
+                alt={`Character Profile Picture`}
+                width={68}
+                height={68}
+                className='rounded-full'
+              />
+              <div className='ml-4'>
+                <h4 className='font-white text-sm font-semibold leading-[18px] text-[#fff]'>
+                  {message.name}
+                </h4>
+                <div className='text-smibold text-[14px] leading-[18px] text-[#979797]'>
+                  {message.username}
+                </div>
+              </div>
+            </div>   
       ))}
       {/* <NoResultFound />
       <ImageRequestModal /> */}
