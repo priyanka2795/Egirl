@@ -90,7 +90,7 @@ const ExploreIndex = () => {
               </Slider>
             </div> */}
             {/* <TinderCardSlider /> */}
-<CardStack/>
+            <CardStack showSingleProfile={setSingleProfileState}/>
             <div className='mb-[32px] mt-[77px] flex justify-center gap-2 items-start'>
               <div
                 className='flex cursor-pointer gap-2 rounded-[10px] bg-white/10 px-4 py-[7px] font-bold text-white'

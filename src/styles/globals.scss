@@ -61,8 +61,10 @@
   }
 
   .rating svg.goldenSvg path {
-    fill: goldenrod;
-    stroke:goldenrod;
+    // fill: goldenrod;
+    // stroke:goldenrod;
+    fill: #515151;
+    stroke:#515151;
   }
   .home-page-slider{
     ul.slick-dots {

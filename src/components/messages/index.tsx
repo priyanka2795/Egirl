@@ -67,7 +67,8 @@ const Messages = () => {
               //   sideBarMenuText={'!hidden'}
               //   sideBarMenuArrowClasses={'rotate-180'}
               // />
-              sessionStorage.setItem("sideBarCollapse" , "true")
+              // sessionStorage.setItem("sideBarCollapse" , "true")
+              ""
             ) : (
               <>
                 {/* <Sidebar /> */}

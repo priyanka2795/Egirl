@@ -144,7 +144,7 @@ if(e==="chatView"){
       >
         <div
           ref={containerRef}
-          className={`flex flex-col justify-end bg-[#121212] px-6 pt-4`}
+          className={`flex flex-col justify-end bg-[#121212] px-6 pt-4 h-full`}
         >
           <Date date='May, 11 2023' />
           {/* <Message
@@ -196,6 +196,7 @@ if(e==="chatView"){
             message='Hey Mika-chan, can you send me a picture of you with your arms raised while wearing a black dress and black bow?'
             name='Mika-chan'
             messageIcons={true}
+            regenerateIcon={true}
             rateResponse={true}
           />
           {/* <MessageSlider /> */}

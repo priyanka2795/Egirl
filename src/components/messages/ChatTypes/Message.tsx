@@ -24,6 +24,7 @@ interface MessageProps {
   message: string;
   gridImage?: boolean;
   messageIcons?: boolean;
+  regenerateIcon?: boolean;
   rateResponse?: boolean;
   isLast?: boolean;
 }
@@ -37,6 +38,7 @@ const Message: React.FC<MessageProps> = ({
   gridImage,
   messageIcons,
   rateResponse,
+  regenerateIcon,
   isLast
 }) => {
   var settings = {
@@ -75,29 +77,37 @@ const Message: React.FC<MessageProps> = ({
           <span className='mr-2 text-[15px] font-semibold leading-5'>
             {name}
           </span>
-          <span className='text-[12px] leading-4 font-normal text-[#979797]'>{time}</span>
+          <span className='text-[12px] font-normal leading-4 text-[#979797]'>
+            {time}
+          </span>
         </div>
 
         {messageIcons ? (
           <div className='flex gap-[18px]'>
-            <span className='items-start justify-between w-full text-[16px] font-normal leading-6 refresh-icon '>
+            <span className='refresh-icon w-full items-start justify-between text-[16px] font-normal leading-6 '>
               {message}
             </span>
             <div className=''>
-                <div className='flex gap-3 opacity-0 group-hover:flex group-hover:opacity-100'>
+              <div className='flex gap-3 opacity-0 group-hover:flex group-hover:opacity-100'>
+                {regenerateIcon && (
                   <Link href='#'>
                     <RefreshIcon />
                   </Link>
-                  <Link href='#'>
-                    <EmojiIcon />
-                  </Link>
+                )}
+
+                
+                {name === 'You' ? (
                   <Link href='#'>
                     <CopyIcon />
                   </Link>
-                </div>
+                ):
+                <Link href='#'>
+                  <EmojiIcon />
+                </Link>
+                }
+              </div>
             </div>
           </div>
-          
         ) : (
           <span className='text-[16px] font-normal leading-6'>{message}</span>
         )}
@@ -126,6 +136,14 @@ const Message: React.FC<MessageProps> = ({
               className='flex cursor-pointer rating'
               // onClick={() => setGoldenSvg(!goldenSvg)}
             >
+              <Link href='#'>
+                <StarIcon
+                  className={`${selectedStars >= 1 ? 'goldenSvg' : ''}`}
+                  onMouseEnter={() => handleStarHover(1)}
+                  onClick={() => handleStarClick(1)}
+                />
+              </Link>
+
               <Link href='#'>
                 <StarIcon
                   className={`${selectedStars >= 1 ? 'goldenSvg' : ''}`}

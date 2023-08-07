@@ -21,16 +21,21 @@ const DefaultChatViewDropdown = ({
   const [selectedChatView, setSelectedChatView] = useState(chartScreenView);
   const [selectedState, setSelectedState] = useState(chartScreenView);
   const handleSelectedOption = (items: string) => {
-    console.log('>>>>items', items);
+    // console.log('>>>>items', items);
+    if(items === 'FullScreen view'){
+      sessionStorage.setItem('sideBarCollapse', 'true');  
+    }else{
+      sessionStorage.setItem('sideBarCollapse', '');
+    }
 
     setSelectedChatView(items);
-    console.log('>>>>SelectedChatView', selectedChatView);
+    // console.log('>>>>SelectedChatView', selectedChatView);
 
     setSelectedState(items);
-    console.log('##### selectedState', selectedState);
+    // console.log('##### selectedState', selectedState);
 
     setChartScreenView(items);
-    console.log('>>>>ChartScreenView', chartScreenView);
+    // console.log('>>>>ChartScreenView', chartScreenView);
 
     setChatView("chatView");  
   };
@@ -38,7 +43,7 @@ const DefaultChatViewDropdown = ({
     <div className='relative'>
       <div
         className='flex cursor-pointer text-[14px] font-normal leading-none text-neutral-400'
-        onClick={() => {setChatView("chatView")}}
+        onClick={() => {setChatView("chatView") }}
       >
         {selectedChatView ? selectedChatView : 'Default view'}
         <div className='ml-1'>{chatView ? <ArrowUp /> : <ArrowDown />}</div>
@@ -46,9 +51,9 @@ const DefaultChatViewDropdown = ({
       {chatView && (
         <div className='absolute right-0 top-[100%] mt-2 inline-flex h-[130px] w-[218px] flex-col items-start justify-start rounded-2xl bg-zinc-900 py-2 shadow'>
           <div className='flex-col items-center self-stretch justify-start gap-2 cursor-pointer '>
-            {viewOptions.map((items) => {
+            {viewOptions.map((items , index) => {
               return (
-                <div
+                <div key={index}
                   className={`flex shrink grow basis-0 items-center justify-between px-4 py-2.5 text-[14px] font-normal leading-none text-white ${
                     selectedChatView === items ? 'bg-white/10' : ''
                   }`}
