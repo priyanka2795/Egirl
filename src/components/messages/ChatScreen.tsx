@@ -33,6 +33,7 @@ import DummyMessage from './DummyMessage';
 import Emoji from './Emoji';
 import ThreeDotsDropdown from './ThreeDotsDropdown';
 import GiftModal from './GiftModal';
+import Gift from './Gift';
 
 type chatProps = {
   chatScreenClassName?: string;
@@ -60,7 +61,9 @@ export default function ChatScreen({
   const [emojiPicker, setEmojiPicker] = useState(false);
   const [chatView, setChatView] = useState(false);
   const [clearChat, setClearChat] = useState(false);
-  const [showMessage , setShowMessge] = useState(false)
+  const [showMessage , setShowMessge] = useState(false);
+  const [showGift , setShowGift] = useState('');
+
   const handleChatViewModal = () => {
     setChatViewOption(!chatViewOption);
     setSendUploadImgState(false);
@@ -188,7 +191,7 @@ export default function ChatScreen({
              <DummyMessage/>
           }
 
-          {/* <MessageSlider /> */}
+          {<Gift showGift={showGift}  />}
         </div>
       </div>
       {showInput && (
@@ -242,7 +245,7 @@ export default function ChatScreen({
                 modalOverlayStyle='!bg-black/80'
                 closeModal={handleGiftModal}
               >
-                <GiftModal closeModal={handleGiftModal} />
+                <GiftModal showGift={showGift} setShowGift={setShowGift} closeModal={handleGiftModal} />
               </Modal>
             )}
           </div>
