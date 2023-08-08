@@ -2,7 +2,7 @@ import EmojiPicker from 'emoji-picker-react';
 import React from 'react';
 
 interface EmojiProp {
-  setMessage: any;
+  setMessage?: any;
 }
 const Emoji = ({ setMessage }: EmojiProp) => {
   return (

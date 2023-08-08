@@ -17,7 +17,7 @@ import HomeIcon from './svg/HomeIcon';
 import DotsVerticalIcon from './svg/dots-vertical-icon.svg';
 import EgirlsPlusIcon from './svg/EgirlsPlusIcon';
 import EyeIcon from '../../home/Post/svg/eye.svg';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import SubscriptionModal from '../SubscriptionModal';
 import ReferalWhiteIcon from './svg/ReferalWhiteIcon';
 import HomeActiveIcon from './svg/HomeActiveIcon';
@@ -60,9 +60,14 @@ sideBarProp) {
   const [moreOption, setMoreOption] = useState(false);
   const [userAccountMenu , setUserAccountMenu] = useState(false)
   const sidebarVariable = sessionStorage.getItem('sideBarCollapse');
+
   const [shrinkSidebar, setShrinkSidebar] = useState(
     sidebarVariable ? sidebarVariable : ''
   );
+  useEffect(() =>{ 
+    setShrinkSidebar( sidebarVariable ? sidebarVariable : '')
+  },[sidebarVariable])
+  
   console.log(sidebarVariable, 'shrinkSidebar sidebarVariable');
   const handleSidebarWidth = () => {
     if (shrinkSidebar) {

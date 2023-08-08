@@ -21,6 +21,7 @@ const DummyMessage = () => {
           name='Mika-chan'
         /> */}
       <Message
+        messageId={1}
         src='/dummy-char.png'
         alt={`Character Profile Picture ${0}`}
         time='09:24'
@@ -30,6 +31,7 @@ const DummyMessage = () => {
       />
 
       <Message
+       messageId={2}
         src='/dummy-char.png'
         alt={`Character Profile Picture ${1}`}
         time='09:23'
@@ -39,6 +41,7 @@ const DummyMessage = () => {
       />
 
       <Message
+       messageId={3}
         src='/dummy-char.png'
         alt={`Character Profile Picture ${2}`}
         time='09:23'
@@ -48,6 +51,7 @@ const DummyMessage = () => {
       />
 
       <Message
+       messageId={4}
         src='/dummy-char.png'
         alt={`Character Profile Picture ${2}`}
         time='09:23'
