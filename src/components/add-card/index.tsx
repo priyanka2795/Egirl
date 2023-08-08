@@ -27,7 +27,7 @@ const AddCard = () => {
                 return (
                   <div
                     key={index}
-                    onClick={(e) => handleExploreSelected(e)}
+                    onClick={(e) => handleExploreSelected(e)} 
                     className={`flex cursor-pointer gap-2.5 rounded-xl px-4 py-2 text-[15px] font-bold ${
                       activeListTab === items
                         ? ' bg-white bg-opacity-20 text-white  '

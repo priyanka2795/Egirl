@@ -9,6 +9,7 @@ import VoiceIcon from './svg/voice-icon.svg';
 import SmileIcon from './svg/smile-icon.svg';
 import SendIcon from './svg/send-icon.svg';
 import SendTransparentIcon from './svg/send-transparent-icon.svg';
+import GiftIcon from './svg/gift-icon.svg';
 import PlusIcon from './svg/PlusIcon';
 import RedCircle from './svg/red-circle.svg';
 import DeleteIcon from './svg/delete-icon.svg';
@@ -31,6 +32,7 @@ import NewConversationWithUser from './NewConversationWithUser';
 import DummyMessage from './DummyMessage';
 import Emoji from './Emoji';
 import ThreeDotsDropdown from './ThreeDotsDropdown';
+import GiftModal from './GiftModal';
 
 type chatProps = {
   chatScreenClassName?: string;
@@ -54,12 +56,17 @@ export default function ChatScreen({
   const [moreOptionDropdown, setMoreOptionDropdown] = useState(false);
   const [sendUploadImgState, setSendUploadImgState] = useState(false);
   const [chatViewOption, setChatViewOption] = useState(false);
+  const [giftModal, setGiftModal] = useState(false);
   const [emojiPicker, setEmojiPicker] = useState(false);
   const [chatView, setChatView] = useState(false);
   const [clearChat, setClearChat] = useState(false);
   const [showMessage , setShowMessge] = useState(false)
   const handleChatViewModal = () => {
     setChatViewOption(!chatViewOption);
+    setSendUploadImgState(false);
+  };
+  const handleGiftModal = () => {
+    setGiftModal(!giftModal);
     setSendUploadImgState(false);
   };
 
@@ -194,7 +201,7 @@ export default function ChatScreen({
               <PlusIcon strokeClasses='stroke-[#ffffff]' />
             </div>
             {sendUploadImgState && (
-              <div className='absolute -top-[120px] left-0 mt-2 inline-flex w-[218px] flex-col items-start justify-start rounded-2xl bg-zinc-900 py-2 shadow'>
+              <div className='absolute -top-[152px] left-0 mt-2 inline-flex w-[218px] flex-col items-start justify-start rounded-2xl bg-zinc-900 py-2 shadow'>
                 <div className='flex-col items-center self-stretch justify-start gap-2 cursor-pointer '>
                   <div
                     className='flex gap-2 px-4 py-[10px] text-sm'
@@ -202,6 +209,13 @@ export default function ChatScreen({
                   >
                     <SendTransparentIcon />
                     Send image request
+                  </div>
+                  <div
+                    className='flex gap-2 px-4 py-[10px] text-sm'
+                    onClick={handleGiftModal}
+                  >
+                    <GiftIcon />
+                    Send gift
                   </div>
                   <div className='flex gap-2 px-4 py-[10px] text-sm'>
                     <UploadIcon />
@@ -219,6 +233,16 @@ export default function ChatScreen({
                 closeModal={handleChatViewModal}
               >
                 <ImageRequestModal closeModal={handleChatViewModal} />
+              </Modal>
+            )}
+            {giftModal && (
+              <Modal
+                open={giftModal}
+                modalClassName='flex flex-col max-w-xl bg-zinc-900 !w-[454px] rounded-2xl shadow relative bg-[#1A1A1A] rounded-[20px]'
+                modalOverlayStyle='!bg-black/80'
+                closeModal={handleGiftModal}
+              >
+                <GiftModal closeModal={handleGiftModal} />
               </Modal>
             )}
           </div>

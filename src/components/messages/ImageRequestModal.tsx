@@ -47,8 +47,8 @@ const ImageRequestModal = ({ closeModal }: ImageRequestModal) => {
 
   return (
     <div className='flex h-max w-[530px] flex-col items-center justify-start overflow-hidden rounded-2xl bg-zinc-900'>
-      <div className='inline-flex items-start justify-start gap-2 self-stretch border-b border-white border-opacity-10 p-6'>
-        <div className='inline-flex shrink grow basis-0 flex-col items-start justify-start gap-1'>
+      <div className='inline-flex items-start self-stretch justify-start gap-2 p-6 border-b border-white border-opacity-10'>
+        <div className='inline-flex flex-col items-start justify-start gap-1 shrink grow basis-0'>
           <div className='w-[286px] text-[18px] font-bold leading-normal text-white'>
             Image request
           </div>
@@ -63,11 +63,11 @@ const ImageRequestModal = ({ closeModal }: ImageRequestModal) => {
           <CloseIcon />
         </div>
       </div>
-      <div className='flex h-max flex-col items-start justify-start self-stretch'>
+      <div className='flex flex-col items-start self-stretch justify-start h-max'>
         {randomImageState === false ? (
           <>
             <div className='flex h-[338px] flex-col items-start justify-start gap-5 self-stretch px-6 pb-5'>
-              <div className='mt-6 flex gap-3'>
+              <div className='flex gap-3 mt-6'>
                 {imageFilterText.map((item, index) => {
                   return (
                     <div
@@ -94,7 +94,7 @@ const ImageRequestModal = ({ closeModal }: ImageRequestModal) => {
                       <Image
                         src={items.image}
                         alt=''
-                        className='rounded-xl object-cover'
+                        className='object-cover rounded-xl'
                       />
                       <p className='absolute bottom-[6px] left-0 h-max w-full bg-black/60 p-2 text-center  text-[13px] font-semibold'>
                         {items.title}
@@ -110,7 +110,7 @@ const ImageRequestModal = ({ closeModal }: ImageRequestModal) => {
                   {/* <div className='relative w-5 h-5' /> */}
                   <ImgIcon />
                 </div>
-                <div className='inline-flex shrink grow basis-0 flex-col items-start justify-start gap-3'>
+                <div className='inline-flex flex-col items-start justify-start gap-3 shrink grow basis-0'>
                   <div className='flex flex-col items-start justify-start gap-1.5 self-stretch'>
                     <div className='self-stretch text-[14px] font-bold leading-none text-white'>
                       Image request
@@ -130,7 +130,7 @@ const ImageRequestModal = ({ closeModal }: ImageRequestModal) => {
                               <Image
                                 src={items.image}
                                 alt=''
-                                className='rounded-xl object-cover'
+                                className='object-cover rounded-xl'
                               />
                               <p className='h-max w-full py-[6px] text-xs font-semibold'>
                                 {items.title}
@@ -157,7 +157,7 @@ const ImageRequestModal = ({ closeModal }: ImageRequestModal) => {
                   {/* <div className='relative w-5 h-5' /> */}
                   <RandomImageIcon />
                 </div>
-                <div className='inline-flex shrink grow basis-0 flex-col items-start justify-start gap-3'>
+                <div className='inline-flex flex-col items-start justify-start gap-3 shrink grow basis-0'>
                   <div className='flex flex-col items-start justify-start gap-1.5 self-stretch'>
                     <div className='self-stretch text-[14px] font-bold leading-none text-white'>
                       Random image request
@@ -171,7 +171,7 @@ const ImageRequestModal = ({ closeModal }: ImageRequestModal) => {
             </div>
           </>
         )}
-        <div className='inline-flex items-end justify-end gap-3 self-stretch bg-neutral-900 p-6'>
+        <div className='inline-flex items-end self-stretch justify-end gap-3 p-6 bg-neutral-900'>
           <button
             className='rounded-2xl border border-white border-opacity-30 px-5 py-[13px] text-[16px] font-bold leading-snug text-white'
             onClick={closeModal}
