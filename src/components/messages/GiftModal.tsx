@@ -100,11 +100,11 @@ const GiftModal = ({ closeModal }: GiftModal) => {
             <div className='grid grid-cols-3 gap-4'>
                 {Food.map((item) => {
                     return(
-                        <div className='group flex flex-col cursor-pointer rounded-[12px] bg-white/[0.05] border-2 border-transparent hover:border-[#5848BC]'>
+                        <div className='overflow-hidden group flex flex-col cursor-pointer rounded-[12px] bg-white/[0.05] border-2 border-transparent hover:border-[#5848BC]'>
                             <div className='flex flex-col items-center justify-center p-2'>
                                 <Image src={item.image} alt={''} />
                             </div>
-                            <div className='overflow-hidden flex items-center justify-center p-2 bg-white/[0.80] text-[#FFFFFF] text-center text-[13px] font-semibold leading-[18px] group-hover:bg-[#5848BC]'>{item.name}</div>
+                            <div className='flex items-center justify-center p-2 bg-black/[0.80] text-[#FFFFFF] text-center text-[13px] font-semibold leading-[18px] group-hover:bg-[#5848BC]'>{item.name}</div>
                         </div>
                     );
                 })}
