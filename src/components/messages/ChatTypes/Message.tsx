@@ -98,7 +98,7 @@ const Message: React.FC<MessageProps> = ({
               
                 </span>
                 <div className=''>
-                  <div className='flex gap-3 opacity-0 group-hover:flex group-hover:opacity-100'>
+                  <div className='flex gap-3 opacity-0 group-hover:flex group-hover:opacity-100 w-[78px] justify-end'>
                     {regenerateIcon && <RefreshIcon />}
                     <div
                       onClick={() => {
@@ -107,7 +107,9 @@ const Message: React.FC<MessageProps> = ({
                       }}
                       className='relative'
                     >
+                      {name !== 'You' && 
                       <EmojiIcon />
+                      }
                       {showSelectedEmojiList === true &&
                       messageIdEmoji === messageId ? (
                         <ChatReactionEmoji
@@ -115,7 +117,7 @@ const Message: React.FC<MessageProps> = ({
                         />
                       ) : null}
                     </div>
-                    {name === 'You' && <CopyIcon className='h-5' />}
+                    <CopyIcon className='h-5' />
                   </div>
                 </div>
               </div>
