@@ -10,6 +10,7 @@ import lollipop from '../../../public/assets/lollipop.png';
 import cake from '../../../public/assets/cake.png';
 import soda from '../../../public/assets/soda.png';
 import eggplant from '../../../public/assets/eggplant.png';
+import tokenIcon from '../../../public/assets/token-white-icon.png';
 
 
 type GiftModal = {
@@ -72,10 +73,11 @@ const GiftModal = ({ closeModal, setShowGiftImg, setShowGiftName, setShowGiftMsg
     const chooseType = ['Clothing', 'Accessories', 'Food', 'Romantic'];
     const [activeSection, setActiveSection] = useState('Platform');
     const [activeType, setactiveType] = useState('Clothing');
+    const [activeText, setActiveText] = useState('');
 
     const handleShowMsg = () => {
-        setShowGiftMsg(true); 
-        closeModal;
+        setShowGiftMsg(true);
+        closeModal;  
     }
 
   return (
@@ -109,16 +111,16 @@ const GiftModal = ({ closeModal, setShowGiftImg, setShowGiftName, setShowGiftMsg
             <div className='grid grid-cols-3 gap-4'>
                 {Food.map((item) => {
                     return(
-                        <div className='overflow-hidden group flex flex-col h-[130px] cursor-pointer rounded-[12px] border-2 border-transparent hover:border-[#5848BC]'>
+                        <div className={`relative overflow-hidden group flex flex-col h-[130px] cursor-pointer rounded-[12px] border-2 border-transparent hover:border-[#5848BC] ${activeText === item.name ? 'border-[#5848BC' : ''}`}>
                             <div className='bg-white/[0.05] flex items-center justify-center p-2 grow'>
-                                <Image onClick={() => { setShowGiftImg(item.image); setShowGiftName(item.name);
+                                <Image onClick={() => { setShowGiftImg(item.image); setShowGiftName(item.name); setActiveText(item.name);
                                 }} className='w-10 h-10' src={item.image} alt={''} />
                             </div>
-                            <div className='flex items-center justify-center p-2 bg-black/[0.80] text-[#FFFFFF] text-center text-[13px] font-semibold leading-[18px] group-hover:bg-[#5848BC]'>{item.name}</div>
+                            <div className={`flex items-center justify-center p-2 bg-black/[0.80] text-[#FFFFFF] text-center text-[13px] font-semibold leading-[18px] group-hover:bg-[#5848BC] ${activeText === item.name ? 'bg-[#5848BC' : ''}`}>{item.name}</div>
                             {item.free && 
-                            <div className='flex pl-1 pr-2 py-[3px] gap-1 rounded-full bg-[#1A1A1A] group-hover:bg-[#5848BC]'>
-                                <div className='w-[14px] h-[14px]'></div>
-                                <div></div>
+                            <div className='absolute top-[2px] right-[2px] flex pl-1 pr-2 py-[3px] gap-1 rounded-full bg-[#1A1A1A] group-hover:bg-[#5848BC]'>
+                                <Image className='object-contain' src={tokenIcon} alt={''} />
+                                <div className='text-[#FFFFFF] text-[12px] font-normal leading-4'>2</div>
                             </div>
                             }
                         </div>
