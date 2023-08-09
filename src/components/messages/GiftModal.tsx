@@ -14,7 +14,7 @@ import tokenIcon from '../../../public/assets/token-white-icon.png';
 
 
 type GiftModal = {
-    closeModal?: () => void;
+    closeModal?: any;
     setShowGiftImg: any;
     setShowGiftName: any;
     setShowGiftMsg: React.Dispatch<React.SetStateAction<boolean>>;
@@ -111,14 +111,15 @@ const GiftModal = ({ closeModal, setShowGiftImg, setShowGiftName, setShowGiftMsg
             <div className='grid grid-cols-3 gap-4'>
                 {Food.map((item) => {
                     return(
-                        <div className={`relative overflow-hidden group flex flex-col h-[130px] cursor-pointer rounded-[12px] border-2 border-transparent hover:border-[#5848BC] ${activeText === item.name ? 'border-[#5848BC' : ''}`}>
+                        <div className={`relative overflow-hidden group flex flex-col h-[130px] cursor-pointer rounded-[12px] border-2 hover:border-[#5848BC] ${activeText === item.name ? 'border-[#5848BC]' : 'border-transparent'}`} onClick={() => {setActiveText(item.name)
+                        ,setShowGiftImg(item.image); setShowGiftName(item.name)
+                         }}>
                             <div className='bg-white/[0.05] flex items-center justify-center p-2 grow'>
-                                <Image onClick={() => { setShowGiftImg(item.image); setShowGiftName(item.name); setActiveText(item.name);
-                                }} className='w-10 h-10' src={item.image} alt={''} />
+                                <Image className='w-10 h-10' src={item.image} alt={''} />
                             </div>
-                            <div className={`flex items-center justify-center p-2 bg-black/[0.80] text-[#FFFFFF] text-center text-[13px] font-semibold leading-[18px] group-hover:bg-[#5848BC] ${activeText === item.name ? 'bg-[#5848BC' : ''}`}>{item.name}</div>
+                            <div className={`flex items-center justify-center p-2 text-[#FFFFFF] text-center text-[13px] font-semibold leading-[18px] group-hover:bg-[#5848BC] ${activeText === item.name ? 'bg-[#5848BC]' : 'bg-black/[0.80] '}`}>{item.name}</div>
                             {item.free && 
-                            <div className='absolute top-[2px] right-[2px] flex pl-1 pr-2 py-[3px] gap-1 rounded-full bg-[#1A1A1A] group-hover:bg-[#5848BC]'>
+                            <div className={`absolute top-[2px] right-[2px] flex pl-1 pr-2 py-[3px] gap-1 rounded-full`}>
                                 <Image className='object-contain' src={tokenIcon} alt={''} />
                                 <div className='text-[#FFFFFF] text-[12px] font-normal leading-4'>2</div>
                             </div>
@@ -130,8 +131,9 @@ const GiftModal = ({ closeModal, setShowGiftImg, setShowGiftName, setShowGiftMsg
         </div>
 
         <div className='flex gap-3 p-6'>
-            <button className='w-1/2 px-5 py-[13px] justify-center items-center rounded-[14px] border border-white/[0.32] text-[#FFFFFF] text-[16px] font-bold leading-[22px]' onClick={closeModal}>Cancel</button>
-            <button className='w-1/2 px-5 py-[13px] justify-center items-center rounded-[14px] bg-[#5848BC] text-[#FFFFFF] text-[16px] font-bold leading-[22px]' onClick={handleShowMsg}>Send gift</button>
+            <button className='w-1/2 px-5 py-[13px] justify-center items-center rounded-[14px] border border-white/[0.32] text-[#FFFFFF] text-[16px] font-bold leading-[22px]' onClick={() => {setActiveText('')
+                        ,setShowGiftImg(''); setShowGiftName(''),closeModal()}}>Cancel</button>
+            <button className='w-1/2 px-5 py-[13px] justify-center items-center rounded-[14px] bg-[#5848BC] text-[#FFFFFF] text-[16px] font-bold leading-[22px]' onClick={() => {handleShowMsg() , closeModal()}}>Send gift</button>
         </div>
     </div>
   )
