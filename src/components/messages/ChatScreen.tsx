@@ -67,6 +67,10 @@ export default function ChatScreen({
   const [showMessage , setShowMessge] = useState(false);
   const [showSubscriptionModal ,setShowSubscriptionModal] = useState(false);
   const [showGift , setShowGift] = useState('');
+  const [showGiftImg , setShowGiftImg] = useState('');
+  const [showGiftName , setShowGiftName] = useState('');
+  const [showGiftMsg , setShowGiftMsg] = useState(false);
+  const [buttonText , setButtonText] = useState('');
 
   const handleChatViewModal = () => {
     setChatViewOption(!chatViewOption);
@@ -202,7 +206,7 @@ export default function ChatScreen({
              <DummyMessage/>
           }
 
-          {<Gift showGift={showGift}  />}
+          {showGiftMsg && <Gift showGiftImg={showGiftImg} showGiftName={showGiftName} />}
         </div>
       </div>
       {showInput && (
@@ -256,7 +260,7 @@ export default function ChatScreen({
                 modalOverlayStyle='!bg-black/80'
                 closeModal={handleGiftModal}
               >
-                <GiftModal showGift={showGift} setShowGift={setShowGift} closeModal={handleGiftModal} />
+                <GiftModal setShowGiftImg={setShowGiftImg} setShowGiftName={setShowGiftName} setShowGiftMsg={setShowGiftMsg} closeModal={handleGiftModal} />
               </Modal>
             )}
           </div>

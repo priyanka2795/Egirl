@@ -7,7 +7,7 @@ import ChatScreen from './ChatScreen';
 const viewOptions = ['Default view', 'Focused view', 'FullScreen view'];
 type chartViewProps = {
   chartScreenView: string | undefined;
-  setChartScreenView: React.Dispatch<React.SetStateAction<string>>;
+  setChartScreenView: any;
   chatView: boolean | undefined;
   setChatView: any;
 };

@@ -14,8 +14,9 @@ import eggplant from '../../../public/assets/eggplant.png';
 
 type GiftModal = {
     closeModal?: () => void;
-    showGift: any
-    setShowGift: any;
+    setShowGiftImg: any;
+    setShowGiftName: any;
+    setShowGiftMsg: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const Food =[
@@ -66,16 +67,16 @@ const Food =[
     },
 ];
 
-const GiftModal = ({ closeModal, showGift, setShowGift }: GiftModal) => {
+const GiftModal = ({ closeModal, setShowGiftImg, setShowGiftName, setShowGiftMsg }: GiftModal) => {
     const section = ['Platform', 'Wishlist'];
     const chooseType = ['Clothing', 'Accessories', 'Food', 'Romantic'];
     const [activeSection, setActiveSection] = useState('Platform');
     const [activeType, setactiveType] = useState('Clothing');
 
-    const handleShowGift = () => {
-        console.log();
-        setShowGift=(true);
-    };
+    const handleShowMsg = () => {
+        setShowGiftMsg(true); 
+        closeModal;
+    }
 
   return (
     <div>
@@ -110,10 +111,16 @@ const GiftModal = ({ closeModal, showGift, setShowGift }: GiftModal) => {
                     return(
                         <div className='overflow-hidden group flex flex-col h-[130px] cursor-pointer rounded-[12px] border-2 border-transparent hover:border-[#5848BC]'>
                             <div className='bg-white/[0.05] flex items-center justify-center p-2 grow'>
-                                <Image onClick={() => {setShowGift(item.image); console.log(item.image);
+                                <Image onClick={() => { setShowGiftImg(item.image); setShowGiftName(item.name);
                                 }} className='w-10 h-10' src={item.image} alt={''} />
                             </div>
                             <div className='flex items-center justify-center p-2 bg-black/[0.80] text-[#FFFFFF] text-center text-[13px] font-semibold leading-[18px] group-hover:bg-[#5848BC]'>{item.name}</div>
+                            {item.free && 
+                            <div className='flex pl-1 pr-2 py-[3px] gap-1 rounded-full bg-[#1A1A1A] group-hover:bg-[#5848BC]'>
+                                <div className='w-[14px] h-[14px]'></div>
+                                <div></div>
+                            </div>
+                            }
                         </div>
                     );
                 })}
@@ -122,7 +129,7 @@ const GiftModal = ({ closeModal, showGift, setShowGift }: GiftModal) => {
 
         <div className='flex gap-3 p-6'>
             <button className='w-1/2 px-5 py-[13px] justify-center items-center rounded-[14px] border border-white/[0.32] text-[#FFFFFF] text-[16px] font-bold leading-[22px]' onClick={closeModal}>Cancel</button>
-            <button className='w-1/2 px-5 py-[13px] justify-center items-center rounded-[14px] bg-[#5848BC] text-[#FFFFFF] text-[16px] font-bold leading-[22px]'>Send gift</button>
+            <button className='w-1/2 px-5 py-[13px] justify-center items-center rounded-[14px] bg-[#5848BC] text-[#FFFFFF] text-[16px] font-bold leading-[22px]' onClick={handleShowMsg}>Send gift</button>
         </div>
     </div>
   )
