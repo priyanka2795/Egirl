@@ -277,7 +277,7 @@ export default function ChatScreen({
               onChange={(e) => setMessage(e.target.value)}
               style={{ outline: 'none' }}
             />
-            <ImageDropZone/>
+            {/* <ImageDropZone/> */}
 
             <div
               className='absolute right-4 top-3'
