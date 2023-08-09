@@ -30,6 +30,7 @@ interface MessageProps {
   rateResponse?: boolean;
   isLast?: boolean;
   messageId?: any;
+  chatName: string;
 }
 
 const Message: React.FC<MessageProps> = ({
@@ -43,6 +44,7 @@ const Message: React.FC<MessageProps> = ({
   rateResponse,
   regenerateIcon,
   messageId,
+  chatName,
   isLast
 }) => {
   var settings = {
@@ -71,15 +73,15 @@ const Message: React.FC<MessageProps> = ({
   };
 
   return (
-      <div className='flex items-start w-full py-4 refresh-icon-parent '>
-        <Image
+      <div className={`flex items-start w-full py-4 refresh-icon-parent ${chatName === 'Bubble chat' && name === 'You' && 'w-[48%] justify-end items-end rounded-tl-[10px] rounded-tr-[10px] rounded-br-0 rounded-bl-[10px] bg-[#5848BC]'}`}>
+        {chatName === 'Bubble chat' ? '' : <Image
           key={0}
           src={src} // Change to your image path
           alt={alt} // Change to your alt text
           width={40}
           height={40}
           className='rounded-full'
-        />
+        />}
         <div className='flex flex-col w-full ml-3 cursor-pointer group'>
           <div className='mb-[2px] flex items-center'>
             <span className='mr-2 text-[15px] font-semibold leading-5'>

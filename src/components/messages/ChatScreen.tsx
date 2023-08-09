@@ -72,6 +72,7 @@ export default function ChatScreen({
   const [showGiftName , setShowGiftName] = useState('');
   const [showGiftMsg , setShowGiftMsg] = useState(false);
   const [buttonText , setButtonText] = useState('');
+  const [chatName , setChatName] = useState('');
 
   const handleChatViewModal = () => {
     setChatViewOption(!chatViewOption);
@@ -171,7 +172,7 @@ export default function ChatScreen({
               //     </div>
               //   </div>
               // </div>
-              <ThreeDotsDropdown setClearChat={setClearChat} setMoreOptionDropdown={setMoreOptionDropdown}/>
+              <ThreeDotsDropdown setClearChat={setClearChat} setMoreOptionDropdown={setMoreOptionDropdown} setChatName={setChatName}/>
             )}
           </div>
         </div>
@@ -198,13 +199,13 @@ export default function ChatScreen({
               isLast={true}
               message={message}
               name='You'
-              messageIcons={true}             
-             
+              messageIcons={true}
+              chatName={chatName}
             />
             }
            </>
           ) : clearChat === false &&           
-             <DummyMessage/>
+             <DummyMessage chatName={chatName}/>
           }
 
           {showGiftMsg && <Gift showGiftImg={showGiftImg} showGiftName={showGiftName} />}

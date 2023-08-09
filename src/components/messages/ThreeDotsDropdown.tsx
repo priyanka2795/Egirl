@@ -4,10 +4,11 @@ import DeleteIcon from './svg/delete-icon.svg';
 import ChatViewModal from './ChatViewModal';
 
 interface ThreeDotsDropdownProp{
-    setClearChat:any,
-    setMoreOptionDropdown:any
+    setClearChat:any;
+    setMoreOptionDropdown:any;
+    setChatName:React.Dispatch<React.SetStateAction<string>>;
 }
-const ThreeDotsDropdown = ({setClearChat ,setMoreOptionDropdown}: ThreeDotsDropdownProp) => {
+const ThreeDotsDropdown = ({setClearChat ,setMoreOptionDropdown, setChatName}: ThreeDotsDropdownProp) => {
   const [chatViewModal, setChatViewModal] = useState(false);
 
   return (
@@ -29,7 +30,7 @@ const ThreeDotsDropdown = ({setClearChat ,setMoreOptionDropdown}: ThreeDotsDropd
   </div>
    {
     chatViewModal && 
-    <ChatViewModal closeModal={setChatViewModal} />
+    <ChatViewModal closeModal={setChatViewModal} setChatName={setChatName}/>
    }
    </>
   )

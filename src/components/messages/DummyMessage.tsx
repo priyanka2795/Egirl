@@ -2,7 +2,11 @@ import React from 'react';
 import Message from './ChatTypes/Message';
 import Date from './ChatTypes/Date';
 
-const DummyMessage = () => {
+interface DummyMessageProps {
+  chatName: string;
+}
+
+const DummyMessage = ({chatName} : DummyMessageProps) => {
   return (
     <>
       <Date date='May, 11 2023' />
@@ -28,6 +32,7 @@ const DummyMessage = () => {
         message='It’s me :) '
         name='Mika-chan'
         gridImage={true}
+        chatName={chatName}
       />
 
       <Message
@@ -38,6 +43,7 @@ const DummyMessage = () => {
         message='Some text'
         name='Mika-chan'
         messageIcons={true}
+        chatName={chatName}
       />
 
       <Message
@@ -48,6 +54,7 @@ const DummyMessage = () => {
         message='Hey Mika-chan, can you send me a picture of you with your arms raised while wearing a black |'
         name='You'
         messageIcons={true}
+        chatName={chatName}
       />
 
       <Message
@@ -61,6 +68,7 @@ const DummyMessage = () => {
         messageIcons={true}
         regenerateIcon={true}
         rateResponse={true}
+        chatName={chatName}
       />
     </>
   );
