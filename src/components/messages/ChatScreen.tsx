@@ -15,6 +15,7 @@ import RedCircle from './svg/red-circle.svg';
 import DeleteIcon from './svg/delete-icon.svg';
 import ChatIcon from './svg/chat-icon-small.svg';
 import UploadIcon from './svg/uplaod-icon.svg';
+import InfoIcon from './svg/info-icon.svg';
 
 import SendWhiteIcon from './svg/send-white-icon.svg';
 
@@ -34,6 +35,8 @@ import Emoji from './Emoji';
 import ThreeDotsDropdown from './ThreeDotsDropdown';
 import GiftModal from './GiftModal';
 import Gift from './Gift';
+import ImageDropZone from './ImageDropZone';
+import SubscriptionModal from '@components/common/SubscriptionModal';
 
 type chatProps = {
   chatScreenClassName?: string;
@@ -62,6 +65,7 @@ export default function ChatScreen({
   const [chatView, setChatView] = useState(false);
   const [clearChat, setClearChat] = useState(false);
   const [showMessage , setShowMessge] = useState(false);
+  const [showSubscriptionModal ,setShowSubscriptionModal] = useState(false);
   const [showGift , setShowGift] = useState('');
 
   const handleChatViewModal = () => {
@@ -115,13 +119,20 @@ export default function ChatScreen({
             height={40}
             className='rounded-full'
           />
-          <h3 className='ml-3 text-[15px] font-semibold leading-5'>
+         <div className="flex flex-col items-start ml-3">
+           <h3 className='text-[15px] font-semibold leading-5'>
             Mika-chan
           </h3>
+          <h6 className="text-[#979797] text-xs font-normal flex gap-1" onClick={() => setShowSubscriptionModal(true)}>
+            50 messages remaining
+           <InfoIcon/>
+          </h6>
+         </div>
         </div>
-        {/* <div className='flex items-center bg-red-400 cursor-pointer'>
-          <DotsHorizontalIcon />          
-        </div> */}
+        {
+          showSubscriptionModal &&
+          <SubscriptionModal showSubscription={false} closeState={setShowSubscriptionModal}/>
+        }
         <div className='flex items-center gap-8'>
           <VoiceModeToggle
             handleToggleState={() => setVoiceMode(!voiceMode)}
@@ -249,9 +260,9 @@ export default function ChatScreen({
               </Modal>
             )}
           </div>
-          <div className='relative w-full'>
+          <div className='relative flex w-full'>
             <input
-              className='h-[48px] w-full rounded-[14px] border-none bg-[#1E1E1E] py-4 pl-4 pr-[50px] text-[15px] font-light leading-6 text-[#979797] transition-all duration-100 focus:ring-1 focus:ring-transparent'
+              className='resize-none h-[48px] w-full rounded-[14px] border-none bg-[#1E1E1E] py-[10px] pl-4 pr-[50px] text-[15px] font-light leading-6 text-[#979797] transition-all duration-100 focus:ring-1 focus:ring-transparent'
               type='text'
               placeholder='Type a message'
               // value={message}
@@ -260,6 +271,7 @@ export default function ChatScreen({
               onChange={(e) => setMessage(e.target.value)}
               style={{ outline: 'none' }}
             />
+            <ImageDropZone/>
 
             <div
               className='absolute right-4 top-3'
