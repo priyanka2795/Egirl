@@ -37,6 +37,7 @@ import GiftModal from './GiftModal';
 import Gift from './Gift';
 import ImageDropZone from './ImageDropZone';
 import SubscriptionModal from '@components/common/SubscriptionModal';
+import CurrentPlaneModal from '@components/common/CurrentPlaneModal';
 
 type chatProps = {
   chatScreenClassName?: string;
@@ -65,7 +66,7 @@ export default function ChatScreen({
   const [chatView, setChatView] = useState(false);
   const [clearChat, setClearChat] = useState(false);
   const [showMessage , setShowMessge] = useState(false);
-  const [showSubscriptionModal ,setShowSubscriptionModal] = useState(false);
+  const [currentPlanModal ,setCurrentPlanModal] = useState(false);
   const [showGift , setShowGift] = useState('');
   const [showGiftImg , setShowGiftImg] = useState('');
   const [showGiftName , setShowGiftName] = useState('');
@@ -127,15 +128,15 @@ export default function ChatScreen({
            <h3 className='text-[15px] font-semibold leading-5'>
             Mika-chan
           </h3>
-          <h6 className="text-[#979797] text-xs font-normal flex gap-1" onClick={() => setShowSubscriptionModal(true)}>
+          <h6 className="text-[#979797] text-xs font-normal flex gap-1 cursor-pointer" onClick={() => setCurrentPlanModal(true)}>
             50 messages remaining
            <InfoIcon/>
           </h6>
          </div>
         </div>
         {
-          showSubscriptionModal &&
-          <SubscriptionModal showSubscription={false} closeState={setShowSubscriptionModal}/>
+          currentPlanModal &&
+          <CurrentPlaneModal closeState={setCurrentPlanModal}/>
         }
         <div className='flex items-center gap-8'>
           <VoiceModeToggle

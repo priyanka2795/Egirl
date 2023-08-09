@@ -4,6 +4,7 @@ import Bolt from './svg/boltIcon.svg';
 import SubscriptionEgirlContent from './SubscriptionEgirlContent';
 import SubscriptionBuyContent from './SubscriptionBuyContent';
 import CloseIcon from '../../../public/assets/svgImages/close-icon.svg'
+import SubscriptionEgirlPlan from './SubscriptionEgirlPlan';
 
 interface subscription {
   closeState?: any;
@@ -26,7 +27,7 @@ const SubscriptionModal = ({ closeState, showSubscription }: subscription) => {
     <div>
       <Modal
         open={true}
-        modalClassName='flex flex-col gap-6 max-w-xl w-full p-8 rounded-2xl h-max bg-[#121212] max-w-[550px] relative'
+        modalClassName={`flex flex-col gap-6 w-full p-8 rounded-2xl h-max max-w-[550px] relative ${tabSelectedOpt === "Egirls+" ? "bg-[#1A1A1A]" : "bg-[#121212]"} `}
         closeModal={() => closeState(false)}
         modalOverlayStyle='!bg-black/80'
       >
@@ -59,7 +60,8 @@ const SubscriptionModal = ({ closeState, showSubscription }: subscription) => {
           </div>
         </div>
         {
-          showSubscription ? <SubscriptionBuyContent/> : (tabSelectedOpt === "Egirls+" ? <SubscriptionEgirlContent /> : <SubscriptionBuyContent/>)
+          showSubscription ? <SubscriptionBuyContent/> : (tabSelectedOpt === "Egirls+" ? <SubscriptionEgirlPlan closeModal={closeState}/> : <SubscriptionBuyContent/>)
+          // showSubscription ? <SubscriptionBuyContent/> : (tabSelectedOpt === "Egirls+" ? <SubscriptionEgirlContent /> : <SubscriptionBuyContent/>)
         }
         
       </Modal>
