@@ -38,7 +38,7 @@ const ChatViewModal = ({closeModal, setChatName, setMoreOptionDropdown} : ChatVi
         >
             <div className='flex p-6 justify-between border-b border-white/[0.08]'>
                 <div className='text-[#FFFFFF] text-[18px] font-bold leading-6'>Chat view</div>
-                <Image className='w-6 h-6' src={crossIcon} alt={''} />
+                <Image onClick={() => {closeModal(false); setMoreOptionDropdown(false);}} className='w-6 h-6' src={crossIcon} alt={''} />
             </div>
             <div className='flex flex-col gap-8 p-6'>
                 <div className='flex gap-4'>
