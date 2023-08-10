@@ -3,15 +3,7 @@ import SubscriptionOptions from './SubscriptionOptions';
 import DefaultTab from '@components/common/DefaultTab';
 import CollectionOptions from './CollectionOptions';
 import RemoveProfile from './RemoveProfile';
-import EditCollectionModal from './EditCollectionModal';
 import BookMarks from './BookMarks1';
-import AddToCollectionModal from './AddToCollectionModal';
-import BookMarks3 from './BookMarks3';
-import BookMarks2 from './BookMarks2';
-import BookMarkModal from './BookMarkModal';
-import ClearBookMarkModal from './ClearBookMarkModal';
-import CollectionCoverModal from './CollectionCoverModal';
-
 
 const ListIndex = () => {
   const [activeListTab, setActiveListTab] = useState('Subscriptions');
@@ -19,9 +11,8 @@ const ListIndex = () => {
   const [profileSectionState , setProfileSectionState] = useState(false)
   return (
     <div>
-      {/* <div onClick={() => setRemovePage(!removePage)}>Remove Page</div> */}
       {profileSectionState === true ? (
-        <RemoveProfile backFromProfile={setProfileSectionState}/>
+        <RemoveProfile backFromProfile={setProfileSectionState} />
       ) : (
         <>
           <DefaultTab
@@ -42,10 +33,6 @@ const ListIndex = () => {
           </div>
         </>
       )}
-      {/* <BookMarkModal /> */}
-      {/* <ClearBookMarkModal/> */}
-     
-      {/* <CollectionCoverModal /> */}
     </div>
   );
 };
