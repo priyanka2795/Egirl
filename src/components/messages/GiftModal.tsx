@@ -111,8 +111,8 @@ const GiftModal = ({ closeModal, setShowGiftImg, setShowGiftName, setShowGiftMsg
             <div className='grid grid-cols-3 gap-4'>
                 {Food.map((item) => {
                     return(
-                        <div className={`relative overflow-hidden group flex flex-col h-[130px] cursor-pointer rounded-[12px] border-2 hover:border-[#5848BC] ${activeText === item.name ? 'border-[#5848BC]' : 'border-transparent'}`} onClick={() => {setActiveText(item.name)
-                        ,setShowGiftImg(item.image); setShowGiftName(item.name)
+                        <div className={`relative overflow-hidden group flex flex-col h-[130px] cursor-pointer rounded-[12px] border-2 hover:border-[#5848BC] ${activeText === item.name ? 'border-[#5848BC]' : 'border-transparent'}`} onClick={() => {setActiveText(item.name),
+                         setShowGiftImg(item.image); setShowGiftName(item.name)
                          }}>
                             <div className='bg-white/[0.05] flex items-center justify-center p-2 grow'>
                                 <Image className='w-10 h-10' src={item.image} alt={''} />

@@ -13,7 +13,7 @@ interface ChatViewModalProp{
 }
 
 const ChatViewModal = ({closeModal, setChatName, setMoreOptionDropdown} : ChatViewModalProp) => {
-    const [activeChat, setActiveChat] = useState('');
+    const [activeChat, setActiveChat] = useState('Bubble chat');
 
     const handleInlineChat = () => {
         setActiveChat('Inline chat'); 
@@ -42,7 +42,7 @@ const ChatViewModal = ({closeModal, setChatName, setMoreOptionDropdown} : ChatVi
             </div>
             <div className='flex flex-col gap-8 p-6'>
                 <div className='flex gap-4'>
-                    <div className={`overflow-hidden flex flex-col justify-between group w-[488px] rounded-[14px] bg-white/[0.02] border-2 border-white/[0.05] hover:border-[#5848BC] ${activeChat === 'Inline chat' ? 'border-[#5848BC]' : 'border-[red]'}`} onClick={handleInlineChat}>
+                    <div className={`overflow-hidden flex flex-col justify-between group w-[488px] rounded-[14px] bg-white/[0.02] border-2 border-white/[0.05] hover:border-[#5848BC] ${activeChat === 'Inline chat' ? 'border-[#5848BC]' : ''}`} onClick={handleInlineChat}>
                         <div className='flex flex-col'>
                             <div className='px-6 py-4 bg-white/[0.02] flex gap-3'>
                                 <Image className='w-10 h-10' src={avtar} alt={''} />

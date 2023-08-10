@@ -73,7 +73,7 @@ const Message: React.FC<MessageProps> = ({
   };
 
   return (
-      <div className={`flex py-4 refresh-icon-parent ${chatName === 'Bubble chat' && name === 'You' ? 'w-[50%] justify-end items-end rounded-tl-[10px] rounded-tr-[10px] rounded-br-0 rounded-bl-[10px] bg-[#5848BC]' : 'items-start w-full'}`}>
+      <div className={`flex py-4 refresh-icon-parent ${chatName === 'Bubble chat' ? 'w-[52%]' : 'w-full'} ${chatName === 'Bubble chat' && name === 'You' ? 'justify-end items-end rounded-tl-[10px] rounded-tr-[10px] rounded-br-0 rounded-bl-[10px] bg-[#5848BC]' : 'items-start w-full'}`}>
         {chatName === 'Bubble chat' && name === 'You' ? '' : 
         <Image
           key={0}

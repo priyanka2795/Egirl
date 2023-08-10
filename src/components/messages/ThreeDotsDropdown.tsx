@@ -10,6 +10,7 @@ interface ThreeDotsDropdownProp{
 }
 const ThreeDotsDropdown = ({setClearChat ,setMoreOptionDropdown, setChatName}: ThreeDotsDropdownProp) => {
   const [chatViewModal, setChatViewModal] = useState(false);
+  const [clearChatModal, setclearChatModal] = useState(false);
 
   return (
     <>
