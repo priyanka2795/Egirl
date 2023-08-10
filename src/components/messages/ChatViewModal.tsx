@@ -9,9 +9,25 @@ import userIcon from '../../../public/assets/user-icon.png';
 interface ChatViewModalProp{
     closeModal: React.Dispatch<React.SetStateAction<boolean>>;
     setChatName: React.Dispatch<React.SetStateAction<string>>;
+    setMoreOptionDropdown: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const ChatViewModal = ({closeModal, setChatName} : ChatViewModalProp) => {
+const ChatViewModal = ({closeModal, setChatName, setMoreOptionDropdown} : ChatViewModalProp) => {
+    const [activeChat, setActiveChat] = useState('');
+
+    const handleInlineChat = () => {
+        setActiveChat('Inline chat'); 
+        console.log('>>>activeChat', activeChat);
+        setChatName('Inline chat'); 
+    };
+    console.log('>>>activeChatoutside', activeChat);
+
+    const handleBubbleChat = () => {
+        setActiveChat('Bubble chat'); 
+        setChatName('Bubble chat'); 
+        console.log('>>>activeChat', activeChat);
+    };
+
   return (
     <div>
         <Modal
@@ -26,7 +42,7 @@ const ChatViewModal = ({closeModal, setChatName} : ChatViewModalProp) => {
             </div>
             <div className='flex flex-col gap-8 p-6'>
                 <div className='flex gap-4'>
-                    <div className='overflow-hidden flex flex-col justify-between group w-[488px] rounded-[14px] bg-white/[0.02] border-2 border-white/[0.05] hover:border-[#5848BC]'>
+                    <div className={`overflow-hidden flex flex-col justify-between group w-[488px] rounded-[14px] bg-white/[0.02] border-2 border-white/[0.05] hover:border-[#5848BC] ${activeChat === 'Inline chat' ? 'border-[#5848BC]' : 'border-[red]'}`} onClick={handleInlineChat}>
                         <div className='flex flex-col'>
                             <div className='px-6 py-4 bg-white/[0.02] flex gap-3'>
                                 <Image className='w-10 h-10' src={avtar} alt={''} />
@@ -75,10 +91,10 @@ const ChatViewModal = ({closeModal, setChatName} : ChatViewModalProp) => {
                                 </div>
                             </div>
                         </div>
-                        <button className='flex items-center justify-center p-6 bg-white/[0.05] group-hover:bg-[#5848BC] text-[#FFFFFF] text-[15px] font-semibold leading-5' onClick={() => {setChatName('Inline chat')}}>Inline chat </button>
+                        <button className={`flex items-center justify-center p-6 bg-white/[0.05] group-hover:bg-[#5848BC] text-[#FFFFFF] text-[15px] font-semibold leading-5 ${activeChat === 'Inline chat' ? 'bg-[#5848BC]' : ''}`}>Inline chat </button>
                     </div>
 
-                    <div className='overflow-hidden flex flex-col group w-[488px] rounded-[14px] bg-white/[0.02] border-2 border-white/[0.05] hover:border-[#5848BC]'>
+                    <div className={`overflow-hidden flex flex-col group w-[488px] rounded-[14px] bg-white/[0.02] border-2 border-white/[0.05] hover:border-[#5848BC] ${activeChat === 'Bubble chat' ? 'border-[#5848BC]' : ''}`} onClick={handleBubbleChat}>
                         <div className='flex flex-col'>
                             <div className='px-6 py-4 bg-white/[0.02] flex gap-3'>
                                 <Image className='w-10 h-10' src={avtar} alt={''} />
@@ -113,12 +129,12 @@ const ChatViewModal = ({closeModal, setChatName} : ChatViewModalProp) => {
                                 <div className='text-[#979797] text-[12px] font-normal leading-4'>09:30pm</div>
                             </div>
                         </div>
-                        <button className='flex items-center justify-center p-6 bg-white/[0.05] text-[#FFFFFF] text-[15px] font-semibold leading-5 group-hover:bg-[#5848BC]' onClick={() => {setChatName('Bubble chat')}}>Bubble chat</button>
+                        <button className={`flex items-center justify-center p-6 bg-white/[0.05] text-[#FFFFFF] text-[15px] font-semibold leading-5 group-hover:bg-[#5848BC] ${activeChat === 'Bubble chat' ? 'bg-[#5848BC]' : ''}`}>Bubble chat</button>
                     </div>
                 </div>
                 
                 <div className='flex items-end justify-end'>
-                <button className='flex w-max px-5 py-[13px] justify-center items-center rounded-[14px] bg-[#5848BC] text-[#FFFFFF] text-[16px] font-bold leading-[22px]'>Done</button>
+                <button className='flex w-max px-5 py-[13px] justify-center items-center rounded-[14px] bg-[#5848BC] text-[#FFFFFF] text-[16px] font-bold leading-[22px]' onClick={() => {closeModal(false); setMoreOptionDropdown(false); setActiveChat('')}}>Done</button>
                 </div>
             </div>
         </Modal>    

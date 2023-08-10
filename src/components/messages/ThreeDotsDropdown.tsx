@@ -30,7 +30,7 @@ const ThreeDotsDropdown = ({setClearChat ,setMoreOptionDropdown, setChatName}: T
   </div>
    {
     chatViewModal && 
-    <ChatViewModal closeModal={setChatViewModal} setChatName={setChatName}/>
+    <ChatViewModal closeModal={setChatViewModal} setChatName={setChatName} setMoreOptionDropdown={setMoreOptionDropdown}/>
    }
    </>
   )

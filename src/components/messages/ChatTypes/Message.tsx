@@ -73,8 +73,9 @@ const Message: React.FC<MessageProps> = ({
   };
 
   return (
-      <div className={`flex items-start w-full py-4 refresh-icon-parent ${chatName === 'Bubble chat' && name === 'You' && 'w-[48%] justify-end items-end rounded-tl-[10px] rounded-tr-[10px] rounded-br-0 rounded-bl-[10px] bg-[#5848BC]'}`}>
-        {chatName === 'Bubble chat' ? '' : <Image
+      <div className={`flex py-4 refresh-icon-parent ${chatName === 'Bubble chat' && name === 'You' ? 'w-[50%] justify-end items-end rounded-tl-[10px] rounded-tr-[10px] rounded-br-0 rounded-bl-[10px] bg-[#5848BC]' : 'items-start w-full'}`}>
+        {chatName === 'Bubble chat' && name === 'You' ? '' : 
+        <Image
           key={0}
           src={src} // Change to your image path
           alt={alt} // Change to your alt text
