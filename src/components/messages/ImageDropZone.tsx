@@ -62,7 +62,7 @@ const ImageDropZone = () => {
   console.log(uploadedItemState, 'test the uplpaswd');
   return (
     <>
-      <section className='container p-3 mt-3 mb-16 border-2 border-dashed cursor-pointer border-gray'>
+      <section>
         <div
           {...getRootProps({
             className: 'dropzone flex items-center justify-center flex-col'

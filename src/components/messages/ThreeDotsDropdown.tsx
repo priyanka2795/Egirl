@@ -7,8 +7,10 @@ interface ThreeDotsDropdownProp{
     setClearChat:any;
     setMoreOptionDropdown:any;
     setChatName:React.Dispatch<React.SetStateAction<string>>;
+    activeChatStyle:any;
+    defaultChatStyle:string;
 }
-const ThreeDotsDropdown = ({setClearChat ,setMoreOptionDropdown, setChatName}: ThreeDotsDropdownProp) => {
+const ThreeDotsDropdown = ({setClearChat ,setMoreOptionDropdown, setChatName ,activeChatStyle , defaultChatStyle}: ThreeDotsDropdownProp) => {
   const [chatViewModal, setChatViewModal] = useState(false);
   const [clearChatModal, setclearChatModal] = useState(false);
 
@@ -31,7 +33,7 @@ const ThreeDotsDropdown = ({setClearChat ,setMoreOptionDropdown, setChatName}: T
   </div>
    {
     chatViewModal && 
-    <ChatViewModal closeModal={setChatViewModal} setChatName={setChatName} setMoreOptionDropdown={setMoreOptionDropdown}/>
+    <ChatViewModal closeModal={setChatViewModal} setChatName={setChatName} setMoreOptionDropdown={setMoreOptionDropdown} activeChatStyle={activeChatStyle} defaultChatStyle={defaultChatStyle}/>
    }
    </>
   )

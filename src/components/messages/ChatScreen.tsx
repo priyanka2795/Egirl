@@ -73,6 +73,8 @@ export default function ChatScreen({
   const [showGiftMsg , setShowGiftMsg] = useState(false);
   const [buttonText , setButtonText] = useState('');
   const [chatName , setChatName] = useState('');
+  const [dropZoneState , setDropZoneState] = useState(false);
+  const [chatViewStyle ,setChatViewStyle] = useState('Inline chat');
 
   const handleChatViewModal = () => {
     setChatViewOption(!chatViewOption);
@@ -157,22 +159,25 @@ export default function ChatScreen({
             </div>
 
             {moreOptionDropdown && (
-              // <div className='absolute right-0 top-[100%] mt-2 inline-flex w-[218px] flex-col items-start justify-start rounded-2xl bg-zinc-900 py-2 shadow'>
-              //   <div className='flex-col items-center self-stretch justify-start gap-2 cursor-pointer '>
-              //     <div className='flex gap-2 px-4 py-[10px] text-sm'>
-              //       <ChatIcon />
-              //       Chat view
-              //     </div>
-              //     <div
-              //       className='flex gap-2 px-4 py-[10px] text-sm'
-              //       onClick={() => {setClearChat(true), setMoreOptionDropdown(false)}}
-              //     >
-              //       <DeleteIcon />
-              //       Clear chat
-              //     </div>
-              //   </div>
-              // </div>
-              <ThreeDotsDropdown setClearChat={setClearChat} setMoreOptionDropdown={setMoreOptionDropdown} setChatName={setChatName}/>
+            <>  <div className='absolute right-0 top-[100%] mt-2 inline-flex w-[218px] flex-col items-start justify-start rounded-2xl bg-zinc-900 py-2 shadow'>
+            <div className='flex-col items-center self-stretch justify-start gap-2 cursor-pointer '>
+              <div className='flex gap-2 px-4 py-[10px] text-sm'>
+                <ChatIcon />
+                Chat view
+              </div>
+              <div
+                className='flex gap-2 px-4 py-[10px] text-sm'
+                onClick={() => {setClearChat(true), setMoreOptionDropdown(false)}}
+              >
+                <DeleteIcon />
+                Clear chat
+              </div>
+            </div>
+          </div>
+          <ThreeDotsDropdown setClearChat={setClearChat} setMoreOptionDropdown={setMoreOptionDropdown} setChatName={setChatName} defaultChatStyle={chatViewStyle}
+          activeChatStyle={setChatViewStyle}
+              />
+            </>
             )}
           </div>
         </div>
@@ -237,7 +242,7 @@ export default function ChatScreen({
                     <GiftIcon />
                     Send gift
                   </div>
-                  <div className='flex gap-2 px-4 py-[10px] text-sm'>
+                  <div className='flex gap-2 px-4 py-[10px] text-sm' onClick={() => setDropZoneState(true)}>
                     <UploadIcon />
                     {/* <input type={'file'} onChange={handleImage} /> */}
                     Upload image
@@ -277,7 +282,10 @@ export default function ChatScreen({
               onChange={(e) => setMessage(e.target.value)}
               style={{ outline: 'none' }}
             />
-            {/* <ImageDropZone/> */}
+            {
+              dropZoneState &&
+            <ImageDropZone/>
+            }
 
             <div
               className='absolute right-4 top-3'

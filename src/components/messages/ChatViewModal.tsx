@@ -10,23 +10,25 @@ interface ChatViewModalProp{
     closeModal: React.Dispatch<React.SetStateAction<boolean>>;
     setChatName: React.Dispatch<React.SetStateAction<string>>;
     setMoreOptionDropdown: React.Dispatch<React.SetStateAction<boolean>>;
+    activeChatStyle:any,
+    defaultChatStyle:string,
 }
 
-const ChatViewModal = ({closeModal, setChatName, setMoreOptionDropdown} : ChatViewModalProp) => {
-    const [activeChat, setActiveChat] = useState('Bubble chat');
+const  ChatViewModal = ({closeModal, setChatName, setMoreOptionDropdown, activeChatStyle ,defaultChatStyle} : ChatViewModalProp) => {
+    // const [activeChatStyle, setActiveChat] = useState('Bubble chat');
 
-    const handleInlineChat = () => {
-        setActiveChat('Inline chat'); 
-        console.log('>>>activeChat', activeChat);
-        setChatName('Inline chat'); 
-    };
-    console.log('>>>activeChatoutside', activeChat);
+    // const handleInlineChat = () => {
+    //     // activeChatStyle('Inline chat'); 
+    //     console.log('>>>activeChatStyle', activeChatStyle);
+    //     // setChatName('Inline chat'); 
+    // };
+    // console.log('>>>activeChatoutside', activeChatStyle);
 
-    const handleBubbleChat = () => {
-        setActiveChat('Bubble chat'); 
-        setChatName('Bubble chat'); 
-        console.log('>>>activeChat', activeChat);
-    };
+    // const handleBubbleChat = () => {
+    //     // activeChatStyle('Bubble chat'); 
+    //     // setChatName('Bubble chat'); 
+    //     console.log('>>>activeChatStyle', activeChatStyle);
+    // };
 
   return (
     <div>
@@ -42,7 +44,7 @@ const ChatViewModal = ({closeModal, setChatName, setMoreOptionDropdown} : ChatVi
             </div>
             <div className='flex flex-col gap-8 p-6'>
                 <div className='flex gap-4'>
-                    <div className={`overflow-hidden flex flex-col justify-between group w-[488px] rounded-[14px] bg-white/[0.02] border-2 border-white/[0.05] hover:border-[#5848BC] ${activeChat === 'Inline chat' ? 'border-[#5848BC]' : ''}`} onClick={handleInlineChat}>
+                    <div className={`overflow-hidden flex flex-col justify-between group w-[488px] rounded-[14px] bg-white/[0.02] border-2 hover:border-[#5848BC] ${defaultChatStyle === 'Inline chat' ? 'border-[#5848BC]' : 'border-white/[0.05] '}`} onClick={() =>{activeChatStyle('Inline chat') , console.log(defaultChatStyle, "defaultChatStyle Inline chat")}}>
                         <div className='flex flex-col'>
                             <div className='px-6 py-4 bg-white/[0.02] flex gap-3'>
                                 <Image className='w-10 h-10' src={avtar} alt={''} />
@@ -91,10 +93,10 @@ const ChatViewModal = ({closeModal, setChatName, setMoreOptionDropdown} : ChatVi
                                 </div>
                             </div>
                         </div>
-                        <button className={`flex items-center justify-center p-6 bg-white/[0.05] group-hover:bg-[#5848BC] text-[#FFFFFF] text-[15px] font-semibold leading-5 ${activeChat === 'Inline chat' ? 'bg-[#5848BC]' : ''}`}>Inline chat </button>
+                        <button className={`flex items-center justify-center p-6 group-hover:bg-[#5848BC] text-[#FFFFFF] text-[15px] font-semibold leading-5 ${defaultChatStyle === 'Inline chat' ? 'bg-[#5848BC]' : 'bg-white/[0.05]'}`}>Inline chat </button>
                     </div>
 
-                    <div className={`overflow-hidden flex flex-col group w-[488px] rounded-[14px] bg-white/[0.02] border-2 border-white/[0.05] hover:border-[#5848BC] ${activeChat === 'Bubble chat' ? 'border-[#5848BC]' : ''}`} onClick={handleBubbleChat}>
+                    <div className={`overflow-hidden flex flex-col group w-[488px] rounded-[14px] bg-white/[0.02] border-2 hover:border-[#5848BC] ${defaultChatStyle === 'Bubble chat' ? 'border-[#5848BC]' : 'border-white/[0.05] '}`} onClick={() =>{activeChatStyle('Bubble chat') , console.log(defaultChatStyle,'bubble chat')}}>
                         <div className='flex flex-col'>
                             <div className='px-6 py-4 bg-white/[0.02] flex gap-3'>
                                 <Image className='w-10 h-10' src={avtar} alt={''} />
@@ -129,12 +131,12 @@ const ChatViewModal = ({closeModal, setChatName, setMoreOptionDropdown} : ChatVi
                                 <div className='text-[#979797] text-[12px] font-normal leading-4'>09:30pm</div>
                             </div>
                         </div>
-                        <button className={`flex items-center justify-center p-6 bg-white/[0.05] text-[#FFFFFF] text-[15px] font-semibold leading-5 group-hover:bg-[#5848BC] ${activeChat === 'Bubble chat' ? 'bg-[#5848BC]' : ''}`}>Bubble chat</button>
+                        <button className={`flex items-center justify-center p-6 text-[#FFFFFF] text-[15px] font-semibold leading-5 group-hover:bg-[#5848BC] ${activeChatStyle === 'Bubble chat' ? 'bg-[#5848BC]' : 'bg-white/[0.05] '}`}>Bubble chat</button>
                     </div>
                 </div>
                 
                 <div className='flex items-end justify-end'>
-                <button className='flex w-max px-5 py-[13px] justify-center items-center rounded-[14px] bg-[#5848BC] text-[#FFFFFF] text-[16px] font-bold leading-[22px]' onClick={() => {closeModal(false); setMoreOptionDropdown(false); setActiveChat('')}}>Done</button>
+                <button className='flex w-max px-5 py-[13px] justify-center items-center rounded-[14px] bg-[#5848BC] text-[#FFFFFF] text-[16px] font-bold leading-[22px]' onClick={() => {closeModal(false); setMoreOptionDropdown(false);}}>Done</button>
                 </div>
             </div>
         </Modal>    
