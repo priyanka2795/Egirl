@@ -48,7 +48,7 @@ const DefaultTab = ({
      </button>
       }
      {
-      deleteBookmarkState && <ClearBookMarkModal heading={'Do you want to clear all your bookmarks?'} paragraph={'When confirming, note that the bookmark list cannot be restored'} closeModal={setDeleteBookmarkState}/> 
+      deleteBookmarkState && <ClearBookMarkModal heading={'Do you want to clear all your bookmarks?'} paragraph={'When confirming, note that the bookmark list cannot be restored'} closeModalItem={setDeleteBookmarkState}/> 
      }
     </div>
   );

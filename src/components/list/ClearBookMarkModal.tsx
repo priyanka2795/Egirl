@@ -4,14 +4,13 @@ import Image from 'next/image';
 import orangeDeleteIcon from '../../../public/assets/orange-delete-icon.png'
 
 interface clearBookMarkProp {
-    closeModal?: any;
     closeModalItem?: any
     heading: string;
     paragraph: string;
     setClearChat?: any;
     setMoreOptionDropdown?: any;
 }
-const ClearBookMarkModal = ({ closeModal, closeModalItem, heading, paragraph, setClearChat, setMoreOptionDropdown}: clearBookMarkProp) => {
+const ClearBookMarkModal = ({closeModalItem, heading, paragraph, setClearChat, setMoreOptionDropdown}: clearBookMarkProp) => {
   return (
     <Modal
     open={true}
@@ -35,10 +34,10 @@ const ClearBookMarkModal = ({ closeModal, closeModalItem, heading, paragraph, se
         </div>
 
         <div className='flex gap-3 px-6 py-4'>
-            <button className='w-1/2 flex px-5 py-[13px] rounded-[14px] border border-white/[0.32] justify-center' onClick={() => {closeModal(false), closeModalItem(false), setMoreOptionDropdown(false)}}>
+            <button className='w-1/2 flex px-5 py-[13px] rounded-[14px] border border-white/[0.32] justify-center' onClick={() => {closeModalItem(false), setMoreOptionDropdown(false)}}>
                 <div className='text-white text-[16px] font-bold'>Cancel</div>
             </button>
-            <button className='w-1/2 flex px-5 py-[13px] rounded-[14px] bg-[#FF5336] text-white text-[16px] font-bold justify-center' onClick={() => {closeModal(false); closeModalItem(false), setClearChat(true); setMoreOptionDropdown(false)}}>Clear</button>
+            <button className='w-1/2 flex px-5 py-[13px] rounded-[14px] bg-[#FF5336] text-white text-[16px] font-bold justify-center' onClick={() => {closeModalItem(false), setClearChat(true); setMoreOptionDropdown(false)}}>Clear</button>
         </div>
     </>
   </Modal>
