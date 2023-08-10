@@ -134,7 +134,7 @@ const ChatViewModal = ({closeModal, setChatName, setMoreOptionDropdown} : ChatVi
                 </div>
                 
                 <div className='flex items-end justify-end'>
-                <button className='flex w-max px-5 py-[13px] justify-center items-center rounded-[14px] bg-[#5848BC] text-[#FFFFFF] text-[16px] font-bold leading-[22px]' onClick={() => {closeModal(false); setMoreOptionDropdown(false); setActiveChat('')}}>Done</button>
+                    <button className='flex w-max px-5 py-[13px] justify-center items-center rounded-[14px] bg-[#5848BC] text-[#FFFFFF] text-[16px] font-bold leading-[22px]' onClick={() => {closeModal(false); setMoreOptionDropdown(false); setActiveChat('')}}>Done</button>
                 </div>
             </div>
         </Modal>    
