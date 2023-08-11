@@ -38,6 +38,7 @@ import Gift from './Gift';
 import ImageDropZone from './ImageDropZone';
 import SubscriptionModal from '@components/common/SubscriptionModal';
 import CurrentPlaneModal from '@components/common/CurrentPlaneModal';
+import MessageIndicator from './MessageIndicator';
 
 type chatProps = {
   chatScreenClassName?: string;
@@ -183,7 +184,7 @@ export default function ChatScreen({
         </div>
       </div>
       <div
-        className={`custom-scroll-bar overflow-y-auto pb-5 ${
+        className={`custom-scroll-bar overflow-y-auto pb-5 flex items-end ${
           chatScreenMsgClassName
             ? chatScreenMsgClassName
             : 'h-[calc(100vh-72px-92px)] '
@@ -217,7 +218,7 @@ export default function ChatScreen({
         </div>
       </div>
       {showInput && (
-        <div className='flex h-[92px] items-center  border-t border-[#252525] bg-[red-400] px-6'>
+        <div className='flex items-center pt-3 bg-[red-400] px-6'>
           <div className='relative'>
             <div
               className='plus-icon mr-[10px] grid h-[32px] w-[32px] min-w-[32px] cursor-pointer place-items-center rounded-full bg-[#5848BC] transition duration-100 hover:bg-[#4b3abd]'
@@ -340,6 +341,9 @@ export default function ChatScreen({
           </button>
         </div>
       )}
+      <>
+      <MessageIndicator/>
+      </>
     </div>
   );
 }
