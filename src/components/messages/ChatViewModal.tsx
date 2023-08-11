@@ -15,20 +15,6 @@ interface ChatViewModalProp{
 }
 
 const  ChatViewModal = ({closeModal, setChatName, setMoreOptionDropdown, activeChatStyle ,defaultChatStyle} : ChatViewModalProp) => {
-    // const [activeChatStyle, setActiveChat] = useState('Bubble chat');
-
-    // const handleInlineChat = () => {
-    //     // activeChatStyle('Inline chat'); 
-    //     console.log('>>>activeChatStyle', activeChatStyle);
-    //     // setChatName('Inline chat'); 
-    // };
-    // console.log('>>>activeChatoutside', activeChatStyle);
-
-    // const handleBubbleChat = () => {
-    //     // activeChatStyle('Bubble chat'); 
-    //     // setChatName('Bubble chat'); 
-    //     console.log('>>>activeChatStyle', activeChatStyle);
-    // };
 
   return (
     <div>
@@ -131,7 +117,7 @@ const  ChatViewModal = ({closeModal, setChatName, setMoreOptionDropdown, activeC
                                 <div className='text-[#979797] text-[12px] font-normal leading-4'>09:30pm</div>
                             </div>
                         </div>
-                        <button className={`flex items-center justify-center p-6 text-[#FFFFFF] text-[15px] font-semibold leading-5 group-hover:bg-[#5848BC] ${activeChatStyle === 'Bubble chat' ? 'bg-[#5848BC]' : 'bg-white/[0.05] '}`}>Bubble chat</button>
+                        <button className={`flex items-center justify-center p-6 text-[#FFFFFF] text-[15px] font-semibold leading-5 group-hover:bg-[#5848BC] ${defaultChatStyle === 'Bubble chat' ? '!bg-[#5848BC]' : 'bg-white/[0.05] '}`}>Bubble chat</button>
                     </div>
                 </div>
                 

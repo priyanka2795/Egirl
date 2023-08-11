@@ -73,7 +73,7 @@ const Message: React.FC<MessageProps> = ({
   };
 
   return (
-      <div className={`flex py-4 refresh-icon-parent ${chatName === 'Bubble chat' ? 'w-[52%]' : 'w-full'} ${chatName === 'Bubble chat' && name === 'You' ? 'justify-end items-end rounded-tl-[10px] rounded-tr-[10px] rounded-br-0 rounded-bl-[10px] bg-[#5848BC]' : 'items-start w-full'}`}>
+      <div className={`flex py-4 refresh-icon-parent ${chatName === 'Bubble chat' ? 'w-[52%]' : 'w-full'} ${chatName === 'Bubble chat' && name === 'You' ? 'justify-end items-end rounded-tl-[10px] rounded-tr-[10px] rounded-br-0 rounded-bl-[10px] bg-[#5848BC] ml-auto' : 'items-start w-full'}`}>
         {chatName === 'Bubble chat' && name === 'You' ? '' : 
         <Image
           key={0}
@@ -83,7 +83,7 @@ const Message: React.FC<MessageProps> = ({
           height={40}
           className='rounded-full'
         />}
-        <div className='flex flex-col w-full ml-3 cursor-pointer group'>
+        <div className='flex flex-col w-full ml-3 group'>
           <div className='mb-[2px] flex items-center'>
             <span className='mr-2 text-[15px] font-semibold leading-5'>
               {name}
@@ -102,7 +102,7 @@ const Message: React.FC<MessageProps> = ({
                 </span>
                 <div className=''>
                   <div className='flex gap-3 opacity-0 group-hover:flex group-hover:opacity-100 w-[78px] justify-end'>
-                    {regenerateIcon && <RefreshIcon />}
+                    {regenerateIcon && <RefreshIcon className="cursor-pointer" />}
                     <div
                       onClick={() => {
                         setShowSelectedEmojiList(!showSelectedEmojiList),
@@ -111,7 +111,7 @@ const Message: React.FC<MessageProps> = ({
                       className='relative'
                     >
                       {name !== 'You' && 
-                      <EmojiIcon />
+                      <EmojiIcon className="cursor-pointer"/>
                       }
                       {showSelectedEmojiList === true &&
                       messageIdEmoji === messageId ? (
@@ -120,7 +120,7 @@ const Message: React.FC<MessageProps> = ({
                         />
                       ) : null}
                     </div>
-                    <CopyIcon className='h-5' />
+                    <CopyIcon className='h-5 cursor-pointer' />
                   </div>
                 </div>
               </div>

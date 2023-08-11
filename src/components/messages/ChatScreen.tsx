@@ -72,7 +72,7 @@ export default function ChatScreen({
   const [showGiftName , setShowGiftName] = useState('');
   const [showGiftMsg , setShowGiftMsg] = useState(false);
   const [buttonText , setButtonText] = useState('');
-  const [chatName , setChatName] = useState('');
+  // const [chatName , setChatName] = useState('');
   const [dropZoneState , setDropZoneState] = useState(false);
   const [chatViewStyle ,setChatViewStyle] = useState('Inline chat');
 
@@ -174,7 +174,7 @@ export default function ChatScreen({
               </div>
             </div>
           </div>
-          <ThreeDotsDropdown setClearChat={setClearChat} setMoreOptionDropdown={setMoreOptionDropdown} setChatName={setChatName} defaultChatStyle={chatViewStyle}
+          <ThreeDotsDropdown setClearChat={setClearChat} setMoreOptionDropdown={setMoreOptionDropdown} defaultChatStyle={chatViewStyle}
           activeChatStyle={setChatViewStyle}
               />
             </>
@@ -191,7 +191,7 @@ export default function ChatScreen({
       >
         <div
           ref={containerRef}
-          className={`flex h-full flex-col justify-end bg-[#121212] px-6 pt-4`}
+          className={`flex h-max flex-col justify-end bg-[#121212] px-6 pt-4`}
         >
           {selectUserState === 'One More Mika' ? (
            <>
@@ -205,12 +205,12 @@ export default function ChatScreen({
               message={message}
               name='You'
               messageIcons={true}
-              chatName={chatName}
+              chatName={chatViewStyle}
             />
             }
            </>
           ) : clearChat === false &&           
-             <DummyMessage chatName={chatName}/>
+             <DummyMessage chatName={chatViewStyle}/>
           }
 
           {showGiftMsg && <Gift showGiftImg={showGiftImg} showGiftName={showGiftName} />}
