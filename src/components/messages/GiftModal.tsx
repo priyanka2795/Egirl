@@ -119,7 +119,7 @@ const GiftModal = ({ closeModal, setShowGiftImg, setShowGiftName, setShowGiftMsg
                             </div>
                             <div className={`flex items-center justify-center p-2 text-[#FFFFFF] text-center text-[13px] font-semibold leading-[18px] group-hover:bg-[#5848BC] ${activeText === item.name ? 'bg-[#5848BC]' : 'bg-black/[0.80] '}`}>{item.name}</div>
                             {item.free && 
-                            <div className={`absolute top-[2px] right-[2px] flex pl-1 pr-2 py-[3px] gap-1 rounded-full`}>
+                            <div className={`absolute top-[2px] right-[2px] flex pl-1 pr-2 py-[3px] gap-1 rounded-full group-hover:bg-[#5848BC] ${activeText === item.name ? 'bg-[#5848BC]' : 'bg-black/[0.80] '}`}>
                                 <Image className='object-contain' src={tokenIcon} alt={''} />
                                 <div className='text-[#FFFFFF] text-[12px] font-normal leading-4'>2</div>
                             </div>

@@ -85,7 +85,7 @@ const Message: React.FC<MessageProps> = ({
         />}
         <div className='flex flex-col w-full ml-3 group'>
           <div className='mb-[2px] flex items-center'>
-            <span className='mr-2 text-[15px] font-semibold leading-5'>
+            <span className='mr-2 text-[15px] font-medium leading-5 cursor-pointer'>
               {name}
             </span>
             <span className='text-[12px] font-normal leading-4 text-[#979797]'>
@@ -96,7 +96,7 @@ const Message: React.FC<MessageProps> = ({
           {messageIcons ? (
             <>
               <div className='flex gap-[18px]'>
-                <span className='refresh-icon w-full items-start justify-between text-[16px] font-normal leading-6 '>
+                <span className={`refresh-icon text-[16px] font-normal leading-6 ${chatName === 'Bubble chat' ? 'w-[52%]' : 'w-full'} ${chatName === 'Bubble chat' && name === 'You' ? 'justify-end items-end rounded-tl-[10px] rounded-tr-[10px] rounded-br-0 rounded-bl-[10px] bg-[#5848BC] ml-auto' : 'items-start w-full'}`}>
                   {message}
               
                 </span>

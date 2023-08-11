@@ -5,11 +5,11 @@ import ChatViewModal from './ChatViewModal';
 import ClearBookMarkModal from '@components/list/ClearBookMarkModal';
 
 interface ThreeDotsDropdownProp{
-    setClearChat:any;
-    setMoreOptionDropdown:any;
-    setChatName:React.Dispatch<React.SetStateAction<string>>;
-    activeChatStyle:any;
-    defaultChatStyle:string;
+    setClearChat?:any;
+    setMoreOptionDropdown?:any;
+    setChatName?:React.Dispatch<React.SetStateAction<string>>;
+    activeChatStyle?:any;
+    defaultChatStyle?:string;  
 }
 const ThreeDotsDropdown = ({setClearChat ,setMoreOptionDropdown, setChatName ,activeChatStyle , defaultChatStyle}: ThreeDotsDropdownProp) => {
   const [chatViewModal, setChatViewModal] = useState(false);

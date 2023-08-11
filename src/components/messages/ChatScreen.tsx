@@ -38,6 +38,7 @@ import Gift from './Gift';
 import ImageDropZone from './ImageDropZone';
 import SubscriptionModal from '@components/common/SubscriptionModal';
 import CurrentPlaneModal from '@components/common/CurrentPlaneModal';
+import ImageRequestMsg from './ImageRequestMsg';
 
 type chatProps = {
   chatScreenClassName?: string;
@@ -75,7 +76,7 @@ export default function ChatScreen({
   // const [chatName , setChatName] = useState('');
   const [dropZoneState , setDropZoneState] = useState(false);
   const [chatViewStyle ,setChatViewStyle] = useState('Inline chat');
-
+  const [imageRequestMsg, setImageRequestMsg] = useState(false);
   const handleChatViewModal = () => {
     setChatViewOption(!chatViewOption);
     setSendUploadImgState(false);
@@ -159,25 +160,25 @@ export default function ChatScreen({
             </div>
 
             {moreOptionDropdown && (
-            <>  <div className='absolute right-0 top-[100%] mt-2 inline-flex w-[218px] flex-col items-start justify-start rounded-2xl bg-zinc-900 py-2 shadow'>
-            <div className='flex-col items-center self-stretch justify-start gap-2 cursor-pointer '>
-              <div className='flex gap-2 px-4 py-[10px] text-sm'>
-                <ChatIcon />
-                Chat view
-              </div>
-              <div
-                className='flex gap-2 px-4 py-[10px] text-sm'
-                onClick={() => {setClearChat(true), setMoreOptionDropdown(false)}}
-              >
-                <DeleteIcon />
-                Clear chat
-              </div>
-            </div>
-          </div>
+          //   <>  <div className='absolute right-0 top-[100%] mt-2 inline-flex w-[218px] flex-col items-start justify-start rounded-2xl bg-zinc-900 py-2 shadow'>
+          //   <div className='flex-col items-center self-stretch justify-start gap-2 cursor-pointer '>
+          //     <div className='flex gap-2 px-4 py-[10px] text-sm'>
+          //       <ChatIcon />
+          //       Chat view
+          //     </div>
+          //     <div
+          //       className='flex gap-2 px-4 py-[10px] text-sm'
+          //       onClick={() => {setClearChat(true), setMoreOptionDropdown(false)}}
+          //     >
+          //       <DeleteIcon />
+          //       Clear chat
+          //     </div>
+          //   </div>
+          // </div>
           <ThreeDotsDropdown setClearChat={setClearChat} setMoreOptionDropdown={setMoreOptionDropdown} defaultChatStyle={chatViewStyle}
           activeChatStyle={setChatViewStyle}
               />
-            </>
+            // </>
             )}
           </div>
         </div>
@@ -214,6 +215,7 @@ export default function ChatScreen({
           }
 
           {showGiftMsg && <Gift showGiftImg={showGiftImg} showGiftName={showGiftName} />}
+          {imageRequestMsg && <ImageRequestMsg />}
         </div>
       </div>
       {showInput && (
@@ -257,7 +259,7 @@ export default function ChatScreen({
                 modalOverlayStyle='!bg-black/80'
                 closeModal={handleChatViewModal}
               >
-                <ImageRequestModal closeModal={handleChatViewModal} />
+                <ImageRequestModal closeModal={handleChatViewModal} setImageRequestMsg={setImageRequestMsg}/>
               </Modal>
             )}
             {giftModal && (

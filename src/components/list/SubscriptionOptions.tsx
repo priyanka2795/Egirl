@@ -5,6 +5,7 @@ import mirandal from '../../../public/assets/mirandalImg.png';
 import model2 from '../../../public/assets/golden-shoulder-girl.png';
 import model4 from '../../../public/assets/micaChan-2.png';
 import sarahScarlet from '../../../public/assets/sarahScarlet.png';
+import userCheckIcon from '../../../public/assets/user-check-icon.png';
 import blueTick from '../../../public/assets/badge-check.png';
 import Card from '../common/Card';
 import ListFilter from './ListFilter';

@@ -4,6 +4,8 @@ import DefaultTab from '@components/common/DefaultTab';
 import CollectionOptions from './CollectionOptions';
 import RemoveProfile from './RemoveProfile';
 import BookMarks from './BookMarks1';
+import Following from './Following';
+import heartIcon from '../../../public/assets/heart-with-plus.png'
 
 const ListIndex = () => {
   const [activeListTab, setActiveListTab] = useState('Subscriptions');
@@ -28,7 +30,7 @@ const ListIndex = () => {
             ) : activeListTab === 'Bookmarks' ? (
               <BookMarks />
             ) : (
-              <SubscriptionOptions showProfile={setProfileSectionState}/>
+              <Following icon={heartIcon}/>
             )}
           </div>
         </>
