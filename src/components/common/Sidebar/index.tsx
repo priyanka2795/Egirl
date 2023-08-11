@@ -184,7 +184,7 @@ sideBarProp) {
         <SidebarMenuItem
           IconActive={ReferalWhiteIcon}
           text='Creator Studio'
-          href='/asdf'
+          href='/creator-studio'
           Icon={CreatorStudioIcon}
           sideBarMenuText={`${sideBarMenuText} ${
             shrinkSidebar === 'true' ? '!hidden' : 'w-full'
