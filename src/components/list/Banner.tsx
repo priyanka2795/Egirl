@@ -77,7 +77,7 @@ const actions = [
 ];
 
 interface BannerProp{
-    backFromProfile: React.Dispatch<React.SetStateAction<boolean>>
+    backFromProfile?: React.Dispatch<React.SetStateAction<boolean>>
   }
 const Banner = ({backFromProfile}:BannerProp) => {
     const [actionDivShow, setActionDivShow] = useState(false);
