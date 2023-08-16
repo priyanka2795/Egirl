@@ -15,6 +15,8 @@ import ViewImg from './svg/ViewImg';
 import MarketplaceIcon from './svg/MarketplaceIcon';
 import StyleGenerator from './svg/StyleGenerator';
 import MoreIcon from './svg/MoreIcon.svg';
+import SidebarModal from './SidebarModal';
+import MoreOptionsModal from './MoreOptionsModal';
 
 interface CreatorStudioNavbarPropProp{
   shrinkSideBar:boolean,
@@ -22,12 +24,14 @@ interface CreatorStudioNavbarPropProp{
 }
 
 const CreatorStudioSidebar = ({shrinkSideBar ,setShrinkSideBar}:CreatorStudioNavbarPropProp) => {
-
+  const [sidebarModal, setSidebarModal] = useState(false);
+  const [moreOptionsModal, setMoreOptionsModal] = useState(false);
   // const [sideBarShrink, setSideBarShrink] = useState(false);
   return (
+    <>
     <div className={`h-full w-full flex flex-col justify-between bg-[#121212] ${shrinkSideBar === true ? 'max-w-[68px]':' max-w-[276px]'}`}>
       <div>
-      <div className='flex items-center justify-between py-[14px] pl-3 pr-4 cursor-pointer'>
+      <div className='flex items-center justify-between py-[14px] pl-3 pr-4 cursor-pointer' onClick={() => setSidebarModal(!sidebarModal)}>
         <div className='flex items-center w-full gap-2'>
           <div className='h-[32px] w-[32px]'>
             <Image src={avtar} alt='' className='object-cover h-[32px] w-[32px]' />
@@ -131,7 +135,7 @@ const CreatorStudioSidebar = ({shrinkSideBar ,setShrinkSideBar}:CreatorStudioNav
       />
       </div>
       
-      <div className="flex items-center gap-2 py-3 pl-3 cursor-pointer">
+      <div className="flex items-center gap-2 py-3 pl-3 cursor-pointer" onClick={() => setMoreOptionsModal(!moreOptionsModal)}>
         <div>
           <MoreIcon/>
         </div>
@@ -139,6 +143,13 @@ const CreatorStudioSidebar = ({shrinkSideBar ,setShrinkSideBar}:CreatorStudioNav
       </div>
 
     </div>
+    {
+      sidebarModal && <SidebarModal />
+    }
+    {
+      moreOptionsModal && <MoreOptionsModal />
+    }
+    </>
   );
 };
 
