@@ -103,17 +103,18 @@ const Banner = ({backFromProfile}:BannerProp) => {
     };
 
   return (
-    <>
-    <div className="flex gap-2 my-4 text-lg font-bold cursor-pointer" onClick={() =>{backFromProfile(false)}}>
-        <LeftArrow/>
-        Mika-chan
-    </div>
-    <div>
-        <div className='w-full rounded-[16px] bg-[#121212] h-max overflow-hidden'>
+    <div className='px-8'>
+        {backFromProfile === undefined ? '' : <div className="flex gap-2 my-4 text-lg font-bold cursor-pointer" onClick={() =>{backFromProfile(false)}}>
+            <LeftArrow/>
+            Mika-chan
+        </div>}
         
-        <div className='block w-full'>
-            <Image className='w-full h-full' src={Cover} alt='' />
-            <div className='flex w-full px-[24px] justify-between items-center mb-5 mt-[-62px]'>
+        <div>
+            <div className='w-full rounded-[16px] bg-[#121212] h-max overflow-hidden'>
+        
+            <div className='block w-full'>
+                <Image className='w-full h-full' src={Cover} alt='' />
+                <div className='flex w-full px-[24px] justify-between items-center mb-5 mt-[-62px]'>
                 <div className="relative w-[120px] h-[120px] rounded-full overflow-hidden">
                     <Image className='w-full h-full' src={avatar} alt='' />
                 </div>
@@ -197,12 +198,12 @@ const Banner = ({backFromProfile}:BannerProp) => {
             ) : ('')}
         </div>
         </div>
-    </div>
+        </div>
 
     {collectionModalState &&
      <AddToCollectionModal closeModalState={setCollectionModalState} />
 }
-    </>
+    </div>
   )
 }
 

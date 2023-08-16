@@ -5,13 +5,13 @@ import React from 'react'
 
 const CreatorStudioMainContent = () => {
   return (
-    <div className='px-8 mb-5'>
+    <div className='px-8 mb-5 grow w-max'>
             <Banner />
-            {/* <div className='flex justify-between gap-5'>
+            <div className='flex gap-5'>
                 <PostCard />
                 <UserSection />
-            </div> */}
-        </div>
+            </div>
+    </div>
   )
 }
 

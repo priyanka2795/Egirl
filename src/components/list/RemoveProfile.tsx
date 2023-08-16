@@ -10,7 +10,7 @@ const RemoveProfile = ({backFromProfile} : RemoveProfileProp) => {
 
   return (
     <div>
-        <div className='px-8 mb-5'>
+        <div className='mb-5'>
             <Banner backFromProfile={backFromProfile}/>
             <div className='flex justify-between gap-5'>
                 <PostCard />
