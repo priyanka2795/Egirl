@@ -32,13 +32,16 @@ const CreatorStudioSidebar = ({shrinkSideBar ,setShrinkSideBar}:CreatorStudioNav
     <div className={`h-full w-full flex flex-col justify-between bg-[#121212] ${shrinkSideBar === true ? 'max-w-[68px]':' max-w-[276px]'}`}>
       <div>
       <div className='flex items-center justify-between py-[14px] pl-3 pr-4 cursor-pointer' onClick={() => setSidebarModal(!sidebarModal)}>
-        <div className='flex items-center w-full gap-2'>
+        <div className='relative flex items-center w-full gap-2'>
           <div className='h-[32px] w-[32px]'>
             <Image src={avtar} alt='' className='object-cover h-[32px] w-[32px]' />
           </div>
           <div className={`text-[18px] font-medium ${shrinkSideBar === true ? '!hidden' : ''}`}>
              Mika-chan
              </div>
+             {
+      sidebarModal && <SidebarModal />
+    }
         </div>
         <div className='h-full'>
           <Image src={arrowDown} alt='' />
@@ -135,20 +138,19 @@ const CreatorStudioSidebar = ({shrinkSideBar ,setShrinkSideBar}:CreatorStudioNav
       />
       </div>
       
-      <div className="flex items-center gap-2 py-3 pl-3 cursor-pointer" onClick={() => setMoreOptionsModal(!moreOptionsModal)}>
+      <div className="relative flex items-center gap-2 py-3 pl-3 cursor-pointer" onClick={() => setMoreOptionsModal(!moreOptionsModal)}>
         <div>
           <MoreIcon/>
         </div>
          <p className={`text-white text-[15px] font-semibold ${shrinkSideBar === true ? '!hidden' : 'w-full'}`}>More</p>
+         {
+      moreOptionsModal && <MoreOptionsModal />
+    }
       </div>
 
     </div>
-    {
-      sidebarModal && <SidebarModal />
-    }
-    {
-      moreOptionsModal && <MoreOptionsModal />
-    }
+   
+    
     </>
   );
 };
