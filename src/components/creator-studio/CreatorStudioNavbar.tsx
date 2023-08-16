@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CreateStudioLogo from './svg/creator-studio-logo.svg';
 import MenuIcon from './svg/menu.svg';
 import UserImg from './svg/user-img.svg';
