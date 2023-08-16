@@ -4,7 +4,7 @@ import arrowLeft from '../../../public/assets/arrow-left-orange.png';
 
 const BalanceModal = () => {
   return (
-    <div className='absolute top-[72px] right-[32px] flex w-[218px] px-0 py-2 rounded-[14px] bg-[#1A1A1A] flex-col'>
+    <div className='absolute top-[72px] right-0 flex w-[218px] px-0 py-2 rounded-[14px] bg-[#1A1A1A] flex-col'>
       <div className='flex px-4 pt-1 pb-3 border-b border-white/[0.08] flex-col'>
         <div className='text-white/[0.32] text-[15px] font-normal leading-5'>Your balance</div>
         <div className='flex flex-col gap-2'>
