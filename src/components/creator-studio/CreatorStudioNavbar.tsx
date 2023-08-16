@@ -12,23 +12,26 @@ const CreatorStudioNavbar = () => {
 
   return (
     <>
-    <div className='flex justify-between px-4 py-6 '>
-      <div className="flex gap-5">
-        <MenuIcon />
-        <CreateStudioLogo />
+      <div className='flex justify-between px-4 py-6 '>
+        <div className='flex items-center gap-5 p-2'>
+          <div className='h-10 w-10 cursor-pointer rounded-full hover:bg-[#252525] flex justify-center items-center ease-in duration-80'>
+            <MenuIcon />
+          </div>
+          <CreateStudioLogo />
+        </div>
+
+        <div className='flex items-center justify-center gap-6'>
+          <div className='relative cursor-pointer'>
+            <BellIcon
+              onClick={() => setNotificationModal(!notificationModal)}
+            />
+            {notificationModal && <NotificationModal />}
+          </div>
+          <UserImg onClick={() => setBalanceModal(!balanceModal)} />
+        </div>
       </div>
 
-      <div className="flex items-center justify-center gap-6">
-        <BellIcon onClick={() => setNotificationModal(!notificationModal)}/>
-        <UserImg onClick={() => setBalanceModal(!balanceModal)}/>
-      </div>
-    </div>
-    {
-      notificationModal && <NotificationModal />
-    }
-    {
-      balanceModal && <BalanceModal />
-    }
+      {balanceModal && <BalanceModal />}
     </>
   );
 };

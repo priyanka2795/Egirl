@@ -14,36 +14,6 @@ import ViewStyleIcon from './svg/ViewStyleIcon';
 import MarketplaceIcon from './svg/MarketplaceIcon';
 import StyleGenerator from './svg/StyleGenerator';
 import MoreIcon from './svg/MoreIcon.svg';
-// const SideBarMenu = [
-//   {
-//     id: 1,
-//     icon: ChartIcon,
-//     text: 'Analytics'
-//   },
-//   {
-//     id: 2,
-//     heading: 'Images',
-//     subchild: [
-//       {
-//         id: 2.1,
-//         icon: '',
-//         text: 'View Images'
-//       },
-//       {
-//         id: 2.2,
-//         icon: '',
-//         text: 'Image Generator'
-//       }
-//     ]
-//   },
-//   {
-//     id: 3,
-//     heading: 'Chatbot',
-//     subchild: [{ id: 3.1, icon: '', text: 'View Images' },{id:3.2 , icon:'', text:'Voice'},{id:3.3 , icon:'', text:'Gifts'}]
-//   },
-//   {id:4,}
-// ];
-
 const CreatorStudioSidebar = () => {
   return (
     <div className='h-full w-full max-w-[276px] flex flex-col justify-between'>
