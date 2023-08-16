@@ -50,11 +50,11 @@ const CreatorStudioSidebar = ({shrinkSideBar ,setShrinkSideBar}:CreatorStudioNav
         href='/home'
         Icon={AnalyticsIcon}
         IconActive={HomeActiveIcon}
-        StyleClasses={`${shrinkSideBar === true ? 'flex !justify-center max-w-[52px] mx-auto' : ''}`}
+        StyleClasses={`${shrinkSideBar === true ? 'flex !justify-center max-w-[52px] mx-auto' : 'pl-6'}`}
         sideBarMenuText={`${shrinkSideBar === true ? '!hidden' : 'w-full flex justify-center'} `}
       />
       <div className={`h-10 w-[300px] items-start justify-start gap-2.5 px-6 py-2.5 ${shrinkSideBar === true ? "hidden" : 'inline-flex '}`}>
-        <div className='text-[13px] font-semibold uppercase leading-tight tracking-tight text-neutral-600'>
+        <div className={`text-[13px] font-semibold uppercase leading-tight tracking-tight text-neutral-600`}>
           Images
         </div>
       </div>
@@ -63,7 +63,7 @@ const CreatorStudioSidebar = ({shrinkSideBar ,setShrinkSideBar}:CreatorStudioNav
         href='/home'
         Icon={ViewImg}
         IconActive={HomeActiveIcon}
-        StyleClasses={`${shrinkSideBar === true ? 'flex !justify-center max-w-[52px] mx-auto' : ''}`}
+        StyleClasses={`${shrinkSideBar === true ? 'flex !justify-center max-w-[52px] mx-auto' : 'pl-6'}`}
          sideBarMenuText={`${shrinkSideBar === true ? '!hidden' : 'w-full flex justify-center'} `}
       />
       <SidebarMenuItem
@@ -71,7 +71,7 @@ const CreatorStudioSidebar = ({shrinkSideBar ,setShrinkSideBar}:CreatorStudioNav
         href='/home'
         Icon={ImageGeneratorIcon}
         IconActive={HomeActiveIcon}
-        StyleClasses={`${shrinkSideBar === true ? 'flex !justify-center max-w-[52px] mx-auto' : ''}`}
+        StyleClasses={`${shrinkSideBar === true ? 'flex !justify-center max-w-[52px] mx-auto' : 'pl-6'}`}
          sideBarMenuText={`${shrinkSideBar === true ? '!hidden' : 'w-full flex justify-center'} `}
       />
 
@@ -85,7 +85,7 @@ const CreatorStudioSidebar = ({shrinkSideBar ,setShrinkSideBar}:CreatorStudioNav
         href='/home'
         Icon={PersonalityIcon}
         IconActive={HomeActiveIcon}
-        StyleClasses={`${shrinkSideBar === true ? 'flex !justify-center max-w-[52px] mx-auto' : ''}`}
+        StyleClasses={`${shrinkSideBar === true ? 'flex !justify-center max-w-[52px] mx-auto' : 'pl-6'}`}
          sideBarMenuText={`${shrinkSideBar === true ? '!hidden' : 'w-full flex justify-center'} `}
       />
       <SidebarMenuItem
@@ -93,7 +93,7 @@ const CreatorStudioSidebar = ({shrinkSideBar ,setShrinkSideBar}:CreatorStudioNav
         href='/home'
         Icon={VoiceIcon}
         IconActive={HomeActiveIcon}
-        StyleClasses={`${shrinkSideBar === true ? 'flex !justify-center max-w-[52px] mx-auto' : ''}`}
+        StyleClasses={`${shrinkSideBar === true ? 'flex !justify-center max-w-[52px] mx-auto' : 'pl-6'}`}
          sideBarMenuText={`${shrinkSideBar === true ? '!hidden' : 'w-full flex justify-center'} `}
       />
       <SidebarMenuItem
@@ -101,7 +101,7 @@ const CreatorStudioSidebar = ({shrinkSideBar ,setShrinkSideBar}:CreatorStudioNav
         href='/home'
         Icon={GiftIcon}
         IconActive={HomeActiveIcon}
-        StyleClasses={`${shrinkSideBar === true ? 'flex !justify-center max-w-[52px] mx-auto' : ''}`}
+        StyleClasses={`${shrinkSideBar === true ? 'flex !justify-center max-w-[52px] mx-auto' : 'pl-6'}`}
         sideBarMenuText={`${shrinkSideBar === true ? '!hidden' : 'w-full flex justify-center'} `}
       />
       <div className={`h-10 w-[300px] items-start justify-start gap-2.5 px-6 py-2.5 ${shrinkSideBar === true ? "hidden" : 'inline-flex '}`}>
@@ -114,7 +114,7 @@ const CreatorStudioSidebar = ({shrinkSideBar ,setShrinkSideBar}:CreatorStudioNav
         href='/home'
         Icon={ViewStyleIcon}
         IconActive={HomeActiveIcon}
-        StyleClasses={`${shrinkSideBar === true ? 'flex !justify-center max-w-[52px] mx-auto' : ''}`}
+        StyleClasses={`${shrinkSideBar === true ? 'flex !justify-center max-w-[52px] mx-auto' : 'pl-6'}`}
          sideBarMenuText={`${shrinkSideBar === true ? '!hidden' : 'w-full'} `}
       />
          <SidebarMenuItem
@@ -122,7 +122,7 @@ const CreatorStudioSidebar = ({shrinkSideBar ,setShrinkSideBar}:CreatorStudioNav
         href='/home'
         Icon={MarketplaceIcon}
         IconActive={HomeActiveIcon}
-        StyleClasses={`${shrinkSideBar === true ? 'flex !justify-center max-w-[52px] mx-auto' : ''}`}
+        StyleClasses={`${shrinkSideBar === true ? 'flex !justify-center max-w-[52px] mx-auto' : 'pl-6'}`}
          sideBarMenuText={`${shrinkSideBar === true ? '!hidden' : 'w-full'} `}
       />
         <SidebarMenuItem
@@ -130,7 +130,7 @@ const CreatorStudioSidebar = ({shrinkSideBar ,setShrinkSideBar}:CreatorStudioNav
         href='/home'
         Icon={StyleGenerator}
         IconActive={HomeActiveIcon}
-        StyleClasses={`${shrinkSideBar === true ? 'flex !justify-center max-w-[52px] mx-auto' : ''}`}
+        StyleClasses={`${shrinkSideBar === true ? 'flex !justify-center max-w-[52px] mx-auto' : 'pl-6'}`}
          sideBarMenuText={`${shrinkSideBar === true ? '!hidden' : 'w-full'} `}
       />
       </div>
