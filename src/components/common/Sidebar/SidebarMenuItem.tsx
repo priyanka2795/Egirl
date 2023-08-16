@@ -7,6 +7,7 @@ type SidebarMenuItemProps = {
   text: string;
   href?: string;
   sideBarMenuText?: string;
+  StyleClasses?:string;
   Icon: (props: { svgClasses?: string; strokeClasses?: string }) => JSX.Element;
   IconActive: (props: {
     svgClasses?: string;
@@ -18,6 +19,7 @@ export default function SidebarMenuItem({
   text,
   href,
   sideBarMenuText,
+  StyleClasses,
   Icon,
   IconActive
 }: SidebarMenuItemProps) {
@@ -31,7 +33,7 @@ export default function SidebarMenuItem({
       {href ? (
         <Link href={href} className='w-full'>
           <a
-            className={`mb-2 flex cursor-pointer items-center justify-center space-x-3 rounded-[14px] py-3 pl-3 text-lg text-white transition-all duration-100 hover:bg-[#252525] ${
+            className={`${StyleClasses} mb-2 flex cursor-pointer items-center justify-center space-x-3 rounded-[14px] py-3 pl-3 text-lg text-white transition-all duration-100 hover:bg-[#252525] ${
               sideBarMenuText ? 'w-full' : 'xl:w-[256px] '
             } xl:justify-start ${active && 'bg-[#252525]'}`}
           >
