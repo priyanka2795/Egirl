@@ -4,9 +4,11 @@ import MenuIcon from './svg/menu.svg';
 import UserImg from './svg/user-img.svg';
 import BellIcon from './svg/bell.svg';
 import NotificationModal from './NotificationModal';
+import BalanceModal from './BalanceModal';
 
 const CreatorStudioNavbar = () => {
   const [notificationModal, setNotificationModal] = useState(false);
+  const [balanceModal, setBalanceModal] = useState(false);
 
   return (
     <>
@@ -18,11 +20,14 @@ const CreatorStudioNavbar = () => {
 
       <div className="flex items-center justify-center gap-6">
         <BellIcon onClick={() => setNotificationModal(!notificationModal)}/>
-        <UserImg/>
+        <UserImg onClick={() => setBalanceModal(!balanceModal)}/>
       </div>
     </div>
     {
       notificationModal && <NotificationModal />
+    }
+    {
+      balanceModal && <BalanceModal />
     }
     </>
   );
