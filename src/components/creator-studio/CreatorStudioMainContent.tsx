@@ -7,7 +7,7 @@ const CreatorStudioMainContent = () => {
   return (
     <div className='h-full mb-5 overflow-y-auto'>
             <Banner />
-            <div className='flex gap-5 max-w-[1020px]'>
+            <div className='flex gap-5 max-w-[1020px] px-8'>
                 <PostCard />
                 <UserSection />
             </div>
