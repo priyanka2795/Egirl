@@ -40,7 +40,7 @@ const PostCard = () => {
               onClick={(e) => handleExploreSelected(e)}
               className={`flex cursor-pointer gap-3 rounded-xl px-4 py-2 text-[15px] font-bold ${
                 exploreSelectedTab === items
-                  ? ' bg-white/[0.16] bg-opacity-20 text-white  '
+                  ? ' bg-white/[0.16] bg-opacity-20 text-white'
                   : 'text-[#979797]'
               }`}
             >

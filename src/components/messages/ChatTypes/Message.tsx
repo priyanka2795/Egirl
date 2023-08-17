@@ -160,9 +160,9 @@ const Message: React.FC<MessageProps> = ({
               >
                 <Link href='#'>
                   <StarIcon
-                    className={`${selectedStars >= 1 ? 'goldenSvg' : ''}`}
-                    onMouseEnter={() => handleStarHover(1)}
-                    onClick={() => handleStarClick(1)}
+                    className={`${selectedStars >= 0 ? 'goldenSvg' : ''}`}
+                    onMouseEnter={() => handleStarHover(0)}
+                    onClick={() => handleStarClick(0)}
                   />
                 </Link>
 
