@@ -34,7 +34,7 @@ const CreatorStudioSidebar = ({
     <>
       <div
         className={`flex h-full w-full flex-col justify-between overflow-y-auto bg-[#121212] ${
-          shrinkSideBar === true ? 'max-w-[68px]' : ' max-w-[276px]'
+          shrinkSideBar === true ? 'max-w-[68px]' : ' max-w-[300px]'
         }`}
       >
         <div>

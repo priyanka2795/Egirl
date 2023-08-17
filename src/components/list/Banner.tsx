@@ -124,7 +124,9 @@ const Banner = ({backFromProfile}:BannerProp) => {
                         <div className='text-[#FFFFFF] font-bold text-[16px]'>Following</div>
                     </button>
                     <button className='h-max px-[20px] py-[13px] bg-[#5848BC] rounded-[14px] text-[#FFFFFF] text-base font-bold'>Subscribe</button>
+                    <div>
                     <Image onClick={handleActionDivShow} src={threeDotsIcon} alt='' />
+                    </div>
                 </div>
             </div>
         </div>
@@ -176,7 +178,7 @@ const Banner = ({backFromProfile}:BannerProp) => {
                 </div>
             </div>
 
-            {actionDivShow ?  
+            {/* {actionDivShow ?  
             ( <>
                 <div className='absolute z-0 right-[55px] py-2 px-2 rounded-[14px] bg-[#1A1A1A] w-[218] flex flex-col items-start h-max'>
                 {actions.map((item , index) => {
@@ -195,7 +197,7 @@ const Banner = ({backFromProfile}:BannerProp) => {
                 })}
             </div>
             </>
-            ) : ('')}
+            ) : ('')} */}
         </div>
         </div>
         </div>
