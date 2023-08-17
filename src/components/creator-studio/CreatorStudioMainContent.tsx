@@ -5,9 +5,9 @@ import React from 'react'
 
 const CreatorStudioMainContent = () => {
   return (
-    <div className='px-8 mb-5 grow w-max'>
+    <div className='h-full mb-5 overflow-y-auto'>
             <Banner />
-            <div className='flex gap-5'>
+            <div className='flex gap-5 max-w-[1020px]'>
                 <PostCard />
                 <UserSection />
             </div>

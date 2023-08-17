@@ -33,13 +33,13 @@ const CreatorStudioSidebar = ({
   return (
     <>
       <div
-        className={`flex h-full min-h-screen w-full flex-col justify-between overflow-y-auto bg-[#121212] ${
+        className={`flex h-full w-full flex-col justify-between overflow-y-auto bg-[#121212] ${
           shrinkSideBar === true ? 'max-w-[68px]' : ' max-w-[276px]'
         }`}
       >
         <div>
           <div
-            className='flex cursor-pointer items-center justify-between py-[14px] pl-3 pr-4'
+            className='flex cursor-pointer items-center justify-between py-[14px] pl-6 pr-4'
             onClick={() => setSidebarModal(!sidebarModal)}
           >
             <div className='relative flex items-center w-full gap-2'>
@@ -223,7 +223,7 @@ const CreatorStudioSidebar = ({
         </div>
 
         <div
-          className='relative flex items-center gap-2 py-3 pl-3 cursor-pointer'
+          className='relative flex items-center gap-2 py-3 pl-6 cursor-pointer mt-[200px]'
           onClick={() => setMoreOptionsModal(!moreOptionsModal)}
         >
           <div>
