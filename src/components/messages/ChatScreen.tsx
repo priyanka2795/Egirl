@@ -78,6 +78,7 @@ export default function ChatScreen({
   const [dropZoneState , setDropZoneState] = useState(false);
   const [chatViewStyle ,setChatViewStyle] = useState('Inline chat');
   const [imageRequestMsg, setImageRequestMsg] = useState(false);
+  const [typingState ,setTypingState] = useState(false)
   const handleChatViewModal = () => {
     setChatViewOption(!chatViewOption);
     setSendUploadImgState(false);
@@ -115,6 +116,12 @@ export default function ChatScreen({
       }
     }
   };
+  const handleTypingIndicator = (e:any) => {    
+    if(e.target.value === ""){      
+      setTypingState(false)
+    }
+  }
+
   return (
     <div
       className={`w-full border-r-[2px] border-[#252525] bg-[#121212] lg:inline ${chatScreenClassName}`}
@@ -283,6 +290,8 @@ export default function ChatScreen({
               // onChange={(event) => setMessage(event.target.value)}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
+              onFocus={() => setTypingState(true)}
+              onBlur={(e) => handleTypingIndicator(e)}
               style={{ outline: 'none' }}
             />
             {
@@ -343,9 +352,10 @@ export default function ChatScreen({
           </button>
         </div>
       )}
-      <>
+      {typingState  &&
       <MessageIndicator/>
-      </>
+      }
+     
     </div>
   );
 }
