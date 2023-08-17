@@ -192,7 +192,7 @@ export default function ChatScreen({
         </div>
       </div>
       <div
-        className={`custom-scroll-bar overflow-y-auto pb-5 flex items-end ${
+        className={`custom-scroll-bar overflow-y-auto pb-5 flex ${
           chatScreenMsgClassName
             ? chatScreenMsgClassName
             : 'h-[calc(100vh-72px-92px)] '
@@ -200,7 +200,7 @@ export default function ChatScreen({
       >
         <div
           ref={containerRef}
-          className={`flex h-max flex-col justify-end bg-[#121212] px-6 pt-4`}
+          className={`flex min-h-full h-max flex-col justify-end bg-[#121212] px-6 pt-4 items-end`}
         >
           {selectUserState === 'One More Mika' ? (
            <>
