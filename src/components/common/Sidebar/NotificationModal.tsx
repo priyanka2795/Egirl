@@ -72,13 +72,13 @@ const NotificationModal = ({ selectedMoreOption }: NotificationModal) => {
   const [activeListTab, setActiveListTab] = useState('All');
   return (
     <div>
-      {selectedMoreOption === 'Notifications' ? 
-      <div className={`absolute w-[1020px] h-[1220px] !bg-black/80 z-[80]`}>
+      {/* {selectedMoreOption === 'Notifications' ?  */}
+      <div className={`transitions ${selectedMoreOption === 'Notifications' ? 'fixed w-full !bg-black/80 z-[80] w-full h-full': 'absolute'}`}>
       <div
       className={`transitions mt-4 inline-flex h-[804px] w-[425px] flex-col items-start justify-start rounded-[14px] bg-zinc-900 pb-6 ${
         selectedMoreOption === 'Notifications'
-          ? 'ml-4 fixed'
-          : 'invisible -ml-[430px] w-0 '
+          ? 'ml-4'
+          : 'invisible -ml-[280px] w-0 '
       }`}
     >
       <div className='sticky top-0'>
@@ -164,7 +164,8 @@ const NotificationModal = ({ selectedMoreOption }: NotificationModal) => {
         </div>
       </div>
     </div>
-    </div> : ''}
+    </div> 
+    {/* // : ''} */}
     </div>
     
     

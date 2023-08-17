@@ -125,10 +125,10 @@ const Banner = ({backFromProfile}:BannerProp) => {
                     </button>
                     <button className='h-max px-[20px] py-[13px] bg-[#5848BC] rounded-[14px] text-[#FFFFFF] text-base font-bold'>Subscribe</button>
                     <div className='relative'>
-                        <Image className='relative' onClick={handleActionDivShow} src={threeDotsIcon} alt='' />
+                        <Image className='relative cursor-pointer' onClick={handleActionDivShow} src={threeDotsIcon} alt='' />
                         {actionDivShow ?  
             ( <>
-                <div className='absolute top-[65px] right-[1px] z-0 w-[218px] right-[55px] py-2 px-2 rounded-[14px] bg-[#1A1A1A] w-[218] flex flex-col items-start h-max'>
+                <div className='absolute top-[65px] right-0 z-0 w-[218px] py-2 px-2 rounded-[14px] bg-[#1A1A1A] w-[218] flex flex-col items-start h-max'>
                 {actions.map((item , index) => {
                     return(
                         <div key={index}

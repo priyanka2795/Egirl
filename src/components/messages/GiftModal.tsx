@@ -87,9 +87,9 @@ const GiftModal = ({ closeModal, setShowGiftImg, setShowGiftName, setShowGiftMsg
             <div className='flex gap-3'>
                 <div className='flex gap-1'>
                     <Image className='w-4 h-4 mt-1' src={coinIcon} alt={''} />
-                    <div className='text-[15px] font-semibold leading-4 text-[#979797]'>1024</div>
+                    <div className='text-[15px] font-semibold text-[#979797]'>1024</div>
                 </div>
-                <Image className='w-6 h-6' src={crossIcon} alt={''} />
+                <Image className='w-6 h-6 cursor-pointer' src={crossIcon} alt={''} onClick={closeModal} />
             </div>
         </div>
 

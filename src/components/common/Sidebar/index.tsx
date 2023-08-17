@@ -41,6 +41,7 @@ type sideBarProp = {
   sideBarMenuArrowClasses?: string;
   moreOptionItem?: React.Dispatch<React.SetStateAction<string>>;
   activeMoreOption?: string;
+  activeItem?:any
   // shrinkSidebar?: boolean;
   // sideBarWidth?: () => void;
 };
@@ -50,7 +51,8 @@ export default function Sidebar({
   sideBarLogoClasses,
   sideBarMenuArrowClasses,
   moreOptionItem,
-  activeMoreOption
+  activeMoreOption,
+  activeItem
 }: // sideBarWidth,
 // shrinkSidebar
 sideBarProp) {
@@ -58,16 +60,17 @@ sideBarProp) {
   // console.log(shrinkSidebar, 'shrinkSidebar');
   const [subscribeModal, setSubscribeModal] = useState(false);
   const [moreOption, setMoreOption] = useState(false);
-  const [userAccountMenu , setUserAccountMenu] = useState(false)
+  const [userAccountMenu, setUserAccountMenu] = useState(false);
+  const [addCardState , setAddCardState]  = useState(false);
   const sidebarVariable = sessionStorage.getItem('sideBarCollapse');
 
   const [shrinkSidebar, setShrinkSidebar] = useState(
     sidebarVariable ? sidebarVariable : ''
   );
-  useEffect(() =>{ 
-    setShrinkSidebar( sidebarVariable ? sidebarVariable : '')
-  },[sidebarVariable])
-  
+  useEffect(() => {
+    setShrinkSidebar(sidebarVariable ? sidebarVariable : '');
+  }, [sidebarVariable]);
+
   console.log(sidebarVariable, 'shrinkSidebar sidebarVariable');
   const handleSidebarWidth = () => {
     if (shrinkSidebar) {
@@ -153,15 +156,17 @@ sideBarProp) {
             shrinkSidebar === 'true' ? '!hidden' : 'w-full'
           }`}
         />
-        <SidebarMenuItem
-          text='Add Card'
-          href='/add-card'
-          Icon={AddCardIcon}
-          IconActive={AddCardActiveIcon}
-          sideBarMenuText={`${sideBarMenuText} ${
-            shrinkSidebar === 'true' ? '!hidden' : 'w-full'
-          }`}
-        />
+        <div onClick={() => activeItem('Add Card')}>
+          <SidebarMenuItem
+            text='Add Card'
+            // href='/add-card'
+            Icon={AddCardIcon}
+            IconActive={AddCardActiveIcon}
+            sideBarMenuText={`${sideBarMenuText} ${
+              shrinkSidebar === 'true' ? '!hidden' : 'w-full'
+            }`}
+          />
+        </div>
         <SidebarMenuItem
           text='Referrals'
           href='/referrals'
@@ -195,7 +200,7 @@ sideBarProp) {
             <SidebarMenuItem
               IconActive={ReferalWhiteIcon}
               // text='More'
-              text={moreOption ? 'Show Less' : 'More' }
+              text={moreOption ? 'Show Less' : 'More'}
               Icon={MoreIcon}
               sideBarMenuText={`${sideBarMenuText} ${
                 shrinkSidebar === 'true' ? '!hidden' : 'w-full'
@@ -204,12 +209,15 @@ sideBarProp) {
           </div>
           {moreOption && (
             <MoreMenuOption
-              classes={`${shrinkSidebar === 'true' ? 'fixed ' : 'absolute left-[10px] top-[60px] '}`}
+              classes={`${
+                shrinkSidebar === 'true'
+                  ? 'fixed '
+                  : 'absolute left-[10px] top-[60px] '
+              }`}
               activeMoreOption={activeMoreOption}
               moreOptionItem={moreOptionItem}
-             
             />
-           )}
+          )}
         </div>
       </div>
 
@@ -236,7 +244,12 @@ sideBarProp) {
         <TestIcon className='hidden h-5 xl:ml-8 xl:inline' />
       </div> */}
 
-      <div className='flex items-center justify-between w-full px-6 mt-auto mb-6 cursor-pointer' onClick={() =>{setUserAccountMenu(true)}}>
+      <div
+        className='flex items-center justify-between w-full px-6 mt-auto mb-6 cursor-pointer'
+        onClick={() => {
+          setUserAccountMenu(true);
+        }}
+      >
         <div className='flex items-center gap-1'>
           {/* <img
             src='https://www.adscientificindex.com/pictures/0b/50734.jpg'
@@ -244,9 +257,13 @@ sideBarProp) {
             className='w-10 h-10 rounded-full xl:mr-2'
           /> */}
           <div>
-           <UserImg />
+            <UserImg />
           </div>
-          <div className={`hidden leading-5 xl:inline ${sideBarLogoClasses} ${shrinkSidebar ? '!hidden' : ''}`}>
+          <div
+            className={`hidden leading-5 xl:inline ${sideBarLogoClasses} ${
+              shrinkSidebar ? '!hidden' : ''
+            }`}
+          >
             <h4 className='text-sm font-bold leading-[18px]'>Username</h4>
             <p className='text-[13px] font-light leading-[18px] text-[#979797]'>
               @Username
@@ -254,13 +271,23 @@ sideBarProp) {
           </div>
         </div>
         <div>
-          <DotsVerticalIcon className={`hidden h-5 xl:inline ${sideBarLogoClasses} ${shrinkSidebar ? '!hidden' : ''}`}/>
-          {
-            userAccountMenu &&
-            <UserDetailModal setUserAccountMenu={setUserAccountMenu} userAccountMenu={userAccountMenu} styleClasses={`${shrinkSidebar === 'true' ? 'fixed left-[18px]' : 'absolute  right-[34px] '}`}/>
-          }
+          <DotsVerticalIcon
+            className={`hidden h-5 xl:inline ${sideBarLogoClasses} ${
+              shrinkSidebar ? '!hidden' : ''
+            }`}
+          />
+          {userAccountMenu && (
+            <UserDetailModal
+              setUserAccountMenu={setUserAccountMenu}
+              userAccountMenu={userAccountMenu}
+              styleClasses={`${
+                shrinkSidebar === 'true'
+                  ? 'fixed left-[18px]'
+                  : 'absolute  right-[34px] '
+              }`}
+            />
+          )}
         </div>
-    
       </div>
     </div>
   );

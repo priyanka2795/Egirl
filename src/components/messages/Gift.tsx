@@ -26,7 +26,7 @@ const Gift = ({showGiftImg, showGiftName} : GiftProp) => {
                 <div className='flex flex-col gap-[6px]'>
                     <div className='text-[#FFFFFF] text-[14px] font-bold leading-[18px]'>{showGiftName}</div>
                     <div className='text-[#979797] text-[14px] font-normal leading-[18px]'>
-                        <p>I sent you a Pizza as a gift!</p>
+                        <p>I sent you a {showGiftName} as a gift!</p>
                         <p>I hope you enjoy it.</p>
                     </div>
                 </div>
