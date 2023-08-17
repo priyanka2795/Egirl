@@ -17,6 +17,8 @@ import MessageSlider from '../MessageSlider';
 import { Modal } from '@components/modal/modal';
 import ChatReactionEmoji from '../ChatReactionEmoji';
 import { Emoji } from 'emoji-picker-react';
+import FeedbackSent from '../FeedbackSent';
+import FeedbackTexts from '../FeedbackTexts';
 
 interface MessageProps {
   src: string;
@@ -61,9 +63,12 @@ const Message: React.FC<MessageProps> = ({
   const [showSelectedEmojiList, setShowSelectedEmojiList] = useState(false);
   const [messageIdEmoji, setMessgeIdEmoji] = useState(0);
   const [showSelectedEmoji, setShowSeletedEmoji] = useState('');
+  const [feedbackSent, setFeedbackSent] = useState(false);
+  const [showFeedText, setShowFeedText] = useState(false);
 
   const handleStarClick = (starCount: number) => {
     setSelectedStars(starCount);
+    setShowFeedText(true);
   };
 
   const handleStarHover = (starCount: number) => {
@@ -150,92 +155,100 @@ const Message: React.FC<MessageProps> = ({
             ''
           )}
 
-          {rateResponse ? (
-            <div className='flex items-center justify-between mt-3'>
-              {/* <div className='item-center flex gap-4 rounded-xl bg-[#1E1E1E] px-4 py-[5px]'> */}
-              {/* <p className='text-[13px] '>Rate this response</p> */}
-              <div
-                className='flex cursor-pointer rating'
-                // onClick={() => setGoldenSvg(!goldenSvg)}
-              >
-                <Link href='#'>
-                  <StarIcon
-                    className={`${selectedStars >= 0 ? 'goldenSvg' : ''}`}
-                    onMouseEnter={() => handleStarHover(0)}
-                    onClick={() => handleStarClick(0)}
-                  />
-                </Link>
+{feedbackSent ? (
+          <FeedbackSent />
+        ) : showFeedText ? (
+          <FeedbackTexts
+            showFeedText={showFeedText}
+            setShowFeedText={setShowFeedText}
+            setFeedbackSent={setFeedbackSent}
+          />
+        ) : rateResponse ? (
+          <div className='flex items-center justify-between mt-3'>
+            {/* <div className='item-center flex gap-4 rounded-xl bg-[#1E1E1E] px-4 py-[5px]'> */}
+            {/* <p className='text-[13px] '>Rate this response</p> */}
+            <div
+              className='flex cursor-pointer rating'
+              // onClick={() => setGoldenSvg(!goldenSvg)}
+            >
+              <Link href='#'>
+                <StarIcon
+                  className={`${selectedStars >= 1 ? 'goldenSvg' : ''}`}
+                  onMouseEnter={() => handleStarHover(0)}
+                  onClick={() => handleStarClick(1)}
+                />
+              </Link>
 
-                <Link href='#'>
-                  <StarIcon
-                    className={`${selectedStars >= 2 ? 'goldenSvg' : ''}`}
-                    onMouseEnter={() => handleStarHover(2)}
-                    onClick={() => handleStarClick(2)}
-                  />
-                </Link>
+              <Link href='#'>
+                <StarIcon
+                  className={`${selectedStars >= 2 ? 'goldenSvg' : ''}`}
+                  onMouseEnter={() => handleStarHover(2)}
+                  onClick={() => handleStarClick(2)}
+                />
+              </Link>
 
-                <Link href='#'>
-                  <StarIcon
-                    className={`${selectedStars >= 3 ? 'goldenSvg' : ''}`}
-                    onMouseEnter={() => handleStarHover(3)}
-                    onClick={() => handleStarClick(3)}
-                  />
-                </Link>
+              <Link href='#'>
+                <StarIcon
+                  className={`${selectedStars >= 3 ? 'goldenSvg' : ''}`}
+                  onMouseEnter={() => handleStarHover(3)}
+                  onClick={() => handleStarClick(3)}
+                />
+              </Link>
 
-                <Link href='#'>
-                  <StarIcon
-                    className={`${selectedStars >= 4 ? 'goldenSvg' : ''}`}
-                    onMouseEnter={() => handleStarHover(4)}
-                    onClick={() => handleStarClick(4)}
-                  />
-                </Link>
+              <Link href='#'>
+                <StarIcon
+                  className={`${selectedStars >= 4 ? 'goldenSvg' : ''}`}
+                  onMouseEnter={() => handleStarHover(4)}
+                  onClick={() => handleStarClick(4)}
+                />
+              </Link>
 
-                <Link href='#'>
-                  <StarIcon
-                    className={`${selectedStars >= 5 ? 'goldenSvg' : ''}`}
-                    onMouseEnter={() => handleStarHover(5)}
-                    onClick={() => handleStarClick(5)}
-                  />
-                </Link>
-              </div>
-              {/* </div> */}
-              <div className='flex gap-2'>
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  width='20'
-                  height='20'
-                  viewBox='0 0 20 20'
-                  fill='none'
-                >
-                  <path
-                    d='M12.5 5L7.5 10L12.5 15'
-                    stroke='#979797'
-                    stroke-width='1.8'
-                    stroke-linecap='round'
-                    stroke-linejoin='round'
-                  />
-                </svg>
-                <p className='text-[13px] font-semibold text-[#979797]'>2/2</p>
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  width='20'
-                  height='20'
-                  viewBox='0 0 20 20'
-                  fill='none'
-                >
-                  <path
-                    d='M7.5 5L12.5 10L7.5 15'
-                    stroke='#979797'
-                    stroke-width='1.8'
-                    stroke-linecap='round'
-                    stroke-linejoin='round'
-                  />
-                </svg>
-              </div>
+              <Link href='#'>
+                <StarIcon
+                  className={`${selectedStars >= 5 ? 'goldenSvg' : ''}`}
+                  onMouseEnter={() => handleStarHover(5)}
+                  onClick={() => handleStarClick(5)}
+                />
+              </Link>
             </div>
-          ) : (
-            ''
-          )}
+            {/* </div> */}
+            <div className='flex gap-2'>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                width='20'
+                height='20'
+                viewBox='0 0 20 20'
+                fill='none'
+              >
+                <path
+                  d='M12.5 5L7.5 10L12.5 15'
+                  stroke='#979797'
+                  stroke-width='1.8'
+                  stroke-linecap='round'
+                  stroke-linejoin='round'
+                />
+              </svg>
+              <p className='text-[13px] font-semibold text-[#979797]'>2/2</p>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                width='20'
+                height='20'
+                viewBox='0 0 20 20'
+                fill='none'
+              >
+                <path
+                  d='M7.5 5L12.5 10L7.5 15'
+                  stroke='#979797'
+                  stroke-width='1.8'
+                  stroke-linecap='round'
+                  stroke-linejoin='round'
+                />
+              </svg>
+            </div>
+          </div>
+        ) : (
+          ''
+        )}
         </div>
       </div>
 
