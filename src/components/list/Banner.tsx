@@ -124,8 +124,28 @@ const Banner = ({backFromProfile}:BannerProp) => {
                         <div className='text-[#FFFFFF] font-bold text-[16px]'>Following</div>
                     </button>
                     <button className='h-max px-[20px] py-[13px] bg-[#5848BC] rounded-[14px] text-[#FFFFFF] text-base font-bold'>Subscribe</button>
-                    <div>
-                    <Image onClick={handleActionDivShow} src={threeDotsIcon} alt='' />
+                    <div className='relative'>
+                        <Image className='relative' onClick={handleActionDivShow} src={threeDotsIcon} alt='' />
+                        {actionDivShow ?  
+            ( <>
+                <div className='absolute top-[65px] right-[1px] z-0 w-[218px] right-[55px] py-2 px-2 rounded-[14px] bg-[#1A1A1A] w-[218] flex flex-col items-start h-max'>
+                {actions.map((item , index) => {
+                    return(
+                        <div key={index}
+                        onClick={(e) => handleExploreSelected(e)}
+                        className={`flex gap-2 px-[16px] py-[10px] w-full cursor-pointer ${exploreSelectedTab === item.name
+                              ? ' bg-white/[0.12] rounded-[8px] '
+                              : ''
+                          }`}
+                        >
+                            <Image className='object-contain' src={item.icon} alt={''} />
+                            <div className='text-[#FFFFFF] text-[14px] font-normal'>{item.name}</div>
+                        </div>
+                    );
+                })}
+            </div>
+            </>
+            ) : ('')}
                     </div>
                 </div>
             </div>
@@ -178,26 +198,7 @@ const Banner = ({backFromProfile}:BannerProp) => {
                 </div>
             </div>
 
-            {/* {actionDivShow ?  
-            ( <>
-                <div className='absolute z-0 right-[55px] py-2 px-2 rounded-[14px] bg-[#1A1A1A] w-[218] flex flex-col items-start h-max'>
-                {actions.map((item , index) => {
-                    return(
-                        <div key={index}
-                        onClick={(e) => handleExploreSelected(e)}
-                        className={`flex gap-2 px-[16px] py-[10px] w-full cursor-pointer ${exploreSelectedTab === item.name
-                              ? ' bg-white/[0.12] rounded-[8px] '
-                              : ''
-                          }`}
-                        >
-                            <Image className='object-contain' src={item.icon} alt={''} />
-                            <div className='text-[#FFFFFF] text-[14px] font-normal'>{item.name}</div>
-                        </div>
-                    );
-                })}
-            </div>
-            </>
-            ) : ('')} */}
+            
         </div>
         </div>
         </div>

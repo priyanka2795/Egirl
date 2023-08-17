@@ -59,7 +59,7 @@ const CreatorStudioSidebar = ({
               </div>
               {sidebarModal && <SidebarModal />}
             </div>
-            <div className='h-full'>
+            <div className='h-full mt-2'>
               <Image src={arrowDown} alt='' />
             </div>
           </div>

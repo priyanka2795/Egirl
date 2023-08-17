@@ -15,4 +15,4 @@ const CreatorStudioMainContent = () => {
   )
 }
 
-export default CreatorStudioMainContent  
+export default CreatorStudioMainContent;  

@@ -17,6 +17,24 @@ const CreatorStudioNavbar = ({
   const [notificationModal, setNotificationModal] = useState(false);
   const [balanceModal, setBalanceModal] = useState(false);
 
+  const handleNotificationModal = () => {
+    if(balanceModal === true) {
+      setBalanceModal(false);
+      setNotificationModal(!notificationModal);
+    } else {
+      setNotificationModal(!notificationModal)
+    }
+  };
+
+  const handleBalanceModal = () => {
+    if(notificationModal === true) {
+      setNotificationModal(false);
+      setBalanceModal(!balanceModal);
+    } else {
+      setBalanceModal(!balanceModal)
+    }
+  };
+
   return (
     <>
       <div className='flex justify-between px-4 py-6 '>
@@ -35,14 +53,14 @@ const CreatorStudioNavbar = ({
         <div className='flex items-center justify-center gap-6'>
           <div className='relative cursor-pointer'>
             <BellIcon
-              onClick={() => setNotificationModal(!notificationModal)}
+              onClick={handleNotificationModal}
             />
             {notificationModal && <NotificationModal />}
           </div>
           <div className="relative">
             <UserImg
               className='cursor-pointer'
-              onClick={() => setBalanceModal(!balanceModal)}
+              onClick={handleBalanceModal}
             />
             {balanceModal && <BalanceModal />}
           </div>
