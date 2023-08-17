@@ -15,7 +15,7 @@ const settings = {
 
 const UserSection = () => {
   return (
-        <div className='bg-[#121212] rounded-[14px] w-max h-max mt-5'>
+        <div className='bg-[#121212] rounded-[14px] w-[39%] h-max mt-5'>
                 <div className='flex justify-between p-6 border-b border-white/[0.08]'>
                     <div className='text-[#FFFFFF] text-[18px] font-bold'>You might like</div>
                     <div className='flex gap-3'>
