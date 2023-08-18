@@ -2,6 +2,24 @@ import SearchIcon from '../common/Search/SearchIcon';
 import useScroll from '../../../hooks/useScroll';
 import YouMightLike from './YouMightLike';
 import { useState } from 'react';
+import UserSection from '@components/list/UserSection';
+import Slider from 'react-slick';
+import UserFrame from '@components/list/UserFrame';
+import arrowLeft from '../../../public/assets/arrow-narrow-left.png'
+import arrowRight from '../../../public/assets/arrow-narrow-right.png'
+import Image from 'next/image';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import HomePageSlider from './HomePageSlider';
+
+
+const settings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1
+};
 
 export default function Widgets() {
   const [sticky, animate] = useScroll();
@@ -20,7 +38,7 @@ export default function Widgets() {
       >
         <div className='mr-2 w-full max-w-[376px] pb-5 pt-6'>
           <div className='flex h-[64px] items-center justify-between rounded-r-[14px] bg-main-bar'>
-            <div className='group relative mr-2 w-full'>
+            <div className='relative w-full mr-2 group'>
               <div className='absolute left-4 top-3'>
                 <SearchIcon
                   strokeClasses={`${
@@ -37,19 +55,30 @@ export default function Widgets() {
               />
             </div>
           </div>
-        </div>
+        </div> 
       </div>
 
-      <div
-        className={`sticky  ${
-          sticky && animate ? 'top-[108px]' : 'top-4'
-        } max-w-[376px] transition-all duration-300 ease-in `}
-      >
-        <YouMightLike />
+      <div className={`sticky top-0 max-w-[376px] max-h-[426px]`}>
+        <div className='bg-[#121212] rounded-[14px] w-full h-full'>
+          <div className='flex justify-between p-6 border-b border-white/[0.08]'>
+            <div className='text-[#FFFFFF] text-[18px] font-bold'>You might like</div>
+            <div className='flex gap-3'>
+              <Image src={arrowLeft} alt={''} />
+              <Image src={arrowRight} alt={''} />
+            </div>
+          </div>
+          <div className='h-full p-6 bookmark-img-text'>
+            <div className='relative h-full profile-like-slider home-page-slider'>
+              <Slider {...settings}>
+                <HomePageSlider />
+                <HomePageSlider />
+                <HomePageSlider />
+                <HomePageSlider />
+              </Slider>
+            </div>
+          </div>
+        </div>
       </div>
-      {/* <div className={`sticky top-0 max-w-[376px] `}>
-        <YouMightLike />
-      </div> */}
     </div>
   );
 }

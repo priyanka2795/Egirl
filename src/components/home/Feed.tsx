@@ -16,14 +16,14 @@ export default function Feed() {
   };
 
   return (
-    <div className='max-w-[600px] flex-grow bg-main-background sm:ml-[88px] lg:min-w-[600px] xl:ml-[300px]'>
+    <div className='max-w-[600px] flex-grow bg-main-background lg:min-w-[600px]'>
       {/* 108px topbar with margins */}
       <div
         className={`sticky z-50  ${
           sticky && animate ? 'top-0' : '-top-[108px]'
         } h-[108px] max-w-[600px] bg-main-background transition-all duration-[300ms] ease-in lg:min-w-[600px]`}
       >
-        <div className='ml-8 pb-5 pt-6'>
+        <div className='pt-6 pb-5 ml-8'>
           <div className='flex h-[64px] items-center justify-between rounded-l-[14px] bg-main-bar pr-5'>
             <div
               onClick={() => handleFeedSwitch('forYou')}
@@ -67,6 +67,22 @@ export default function Feed() {
           location='Warsaw, Old Town'
           hours='6h'
         />
+        
+        <div className="mt-5">
+        <Post
+          imageUrl='https://media.istockphoto.com/id/638756792/photo/beautiful-woman-posing-against-dark-background.jpg?s=612x612&w=0&k=20&c=AanwEr0pmrS-zhkVJEgAwxHKwnx14ywNh5dmzwbpyLk='
+          altText='Character Profile Picture'
+          name='Mika-chan'
+          username='@mikachan'
+          postText='Hello dears, my mood today is 🤗'
+          commentsNumber='98'
+          heartsNumber='6.2k'
+          viewsNumber='1.8k'
+          tags={['#girl', '#mood', '#relaxtime']}
+          location='Warsaw, Old Town'
+          hours='6h'
+        />
+        </div>
       </div>
     </div>
   );

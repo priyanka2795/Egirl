@@ -4,14 +4,18 @@ import React from 'react';
 import { GetServerSidePropsContext } from 'next';
 import { Database } from '../../types/database';
 import { User, useSupabaseClient } from '@supabase/auth-helpers-react';
+import Layout from '@components/common/Layout';
 export default function Explore({ user }: { user: User }) {
   const supabase = useSupabaseClient<Database>();
 
   return (
     <>
-      <div>
+      {/* <div>
         <MessagesContent />
-      </div>
+      </div> */}
+      <Layout>
+       <MessagesContent />
+      </Layout>
     </>
   );
 }
