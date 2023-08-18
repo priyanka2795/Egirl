@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import CreatorStudioNavbar from './CreatorStudioNavbar'
 import CreatorStudioSidebar from './CreatorStudioSidebar'
 import CreatorStudioMainContent from './CreatorStudioMainContent'
-import Personality from './Personality'
+// import Personality from './Personality'
 
 
 const CreatorStudio = () => {
