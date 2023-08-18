@@ -200,7 +200,7 @@ export default function ChatScreen({
       >
         <div
           ref={containerRef}
-          className={`flex min-h-full h-max flex-col justify-end bg-[#121212] px-6 pt-4 items-end`}
+          className={`flex min-h-full h-max flex-col justify-end bg-[#121212] px-6 pt-4 items-end w-full`}
         >
           {selectUserState === 'One More Mika' ? (
            <>
