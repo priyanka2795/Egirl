@@ -20,7 +20,7 @@ const FeedbackTexts = ( {showFeedText, setShowFeedText, setFeedbackSent}: Feedba
     
   return (
     <>
-    <div className='flex justify-between mt-3'>
+    <div className='flex items-center justify-between w-full mt-3 pl-[47px]'>
         <div className='flex gap-2'>
             <div className='w-5 h-5 mt-2' onClick={() => {setShowFeedText(false)}}>
                 <Image className='w-full h-full' src={arrowLeft} alt={''} />

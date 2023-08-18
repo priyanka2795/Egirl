@@ -6,7 +6,7 @@ import checkIcon from '../../../public/assets/check-icon-grey.png';
 
 const FeedbackSent = () => {
   return (
-    <div className='flex justify-between mt-3'>
+    <div className='flex justify-between pl-[47px] w-full'>
       <div className='flex gap-2'>
         <div className='w-5 h-5'>
             <Image className='w-full h-full' src={checkIcon} alt={''} />

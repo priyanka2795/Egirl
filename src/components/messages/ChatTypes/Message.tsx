@@ -183,6 +183,8 @@ const Message: React.FC<MessageProps> = ({
 
           {gridImage === true ? <ChatGridImg /> : ''}
 
+        </div>
+      </div>
           <BubbleViewTimeStamp
             chatName={chatName}
             userName={name}
@@ -198,7 +200,7 @@ const Message: React.FC<MessageProps> = ({
               setFeedbackSent={setFeedbackSent}
             />
           ) : rateResponse ? (
-            <div className='flex items-center justify-between mt-3'>
+            <div className='flex items-center justify-between w-full pl-[47px]'>
               <Rating selectedStars={selectedStars} handleStarClick={handleStarClick} handleStarHover={handleStarHover}/>
               <div className='flex gap-2'>
                <ArrowLeft/>
@@ -209,8 +211,6 @@ const Message: React.FC<MessageProps> = ({
           ) : (
             ''
           )}
-        </div>
-      </div>
     </>
   );
 };

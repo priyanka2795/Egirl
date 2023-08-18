@@ -4,9 +4,13 @@ import { useDropzone } from 'react-dropzone';
 import Image from 'next/image';
 // import uploadImg from "../images/upload.png";
 // import downloadImage from "../images/download-img.png";
-
-const ImageDropZone = () => {
-  const [uploadedItemState, setUploadedItemState] = useState<any>();
+interface ImageDropZoneProp{
+  files: any;
+  uploadedItemState: any;
+  setUploadedItemState: any;
+}
+const ImageDropZone = ({files , uploadedItemState , setUploadedItemState}:ImageDropZoneProp) => {
+  // const [uploadedItemState, setUploadedItemState] = useState<any>();
   const maxSize = 2 * 1024 * 1024;
   const {
     isDragActive,
@@ -43,12 +47,14 @@ const ImageDropZone = () => {
   if (fileRejections[0]?.errors[0]) {
     //  console.log(fileRejections[0]?.errors);
   }
-  const files = acceptedFiles.map((file: any) => (
-    <li key={file.path}>
-      <Image src={uploadedItemState.preview} alt='' width='100' height='100' />
-      {/* {file.path} - {file.size} bytes */}
-    </li>
-  ));
+  
+files(acceptedFiles);
+// files = acceptedFiles.map((file: any) => (
+//     <li key={file.path}>
+//       <Image src={uploadedItemState?.preview} alt='' width='100' height='100' />
+//       {/* {file.path} - {file.size} bytes */}
+//     </li>
+//   ));
 
   // const thumbs = files.map((file) => (
   //     <div key={file.name}>
@@ -69,8 +75,9 @@ const ImageDropZone = () => {
           })}
         >
           <input {...getInputProps()} />
+          
           <h6 className='mb-1 text-sm text-purple'>
-            Drag and drop files here or upload
+          Upload image
           </h6>
           {/* <Image src={uploadImg} alt="upload file" /> */}
         </div>

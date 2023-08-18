@@ -40,6 +40,7 @@ import SubscriptionModal from '@components/common/SubscriptionModal';
 import CurrentPlaneModal from '@components/common/CurrentPlaneModal';
 import ImageRequestMsg from './ImageRequestMsg';
 import MessageIndicator from './MessageIndicator';
+import TextareaAutosize from 'react-textarea-autosize';
 
 type chatProps = {
   chatScreenClassName?: string;
@@ -47,7 +48,7 @@ type chatProps = {
   chartScreenView?: string;
   setChartScreenView?: React.Dispatch<React.SetStateAction<string>>;
   selectUserState?: any;
-  chatViewStyle:string;
+  chatViewStyle: string;
   setChatViewStyle: React.Dispatch<React.SetStateAction<string>>;
 };
 export default function ChatScreen({
@@ -71,18 +72,22 @@ export default function ChatScreen({
   const [emojiPicker, setEmojiPicker] = useState(false);
   const [chatView, setChatView] = useState(false);
   const [clearChat, setClearChat] = useState(false);
-  const [showMessage , setShowMessge] = useState(false);
-  const [currentPlanModal ,setCurrentPlanModal] = useState(false);
-  const [showGift , setShowGift] = useState('');
-  const [showGiftImg , setShowGiftImg] = useState('');
-  const [showGiftName , setShowGiftName] = useState('');
-  const [showGiftMsg , setShowGiftMsg] = useState(false);
-  const [buttonText , setButtonText] = useState('');
+  const [showMessage, setShowMessge] = useState(false);
+  const [currentPlanModal, setCurrentPlanModal] = useState(false);
+  const [showGift, setShowGift] = useState('');
+  const [showGiftImg, setShowGiftImg] = useState('');
+  const [showGiftName, setShowGiftName] = useState('');
+  const [showGiftMsg, setShowGiftMsg] = useState(false);
+  const [buttonText, setButtonText] = useState('');
   // const [chatName , setChatName] = useState('');
-  const [dropZoneState , setDropZoneState] = useState(false);
+  const [dropZoneState, setDropZoneState] = useState(false);
   // const [chatViewStyle ,setChatViewStyle] = useState('Inline chat');
   const [imageRequestMsg, setImageRequestMsg] = useState(false);
-  const [typingState ,setTypingState] = useState(false)
+  const [typingState, setTypingState] = useState(false);
+  const [imageUploaded, setImageUploaded] = useState([]);
+  const [uploadedItemState, setUploadedItemState] = useState<any>();
+
+
   const handleChatViewModal = () => {
     setChatViewOption(!chatViewOption);
     setSendUploadImgState(false);
@@ -98,11 +103,9 @@ export default function ChatScreen({
     }
   }, []);
 
-
   const handleMessage = () => {
-    setShowMessge(true)
-    // console.log(message , "test the target")
-  }
+    setShowMessge(true);
+  };
   const handleViews = (e: any) => {
     console.log(e);
     if (e === 'chatView') {
@@ -121,11 +124,11 @@ export default function ChatScreen({
       }
     }
   };
-  const handleTypingIndicator = (e:any) => {    
-    if(e.target.value === ""){      
-      setTypingState(false)
+  const handleTypingIndicator = (e: any) => {
+    if (e.target.value === '') {
+      setTypingState(false);
     }
-  }
+  };
 
   return (
     <div
@@ -141,20 +144,20 @@ export default function ChatScreen({
             height={40}
             className='rounded-full'
           />
-         <div className="flex flex-col items-start ml-3">
-           <h3 className='text-[15px] font-semibold leading-5'>
-            Mika-chan
-          </h3>
-          <h6 className="text-[#979797] text-xs font-normal flex gap-1 cursor-pointer" onClick={() => setCurrentPlanModal(true)}>
-            50 messages remaining
-           <InfoIcon/>
-          </h6>
-         </div>
+          <div className='flex flex-col items-start ml-3'>
+            <h3 className='text-[15px] font-semibold leading-5'>Mika-chan</h3>
+            <h6
+              className='flex cursor-pointer gap-1 text-xs font-normal text-[#979797]'
+              onClick={() => setCurrentPlanModal(true)}
+            >
+              50 messages remaining
+              <InfoIcon />
+            </h6>
+          </div>
         </div>
-        {
-          currentPlanModal &&
-          <CurrentPlaneModal closeState={setCurrentPlanModal}/>
-        }
+        {currentPlanModal && (
+          <CurrentPlaneModal closeState={setCurrentPlanModal} />
+        )}
         <div className='flex items-center gap-8'>
           <VoiceModeToggle
             handleToggleState={() => setVoiceMode(!voiceMode)}
@@ -173,31 +176,34 @@ export default function ChatScreen({
             </div>
 
             {moreOptionDropdown && (
-          //   <>  <div className='absolute right-0 top-[100%] mt-2 inline-flex w-[218px] flex-col items-start justify-start rounded-2xl bg-zinc-900 py-2 shadow'>
-          //   <div className='flex-col items-center self-stretch justify-start gap-2 cursor-pointer '>
-          //     <div className='flex gap-2 px-4 py-[10px] text-sm'>
-          //       <ChatIcon />
-          //       Chat view
-          //     </div>
-          //     <div
-          //       className='flex gap-2 px-4 py-[10px] text-sm'
-          //       onClick={() => {setClearChat(true), setMoreOptionDropdown(false)}}
-          //     >
-          //       <DeleteIcon />
-          //       Clear chat
-          //     </div>
-          //   </div>
-          // </div>
-          <ThreeDotsDropdown setClearChat={setClearChat} setMoreOptionDropdown={setMoreOptionDropdown} defaultChatStyle={chatViewStyle}
-          activeChatStyle={setChatViewStyle}
+              //   <>  <div className='absolute right-0 top-[100%] mt-2 inline-flex w-[218px] flex-col items-start justify-start rounded-2xl bg-zinc-900 py-2 shadow'>
+              //   <div className='flex-col items-center self-stretch justify-start gap-2 cursor-pointer '>
+              //     <div className='flex gap-2 px-4 py-[10px] text-sm'>
+              //       <ChatIcon />
+              //       Chat view
+              //     </div>
+              //     <div
+              //       className='flex gap-2 px-4 py-[10px] text-sm'
+              //       onClick={() => {setClearChat(true), setMoreOptionDropdown(false)}}
+              //     >
+              //       <DeleteIcon />
+              //       Clear chat
+              //     </div>
+              //   </div>
+              // </div>
+              <ThreeDotsDropdown
+                setClearChat={setClearChat}
+                setMoreOptionDropdown={setMoreOptionDropdown}
+                defaultChatStyle={chatViewStyle}
+                activeChatStyle={setChatViewStyle}
               />
-            // </>
+              // </>
             )}
           </div>
         </div>
       </div>
       <div
-        className={`custom-scroll-bar overflow-y-auto pb-5 flex ${
+        className={`custom-scroll-bar flex overflow-y-auto pb-5 ${
           chatScreenMsgClassName
             ? chatScreenMsgClassName
             : 'h-[calc(100vh-72px-92px)] '
@@ -205,34 +211,36 @@ export default function ChatScreen({
       >
         <div
           ref={containerRef}
-          className={`flex min-h-full h-max flex-col justify-end bg-[#121212] px-6 pt-4 items-end w-full`}
+          className={`flex h-max min-h-full w-full flex-col items-end justify-end bg-[#121212] px-6 pt-4`}
         >
           {selectUserState === 'One More Mika' ? (
-           <>
-            <NewConversationWithUser />
-            {showMessage &&
-              <Message
-              src='/dummy-char.png'
-              alt={`Character Profile Picture ${2}`}
-              time='09:23'
-              isLast={true}
-              message={message}
-              name='You'
-              messageIcons={true}
-              chatName={chatViewStyle}
-            />
-            }
-           </>
-          ) : clearChat === false &&           
-             <DummyMessage chatName={chatViewStyle}/>
-          }
+            <>
+              <NewConversationWithUser />
+              {showMessage && (
+                <Message
+                  src='/dummy-char.png'
+                  alt={`Character Profile Picture ${2}`}
+                  time='09:23'
+                  isLast={true}
+                  message={message}
+                  name='You'
+                  messageIcons={true}
+                  chatName={chatViewStyle}
+                />
+              )}
+            </>
+          ) : (
+            clearChat === false && <DummyMessage chatName={chatViewStyle} />
+          )}
 
-          {showGiftMsg && <Gift showGiftImg={showGiftImg} showGiftName={showGiftName} />}
+          {showGiftMsg && (
+            <Gift showGiftImg={showGiftImg} showGiftName={showGiftName} />
+          )}
           {imageRequestMsg && <ImageRequestMsg />}
         </div>
       </div>
       {showInput && (
-        <div className='flex items-center pt-3 bg-[red-400] px-6'>
+        <div className='flex items-center bg-[red-400] px-6 pt-3'>
           <div className='relative'>
             <div
               className='plus-icon mr-[10px] grid h-[32px] w-[32px] min-w-[32px] cursor-pointer place-items-center rounded-full bg-[#5848BC] transition duration-100 hover:bg-[#4b3abd]'
@@ -257,14 +265,24 @@ export default function ChatScreen({
                     <GiftIcon />
                     Send gift
                   </div>
-                  <div className='flex gap-2 px-4 py-[10px] text-sm' onClick={() => setDropZoneState(true)}>
+                  <div
+                    className='flex gap-2 px-4 py-[10px] text-sm'
+                    onClick={() => setDropZoneState(true)}
+                  >
                     <UploadIcon />
                     {/* <input type={'file'} onChange={handleImage} /> */}
-                    Upload image
+                    {/* Upload image */}
+
+                    <ImageDropZone
+                      files={setImageUploaded}
+                      uploadedItemState={uploadedItemState}
+                      setUploadedItemState={setUploadedItemState}
+                    />
                   </div>
                 </div>
               </div>
             )}
+            {/* {UploadedFiles} */}
             {chatViewOption && (
               <Modal
                 open={chatViewOption}
@@ -272,7 +290,10 @@ export default function ChatScreen({
                 modalOverlayStyle='!bg-black/80'
                 closeModal={handleChatViewModal}
               >
-                <ImageRequestModal closeModal={handleChatViewModal} setImageRequestMsg={setImageRequestMsg}/>
+                <ImageRequestModal
+                  closeModal={handleChatViewModal}
+                  setImageRequestMsg={setImageRequestMsg}
+                />
               </Modal>
             )}
             {giftModal && (
@@ -282,14 +303,19 @@ export default function ChatScreen({
                 modalOverlayStyle='!bg-black/80'
                 closeModal={handleGiftModal}
               >
-                <GiftModal setShowGiftImg={setShowGiftImg} setShowGiftName={setShowGiftName} setShowGiftMsg={setShowGiftMsg} closeModal={handleGiftModal} />
+                <GiftModal
+                  setShowGiftImg={setShowGiftImg}
+                  setShowGiftName={setShowGiftName}
+                  setShowGiftMsg={setShowGiftMsg}
+                  closeModal={handleGiftModal}
+                />
               </Modal>
             )}
           </div>
-          <div className='relative flex w-full'>
-            <input
-              className='resize-none h-[48px] w-full rounded-[14px] border-none bg-[#1E1E1E] py-[10px] pl-4 pr-[50px] text-[15px] font-light leading-6 text-[#979797] transition-all duration-100 focus:ring-1 focus:ring-transparent'
-              type='text'
+          <div className='relative flex flex-col w-full'>
+            {/* <textarea
+              className='resize-none min-h-[48px] max-h-[300px] w-full rounded-[14px] border-none bg-[#1E1E1E] py-[10px] pl-4 pr-[50px] text-[15px] font-light leading-6 text-[#979797] transition-all duration-100 focus:ring-1 focus:ring-transparent'
+              // type='text'
               placeholder='Type a message'
               // value={message}
               // onChange={(event) => setMessage(event.target.value)}
@@ -298,11 +324,31 @@ export default function ChatScreen({
               onFocus={() => setTypingState(true)}
               onBlur={(e) => handleTypingIndicator(e)}
               style={{ outline: 'none' }}
+            /> */}
+            <ul className="flex gap-1">
+              {imageUploaded?.map((file: any) => (
+                <li key={file.path}>
+                  <Image
+                    src={uploadedItemState?.preview}
+                    alt=''
+                    width='100'
+                    height='100'
+                    className="object-cover"
+                  />
+                </li>
+              ))}
+            </ul>
+            <TextareaAutosize
+              className='min-h-[48px] w-full resize-none rounded-[14px] border-none bg-[#1E1E1E] py-[10px] pl-4 pr-[50px] 
+   text-[15px] font-light leading-6 text-[#979797] transition-all duration-100 focus:ring-1 focus:ring-transparent'
+              cacheMeasurements
+              value={message}
+              // onChange={ev => setValue(ev.target.value)}
+              onChange={(e) => setMessage(e.target.value)}
+              onFocus={() => setTypingState(true)}
+              onBlur={(e) => handleTypingIndicator(e)}
+              style={{ outline: 'none' }}
             />
-            {
-              dropZoneState &&
-            <ImageDropZone/>
-            }
 
             <div
               className='absolute right-4 top-3'
@@ -312,18 +358,12 @@ export default function ChatScreen({
             </div>
 
             <div className='absolute bottom-5 right-[50px]'>
-              {emojiPicker && (
-                <Emoji setMessage={setMessage}/>
-              )}
+              {emojiPicker && <Emoji setMessage={setMessage} />}
             </div>
           </div>
           <div className='ml-[10px] mt-[8px] transition-all duration-100'>
             {message ? (
-              <button
-                onClick={
-                 handleMessage
-                }
-              >
+              <button onClick={handleMessage}>
                 <SendIcon />
               </button>
             ) : (
@@ -357,10 +397,7 @@ export default function ChatScreen({
           </button>
         </div>
       )}
-      {typingState  &&
-      <MessageIndicator/>
-      }
-     
+      {typingState && <MessageIndicator />}
     </div>
   );
 }
