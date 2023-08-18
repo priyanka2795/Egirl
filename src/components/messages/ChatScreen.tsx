@@ -47,13 +47,17 @@ type chatProps = {
   chartScreenView?: string;
   setChartScreenView?: React.Dispatch<React.SetStateAction<string>>;
   selectUserState?: any;
+  chatViewStyle:string;
+  setChatViewStyle: React.Dispatch<React.SetStateAction<string>>;
 };
 export default function ChatScreen({
   chatScreenClassName,
   chatScreenMsgClassName,
   chartScreenView,
   setChartScreenView,
-  selectUserState
+  selectUserState,
+  chatViewStyle,
+  setChatViewStyle
 }: chatProps) {
   const [sticky, animate] = useScroll();
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -76,7 +80,7 @@ export default function ChatScreen({
   const [buttonText , setButtonText] = useState('');
   // const [chatName , setChatName] = useState('');
   const [dropZoneState , setDropZoneState] = useState(false);
-  const [chatViewStyle ,setChatViewStyle] = useState('Inline chat');
+  // const [chatViewStyle ,setChatViewStyle] = useState('Inline chat');
   const [imageRequestMsg, setImageRequestMsg] = useState(false);
   const [typingState ,setTypingState] = useState(false)
   const handleChatViewModal = () => {
@@ -93,6 +97,7 @@ export default function ChatScreen({
       containerRef.current.scrollTop = containerRef.current.scrollHeight;
     }
   }, []);
+
 
   const handleMessage = () => {
     setShowMessge(true)

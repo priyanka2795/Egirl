@@ -9,6 +9,7 @@ import StartConversation from './StartConversation';
 
 const Messages = () => {
   const [chartScreenView, setChartScreenView] = useState('Default view');
+  const [chatViewStyle ,setChatViewStyle] = useState('Inline chat');
   const [modalView, setModalView] = useState(false);
   const [startConversationModal, setStartConversationModal] = useState(false);
   const [selectUserState, setSelectUserState] = useState('');
@@ -27,6 +28,7 @@ const Messages = () => {
     console.log('reduce');
   };
 
+  // console.log(chatViewStyle,':chatViewStyle',chartScreenView,': chartScreenView')
   return (
     <>
       <main className='flex max-w-full min-h-screen mx-auto'>
@@ -49,6 +51,8 @@ const Messages = () => {
         <Characters /> 
         <ChatScreen 
         selectUserState={selectUserState}
+        chatViewStyle={chatViewStyle}
+        setChatViewStyle={setChatViewStyle}
                 // chartScreenView={chartScreenView}
                 // setChartScreenView={setChartScreenView}
               />
@@ -66,6 +70,8 @@ const Messages = () => {
               <ChatScreen
                 chartScreenView={chartScreenView}
                 setChartScreenView={setChartScreenView}
+                chatViewStyle={chatViewStyle}
+                setChatViewStyle={setChatViewStyle}
               />
             ) : chartScreenView === 'Focused view' ? (
               <Modal
@@ -79,6 +85,8 @@ const Messages = () => {
                   chatScreenClassName='!rounded-none max-h-[90vh]'
                   chatScreenMsgClassName='!max-h-[62vh] overflow-y-scroll custom-scroll-bar'
                   setChartScreenView={setChartScreenView}
+                  chatViewStyle={chatViewStyle}
+                  setChatViewStyle={setChatViewStyle}
                 />
               </Modal> 
             ) : (
@@ -86,6 +94,8 @@ const Messages = () => {
                 // chatScreenClassName={`ml-[80px]`}
                 chartScreenView={chartScreenView}
                 setChartScreenView={setChartScreenView}
+                chatViewStyle={chatViewStyle}
+                setChatViewStyle={setChatViewStyle}
               />
             )}
           </>

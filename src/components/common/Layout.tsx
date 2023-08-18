@@ -6,7 +6,6 @@ import AddCardSidebar from './Sidebar/AddCard';
 const Layout = ({ children }: any) => {
   const [activeMoreMenuItem, setActiveMoreMenuItem] = useState('');
   const [activeItem ,setActiveItem] = useState(' ');
-  console.log(activeItem,'tertset sneha')
   return (
     <React.Fragment>
       <main className='mx-auto flex h-screen min-h-screen max-w-[1320px] overflow-hidden'>
