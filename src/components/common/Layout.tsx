@@ -1,7 +1,7 @@
 import React, { Children, useState } from 'react';
 import Sidebar from './Sidebar';
 import NotificationModal from './Sidebar/NotificationModal';
-import AddCardSidebar from './Sidebar/AddCard';
+import AddCardSidebar from './Sidebar/AddCards/AddCard';
 
 const Layout = ({ children }: any) => {
   const [activeMoreMenuItem, setActiveMoreMenuItem] = useState('');

@@ -76,7 +76,7 @@ const NotificationModal = ({ selectedMoreOption }: NotificationModal) => {
       <div className={`transitions ${selectedMoreOption === 'Notifications' ? 'fixed w-full !bg-black/80 z-[80] w-full h-full': 'absolute'}`}>
       <div
       className={`transitions mt-4 inline-flex h-[804px] w-[425px] flex-col items-start justify-start rounded-[14px] bg-zinc-900 pb-6 ${
-        selectedMoreOption === 'Notifications'
+        selectedMoreOption === 'Notifications' 
           ? 'ml-4'
           : 'invisible -ml-[280px] w-0 '
       }`}
