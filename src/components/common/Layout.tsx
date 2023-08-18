@@ -6,7 +6,6 @@ import AddCardSidebar from './Sidebar/AddCard';
 const Layout = ({ children }: any) => {
   const [activeMoreMenuItem, setActiveMoreMenuItem] = useState('');
   const [activeItem ,setActiveItem] = useState(' ');
-  console.log(activeItem,'tertset sneha')
   return (
     <React.Fragment>
       <main className='mx-auto flex h-screen min-h-screen max-w-[1320px] overflow-hidden'>
@@ -20,9 +19,9 @@ const Layout = ({ children }: any) => {
 
         <div className='main-content-scroller relative h-screen flex-grow overflow-y-auto overflow-x-hidden bg-main-background lg:min-w-[600px]'>
           <NotificationModal selectedMoreOption={activeMoreMenuItem} />   
-          {/* {activeItem === "Add Card" &&
+          {activeItem === "Add Card" &&
           <AddCardSidebar/>         
-          } */}
+          }
             
           {children}
         </div>
