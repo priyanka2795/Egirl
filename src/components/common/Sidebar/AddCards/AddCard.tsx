@@ -15,7 +15,7 @@ const AddCardSidebar = ({seletedAddCard}:AddCardProps) => {
   const [addedCard, setAddedCard] = useState(false);
 
   return (
-   <div className={`fixed z-10 top-4 left-4 bg-[#1A1A1A] absolute 
+   <div className={`fixed z-[100] top-4 left-4 bg-[#1A1A1A] absolute 
    ${activeTab === 'Latest transactions' ? 'h-[804px]' : addedCard ? 'h-[804px]' : 'h-[100vh]'} w-[364px] flex flex-col rounded-[14px]`}>
     <div className='flex pl-6 pr-4 pt-4 pb-3 border-b border-white/[0.08]'>
       {tab.map((item) => {

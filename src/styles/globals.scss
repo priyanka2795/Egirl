@@ -475,3 +475,25 @@ h2 {
 .swipe.right .card-bottom-button, .swipe.left .card-bottom-button{
   opacity: 0.5;
 }
+.audio-recorder.recording {
+  display: flex;
+  flex-direction: row-reverse;
+  background-color:transparent;
+  width: 100%;
+  box-shadow: none;
+}
+.audio-recorder.recording .audio-recorder-mic {
+  opacity: 0;
+  z-index: 5;
+  position: relative;
+}
+span.audio-recorder-status,span.audio-recorder-timer{
+  color:#fff ; 
+}
+.audio-recorder-options{
+  filter: invert(100%);
+-webkit-filter: invert(100%)
+}
+// .audio-recorder-mic{
+//   opacity:0
+// }
