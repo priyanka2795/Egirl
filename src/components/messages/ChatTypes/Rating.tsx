@@ -17,15 +17,12 @@ const Rating = ({
   return (
     <div
       className='flex justify-between cursor-pointer rating'
-      // onClick={() => setGoldenSvg(!goldenSvg)}
-   
+      onMouseLeave={() => {handleStarHover(0)}}
     >
       <Link href='#'>
         <StarIcon
-          className={`${selectedStars >= 1 ? 'goldenSvg' : ''}`}
-         
+          className={`${selectedStars >= 1 ? 'goldenSvg' : ''}`}         
           onMouseEnter={() => handleStarHover(0)}
-          // onMouseOut={() => handleStarHoverOut}
           onClick={() => handleStarClick(1)}
         />
       </Link>
@@ -33,7 +30,7 @@ const Rating = ({
       <Link href='#'>
         <StarIcon
           className={`${selectedStars >= 2 ? 'goldenSvg' : ''}`}
-          onMouseEnter={() => handleStarHover(2)}
+          onMouseEnter={() => handleStarHover(2)}          
           onClick={() => handleStarClick(2)}
         />
       </Link>
