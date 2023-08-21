@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import CreatorStudioNavbar from './CreatorStudioNavbar'
 import CreatorStudioSidebar from './CreatorStudioSidebar'
 import CreatorStudioMainContent from './CreatorStudioMainContent'
-import Voice from './Voice'
+import Voice from './Voice/Voice'
+import VoiceIndex from './Voice'
+
 // import Personality from './Personality'
 
 
@@ -16,7 +18,7 @@ const CreatorStudio = () => {
         <CreatorStudioSidebar shrinkSideBar={shrinkSideBar} setShrinkSideBar={setShrinkSideBar}/>
         {/* <CreatorStudioMainContent/> */}
         {/* <Personality/> */}
-        <Voice />
+        <VoiceIndex />
     </div>
     </div>
   )
