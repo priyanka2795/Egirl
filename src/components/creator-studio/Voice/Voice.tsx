@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import plusIcon from '../../../public/assets/plus-large.png';
-import searchIcon from '../../../public/assets/search-alt (1).png';
-import threeDots from '../../../public/assets/dots-horizontal (2).png';
-import volume from '../../../public/assets/volume-max.png';
+import plusIcon from '../../../../public/assets/plus-large.png';
+import searchIcon from '../../../../public/assets/search-alt (1).png';
+import threeDots from '../../../../public/assets/dots-horizontal (2).png';
+import volume from '../../../../public/assets/volume-max.png';
+import VoiceGeneratorModal from './VoiceGeneratorModal';
 
 const voiceGenerations = [
   {
@@ -35,14 +36,16 @@ const voiceGenerations = [
 const Voice = () => {
   const [inUse, setInUse] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [voiceModal, setVoiceModal] = useState(false);
   
   return (
-    <div className='flex w-[1076px] flex-col gap-6 px-8 mb-5'>
+    <>
+    <div className='flex w-[1076px] flex-col gap-6 px-8'>
       <div className='flex justify-between'>
         <div className='text-[22px] font-bold leading-8 text-[#FFFFFF]'>
           Voice
         </div>
-        <button className='flex items-center justify-center gap-[6px] rounded-[12px] bg-[#5848BC] px-4 py-[10px]'>
+        <button className='cursor-pointer flex items-center justify-center gap-[6px] rounded-[12px] bg-[#5848BC] px-4 py-[10px]' onClick={() => {setVoiceModal(true)}}>
           <Image className='h-[18px] w-[18px]' src={plusIcon} alt={''} />
           <div className='text-[14px] font-bold leading-5 text-[#FFFFFF]'>
             New
@@ -106,6 +109,10 @@ const Voice = () => {
         })}
       </div>
     </div>
+    {
+      voiceModal && <VoiceGeneratorModal closeModal={setVoiceModal} />
+    }
+    </>
   );
 };
 

@@ -129,7 +129,7 @@ const CreatorStudioSidebar = ({
           </div>
           <SidebarMenuItem
             text='Personality'
-            href='/home'
+            href='/personality'
             Icon={PersonalityIcon}
             IconActive={HomeActiveIcon}
             StyleClasses={`${
