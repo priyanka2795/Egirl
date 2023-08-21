@@ -41,6 +41,7 @@ import CurrentPlaneModal from '@components/common/CurrentPlaneModal';
 import ImageRequestMsg from './ImageRequestMsg';
 import MessageIndicator from './MessageIndicator';
 import TextareaAutosize from 'react-textarea-autosize';
+import RecordVoice from './RecordVoice';
 
 type chatProps = {
   chatScreenClassName?: string;
@@ -383,7 +384,8 @@ export default function ChatScreen({
         </>
       )}
       {!showInput && (
-        <div className='flex h-[92px] items-center justify-between border-t border-[#252525] bg-[red-400] px-6'>
+      <>
+        {/* <div className='flex h-[92px] items-center justify-between border-t border-[#252525] bg-[red-400] px-6'>
           <button
             onClick={() => {
               setShowInput(true);
@@ -399,7 +401,14 @@ export default function ChatScreen({
           <button className='grid h-[54px] min-h-[54px] w-[54px] min-w-[54px] place-items-center rounded-full bg-[#5848BC] transition duration-100 hover:bg-[#4b3abd]'>
             <SendWhiteIcon />
           </button>
-        </div>
+        </div> */}
+       <div className="flex justify-between mx-5">
+       <RecordVoice handleMessage={handleMessage}/>
+        {/* <button onClick={handleMessage}>
+                <SendIcon />
+              </button> */}
+       </div>
+        </>
       )}
     
     </div>
