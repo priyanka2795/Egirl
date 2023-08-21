@@ -5,10 +5,12 @@ import SendIcon from './svg/send-icon.svg';
 
 const addAudioElement = (blob: any) => {
   const url = URL.createObjectURL(blob);
+
   const audio = document.createElement('audio');
   audio.src = url;
   audio.controls = true;
-  document.body.appendChild(audio);
+  const audioId:any = document.getElementById('audio-get');
+  audioId.appendChild(audio);
 };
 
 interface RecordVoiceInterface {

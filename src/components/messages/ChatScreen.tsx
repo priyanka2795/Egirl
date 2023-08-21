@@ -236,7 +236,7 @@ export default function ChatScreen({
           {showGiftMsg && (
             <Gift showGiftImg={showGiftImg} showGiftName={showGiftName} />
           )}
-         
+          <div id="audio-get">Hello</div>
           {imageRequestMsg && <ImageRequestMsg />}
         </div>
       </div>
