@@ -240,10 +240,11 @@ export default function ChatScreen({
         </div>
       </div>
       {showInput && (
-        <div className='flex items-center bg-[red-400] px-6 pt-3'>
+        <>
+        <div className={`flex items-end bg-[red-400] px-6 pt-3 fixed w-[756px] bottom-[40px]`}>
           <div className='relative'>
             <div
-              className='plus-icon mr-[10px] grid h-[32px] w-[32px] min-w-[32px] cursor-pointer place-items-center rounded-full bg-[#5848BC] transition duration-100 hover:bg-[#4b3abd]'
+              className='plus-icon mb-[8px] mr-[10px] grid h-[32px] w-[32px] min-w-[32px] cursor-pointer place-items-center rounded-full bg-[#5848BC] transition duration-100 hover:bg-[#4b3abd]'
               onClick={() => setSendUploadImgState(!sendUploadImgState)}
             >
               <PlusIcon strokeClasses='stroke-[#ffffff]' />
@@ -348,10 +349,11 @@ export default function ChatScreen({
               onFocus={() => setTypingState(true)}
               onBlur={(e) => handleTypingIndicator(e)}
               style={{ outline: 'none' }}
+              maxRows={5}
             />
 
             <div
-              className='absolute right-4 top-3'
+              className='absolute right-4 bottom-3'
               onClick={() => setEmojiPicker((val) => !val)}
             >
               <SmileIcon />
@@ -361,7 +363,7 @@ export default function ChatScreen({
               {emojiPicker && <Emoji setMessage={setMessage} />}
             </div>
           </div>
-          <div className='ml-[10px] mt-[8px] transition-all duration-100'>
+          <div className='ml-[10px] mb-[5px] transition-all duration-100'>
             {message ? (
               <button onClick={handleMessage}>
                 <SendIcon />
@@ -377,6 +379,8 @@ export default function ChatScreen({
             )}
           </div>
         </div>
+        {typingState && <MessageIndicator />}
+        </>
       )}
       {!showInput && (
         <div className='flex h-[92px] items-center justify-between border-t border-[#252525] bg-[red-400] px-6'>
@@ -397,7 +401,7 @@ export default function ChatScreen({
           </button>
         </div>
       )}
-      {typingState && <MessageIndicator />}
+    
     </div>
   );
 }
