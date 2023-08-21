@@ -17,10 +17,10 @@ const CreatorStudio = () => {
     <CreatorStudioNavbar shrinkSideBar={shrinkSideBar} setShrinkSideBar={setShrinkSideBar}/>
     <div className="flex h-[calc(100vh-104px)] ">
         <CreatorStudioSidebar shrinkSideBar={shrinkSideBar} setShrinkSideBar={setShrinkSideBar}/>
-        {/* <CreatorStudioMainContent/> */}
+        <CreatorStudioMainContent/>
         {/* <Personality/> */}
-        <VoiceIndex />
-        <Personality/>
+        {/* <VoiceIndex /> */}
+        {/* <Personality/> */}
     </div>
     </div>
   )
