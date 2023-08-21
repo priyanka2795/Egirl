@@ -1,7 +1,7 @@
 import { Modal } from '@components/modal/modal';
 import React from 'react';
 import { useState } from 'react';
-import PersonalityLikeModal from './PersonalityLikeModal';
+
 
 const data = [
   {
@@ -257,7 +257,7 @@ const Personality = () => {
           </div>
           <div className='m-8 mt-0 flex flex-wrap gap-2'>
             <div className='flex flex-wrap gap-5 '>
-              {selectedOptions.map((optionT) => (
+              {selectedOptionsT.map((optionT) => (
                 <div
                   key={optionT}
                   className='flex gap-2 rounded-xl bg-neutral-800 pb-3 pl-5 pr-5 pt-3 text-sm'
@@ -265,7 +265,7 @@ const Personality = () => {
                   {optionT}{' '}
                   <span
                     className='cursor-pointer '
-                    onClick={() => handleRemoveOption(optionT)}
+                    onClick={() => handleRemoveOptionT(optionT)}
                   >
                     {/* &#10006; */}
                     <svg
