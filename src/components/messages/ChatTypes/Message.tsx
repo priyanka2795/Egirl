@@ -76,6 +76,14 @@ const Message: React.FC<MessageProps> = ({
     }
   };
 
+  const handleStarHoverOut = (starCount: number) => {
+  
+      setSelectedStars(starCount);
+      console.log("mouseLeave>>>>");
+      
+    
+  };
+
   return (
     <>
       <div
@@ -201,7 +209,7 @@ const Message: React.FC<MessageProps> = ({
             />
           ) : rateResponse ? (
             <div className='flex items-center justify-between w-full pl-[47px]'>
-              <Rating selectedStars={selectedStars} handleStarClick={handleStarClick} handleStarHover={handleStarHover}/>
+              <Rating selectedStars={selectedStars} handleStarClick={handleStarClick} handleStarHover={handleStarHover} handleStarHoverOut={handleStarHoverOut}/>
               <div className='flex gap-2'>
                <ArrowLeft/>
                 <p className='text-[13px] font-semibold text-[#979797]'>2/2</p>
