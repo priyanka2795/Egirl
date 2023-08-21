@@ -14,7 +14,7 @@ const FeedbackModal = ( {showFeedText, setShowFeedText, closeModal, setFeedbackS
 
     const handleCloseModal = () => {
         closeModal(false);
-        setShowFeedText(false);
+        // setShowFeedText(false);
     };
 
     const handleSendButton = () => {
