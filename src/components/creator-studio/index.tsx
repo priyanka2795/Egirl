@@ -6,6 +6,7 @@ import Voice from './Voice/Voice'
 import VoiceIndex from './Voice'
 
 // import Personality from './Personality'
+import Personality from './Personality'
 
 
 const CreatorStudio = () => {
@@ -19,6 +20,7 @@ const CreatorStudio = () => {
         {/* <CreatorStudioMainContent/> */}
         {/* <Personality/> */}
         <VoiceIndex />
+        <Personality/>
     </div>
     </div>
   )
