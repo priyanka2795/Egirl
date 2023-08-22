@@ -119,8 +119,8 @@ const Personality = () => {
       {/* <PersonalityLikeModal/> */}
       <div className='w-full'>
         <div className=' flex h-40 flex-row justify-evenly gap-3 px-2.5 py-3'>
-          <div className='h-36 w-4/5 rounded-lg bg-zinc-900'>
-            <div className='gap-10 pl-6 pt-4 '>
+          <div className='w-4/5 rounded-lg h-36 bg-zinc-900'>
+            <div className='gap-10 pt-4 pl-6 '>
               <h2 className='pb-5'>
                 <div className='flex gap-2'>
                   <b className='text-lg'>Base type</b>
@@ -175,8 +175,8 @@ const Personality = () => {
               <label className='text-sm'>Conversational</label>
             </div>
           </div>
-          <div className='h-36 w-4/5 rounded-lg bg-zinc-900'>
-            <div className='gap-10 pl-6 pt-4 '>
+          <div className='w-4/5 rounded-lg h-36 bg-zinc-900'>
+            <div className='gap-10 pt-4 pl-6 '>
               <h2 className='pb-5'>
                 <b className='text-lg'>Creativity</b>
               </h2>
@@ -204,12 +204,12 @@ const Personality = () => {
               <span>+ Add</span>
             </button>
           </div>
-          <div className='m-8 mt-0 flex flex-wrap gap-2'>
+          <div className='flex flex-wrap gap-2 m-8 mt-0'>
             <div className='flex flex-wrap gap-5 '>
               {selectedOptions.map((option) => (
                 <div
                   key={option}
-                  className='flex gap-2 rounded-xl bg-neutral-800 pb-3 pl-5 pr-5 pt-3 text-sm'
+                  className='flex gap-2 pt-3 pb-3 pl-5 pr-5 text-sm rounded-xl bg-neutral-800'
                 >
                   {option}{' '}
                   <span
@@ -255,12 +255,12 @@ const Personality = () => {
               <span>+ Add</span>
             </button>
           </div>
-          <div className='m-8 mt-0 flex flex-wrap gap-2'>
+          <div className='flex flex-wrap gap-2 m-8 mt-0'>
             <div className='flex flex-wrap gap-5 '>
               {selectedOptionsT.map((optionT) => (
                 <div
                   key={optionT}
-                  className='flex gap-2 rounded-xl bg-neutral-800 pb-3 pl-5 pr-5 pt-3 text-sm'
+                  className='flex gap-2 pt-3 pb-3 pl-5 pr-5 text-sm rounded-xl bg-neutral-800'
                 >
                   {optionT}{' '}
                   <span
@@ -345,9 +345,9 @@ const Personality = () => {
               </svg>
             </div>
           </h2>
-          <div className='flex flex-row  '>
-            <div className='flex h-32 max-h-max w-4/5 flex-col gap-2'>
-              <div className='flex w-11/12 flex-row  justify-between p-1'>
+          <div className='flex flex-row '>
+            <div className='flex flex-col w-4/5 h-32 gap-2 max-h-max'>
+              <div className='flex flex-row justify-between w-11/12 p-1'>
                 <label className='text-xs'>Description</label>
                 <label className='text-xs text-stone-700'>0/2000</label>
               </div>
@@ -358,8 +358,8 @@ const Personality = () => {
               ></textarea>
             </div>
 
-            <div className='flex h-32 max-h-min w-4/5 flex-col gap-2'>
-              <div className='flex w-11/12 flex-row  justify-between p-1'>
+            <div className='flex flex-col w-4/5 h-32 gap-2 max-h-min'>
+              <div className='flex flex-row justify-between w-11/12 p-1'>
                 <label className='text-xs'>Word Description</label>
                 <label className='text-xs text-stone-700'>0/2000</label>
               </div>
@@ -411,7 +411,7 @@ const Personality = () => {
             {selectedOptions.map((option) => (
               <div
                 key={option}
-                className='flex gap-2 rounded-lg   bg-neutral-800 p-1 pb-3 pl-5 pr-5 pt-3 text-sm'
+                className='flex gap-2 p-1 pt-3 pb-3 pl-5 pr-5 text-sm rounded-lg bg-neutral-800'
               >
                 {option}{' '}
                 <span
@@ -440,14 +440,14 @@ const Personality = () => {
           </div>
         </div>
         <hr className='mb-5 bg-zinc-900' />
-        <div className=' '>
+        <div className=''>
           <div className=''>
             <b>A</b>
             <br />
-            {/* <div className='mt-1 flex flex-wrap gap-2'>
+            {/* <div className='flex flex-wrap gap-2 mt-1'>
             {data.map((datas) => {
               return (
-                <button className='rounded-full bg-blue-500 bg-zinc-800 px-4 py-2 text-sm font-thin text-white'>
+                <button className='px-4 py-2 text-sm font-thin text-white bg-blue-500 rounded-full bg-zinc-800'>
                   {datas.name}
                 </button>
               );
@@ -587,10 +587,10 @@ const Personality = () => {
           <div className=''>
             <b>B</b>
             <br />
-            {/* <div className='mt-1 flex flex-wrap gap-2'>
+            {/* <div className='flex flex-wrap gap-2 mt-1'>
             {data.map((datas) => {
               return (
-                <button className='rounded-full bg-blue-500 bg-zinc-800 px-4 py-2 text-sm font-thin text-white'>
+                <button className='px-4 py-2 text-sm font-thin text-white bg-blue-500 rounded-full bg-zinc-800'>
                   {datas.name}
                 </button>
               );
@@ -640,10 +640,10 @@ const Personality = () => {
           <div className=''>
             <b>C</b>
             <br />
-            {/* <div className='mt-1 flex flex-wrap gap-2'>
+            {/* <div className='flex flex-wrap gap-2 mt-1'>
             {data.map((datas) => {
               return (
-                <button className='rounded-full bg-blue-500 bg-zinc-800 px-4 py-2 text-sm font-thin text-white'>
+                <button className='px-4 py-2 text-sm font-thin text-white bg-blue-500 rounded-full bg-zinc-800'>
                   {datas.name}
                 </button>
               );
@@ -771,10 +771,10 @@ const Personality = () => {
             <b>D</b>
             <br />
 
-            <div className='mt-1 flex flex-wrap gap-2'>
+            <div className='flex flex-wrap gap-2 mt-1'>
               {dataD.map((datas) => {
                 return (
-                  <button className='rounded-full bg-blue-500 bg-zinc-800 px-4 py-2 text-sm font-thin text-white'>
+                  <button className='px-4 py-2 text-sm font-thin text-white bg-blue-500 rounded-full bg-zinc-800'>
                     {datas.name}
                   </button>
                 );
@@ -824,11 +824,10 @@ const Personality = () => {
         </label> */}
           </div>
           {/* <div
-            className=' cursor-pointer rounded-full px-4 py-2 text-sm 
-      font-thin text-white hover:bg-violet-600 focus:outline-none focus:ring focus:ring-violet-300 '
+            className='px-4 py-2 text-sm font-thin text-white rounded-full cursor-pointer hover:bg-violet-600 focus:outline-none focus:ring focus:ring-violet-300'
           >
             <input
-              className='hidden rounded-full bg-blue-500 bg-fuchsia-600 bg-zinc-800 px-4 py-2 text-sm font-thin text-white'
+              className='hidden px-4 py-2 text-sm font-thin text-white bg-blue-500 rounded-full bg-fuchsia-600 bg-zinc-800'
               type='checkbox'
               id='yes'
               name='option'
@@ -841,10 +840,10 @@ const Personality = () => {
         {/* <div className=''>
           <b>B</b>
           <br />
-          <div className='mt-1 flex flex-wrap gap-2'>
+          <div className='flex flex-wrap gap-2 mt-1'>
             {dataB.map((datas) => {
               return (
-                <button className='rounded-full bg-zinc-800 px-4 py-2 text-sm font-thin text-white'>
+                <button className='px-4 py-2 text-sm font-thin text-white rounded-full bg-zinc-800'>
                   {datas.name}
                 </button>
               );
@@ -905,7 +904,7 @@ const Personality = () => {
             {selectedOptionsT.map((optionT) => (
               <div
                 key={optionT}
-                className='flex gap-2 rounded-lg   bg-neutral-800 p-1 pb-3 pl-5 pr-5 pt-3 text-sm'
+                className='flex gap-2 p-1 pt-3 pb-3 pl-5 pr-5 text-sm rounded-lg bg-neutral-800'
               >
                 {optionT}{' '}
                 <span
@@ -934,7 +933,7 @@ const Personality = () => {
           </div>
         </div>
         <hr className='mb-5 bg-zinc-900' />
-        <div className=' '>
+        <div className=''>
           <div className=''>
             <b>A</b>
             <br />

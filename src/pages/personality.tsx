@@ -1,9 +1,14 @@
+import CreatorStudioLayout from '@components/common/CreatorStudioLayout'
 import PersonalityIndex from '@components/creator-studio/personality'
+
 import React from 'react'
 
 const personality = () => {
   return (
-    <><PersonalityIndex/></>
+    <CreatorStudioLayout>
+   <PersonalityIndex/>
+  </CreatorStudioLayout>
+   
   )
 }
 

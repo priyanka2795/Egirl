@@ -143,7 +143,7 @@ const CreatorStudioSidebar = ({
           />
           <SidebarMenuItem
             text='Voice'
-            href='/home'
+            href='/voice'
             Icon={VoiceIcon}
             IconActive={HomeActiveIcon}
             StyleClasses={`${
