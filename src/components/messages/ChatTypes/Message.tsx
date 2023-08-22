@@ -77,11 +77,8 @@ const Message: React.FC<MessageProps> = ({
   };
 
   const handleStarHoverOut = (starCount: number) => {
-  
       setSelectedStars(starCount);
       console.log("mouseLeave>>>>");
-      
-    
   };
 
   return (
