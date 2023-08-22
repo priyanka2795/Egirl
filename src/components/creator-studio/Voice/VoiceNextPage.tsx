@@ -207,7 +207,6 @@ const VoiceNextPage = () => {
                             width: '20px',
                             borderRadius: '100%',
                             backgroundColor: 'white',
-
                             border: '3px solid #5848BC'
                           }}
                         />
