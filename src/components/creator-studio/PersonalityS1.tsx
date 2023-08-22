@@ -11,7 +11,7 @@ const PersonalityS1 = () => {
 
   return (
     <div className='flex items-start w-full gap-4 '>
-      <div className='flex w-1/2 flex-col items-start gap-4 rounded-[14px] bg-[#121212] p-[24px]'>
+      <div className='flex w-1/2 flex-col items-start gap-4 rounded-[14px] bg-[#121212] p-[24px] self-stretch'>
         <div className='flex items-center gap-1.5 self-stretch'>
           <h6 className='text-lg font-bold leading-6'>Base type</h6>
           <div className='w-4 h-4'>
@@ -36,7 +36,7 @@ const PersonalityS1 = () => {
         </div>
       </div>
 
-      <div className='flex w-1/2 flex-col items-start gap-4 rounded-[14px] bg-[#121212] p-[24px] pb-4'>
+      <div className='flex w-1/2 flex-col items-start gap-4 rounded-[14px] bg-[#121212] p-[24px] pb-4 self-stretch'>
         <div className='w-full gap-10 pt-4 pl-6'>         
             <div className='flex flex-col gap-2'>
               <b className='flex items-center gap-2 text-lg leading-[100%]'>
