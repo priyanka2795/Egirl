@@ -1,78 +1,307 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { Modal } from '@components/modal/modal';
-const PersonalityTraitsSection = () => {
+import { useRouter } from 'next/router';
+import Isymbol from './svg/Isymbol';
+import AdvanceArrow from './svg/AdvanceArrow';
 
-    const [openT, setOpenT] = React.useState(false);
+// const router = useRouter();
+
+const PersonalityTraitsSection = () => {
+  const [openT, setOpenT] = React.useState(false);
   const handleOpenTraits = () => setOpenT(true);
   const handleCloseTraits = () => setOpenT(false);
 
-    const [selectedOptionsT, setSelectedOptionsT] = useState<string[]>([]);
+  const [selectedOptionsT, setSelectedOptionsT] = useState<string[]>([]);
+
+  const [advance, setAdvance] = useState(0);
+
+  const [advanceModal, setAdvanceMOdal] = React.useState(false);
 
   const handleOptionChangeT = (optionT: string) => {
     if (selectedOptionsT.includes(optionT)) {
       setSelectedOptionsT(selectedOptionsT.filter((o) => o !== optionT));
     } else {
       setSelectedOptionsT([...selectedOptionsT, optionT]);
+      console.log('ye he length', optionT.length);
+      setAdvance(optionT.length);
     }
   };
 
   const handleRemoveOptionT = (optionT: string) => {
     setSelectedOptionsT(selectedOptionsT.filter((o) => o !== optionT));
+    // router.reload();
   };
+
+  function AdvanceModal() {
+    setAdvanceMOdal(true);
+  }
   return (
     <div>
       <div className='mx-2.5 my-3 mb-4 flex h-auto  max-w-full flex-col rounded-lg bg-zinc-900 '>
-          <div className='mx-2.5 my-3 mb-4 flex h-24 max-w-full rounded-lg bg-zinc-900 pl-6 pt-4 '>
-            <div className='mr-96'>
-              <h2 className='pb-2'>
-                <b className='text-lg'>Traits</b>
-              </h2>
-              <p className='text-stone-700'>0/10</p>
-            </div>
-
-            <button
-              className='ml-96 ml-[27.4rem]  mt-2 h-[40px] w-[84px] justify-center rounded-xl border-2 border-zinc-50 text-sm font-bold'
-              onClick={handleOpenTraits}
-            >
-              <span>+ Add</span>
-            </button>
+        <div className='mx-2.5 my-3 mb-4 flex h-24 max-w-full rounded-lg bg-zinc-900 pl-6 pt-4 '>
+          <div className='mr-96'>
+            <h2 className='pb-2'>
+              <b className='text-lg'>Traits</b>
+            </h2>
+            <p className='text-stone-700'>0/10</p>
           </div>
-          <div className='m-8 mt-0 flex flex-wrap gap-2'>
-            <div className='flex flex-wrap gap-5 '>
-              {selectedOptionsT.map((optionT) => (
-                <div
-                  key={optionT}
-                  className='flex gap-2 rounded-xl bg-neutral-800 pb-3 pl-5 pr-5 pt-3 text-sm'
+
+          <button
+            className='ml-96 ml-[27.4rem]  mt-2 h-[40px] w-[84px] justify-center rounded-xl border-2 border-zinc-50 text-sm font-bold'
+            onClick={handleOpenTraits}
+          >
+            <span>+ Add</span>
+          </button>
+        </div>
+        <div className='m-8 mt-0 flex flex-wrap gap-2'>
+          <div className='flex flex-wrap gap-5 '>
+            {selectedOptionsT.map((optionT) => (
+              <div
+                key={optionT}
+                className='flex gap-2 rounded-xl bg-neutral-800 pb-3 pl-5 pr-5 pt-3 text-sm'
+              >
+                {optionT}{' '}
+                <span
+                  className='cursor-pointer '
+                  onClick={() => handleRemoveOptionT(optionT)}
                 >
-                  {optionT}{' '}
-                  <span
-                    className='cursor-pointer '
-                    onClick={() => handleRemoveOptionT(optionT)}
+                  {/* &#10006; */}
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    width='18'
+                    height='18'
+                    viewBox='0 0 18 18'
+                    fill='none'
                   >
-                    {/* &#10006; */}
-                    <svg
-                      xmlns='http://www.w3.org/2000/svg'
-                      width='18'
-                      height='18'
-                      viewBox='0 0 18 18'
-                      fill='none'
-                    >
-                      <path
-                        d='M4.5 4.5L13.5 13.5M13.5 4.5L4.5 13.5'
-                        stroke='#979797'
-                        stroke-width='1.35'
-                        stroke-linecap='round'
-                        stroke-linejoin='round'
-                      />
-                    </svg>
-                  </span>
-                </div>
-              ))}
-            </div>
+                    <path
+                      d='M4.5 4.5L13.5 13.5M13.5 4.5L4.5 13.5'
+                      stroke='#979797'
+                      stroke-width='1.35'
+                      stroke-linecap='round'
+                      stroke-linejoin='round'
+                    />
+                  </svg>
+                </span>
+              </div>
+            ))}
           </div>
         </div>
+        <div className='mb-5 ml-8 flex h-auto flex-col items-start gap-6 self-stretch pb-0 '>
+          {advance ? (
+            <div className='flex h-[24px] items-start gap-1.5 self-stretch '>
+              <div className='flex gap-3 '>
+                <h6 className='text-lg font-bold leading-6 '>
+                  Advance Settings
+                </h6>
+                <div className='h-4 w-4'>
+                  <Isymbol />
+                </div>
+              </div>
 
-        {/* -------------------traits modal---------------------- */}
+              <div className='ml-[650px] h-6 w-6 ' id='myDiv'>
+                <button onClick={AdvanceModal}>
+                  <AdvanceArrow />
+                </button>
+              </div>
+            </div>
+          ) : (
+            <p></p>
+          )}
+
+          <div >
+            {advanceModal ? (
+              < div className='flex gap-6 flex-col items-start self-stretch'>
+                {/* SECTION1 */}
+                <div className='flex items-start gap-6 self-stretch'>
+
+                  <div className='flex flex-col items-start gap-1 '>
+                    <div className='flex items-center gap-1 self-stretch'>
+                      <b className='text-base font-bold leading-5'>Horny</b>
+                      <div className='h-[14px] w-[14px]'>
+                        <Isymbol/>
+                      </div>
+                    </div>
+                    <div className='flex pt-3 flex-col items-end gap-2 self-stretch'>
+                            <div></div>
+                            <div className='flex justify-between items-start self-stretch '>
+                                <b className='text-sm font-normal leading-[18px]'>Low</b>
+                                <b className='text-sm font-normal leading-[18px]'>Low Mid</b>
+                                <b className='text-sm font-normal leading-[18px]'>Mid</b>
+                                <b className='text-sm font-normal leading-[18px]'>MId High</b>
+                                <b className='text-sm font-normal leading-[18px]'>High</b>
+                            </div>
+                    </div>
+                  </div>
+
+
+                  <div className='flex flex-col items-start gap-1 '>
+                  <div className='flex items-center gap-1 self-stretch'>
+                      <b className='text-base font-bold leading-5'>Angry</b>
+                      <div className='h-[14px] w-[14px]'>
+                        <Isymbol/>
+                      </div>
+                    </div>
+                    <div className='flex pt-3 flex-col items-end gap-2 self-stretch'>
+                    <div></div>
+                            <div className='flex justify-between items-start self-stretch'>
+                                <b className='text-sm font-normal leading-[18px]'>Low</b>
+                                <b className='text-sm font-normal leading-[18px]'>Low Mid</b>
+                                <b className='text-sm font-normal leading-[18px]'>Mid</b>
+                                <b className='text-sm font-normal leading-[18px]'>MId High</b>
+                                <b className='text-sm font-normal leading-[18px]'>High</b>
+                            </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                {/* SECTION2 */}
+
+                <div className='flex items-start gap-6 self-stretch'>
+
+                  <div className='flex flex-col items-start gap-1 '>
+                    <div className='flex items-center gap-1 self-stretch'>
+                      <b className='text-base font-bold leading-5'>Aggressive</b>
+                      <div className='h-[14px] w-[14px]'>
+                        <Isymbol/>
+                      </div>
+                    </div>
+                    <div className='flex pt-3 flex-col items-end gap-2 self-stretch'>
+                    <div></div>
+                            <div className='flex justify-between items-start self-stretch '>
+                                <b className='text-sm font-normal leading-[18px]'>Low</b>
+                                <b className='text-sm font-normal leading-[18px]'>Low Mid</b>
+                                <b className='text-sm font-normal leading-[18px]'>Mid</b>
+                                <b className='text-sm font-normal leading-[18px]'>MId High</b>
+                                <b className='text-sm font-normal leading-[18px]'>High</b>
+                            </div>
+                    </div>
+                  </div>
+
+
+                  <div className='flex flex-col items-start gap-1 '>
+                  <div className='flex items-center gap-1 self-stretch'>
+                      <b className='text-base font-bold leading-5'>Polite</b>
+                      <div className='h-[14px] w-[14px]'>
+                        <Isymbol/>
+                      </div>
+                    </div>
+                    <div className='flex pt-3 flex-col items-end gap-2 self-stretch'>
+                    <div></div>
+                            <div className='flex justify-between items-start self-stretch '>
+                                <b className='text-sm font-normal leading-[18px]'>Low</b>
+                                <b className='text-sm font-normal leading-[18px]'>Low Mid</b>
+                                <b className='text-sm font-normal leading-[18px]'>Mid</b>
+                                <b className='text-sm font-normal leading-[18px]'>MId High</b>
+                                <b className='text-sm font-normal leading-[18px]'>High</b>
+                            </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                {/* SECTION3 */}
+
+                <div className='flex items-start gap-6 self-stretch'>
+
+                  <div className='flex flex-col items-start gap-1 '>
+                    <div className='flex items-center gap-1 self-stretch'>
+                      <b className='text-base font-bold leading-5'>Wild</b>
+                      <div className='h-[14px] w-[14px]'>
+                        <Isymbol/>
+                      </div>
+                    </div>
+                    <div className='flex pt-3 flex-col items-end gap-2 self-stretch'>
+
+                    </div>
+                  </div>
+
+
+                  <div className='flex flex-col items-start gap-1 '>
+                  <div className='flex items-center gap-1 self-stretch'>
+                      <b className='text-base font-bold leading-5'>Horny</b>
+                      <div className='h-[14px] w-[14px]'>
+                        <Isymbol/>
+                      </div>
+                    </div>
+                    <div className='flex pt-3 flex-col items-end gap-2 self-stretch'>
+                        
+                    </div>
+                  </div>
+
+                </div>
+
+                {/* SECTION4 */}
+
+                <div className='flex items-start gap-6 self-stretch'>
+
+                  <div className='flex flex-col items-start gap-1 '>
+                    <div className='flex items-center gap-1 self-stretch'>
+                      <b className='text-base font-bold leading-5'>Horny</b>
+                      <div className='h-[14px] w-[14px]'>
+                        <Isymbol/>
+                      </div>
+                    </div>
+                    <div className='flex pt-3 flex-col items-end gap-2 self-stretch'>
+
+                    </div>
+                  </div>
+
+
+                  <div className='flex flex-col items-start gap-1 '>
+                  <div className='flex items-center gap-1 self-stretch'>
+                      <b className='text-base font-bold leading-5'>Angry</b>
+                      <div className='h-[14px] w-[14px]'>
+                        <Isymbol/>
+                      </div>
+                    </div>
+                    <div className='flex pt-3 flex-col items-end gap-2 self-stretch'>
+                        
+                    </div>
+                  </div>
+
+                </div>
+
+                {/* SECTION5 */}
+
+                <div className='flex items-start gap-6 self-stretch'>
+
+                  <div className='flex flex-col items-start gap-1 '>
+                    <div className='flex items-center gap-1 self-stretch'>
+                      <b className='text-base font-bold leading-5'>Aggressive</b>
+                      <div className='h-[14px] w-[14px]'>
+                        <Isymbol/>
+                      </div>
+                    </div>
+                    <div className='flex pt-3 flex-col items-end gap-2 self-stretch'>
+
+                    </div>
+                  </div>
+
+
+                  <div className='flex flex-col items-start gap-1 '>
+                  <div className='flex items-center gap-1 self-stretch'>
+                      <b className='text-base font-bold leading-5'>Polite</b>
+                      <div className='h-[14px] w-[14px]'>
+                        <Isymbol/>
+                      </div>
+                    </div>
+                    <div className='flex pt-3 flex-col items-end gap-2 self-stretch'>
+                        
+                    </div>
+                  </div>
+
+                </div>
+                </div>
+              
+            ) : (
+              <></>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* -------------------traits modal---------------------- */}
 
       <Modal
         open={openT}
@@ -83,9 +312,7 @@ const PersonalityTraitsSection = () => {
         <b className='text-2xl'>Traits</b>
         <hr className='mb-1 w-[100%] bg-zinc-900' />
 
-        <div>
-          
-        </div>
+        <div></div>
 
         <input
           className='py-auto mr-2 h-[48px] w-full rounded-[14px] border-none bg-[#1E1E1E] pl-[50px] text-[15px] font-light leading-6 text-[#979797] transition duration-100 focus:ring-1 focus:ring-[#5848BC]'
@@ -131,10 +358,8 @@ const PersonalityTraitsSection = () => {
           <div className=''>
             <b>A</b>
             <br />
-            
-            <div className='flex flex-wrap gap-2'>
-             
 
+            <div className='flex flex-wrap gap-2'>
               <div className='relative'>
                 <input
                   id='ta1'
@@ -229,16 +454,13 @@ const PersonalityTraitsSection = () => {
                   Angry
                 </label>
               </div>
-
-              
             </div>
           </div>
-          
 
           <div className=''>
             <b>B</b>
             <br />
-            
+
             <div className='flex flex-wrap gap-2'>
               <div className='relative'>
                 <input
@@ -283,7 +505,7 @@ const PersonalityTraitsSection = () => {
           <div className=''>
             <b>C</b>
             <br />
-            
+
             <div className='flex flex-wrap gap-2'>
               <div className='relative'>
                 <input
@@ -402,13 +624,8 @@ const PersonalityTraitsSection = () => {
           </div>
         </div>
 
-        
+        <div className='relative mt-2'></div>
 
-          <div className='relative mt-2'>
-            
-          </div>
-          
-        
         <div className='flex flex flex-row  gap-3 self-stretch pb-[10px] pl-[10px] pr-[10px] pt-[0px] '>
           <button
             onClick={handleCloseTraits}
@@ -425,7 +642,7 @@ const PersonalityTraitsSection = () => {
         </div>
       </Modal>
     </div>
-  )
-}
+  );
+};
 
-export default PersonalityTraitsSection
+export default PersonalityTraitsSection;
