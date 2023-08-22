@@ -45,6 +45,9 @@ const VoiceNextPage = () => {
   const [editText, setEditText] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [showEditedText, setShowEditedText] = useState(false);
+  const [editedText, setEditedText] = useState('');
+
   return (
     <div className='flex flex-col gap-5'>
       <div className='mt-5 flex h-max flex-col rounded-[14px] bg-[#121212]'>
@@ -398,8 +401,8 @@ const VoiceNextPage = () => {
                     <div className='w-5 h-5'>
                       <Image className='w-full h-full' src={volume} alt={''} />
                     </div>
-                    {editText && activeIndex === index ? <TextEdit /> : <><div className='text-[14px] font-normal leading-[18px] text-[#979797]'>
-                      {item.text}
+                    {editText && activeIndex === index ? <TextEdit editedText={editedText} setEditedText={setEditedText} setEditText={setEditText} setShowEditedText={setShowEditedText} /> : <><div className='text-[14px] font-normal leading-[18px] text-[#979797]'>
+                      {showEditedText && activeIndex === index ? editedText : item.text}
                     </div>
                     <div className='w-[18px] h-[18px]' onClick={() => {setEditText(true), setActiveIndex(index)}}>
                         <Image className='w-full h-full' src={pencil} alt={''} />
