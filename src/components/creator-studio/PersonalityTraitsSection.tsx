@@ -313,7 +313,7 @@ const PersonalityTraitsSection = () => {
       >
         <div className='flex items-center justify-between border-b border-white/[0.08] p-8 pb-6'>
           <b className='text-2xl'>Traits</b>
-          <CloseIcon className='text-white' />
+          <CloseIcon className='text-white' onClick={handleCloseTraits}/>
         </div>
 
         <div className='border-b border-white/[0.08] px-8 py-4'>

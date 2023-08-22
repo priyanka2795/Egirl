@@ -156,7 +156,7 @@ const PersonalityLikeSection = () => {
       >
         <div className="border-b border-white/[0.08] p-8 pb-6 flex justify-between items-center">
         <b className='text-2xl'>Likes</b>
-        <CloseIcon className="text-white"/>
+        <CloseIcon className="text-white" onClick={handleClose}/>
         </div>    
       
       <div className="px-8 py-4 border-b border-white/[0.08]">
