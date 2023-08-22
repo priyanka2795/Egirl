@@ -40,7 +40,7 @@ const Voice = () => {
   
   return (
     <>
-    <div className='flex w-[1076px] flex-col gap-6 px-8'>
+    <div className='flex flex-col gap-6'>
       <div className='flex justify-between'>
         <div className='text-[22px] font-bold leading-8 text-[#FFFFFF]'>
           Voice
