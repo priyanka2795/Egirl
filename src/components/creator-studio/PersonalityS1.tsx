@@ -1,10 +1,39 @@
 import React from 'react'
+import Isymbol from './svg/Isymbol'
+import Roleplay from './svg/Roleplay'
+import ConversationalIcon from './svg/ConversationalIcon'
 
 const PersonalityS1 = () => {
   return (
     
-      <div className=' items-start gap-4 flex'>
-          <div className='h-36 w-4/5 rounded-lg bg-zinc-900'>
+      <div className=' items-start gap-4 flex w-full' >
+          <div className='flex w-1/2 p-[24px] flex-col items-start gap-4 bg-[#121212] rounded-[14px]'>
+            <div className='flex items-center gap-1.5 self-stretch'>
+                <h6 className='text-lg font-bold leading-6'>Base type</h6>
+                <div className='w-4 h-4'>
+                  <Isymbol/>
+                </div>
+            </div>
+            <div className='flex items-center gap-2 self-stretch'>
+                <div className='w-5 h-5'>
+                 <Roleplay/>
+                </div>
+                <b className='text-sm font-normal leading-[18px] text-[#FFFFFF]'>
+                Roleplay
+                </b>
+            </div>
+            <div className='flex items-center gap-2 self-stretch'>
+                <div className='w-5 h-5 stroke-1'>
+                 <ConversationalIcon/>
+                </div>
+                <b className='text-sm font-normal leading-[18px] text-[#FFFFFF]'>
+                Conversational
+                </b>
+            </div>
+          </div>
+
+
+          <div className='flex w-1/2 p-[24px] flex-col items-start gap-4 bg-[#121212] rounded-[14px]'>
             <div className='gap-10 pl-6 pt-4 '>
               <h2 className='pb-5'>
                 <div className='flex gap-2'>
@@ -58,17 +87,6 @@ const PersonalityS1 = () => {
                 className='mr-[5px] h-5 w-5'
               />{' '}
               <label className='text-sm'>Conversational</label>
-            </div>
-          </div>
-          <div className='h-36 w-4/5 rounded-lg bg-zinc-900'>
-            <div className='gap-10 pl-6 pt-4 '>
-              <h2 className='pb-5'>
-                <b className='text-lg'>Creativity</b>
-              </h2>
-
-              <p className='text-stone-700'>
-                Use the slider to adjust creativity
-              </p>
             </div>
           </div>
         </div>

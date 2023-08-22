@@ -6,7 +6,7 @@ import PersonalityTraitsSection from './PersonalityTraitsSection';
 const Personality = () => {
   return (
     <>
-      <div className='flex p-8 flex-col items-start gap-4 self-stretch'>
+      <div className='flex p-8 flex-col items-start gap-4 self-stretch flex-[1 0 0]'>
         <PersonalityS1 />
 
         <PersonalityLikeSection />
