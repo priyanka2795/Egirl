@@ -8,6 +8,7 @@ import searchIcon from '../../../../public/assets/search-alt (1).png';
 import threeDots from '../../../../public/assets/dots-horizontal (2).png';
 import volume from '../../../../public/assets/volume-max.png';
 import pencil from '../../../../public/assets/pencil.png';
+import TextEdit from './TextEdit';
 
 const voiceGenerations = [
   {
@@ -41,7 +42,9 @@ const VoiceNextPage = () => {
   const [state2, setState2] = useState([50]);
   const [state3, setState3] = useState([50]);
   const [inUse, setInUse] = useState(false);
+  const [editText, setEditText] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
   return (
     <div className='flex flex-col gap-5'>
       <div className='ml-8 mt-5 flex h-max w-[1012px] flex-col rounded-[14px] bg-[#121212]'>
@@ -395,11 +398,12 @@ const VoiceNextPage = () => {
                     <div className='w-5 h-5'>
                       <Image className='w-full h-full' src={volume} alt={''} />
                     </div>
-                    <div className='text-[14px] font-normal leading-[18px] text-[#979797]'>
+                    {editText && activeIndex === index ? <TextEdit /> : <div className='text-[14px] font-normal leading-[18px] text-[#979797]'>
                       {item.text}
-                    </div>
-                    <div className='w-[18px] h-[18px]'>
-                    <Image className='w-full h-full' src={pencil} alt={''} />
+                    </div>}
+                    
+                    <div className='w-[18px] h-[18px]' onClick={() => {setEditText(true), setActiveIndex(index)}}>
+                        <Image className='w-full h-full' src={pencil} alt={''} />
                     </div>
                   </div>
                 </div>
