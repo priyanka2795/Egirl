@@ -16,7 +16,7 @@ const CreatorStudioLayout = ({ children }: any) => {
             shrinkSideBar={shrinkSideBar}
             setShrinkSideBar={setShrinkSideBar}
           />
-        <div className='main-content-scroller relative h-[calc(100vh-104px)] flex-grow overflow-y-auto overflow-x-hidden bg-main-background lg:min-w-[600px]'>
+        <div className='main-content-scroller relative h-[calc(100vh-104px)] flex-grow overflow-y-auto overflow-x-hidden bg-main-background lg:min-w-[600px] pr-4'>
           {children}
           </div>
         </div>
