@@ -21,6 +21,8 @@ const CreatorStudio = () => {
         {/* <Personality/> */}
         {/* <VoiceIndex /> */}
         {/* <Personality/> */}
+        {/* <VoiceIndex /> */}
+        {/* <Personality/> */}
     </div>
     </div>
   )
