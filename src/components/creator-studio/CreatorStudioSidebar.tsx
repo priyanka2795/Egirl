@@ -33,7 +33,7 @@ const CreatorStudioSidebar = ({
   return (
     <>
       <div
-        className={`flex h-full w-full flex-col justify-between overflow-y-auto bg-[#121212] ${
+        className={`flex h-[calc(100vh-104px)] w-full flex-col justify-between overflow-y-auto bg-[#121212] ${
           shrinkSideBar === true ? 'max-w-[68px]' : ' max-w-[300px]'
         }`}
       >
@@ -143,7 +143,7 @@ const CreatorStudioSidebar = ({
           />
           <SidebarMenuItem
             text='Voice'
-            href='/home'
+            href='/voice'
             Icon={VoiceIcon}
             IconActive={HomeActiveIcon}
             StyleClasses={`${
