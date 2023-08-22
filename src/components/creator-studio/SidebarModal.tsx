@@ -25,7 +25,7 @@ const sidebarModal = [
 const SidebarModal = () => {
   const [activeProfile, setActiveProfile] = useState('Mika-chan');
   return (
-    <div className={`top-[163px] left-[42px] mt-[7px] flex h-max w-[260px] flex-col rounded-[14px] bg-[#1A1A1A] px-0 pb-3 pt-2 fixed z-10`}>
+    <div className={`top-[163px] mt-[7px] flex h-max w-[260px] flex-col rounded-[14px] bg-[#1A1A1A] px-0 pb-3 pt-2 fixed z-10`}>
       <div className='px-6 py-[14px]'>
         <div className='flex gap-[10px]'>
           <div className='h-8 h-max w-8 items-center justify-center rounded-full bg-white/[0.08] p-2'>
