@@ -6,14 +6,14 @@ import PersonalityTraitsSection from './PersonalityTraitsSection';
 const Personality = () => {
   return (
     <>
-      <div className='flex p-8 flex-col items-start gap-4 self-stretch flex-[1 0 0]'>
+      <div className='flex flex-col items-start self-stretch gap-4'>
         <PersonalityS1 />
 
         <PersonalityLikeSection />
 
         <PersonalityTraitsSection />
 
-        <div className='mx-2.5 my-3  max-w-full rounded-lg bg-zinc-900 pb-8 pl-5 pr-5 pt-8'>
+        <div className='w-full rounded-lg bg-[#121212] pb-8 pl-5 pr-5 pt-8 '>
           <h2 className='pb-5'>
             <div className='flex gap-2'>
               <b>Description</b>
@@ -53,9 +53,9 @@ const Personality = () => {
               </svg>
             </div>
           </h2>
-          <div className='flex flex-row  '>
-            <div className='flex h-32 max-h-max w-4/5 flex-col gap-2'>
-              <div className='flex w-11/12 flex-row  justify-between p-1'>
+          <div className='flex flex-row '>
+            <div className='flex flex-col w-4/5 h-32 gap-2 max-h-max'>
+              <div className='flex flex-row justify-between w-11/12 p-1'>
                 <label className='text-xs'>Description</label>
                 <label className='text-xs text-stone-700'>0/2000</label>
               </div>
@@ -66,8 +66,8 @@ const Personality = () => {
               ></textarea>
             </div>
 
-            <div className='flex h-32 max-h-min w-4/5 flex-col gap-2'>
-              <div className='flex w-11/12 flex-row  justify-between p-1'>
+            <div className='flex flex-col w-4/5 h-32 gap-2 max-h-min'>
+              <div className='flex flex-row justify-between w-11/12 p-1'>
                 <label className='text-xs'>Word Description</label>
                 <label className='text-xs text-stone-700'>0/2000</label>
               </div>
