@@ -47,7 +47,7 @@ const VoiceNextPage = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   return (
     <div className='flex flex-col gap-5'>
-      <div className='ml-8 mt-5 flex h-max w-[1012px] flex-col rounded-[14px] bg-[#121212]'>
+      <div className='mt-5 flex h-max flex-col rounded-[14px] bg-[#121212]'>
         <div className='flex justify-between border-b border-white/[0.08] p-6'>
           <div className='text-[18px] font-bold leading-6 text-[#FFFFFF]'>
             Voice generator
@@ -351,7 +351,7 @@ const VoiceNextPage = () => {
         </div>
       </div>
 
-      <div className='flex w-[1076px] flex-col gap-6 px-8'>
+      <div className='flex flex-col gap-6'>
         <div className='flex max-h-[892px] flex-col gap-4 rounded-[14px] bg-[#121212] p-6'>
           <div className='flex justify-between'>
             <div className='text-[18px] font-bold leading-6 text-[#FFFFFF]'>
@@ -394,17 +394,17 @@ const VoiceNextPage = () => {
                       </button>
                     </div>
                   </div>
-                  <div className='flex gap-2'>
+                  <div className='flex items-center gap-2'>
                     <div className='w-5 h-5'>
                       <Image className='w-full h-full' src={volume} alt={''} />
                     </div>
-                    {editText && activeIndex === index ? <TextEdit /> : <div className='text-[14px] font-normal leading-[18px] text-[#979797]'>
+                    {editText && activeIndex === index ? <TextEdit /> : <><div className='text-[14px] font-normal leading-[18px] text-[#979797]'>
                       {item.text}
-                    </div>}
-                    
+                    </div>
                     <div className='w-[18px] h-[18px]' onClick={() => {setEditText(true), setActiveIndex(index)}}>
                         <Image className='w-full h-full' src={pencil} alt={''} />
-                    </div>
+                    </div></> }
+              
                   </div>
                 </div>
               </div>
