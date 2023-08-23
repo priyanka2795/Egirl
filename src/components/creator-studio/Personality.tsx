@@ -28,7 +28,7 @@ const Personality = () => {
                 <div className='text-[#979797] text-[13px] font-semibold leading-[18px]'>Description</div>
                 <div className='text-[#515151] text-[14px] font-normal leading-[18px]'>0/2000</div>
               </div>
-              <textarea className='border-none h-[135px] py-3 pl-4 pr-3 rounded-[14px] bg-white/[0.05] text-[#979797] text-[15px] font-normal leading-6 focus:ring-0'>Enter a description here...</textarea>
+              <textarea className='resize-none border-none h-[135px] py-3 pl-4 pr-3 rounded-[14px] bg-white/[0.05] text-[#979797] text-[15px] font-normal leading-6 focus:ring-0'>Enter a description here...</textarea>
             </div>
 
             <div className='w-1/2 flex flex-col gap-[6px]'>
@@ -36,7 +36,7 @@ const Personality = () => {
                 <div className='text-[#979797] text-[13px] font-semibold leading-[18px]'>World Description</div>
                 <div className='text-[#515151] text-[14px] font-normal leading-[18px]'>0/2000</div>
               </div>
-              <textarea className='border-none h-[135px] py-3 pl-4 pr-3 rounded-[14px] bg-white/[0.05] text-[#979797] text-[15px] font-normal leading-6 focus:ring-0'>Enter a world description here...</textarea>
+              <textarea className='resize-none border-none h-[135px] py-3 pl-4 pr-3 rounded-[14px] bg-white/[0.05] text-[#979797] text-[15px] font-normal leading-6 focus:ring-0'>Enter a world description here...</textarea>
             </div>
           </div>
         </div>
