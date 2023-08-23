@@ -261,6 +261,37 @@
   } 
 
   .explore-gallery-filter {
+
+    .slick-list{
+      padding-left: 30px;
+      padding-right: 100px;
+    }
+
+    .slick-list::after {
+      content: "";
+    height: 60px;
+    width: 25px;
+    position: absolute;
+    top: 0;
+    left: -10px;
+    pointer-events: none;
+    backdrop-filter: blur(7px);
+  background: #070707e0;
+  }
+  .slick-list::before {
+    content: "";
+  height: 60px;
+  width: 25px;
+  position: absolute;
+  top: 0;
+  right: -10px;
+  z-index: 999;
+  pointer-events: none;
+  backdrop-filter: blur(7px);
+  background: #070707e0;
+  // background: linear-gradient(to right,rgb(20 20 20 / 20%),rgb(7 7 7));
+}
+
     .slick-slide{
       @apply mr-3
     }
@@ -278,6 +309,7 @@
 
     .slick-prev.slick-disabled:before {
       opacity: 0;
+      
     }
 
     .slick-next.slick-disabled:before {

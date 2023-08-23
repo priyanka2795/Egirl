@@ -55,7 +55,12 @@ const galleryArray = [
     id: 8,
     filterText: 'AI Character',
     filterImg: filterImg2
-  }
+  },
+  {
+    id: 9,
+    filterText: 'Furry',
+    filterImg: filterImg3
+  },
 ];
 
 interface GalleryTabFilterProps {
@@ -71,7 +76,7 @@ const GalleryTabFilter = ({ singleProfileState, setSingleProfileState }: Gallery
   }
   const handleSelectedFilter = (e: any) => {
     setSelectedFilter(e.target.innerText);
-    // console.log(e, 'e.target');
+
   };
 
   const settings = {
@@ -81,23 +86,8 @@ const GalleryTabFilter = ({ singleProfileState, setSingleProfileState }: Gallery
     speed: 500,
     slidesToShow: 6,
     slidesToScroll: 2,
-    variableWidth: true
-  };
-
-
-  // const sliderScroll = (e: any) => {
-  //   e.preventDefault();
-  //   console.log(e, 'eeeee');
-
-  //   if (e.originalEvent.deltaY < 0) {
-  //     console.log("true");
-  //     e.slick('slickNext')
-  //   } else {
-  //     console.log("false");
-  //     e.slick('slickPrev');
-  //   }
-  // }
-
+    variableWidth: true,
+     };
 
 
   return (
