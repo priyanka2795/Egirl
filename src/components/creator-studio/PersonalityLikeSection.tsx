@@ -7,8 +7,9 @@ import Image from 'next/image';
 const PersonalityLikeSection = () => {
 
     const [open, setOpen] = React.useState(false);
+    const [seletedTab , setSelectedTab] = useState(false)
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {setOpen(false) , setSelectedTab(true)};
 
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 
@@ -113,7 +114,7 @@ const PersonalityLikeSection = () => {
               <h2 className='text-lg font-bold leading-[110%] flex gap-[6px]'>
                 Likes <InfoIcon/>
               </h2>
-              <p className='text-stone-700'>0/10</p>
+              <p className='text-stone-700'>{selectedOptions.length}/10</p>
             </div>
 
             <button
@@ -123,6 +124,8 @@ const PersonalityLikeSection = () => {
              + Add
             </button>
           </div>
+          {
+            seletedTab &&
           <div className={`flex flex-wrap gap-2 ${selectedOptions.length > 0 ? "p-6 pt-0":""}`}>
             <div className='flex flex-wrap gap-5 '>
               {selectedOptions.map((option) => (
@@ -156,6 +159,7 @@ const PersonalityLikeSection = () => {
               ))}
             </div>
           </div>
+          }
         </div>
 
         <Modal

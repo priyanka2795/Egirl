@@ -10,13 +10,13 @@ import CloseIcon from '../../../public/assets/svgImages/close-icon.svg';
 
 const PersonalityTraitsSection = () => {
   const [openT, setOpenT] = React.useState(false);
-  const handleOpenTraits = () => setOpenT(true);
-  const handleCloseTraits = () => setOpenT(false);
-
   const [selectedOptionsT, setSelectedOptionsT] = useState<string[]>([]);
   const [advance, setAdvance] = useState(0);
   const [advanceModal, setAdvanceMOdal] = React.useState(false);
+  const [seletedTab , setSelectedTab] = useState(false)
 
+  const handleOpenTraits = () => setOpenT(true);
+  const handleCloseTraits = () => {setOpenT(false) , setSelectedTab(true)};
   const handleOptionChangeT = (optionT: string) => {
     if (selectedOptionsT.includes(optionT)) {
       setSelectedOptionsT(selectedOptionsT.filter((o) => o !== optionT));
@@ -57,7 +57,7 @@ const PersonalityTraitsSection = () => {
             <h2 className='text-lg font-bold leading-[110%] flex gap-[6px]'>
             Traits<InfoIcon/>
               </h2>
-            <p className='text-stone-700'>0/10</p>
+            <p className='text-stone-700'>{selectedOptionsT.length}/10</p>
           </div>
 
          <button
@@ -67,6 +67,8 @@ const PersonalityTraitsSection = () => {
              + Add
             </button>
         </div>
+        {
+          seletedTab &&
         <div className={`flex flex-wrap gap-2 ${selectedOptionsT.length > 0 ? "p-6 pt-0":""}`}>
           <div className='flex flex-wrap gap-5 '>
             {selectedOptionsT.map((optionT) => (
@@ -100,6 +102,7 @@ const PersonalityTraitsSection = () => {
             ))}
           </div>
         </div>
+        }
         <div className={` h-auto flex-col items-start gap-6 self-stretch pb-0 ${advance!== 0? 'flex px-6':'hidden'}`}>
           {advance ? (
             <div className='flex h-[24px] items-start gap-1.5 self-stretch justify-between '>
@@ -107,12 +110,12 @@ const PersonalityTraitsSection = () => {
                 <h6 className='text-lg font-bold leading-6 '>
                   Advance Settings
                 </h6>
-                <div className='h-4 w-4'>
+                <div className='w-4 h-4'>
                   <Isymbol />
                 </div>
               </div>
 
-              <div className=' h-6 w-6 ' id='myDiv'>
+              <div className='w-6 h-6 ' id='myDiv'>
                 <button onClick={AdvanceModal}>
                   <AdvanceArrow />
                 </button>
@@ -124,20 +127,20 @@ const PersonalityTraitsSection = () => {
 
           <div >
             {advanceModal ? (
-              < div className='flex gap-6 flex-col items-start self-stretch'>
+              < div className='flex flex-col items-start self-stretch gap-6'>
                 {/* SECTION1 */}
-                <div className='flex items-start gap-6 self-stretch'>
+                <div className='flex items-start self-stretch gap-6'>
 
                   <div className='flex flex-col items-start gap-1 '>
-                    <div className='flex items-center gap-1 self-stretch'>
+                    <div className='flex items-center self-stretch gap-1'>
                       <b className='text-base font-bold leading-5'>Horny</b>
                       <div className='h-[14px] w-[14px]'>
                         <Isymbol/>
                       </div>
                     </div>
-                    <div className='flex pt-3 flex-col items-end gap-2 self-stretch'>
+                    <div className='flex flex-col items-end self-stretch gap-2 pt-3'>
                             <div></div>
-                            <div className='flex justify-between items-start self-stretch '>
+                            <div className='flex items-start self-stretch justify-between '>
                                 <b className='text-sm font-normal leading-[18px]'>Low</b>
                                 <b className='text-sm font-normal leading-[18px]'>Low Mid</b>
                                 <b className='text-sm font-normal leading-[18px]'>Mid</b>
@@ -149,15 +152,15 @@ const PersonalityTraitsSection = () => {
 
 
                   <div className='flex flex-col items-start gap-1 '>
-                  <div className='flex items-center gap-1 self-stretch'>
+                  <div className='flex items-center self-stretch gap-1'>
                       <b className='text-base font-bold leading-5'>Angry</b>
                       <div className='h-[14px] w-[14px]'>
                         <Isymbol/>
                       </div>
                     </div>
-                    <div className='flex pt-3 flex-col items-end gap-2 self-stretch'>
+                    <div className='flex flex-col items-end self-stretch gap-2 pt-3'>
                     <div></div>
-                            <div className='flex justify-between items-start self-stretch'>
+                            <div className='flex items-start self-stretch justify-between'>
                                 <b className='text-sm font-normal leading-[18px]'>Low</b>
                                 <b className='text-sm font-normal leading-[18px]'>Low Mid</b>
                                 <b className='text-sm font-normal leading-[18px]'>Mid</b>
@@ -171,18 +174,18 @@ const PersonalityTraitsSection = () => {
 
                 {/* SECTION2 */}
 
-                <div className='flex items-start gap-6 self-stretch'>
+                <div className='flex items-start self-stretch gap-6'>
 
                   <div className='flex flex-col items-start gap-1 '>
-                    <div className='flex items-center gap-1 self-stretch'>
+                    <div className='flex items-center self-stretch gap-1'>
                       <b className='text-base font-bold leading-5'>Aggressive</b>
                       <div className='h-[14px] w-[14px]'>
                         <Isymbol/>
                       </div>
                     </div>
-                    <div className='flex pt-3 flex-col items-end gap-2 self-stretch'>
+                    <div className='flex flex-col items-end self-stretch gap-2 pt-3'>
                     <div></div>
-                            <div className='flex justify-between items-start self-stretch '>
+                            <div className='flex items-start self-stretch justify-between '>
                                 <b className='text-sm font-normal leading-[18px]'>Low</b>
                                 <b className='text-sm font-normal leading-[18px]'>Low Mid</b>
                                 <b className='text-sm font-normal leading-[18px]'>Mid</b>
@@ -194,15 +197,15 @@ const PersonalityTraitsSection = () => {
 
 
                   <div className='flex flex-col items-start gap-1 '>
-                  <div className='flex items-center gap-1 self-stretch'>
+                  <div className='flex items-center self-stretch gap-1'>
                       <b className='text-base font-bold leading-5'>Polite</b>
                       <div className='h-[14px] w-[14px]'>
                         <Isymbol/>
                       </div>
                     </div>
-                    <div className='flex pt-3 flex-col items-end gap-2 self-stretch'>
+                    <div className='flex flex-col items-end self-stretch gap-2 pt-3'>
                     <div></div>
-                            <div className='flex justify-between items-start self-stretch '>
+                            <div className='flex items-start self-stretch justify-between '>
                                 <b className='text-sm font-normal leading-[18px]'>Low</b>
                                 <b className='text-sm font-normal leading-[18px]'>Low Mid</b>
                                 <b className='text-sm font-normal leading-[18px]'>Mid</b>
@@ -216,29 +219,29 @@ const PersonalityTraitsSection = () => {
 
                 {/* SECTION3 */}
 
-                <div className='flex items-start gap-6 self-stretch'>
+                <div className='flex items-start self-stretch gap-6'>
 
                   <div className='flex flex-col items-start gap-1 '>
-                    <div className='flex items-center gap-1 self-stretch'>
+                    <div className='flex items-center self-stretch gap-1'>
                       <b className='text-base font-bold leading-5'>Wild</b>
                       <div className='h-[14px] w-[14px]'>
                         <Isymbol/>
                       </div>
                     </div>
-                    <div className='flex pt-3 flex-col items-end gap-2 self-stretch'>
+                    <div className='flex flex-col items-end self-stretch gap-2 pt-3'>
 
                     </div>
                   </div>
 
 
                   <div className='flex flex-col items-start gap-1 '>
-                  <div className='flex items-center gap-1 self-stretch'>
+                  <div className='flex items-center self-stretch gap-1'>
                       <b className='text-base font-bold leading-5'>Horny</b>
                       <div className='h-[14px] w-[14px]'>
                         <Isymbol/>
                       </div>
                     </div>
-                    <div className='flex pt-3 flex-col items-end gap-2 self-stretch'>
+                    <div className='flex flex-col items-end self-stretch gap-2 pt-3'>
                         
                     </div>
                   </div>
@@ -247,29 +250,29 @@ const PersonalityTraitsSection = () => {
 
                 {/* SECTION4 */}
 
-                <div className='flex items-start gap-6 self-stretch'>
+                <div className='flex items-start self-stretch gap-6'>
 
                   <div className='flex flex-col items-start gap-1 '>
-                    <div className='flex items-center gap-1 self-stretch'>
+                    <div className='flex items-center self-stretch gap-1'>
                       <b className='text-base font-bold leading-5'>Horny</b>
                       <div className='h-[14px] w-[14px]'>
                         <Isymbol/>
                       </div>
                     </div>
-                    <div className='flex pt-3 flex-col items-end gap-2 self-stretch'>
+                    <div className='flex flex-col items-end self-stretch gap-2 pt-3'>
 
                     </div>
                   </div>
 
 
                   <div className='flex flex-col items-start gap-1 '>
-                  <div className='flex items-center gap-1 self-stretch'>
+                  <div className='flex items-center self-stretch gap-1'>
                       <b className='text-base font-bold leading-5'>Angry</b>
                       <div className='h-[14px] w-[14px]'>
                         <Isymbol/>
                       </div>
                     </div>
-                    <div className='flex pt-3 flex-col items-end gap-2 self-stretch'>
+                    <div className='flex flex-col items-end self-stretch gap-2 pt-3'>
                         
                     </div>
                   </div>
@@ -278,29 +281,29 @@ const PersonalityTraitsSection = () => {
 
                 {/* SECTION5 */}
 
-                <div className='flex items-start gap-6 self-stretch'>
+                <div className='flex items-start self-stretch gap-6'>
 
                   <div className='flex flex-col items-start gap-1 '>
-                    <div className='flex items-center gap-1 self-stretch'>
+                    <div className='flex items-center self-stretch gap-1'>
                       <b className='text-base font-bold leading-5'>Aggressive</b>
                       <div className='h-[14px] w-[14px]'>
                         <Isymbol/>
                       </div>
                     </div>
-                    <div className='flex pt-3 flex-col items-end gap-2 self-stretch'>
+                    <div className='flex flex-col items-end self-stretch gap-2 pt-3'>
 
                     </div>
                   </div>
 
 
                   <div className='flex flex-col items-start gap-1 '>
-                  <div className='flex items-center gap-1 self-stretch'>
+                  <div className='flex items-center self-stretch gap-1'>
                       <b className='text-base font-bold leading-5'>Polite</b>
                       <div className='h-[14px] w-[14px]'>
                         <Isymbol/>
                       </div>
                     </div>
-                    <div className='flex pt-3 flex-col items-end gap-2 self-stretch'>
+                    <div className='flex flex-col items-end self-stretch gap-2 pt-3'>
                         
                     </div>
                   </div>
