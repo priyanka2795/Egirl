@@ -9,6 +9,7 @@ import threeDots from '../../../../public/assets/dots-horizontal (2).png';
 import volume from '../../../../public/assets/volume-max.png';
 import pencil from '../../../../public/assets/pencil.png';
 import TextEdit from './TextEdit';
+import RangePicker from '../common/RangePicker';
 
 const voiceGenerations = [
   {
@@ -42,11 +43,18 @@ const VoiceNextPage = () => {
   const [state2, setState2] = useState([50]);
   const [state3, setState3] = useState([50]);
   const [inUse, setInUse] = useState(false);
-  const [editText, setEditText] = useState(false);
+  const [textEdit, setTextEdit] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [showEditedText, setShowEditedText] = useState(false);
+  // const [showEditedText, setShowEditedText] = useState(false);
   const [editedText, setEditedText] = useState('');
+  const [accentState ,setAccentState] = useState([0])
+  const [voiceStabilityState ,setVoiceStabilityState] = useState([0])
+  const [voiceClarityState ,setVoiceClarityState] = useState([0])
+
+  const handleEditIcon = (index: any) => {
+    
+  };
 
   return (
     <div className='flex flex-col gap-5'>
@@ -178,7 +186,7 @@ const VoiceNextPage = () => {
                     />
                   </div>
                   <div className='flex flex-col mt-3'>
-                    <Range
+                    {/* <Range
                       step={0.1}
                       min={0}
                       max={100}
@@ -211,7 +219,8 @@ const VoiceNextPage = () => {
                           }}
                         />
                       )}
-                    />
+                    /> */}
+                     <RangePicker values={accentState} setValues={setAccentState}/>
                     <div className='flex justify-between mt-3'>
                       <div className='text-[14px] font-normal leading-[18px] text-[#515151]'>
                         Low
@@ -235,7 +244,7 @@ const VoiceNextPage = () => {
                     />
                   </div>
                   <div className='flex flex-col mt-3'>
-                    <Range
+                    {/* <Range
                       step={0.1}
                       min={0}
                       max={100}
@@ -269,7 +278,8 @@ const VoiceNextPage = () => {
                           }}
                         />
                       )}
-                    />
+                    /> */}
+                     <RangePicker values={voiceStabilityState} setValues={setVoiceStabilityState}/>
                     <div className='flex justify-between mt-3'>
                       <div className='text-[14px] font-normal leading-[18px] text-[#515151]'>
                         Low
@@ -293,7 +303,7 @@ const VoiceNextPage = () => {
                     />
                   </div>
                   <div className='flex flex-col mt-3'>
-                    <Range
+                    {/* <Range
                       step={0.1}
                       min={0}
                       max={100}
@@ -327,7 +337,8 @@ const VoiceNextPage = () => {
                           }}
                         />
                       )}
-                    />
+                    /> */}
+                     <RangePicker values={voiceClarityState} setValues={setVoiceClarityState}/>
                     <div className='flex justify-between mt-3'>
                       <div className='text-[14px] font-normal leading-[18px] text-[#515151]'>
                         Low
@@ -366,7 +377,7 @@ const VoiceNextPage = () => {
 
           {voiceGenerations.map((item, index) => {
             return (
-              <div className='flex flex-col gap-4 rounded-[14px] bg-[#1A1A1A] p-5'>
+              <div key={index} className='flex flex-col gap-4 rounded-[14px] bg-[#1A1A1A] p-5'>
                 <div className='flex flex-col gap-[2px]'>
                   <div className='flex justify-between'>
                     <div className='text-[18px] font-bold leading-6 text-[#FFFFFF]'>
@@ -400,13 +411,16 @@ const VoiceNextPage = () => {
                     <div className='w-5 h-5'>
                       <Image className='w-full h-full' src={volume} alt={''} />
                     </div>
-                    {editText && activeIndex === index ? <TextEdit editedText={editedText} setEditedText={setEditedText} setEditText={setEditText} setShowEditedText={setShowEditedText} /> : <><div className='text-[14px] font-normal leading-[18px] text-[#979797]'>
-                      {showEditedText && activeIndex === index ? editedText : item.text}
-                    </div>
-                    <div className='w-[18px] h-[18px]' onClick={() => {setEditText(true), setActiveIndex(index)}}>
+                    {textEdit && activeIndex === index ? <TextEdit voiceGenerations={voiceGenerations} activeIndex={activeIndex} editedText={editedText} setEditedText={setEditedText} setTextEdit={setTextEdit}/> :  
+                    <> 
+                      <div className='text-[14px] font-normal leading-[18px] text-[#979797]'>
+                        {item.text}
+                      </div>
+                      <div className='w-[18px] h-[18px]' onClick={() => {setTextEdit(true), setActiveIndex(index)}}>
                         <Image className='w-full h-full' src={pencil} alt={''} />
-                    </div></> }
-              
+                      </div>
+                    </>
+                    }
                   </div>
                 </div>
               </div>
@@ -414,6 +428,7 @@ const VoiceNextPage = () => {
           })}
         </div>
       </div>
+   
     </div>
   );
 };

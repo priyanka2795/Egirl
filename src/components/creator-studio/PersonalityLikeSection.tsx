@@ -1,12 +1,18 @@
 import React, { useState } from 'react'
 import { Modal } from '@components/modal/modal';
+import InfoIcon from "../../../public/assets/svgImages/info-icon.svg"
+import CloseIcon from "../../../public/assets/svgImages/close-icon.svg"
+import searchIcon from "../../../public/assets/search-alt.png"
+import Image from 'next/image';
+import PersonalityHoverModal from './PersonalityHoverModal';
 const PersonalityLikeSection = () => {
 
-    const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
+  const [seletedTab , setSelectedTab] = useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
+  const handleClose = () => {setOpen(false) , setSelectedTab(true)};
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+  const [showHoverModal , setShowHoverModal] = useState(false);
 
   const handleOptionChange = (option: string) => {
     if (selectedOptions.includes(option)) {
@@ -19,6 +25,14 @@ const PersonalityLikeSection = () => {
   const handleRemoveOption = (option: string) => {
     setSelectedOptions(selectedOptions.filter((o) => o !== option));
   };
+
+  const handleClearSelection = () => {
+    setSelectedOptions([]);
+  };
+  const clearSelection = () => {
+    handleClose()
+    handleClearSelection()
+  }
 
   const data = [
     {
@@ -90,33 +104,37 @@ const PersonalityLikeSection = () => {
       name: 'Dancing'
     },
     {
-      name: 'Dling'
+      name: 'Dling' 
     }
   ];
-  return (
-    <div>
-      <div className='mx-2.5 my-3 mb-4 flex h-auto  max-w-full flex-col rounded-lg bg-zinc-900 '>
-          <div className='mx-2.5 my-3 mb-4 flex h-24 max-w-full rounded-lg bg-zinc-900 pl-6 pt-4 '>
-            <div className='mr-96'>
-              <h2 className='pb-2'>
-                <b className='text-lg'>Likes</b>
+  return ( 
+    <>
+      <div className='w-full flex flex-col h-auto max-w-full rounded-lg bg-[#121212]'>
+          <div className='flex justify-between max-w-full p-6 pb-5'>
+            <div className="w-full">
+              {showHoverModal && <PersonalityHoverModal />}
+              <h2 className='text-lg font-bold leading-[110%] flex gap-[6px]'>
+                Likes 
+                <div onClick={() => {setShowHoverModal(!showHoverModal)}}><InfoIcon /></div>
               </h2>
-              <p className='text-stone-700'>0/10</p>
+              <p className='text-stone-700'>{selectedOptions.length}/10</p>
             </div>
 
             <button
-              className='ml-96 ml-[27.4rem]  mt-2 h-[40px] w-[84px] justify-center rounded-xl border-2 border-zinc-50 text-sm font-bold'
+              className='flex items-center justify-center h-[40px] w-[84px] justify-center rounded-xl border border-white/[0.32] text-sm font-bold'
               onClick={handleOpen}
             >
-              <span>+ Add</span>
+             + Add
             </button>
           </div>
-          <div className='m-8 mt-0 flex flex-wrap gap-2'>
+          {
+            seletedTab &&
+          <div className={`flex flex-wrap gap-2 ${selectedOptions.length > 0 ? "p-6 pt-0":""}`}>
             <div className='flex flex-wrap gap-5 '>
               {selectedOptions.map((option) => (
                 <div
                   key={option}
-                  className='flex gap-2 rounded-xl bg-neutral-800 pb-3 pl-5 pr-5 pt-3 text-sm'
+                  className='flex gap-2 pt-3 pb-3 pl-5 pr-5 text-sm rounded-xl bg-neutral-800'
                 >
                   {option}{' '}
                   <span
@@ -144,48 +162,33 @@ const PersonalityLikeSection = () => {
               ))}
             </div>
           </div>
+          }
         </div>
 
         <Modal
         open={open}
         closeModal={handleClose}
         modalOverlayStyle='!bg-black/80 '
-        modalClassName={`bg-[#121212] flex shrink-0 flex-col gap-6 w-[506px] p-8 rounded-2xl h-max max-w-[550px] relative rounded`}
+        modalClassName={`bg-[#121212] flex shrink-0 flex-col w-[506px] rounded-2xl h-max max-w-[550px] relative rounded`}
       >
+        <div className="border-b border-white/[0.08] p-8 pb-6 flex justify-between items-center">
         <b className='text-2xl'>Likes</b>
-        <hr className='mb-1 w-[100%] bg-zinc-900' />
-
-        <div>
-          {/* <div className='relative mt-2'>
-                  <input
-                    className='hidden bg-fuchsia-600'
-                    type="radio"
-                    id="yes"
-                    name="option"
-                    checked={selectedOptions.includes('YES')}
-                    onChange={() => handleOptionChange('YES')}
-                  />
-              <label 
-                className='inline-block border-[1px solid CadetBlue] py-0 px-3.5 m-12 '
-                htmlFor="yes">
-                <h3>YES</h3>
-              </label>
-            
-          </div> */}
+        <CloseIcon className="text-white" onClick={handleClose}/>
+        </div>    
+      
+      <div className="px-8 py-4 border-b border-white/[0.08]">
+        <div className='flex px-4 py-3 gap-[10px] bg-white/[0.05] w-full rounded-[14px]'>
+          <div className='w-6 h-6'>
+            <Image className='w-full h-full' src={searchIcon} alt={''} />
+          </div>
+          <input type='text' className='p-0 focus:ring-0 bg-transparent border-none text-[15px] font-light leading-6 text-[#979797] ' />
         </div>
-
-        <input
-          className='py-auto mr-2 h-[48px] w-full rounded-[14px] border-none bg-[#1E1E1E] pl-[50px] text-[15px] font-light leading-6 text-[#979797] transition duration-100 focus:ring-1 focus:ring-[#5848BC]'
-          type='text'
-          placeholder='Search'
-        />
-
-        <div className='flex flex-wrap gap-2'>
-          <div className='flex flex-wrap gap-5 '>
+          <div className={`flex-wrap gap-2 ${selectedOptions.length > 0 ? "flex pt-4": "hidden"}`}>
+          <div className='flex flex-wrap gap-2'>
             {selectedOptions.map((option) => (
               <div
                 key={option}
-                className='flex gap-2 rounded-lg   bg-neutral-800 p-1 pb-3 pl-5 pr-5 pt-3 text-sm'
+                className='flex gap-2 p-1 py-[3px] px-2 text-sm rounded-lg bg-neutral-800'
               >
                 {option}{' '}
                 <span
@@ -203,25 +206,29 @@ const PersonalityLikeSection = () => {
                     <path
                       d='M4.5 4.5L13.5 13.5M13.5 4.5L4.5 13.5'
                       stroke='#979797'
-                      stroke-width='1.35'
-                      stroke-linecap='round'
-                      stroke-linejoin='round'
+                      strokeWidth='1.35'
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
                     />
                   </svg>
+             
                 </span>
               </div>
             ))}
           </div>
         </div>
-        <hr className='mb-5 bg-zinc-900' />
-        <div className=' '>
+      </div>
+
+      
+        {/* <hr className='mb-5 bg-zinc-900' /> */}
+        <div className='px-6 pt-4'>
           <div className=''>
-            <b>A</b>
-            <br />
-            {/* <div className='mt-1 flex flex-wrap gap-2'>
+            <div className="font-bold text-[#979797] pb-3">A</div>
+            
+            {/* <div className='flex flex-wrap gap-2 mt-1'>
             {data.map((datas) => {
               return (
-                <button className='rounded-full bg-blue-500 bg-zinc-800 px-4 py-2 text-sm font-thin text-white'>
+                <button className='px-4 py-2 text-sm font-thin text-white bg-blue-500 rounded-full bg-zinc-800'>
                   {datas.name}
                 </button>
               );
@@ -353,23 +360,9 @@ const PersonalityLikeSection = () => {
               </div>
             </div>
           </div>
-          {/* <div id="picked-0" className="" ><input className="absolute left-[23px] top-[13px] peer styled-checkbox checkbox" type="checkbox" id="Production/ Manufacturing" name="picked-0" value="Production/ Manufacturing"/>
-          <label className="h-10 inline-block px-3 py-2 mb-4 ml-3 text-base transition cursor-pointer rounded-3xl bg-[#c6c6c6] text-[#525252] w-max peer-checked:bg-fuchsia-700 peer-checked:text-[#f4f4f4]" id="Production/ Manufacturing">Anime</label>
-
-          </div> */}
-
+        
           <div className=''>
-            <b>B</b>
-            <br />
-            {/* <div className='mt-1 flex flex-wrap gap-2'>
-            {data.map((datas) => {
-              return (
-                <button className='rounded-full bg-blue-500 bg-zinc-800 px-4 py-2 text-sm font-thin text-white'>
-                  {datas.name}
-                </button>
-              );
-            })}
-          </div> */}
+          <div className="font-bold text-[#979797] pb-3">B</div>
             <div className='flex flex-wrap gap-2'>
               <div className='relative'>
                 <input
@@ -412,17 +405,7 @@ const PersonalityLikeSection = () => {
           </div>
 
           <div className=''>
-            <b>C</b>
-            <br />
-            {/* <div className='mt-1 flex flex-wrap gap-2'>
-            {data.map((datas) => {
-              return (
-                <button className='rounded-full bg-blue-500 bg-zinc-800 px-4 py-2 text-sm font-thin text-white'>
-                  {datas.name}
-                </button>
-              );
-            })}
-          </div> */}
+          <div className="font-bold text-[#979797] pb-3">C</div>
             <div className='flex flex-wrap gap-2'>
               <div className='relative'>
                 <input
@@ -545,10 +528,10 @@ const PersonalityLikeSection = () => {
             <b>D</b>
             <br />
 
-            <div className='mt-1 flex flex-wrap gap-2'>
+            <div className='flex flex-wrap gap-2 mt-1'>
               {dataD.map((datas) => {
                 return (
-                  <button className='rounded-full bg-blue-500 bg-zinc-800 px-4 py-2 text-sm font-thin text-white'>
+                  <button className='px-4 py-2 text-sm font-thin text-white bg-blue-500 rounded-full bg-zinc-800'>
                     {datas.name}
                   </button>
                 );
@@ -598,11 +581,10 @@ const PersonalityLikeSection = () => {
         </label> */}
           </div>
           {/* <div
-            className=' cursor-pointer rounded-full px-4 py-2 text-sm 
-      font-thin text-white hover:bg-violet-600 focus:outline-none focus:ring focus:ring-violet-300 '
+            className='px-4 py-2 text-sm font-thin text-white rounded-full cursor-pointer hover:bg-violet-600 focus:outline-none focus:ring focus:ring-violet-300'
           >
             <input
-              className='hidden rounded-full bg-blue-500 bg-fuchsia-600 bg-zinc-800 px-4 py-2 text-sm font-thin text-white'
+              className='hidden px-4 py-2 text-sm font-thin text-white bg-blue-500 rounded-full bg-fuchsia-600 bg-zinc-800'
               type='checkbox'
               id='yes'
               name='option'
@@ -615,10 +597,10 @@ const PersonalityLikeSection = () => {
         {/* <div className=''>
           <b>B</b>
           <br />
-          <div className='mt-1 flex flex-wrap gap-2'>
+          <div className='flex flex-wrap gap-2 mt-1'>
             {dataB.map((datas) => {
               return (
-                <button className='rounded-full bg-zinc-800 px-4 py-2 text-sm font-thin text-white'>
+                <button className='px-4 py-2 text-sm font-thin text-white rounded-full bg-zinc-800'>
                   {datas.name}
                 </button>
               );
@@ -636,22 +618,23 @@ const PersonalityLikeSection = () => {
           <label className="pl-8 h-10 inline-block px-3 py-2 mb-4 ml-3 text-base transition cursor-pointer rounded-3xl bg-[#c6c6c6] text-[#525252] w-max peer-checked:bg-fuchsia-700 peer-checked:text-[#f4f4f4]" id='a2' for="Services/ Software">Anime</label>
           </div> */}
         </div>
-        <div className='flex flex flex-row  gap-3 self-stretch pb-[10px] pl-[10px] pr-[10px] pt-[0px] '>
+        <div className='flex flex-row self-stretch gap-3 px-8 pt-4 pb-8'>
           <button
-            onClick={handleClose}
-            className=' flex-[1 0 0] flex h-[48px] w-[100%] items-center justify-center gap-2 rounded-full bg-blue-500 bg-zinc-800 px-4 py-2 pb-[13] pl-[20] pr-[20] pt-[13] text-lg text-sm text-xl font-bold text-white'
+            
+            onClick={clearSelection}
+            className='flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-white/[0.32] px-5 py-[13px] font-bold'
           >
             Cancel
           </button>
           <button
             onClick={handleClose}
-            className='flex-[1 0 0] flex h-[48px] w-[100%] items-center justify-center gap-2 rounded-full bg-blue-500 bg-zinc-800 px-4 py-2 pb-[13] pl-[20] pr-[20] pt-[13] text-lg text-sm text-xl font-bold text-white'
+            className='flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-[#5848BC] px-5 py-[13px] font-bold bg-[#5848BC]'
           >
             Save
           </button>
         </div>
       </Modal>
-    </div>
+    </>
   )
 }
 
