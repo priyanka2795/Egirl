@@ -6,6 +6,8 @@ import Image from 'next/image';
 import coinImg from "../../../public/assets/Coin-img.png"
 import Star from './svg/star.svg';
 import Token from './svg/token.svg';
+import TokenActive from './svg/token-white.svg';
+import SuccessPage from '@components/add-card/SuccessPage';
 
 
 
@@ -35,35 +37,45 @@ const creditData = [
     text: '5000'
   }
 ];
-const SubscriptionBuyContent = () => {
+interface subscription {
+  closeErrorPage: React.Dispatch<React.SetStateAction<boolean>>;
+  closeSuccessPage : React.Dispatch<React.SetStateAction<boolean>>;
+}
+const SubscriptionBuyContent = ({ closeErrorPage ,closeSuccessPage }: subscription) => {
   const [tokenPrice, setTokenPrice] = useState('$9.99');
   return (
     <>
 
+      <div>
 
-      <div className='grid grid-cols-2 gap-3'>
-        {creditData.map((items) => {
-          return (
-            <div className={`gap-6 rounded-[14px] bg-[#1A1A1A] p-5 items-center cursor-pointer border-2 hover:border-[#5848BC]
+        <div className='grid grid-cols-2 gap-3'>
+          {creditData.map((items) => {
+            return (
+              <div className={`gap-6 rounded-[14px] bg-[#1A1A1A] p-5 items-center cursor-pointer border-2 hover:border-[#5848BC]
             ${tokenPrice === items.price ? 'border-[#5848BC]' : 'border-transparent'}`} onClick={() => { setTokenPrice(items.price) }}>
-              <div className='flex justify-between items-center '>
-                <p className='text-[15px] text-[#979797]'>{items.price}</p>
-                {items.price === '$9.99' ? <div className='bg-[#5848BC3D] text-xs text-white py-1 px-2 rounded-full flex items-center gap-1'><Star />Popular</div> : ''
-                }
-              </div>
+                <div className='flex justify-between items-center '>
+                  <p className='text-[15px] text-[#979797]'>{items.price}</p>
+                  {items.price === '$9.99' ? <div className='bg-[#5848BC3D] text-xs text-white py-1 px-2 rounded-full flex items-center gap-1'><Star />Popular</div> : ''
+                  }
+                </div>
 
-              <div className='flex items-center gap-3'>
-                <Token />
-                <p className='text-[26px] font-bold'>{items.text}</p>
+                <div className='flex items-center gap-3'>
+                {tokenPrice === items.price ?<TokenActive /> :<Token /> }
+                  
+                  
+                  <p className='text-[26px] font-bold'>{items.text}</p>
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
+
+        <button className='mt-4 w-full rounded-[14px] bg-[#5848BC] py-[13px] font-bold' onClick={() => closeErrorPage(true)}>
+          Buy Tokens {tokenPrice}
+        </button>
+        <button onClick={() => closeSuccessPage(true)} >Success</button>
       </div>
 
-      <button className='mt-4 w-full rounded-[14px] bg-[#5848BC] py-[13px] font-bold'>
-        Buy Tokens {tokenPrice}
-      </button>
     </>
   );
 };
