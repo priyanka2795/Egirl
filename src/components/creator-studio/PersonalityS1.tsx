@@ -50,6 +50,7 @@ const PersonalityS1 = () => {
         <div>
         <div className="pt-[11px] flex items-center gap-5">
            <RangePicker values={values} setValues={setValues}/>
+           
            <div className="py-[8px] bg-white/[0.05] rounded-[10px] w-[50px] flex justify-center items-center">{values}</div>
           </div>
         </div>
