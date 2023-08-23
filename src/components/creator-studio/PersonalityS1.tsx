@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{useState} from 'react';
 import Isymbol from './svg/Isymbol';
 import Roleplay from './svg/Roleplay';
 import ConversationalIcon from './svg/ConversationalIcon';
@@ -7,7 +7,7 @@ import { Range } from 'react-range';
 import RangePicker from './common/RangePicker';
 
 const PersonalityS1 = () => {
-
+  const [values, setValues] = useState([0]);
 
   return (
     <div className='flex items-start w-full gap-4 '>
@@ -48,9 +48,9 @@ const PersonalityS1 = () => {
             </div>
           
         <div>
-        <div className="pt-[11px] flex items-center gap-2">
-           <RangePicker/>
-           <div className="py-[8px] bg-white/[0.05] rounded-[10px] w-[37px] flex justify-center items-center">0</div>
+        <div className="pt-[11px] flex items-center gap-5">
+           <RangePicker values={values} setValues={setValues}/>
+           <div className="py-[8px] bg-white/[0.05] rounded-[10px] w-[50px] flex justify-center items-center">{values}</div>
           </div>
         </div>
         </div>
