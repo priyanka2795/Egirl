@@ -157,7 +157,7 @@ const CreatorStudioSidebar = ({
           />
           <SidebarMenuItem
             text='Gifts'
-            href='/home'
+            href='/gifts'
             Icon={GiftIcon}
             IconActive={HomeActiveIcon}
             StyleClasses={`${
