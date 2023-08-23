@@ -5,6 +5,7 @@ import Isymbol from './svg/Isymbol';
 import AdvanceArrow from './svg/AdvanceArrow';
 import InfoIcon from '../../../public/assets/svgImages/info-icon.svg';
 import CloseIcon from '../../../public/assets/svgImages/close-icon.svg';
+import MultiStepProgressBar from './MultiStepProgressBar';
 
 // const router = useRouter();
 
@@ -106,7 +107,7 @@ const PersonalityTraitsSection = () => {
         <div className={` h-auto flex-col items-start gap-6 self-stretch pb-0 ${advance!== 0? 'flex px-6':'hidden'}`}>
           {advance ? (
             <div className='flex h-[24px] items-start gap-1.5 self-stretch justify-between '>
-              <div className='flex gap-3 '>
+              <div className='flex items-center gap-3'>
                 <h6 className='text-lg font-bold leading-6 '>
                   Advance Settings
                 </h6>
@@ -140,12 +141,15 @@ const PersonalityTraitsSection = () => {
                     </div>
                     <div className='flex flex-col items-end self-stretch gap-2 pt-3'>
                             <div></div>
-                            <div className='flex items-start self-stretch justify-between '>
-                                <b className='text-sm font-normal leading-[18px]'>Low</b>
+                            <div className='flex flex-col items-start self-stretch justify-between'>
+                            {/* <MultiStepProgressBar/>  */}
+                             <div>
+                             <b className='text-sm font-normal leading-[18px]'>Low</b>
                                 <b className='text-sm font-normal leading-[18px]'>Low Mid</b>
                                 <b className='text-sm font-normal leading-[18px]'>Mid</b>
                                 <b className='text-sm font-normal leading-[18px]'>MId High</b>
                                 <b className='text-sm font-normal leading-[18px]'>High</b>
+                             </div>
                             </div>
                     </div>
                   </div>

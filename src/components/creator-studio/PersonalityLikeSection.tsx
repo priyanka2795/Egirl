@@ -112,8 +112,9 @@ const PersonalityLikeSection = () => {
           <div className='flex justify-between max-w-full p-6 pb-5'>
             <div className="w-full">
               <h2 className='text-lg font-bold leading-[110%] flex gap-[6px]'>
-                Likes <InfoIcon/>
-              </h2>
+                Likes 
+                <InfoIcon/>
+                  </h2>
               <p className='text-stone-700'>{selectedOptions.length}/10</p>
             </div>
 
