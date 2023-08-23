@@ -370,7 +370,7 @@ const VoiceNextPage = () => {
 
           {voiceGenerations.map((item, index) => {
             return (
-              <div className='flex flex-col gap-4 rounded-[14px] bg-[#1A1A1A] p-5'>
+              <div key={index} className='flex flex-col gap-4 rounded-[14px] bg-[#1A1A1A] p-5'>
                 <div className='flex flex-col gap-[2px]'>
                   <div className='flex justify-between'>
                     <div className='text-[18px] font-bold leading-6 text-[#FFFFFF]'>
@@ -404,7 +404,7 @@ const VoiceNextPage = () => {
                     <div className='w-5 h-5'>
                       <Image className='w-full h-full' src={volume} alt={''} />
                     </div>
-                    {textEdit && activeIndex === index ? <TextEdit voiceGenerations={voiceGenerations} activeIndex={activeIndex} setEditedText={setEditedText} setTextEdit={setTextEdit}/> :  
+                    {textEdit && activeIndex === index ? <TextEdit voiceGenerations={voiceGenerations} activeIndex={activeIndex} editedText={editedText} setEditedText={setEditedText} setTextEdit={setTextEdit}/> :  
                     <> 
                       <div className='text-[14px] font-normal leading-[18px] text-[#979797]'>
                         {item.text}

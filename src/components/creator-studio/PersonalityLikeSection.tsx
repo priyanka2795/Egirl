@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { Modal } from '@components/modal/modal';
 import InfoIcon from "../../../public/assets/svgImages/info-icon.svg"
 import CloseIcon from "../../../public/assets/svgImages/close-icon.svg"
+import searchIcon from "../../../public/assets/search-alt.png"
+import Image from 'next/image';
 const PersonalityLikeSection = () => {
 
     const [open, setOpen] = React.useState(false);
@@ -100,10 +102,10 @@ const PersonalityLikeSection = () => {
       name: 'Dancing'
     },
     {
-      name: 'Dling'
+      name: 'Dling' 
     }
   ];
-  return (
+  return ( 
     <>
       <div className='w-full flex flex-col h-auto max-w-full rounded-lg bg-[#121212]'>
           <div className='flex justify-between max-w-full p-6 pb-5'>
@@ -168,11 +170,12 @@ const PersonalityLikeSection = () => {
         </div>    
       
       <div className="px-8 py-4 border-b border-white/[0.08]">
-        <input
-          className='mr-2 h-[48px] w-full rounded-[14px] border-none bg-[#1E1E1E] pl-[50px] text-[15px] font-light leading-6 text-[#979797] transition duration-100 focus:ring-1 focus:ring-[#5848BC]'
-          type='text'
-          placeholder='Search'
-        />
+        <div className='flex px-4 py-3 gap-[10px] bg-white/[0.05] w-full rounded-[14px]'>
+          <div className='w-6 h-6'>
+            <Image className='w-full h-full' src={searchIcon} alt={''} />
+          </div>
+          <input type='text' className='p-0 focus:ring-0 bg-transparent border-none text-[15px] font-light leading-6 text-[#979797] ' />
+        </div>
           <div className={`flex-wrap gap-2 ${selectedOptions.length > 0 ? "flex pt-4": "hidden"}`}>
           <div className='flex flex-wrap gap-2'>
             {selectedOptions.map((option) => (
