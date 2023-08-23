@@ -27,13 +27,26 @@ const PersonalityTraitsSection = () => {
     }
   };
 
+  
   const handleRemoveOptionT = (optionT: string) => {
     setSelectedOptionsT(selectedOptionsT.filter((o) => o !== optionT));
+    if(optionT.length==0){
+      setAdvance(0);
+    }
     // router.reload();
   };
 
   function AdvanceModal() {
     setAdvanceMOdal(true);
+  }
+
+  const handleClearSelection = () => {
+    setSelectedOptionsT([]);
+  };
+  const clearSelection = () => {
+    handleCloseTraits()
+    handleClearSelection()
+    setAdvance(0)
   }
   return (
     <>
@@ -629,7 +642,7 @@ const PersonalityTraitsSection = () => {
 
         <div className='flex flex-row self-stretch gap-3 px-8 pt-4 pb-8'>
           <button
-            onClick={handleCloseTraits}
+            onClick={clearSelection}
             className='flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-white/[0.32] px-5 py-[13px] font-bold'
           >
             Cancel
