@@ -4,14 +4,15 @@ import InfoIcon from "../../../public/assets/svgImages/info-icon.svg"
 import CloseIcon from "../../../public/assets/svgImages/close-icon.svg"
 import searchIcon from "../../../public/assets/search-alt.png"
 import Image from 'next/image';
+import PersonalityHoverModal from './PersonalityHoverModal';
 const PersonalityLikeSection = () => {
 
-    const [open, setOpen] = React.useState(false);
-    const [seletedTab , setSelectedTab] = useState(false)
+  const [open, setOpen] = React.useState(false);
+  const [seletedTab , setSelectedTab] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => {setOpen(false) , setSelectedTab(true)};
-
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+  const [showHoverModal , setShowHoverModal] = useState(false);
 
   const handleOptionChange = (option: string) => {
     if (selectedOptions.includes(option)) {
@@ -111,10 +112,11 @@ const PersonalityLikeSection = () => {
       <div className='w-full flex flex-col h-auto max-w-full rounded-lg bg-[#121212]'>
           <div className='flex justify-between max-w-full p-6 pb-5'>
             <div className="w-full">
+              {showHoverModal && <PersonalityHoverModal />}
               <h2 className='text-lg font-bold leading-[110%] flex gap-[6px]'>
                 Likes 
-                <InfoIcon/>
-                  </h2>
+                <div onClick={() => {setShowHoverModal(!showHoverModal)}}><InfoIcon /></div>
+              </h2>
               <p className='text-stone-700'>{selectedOptions.length}/10</p>
             </div>
 
