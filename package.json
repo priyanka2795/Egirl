@@ -34,6 +34,7 @@
     "heroicons": "^2.0.16",
     "next": "12.2.4",
     "nextjs-google-analytics": "^2.3.3",
+    "rc-slider": "^10.2.1",
     "react": "18.2.0",
     "react-audio-voice-recorder": "^2.1.2",
     "react-dom": "18.2.0",

@@ -59,10 +59,12 @@
   .custom-scroll-bar::-webkit-scrollbar-thumb:hover, *::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
+  *{  
+    scrollbar-color: #3A3A3A #888;
+    scrollbar-width: thin;
+  }
 
   .rating svg.goldenSvg path {
-    // fill: goldenrod;
-    // stroke:goldenrod;
     fill: #515151;
     stroke:#515151;
   }
