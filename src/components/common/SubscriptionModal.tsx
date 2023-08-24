@@ -77,8 +77,8 @@ const SubscriptionModal = ({ closeState, showSubscription }: subscription) => {
                 showSubscription ? <SubscriptionBuyContent closeErrorPage={setShowErrorPage} closeSuccessPage={setShowSuccessPage} /> : (tabSelectedOpt === "Egirls+" ? <SubscriptionEgirlPlan closeModal={closeState} /> : <SubscriptionBuyContent closeErrorPage={setShowErrorPage} closeSuccessPage={setShowSuccessPage} />)
                 // showSubscription ? <SubscriptionBuyContent/> : (tabSelectedOpt === "Egirls+" ? <SubscriptionEgirlContent /> : <SubscriptionBuyContent/>)
               }
-              <div className='flex justify-center gap-1 items-center'>
-                <button className='text-center text-xs ' onClick={() => setTokenModal(true)}>
+              <div className='flex items-center justify-center gap-1'>
+                <button className='text-xs text-center ' onClick={() => setTokenModal(true)}>
                   How are tokens used
                 </button>
                 <CircleQuestion />
