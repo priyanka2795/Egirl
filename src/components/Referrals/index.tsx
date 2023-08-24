@@ -155,9 +155,9 @@ const ReferralsIndex = () => {
     }
     {
       showConvertCredits && 
-      <ConvertCreditsModal closeConvertCredits={setshowConvertCredits} confirmModal={setconfirmModal}/>
+      <ConvertCreditsModal closeConvertCredits={setshowConvertCredits} confirmModal={setconfirmModal} heading={'Convert to tokens'} available={'Available to convert'} amount={'$1,000'} buttonText={'Convert'} />
     }
-     {
+    {
     confirmModal &&      
        <ConfirmConversionModal closeConfirmModal={setconfirmModal} convertCredits={setshowConvertCredits}/>  
     }
