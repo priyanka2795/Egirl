@@ -95,7 +95,7 @@ const GalleryTabFilter = ({singleProfileState ,setSingleProfileState}:GalleryTab
           <div
             onClick={(e) => handleSelectedFilter(e)}
             key={items.id}
-            className={`w-max relative z-10 mr-3 !flex h-[56px] w-max cursor-pointer items-center justify-start gap-2 rounded-full py-3 pl-3 pr-4 
+            className={`w-max relative z-10 mr-3 !flex h-[56px]cursor-pointer items-center justify-start gap-2 rounded-full py-3 pl-3 pr-4 
             last:mr-0 list-last-item  ${
               selectedFilter === items.filterText
                 ? '!bg-[#5848BC]'

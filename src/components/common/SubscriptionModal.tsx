@@ -61,7 +61,7 @@ const SubscriptionModal = ({ closeState, showSubscription }: subscription) => {
         </div>
         {
           showSubscription ? <SubscriptionBuyContent/> : (tabSelectedOpt === "Egirls+" ? <SubscriptionEgirlPlan closeModal={closeState}/> : <SubscriptionBuyContent/>)
-          // showSubscription ? <SubscriptionBuyContent/> : (tabSelectedOpt === "Egirls+" ? <SubscriptionEgirlContent /> : <SubscriptionBuyContent/>)
+         
         }
         
       </Modal>
