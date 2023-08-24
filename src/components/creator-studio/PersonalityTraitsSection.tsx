@@ -20,13 +20,22 @@ const PersonalityTraitsSection = () => {
   const handleRemoveOptionT = (optionT: string) => {
     setSelectedOptionsT(selectedOptionsT.filter((o) => o !== optionT));
   };
+
+   const handleClearSelection = () => {
+    setSelectedOptionsT([]);
+  };
+
+  const handleClose = () => {
+    handleCloseTraits()
+    handleClearSelection()
+  }
   return (
     <>
       <div className='flex h-auto w-full max-w-full flex-col rounded-lg bg-[#121212]'>
         <div className='flex max-w-full p-6 pb-5 '>
           <div className='w-full'>
             <h2 className='flex gap-[6px] text-lg font-bold leading-[110%]'>
-              Traits <InfoIcon />{' '}
+              Traits <InfoIcon onClick={handleCloseTraits} />{' '}
             </h2>
 
             <p className='text-stone-700'>0/10</p>
@@ -403,7 +412,7 @@ const PersonalityTraitsSection = () => {
 
         <div className='flex flex-row self-stretch gap-3 px-8 pt-4 pb-8'>
           <button
-            onClick={handleCloseTraits}
+            onClick={handleClose}
             className='flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-white/[0.32] px-5 py-[13px] font-bold'
           >
             Cancel

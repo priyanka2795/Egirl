@@ -22,6 +22,15 @@ const PersonalityLikeSection = () => {
     setSelectedOptions(selectedOptions.filter((o) => o !== option));
   };
 
+  const handleClearSelection = () => {
+    setSelectedOptions([]);
+  };
+
+  const cancelOption = () => {
+    handleClose()
+    handleClearSelection()
+  }
+
   const data = [
     {
       name: 'Anime'
@@ -602,7 +611,7 @@ const PersonalityLikeSection = () => {
         </div>
         <div className='flex flex-row self-stretch gap-3 px-8 pt-4 pb-8'>
           <button
-            onClick={handleClose}
+            onClick={cancelOption}
             className='flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-white/[0.32] px-5 py-[13px] font-bold'
           >
             Cancel

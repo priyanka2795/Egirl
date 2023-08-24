@@ -13,7 +13,7 @@ const Personality = () => {
 
         <PersonalityTraitsSection />
 
-        <div className='mx-2.5 my-3  max-w-full rounded-lg bg-zinc-900 pb-8 pl-5 pr-5 pt-8'>
+        <div className='  w-full rounded-lg bg-[#121212] pb-8 pl-5 pr-5 pt-8'>
           <h2 className='pb-5'>
             <div className='flex gap-2'>
               <b>Description</b>
