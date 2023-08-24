@@ -20,16 +20,26 @@ const PersonalityTraitsSection = () => {
   const handleCloseTraits = () => {
     setOpenT(false), setSelectedTab(true);
   };
+  // const handleOptionChangeT = (optionT: string) => {
+  //   if (selectedOptionsT.includes(optionT)) {
+  //     setSelectedOptionsT(selectedOptionsT.filter((o) => o !== optionT));
+  //   } else {
+  //     setSelectedOptionsT([...selectedOptionsT, optionT]);
+  //     console.log('ye he length', optionT.length);
+  //     setAdvance(optionT.length);
+  //   }
+  // };
   const handleOptionChangeT = (optionT: string) => {
     if (selectedOptionsT.includes(optionT)) {
       setSelectedOptionsT(selectedOptionsT.filter((o) => o !== optionT));
     } else {
-      setSelectedOptionsT([...selectedOptionsT, optionT]);
-      console.log('ye he length', optionT.length);
       setAdvance(optionT.length);
+      if (selectedOptionsT.length < 10) {
+        setSelectedOptionsT([...selectedOptionsT, optionT]);
+      } 
     }
   };
-
+  
   const handleRemoveOptionT = (optionT: string) => {
     setSelectedOptionsT(selectedOptionsT.filter((o) => o !== optionT));
     if (optionT.length == 0) {
