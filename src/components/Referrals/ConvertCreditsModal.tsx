@@ -10,6 +10,10 @@ import { log } from 'node:console';
 
 const button = [
   {
+    text: '0',
+    amount: 0,
+  },
+  {
     text: '25%',
     amount: 5530.375
   },
@@ -51,9 +55,13 @@ const ConvertCreditsModal = ({
   const [inputLength, setinputLength] = useState(0);
   const [convertedCoin, setconvertedCoin] = useState(0.0);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [inputValue, setInputValue] = useState();
+  const [percentAmount, setPercentAmount] = useState(false);
 
   const checkLength = (event: any) => {
+    setPercentAmount(false);
     setinputLength(event.target.value.length);
+    setInputValue(event.target.value);
     setconvertedCoin(event.target.value * 10);
   };
 
@@ -109,9 +117,9 @@ const ConvertCreditsModal = ({
                     </div>
                     <input
                       type='number'
-                      value={button[activeIndex].amount}
+                      value={percentAmount ? button[activeIndex].amount : inputValue}
                       id='input'
-                      onChange={() => {checkLength(activeIndex)}}
+                      onChange={checkLength}
                       placeholder={'0.00'}
                       className='text-15px mt-1 h-0 border-none bg-transparent font-normal leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
                     />
@@ -147,13 +155,13 @@ const ConvertCreditsModal = ({
                   return (
                     <button
                       key={index}
-                      className={`flex items-center justify-center rounded-[12px] ${
+                      className={`flex items-center justify-center rounded-[12px] first:hidden ${
                         activeIndex === index
                           ? 'border-[#7362C6] text-[#7362C6]'
                           : 'border-white/[0.32] text-[#FFFFFF]'
                       } border px-4 py-[10px] text-[14px] font-bold leading-5`}
                       onClick={() => {
-                        setActiveIndex(index),
+                        setActiveIndex(index), setPercentAmount(true),
                           console.log('>>>', button[activeIndex].amount);
                       }}
                     >
@@ -165,7 +173,7 @@ const ConvertCreditsModal = ({
             </div>
             <button
               className={`flex items-center justify-center rounded-[16px] px-6 py-4 text-[18px] font-bold leading-6 ${
-                inputLength > 0
+                inputLength > 0 || percentAmount === true
                   ? 'bg-[#5848BC] text-[#FFFFFF]'
                   : 'pointer-events-none bg-[#515151] text-[#979797]'
               }`}
