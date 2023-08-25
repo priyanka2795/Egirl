@@ -38,7 +38,7 @@ const CreatorStudioNavbar = ({
 
   return (
     <>
-      <div className='flex justify-between px-4 py-6 '>
+      <div className='flex justify-between px-4 py-2 bg-[#121212] shadow-white/[0.07]'>
         <div className='flex items-center gap-5 p-2'>
           <div
             className='duration-80 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full ease-in hover:bg-[#252525]'

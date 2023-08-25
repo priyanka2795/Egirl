@@ -77,8 +77,9 @@ const actions = [
 
 interface BannerProp {
   backFromProfile?: React.Dispatch<React.SetStateAction<boolean>>;
+  styleProperty?: string
 }
-const Banner = ({ backFromProfile }: BannerProp) => {
+const Banner = ({ backFromProfile , styleProperty}: BannerProp) => {
   const [actionDivShow, setActionDivShow] = useState(false);
   const [exploreSelectedTab, setExploreSelected] = useState('');
   const [collectionModalState, setCollectionModalState] = useState(false);
@@ -99,7 +100,7 @@ const Banner = ({ backFromProfile }: BannerProp) => {
   };
 
   return (
-    <div className='px-8'>
+    <div className={`${styleProperty ? styleProperty : "px-8"}`}>
       {backFromProfile === undefined ? (
         ''
       ) : (
