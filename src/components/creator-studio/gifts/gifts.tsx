@@ -59,7 +59,7 @@ function Gifts() {
 
         <div className='grid grid-cols-3 mt-4 items-center gap-9'>
           {TabName.map((item) => (
-            <div className='relative max-w-[300px] max-h-[350px]  rounded-xl overflow-hidden'>
+            <div className='relative max-w-[300px] h-[300px] rounded-xl overflow-hidden'>
               <Image src={AlbumFirst} className='w-full h-full object-cover' />
               <div className='absolute top-2 right-2'>
                 <button className='w-[30px] h-[30px] bg-[#0000007A] rounded-full p-1' onClick={() => ActiveTab(item)}>
@@ -97,7 +97,13 @@ function Gifts() {
             </div>
           ))}
         </div>
-
+        {giftCard && <GiftCardEditModal closeModal={setGiftCard} giftEditModal={giftEditPopup} />
+      }
+      {deleteModal &&
+        <GiftCardDelete DeleteModal={setDeleteModal} Heading={'Delete all gifts'}
+          Content={'Are you sure you want to delete all gifts from the Date category?'}
+          Img={true} />
+      } 
       </>
         :
         <div className='flex justify-center items-center max-w-[243px] w-full h-full m-auto'>
