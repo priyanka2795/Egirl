@@ -20,6 +20,8 @@ import poland from '../../../../public/assets/poland.png';
 import spain from '../../../../public/assets/spain.png';
 import china from '../../../../public/assets/china.png';
 import ConvertCreditsModal from '@components/Referrals/ConvertCreditsModal';
+import ConfirmConversionModal from '@components/Referrals/ConfirmConversionModal';
+import ErrorModal from './ErrorModal';
 
 const accountAnalytics = [
     {
@@ -134,11 +136,13 @@ const AnalyticsMainPage = () => {
     const [showChanges, setShowChanges] = useState(false);
     const [showCashoutModal, setShowCashoutModal] = useState(false);
     const [analyticsPage, setAnalyticsPage] = useState(false);
+    const [showConfirmModal, setShowConfirmModal] = useState(false);
+    const [showErrormModal, setShowErrormModal] = useState(false);
 
   return (
     <>
     <div className='flex flex-col py-8'>
-        <div className='cursor-pointer text-[#FFFFFF] text-[22px] font-bold leading-8' onClick={() => {setShowChanges(!showChanges)}}>Account Analytics</div>
+       <div className='cursor-pointer text-white text-[22px] font-bold leading-8' onClick={() => {setShowChanges(!showChanges)}}>Account Analytics</div>
 
         <div className='grid grid-cols-3 gap-4 mt-6'>
             {accountAnalytics.map((item,index) => {
@@ -148,10 +152,10 @@ const AnalyticsMainPage = () => {
                     <div className='flex p-2 rounded-[100px] bg-white/[0.08]'>
                         <Image src={item.icon} alt={''} />
                     </div>
-                    <div className='text-[#FFFFFF] text-[15px] font-normal leading-5'>{item.name}</div>
+                    <div className='text-white text-[15px] font-normal leading-5'>{item.name}</div>
                 </div>
                 <div className='flex flex-col gap-3'>
-                    <div className='text-[#FFFFFF] text-[32px] font-bold leading-10'>{showChanges ? item.amount : '–'}</div>
+                    <div className='text-white text-[32px] font-bold leading-10'>{showChanges ? item.amount : '–'}</div>
                     <div className='flex gap-3'>
                         <div className='flex gap-1'>
                             <div className='w-5 h-5'>
@@ -159,7 +163,7 @@ const AnalyticsMainPage = () => {
                             </div>
                             <div className={`${showChanges ? `text-[${item.color}]` : 'text-[#979797]'} text-[15px] font-normal leading-5`}>{showChanges ? item.percentage : '0%'}</div>
                         </div>
-                        <div className='text-[#FFFFFF] text-[15px] font-normal leading-5'>{showChanges ? item.updatedStatus : item.status}</div>
+                        <div className='text-white text-[15px] font-normal leading-5'>{showChanges ? item.updatedStatus : item.status}</div>
                     </div>
                 </div>
             </div>
@@ -175,10 +179,10 @@ const AnalyticsMainPage = () => {
                             <div className='flex p-2 rounded-[100px] bg-white/[0.08]'>
                                 <Image src={wallet} alt={''} />
                             </div>
-                            <div className='text-[#FFFFFF] text-[15px] font-normal leading-5'>Revenue</div>
+                            <div className='text-white text-[15px] font-normal leading-5'>Revenue</div>
                         </div>
                         <div className='flex gap-2'>
-                            <div className='text-[#FFFFFF] text-[15px] font-normal leading-5'>Month</div>
+                            <div className='text-white text-[15px] font-normal leading-5'>Month</div>
                             <Image src={arrowDown} alt={''} />
                         </div>
                     </div>
@@ -186,17 +190,27 @@ const AnalyticsMainPage = () => {
                         <div className='flex flex-col gap-1'>
                             <div className='flex flex-col gap-2'>
                                 <div className='text-center text-[#979797] text-[13px] font-normal leading-[18px]'>Total earnings</div>
-                                <div className='text-center text-[#FFFFFF] text-[36px] font-bold leading-12'>{showChanges ? '$42,726' : '$0'}</div>
+                                <div className='text-center text-white text-[36px] font-bold leading-12'>{showChanges ? '$42,726' : '$0'}</div>
                             </div>
                             <div className='flex items-center justify-center gap-3'>
                                 <div className='flex gap-1'>
                                     <Image src={showChanges ? greenArrowUp : arrowRight} alt={''} />
                                     <div className={`${showChanges ? 'text-[#5AD02E]' : 'text-[#979797]'} text-[15px] font-normal leading-5`}>{showChanges ? '20.7%' : '0%'}</div>
                                 </div>
-                                <div className='text-[#FFFFFF] text-[15px] font-normal leading-5'>{showChanges ? '+ $7k earnings this month' : '$0 earnings this month'}</div>
+                                <div className='text-white text-[15px] font-normal leading-5'>{showChanges ? '+ $7k earnings this month' : '$0 earnings this month'}</div>
                             </div>
                         </div>
-                        <div className='py-1 text-center items-center rounded-[100px] bg-white/[0.05] text-[#515151] text-[12px] font-semibold leading-4'>0%</div>
+                        {showChanges ? 
+                        <div className='overflow-hidden py-2 flex text-center items-center rounded-[100px] text-white text-[12px] font-semibold leading-4'>
+                        <div className='w-[47%] bg-[#403BAC] text-center py-1 hover:py-2 hover:bg-[#403BAC] hover:rounded-tr-[8px] hover:rounded-br-[8px]'>25%</div>
+                        <div className='w-[17%] bg-[#4F43B6] text-center py-1 hover:py-2 hover:bg-[#4F43B6] hover:rounded-[8px]'>12.5%</div>
+                        <div className='w-[17%] bg-[#5848BC] text-center py-1 hover:py-2 hover:bg-[#5848BC] hover:rounded-[8px]'>8%</div>
+                        <div className='w-[10%] bg-[#7362C6] text-center py-1 hover:py-2 hover:bg-[#7362C6] hover:rounded-[8px]'>4%</div>
+                        <div className='w-[9%] bg-[#8C7DD0] text-center py-1 hover:py-2 hover:bg-[#8C7DD0] hover:rounded-tl-[8px] hover:rounded-bl-[8px]'>1%</div>
+                    </div> :
+                            <div className='py-1 rounded-[100px] bg-white/[0.05] text-center items-center text-[#515151] text-[12px] font-semibold leading-4'>0%</div>  
+                            
+                            }
                         <div className='flex gap-6 pb-4'>
                             <div className='w-1/2 flex flex-col gap-[10px]'>
                                 {side1.map((item,index) => {
@@ -206,7 +220,7 @@ const AnalyticsMainPage = () => {
                                                 <Image src={circleBlue} alt={''} />
                                                 <div className='text-[#979797] text-[13px] font-normal leading-[18px]'>{item.text}</div>
                                             </div>
-                                            <div className='text-[#FFFFFF] text-[13px] font-semibold leading-[18px]'>{showChanges ? item.amount : '$0'}</div>
+                                            <div className='text-white text-[13px] font-semibold leading-[18px]'>{showChanges ? item.amount : '$0'}</div>
                                         </div>
                                     );
                                 })}
@@ -219,7 +233,7 @@ const AnalyticsMainPage = () => {
                                                 <Image src={circleBlue} alt={''} />
                                                 <div className='text-[#979797] text-[13px] font-normal leading-[18px]'>{item.text}</div>
                                             </div>
-                                            <div className='text-[#FFFFFF] text-[13px] font-semibold leading-[18px]'>{showChanges ? item.amount : '$0'}</div>
+                                            <div className='text-white text-[13px] font-semibold leading-[18px]'>{showChanges ? item.amount : '$0'}</div>
                                         </div>
                                     );
                                 })}
@@ -229,42 +243,42 @@ const AnalyticsMainPage = () => {
                     <div className='flex flex-col gap-1 border-t border-[#272727] mt-[9px] pt-[9px]'>
                         <div className='text-[#979797] text-[13px] font-normal leading-[18px]'>Available to cashout</div>
                         <div className='flex justify-between'>
-                            <div className='text-[#FFFFFF] text-[30px] font-bold leading-10'>{showChanges ? '$22,121.5' : '$0'}</div>
-                            <button className={`h-max flex px-4 py-[10px] justify-center items-center rounded-[10px] ${showChanges ? 'bg-[#5848BC] text-[#FFFFFF]' : 'bg-[#5848BC]/[0.3] text-white/[0.32]'} text-[14px] font-bold leading-5`} onClick={() => {setShowCashoutModal(true), setAnalyticsPage(true)}}>Cash out</button>
+                            <div className='text-white text-[30px] font-bold leading-10'>{showChanges ? '$22,121.5' : '$0'}</div>
+                            <button className={`h-max flex px-4 py-[10px] justify-center items-center rounded-[10px] ${showChanges ? 'bg-[#5848BC] text-white' : 'bg-[#5848BC]/[0.3] text-white/[0.32]'} text-[14px] font-bold leading-5`} onClick={() => {setShowCashoutModal(true), setAnalyticsPage(true)}}>Cash out</button>
                         </div>
                     </div>
                 </div>
                 <div className='flex flex-col gap-8 px-5 pt-5 pb-12 rounded-[16px] bg-[#121212]'>
                     <div className='flex items-center gap-3'>
-                        <div className='p-2 rounded-[100px] bg-white/[0.08]'>
+                        <div className='p-2 rounded-[100px] bg-white/[0.08] flex'>
                             <Image src={mic} alt={''} />
                         </div>
-                        <div className='text-[#FFFFFF] text-[18px] font-bold leading-6'>Requests</div>
+                        <div className='text-white text-[18px] font-bold leading-6'>Requests</div>
                     </div>
                     <div className='flex gap-12'>
                         <div className='w-1/2 flex flex-col gap-4 border-r border-white/[0.08]'>
                             <div className='text-[#979797] text-[15px] font-normal leading-5'>Voice requests</div>
                             <div className='flex flex-col gap-3'>
-                                <div className='text-[#FFFFFF] text-[32px] font-bold leading-10'>{showChanges ? '1,835' : '–'}</div>
+                                <div className='text-white text-[32px] font-bold leading-10'>{showChanges ? '1,835' : '–'}</div>
                                 <div className='flex gap-3'>
                                     <div className='flex gap-1'>
                                         <Image src={showChanges ? greenArrowUp : arrowRight} alt={''} />
                                         <div className={`${showChanges ? 'text-[#5AD02E]' : 'text-[#979797]'} text-[15px] font-normal leading-5`}>{showChanges ? '10.7%' : '0%'}</div>
                                     </div>
-                                    <div className='text-[#FFFFFF] text-[15px] font-normal leading-5'>{showChanges ? '+27 requests this week' : '0 requests this week'}</div>
+                                    <div className='text-white text-[15px] font-normal leading-5'>{showChanges ? '+27 requests this week' : '0 requests this week'}</div>
                                 </div>
                             </div>
                         </div>
                         <div className='flex flex-col w-1/2 gap-4'>
                             <div className='text-[#979797] text-[15px] font-normal leading-5'>Image requests</div>
                             <div className='flex flex-col gap-3'>
-                                <div className='text-[#FFFFFF] text-[32px] font-bold leading-10'>{showChanges ? '826' : '–'}</div>
+                                <div className='text-white text-[32px] font-bold leading-10'>{showChanges ? '826' : '–'}</div>
                                 <div className='flex gap-3'>
                                     <div className='flex gap-1'>
                                         <Image src={showChanges ? greenArrowUp : arrowRight} alt={''} />
                                         <div className={`${showChanges ? 'text-[#5AD02E]' : 'text-[#979797]'} text-[15px] font-normal leading-5`}>{showChanges ? '23.2%' : '0%'}</div>
                                     </div>
-                                    <div className='text-[#FFFFFF] text-[15px] font-normal leading-5'>{showChanges ? '+109 requests this week' : '0 requests this week'}</div>
+                                    <div className='text-white text-[15px] font-normal leading-5'>{showChanges ? '+109 requests this week' : '0 requests this week'}</div>
                                 </div>
                             </div>
                         </div>
@@ -275,16 +289,16 @@ const AnalyticsMainPage = () => {
                 <div className='flex flex-col gap-8 p-5 rounded-[16px] bg-[#121212]'>
                     <div className='flex gap-3'>
                         <Image src={gift} alt={''} />
-                        <div className='text-[#FFFFFF] text-[15px] font-normal leading-5'>Gifts</div>
+                        <div className='text-white text-[15px] font-normal leading-5'>Gifts</div>
                     </div>
                     <div className='flex flex-col gap-3'>
-                        <div className='text-[#FFFFFF] text-[32px] font-bold leading-10'>{showChanges ? '980' : '–'}</div>
+                        <div className='text-white text-[32px] font-bold leading-10'>{showChanges ? '980' : '–'}</div>
                             <div className='flex gap-3'>
                                 <div className='flex gap-1'>
                                     <Image src={showChanges ? greenArrowUp : arrowRight} alt={''} />
                                     <div className={`${showChanges ? 'text-[#5AD02E]' : 'text-[#979797]'} text-[15px] font-normal leading-5`}>{showChanges ? '12.5%' : '0%'}</div>
                                 </div>
-                            <div className='text-[#FFFFFF] text-[15px] font-normal leading-5'>{showChanges ? '+123 Gifts this month' : '0 Gifts this month'}</div>
+                            <div className='text-white text-[15px] font-normal leading-5'>{showChanges ? '+123 Gifts this month' : '0 Gifts this month'}</div>
                         </div>
                     </div>
                 </div>
@@ -294,7 +308,7 @@ const AnalyticsMainPage = () => {
                             <div className='pt-2 px-2 rounded-[100px] bg-white/[0.08]'>
                                 <Image className='mb-1' src={globe} alt={''} />
                             </div>
-                            <div className='mt-[3px] text-[#FFFFFF] text-[18px] font-bold leading-6'>Visits by Country</div>
+                            <div className='mt-[3px] text-white text-[18px] font-bold leading-6'>Visits by Country</div>
                         </div>
                         <Image src={arrowUpRight} alt={''} />
                     </div>
@@ -306,9 +320,9 @@ const AnalyticsMainPage = () => {
                                <div key={index} className='flex justify-between'>
                                    <div className='flex gap-2'>
                                        <Image src={item.flag} alt={''} />
-                                       <div className='text-[#FFFFFF] text-[15px] font-normal leading-5'>{item.country}</div>
+                                       <div className='text-white text-[15px] font-normal leading-5'>{item.country}</div>
                                    </div>
-                                   <div className='text-[#FFFFFF] text-[15px] font-normal leading-5'>{item.percentage}</div>
+                                   <div className='text-white text-[15px] font-normal leading-5'>{item.percentage}</div>
                                </div>
                            );
                        })}
@@ -323,7 +337,7 @@ const AnalyticsMainPage = () => {
                                     <div className={`w-[32px] h-[24px] rounded-[4px]`} style={{backgroundColor: `${item}`}}></div>
                                     <div className={`w-[160px] h-[24px] rounded-[4px]`} style={{backgroundColor: `${item}`}}></div>
                                 </div>
-                                <div className='text-[#FFFFFF] text-[15px] font-normal leading-5'>–</div>
+                                <div className='text-white text-[15px] font-normal leading-5'>–</div>
                             </div>
                         );
                     })}
@@ -335,7 +349,26 @@ const AnalyticsMainPage = () => {
         </div>
     </div>
     {
-        showCashoutModal && <ConvertCreditsModal analyticsPage={analyticsPage} setAnalyticsPage={setAnalyticsPage} closeConvertCredits={setShowCashoutModal} heading={'Cash out'} available={'Available to cash out'} amount={'$22,121.5'} buttonText={'Cash out'}/>
+        showCashoutModal && <ConvertCreditsModal confirmModal={setShowConfirmModal} analyticsPage={analyticsPage} setAnalyticsPage={setAnalyticsPage} closeConvertCredits={setShowCashoutModal} heading={'Cash out'} available={'Available to cash out'} amount={'$22,121.5'} buttonText={'Cash out'}/>
+    }
+    {
+        showConfirmModal &&      
+        <ConfirmConversionModal 
+        closeConfirmModal={setShowConfirmModal} 
+        convertCredits={setShowCashoutModal}
+        setShowErrormModal={setShowErrormModal}
+        converting={`You’re about to cash out `}
+        credits={'$5,530'} 
+        text={'. This action cannot be undone. Please review the details carefully before confirming.'}
+        />  
+    }
+    {
+        showErrormModal && 
+        <ErrorModal
+        closeConfirmModal={setShowConfirmModal}
+        convertCredits={setShowCashoutModal}
+        setShowErrormModal={setShowErrormModal}
+        />
     }
     </>
   )

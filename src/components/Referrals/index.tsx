@@ -158,8 +158,14 @@ const ReferralsIndex = () => {
       <ConvertCreditsModal closeConvertCredits={setshowConvertCredits} confirmModal={setconfirmModal} heading={'Convert to tokens'} available={'Available to convert'} amount={'$1,000'} buttonText={'Convert'} />
     }
     {
-    confirmModal &&      
-       <ConfirmConversionModal closeConfirmModal={setconfirmModal} convertCredits={setshowConvertCredits}/>  
+      confirmModal &&      
+      <ConfirmConversionModal 
+      closeConfirmModal={setconfirmModal} 
+      convertCredits={setshowConvertCredits}
+      converting={`You're converting`}
+      credits={'$250 into 1000 credits'} 
+      text={'. This action cannot be undone. Please review the details carefully before confirming.'}
+      /> 
     }
     </>
   )
