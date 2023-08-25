@@ -8,6 +8,7 @@ import Pencil from '../../../../public/assets/pencil.png';
 import EditCategoryAction from './editCategoryAction';
 import CreateCategory from './createCategory';
 import crossIcon from '../../../../public/assets/xmark (1).png';
+import Tooltip from './tooltip';
 
 
 const TabName = ['Date', 'Lol', 'Flowers']
@@ -32,28 +33,29 @@ function GiftCategoryAction() {
             <div className='flex justify-between items-center mt-4'>
                 <div className='flex items-center justify-center gap-3 '>
                     {TabName.map((items) => (
-                        <div className={`font-bold px-3 py-1.5 rounded-xl flex items-center justify-center gap-1 relative cursor-pointer ${tabs === items ? 'bg-[#FFFFFF29]' : 'bg-transparent'}`} onClick={(e) => ActiveTab(items)}
+                        <div className={`font-bold px-3 py-1.5 rounded-xl flex items-center justify-center gap-2 relative cursor-pointer ${tabs === items ? 'bg-[#FFFFFF29]' : 'bg-transparent'}`} onClick={(e) => ActiveTab(items)}
                         >
-                            <span>{items}</span>
+                            <span className={tabs == items ? "text-white" : 'text-[#979797]'}>{items}</span>
                             <button className='' onClick={() => setToggle(!toggle)}>
-                                <VerticalDots />
+                                {tabs === items ?
+                                    <VerticalDots /> : ''}
                             </button>
 
                             {toggle ?
                                 <>
                                     {tabs === items &&
-                                            <div className='bg-[#1A1A1A] p-4 flex flex-col gap-3 rounded-[14px] w-[251px] h-[92px] absolute left-0 top-12 z-50' >
-                                                <button className='flex items-center gap-2' onClick={() => CategoryAction(1)} >
-                                                    <Image src={Pencil} className='w-full h-full' alt='' />
-                                                    <p>Edit name</p>
-                                                </button>
+                                        <div className='bg-[#1A1A1A] p-4 flex flex-col gap-3 rounded-[14px] w-[251px] h-[92px] absolute left-0 top-12 z-50' >
+                                            <button className='flex items-center gap-2' onClick={() => CategoryAction(1)} >
+                                                <Image src={Pencil} className='w-full h-full' alt='' />
+                                                <p>Edit name</p>
+                                            </button>
 
-                                                <button className='flex items-center gap-2' onClick={() => CategoryAction(2)} >
-                                                    <Image src={Delete} className='w-full h-full' alt={''} />
-                                                    <p>Delete</p>
-                                                </button>
+                                            <button className='flex items-center gap-2' onClick={() => CategoryAction(2)} >
+                                                <Image src={Delete} className='w-full h-full' alt={''} />
+                                                <p>Delete</p>
+                                            </button>
 
-                                            </div>
+                                        </div>
                                     }
                                 </>
                                 : ''
@@ -62,8 +64,11 @@ function GiftCategoryAction() {
                     ))}
 
 
-                    <button className='pt-1' onClick={() => setCreateCategory(true)}>
+                    <button className='pt-1 relative group' onClick={() => setCreateCategory(true)}>
                         <Image src={plusIcon} alt='' className='h-[18px] w-[18px]' />
+                        <div className='w-full'>
+                        <Tooltip Text={'You can create only 4 categories'}  />
+                        </div>
                     </button>
                 </div>
                 <button className=''>

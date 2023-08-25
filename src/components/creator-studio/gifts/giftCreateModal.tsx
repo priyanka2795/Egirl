@@ -13,22 +13,22 @@ import CreateCategory from './createCategory';
 
 interface giftCreateModalProp {
     closeModal: any;
+    GiftsView:any;
 }
 
-function giftCreateModal({ closeModal }: giftCreateModalProp) {
-    const [addCategory, setAddCategory] = useState(true);
+function giftCreateModal({ closeModal,GiftsView }: giftCreateModalProp) {
     const [steps, setSteps] = useState(1);
 
     return (
         <>
             <Modal
                 open={true}
-                modalClassName='flex flex-col h-fit rounded-[14px] bg-[#1A1A1A]'
+                modalClassName='flex flex-col h-auto  rounded-[14px] bg-[#1A1A1A]'
                 closeModal={() => closeModal(false)}
                 modalOverlayStyle='!bg-black/80'
             >
-                <div className={'w-auto'} >
-                    {steps === 2 ? <SelectImage closeState={closeModal} /> : ''}
+                <div className={'w-auto overflow-y-auto h-[680px]'} >
+                    {steps === 2 ? <SelectImage closeState={closeModal}  GiftsView={GiftsView}/> : ''}
                 </div>
 
 

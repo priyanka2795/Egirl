@@ -26,9 +26,9 @@ const CreateCategory = ({ CategoryClose, Steps }: CreateCategory) => {
                     </div>
                 </div>
                 <div className='p-6'>
-                    <div className=' flex flex-col text-[#979797] '>
-                        <label htmlFor="category" className='text-[13px] pb-1'>Category Name</label>
-                        <input type="text" id='category' placeholder='Type a category name' className='bg-[#FFFFFF0D] rounded-[14px] h-12 px-4 border-none active:border-[#5848BC] focus:border-[#5848BC] focus:ring-[#5848BC]'
+                    <div className='flex flex-col text-[#979797] '>
+                        <label htmlFor="category" className='text-[13px] pb-[6px]'>Category Name</label>
+                        <input type="text" id='category' placeholder='Type a category name' className='bg-[#FFFFFF0D] rounded-[14px] h-12 px-4 border-none active:border-[#5848BC] focus:border-[#5848BC] focus:ring-[#5848BC] text-white placeholder:text-[#979797]'
                         />
                     </div>
                     <div className='grid grid-cols-2 mt-6 gap-3 text-white font-semibold'>
