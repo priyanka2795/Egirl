@@ -8,6 +8,7 @@ import CreateGift from './createGift';
 
 interface CategoryPopup {
     closeState: any;
+    GiftsView:any;
 }
 
 const albumdata = [
@@ -22,14 +23,14 @@ const albumdata = [
         imgPath: AlbumSecound,
     },
 ]
-function SelectImage({ closeState }: CategoryPopup) {
+function SelectImage({ closeState,GiftsView }: CategoryPopup) {
     const [createGift, setCreateGift] = useState(false);
     const [toggle, setToggle] = useState(false);
 
     return (
         <>
             {createGift ?
-                <CreateGift createGiftClose={closeState} />
+                <CreateGift createGiftClose={closeState} GiftsView={GiftsView} />
                 :
                 <>
                     <div className='flex justify-between items-center border-b border-[#FFFFFF14] p-6'>
@@ -38,9 +39,9 @@ function SelectImage({ closeState }: CategoryPopup) {
                             <Image className='w-full h-full' src={crossIcon} alt={''} />
                         </div>
                     </div>
-                    <div className='flex flex-col gap-3 p-6'>
-                        <p className='font-semibold'>Albums</p>
-                        <div className='grid grid-cols-2 gap-2'>
+                    <div className='flex flex-col gap-3 p-6 overflow-y-auto '>
+                        <p className='font-semibold'>Albums</p> 
+                        <div className='grid grid-cols-2 gap-2 '>
                             {albumdata.map((item) => (
                                 <div className='rounded-xl overflow-hidden w-[300px] h-[300px] relative cursor-pointer'
                                     onClick={() => setCreateGift(true)}>
