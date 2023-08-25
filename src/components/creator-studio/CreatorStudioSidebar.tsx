@@ -66,7 +66,7 @@ const CreatorStudioSidebar = ({
 
           <SidebarMenuItem
             text='Analytics'
-            href='/home'
+            href='/analytics'
             Icon={AnalyticsIcon}
             IconActive={HomeActiveIcon}
             StyleClasses={`${

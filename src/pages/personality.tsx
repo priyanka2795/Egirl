@@ -1,17 +1,14 @@
-import CreatorStudioLayout from '@components/common/CreatorStudioLayout'
-import Personality from '@components/creator-studio/Personality'
-import PersonalityIndex from '@components/creator-studio/personality'
+import CreatorStudioLayout from '@components/common/CreatorStudioLayout';
+import PersonalityIndex from '@components/creator-studio/Personality';
 
-import React from 'react'
+import React from 'react';
 
 const personality = () => {
   return (
     <CreatorStudioLayout>
-   {/* <PersonalityIndex/> */}
-   <Personality/>
-  </CreatorStudioLayout>
-   
-  )
-}
+      <PersonalityIndex />
+    </CreatorStudioLayout>
+  );
+};
 
-export default personality
+export default personality;

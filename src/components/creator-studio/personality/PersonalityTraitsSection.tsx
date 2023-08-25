@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Modal } from '@components/modal/modal';
 import { useRouter } from 'next/router';
-import Isymbol from './svg/Isymbol';
-import AdvanceArrow from './svg/AdvanceArrow';
-import InfoIcon from '../../../public/assets/svgImages/info-icon.svg';
-import CloseIcon from '../../../public/assets/svgImages/close-icon.svg';
-import MultiStepRangeSlider from './common/MultiStepRangeSlider';
+import Isymbol from '../svg/Isymbol';
+import AdvanceArrow from '../svg/AdvanceArrow';
+import InfoIcon from '../../../../public/assets/svgImages/info-icon.svg';
+import CloseIcon from '../../../../public/assets/svgImages/close-icon.svg';
+import MultiStepRangeSlider from '../common/MultiStepRangeSlider';
 
 // const router = useRouter();
 
@@ -137,7 +137,7 @@ const PersonalityTraitsSection = () => {
                 </div>
               </div>
 
-              <div className={`w-6 h-6 ${advanceModal ? '': 'rotate-180'}`} id='myDiv'>
+              <div className={`w-6 h-6 ${advanceModal ? 'rotate-180': ''}`} id='myDiv'>
                 <button>
                   <AdvanceArrow />
                 </button>

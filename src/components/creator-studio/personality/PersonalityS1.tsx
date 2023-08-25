@@ -1,10 +1,10 @@
 import React ,{useState} from 'react';
-import Isymbol from './svg/Isymbol';
-import Roleplay from './svg/Roleplay';
-import ConversationalIcon from './svg/ConversationalIcon';
-import InfoIcon from '../../../public/assets/svgImages/info-icon.svg';
+import Isymbol from '../svg/Isymbol';
+import Roleplay from '../svg/Roleplay';
+import ConversationalIcon from '../svg/ConversationalIcon';
+import InfoIcon from '../../../../public/assets/svgImages/info-icon.svg';
 import { Range } from 'react-range';
-import RangePicker from './common/RangePicker';
+import RangePicker from '../common/RangePicker';
 
 const PersonalityS1 = () => {
   const [values, setValues] = useState([0]);

@@ -3,9 +3,9 @@ import PersonalityS1 from './PersonalityS1';
 import PersonalityLikeSection from './PersonalityLikeSection';
 import PersonalityTraitsSection from './PersonalityTraitsSection';
 import Image from 'next/image';
-import circleInformation from '../../../public/assets/circle-information5.png'
+import circleInformation from '../../../../public/assets/circle-information5.png'
 
-const Personality = () => {
+const PersonalityContent = () => {
   return (
     <>
       <div className='flex flex-col items-start self-stretch gap-4'>
@@ -45,4 +45,4 @@ const Personality = () => {
   );
 };
 
-export default Personality;
+export default PersonalityContent;
