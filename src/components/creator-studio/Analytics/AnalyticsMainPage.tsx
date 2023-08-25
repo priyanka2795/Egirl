@@ -20,6 +20,8 @@ import poland from '../../../../public/assets/poland.png';
 import spain from '../../../../public/assets/spain.png';
 import china from '../../../../public/assets/china.png';
 import ConvertCreditsModal from '@components/Referrals/ConvertCreditsModal';
+import ConfirmConversionModal from '@components/Referrals/ConfirmConversionModal';
+import ErrorModal from './ErrorModal';
 
 const accountAnalytics = [
     {
@@ -134,6 +136,8 @@ const AnalyticsMainPage = () => {
     const [showChanges, setShowChanges] = useState(false);
     const [showCashoutModal, setShowCashoutModal] = useState(false);
     const [analyticsPage, setAnalyticsPage] = useState(false);
+    const [showConfirmModal, setShowConfirmModal] = useState(false);
+    const [showErrormModal, setShowErrormModal] = useState(false);
 
   return (
     <>
@@ -236,7 +240,7 @@ const AnalyticsMainPage = () => {
                 </div>
                 <div className='flex flex-col gap-8 px-5 pt-5 pb-12 rounded-[16px] bg-[#121212]'>
                     <div className='flex items-center gap-3'>
-                        <div className='p-2 rounded-[100px] bg-white/[0.08]'>
+                        <div className='p-2 rounded-[100px] bg-white/[0.08] flex'>
                             <Image src={mic} alt={''} />
                         </div>
                         <div className='text-[#FFFFFF] text-[18px] font-bold leading-6'>Requests</div>
@@ -335,7 +339,26 @@ const AnalyticsMainPage = () => {
         </div>
     </div>
     {
-        showCashoutModal && <ConvertCreditsModal analyticsPage={analyticsPage} setAnalyticsPage={setAnalyticsPage} closeConvertCredits={setShowCashoutModal} heading={'Cash out'} available={'Available to cash out'} amount={'$22,121.5'} buttonText={'Cash out'}/>
+        showCashoutModal && <ConvertCreditsModal confirmModal={setShowConfirmModal} analyticsPage={analyticsPage} setAnalyticsPage={setAnalyticsPage} closeConvertCredits={setShowCashoutModal} heading={'Cash out'} available={'Available to cash out'} amount={'$22,121.5'} buttonText={'Cash out'}/>
+    }
+    {
+        showConfirmModal &&      
+        <ConfirmConversionModal 
+        closeConfirmModal={setShowConfirmModal} 
+        convertCredits={setShowCashoutModal}
+        setShowErrormModal={setShowErrormModal}
+        converting={`You’re about to cash out `}
+        credits={'$5,530'} 
+        text={'. This action cannot be undone. Please review the details carefully before confirming.'}
+        />  
+    }
+    {
+        showErrormModal && 
+        <ErrorModal
+        closeConfirmModal={setShowConfirmModal}
+        convertCredits={setShowCashoutModal}
+        setShowErrormModal={setShowErrormModal}
+        />
     }
     </>
   )
