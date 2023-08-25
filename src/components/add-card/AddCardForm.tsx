@@ -27,7 +27,7 @@ const AddCardForm = ( {showSucess, showError} : AddCardFormProp ) => {
                                 <select id="country" name="countryList" className='px-4 py-3 rounded-[14px] bg-white/[0.05] w-full focus:ring-0 border-none text-[#979797] text-[15px] font-normal leading-6'>
                                         <option value="america">🇺🇸 America</option>
                                         <option value="america">🇺🇸 America</option>
-                                </select>
+                                </select> 
                             </div>
                             <div className='flex flex-col gap-[6px] w-full'>
                                 <label htmlFor="country" className='text-[#979797] text-[13px] font-semibold leading-[18px]'>State / Province</label>

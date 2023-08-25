@@ -1,24 +1,17 @@
 import React, { useState } from 'react'
-import CreatorStudioNavbar from './CreatorStudioNavbar'
-import CreatorStudioSidebar from './CreatorStudioSidebar'
-import CreatorStudioMainContent from './CreatorStudioMainContent'
-import Voice from './Voice'
-// import Personality from './Personality'
-
+import Banner from '@components/list/Banner'
+import PostCard from '@components/list/PostCard'
+import UserSection from '@components/list/UserSection'
 
 const CreatorStudio = () => {
-  const [shrinkSideBar , setShrinkSideBar] = useState(false)
-  const [mainContent ,setMainContent] = useState();
   return (
-    <div className="mx-auto max-w-[1320px] ">
-    <CreatorStudioNavbar shrinkSideBar={shrinkSideBar} setShrinkSideBar={setShrinkSideBar}/>
-    <div className="flex h-[calc(100vh-104px)] ">
-        <CreatorStudioSidebar shrinkSideBar={shrinkSideBar} setShrinkSideBar={setShrinkSideBar}/>
-        {/* <CreatorStudioMainContent/> */}
-        {/* <Personality/> */}
-        <Voice />
+    <div className='h-full mb-5'>
+    <Banner styleProperty={'px-0 pt-[32px]'}/>
+    <div className='flex gap-5 max-w-[1020px]'>
+        <PostCard />
+        <UserSection />
     </div>
-    </div>
+</div>
   )
 }
 

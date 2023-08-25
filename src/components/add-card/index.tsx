@@ -41,7 +41,7 @@ const AddCard = () => {
             </div>
           </div>
           {showSuccessPage ? (
-            <SuccessPage closeSuccessPage={setShowSuccessPage} />
+            <SuccessPage closeSuccessPage={setShowSuccessPage} message={'The payment was successfully completed'} />
           ) : showErrorPage ? (
             <ErrorPage closeErrorPage={setShowErrorPage} />
           ) : activeListTab === 'Add card' ? (

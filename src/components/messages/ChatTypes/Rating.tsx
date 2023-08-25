@@ -6,20 +6,22 @@ interface RatingProp {
   selectedStars: number;
   handleStarHover: (starCount: number) => void;
   handleStarClick: (starCount: number) => void;
+  handleStarHoverOut: (starCount: number) => void;
 }
 const Rating = ({
   selectedStars,
   handleStarHover,
-  handleStarClick
+  handleStarClick,
+  handleStarHoverOut
 }: RatingProp) => {
   return (
     <div
       className='flex justify-between cursor-pointer rating'
-      // onClick={() => setGoldenSvg(!goldenSvg)}
+      onMouseLeave={() => {handleStarHover(0)}}
     >
       <Link href='#'>
         <StarIcon
-          className={`${selectedStars >= 1 ? 'goldenSvg' : ''}`}
+          className={`${selectedStars >= 1 ? 'goldenSvg' : ''}`}         
           onMouseEnter={() => handleStarHover(0)}
           onClick={() => handleStarClick(1)}
         />
@@ -28,7 +30,7 @@ const Rating = ({
       <Link href='#'>
         <StarIcon
           className={`${selectedStars >= 2 ? 'goldenSvg' : ''}`}
-          onMouseEnter={() => handleStarHover(2)}
+          onMouseEnter={() => handleStarHover(2)}          
           onClick={() => handleStarClick(2)}
         />
       </Link>

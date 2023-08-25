@@ -3,7 +3,7 @@ import Message from './ChatTypes/Message';
 import Date from './ChatTypes/Date';
 
 interface DummyMessageProps {
-  chatName: string;
+  chatName?: string;
 }
 
 const DummyMessage = ({chatName} : DummyMessageProps) => {

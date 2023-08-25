@@ -22,12 +22,12 @@ const FeedbackTexts = ( {showFeedText, setShowFeedText, setFeedbackSent}: Feedba
     <>
     <div className='flex items-center justify-between w-full mt-3 pl-[47px]'>
         <div className='flex gap-2'>
-            <div className='w-5 h-5 mt-2' onClick={() => {setShowFeedText(false)}}>
+            <div className='w-5 h-5 mt-2 cursor-pointer' onClick={() => {setShowFeedText(false)}}>
                 <Image className='w-full h-full' src={arrowLeft} alt={''} />
             </div>
             {buttons.map((item) => {
                 return(
-                    <div className={`cursor-pointer flex px-3 py-[7px] justify-center items-center rounded-[10px] border text-[#979797] text-[12px] font-bold leading-[18px] hover:bg-white/[0.08] hover:border-transparent ${activeButton === item ? 'bg-white/[0.08] border-transparent' : 'border-white/[0.32]'}`} onClick={() => setActiveButton(item)}>{item}</div>
+                    <div className={`cursor-pointer flex px-3 py-[7px] justify-center items-center rounded-[10px] border text-[#979797] text-[12px] font-bold leading-[18px] hover:bg-white/[0.08] hover:border-transparent ${activeButton === item ? 'bg-white/[0.08] border-transparent' : 'border-white/[0.32]'}`} onClick={() => {setActiveButton(item), setFeedbackModal(true), setFeedbackSent(true)}}>{item}</div>
                 );
             })}
             

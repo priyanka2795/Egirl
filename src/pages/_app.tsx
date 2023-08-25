@@ -1,6 +1,7 @@
 import '@styles/globals.scss';
 import "../components/explore/CardStack.scss"
 import "../components/messages/TypingIndicator.scss"
+import "../components/creator-studio/common/MultiStepRangeSliderStyle.scss"
 
 import { AuthContextProvider } from '@lib/context/auth-context';
 import { ThemeContextProvider } from '@lib/context/theme-context';

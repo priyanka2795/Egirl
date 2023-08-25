@@ -5,6 +5,7 @@ import UserImg from './svg/user-img.svg';
 import BellIcon from './svg/bell.svg';
 import NotificationModal from './NotificationModal';
 import BalanceModal from './BalanceModal';
+import Link from 'next/link';
 
 interface CreatorStudioNavbarProp {
   shrinkSideBar: boolean;
@@ -37,7 +38,7 @@ const CreatorStudioNavbar = ({
 
   return (
     <>
-      <div className='flex justify-between px-4 py-6 '>
+      <div className='flex justify-between px-4 py-2 bg-[#121212] shadow-white/[0.07]'>
         <div className='flex items-center gap-5 p-2'>
           <div
             className='duration-80 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full ease-in hover:bg-[#252525]'
@@ -47,7 +48,10 @@ const CreatorStudioNavbar = ({
           >
             <MenuIcon />
           </div>
-          <CreateStudioLogo />
+          <div className="cursor-pointer">
+           <Link href='/creator-studio'><CreateStudioLogo /></Link>
+          </div>
+          
         </div>
 
         <div className='flex items-center justify-center gap-6'>
