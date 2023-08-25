@@ -1,19 +1,27 @@
 import React, { useState } from 'react';
-import { Range } from 'react-range';
+import { Range ,getTrackBackground } from 'react-range';
 
-const RangePicker = () => {
-  const [state1, setState1] = useState([0]);
+interface RangePickerProp{
+  values?:any
+  setValues?: any
+}
+const RangePicker = ({values ,setValues}:RangePickerProp) => {
+  // const [values, setValues] = useState([0]);
+  const min = 0;
+  const max = 100;
   return (
     <>
       <Range
         step={0.1}
-        min={0}
-        max={100}
-        values={state1}
-        onChange={(values) => setState1(values)}
+        min={min}
+        max={max}
+        values={values}
+        onChange={(values) => setValues(values)}
         renderTrack={({ props, children }) => (
           <div
-            {...props}
+          onMouseDown={props.onMouseDown}
+          onTouchStart={props.onTouchStart}
+            // {...props}
             style={{
               ...props.style,
               height: '4px',
@@ -22,7 +30,24 @@ const RangePicker = () => {
               borderRadius: '2px'
             }}
           >
-            {children}
+             <div
+              ref={props.ref}
+              style={{
+                height: "5px",
+                width: "100%",
+                borderRadius: "4px",
+                background: getTrackBackground({
+                  values,
+                  colors: ["#5848BC", "rgba(255, 255, 255, 0.08)"],
+                  min: min,
+                  max: max
+                }),
+                alignSelf: "center"
+              }}
+            >
+              {children}
+            </div>
+          
           </div>
         )}
         renderThumb={({ props }) => (
@@ -39,6 +64,7 @@ const RangePicker = () => {
           />
         )}
       />
+      
     </>
   );
 };

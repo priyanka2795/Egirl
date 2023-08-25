@@ -2,13 +2,19 @@ import React, { useState } from 'react'
 import { Modal } from '@components/modal/modal';
 import InfoIcon from "../../../public/assets/svgImages/info-icon.svg"
 import CloseIcon from "../../../public/assets/svgImages/close-icon.svg"
+import searchIcon from "../../../public/assets/search-alt.png"
+import Image from 'next/image';
+import PersonalityHoverModal from './PersonalityHoverModal';
 const PersonalityLikeSection = () => {
 
-    const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
+  const [seletedTab , setSelectedTab] = useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
+  const handleClose = () => {setOpen(false) , setSelectedTab(true)};
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+  const [showHoverModal , setShowHoverModal] = useState(false);
+
+  
 
   const handleOptionChange = (option: string) => {
     if (selectedOptions.includes(option)) {
@@ -25,8 +31,7 @@ const PersonalityLikeSection = () => {
   const handleClearSelection = () => {
     setSelectedOptions([]);
   };
-
-  const cancelOption = () => {
+  const clearSelection = () => {
     handleClose()
     handleClearSelection()
   }
@@ -101,18 +106,20 @@ const PersonalityLikeSection = () => {
       name: 'Dancing'
     },
     {
-      name: 'Dling'
+      name: 'Dling' 
     }
   ];
-  return (
+  return ( 
     <>
       <div className='w-full flex flex-col h-auto max-w-full rounded-lg bg-[#121212]'>
           <div className='flex justify-between max-w-full p-6 pb-5'>
             <div className="w-full">
+              {showHoverModal && <PersonalityHoverModal />}
               <h2 className='text-lg font-bold leading-[110%] flex gap-[6px]'>
-                Likes <InfoIcon/>
+                Likes 
+                <div onClick={() => {setShowHoverModal(!showHoverModal)}}><InfoIcon /></div>
               </h2>
-              <p className='text-stone-700'>0/10</p>
+              <p className='text-stone-700'>{selectedOptions.length}/10</p>
             </div>
 
             <button
@@ -122,6 +129,8 @@ const PersonalityLikeSection = () => {
              + Add
             </button>
           </div>
+          {
+            seletedTab &&
           <div className={`flex flex-wrap gap-2 ${selectedOptions.length > 0 ? "p-6 pt-0":""}`}>
             <div className='flex flex-wrap gap-5 '>
               {selectedOptions.map((option) => (
@@ -155,6 +164,7 @@ const PersonalityLikeSection = () => {
               ))}
             </div>
           </div>
+          }
         </div>
 
         <Modal
@@ -165,15 +175,16 @@ const PersonalityLikeSection = () => {
       >
         <div className="border-b border-white/[0.08] p-8 pb-6 flex justify-between items-center">
         <b className='text-2xl'>Likes</b>
-        <CloseIcon className="text-white"/>
+        <CloseIcon className="text-white" onClick={handleClose}/>
         </div>    
       
       <div className="px-8 py-4 border-b border-white/[0.08]">
-        <input
-          className='mr-2 h-[48px] w-full rounded-[14px] border-none bg-[#1E1E1E] pl-[50px] text-[15px] font-light leading-6 text-[#979797] transition duration-100 focus:ring-1 focus:ring-[#5848BC]'
-          type='text'
-          placeholder='Search'
-        />
+        <div className='flex px-4 py-3 gap-[10px] bg-white/[0.05] w-full rounded-[14px]'>
+          <div className='w-6 h-6'>
+            <Image className='w-full h-full' src={searchIcon} alt={''} />
+          </div>
+          <input type='text' className='p-0 focus:ring-0 bg-transparent border-none text-[15px] font-light leading-6 text-[#979797] ' />
+        </div>
           <div className={`flex-wrap gap-2 ${selectedOptions.length > 0 ? "flex pt-4": "hidden"}`}>
           <div className='flex flex-wrap gap-2'>
             {selectedOptions.map((option) => (
@@ -611,7 +622,8 @@ const PersonalityLikeSection = () => {
         </div>
         <div className='flex flex-row self-stretch gap-3 px-8 pt-4 pb-8'>
           <button
-            onClick={cancelOption}
+            
+            onClick={clearSelection}
             className='flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-white/[0.32] px-5 py-[13px] font-bold'
           >
             Cancel

@@ -2,6 +2,8 @@ import React from 'react';
 import PersonalityS1 from './PersonalityS1';
 import PersonalityLikeSection from './PersonalityLikeSection';
 import PersonalityTraitsSection from './PersonalityTraitsSection';
+import Image from 'next/image';
+import circleInformation from '../../../public/assets/circle-information5.png'
 
 const Personality = () => {
   return (
@@ -13,68 +15,28 @@ const Personality = () => {
 
         <PersonalityTraitsSection />
 
-        <div className='  w-full rounded-lg bg-[#121212] pb-8 pl-5 pr-5 pt-8'>
-          <h2 className='pb-5'>
-            <div className='flex gap-2'>
-              <b>Description</b>
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                width='16'
-                height='16'
-                viewBox='0 0 16 16'
-                fill='none'
-                className='mt-1'
-              >
-                <g clip-path='url(#clip0_3296_2197)'>
-                  <path
-                    fill-rule='evenodd'
-                    clip-rule='evenodd'
-                    d='M7.99935 2.00008C4.68564 2.00008 1.99935 4.68637 1.99935 8.00008C1.99935 11.3138 4.68564 14.0001 7.99935 14.0001C11.3131 14.0001 13.9993 11.3138 13.9993 8.00008C13.9993 4.68637 11.3131 2.00008 7.99935 2.00008ZM0.666016 8.00008C0.666016 3.94999 3.94926 0.666748 7.99935 0.666748C12.0494 0.666748 15.3327 3.94999 15.3327 8.00008C15.3327 12.0502 12.0494 15.3334 7.99935 15.3334C3.94926 15.3334 0.666016 12.0502 0.666016 8.00008Z'
-                    fill='#515151'
-                  />
-                  <path
-                    fill-rule='evenodd'
-                    clip-rule='evenodd'
-                    d='M8.00065 7.33325C8.36884 7.33325 8.66732 7.63173 8.66732 7.99992V10.6666C8.66732 11.0348 8.36884 11.3333 8.00065 11.3333C7.63246 11.3333 7.33398 11.0348 7.33398 10.6666V7.99992C7.33398 7.63173 7.63246 7.33325 8.00065 7.33325Z'
-                    fill='#515151'
-                  />
-                  <path
-                    fill-rule='evenodd'
-                    clip-rule='evenodd'
-                    d='M7.33398 5.33341C7.33398 4.96522 7.63246 4.66675 8.00065 4.66675H8.00732C8.37551 4.66675 8.67398 4.96522 8.67398 5.33341C8.67398 5.7016 8.37551 6.00008 8.00732 6.00008H8.00065C7.63246 6.00008 7.33398 5.7016 7.33398 5.33341Z'
-                    fill='#515151'
-                  />
-                </g>
-                <defs>
-                  <clipPath id='clip0_3296_2197'>
-                    <rect width='16' height='16' fill='white' />
-                  </clipPath>
-                </defs>
-              </svg>
+        <div className='w-full flex flex-col gap-4 p-6 rounded-[14px] bg-[#121212]'>
+          <div className='flex gap-[6px]'>
+            <div className='text-[#FFFFFF] text-[18px] font-bold leading-6'>Descriptions</div>
+            <div className='w-4 h-4'>
+              <Image className='w-full h-full' src={circleInformation} alt={''} />
             </div>
-          </h2>
-          <div className='flex flex-row '>
-            <div className='flex flex-col w-4/5 h-32 gap-2 max-h-max'>
-              <div className='flex flex-row justify-between w-11/12 p-1'>
-                <label className='text-xs'>Description</label>
-                <label className='text-xs text-stone-700'>0/2000</label>
+          </div>
+          <div className='flex w-full gap-4'>
+            <div className='w-1/2 flex flex-col gap-[6px]'>
+              <div className='flex justify-between'>
+                <div className='text-[#979797] text-[13px] font-semibold leading-[18px]'>Description</div>
+                <div className='text-[#515151] text-[14px] font-normal leading-[18px]'>0/2000</div>
               </div>
-
-              <textarea
-                placeholder='Enter a descrition here...'
-                className='h-5/6 w-11/12 resize-none rounded-lg bg-white/[0.05]'
-              ></textarea>
+              <textarea className='resize-none border-none h-[135px] py-3 pl-4 pr-3 rounded-[14px] bg-white/[0.05] text-[#979797] text-[15px] font-normal leading-6 focus:ring-0 placeholder-[#979797]' placeholder="Enter a description here..."></textarea>
             </div>
 
-            <div className='flex flex-col w-4/5 h-32 gap-2 max-h-min'>
-              <div className='flex flex-row justify-between w-11/12 p-1'>
-                <label className='text-xs'>Word Description</label>
-                <label className='text-xs text-stone-700'>0/2000</label>
+            <div className='w-1/2 flex flex-col gap-[6px]'>
+              <div className='flex justify-between'>
+                <div className='text-[#979797] text-[13px] font-semibold leading-[18px]'>World Description</div>
+                <div className='text-[#515151] text-[14px] font-normal leading-[18px]'>0/2000</div>
               </div>
-              <textarea
-                placeholder='Enter a world descrition here...'
-                className='h-5/6 w-11/12 resize-none rounded-lg bg-white/[0.05]'
-              ></textarea>
+              <textarea className='resize-none border-none h-[135px] py-3 pl-4 pr-3 rounded-[14px] bg-white/[0.05] text-[#979797] text-[15px] font-normal leading-6 focus:ring-0 placeholder-[#979797]' placeholder="Enter a world description here..."></textarea>
             </div>
           </div>
         </div>

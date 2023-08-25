@@ -11,7 +11,7 @@ const CreatorStudioLayout = ({ children }: any) => {
           shrinkSideBar={shrinkSideBar}
           setShrinkSideBar={setShrinkSideBar}
         />
-        <div className='flex gap-8'>
+        <div className='flex gap-8 '>
           <CreatorStudioSidebar
             shrinkSideBar={shrinkSideBar}
             setShrinkSideBar={setShrinkSideBar}
