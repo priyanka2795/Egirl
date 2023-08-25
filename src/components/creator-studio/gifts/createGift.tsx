@@ -7,41 +7,32 @@ import ImageSquareGray from '../svg/image-square-gray.svg';
 import Check from '../svg/check.svg';
 import plusIcon from '../../../../public/assets/plus-large.png';
 import crossIcon from '../../../../public/assets/xmark (1).png';
+import CreateCategory from './createCategory';
 
 interface CreateGiftPopup {
     createGiftClose: any;
-}
-const tabs = ['Date', 'lol']
+};
+const tabs = ['Date', 'lol'];
+
 function CreateGift({ createGiftClose }: CreateGiftPopup) {
     const [createCategory, setCreateCategory] = useState(false);
     const [tabSelectedOpt, setTabSelectedOpt] = useState('');
 
+
     const handleActiveTab = (items: any) => {
         setTabSelectedOpt(items)
-
     }
+    // const GiftCreated = () => {
+
+    //     createGiftClose(false)
+    // }
+
     return (
         <div className='w-[385px]'>
             {createCategory ?
                 <>
-                    <div className='flex justify-between items-center border-b border-[#FFFFFF14] p-6'>
-                        <h5 className='text-lg font-semibold'>Create a new category</h5>
-                        <div className='w-6 h-6 cursor-pointer' onClick={() => createGiftClose(false)}>
-                            <Image className='w-full h-full' src={crossIcon} alt={''} />
-                        </div>
-                    </div>
-                    <div className='p-6'>
-                        <div className=' flex flex-col text-[#979797] '>
-                            <label htmlFor="category" className='text-[13px] pb-1'>Category Name</label>
-                            <input type="text" id='category' placeholder='Type a category name' className='bg-[#FFFFFF0D] rounded-[14px] h-12 px-4 border-none active:border-[#5848BC] focus:border-[#5848BC] focus:ring-[#5848BC]'
-                            />
-                        </div>
-                        <div className='grid grid-cols-2 mt-6 gap-3 text-white font-semibold'>
-                            <button className='rounded-[14px] px-5 py-3 border border-[#FFFFFF52]'>Cancel</button>
-                            <button className='bg-[#5848BC] rounded-[14px] px-5 py-3'>Next</button>
 
-                        </div>
-                    </div>
+                    <CreateCategory CategoryClose={createGiftClose} Steps={3} />
                 </>
                 :
                 <>
@@ -96,7 +87,6 @@ function CreateGift({ createGiftClose }: CreateGiftPopup) {
                         </div>
 
                         <button className='flex items-center gap-2 font-semibold pb-3' onClick={() => setCreateCategory(true)} >
-                            {/* onClick={() => setAddCategory(true)} */}
                             <Image className='w-full h-full' src={plusIcon} alt={''} />
                             <p>New Category</p>
                         </button>
