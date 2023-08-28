@@ -378,12 +378,13 @@ const AnalyticsMainPage = () => {
         setShowErrormModal={setShowErrormModal}
         />
     }
+
     <ToastContainer 
-    position="bottom-center"
-    pauseOnHover
-    theme= "colored"
-    hideProgressBar={true}
-    autoClose={5000}
+      position="bottom-center"
+      pauseOnHover
+      theme= "colored"
+      hideProgressBar={true}
+      autoClose={5000}
     />
     </>
   )
