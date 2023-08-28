@@ -143,7 +143,7 @@ const AnalyticsMainPage = () => {
 
     const notify = () => {
         setShowConfirmModal(false), 
-        toast.success("Wow so easy!");
+        toast.success("Cashout successful");
     }
 
   return (
@@ -383,7 +383,7 @@ const AnalyticsMainPage = () => {
     pauseOnHover
     theme= "colored"
     hideProgressBar={true}
-    autoClose={5000000000}
+    autoClose={5000}
     />
     </>
   )
