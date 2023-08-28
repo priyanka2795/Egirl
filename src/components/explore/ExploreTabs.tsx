@@ -13,7 +13,7 @@ const ExploreTabs = ({ exploreTab, setExploreSelectedTab }: ExploreTabsProps) =>
   const tabContent = ['Swipe', 'Gallery'];
   const [exploreSelectedTab, setExploreSelected] = useState(exploreTab);
   const [subLeftModal, setsubLeftModal] = useState(false);
-  // const [filterOptionShow, setFilterOptionShow] = useState(true);
+  
   const handleExploreSelected = (e: any) => {
     setExploreSelected(e.target.innerText);
     setExploreSelectedTab(e.target.innerText);
