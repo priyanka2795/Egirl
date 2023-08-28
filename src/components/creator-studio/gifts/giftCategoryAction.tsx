@@ -10,13 +10,15 @@ import CreateCategory from './createCategory';
 import crossIcon from '../../../../public/assets/xmark (1).png';
 import Tooltip from './tooltip';
 
-
-const TabName = ['Date', 'Lol', 'Flowers']
-function GiftCategoryAction() {
+interface GiftCategoryAction {
+    AddCategory: any;
+}
+function GiftCategoryAction({ AddCategory }: GiftCategoryAction) {
     const [toggle, setToggle] = useState(false);
     const [closeState, setCloseState] = useState(false);
     const [editCategoryActionModal, setEditCategoryActionModal] = useState('');
     const [createCategory, setCreateCategory] = useState(false);
+    const [isActive, setActive] = useState(false);
     const [tabs, setTabs] = useState('Date')
 
     const CategoryAction = (e: any) => {
@@ -26,13 +28,13 @@ function GiftCategoryAction() {
     const ActiveTab = (items: any) => {
         setTabs(items)
     }
-    const [isActive, setActive] = useState(false);
+    console.log(AddCategory, 'AddCategoryAddCategory');
 
     return (
         <>
             <div className='flex justify-between items-center mt-4'>
                 <div className='flex items-center justify-center gap-3 '>
-                    {TabName.map((items) => (
+                    {AddCategory.map((items: any) => (
                         <div className={`font-bold px-3 py-1.5 rounded-xl flex items-center justify-center gap-2 relative cursor-pointer ${tabs === items ? 'bg-[#FFFFFF29]' : 'bg-transparent'}`} onClick={(e) => ActiveTab(items)}
                         >
                             <span className={tabs == items ? "text-white" : 'text-[#979797]'}>{items}</span>
@@ -64,9 +66,9 @@ function GiftCategoryAction() {
                     ))}
 
 
-                    <button className='pt-1 relative group' onClick={() => setCreateCategory(true)}>
+                    <button className='pt-1 relative group ' onClick={() => setCreateCategory(true)}>
                         <Image src={plusIcon} alt='' className='h-[18px] w-[18px]' />
-                        <div className='absolute -left-[118px] -top-2.5 transform -translate-y-2/4 -translate-x-0 transition-all'>
+                        <div className='absolute -left-[118px] -top-2.5 transform -translate-y-2/4 -translate-x-0 transition-all z-50'>
                             <Tooltip Text={'You can create only 4 categories'} />
                         </div>
                     </button>
@@ -83,9 +85,9 @@ function GiftCategoryAction() {
                 </button>
             </div>
             {closeState &&
-                <EditCategoryAction closeModal={setCloseState} EditCategoryActionModal={editCategoryActionModal} />
+                <EditCategoryAction closeModal={setCloseState} EditCategoryActionModal={editCategoryActionModal}  />
             }
-            {createCategory && <CreateCategory CategoryClose={setCreateCategory} Steps={4} />
+            {createCategory && <CreateCategory CategoryClose={setCreateCategory} Steps={4} AddCategory={AddCategory} Previous />
             }
         </>
     )

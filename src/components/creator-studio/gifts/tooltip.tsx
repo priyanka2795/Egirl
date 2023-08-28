@@ -8,7 +8,7 @@ const Tooltip = ({Text,}:Tooltip) => {
 
 
     return (
-        <div className={`absolute -top-10 bg-[#303030] rounded-lg px-3 py-1.5 group-hover:block hidden w-max tooltip`}>{Text}</div>
+        <div className={`absolute -top-10 bg-[#303030] rounded-lg px-3 py-1.5 group-hover:block hidden w-max tooltip z-50`}>{Text}</div>
     )
 }
 
