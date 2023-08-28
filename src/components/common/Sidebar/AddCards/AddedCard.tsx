@@ -39,7 +39,7 @@ const AddedCard = ( {setAddedCard} : AddedCardProps ) => {
             </div>
             {deleteDiv && 
             <div className='absolute top-[56px] right-[8px] w-[218px] px-0 py-2 rounded-[14px] bg-[#1A1A1A]' onClick={() => {setAddedCard(false)}}>
-            <div className='flex gap-2 px-4 py-[10px]'>
+            <div className='flex gap-2 px-4 py-[10px]  cursor-pointer'>
                 <div className='w-[18px] h-[18px]'>
                     <Image className='w-full h-full' src={deleteIcon} alt={''} />
                 </div>
