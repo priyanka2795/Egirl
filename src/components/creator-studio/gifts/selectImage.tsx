@@ -30,7 +30,7 @@ function SelectImage({ closeState,GiftsView }: CategoryPopup) {
     return (
         <>
             {createGift ?
-                <CreateGift createGiftClose={closeState} GiftsView={GiftsView} />
+                <CreateGift createGiftClose={closeState} GiftsView={GiftsView} Previous={setCreateGift} />
                 :
                 <>
                     <div className='flex justify-between items-center border-b border-[#FFFFFF14] p-6'>

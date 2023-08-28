@@ -13,10 +13,11 @@ import Tooltip from './tooltip';
 interface CreateGiftPopup {
     createGiftClose: any;
     GiftsView: any;
+    Previous:any;
 };
 const tabs = ['Date', 'lol'];
 
-function CreateGift({ createGiftClose, GiftsView }: CreateGiftPopup) {
+function CreateGift({ createGiftClose, GiftsView,Previous }: CreateGiftPopup) {
     const [createCategory, setCreateCategory] = useState(false);
     const [tabSelectedOpt, setTabSelectedOpt] = useState('');
 
@@ -27,6 +28,10 @@ function CreateGift({ createGiftClose, GiftsView }: CreateGiftPopup) {
     const GiftCreated = () => {
         createGiftClose(false);
         GiftsView(true)
+    }
+    const closeGifts =()=>{
+        // createGiftClose(false)
+        Previous(false);
     }
 
     return (
@@ -97,7 +102,7 @@ function CreateGift({ createGiftClose, GiftsView }: CreateGiftPopup) {
                         </button>
 
                         <div className='grid grid-cols-2 gap-3 text-white font-semibold'>
-                            <button className='rounded-[14px] px-5 py-3 border border-[#FFFFFF52]' onClick={() => createGiftClose(false)}>Cancel</button>
+                            <button className='rounded-[14px] px-5 py-3 border border-[#FFFFFF52]' onClick={() => closeGifts()} >Cancel</button>
                             {tabSelectedOpt ?
                                 <button className='bg-[#5848BC] rounded-[14px] px-5 py-3' onClick={() => GiftCreated()}>Create</button>
                                 : <button className='bg-[#5848BC] rounded-[14px] px-5 py-3 opacity-50'>Create</button>
