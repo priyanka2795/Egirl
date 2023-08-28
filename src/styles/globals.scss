@@ -510,6 +510,17 @@ h2 {
 .swipe.right .card-bottom-button, .swipe.left .card-bottom-button{
   opacity: 0.5;
 }
+
+.tooltip::before{
+	content: '';
+			position: absolute;
+			top: 100%;
+			left: 50%;
+			width: 0;
+			height: 0;
+			border: .5em solid transparent;
+			border-top-color: #303030;
+			transform: translate(-50%, 0);
 .audio-recorder.recording {
   display: flex;
   flex-direction: row-reverse;
