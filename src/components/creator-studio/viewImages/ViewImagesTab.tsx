@@ -16,7 +16,7 @@ const images = [
     },
 ];
 
-const GiftsTab = () => {
+const ViewImagesTab = () => {
     const tabContent = ['All images', 'Posted', 'Not posted', 'Albums'];
     const [exploreSelectedTab, setExploreSelected] = useState('All images');
 
@@ -60,4 +60,4 @@ const GiftsTab = () => {
   )
 }
 
-export default GiftsTab;
+export default ViewImagesTab;

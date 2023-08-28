@@ -13,7 +13,6 @@ import GiftCardEditModal from './giftCardEditModal';
 import GiftCategoryAction from './giftCategoryAction';
 import GiftCardDelete from './giftCardDelete';
 import NotFound from 'pages/404';
-import GiftsMainPage from './GiftsMainPage';
 
 const TabName = ['Romantic', 'Painting'];
 
@@ -40,13 +39,13 @@ function Gifts() {
     <>
 
       <div className='flex items-center justify-between'>
-        <h4 className='text-2xl font-bold'>View Images</h4>
+        <h4 className='text-2xl font-bold'>Gifts</h4>
         <button className='bg-[#5848BC] flex items-center justify-center h-10 gap-1.5 rounded-xl px-4 py-[10px]' onClick={() => setGiftModal(true)}>
           <Image className='h-[18px] w-[18px]' src={plusIcon} alt={''} />
           Create
         </button>
       </div>
-      <GiftsMainPage />
+     
 
       {giftsView ? <>
         <GiftCategoryAction />
