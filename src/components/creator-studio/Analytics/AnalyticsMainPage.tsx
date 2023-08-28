@@ -22,6 +22,8 @@ import china from '../../../../public/assets/china.png';
 import ConvertCreditsModal from '@components/Referrals/ConvertCreditsModal';
 import ConfirmConversionModal from '@components/Referrals/ConfirmConversionModal';
 import ErrorModal from './ErrorModal';
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
 const accountAnalytics = [
     {
@@ -139,6 +141,11 @@ const AnalyticsMainPage = () => {
     const [showConfirmModal, setShowConfirmModal] = useState(false);
     const [showErrormModal, setShowErrormModal] = useState(false);
 
+    const notify = () => {
+        setShowConfirmModal(false), 
+        toast.success("Wow so easy!");
+    }
+
   return (
     <>
     <div className='flex flex-col py-8'>
@@ -201,16 +208,16 @@ const AnalyticsMainPage = () => {
                             </div>
                         </div>
                         {showChanges ? 
-                        <div className='overflow-hidden py-2 flex text-center items-center rounded-[100px] text-white text-[12px] font-semibold leading-4'>
-                        <div className='w-[47%] bg-[#403BAC] text-center py-1 hover:py-2 hover:bg-[#403BAC] hover:rounded-tr-[8px] hover:rounded-br-[8px]'>25%</div>
-                        <div className='w-[17%] bg-[#4F43B6] text-center py-1 hover:py-2 hover:bg-[#4F43B6] hover:rounded-[8px]'>12.5%</div>
-                        <div className='w-[17%] bg-[#5848BC] text-center py-1 hover:py-2 hover:bg-[#5848BC] hover:rounded-[8px]'>8%</div>
-                        <div className='w-[10%] bg-[#7362C6] text-center py-1 hover:py-2 hover:bg-[#7362C6] hover:rounded-[8px]'>4%</div>
-                        <div className='w-[9%] bg-[#8C7DD0] text-center py-1 hover:py-2 hover:bg-[#8C7DD0] hover:rounded-tl-[8px] hover:rounded-bl-[8px]'>1%</div>
-                    </div> :
+                        <div className='h-[32px] overflow-hidden items-center flex rounded-[100px] text-white text-[12px] font-semibold leading-4'>
+                            <div className='w-[47%] bg-[#403BAC] text-center py-1 hover:py-2 hover:bg-[#403BAC] hover:rounded-tr-[8px] hover:rounded-br-[8px]'>25%</div>
+                            <div className='w-[17%] bg-[#4F43B6] text-center py-1 hover:py-2 hover:bg-[#4F43B6] hover:rounded-[8px]'>12.5%</div>
+                            <div className='w-[17%] bg-[#5848BC] text-center py-1 hover:py-2 hover:bg-[#5848BC] hover:rounded-[8px]'>8%</div>
+                            <div className='w-[10%] bg-[#7362C6] text-center py-1 hover:py-2 hover:bg-[#7362C6] hover:rounded-[8px]'>4%</div>
+                            <div className='w-[9%] bg-[#8C7DD0] text-center py-1 hover:py-2 hover:bg-[#8C7DD0] hover:rounded-tl-[8px] hover:rounded-bl-[8px]'>1%</div>
+                        </div> :
                             <div className='py-1 rounded-[100px] bg-white/[0.05] text-center items-center text-[#515151] text-[12px] font-semibold leading-4'>0%</div>  
                             
-                            }
+                        }
                         <div className='flex gap-6 pb-4'>
                             <div className='w-1/2 flex flex-col gap-[10px]'>
                                 {side1.map((item,index) => {
@@ -357,6 +364,7 @@ const AnalyticsMainPage = () => {
         closeConfirmModal={setShowConfirmModal} 
         convertCredits={setShowCashoutModal}
         setShowErrormModal={setShowErrormModal}
+        notify={notify}
         converting={`You’re about to cash out `}
         credits={'$5,530'} 
         text={'. This action cannot be undone. Please review the details carefully before confirming.'}
@@ -370,6 +378,13 @@ const AnalyticsMainPage = () => {
         setShowErrormModal={setShowErrormModal}
         />
     }
+    <ToastContainer 
+    position="bottom-center"
+    pauseOnHover
+    theme= "colored"
+    hideProgressBar={true}
+    autoClose={5000000000}
+    />
     </>
   )
 }
