@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Modal } from '@components/modal/modal';
-import InfoIcon from "../../../public/assets/svgImages/info-icon.svg"
-import CloseIcon from "../../../public/assets/svgImages/close-icon.svg"
-import searchIcon from "../../../public/assets/search-alt.png"
+import InfoIcon from "../../../../public/assets/svgImages/info-icon.svg"
+import CloseIcon from "../../../../public/assets/svgImages/close-icon.svg"
+import searchIcon from "../../../../public/assets/search-alt.png"
 import Image from 'next/image';
 import PersonalityHoverModal from './PersonalityHoverModal';
 const PersonalityLikeSection = () => {
@@ -14,14 +14,23 @@ const PersonalityLikeSection = () => {
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
   const [showHoverModal , setShowHoverModal] = useState(false);
 
+  // const handleOptionChange = (option: string) => {
+  //   if (selectedOptions.includes(option)) {
+  //     setSelectedOptions(selectedOptions.filter((o) => o !== option));
+  //   } else {
+  //     setSelectedOptions([...selectedOptions, option]);
+  //   }
+  // };
   const handleOptionChange = (option: string) => {
     if (selectedOptions.includes(option)) {
       setSelectedOptions(selectedOptions.filter((o) => o !== option));
     } else {
-      setSelectedOptions([...selectedOptions, option]);
+      if (selectedOptions.length < 10) {
+        setSelectedOptions([...selectedOptions, option]);
+      } 
     }
   };
-
+  
   const handleRemoveOption = (option: string) => {
     setSelectedOptions(selectedOptions.filter((o) => o !== option));
   };

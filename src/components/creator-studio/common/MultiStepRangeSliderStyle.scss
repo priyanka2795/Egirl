@@ -1,0 +1,30 @@
+main .rc-slider-step .rc-slider-dot:not(:first-child, :last-child) {
+  background: #121212;
+  border: #121212;
+  width: 2px;
+  bottom: -2px;
+}
+
+main .rc-slider-dot:first-child,
+main .rc-slider-dot:last-child {
+  height: 4px;
+  bottom: 0;
+}
+main .rc-slider-dot:last-child {
+  background-color: #ccc;
+  border: #ccc;
+}
+main .rc-slider-dot:first-child,
+main .rc-slider-dot.rc-slider-dot-active:last-child {
+  border-color: #5848bc;
+}
+main .rc-slider-mark-text {
+    font-size: 14px;
+    color: #515151;
+}
+main .rc-slider-mark-text:first-child{
+   margin-left: 8px;
+}
+main .rc-slider-mark-text:last-child{
+    padding-right: 10px;
+}

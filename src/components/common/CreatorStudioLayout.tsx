@@ -11,12 +11,12 @@ const CreatorStudioLayout = ({ children }: any) => {
           shrinkSideBar={shrinkSideBar}
           setShrinkSideBar={setShrinkSideBar}
         />
-        <div className='flex gap-8'>
+        <div className='flex gap-8 '>
           <CreatorStudioSidebar
             shrinkSideBar={shrinkSideBar}
             setShrinkSideBar={setShrinkSideBar}
           />
-        <div className='main-content-scroller relative h-[calc(100vh-104px)] flex-grow overflow-y-auto overflow-x-hidden bg-main-background lg:min-w-[600px] pr-4'>
+        <div className='mt-8 creator-studio-components main-content-scroller relative h-[calc(100vh-72px)] flex-grow overflow-y-auto overflow-x-hidden bg-main-background lg:min-w-[600px] pr-4'>
           {children}
           </div>
         </div>
