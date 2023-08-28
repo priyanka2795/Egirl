@@ -41,6 +41,7 @@ import CurrentPlaneModal from '@components/common/CurrentPlaneModal';
 import ImageRequestMsg from './ImageRequestMsg';
 import MessageIndicator from './MessageIndicator';
 import TextareaAutosize from 'react-textarea-autosize';
+import RecordVoice from './RecordVoice';
 
 type chatProps = {
   chatScreenClassName?: string;
@@ -86,7 +87,6 @@ export default function ChatScreen({
   const [typingState, setTypingState] = useState(false);
   const [imageUploaded, setImageUploaded] = useState([]);
   const [uploadedItemState, setUploadedItemState] = useState<any>();
-
 
   const handleChatViewModal = () => {
     setChatViewOption(!chatViewOption);
@@ -236,84 +236,88 @@ export default function ChatScreen({
           {showGiftMsg && (
             <Gift showGiftImg={showGiftImg} showGiftName={showGiftName} />
           )}
+          <div id="audio-get">Hello</div>
           {imageRequestMsg && <ImageRequestMsg />}
         </div>
       </div>
       {showInput && (
-        <div className='flex items-center bg-[red-400] px-6 pt-3'>
-          <div className='relative'>
-            <div
-              className='plus-icon mr-[10px] grid h-[32px] w-[32px] min-w-[32px] cursor-pointer place-items-center rounded-full bg-[#5848BC] transition duration-100 hover:bg-[#4b3abd]'
-              onClick={() => setSendUploadImgState(!sendUploadImgState)}
-            >
-              <PlusIcon strokeClasses='stroke-[#ffffff]' />
-            </div>
-            {sendUploadImgState && (
-              <div className='absolute -top-[152px] left-0 mt-2 inline-flex w-[218px] flex-col items-start justify-start rounded-2xl bg-zinc-900 py-2 shadow'>
-                <div className='flex-col items-center self-stretch justify-start gap-2 cursor-pointer '>
-                  <div
-                    className='flex gap-2 px-4 py-[10px] text-sm'
-                    onClick={handleChatViewModal}
-                  >
-                    <SendTransparentIcon />
-                    Send image request
-                  </div>
-                  <div
-                    className='flex gap-2 px-4 py-[10px] text-sm'
-                    onClick={handleGiftModal}
-                  >
-                    <GiftIcon />
-                    Send gift
-                  </div>
-                  <div
-                    className='flex gap-2 px-4 py-[10px] text-sm'
-                    onClick={() => setDropZoneState(true)}
-                  >
-                    <UploadIcon />
-                    {/* <input type={'file'} onChange={handleImage} /> */}
-                    {/* Upload image */}
+        <>
+          <div
+            className={`sticky bottom-[40px] flex w-full items-start bg-[red-400] px-6 pt-3`}
+          >
+            <div className='relative'>
+              <div
+                className='plus-icon mr-[10px] mt-[8px] grid h-[32px] w-[32px] min-w-[32px] cursor-pointer place-items-center rounded-full bg-[#5848BC] transition duration-100 hover:bg-[#4b3abd]'
+                onClick={() => setSendUploadImgState(!sendUploadImgState)}
+              >
+                <PlusIcon strokeClasses='stroke-[#ffffff]' />
+              </div>
+              {sendUploadImgState && (
+                <div className='absolute -top-[152px] left-0 mt-2 inline-flex w-[218px] flex-col items-start justify-start rounded-2xl bg-zinc-900 py-2 shadow'>
+                  <div className='flex-col items-center self-stretch justify-start gap-2 cursor-pointer '>
+                    <div
+                      className='flex gap-2 px-4 py-[10px] text-sm'
+                      onClick={handleChatViewModal}
+                    >
+                      <SendTransparentIcon />
+                      Send image request
+                    </div>
+                    <div
+                      className='flex gap-2 px-4 py-[10px] text-sm'
+                      onClick={handleGiftModal}
+                    >
+                      <GiftIcon />
+                      Send gift
+                    </div>
+                    <div
+                      className='flex gap-2 px-4 py-[10px] text-sm'
+                      onClick={() => setDropZoneState(true)}
+                    >
+                      <UploadIcon />
+                      {/* <input type={'file'} onChange={handleImage} /> */}
+                      {/* Upload image */}
 
-                    <ImageDropZone
-                      files={setImageUploaded}
-                      uploadedItemState={uploadedItemState}
-                      setUploadedItemState={setUploadedItemState}
-                    />
+                      <ImageDropZone
+                        files={setImageUploaded}
+                        uploadedItemState={uploadedItemState}
+                        setUploadedItemState={setUploadedItemState}
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
-            {/* {UploadedFiles} */}
-            {chatViewOption && (
-              <Modal
-                open={chatViewOption}
-                modalClassName='flex flex-col gap-5 max-w-xl bg-zinc-900 !w-[517px] rounded-2xl shadow relative bg-[#1A1A1A] rounded-[20px]'
-                modalOverlayStyle='!bg-black/80'
-                closeModal={handleChatViewModal}
-              >
-                <ImageRequestModal
+              )}
+              {/* {UploadedFiles} */}
+              {chatViewOption && (
+                <Modal
+                  open={chatViewOption}
+                  modalClassName='flex flex-col gap-5 max-w-xl bg-zinc-900 !w-[517px] rounded-2xl shadow relative bg-[#1A1A1A] rounded-[20px]'
+                  modalOverlayStyle='!bg-black/80'
                   closeModal={handleChatViewModal}
-                  setImageRequestMsg={setImageRequestMsg}
-                />
-              </Modal>
-            )}
-            {giftModal && (
-              <Modal
-                open={giftModal}
-                modalClassName='flex flex-col max-w-xl bg-zinc-900 !w-[454px] rounded-2xl shadow relative bg-[#1A1A1A] rounded-[20px]'
-                modalOverlayStyle='!bg-black/80'
-                closeModal={handleGiftModal}
-              >
-                <GiftModal
-                  setShowGiftImg={setShowGiftImg}
-                  setShowGiftName={setShowGiftName}
-                  setShowGiftMsg={setShowGiftMsg}
+                >
+                  <ImageRequestModal
+                    closeModal={handleChatViewModal}
+                    setImageRequestMsg={setImageRequestMsg}
+                  />
+                </Modal>
+              )}
+              {giftModal && (
+                <Modal
+                  open={giftModal}
+                  modalClassName='flex flex-col max-w-xl bg-zinc-900 !w-[454px] rounded-2xl shadow relative bg-[#1A1A1A] rounded-[20px]'
+                  modalOverlayStyle='!bg-black/80'
                   closeModal={handleGiftModal}
-                />
-              </Modal>
-            )}
-          </div>
-          <div className='relative flex flex-col w-full'>
-            {/* <textarea
+                >
+                  <GiftModal
+                    setShowGiftImg={setShowGiftImg}
+                    setShowGiftName={setShowGiftName}
+                    setShowGiftMsg={setShowGiftMsg}
+                    closeModal={handleGiftModal}
+                  />
+                </Modal>
+              )}
+            </div>
+            <div className='relative flex flex-col w-full'>
+              {/* <textarea
               className='resize-none min-h-[48px] max-h-[300px] w-full rounded-[14px] border-none bg-[#1E1E1E] py-[10px] pl-4 pr-[50px] text-[15px] font-light leading-6 text-[#979797] transition-all duration-100 focus:ring-1 focus:ring-transparent'
               // type='text'
               placeholder='Type a message'
@@ -325,61 +329,65 @@ export default function ChatScreen({
               onBlur={(e) => handleTypingIndicator(e)}
               style={{ outline: 'none' }}
             /> */}
-            <ul className="flex gap-1">
-              {imageUploaded?.map((file: any) => (
-                <li key={file.path}>
-                  <Image
-                    src={uploadedItemState?.preview}
-                    alt=''
-                    width='100'
-                    height='100'
-                    className="object-cover"
-                  />
-                </li>
-              ))}
-            </ul>
-            <TextareaAutosize
-              className='min-h-[48px] w-full resize-none rounded-[14px] border-none bg-[#1E1E1E] py-[10px] pl-4 pr-[50px] 
+              <ul className='flex gap-1'>
+                {imageUploaded?.map((file: any) => (
+                  <li key={file.path}>
+                    <Image
+                      src={uploadedItemState?.preview}
+                      alt=''
+                      width='100'
+                      height='100'
+                      className='object-cover'
+                    />
+                  </li>
+                ))}
+              </ul>              
+                <TextareaAutosize
+                  className='min-h-[48px] w-full resize-none rounded-[14px] border-none bg-[#1E1E1E] py-[10px] pl-4 pr-[50px] 
    text-[15px] font-light leading-6 text-[#979797] transition-all duration-100 focus:ring-1 focus:ring-transparent'
-              cacheMeasurements
-              value={message}
-              // onChange={ev => setValue(ev.target.value)}
-              onChange={(e) => setMessage(e.target.value)}
-              onFocus={() => setTypingState(true)}
-              onBlur={(e) => handleTypingIndicator(e)}
-              style={{ outline: 'none' }}
-            />
-
-            <div
-              className='absolute right-4 top-3'
-              onClick={() => setEmojiPicker((val) => !val)}
-            >
-              <SmileIcon />
-            </div>
-
-            <div className='absolute bottom-5 right-[50px]'>
-              {emojiPicker && <Emoji setMessage={setMessage} />}
-            </div>
-          </div>
-          <div className='ml-[10px] mt-[8px] transition-all duration-100'>
-            {message ? (
-              <button onClick={handleMessage}>
-                <SendIcon />
-              </button>
-            ) : (
-              <button
-                onClick={() => {
-                  setShowInput(false);
-                }}
+                  cacheMeasurements
+                  value={message}
+                  // onChange={ev => setValue(ev.target.value)}
+                  onChange={(e) => setMessage(e.target.value)}
+                  onFocus={() => setTypingState(true)}
+                  onBlur={(e) => handleTypingIndicator(e)}
+                  style={{ outline: 'none' }}
+                  maxRows={5}
+                />             
+            
+              <div
+                className='absolute bottom-3 right-4'
+                onClick={() => setEmojiPicker((val) => !val)}
               >
-                <VoiceIcon />
-              </button>
-            )}
+                <SmileIcon />
+              </div>
+
+              <div className='absolute bottom-5 right-[50px]'>
+                {emojiPicker && <Emoji setMessage={setMessage} />}
+              </div>
+            </div>
+            <div className='ml-[10px] mt-[10px] transition-all duration-100'>
+              {message ? (
+                <button onClick={handleMessage}>
+                  <SendIcon />
+                </button>
+              ) : (
+                <button
+                  onClick={() => {
+                    setShowInput(false);
+                  }}
+                >
+                  <VoiceIcon />
+                </button>
+              )}
+            </div>
           </div>
-        </div>
+          {typingState && <MessageIndicator />}
+        </>
       )}
       {!showInput && (
-        <div className='flex h-[92px] items-center justify-between border-t border-[#252525] bg-[red-400] px-6'>
+        <>
+          {/* <div className='flex h-[92px] items-center justify-between border-t border-[#252525] bg-[red-400] px-6'>
           <button
             onClick={() => {
               setShowInput(true);
@@ -395,9 +403,12 @@ export default function ChatScreen({
           <button className='grid h-[54px] min-h-[54px] w-[54px] min-w-[54px] place-items-center rounded-full bg-[#5848BC] transition duration-100 hover:bg-[#4b3abd]'>
             <SendWhiteIcon />
           </button>
-        </div>
+        </div> */}
+          <div className='flex justify-between mx-5'>
+            <RecordVoice handleMessage={handleMessage} />           
+          </div>
+        </>
       )}
-      {typingState && <MessageIndicator />}
     </div>
   );
 }

@@ -33,13 +33,13 @@ const CreatorStudioSidebar = ({
   return (
     <>
       <div
-        className={`flex h-[calc(100vh-104px)] w-full flex-col justify-between overflow-y-auto bg-[#121212] ${
+        className={`flex h-[calc(100vh-72px)] w-full flex-col justify-between overflow-y-auto bg-[#121212] ${
           shrinkSideBar === true ? 'max-w-[68px]' : ' max-w-[300px]'
         }`}
       >
-        <div>
+        <div className={`${shrinkSideBar !== true ? "max-w-[276px] mx-3 ": 'mx-2'}`}>
           <div
-            className='flex cursor-pointer items-center justify-between py-[14px] pl-6 pr-4'
+            className='flex cursor-pointer items-center justify-between py-[14px] pl-3 pr-4'
             onClick={() => setSidebarModal(!sidebarModal)}
           >
             <div className='relative flex items-center w-full gap-2'>
@@ -66,20 +66,20 @@ const CreatorStudioSidebar = ({
 
           <SidebarMenuItem
             text='Analytics'
-            href='/home'
+            href='/analytics'
             Icon={AnalyticsIcon}
             IconActive={HomeActiveIcon}
             StyleClasses={`${
               shrinkSideBar === true
                 ? 'flex !justify-center max-w-[52px] mx-auto'
-                : 'pl-6'
+                : 'pl-3'
             }`}
             sideBarMenuText={`${
               shrinkSideBar === true ? '!hidden' : 'w-full flex justify-center'
             } `}
           />
           <div
-            className={`h-10 items-start justify-start gap-2.5 px-6 py-2.5 ${
+            className={`h-10 items-start justify-start gap-2.5 px-3 py-2.5 ${
               shrinkSideBar === true ? 'hidden' : 'inline-flex '
             }`}
           >
@@ -97,7 +97,7 @@ const CreatorStudioSidebar = ({
             StyleClasses={`${
               shrinkSideBar === true
                 ? 'flex !justify-center max-w-[52px] mx-auto'
-                : 'pl-6'
+                : 'pl-3'
             }`}
             sideBarMenuText={`${
               shrinkSideBar === true ? '!hidden' : 'w-full flex justify-center'
@@ -111,7 +111,7 @@ const CreatorStudioSidebar = ({
             StyleClasses={`${
               shrinkSideBar === true
                 ? 'flex !justify-center max-w-[52px] mx-auto'
-                : 'pl-6'
+                : 'pl-3'
             }`}
             sideBarMenuText={`${
               shrinkSideBar === true ? '!hidden' : 'w-full flex justify-center'
@@ -119,7 +119,7 @@ const CreatorStudioSidebar = ({
           />
 
           <div
-            className={`h-10 items-start justify-start gap-2.5 px-6 py-2.5 ${
+            className={`h-10 items-start justify-start gap-2.5 px-3 py-2.5 ${
               shrinkSideBar === true ? 'hidden' : 'inline-flex '
             }`}
           >
@@ -135,7 +135,7 @@ const CreatorStudioSidebar = ({
             StyleClasses={`${
               shrinkSideBar === true
                 ? 'flex !justify-center max-w-[52px] mx-auto'
-                : 'pl-6'
+                : 'pl-3'
             }`}
             sideBarMenuText={`${
               shrinkSideBar === true ? '!hidden' : 'w-full flex justify-center'
@@ -149,7 +149,7 @@ const CreatorStudioSidebar = ({
             StyleClasses={`${
               shrinkSideBar === true
                 ? 'flex !justify-center max-w-[52px] mx-auto'
-                : 'pl-6'
+                : 'pl-3'
             }`}
             sideBarMenuText={`${
               shrinkSideBar === true ? '!hidden' : 'w-full flex justify-center'
@@ -163,14 +163,14 @@ const CreatorStudioSidebar = ({
             StyleClasses={`${
               shrinkSideBar === true
                 ? 'flex !justify-center max-w-[52px] mx-auto'
-                : 'pl-6'
+                : 'pl-3'
             }`}
             sideBarMenuText={`${
               shrinkSideBar === true ? '!hidden' : 'w-full flex justify-center'
             } `}
           />
           <div
-            className={`h-10 items-start justify-start gap-2.5 px-6 py-2.5 ${
+            className={`h-10 items-start justify-start gap-2.5 px-3 py-2.5 ${
               shrinkSideBar === true ? 'hidden' : 'inline-flex '
             }`}
           >
@@ -186,7 +186,7 @@ const CreatorStudioSidebar = ({
             StyleClasses={`${
               shrinkSideBar === true
                 ? 'flex !justify-center max-w-[52px] mx-auto'
-                : 'pl-6'
+                : 'pl-3'
             }`}
             sideBarMenuText={`${
               shrinkSideBar === true ? '!hidden' : 'w-full'
@@ -200,7 +200,7 @@ const CreatorStudioSidebar = ({
             StyleClasses={`${
               shrinkSideBar === true
                 ? 'flex !justify-center max-w-[52px] mx-auto'
-                : 'pl-6'
+                : 'pl-3'
             }`}
             sideBarMenuText={`${
               shrinkSideBar === true ? '!hidden' : 'w-full'
@@ -214,7 +214,7 @@ const CreatorStudioSidebar = ({
             StyleClasses={`${
               shrinkSideBar === true
                 ? 'flex !justify-center max-w-[52px] mx-auto'
-                : 'pl-6'
+                : 'pl-3'
             }`}
             sideBarMenuText={`${
               shrinkSideBar === true ? '!hidden' : 'w-full'
@@ -222,8 +222,9 @@ const CreatorStudioSidebar = ({
           />
         </div>
 
+        <div className={`${shrinkSideBar !== true ? "max-w-[276px] mx-3 ": 'mx-2'}`}>
         <div
-          className='relative flex items-center gap-2 py-3 pl-6 cursor-pointer mt-[200px]'
+          className='relative flex items-center gap-2 py-3 pl-3 cursor-pointer mt-[50px]'
           onClick={() => setMoreOptionsModal(!moreOptionsModal)}
         >
           <div>
@@ -237,6 +238,7 @@ const CreatorStudioSidebar = ({
             More
           </p>
           {moreOptionsModal && <MoreOptionsModal />}
+        </div>
         </div>
       </div>
     </>

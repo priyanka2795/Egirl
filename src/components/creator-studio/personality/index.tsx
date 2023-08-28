@@ -1,12 +1,10 @@
 import React,{useState} from 'react'
-import Personality from '../Personality'
-import CreatorStudioNavbar from '../CreatorStudioNavbar'
-import CreatorStudioSidebar from '../CreatorStudioSidebar'
+import PersonalityContent from './PersonalityContent'
 
 const PersonalityIndex = () => {
     const [shrinkSideBar , setShrinkSideBar] = useState(false)
   return (
-        <Personality/>   
+   <PersonalityContent/>
   )
 }
 

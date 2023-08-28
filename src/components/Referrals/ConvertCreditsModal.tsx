@@ -6,59 +6,91 @@ import dollarSign from '../../../public/assets/dollar-sign.png';
 import coin from '../../../public/assets/coin.png';
 import arrowDown from '../../../public/assets/arrow-sm-down.png';
 import ConfirmConversionModal from './ConfirmConversionModal';
-
+import { log } from 'node:console';
 
 const button = [
   {
-    text: '25%'
+    text: '0',
+    amount: 0,
   },
   {
-    text: '50%'
+    text: '25%',
+    amount: 5530.375
   },
   {
-    text: '75%'
+    text: '50%',
+    amount: 11060.75
   },
   {
-    text: '100%'
+    text: '75%',
+    amount: 16591.125
   },
+  {
+    text: '100%',
+    amount: 22121.5
+  }
 ];
 
-
-interface ConvertCreditsModalProp{
-  closeConvertCredits: React.Dispatch<React.SetStateAction<boolean>>
-  confirmModal:React.Dispatch<React.SetStateAction<boolean>>
+interface ConvertCreditsModalProp {
+  closeConvertCredits: React.Dispatch<React.SetStateAction<boolean>>;
+  confirmModal: React.Dispatch<React.SetStateAction<boolean>>;
+  heading: string;
+  available: string;
+  amount: string;
+  buttonText: string;
+  analyticsPage?: any;
+  setAnalyticsPage?: any;
 }
 
-const ConvertCreditsModal = ({closeConvertCredits , confirmModal}: ConvertCreditsModalProp) => {
+const ConvertCreditsModal = ({
+  closeConvertCredits,
+  analyticsPage,
+  setAnalyticsPage,
+  confirmModal,
+  heading,
+  available,
+  amount,
+  buttonText
+}: ConvertCreditsModalProp) => {
   const [inputLength, setinputLength] = useState(0);
-  // const [confirmModal, setconfirmModal] = useState(false);
-  const [convertedCoin, setconvertedCoin] = useState(0.00);
+  const [convertedCoin, setconvertedCoin] = useState(0.0);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [inputValue, setInputValue] = useState();
+  const [percentAmount, setPercentAmount] = useState(false);
 
-  const checkLength = (event:any) => {
+  const checkLength = (event: any) => {
+    setPercentAmount(false);
     setinputLength(event.target.value.length);
-    setconvertedCoin(event.target.value*10);
-  }
+    setInputValue(event.target.value);
+    setconvertedCoin(event.target.value * 10);
+  };
 
-  const handleModal = () =>{
-    confirmModal(true) ,
-   setTimeout(() =>{
-    closeConvertCredits(false)
-   },400)
-  }
-
+  const handleModal = () => {
+    confirmModal(true),
+      setTimeout(() => {
+        closeConvertCredits(false);
+      }, 400);
+  };
 
   return (
     <>
-    <div>
-      <Modal
-            open={true}
-            modalClassName='flex flex-col w-full rounded-2xl h-max bg-[#121212] max-w-[400px] confirm'
-            closeModal={() => closeConvertCredits(false)}
-            modalOverlayStyle='!bg-black/80'
+      <div>
+        <Modal
+          open={true}
+          modalClassName='flex flex-col w-full rounded-2xl h-max bg-[#121212] max-w-[400px] confirm'
+          closeModal={() => closeConvertCredits(false)}
+          modalOverlayStyle='!bg-black/80'
         >
-          <div className='flex justify-between p-6 border-b border-white/[0.08]'>
-            <div className='text-[#FFFFFF] text-[18px] font-bold leading-6'>Convert to tokens</div>
-            <div className='w-6 h-6' onClick={() => closeConvertCredits(false)}>
+          <div className='flex justify-between border-b border-white/[0.08] p-6'>
+            <div className='text-[18px] font-bold leading-6 text-[#FFFFFF]'>
+              {heading}
+            </div>
+            <div
+              className='w-6 h-6'
+              onClick={() => {
+                closeConvertCredits(false);
+              }}
+            >
               <Image className='w-full h-full' src={crossIcon} alt={''} />
             </div>
           </div>
@@ -67,41 +99,95 @@ const ConvertCreditsModal = ({closeConvertCredits , confirmModal}: ConvertCredit
             <div className='flex flex-col gap-4'>
               <div className='flex flex-col gap-4'>
                 <div className='flex justify-between'>
-                  <div className='text-[#979797] text-[15px] font-semibold leading-5'>Available to convert</div>
-                  <div className='text-[#FFFFFF] text-[15px] font-semibold leading-5'>$1,000</div>
+                  <div className='text-[15px] font-semibold leading-5 text-[#979797]'>
+                    {available}
+                  </div>
+                  <div className='text-[15px] font-semibold leading-5 text-[#FFFFFF]'>
+                    {amount}
+                  </div>
                 </div>
                 <div className='relative flex flex-col gap-2'>
-                  <div className='flex px-4 py-3 rounded-[14px] bg-white/[0.05]'>
+                  <div className='flex rounded-[14px] bg-white/[0.05] px-4 py-3'>
                     <div className='w-6 h-6'>
-                      <Image className='w-full h-full' src={dollarSign} alt={''} /> 
+                      <Image
+                        className='w-full h-full'
+                        src={dollarSign}
+                        alt={''}
+                      />
                     </div>
-                    <input type='number' id='input' onChange={checkLength} placeholder={'0.00'} className='h-0 mt-1 placeholder:text-[#979797] text-[#979797] focus:ring-0 text-15px font-normal leading-6 bg-transparent border-none'/>
+                    <input
+                      type='number'
+                      value={percentAmount ? button[activeIndex].amount : inputValue}
+                      id='input'
+                      onChange={checkLength}
+                      placeholder={'0.00'}
+                      className='text-15px mt-1 h-0 border-none bg-transparent font-normal leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
+                    />
                   </div>
-                  <div className='flex px-4 py-3 rounded-[14px] bg-white/[0.05]'>
-                    <div className='w-6 h-6'>
-                      <Image className='w-full h-full' src={coin} alt={''} /> 
-                    </div>
-                    <input type='number' value={convertedCoin > 0 ? convertedCoin : '0.00'} placeholder={'0.00'} className='h-0 mt-1 text-[#979797] focus:ring-0 text-15px font-normal leading-6 bg-transparent border-none'/>
-                  </div>
-                  <div className='absolute flex p-[6px] top-[33px] left-[149px] rounded-[100px] border-2 border-[#1A1A1A] bg-[#272727]'>
-                    <Image className='w-5 h-5' src={arrowDown} alt={''} />
-                  </div>
+                  {analyticsPage ? (
+                    ''
+                  ) : (
+                    <>
+                      <div className='flex rounded-[14px] bg-white/[0.05] px-4 py-3'>
+                        <div className='w-6 h-6'>
+                          <Image
+                            className='w-full h-full'
+                            src={coin}
+                            alt={''}
+                          />
+                        </div>
+                        <input
+                          type='number'
+                          value={convertedCoin > 0 ? convertedCoin : '0.00'}
+                          placeholder={'0.00'}
+                          className='text-15px mt-1 h-0 border-none bg-transparent font-normal leading-6 text-[#979797] focus:ring-0'
+                        />
+                      </div>
+                      <div className='absolute left-[149px] top-[33px] flex rounded-[100px] border-2 border-[#1A1A1A] bg-[#272727] p-[6px]'>
+                        <Image className='w-5 h-5' src={arrowDown} alt={''} />
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
               <div className='grid grid-cols-2 gap-2'>
-                {button.map((item) => {
-                  return(
-                    <button className='flex justify-center items-center rounded-[12px] border border-white/[0.32] text-[#FFFFFF] text-[14px] font-bold leading-5 px-4 py-[10px]'>{item.text}</button>
+                {button.map((item, index) => {
+                  return (
+                    <button
+                      key={index}
+                      className={`flex items-center justify-center rounded-[12px] first:hidden ${
+                        activeIndex === index
+                          ? 'border-[#7362C6] text-[#7362C6]'
+                          : 'border-white/[0.32] text-[#FFFFFF]'
+                      } border px-4 py-[10px] text-[14px] font-bold leading-5`}
+                      onClick={() => {
+                        setActiveIndex(index), setPercentAmount(true),
+                          console.log('>>>', button[activeIndex].amount);
+                      }}
+                    >
+                      {item.text}
+                    </button>
                   );
                 })}
               </div>
             </div>
-            <button className={`flex items-center justify-center px-6 py-4 rounded-[16px] text-[18px] font-bold leading-6 ${inputLength > 0 ? 'bg-[#5848BC] text-[#FFFFFF]' : 'bg-[#515151] text-[#979797] pointer-events-none'}`} onClick={() =>{handleModal()}}>Convert</button>
+            <button
+              className={`flex items-center justify-center rounded-[16px] px-6 py-4 text-[18px] font-bold leading-6 ${
+                inputLength > 0 || percentAmount === true
+                  ? 'bg-[#5848BC] text-[#FFFFFF]'
+                  : 'pointer-events-none bg-[#515151] text-[#979797]'
+              }`}
+              onClick={() => {
+                handleModal();
+              }}
+            >
+              {buttonText}
+            </button>
           </div>
-      </Modal>
-    </div>
+        </Modal>
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default ConvertCreditsModal
+export default ConvertCreditsModal;

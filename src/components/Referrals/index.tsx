@@ -62,15 +62,15 @@ const ReferralsIndex = () => {
   return (
     <>
     <div className='flex flex-col items-center gap-20 w-[1020px] px-40 py-20'>
-      <div className='flex flex-col items-center gap-10'>
-        <div className='flex flex-col gap-3 w-[417px]'>
+      <div className='flex flex-col items-center w-full gap-10'>
+        <div className='flex flex-col gap-3'>
           <div className='text-[#FFFFFF] text-[32px] font-bold leading-10 text-center'>Referral Program</div>
           <div className='text-center text-[#979797] text-[15px] font-normal leading-5'>Earn up to 15% of your referrals spending on Egirls.ai</div>
         </div>
-        <div className='w-[700px] justify-between items-center grid grid-cols-3 relative'>
-          {programSteps.map((item) => {
+        <div className='relative flex justify-between w-full'>
+          {programSteps.map((item, index) => {
             return(
-              <div className='flex w-[182px] flex-col items-center gap-5'>
+              <div key={index} className='flex flex-col items-center gap-5 max-w-[182px]'>
                 <div className='flex p-6 rounded-[100px] bg-white/[0.05]'>
                   <Image className='w-full h-full' src={item.image} alt={''} />
                 </div>
@@ -155,11 +155,17 @@ const ReferralsIndex = () => {
     }
     {
       showConvertCredits && 
-      <ConvertCreditsModal closeConvertCredits={setshowConvertCredits} confirmModal={setconfirmModal}/>
+      <ConvertCreditsModal closeConvertCredits={setshowConvertCredits} confirmModal={setconfirmModal} heading={'Convert to tokens'} available={'Available to convert'} amount={'$1,000'} buttonText={'Convert'} />
     }
-     {
-    confirmModal &&      
-       <ConfirmConversionModal closeConfirmModal={setconfirmModal} convertCredits={setshowConvertCredits}/>  
+    {
+      confirmModal &&      
+      <ConfirmConversionModal 
+      closeConfirmModal={setconfirmModal} 
+      convertCredits={setshowConvertCredits}
+      converting={`You're converting`}
+      credits={'$250 into 1000 credits'} 
+      text={'. This action cannot be undone. Please review the details carefully before confirming.'}
+      /> 
     }
     </>
   )

@@ -1,119 +1,144 @@
 import React, { useState } from 'react';
 import { Modal } from '@components/modal/modal';
 import { useRouter } from 'next/router';
-import Isymbol from './svg/Isymbol';
-import AdvanceArrow from './svg/AdvanceArrow';
-import InfoIcon from '../../../public/assets/svgImages/info-icon.svg';
-import CloseIcon from '../../../public/assets/svgImages/close-icon.svg';
+import Isymbol from '../svg/Isymbol';
+import AdvanceArrow from '../svg/AdvanceArrow';
+import InfoIcon from '../../../../public/assets/svgImages/info-icon.svg';
+import CloseIcon from '../../../../public/assets/svgImages/close-icon.svg';
+import MultiStepRangeSlider from '../common/MultiStepRangeSlider';
 
 // const router = useRouter();
 
 const PersonalityTraitsSection = () => {
   const [openT, setOpenT] = React.useState(false);
-  const handleOpenTraits = () => setOpenT(true);
-  const handleCloseTraits = () => setOpenT(false);
-
   const [selectedOptionsT, setSelectedOptionsT] = useState<string[]>([]);
   const [advance, setAdvance] = useState(0);
-  const [advanceModal, setAdvanceMOdal] = React.useState(false);
+  const [advanceModal, setAdvanceModal] = React.useState(false);
+  const [seletedTab, setSelectedTab] = useState(false);
 
+  const handleOpenTraits = () => setOpenT(true);
+  const handleCloseTraits = () => {
+    setOpenT(false), setSelectedTab(true);
+  };
+  // const handleOptionChangeT = (optionT: string) => {
+  //   if (selectedOptionsT.includes(optionT)) {
+  //     setSelectedOptionsT(selectedOptionsT.filter((o) => o !== optionT));
+  //   } else {
+  //     setSelectedOptionsT([...selectedOptionsT, optionT]);
+  //     console.log('ye he length', optionT.length);
+  //     setAdvance(optionT.length);
+  //   }
+  // };
   const handleOptionChangeT = (optionT: string) => {
     if (selectedOptionsT.includes(optionT)) {
       setSelectedOptionsT(selectedOptionsT.filter((o) => o !== optionT));
     } else {
-      setSelectedOptionsT([...selectedOptionsT, optionT]);
-      console.log('ye he length', optionT.length);
       setAdvance(optionT.length);
+      if (selectedOptionsT.length < 10) {
+        setSelectedOptionsT([...selectedOptionsT, optionT]);
+      } 
     }
   };
-
   
   const handleRemoveOptionT = (optionT: string) => {
     setSelectedOptionsT(selectedOptionsT.filter((o) => o !== optionT));
-    if(optionT.length==0){
+    if (optionT.length == 0) {
       setAdvance(0);
     }
     // router.reload();
   };
 
   function AdvanceModal() {
-    setAdvanceMOdal(true);
+    setAdvanceModal(!advanceModal);
   }
 
   const handleClearSelection = () => {
     setSelectedOptionsT([]);
   };
   const clearSelection = () => {
-    handleCloseTraits()
-    handleClearSelection()
-    setAdvance(0)
-  }
+    handleCloseTraits();
+    handleClearSelection();
+    setAdvance(0);
+  };
   return (
     <>
-      <div className='w-full flex flex-col h-auto max-w-full rounded-lg bg-[#121212]'>
+      <div className='flex h-auto w-full max-w-full flex-col rounded-lg bg-[#121212]'>
         <div className='flex justify-between max-w-full p-6 pb-5'>
           <div className='w-full'>
-            
-            <h2 className='text-lg font-bold leading-[110%] flex gap-[6px]'>
-            Traits<InfoIcon/>
-              </h2>
-            <p className='text-stone-700'>0/10</p>
+            <h2 className='flex gap-[6px] text-lg font-bold leading-[110%]'>
+              Traits
+              <InfoIcon />
+            </h2>
+            <p className='text-stone-700'>{selectedOptionsT.length}/10</p>
           </div>
 
-         <button
-              className='flex items-center justify-center h-[40px] w-[84px] justify-center rounded-xl border border-white/[0.32] text-sm font-bold'
-              onClick={handleOpenTraits}
-            >
-             + Add
-            </button>
+          <button
+            className='flex h-[40px] w-[84px] items-center justify-center justify-center rounded-xl border border-white/[0.32] text-sm font-bold'
+            onClick={handleOpenTraits}
+          >
+            + Add
+          </button>
         </div>
-        <div className={`flex flex-wrap gap-2 ${selectedOptionsT.length > 0 ? "p-6 pt-0":""}`}>
-          <div className='flex flex-wrap gap-5 '>
-            {selectedOptionsT.map((optionT) => (
-              <div
-                key={optionT}
-                className='flex gap-2 pt-3 pb-3 pl-5 pr-5 text-sm rounded-xl bg-neutral-800'
-              >
-                {optionT}{' '}
-                <span
-                  className='cursor-pointer '
-                  onClick={() => handleRemoveOptionT(optionT)}
+        {seletedTab && (
+          <div
+            className={`flex flex-wrap gap-2 ${
+              selectedOptionsT.length > 0 ? 'p-6 pt-0' : ''
+            }`}
+          >
+            <div className='flex flex-wrap gap-5 '>
+              {selectedOptionsT.map((optionT) => (
+                <div
+                  key={optionT}
+                  className='flex gap-2 pt-3 pb-3 pl-5 pr-5 text-sm rounded-xl bg-neutral-800'
                 >
-                  {/* &#10006; */}
-                  <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    width='18'
-                    height='18'
-                    viewBox='0 0 18 18'
-                    fill='none'
+                  {optionT}{' '}
+                  <span
+                    className='cursor-pointer '
+                    onClick={() => handleRemoveOptionT(optionT)}
                   >
-                    <path
-                      d='M4.5 4.5L13.5 13.5M13.5 4.5L4.5 13.5'
-                      stroke='#979797'
-                      stroke-width='1.35'
-                      stroke-linecap='round'
-                      stroke-linejoin='round'
-                    />
-                  </svg>
-                </span>
-              </div>
-            ))}
+                    {/* &#10006; */}
+                    <svg
+                      xmlns='http://www.w3.org/2000/svg'
+                      width='18'
+                      height='18'
+                      viewBox='0 0 18 18'
+                      fill='none'
+                    >
+                      <path
+                        d='M4.5 4.5L13.5 13.5M13.5 4.5L4.5 13.5'
+                        stroke='#979797'
+                        stroke-width='1.35'
+                        stroke-linecap='round'
+                        stroke-linejoin='round'
+                      />
+                    </svg>
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-        <div className={` h-auto flex-col items-start gap-6 self-stretch pb-0 ${advance!== 0? 'flex px-6':'hidden'}`}>
+        )}
+        <div
+          className={` h-auto flex-col items-start gap-6 self-stretch pb-0 ${
+            advance !== 0 ? 'flex px-6' : 'hidden'
+          }`}
+        >
           {advance ? (
-            <div className='flex h-[24px] items-start gap-1.5 self-stretch justify-between '>
-              <div className='flex gap-3 '>
+            <div
+              onClick={AdvanceModal}
+              className='flex h-[24px] cursor-pointer items-start justify-between gap-1.5 self-stretch'
+            >
+              <div className='flex items-center gap-3'>
                 <h6 className='text-lg font-bold leading-6 '>
                   Advance Settings
                 </h6>
-                <div className='h-4 w-4'>
+                <div className='w-4 h-4'>
                   <Isymbol />
                 </div>
               </div>
 
-              <div className=' h-6 w-6 ' id='myDiv'>
-                <button onClick={AdvanceModal}>
+              <div className={`w-6 h-6 ${advanceModal ? 'rotate-180': ''}`} id='myDiv'>
+                <button>
                   <AdvanceArrow />
                 </button>
               </div>
@@ -122,192 +147,150 @@ const PersonalityTraitsSection = () => {
             <p></p>
           )}
 
-          <div >
+          <div className='w-full'>
             {advanceModal ? (
-              < div className='flex gap-6 flex-col items-start self-stretch'>
+              <div className='flex flex-col items-start self-stretch gap-6 pb-6 border-b border-white/[0.16] mb-6'>
                 {/* SECTION1 */}
-                <div className='flex items-start gap-6 self-stretch'>
-
-                  <div className='flex flex-col items-start gap-1 '>
-                    <div className='flex items-center gap-1 self-stretch'>
+                <div className='flex items-start self-stretch gap-6'>
+                  <div className='flex flex-col items-start w-1/2 gap-1 '>
+                    <div className='flex items-center self-stretch gap-1'>
                       <b className='text-base font-bold leading-5'>Horny</b>
                       <div className='h-[14px] w-[14px]'>
-                        <Isymbol/>
+                        <Isymbol />
                       </div>
                     </div>
-                    <div className='flex pt-3 flex-col items-end gap-2 self-stretch'>
-                            <div></div>
-                            <div className='flex justify-between items-start self-stretch '>
-                                <b className='text-sm font-normal leading-[18px]'>Low</b>
-                                <b className='text-sm font-normal leading-[18px]'>Low Mid</b>
-                                <b className='text-sm font-normal leading-[18px]'>Mid</b>
-                                <b className='text-sm font-normal leading-[18px]'>MId High</b>
-                                <b className='text-sm font-normal leading-[18px]'>High</b>
-                            </div>
+                    <div className='w-full pt-3'>                     
+                        <MultiStepRangeSlider />                    
                     </div>
                   </div>
 
-
-                  <div className='flex flex-col items-start gap-1 '>
-                  <div className='flex items-center gap-1 self-stretch'>
+                  <div className='flex flex-col items-start w-1/2 gap-1 '>
+                    <div className='flex items-center self-stretch gap-1'>
                       <b className='text-base font-bold leading-5'>Angry</b>
                       <div className='h-[14px] w-[14px]'>
-                        <Isymbol/>
+                        <Isymbol />
                       </div>
                     </div>
-                    <div className='flex pt-3 flex-col items-end gap-2 self-stretch'>
-                    <div></div>
-                            <div className='flex justify-between items-start self-stretch'>
-                                <b className='text-sm font-normal leading-[18px]'>Low</b>
-                                <b className='text-sm font-normal leading-[18px]'>Low Mid</b>
-                                <b className='text-sm font-normal leading-[18px]'>Mid</b>
-                                <b className='text-sm font-normal leading-[18px]'>MId High</b>
-                                <b className='text-sm font-normal leading-[18px]'>High</b>
-                            </div>
+                    <div className='w-full pt-3'>                      
+                        <MultiStepRangeSlider />                     
                     </div>
                   </div>
-
                 </div>
 
                 {/* SECTION2 */}
 
-                <div className='flex items-start gap-6 self-stretch'>
-
-                  <div className='flex flex-col items-start gap-1 '>
-                    <div className='flex items-center gap-1 self-stretch'>
-                      <b className='text-base font-bold leading-5'>Aggressive</b>
+                <div className='flex items-start self-stretch gap-6'>
+                  <div className='flex flex-col items-start w-1/2 gap-1 '>
+                    <div className='flex items-center self-stretch gap-1'>
+                      <b className='text-base font-bold leading-5'>
+                        Aggressive
+                      </b>
                       <div className='h-[14px] w-[14px]'>
-                        <Isymbol/>
+                        <Isymbol />
                       </div>
                     </div>
-                    <div className='flex pt-3 flex-col items-end gap-2 self-stretch'>
-                    <div></div>
-                            <div className='flex justify-between items-start self-stretch '>
-                                <b className='text-sm font-normal leading-[18px]'>Low</b>
-                                <b className='text-sm font-normal leading-[18px]'>Low Mid</b>
-                                <b className='text-sm font-normal leading-[18px]'>Mid</b>
-                                <b className='text-sm font-normal leading-[18px]'>MId High</b>
-                                <b className='text-sm font-normal leading-[18px]'>High</b>
-                            </div>
+                    <div className='w-full pt-3'>                   
+                      <MultiStepRangeSlider />                    
                     </div>
                   </div>
 
-
-                  <div className='flex flex-col items-start gap-1 '>
-                  <div className='flex items-center gap-1 self-stretch'>
+                  <div className='flex flex-col items-start w-1/2 gap-1 '>
+                    <div className='flex items-center self-stretch gap-1'>
                       <b className='text-base font-bold leading-5'>Polite</b>
                       <div className='h-[14px] w-[14px]'>
-                        <Isymbol/>
+                        <Isymbol />
                       </div>
                     </div>
-                    <div className='flex pt-3 flex-col items-end gap-2 self-stretch'>
-                    <div></div>
-                            <div className='flex justify-between items-start self-stretch '>
-                                <b className='text-sm font-normal leading-[18px]'>Low</b>
-                                <b className='text-sm font-normal leading-[18px]'>Low Mid</b>
-                                <b className='text-sm font-normal leading-[18px]'>Mid</b>
-                                <b className='text-sm font-normal leading-[18px]'>MId High</b>
-                                <b className='text-sm font-normal leading-[18px]'>High</b>
-                            </div>
+                    <div className='w-full pt-3'>                      
+                        <MultiStepRangeSlider />                    
                     </div>
                   </div>
-
                 </div>
 
                 {/* SECTION3 */}
 
-                <div className='flex items-start gap-6 self-stretch'>
-
-                  <div className='flex flex-col items-start gap-1 '>
-                    <div className='flex items-center gap-1 self-stretch'>
+                <div className='flex items-start self-stretch gap-6'>
+                  <div className='flex flex-col items-start w-1/2 gap-1 '>
+                    <div className='flex items-center self-stretch gap-1'>
                       <b className='text-base font-bold leading-5'>Wild</b>
                       <div className='h-[14px] w-[14px]'>
-                        <Isymbol/>
+                        <Isymbol />
                       </div>
                     </div>
-                    <div className='flex pt-3 flex-col items-end gap-2 self-stretch'>
-
-                    </div>
+                    <div className='w-full pt-3'><MultiStepRangeSlider /></div>
                   </div>
 
-
-                  <div className='flex flex-col items-start gap-1 '>
-                  <div className='flex items-center gap-1 self-stretch'>
+                  <div className='flex flex-col items-start w-1/2 gap-1 '>
+                    <div className='flex items-center self-stretch gap-1'>
                       <b className='text-base font-bold leading-5'>Horny</b>
                       <div className='h-[14px] w-[14px]'>
-                        <Isymbol/>
+                        <Isymbol />
                       </div>
                     </div>
-                    <div className='flex pt-3 flex-col items-end gap-2 self-stretch'>
-                        
+                    <div className='w-full pt-3'>                      
+                        <MultiStepRangeSlider />                     
                     </div>
                   </div>
-
                 </div>
 
                 {/* SECTION4 */}
 
-                <div className='flex items-start gap-6 self-stretch'>
-
-                  <div className='flex flex-col items-start gap-1 '>
-                    <div className='flex items-center gap-1 self-stretch'>
+                <div className='flex items-start self-stretch gap-6'>
+                  <div className='flex flex-col items-start w-1/2 gap-1 '>
+                    <div className='flex items-center self-stretch gap-1'>
                       <b className='text-base font-bold leading-5'>Horny</b>
                       <div className='h-[14px] w-[14px]'>
-                        <Isymbol/>
+                        <Isymbol />
                       </div>
                     </div>
-                    <div className='flex pt-3 flex-col items-end gap-2 self-stretch'>
-
+                    <div className='w-full pt-3'>                      
+                        <MultiStepRangeSlider />                     
                     </div>
                   </div>
 
-
-                  <div className='flex flex-col items-start gap-1 '>
-                  <div className='flex items-center gap-1 self-stretch'>
+                  <div className='flex flex-col items-start w-1/2 gap-1 '>
+                    <div className='flex items-center self-stretch gap-1'>
                       <b className='text-base font-bold leading-5'>Angry</b>
                       <div className='h-[14px] w-[14px]'>
-                        <Isymbol/>
+                        <Isymbol />
                       </div>
                     </div>
-                    <div className='flex pt-3 flex-col items-end gap-2 self-stretch'>
-                        
+                    <div className='w-full pt-3'>                      
+                        <MultiStepRangeSlider />                     
                     </div>
                   </div>
-
                 </div>
 
                 {/* SECTION5 */}
 
-                <div className='flex items-start gap-6 self-stretch'>
-
-                  <div className='flex flex-col items-start gap-1 '>
-                    <div className='flex items-center gap-1 self-stretch'>
-                      <b className='text-base font-bold leading-5'>Aggressive</b>
+                <div className='flex items-start self-stretch gap-6'>
+                  <div className='flex flex-col items-start w-1/2 gap-1 '>
+                    <div className='flex items-center self-stretch gap-1'>
+                      <b className='text-base font-bold leading-5'>
+                        Aggressive
+                      </b>
                       <div className='h-[14px] w-[14px]'>
-                        <Isymbol/>
+                        <Isymbol />
                       </div>
                     </div>
-                    <div className='flex pt-3 flex-col items-end gap-2 self-stretch'>
-
+                    <div className='w-full pt-3'>                      
+                        <MultiStepRangeSlider />                     
                     </div>
                   </div>
 
-
-                  <div className='flex flex-col items-start gap-1 '>
-                  <div className='flex items-center gap-1 self-stretch'>
+                  <div className='flex flex-col items-start w-1/2 gap-1 '>
+                    <div className='flex items-center self-stretch gap-1'>
                       <b className='text-base font-bold leading-5'>Polite</b>
                       <div className='h-[14px] w-[14px]'>
-                        <Isymbol/>
+                        <Isymbol />
                       </div>
                     </div>
-                    <div className='flex pt-3 flex-col items-end gap-2 self-stretch'>
-                        
+                    <div className='w-full pt-3'>                      
+                        <MultiStepRangeSlider />                     
                     </div>
                   </div>
-
                 </div>
-                </div>
-              
+              </div>
             ) : (
               <></>
             )}
@@ -315,7 +298,6 @@ const PersonalityTraitsSection = () => {
         </div>
       </div>
 
-     
       {/* -------------------traits modal---------------------- */}
 
       <Modal
@@ -326,7 +308,7 @@ const PersonalityTraitsSection = () => {
       >
         <div className='flex items-center justify-between border-b border-white/[0.08] p-8 pb-6'>
           <b className='text-2xl'>Traits</b>
-          <CloseIcon className='text-white' onClick={handleCloseTraits}/>
+          <CloseIcon className='text-white' onClick={handleCloseTraits} />
         </div>
 
         <div className='border-b border-white/[0.08] px-8 py-4'>
@@ -335,12 +317,16 @@ const PersonalityTraitsSection = () => {
             type='text'
             placeholder='Search'
           />
-          <div className={`flex-wrap gap-2 ${selectedOptionsT.length > 0 ? "flex pt-4": "hidden"}`}>
+          <div
+            className={`flex-wrap gap-2 ${
+              selectedOptionsT.length > 0 ? 'flex pt-4' : 'hidden'
+            }`}
+          >
             <div className='flex flex-wrap gap-2 '>
               {selectedOptionsT.map((optionT) => (
                 <div
                   key={optionT}
-                  className='flex gap-2 p-1 py-[3px] px-2 text-sm rounded-lg bg-neutral-800'
+                  className='flex gap-2 rounded-lg bg-neutral-800 p-1 px-2 py-[3px] text-sm'
                 >
                   {optionT}{' '}
                   <span
@@ -373,8 +359,8 @@ const PersonalityTraitsSection = () => {
         {/* <hr className='mb-5 bg-zinc-900' /> */}
         <div className='px-6 pt-4'>
           <div className=''>
-          <div className="font-bold text-[#979797] pb-3">A</div>
-           
+            <div className='pb-3 font-bold text-[#979797]'>A</div>
+
             <div className='flex flex-wrap gap-2'>
               <div className='relative'>
                 <input
@@ -474,7 +460,7 @@ const PersonalityTraitsSection = () => {
           </div>
 
           <div className=''>
-          <div className="font-bold text-[#979797] pb-3">B</div>          
+            <div className='pb-3 font-bold text-[#979797]'>B</div>
 
             <div className='flex flex-wrap gap-2'>
               <div className='relative'>
@@ -518,7 +504,7 @@ const PersonalityTraitsSection = () => {
           </div>
 
           <div className=''>
-          <div className="font-bold text-[#979797] pb-3">C</div>          
+            <div className='pb-3 font-bold text-[#979797]'>C</div>
 
             <div className='flex flex-wrap gap-2'>
               <div className='relative'>
@@ -649,7 +635,7 @@ const PersonalityTraitsSection = () => {
           </button>
           <button
             onClick={handleCloseTraits}
-            className='flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-[#5848BC] px-5 py-[13px] font-bold bg-[#5848BC]'
+            className='flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-[#5848BC] bg-[#5848BC] px-5 py-[13px] font-bold'
           >
             Save
           </button>
