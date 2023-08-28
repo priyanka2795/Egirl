@@ -138,14 +138,16 @@
     // background: linear-gradient(324deg, rgba(64, 59, 172, 0.08) 0%, rgba(88, 72, 188, 0.48) 82.08%);
     background: linear-gradient(to bottom right, #6150B9, #29244e);
   }
-  .filter-bg-gradient{
+
+  .explore-gallery-filter .slick-slide:not(.slick-active)  .filter-bg-gradient{
     background: linear-gradient(to right, #202020 , #0b0b0b)
   }
-  .filter-bg-gradient p{
+  .explore-gallery-filter .slick-slide:not(.slick-active) .filter-bg-gradient p{
     background: linear-gradient(to right ,#989898, #373737);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+
 
   .custom-checkbox.custom-checkbox-circle{
     @apply mb-0
