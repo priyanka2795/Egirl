@@ -42,6 +42,8 @@ const Card = ({ data, onLike, onHate , zIndex , isActive ,showSingleProfile}: an
       setMoveX(event.clientX - startX);
       setMoveY(event.clientY - startY);
     }
+    // console.log(moveX , 'moveX')
+    // console.log(moveY , 'moveY')
   };
 
   const onPointerUp = () => {
@@ -78,6 +80,7 @@ const Card = ({ data, onLike, onHate , zIndex , isActive ,showSingleProfile}: an
     transform: `translate3d(${moveX}px, ${moveY}px , 0) rotate(${(moveX / window.innerWidth) * 50}deg)`,
     zIndex:  zIndex  
   };
+  // const cardContent = isActive && moveY < 0 ? 'Test' : '';
 
   return (
     <div
@@ -88,15 +91,18 @@ const Card = ({ data, onLike, onHate , zIndex , isActive ,showSingleProfile}: an
       onPointerUp={onPointerUp}
       onPointerLeave={onPointerUp}
     >
-      <CardSlider infoModalCard={infoModal} setInfoModalCard={setInfoModal} 
-      showSingleProfile={showSingleProfile}
+      <CardSlider
+        infoModalCard={infoModal}
+        setInfoModalCard={setInfoModal}
+        showSingleProfile={showSingleProfile}
       />
       <div className={`is-like ${moveX > 0 || animation === "animation-added-right" ? 'like' : moveX < 0 || animation === "animation-added-left" ? 'nope': ''} ${Math.abs((moveX / innerWidth * 2.1))}`}
        ></div>
-         <div className='relative w-full h-[84px] mb-6'>      
+      <div className='relative w-full h-[84px] mb-6'>
         <div id='like' className="w-[84px] h-full absolute right-[61px] z-50" onClick={handleLikeBtn}/>        
         <div id='hate' className="w-[84px] h-full absolute left-[61px] z-50" onClick={handleHateBtn}/>
       </div>
+      {/* <div className="card-content">{cardContent}</div> */}
     </div>
   );
 };
