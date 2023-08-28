@@ -51,7 +51,9 @@ function CreateGift({ createGiftClose, GiftsView }: CreateGiftPopup) {
                                 <div className=''>
                                     <Edit className='w-full h-full' alt={''} />
                                 </div>
-                                    <Tooltip Text={'Edit'} W={30}/>
+                                   <div className='absolute -top-2 -left-2.5 transform -translate-y-2/4 -translate-x-0 transition-all'>
+                                   <Tooltip Text={'Edit'}  />
+                                   </div>
                             </div>
 
                         </div>

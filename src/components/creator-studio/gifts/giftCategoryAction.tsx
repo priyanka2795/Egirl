@@ -66,14 +66,16 @@ function GiftCategoryAction() {
 
                     <button className='pt-1 relative group' onClick={() => setCreateCategory(true)}>
                         <Image src={plusIcon} alt='' className='h-[18px] w-[18px]' />
-                        <Tooltip Text={'You can create only 4 categories'} W={64} />
+                        <div className='absolute -left-[118px] -top-2.5 transform -translate-y-2/4 -translate-x-0 transition-all'>
+                            <Tooltip Text={'You can create only 4 categories'} />
+                        </div>
                     </button>
                 </div>
                 <button className=''>
                     <div className={`relative ${isActive ? "w-[360px]" : 'w-[30px]'}`} >
-                        <span className='absolute left-2 top-[9px]' onClick={() => setActive(!isActive)}
+                        <span className='absolute left-2 top-[14px]' onClick={() => setActive(!isActive)}
                         ><Image className='h-[24px] w-[24px]' src={Search} alt={''} /></span>
-                        <input type="text" className={`border-2 border-[#FFFFFF52] bg-transparent rounded-[14px] h-12 px-4 active:border-[#5848BC] focus:border-[#5848BC] focus:ring-transparent pl-8 text-xl w-full ${isActive ? "border" : 'border-none'}`} placeholder='Search' />
+                        <input type="text" className={`border-2 border-[#FFFFFF52] bg-transparent rounded-[14px] h-12 px-4 placeholder:text-white active:border-[#5848BC] focus:border-[#5848BC] focus:ring-transparent pl-8 text-[14px] w-full ${isActive ? "border" : 'border-none'}`} placeholder='Search' />
                         {isActive ?
                             <span className='absolute right-2 top-3' onClick={() => setActive(!isActive)} ><Image className='w-full h-full' src={crossIcon} alt={''} /></span> : ''
                         }
