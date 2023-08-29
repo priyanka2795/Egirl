@@ -8,11 +8,12 @@ interface giftCreateModalProp {
     closeModal: any;
     GiftsView:any;
     GiftName:any;
+    SetGiftName:any;
     AddCategory:any;
+    SetCategory:any;
 }
-function giftCreateModal({ closeModal,GiftsView,GiftName,AddCategory }: giftCreateModalProp) {
+function giftCreateModal({ closeModal,GiftsView,GiftName,SetGiftName,AddCategory,SetCategory }: giftCreateModalProp) {
     const [steps, setSteps] = useState(1);
-
     return (
         <>
             <Modal
@@ -22,14 +23,14 @@ function giftCreateModal({ closeModal,GiftsView,GiftName,AddCategory }: giftCrea
                 modalOverlayStyle='!bg-black/80'
             >
                 <div className={'w-auto overflow-y-auto h-max'} >
-                    {steps === 2 ? <SelectImage closeState={closeModal}  GiftsView={GiftsView} AddCategory={AddCategory} GiftName={GiftName}/> : ''}
+                    {steps === 2 ? <SelectImage closeState={closeModal} GiftsView={GiftsView} AddCategory={AddCategory} SetCategory={SetCategory} GiftName={GiftName} SetGiftName={SetGiftName}/> : ''}
                 </div>
 
 
             </Modal>
 
             {steps === 1 ?
-                <CreateCategory CategoryClose={closeModal}  Steps={setSteps} AddCategory={AddCategory} Previous /> : ''}
+                <CreateCategory CategoryClose={closeModal}  Steps={setSteps} AddCategory={AddCategory} Previous SetCategory={SetCategory} /> : ''}
         </>
     )
 }

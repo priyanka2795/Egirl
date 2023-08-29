@@ -12,7 +12,10 @@ import GiftCardDelete from './giftCardDelete';
 // dots-horizontal-white
 interface CardEditModal {
     closeModal: any;
-    giftEditModal: any;
+    GiftEditModal: any;
+    DeleteGift:any;
+    DeleteIndex:any;
+    DeleteBtnStep:any;
 }
 const moveData = [
     {
@@ -32,8 +35,9 @@ const moveData = [
     }
 
 ]
-function GiftCardEditModal({ closeModal, giftEditModal }: CardEditModal) {
+function GiftCardEditModal({ closeModal, GiftEditModal,DeleteGift,DeleteIndex,DeleteBtnStep }: CardEditModal) {
 
+console.log(GiftEditModal,'GiftEditModal');
 
     return (
         <>
@@ -43,7 +47,7 @@ function GiftCardEditModal({ closeModal, giftEditModal }: CardEditModal) {
                 closeModal={() => closeModal(false)}
                 modalOverlayStyle='!bg-black/80'
             >
-                {giftEditModal === 1 ?
+                {GiftEditModal === 1 ?
 
                     <div className='w-[385px] '>
                         <div className='flex justify-between items-center border-b border-[#FFFFFF14] p-6'>
@@ -66,7 +70,7 @@ function GiftCardEditModal({ closeModal, giftEditModal }: CardEditModal) {
 
                             </div>
                         </div>
-                    </div> : giftEditModal === 2 ?
+                    </div> : GiftEditModal === 2 ?
 
                         <div className='w-[385px] '>
 
@@ -115,8 +119,8 @@ function GiftCardEditModal({ closeModal, giftEditModal }: CardEditModal) {
                         </div> : ''}
 
             </Modal>
-            {giftEditModal === 3 ?
-                <GiftCardDelete DeleteModal={closeModal} Heading={'Delete gift'} Content={'Are you sure you want to delete the Romantic dinner gift?'} Img={false} /> : ''
+            {GiftEditModal === 3 ?
+                <GiftCardDelete DeleteModal={closeModal} Heading={'Delete gift'} Content={'Are you sure you want to delete the Romantic dinner gift?'} Img={false} DeleteGift={DeleteGift}  DeleteIndex={DeleteIndex} DeleteAllGift DeleteBtnStep={DeleteBtnStep} /> : ''
 
             }
         </>

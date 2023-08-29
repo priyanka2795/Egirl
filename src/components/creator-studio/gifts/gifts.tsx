@@ -12,37 +12,54 @@ import DotsHorizontal from "../../../../public/assets/dots-horizontal-white.png"
 import GiftCardEditModal from './giftCardEditModal';
 import GiftCategoryAction from './giftCategoryAction';
 import GiftCardDelete from './giftCardDelete';
-import NotFound from 'pages/404';
 
-const TabName: any = [];
-const categories: any = [];
 
 function Gifts() {
   const [giftModal, setGiftModal] = useState(false);
   const [giftCard, setGiftCard] = useState(false);
   const [toggle, setToggle] = useState(false);
-  const [deleteModal, setDeleteModal] = useState(false);
-  const [giftEditPopup, setGiftEditPopup] = useState('')
+  const [giftEditPopup, setGiftEditPopup] = useState()
   const [tabs, setTabs] = useState('');
   const [giftsView, setGiftsView] = useState(false);
-  const [deleteGift, setDeleteGift] = useState([])
+  const [GiftCardName, setGiftCardName] = useState([]);
+  const [deleteModal, setDeleteModal] = useState(false);
+  const [deleteIndex, setDeleteIndex] = useState();
+  const [deleteBtnStep, setDeleteBtnStep] = useState(0);
+  const [addCategory, setAddCategory] = useState([]);
+
 
   const EditGift = (e: any) => {
     setGiftCard(true);
     setGiftEditPopup(e);
   }
-  // const DeleteGift = (ind: any) => {
-  //   // setGiftEditPopup(1);
-  //   var newArray = TabName.filter((item: any, index: number, array: any) => index !== ind);
-  //   console.log(newArray,'newArray');
+
+  const DeleteGiftCardModal = (ind: any, Num: any) => {
+    setGiftCard(true);
+    setGiftEditPopup(Num);
+    setDeleteIndex(ind);
+    setDeleteBtnStep(1);
+  }
+
+  const DeleteGift = (ind: any) => {
+    setGiftCard(false)
+    setGiftCardName(oldValue => {
+      return oldValue.filter((item: any, index: number, array: any) => index !== ind)
+    })
+  }
+
+  const DeleteAllGiftCard = () => {
+    setDeleteModal(true)
+    setDeleteBtnStep(2)
+
+  }
+
+  const DeleteActionCategoryModal = (ind: any, Step: any) => {
+    console.log(ind, Step ,"index Number");
     
-  //   setDeleteGift(newArray);
+  }
+  const DeleteActionCategory = () => {
 
-  //   TabName.push(deleteGift);
-  //   console.log(TabName, 'TabName');
-
-
-  // }
+  }
 
   const ActiveTab = (items: any) => {
     setTabs(items);
@@ -61,19 +78,19 @@ function Gifts() {
       </div>
 
       {giftsView ? <>
-        <GiftCategoryAction AddCategory={categories} />
+        <GiftCategoryAction AddCategory={addCategory} SetCategory={setAddCategory}  />
 
         <div className='flex justify-between items-center mt-4'>
           <p className='text-[#979797]'>1/9 gifts</p>
-          <button className='flex items-center justify-center gap-1' onClick={() => setDeleteModal(true)} >
+          <button className='flex items-center justify-center gap-1' onClick={() => DeleteAllGiftCard()} >
             <Image className='h-[18px] w-[18px]' src={Delete} alt={''} />
             <p>Clear all</p>
           </button>
         </div>
 
-        <div className='grid grid-cols-3 mt-4 items-center gap-9'>
-          {TabName.map((item: any, index: number) => (
-            <div className='relative max-w-[300px] h-[300px] rounded-xl overflow-hidden' key={index}>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-4 items-center gap-9'>
+          {GiftCardName.map((item: any, index: number) => (
+            <div className='relative w-[300px] h-[300px] rounded-xl overflow-hidden' key={index}>
               <Image src={AlbumFirst} className='w-full h-full object-cover' />
               <div className='absolute top-2 right-2'>
                 <button className='w-[30px] h-[30px] bg-[#0000007A] rounded-full p-1' onClick={() => ActiveTab(item)}>
@@ -95,7 +112,8 @@ function Gifts() {
                           <p>Move to another category</p>
                         </button>
 
-                        <button className='flex items-center gap-2' onClick={() => EditGift(3)}>
+                        <button className='flex items-center gap-2'
+                          onClick={() => DeleteGiftCardModal(index, 3)} >
                           <Image src={Delete} className='w-full h-full' alt={''} />
                           <p>Delete</p>
                         </button>
@@ -112,14 +130,15 @@ function Gifts() {
           ))}
         </div>
 
-        {giftCard && <GiftCardEditModal closeModal={setGiftCard} giftEditModal={giftEditPopup} />
+        {giftCard && <GiftCardEditModal closeModal={setGiftCard} GiftEditModal={giftEditPopup} DeleteGift={DeleteGift} DeleteIndex={deleteIndex} DeleteBtnStep={deleteBtnStep} />
         }
 
         {deleteModal &&
           <GiftCardDelete DeleteModal={setDeleteModal} Heading={'Delete all gifts'}
             Content={'Are you sure you want to delete all gifts from the Date category?'}
-            Img={true} />
+            Img={true} DeleteGift DeleteIndex DeleteAllGift={setGiftCardName} DeleteBtnStep={deleteBtnStep} CategoryActionIndex />
         }
+
       </>
         :
         <div className='flex justify-center items-center max-w-[243px] w-full h-full m-auto'>
@@ -134,7 +153,7 @@ function Gifts() {
         </div>
       }
 
-      {giftModal && <GiftCreateModal closeModal={setGiftModal} GiftsView={setGiftsView} GiftName={TabName} AddCategory={categories} />
+      {giftModal && <GiftCreateModal closeModal={setGiftModal} GiftsView={setGiftsView} GiftName={GiftCardName} SetGiftName={setGiftCardName} AddCategory={addCategory} SetCategory={setAddCategory} />
       }
 
     </>

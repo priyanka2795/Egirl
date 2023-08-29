@@ -11,10 +11,10 @@ interface CreateCategory {
     Steps: any;
     Previous: any;
     AddCategory: any;
+    SetCategory: any;
 }
-const CreateCategory = ({ CategoryClose, Steps, Previous, AddCategory }: CreateCategory) => {
+const CreateCategory = ({ CategoryClose, Steps, Previous, AddCategory, SetCategory }: CreateCategory) => {
     const [inputvalue, setInputValue] = useState('');
-
     const handleChange = (e: any) => {
         const { name, value } = e.target;
         setInputValue(value);
@@ -23,15 +23,15 @@ const CreateCategory = ({ CategoryClose, Steps, Previous, AddCategory }: CreateC
         if (inputvalue === '') {
             alert('Please Enter Value')
         } else if (Steps === 3) {
-            AddCategory.push(inputvalue);
+            SetCategory([...AddCategory, inputvalue])
             Previous(false)
         } else if (Steps === 4) {
-            AddCategory.push(inputvalue);
+            SetCategory([...AddCategory, inputvalue])
             CategoryClose(false);
 
         } else {
-            // console.log(AddCategory.push(inputvalue));
-            AddCategory.push(inputvalue);
+            SetCategory([...AddCategory, inputvalue])
+            // AddCategory.push(inputvalue);
             Steps(2);
         }
     }
