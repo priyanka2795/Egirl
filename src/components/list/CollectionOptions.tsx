@@ -50,7 +50,7 @@ const [titleText , setTitleText] = useState("");
         cardImgClasses='relative !max-h-[230px]'
         cardId='card-1'
         getCardId={setImageDropdownId}
-        dropdownCardId={imageDropdownId}
+        dropdownCardId={imageDropdownId} 
         filterFunction={(e : any) => handleFilterContent(e)}
       />
 
