@@ -1,8 +1,13 @@
 import React from 'react'
+import StyleBeingGenerated from './StyleBeingGenerated'
+import StyleGenerator from './StyleGenerator'
 
 const StyleGeneratorIndex = () => {
   return (
-    <div>StyleGeneratorIndex</div>
+    <div className="flex flex-col gap-5">
+      <StyleBeingGenerated />
+      <StyleGenerator />
+    </div>
   )
 }
 
