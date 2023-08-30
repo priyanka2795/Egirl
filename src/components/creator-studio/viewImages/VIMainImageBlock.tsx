@@ -36,8 +36,10 @@ const images = [
     image: image6
   },
 ];
-
-const VIMainImageBlock = () => {
+interface VIMainImageBlock{
+  ActiveTabs:any;
+}
+const VIMainImageBlock = ({ActiveTabs}:VIMainImageBlock) => {
   const [showDropDown, setShowDropDown] = useState(false);
   const [currentId, setCurrentId] = useState(-1);
 
@@ -64,7 +66,7 @@ const VIMainImageBlock = () => {
             </div>
           );
         })}
-        {currentId !==-1  && <ViewImagesDropDown />}
+        {currentId !==-1  && <ViewImagesDropDown ActiveTabs={ActiveTabs}/>}
     </div>
     {/* {
     showDropDown && <ViewImagesDropDown />
