@@ -2,13 +2,12 @@ import React, { useState } from 'react';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import PreviewContent from './PreviewContent';
-import ChatContent from './ChatContent';
 import PostsContent from './PostsContent';
 import MediaContent from './MediaContent';
 
 
 const PostCard = () => {
-  const tabContent = ['Preview', 'Chat', 'Posts', 'Media'];
+  const tabContent = ['Preview', 'Posts', 'Media'];
   const [exploreSelectedTab, setExploreSelected] = useState('Preview');
 
   const handleExploreSelected = (e: any) => {
@@ -38,17 +37,15 @@ const PostCard = () => {
       {exploreSelectedTab === 'Preview' ? (
         <PreviewContent />
       ) : (
-        exploreSelectedTab === 'Chat' ? (
-          <ChatContent />
-        ) : (
-          exploreSelectedTab === 'Posts' ? (
+        exploreSelectedTab === 'Posts' ? (
           <PostsContent />
         ) : (
           exploreSelectedTab === 'Media' ? (
-          <MediaContent />
-        ) : (
-          <></>
-        )))
+            <MediaContent />
+          ) : (
+            <></>
+          )
+        )
       )}
     </div>
   );

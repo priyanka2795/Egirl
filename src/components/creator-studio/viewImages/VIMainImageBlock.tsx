@@ -40,16 +40,25 @@ const images = [
 const VIMainImageBlock = () => {
   const [showDropDown, setShowDropDown] = useState(false);
   const [currentId, setCurrentId] = useState(-1);
+  const [storedId, setStoredId] = useState(currentId);
 
-  const handleThreeDots = (index:any) => {
-    setShowDropDown(!showDropDown);
-    if(currentId === index) {
-      setCurrentId(-1);
-    }
-    else {
-      setCurrentId(index);
-    }
-  }
+  // const handleThreeDots = (index:any) => {
+  //   setCurrentId(index);
+  //   console.log('>>>currentId', currentId);
+    
+  //   if(storedId === currentId) {
+  //     setShowDropDown(!showDropDown);
+  //     console.log('Inside if>>>currentId', currentId);
+  //     setStoredId(currentId);
+  //     console.log('Inside if>>>storedId', storedId);
+  //   }
+  //   else if(storedId !== currentId) {
+  //     setShowDropDown(true);
+  //     console.log('Inside else>>>currentId', currentId);
+  //     setStoredId(currentId);
+  //     console.log('Inside else>>>storedId', storedId);
+  //   }
+  // };
 
   return (
     <>
@@ -57,18 +66,18 @@ const VIMainImageBlock = () => {
         {images.map((item,index) => {
           return(
             <div key={index} className='relative group'>
-              <Image className='h-[571px]' src={item.image} alt={''} />
-              <div className='cursor-pointer invisible bg-black bg-opacity-40 opacity-0 group-hover:visible group-hover:opacity-100 absolute top-[7px] right-[7px] px-[8px] py-[5px] rounded-[100px] bg-black/[0.48]' onClick={handleThreeDots}>
+              <div className=''>
+                <Image className='h-full' src={item.image} alt={''} />
+              </div>
+              <div className='cursor-pointer invisible bg-black bg-opacity-40 opacity-0 group-hover:visible group-hover:opacity-100 absolute top-[7px] right-[7px] px-[8px] py-[5px] rounded-[100px] bg-black/[0.48]' onClick={() => {setCurrentId(index); currentId === storedId ? (setShowDropDown(!showDropDown), setStoredId(currentId)) : (setShowDropDown(true),setStoredId(currentId))}}>
                 <Image className='!mt-[3px]' src={threeDots} alt={''} />
               </div>
+              {showDropDown && currentId === index ? <ViewImagesDropDown /> : <></>}
             </div>
           );
         })}
-        {currentId !==-1  && <ViewImagesDropDown />}
     </div>
-    {/* {
-    showDropDown && <ViewImagesDropDown />
-    } */}
+   
     </>
   )
 }
