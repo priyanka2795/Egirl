@@ -91,7 +91,7 @@ const CreatorStudioSidebar = ({
           </div>
           <SidebarMenuItem
             text='View Images'
-            href='/home'
+            href='/view-images'
             Icon={ViewImg}
             IconActive={HomeActiveIcon}
             StyleClasses={`${
