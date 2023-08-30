@@ -38,7 +38,7 @@ const ViewImagesDropDown = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   return (
     <div>
-      <div className='absolute top-[223px] right-[747px] flex flex-col py-1 w-[200px] h-max rounded-[14px] bg-[#1A1A1A]'>
+      <div className='absolute z-10 top-[46px] right-[7px] flex flex-col py-1 w-[200px] h-max rounded-[14px] bg-[#1A1A1A]'>
         {images.map((item,index) => {
           return(
             <div key={index} className={`${activeIndex === index  && 'rounded-[8px] bg-white/[0.05]'} cursor-pointer flex gap-2 px-4 py-[10px]`} onClick={() => {setActiveIndex(index)}}>
