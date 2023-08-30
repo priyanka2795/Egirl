@@ -54,15 +54,18 @@ function GiftCategoryAction({ AddCategory, SetCategory, }: GiftCategoryAction) {
         setEditCategoryActionModal(Step);
         setCloseState(true);
         setCategoryActionIndex(ind);
-        
+    }
 
-    }
-    
-    const DeleteActionCategory = (ind:any) => {
+    const DeleteActionCategory = (ind: any) => {
         SetCategory((oldValue: any[]) => {
-        return oldValue.filter((item: any, index: number, array: any) => index !== ind)
-    })
+            return oldValue.filter((item: any, index: number, array: any) => index !== ind)
+        })
     }
+
+
+ 
+
+
 
     return (
         <>
@@ -119,8 +122,9 @@ function GiftCategoryAction({ AddCategory, SetCategory, }: GiftCategoryAction) {
                     </div>
                 </button>
             </div>
+            
             {closeState &&
-                <EditCategoryAction closeModal={setCloseState} EditCategoryActionModal={editCategoryActionModal} EditName={editName} SetEditName={setEditName} UpdateCategoryName={UpdateCategoryName}  DeleteActionCategory={DeleteActionCategory} CategoryActionIndex={categoryActionIndex}/>
+                <EditCategoryAction closeModal={setCloseState} EditCategoryActionModal={editCategoryActionModal} EditName={editName} SetEditName={setEditName} UpdateCategoryName={UpdateCategoryName} DeleteActionCategory={DeleteActionCategory} CategoryActionIndex={categoryActionIndex} />
             }
             {createCategory && <CreateCategory CategoryClose={setCreateCategory} Steps={4} AddCategory={AddCategory} SetCategory={SetCategory} Previous />
             }

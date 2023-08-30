@@ -120,8 +120,8 @@ console.log(GiftEditModal,'GiftEditModal');
 
             </Modal>
             {GiftEditModal === 3 ?
-                <GiftCardDelete DeleteModal={closeModal} Heading={'Delete gift'} Content={'Are you sure you want to delete the Romantic dinner gift?'} Img={false} DeleteGift={DeleteGift}  DeleteIndex={DeleteIndex} DeleteAllGift DeleteBtnStep={DeleteBtnStep} /> : ''
-
+                <GiftCardDelete DeleteModal={closeModal} Heading={'Delete gift'} Content={'Are you sure you want to delete the Romantic dinner gift?'} Img={false} DeleteGift={DeleteGift}  DeleteIndex={DeleteIndex} DeleteAllGift DeleteBtnStep={DeleteBtnStep} DeleteActionCategory CategoryActionIndex   /> : ''
+                
             }
         </>
 

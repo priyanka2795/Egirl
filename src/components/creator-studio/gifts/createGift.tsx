@@ -40,7 +40,6 @@ function CreateGift({ createGiftClose, GiftsView, Previous, AddCategory,SetCateg
         if (giftName === '') {
             alert("Please Enter Gift Name")
         } else {
-            // GiftName.push(giftName)
             SetGiftName([...GiftName,giftName])
             createGiftClose(false);
             GiftsView(true)

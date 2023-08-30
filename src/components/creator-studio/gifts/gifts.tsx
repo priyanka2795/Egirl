@@ -53,14 +53,6 @@ function Gifts() {
 
   }
 
-  const DeleteActionCategoryModal = (ind: any, Step: any) => {
-    console.log(ind, Step ,"index Number");
-    
-  }
-  const DeleteActionCategory = () => {
-
-  }
-
   const ActiveTab = (items: any) => {
     setTabs(items);
     setToggle(!toggle);
@@ -136,7 +128,8 @@ function Gifts() {
         {deleteModal &&
           <GiftCardDelete DeleteModal={setDeleteModal} Heading={'Delete all gifts'}
             Content={'Are you sure you want to delete all gifts from the Date category?'}
-            Img={true} DeleteGift DeleteIndex DeleteAllGift={setGiftCardName} DeleteBtnStep={deleteBtnStep} CategoryActionIndex />
+            Img={true} DeleteGift DeleteIndex DeleteAllGift={setGiftCardName} DeleteBtnStep={deleteBtnStep} CategoryActionIndex DeleteActionCategory />
+           
         }
 
       </>
