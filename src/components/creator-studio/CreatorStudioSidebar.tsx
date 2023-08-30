@@ -208,7 +208,7 @@ const CreatorStudioSidebar = ({
           />
           <SidebarMenuItem
             text='Style Generator'
-            href='/home'
+            href='/style-generator'
             Icon={StyleGenerator}
             IconActive={HomeActiveIcon}
             StyleClasses={`${
