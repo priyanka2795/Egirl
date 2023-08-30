@@ -9,9 +9,20 @@ import GiftCardDelete from './giftCardDelete';
 interface EditCategoryPopup {
   closeModal: any;
   EditCategoryActionModal: any;
+  EditName: any;
+  SetEditName: any;
+  UpdateCategoryName: any;
+  DeleteActionCategory: any;
+  CategoryActionIndex:any;
 }
 
-function EditCategoryAction({ closeModal, EditCategoryActionModal }: EditCategoryPopup) {
+function EditCategoryAction({ closeModal, EditCategoryActionModal, EditName, SetEditName, UpdateCategoryName, DeleteActionCategory,CategoryActionIndex }: EditCategoryPopup) {
+
+  const handleChange = (e: any) => {
+    const { name, value } = e.target;
+    SetEditName(value)
+  }
+
   return (
     <>
       <Modal
@@ -31,21 +42,21 @@ function EditCategoryAction({ closeModal, EditCategoryActionModal }: EditCategor
             <div className='p-6'>
               <div className=' flex flex-col text-[#979797] '>
                 <label htmlFor="category" className='text-[13px] pb-1'>Category Name</label>
-                <input type="text" id='category' placeholder='Type a category name' className='bg-[#FFFFFF0D] rounded-[14px] h-12 px-4 border-none active:border-[#5848BC] focus:border-[#5848BC] focus:ring-[#5848BC]' />
+                <input type="text" id='category' placeholder='Type a category name' className='bg-[#FFFFFF0D] rounded-[14px] h-12 px-4 border-none active:border-[#5848BC] focus:border-[#5848BC] focus:ring-[#5848BC]' value={EditName} onChange={(e) => handleChange(e)} />
               </div>
 
               <div className='grid grid-cols-2 mt-6 gap-3 text-white font-semibold'>
                 <button className='rounded-[14px] px-5 py-3 border border-[#FFFFFF52]' onClick={() => closeModal(false)}>Cancel</button>
-                <button className='bg-[#5848BC] rounded-[14px] px-5 py-3'>Save</button>
+                <button className='bg-[#5848BC] rounded-[14px] px-5 py-3' onClick={() => UpdateCategoryName()}>Save</button>
 
               </div>
             </div>
           </div>
-          :''}
+          : ''}
 
       </Modal>
       {EditCategoryActionModal === 2 ?
-        <GiftCardDelete DeleteModal={closeModal} Heading={'Delete category'} Content={'Are you sure you want to delete the Date category?'} Img={true} />
+        <GiftCardDelete DeleteModal={closeModal} Heading={'Delete category'} Content={'Are you sure you want to delete the Date category?'} Img={true} DeleteActionCategory={DeleteActionCategory} DeleteGift  DeleteIndex DeleteAllGift DeleteBtnStep={3} CategoryActionIndex={CategoryActionIndex} />
         : ''}
 
     </>

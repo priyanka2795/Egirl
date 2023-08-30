@@ -9,8 +9,10 @@ import CreateGift from './createGift';
 interface CategoryPopup {
     closeState: any;
     GiftsView:any;
-    AddCategory:any;
     GiftName:any;
+    SetGiftName:any;
+    AddCategory:any;
+    SetCategory:any;
 }
 
 const albumdata = [
@@ -25,14 +27,14 @@ const albumdata = [
         imgPath: AlbumSecound,
     },
 ]
-function SelectImage({ closeState,GiftsView,AddCategory,GiftName }: CategoryPopup) {
+function SelectImage({ closeState,GiftsView,AddCategory,SetCategory,GiftName,SetGiftName }: CategoryPopup) {
     const [createGift, setCreateGift] = useState(false);
     const [toggle, setToggle] = useState(true);
 
     return (
         <>
             {createGift ?
-                <CreateGift createGiftClose={closeState} GiftsView={GiftsView} AddCategory={AddCategory} Previous={setCreateGift} GiftName={GiftName} />
+                <CreateGift createGiftClose={closeState} GiftsView={GiftsView} AddCategory={AddCategory}SetCategory={SetCategory} Previous={setCreateGift} GiftName={GiftName} SetGiftName={SetGiftName} />
                 :
                 <>
                     <div className='flex justify-between items-center border-b border-[#FFFFFF14] p-6'>

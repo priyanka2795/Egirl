@@ -15,11 +15,13 @@ interface CreateGiftPopup {
     GiftsView: any;
     Previous: any;
     AddCategory: any;
+    SetCategory:any;
     GiftName: any;
+    SetGiftName: any;
 };
 
 
-function CreateGift({ createGiftClose, GiftsView, Previous, AddCategory, GiftName }: CreateGiftPopup) {
+function CreateGift({ createGiftClose, GiftsView, Previous, AddCategory,SetCategory, GiftName, SetGiftName }: CreateGiftPopup) {
     const [createCategory, setCreateCategory] = useState(false);
     const [tabSelectedOpt, setTabSelectedOpt] = useState('');
     const [giftName, setGiftName] = useState('');
@@ -38,7 +40,7 @@ function CreateGift({ createGiftClose, GiftsView, Previous, AddCategory, GiftNam
         if (giftName === '') {
             alert("Please Enter Gift Name")
         } else {
-            GiftName.push(giftName)
+            SetGiftName([...GiftName,giftName])
             createGiftClose(false);
             GiftsView(true)
         }
@@ -54,7 +56,7 @@ function CreateGift({ createGiftClose, GiftsView, Previous, AddCategory, GiftNam
             {createCategory ?
                 <>
 
-                    <CreateCategory CategoryClose={createGiftClose} Steps={3} Previous={setCreateCategory} AddCategory={AddCategory} />
+                    <CreateCategory CategoryClose={createGiftClose} Steps={3} Previous={setCreateCategory} AddCategory={AddCategory} SetCategory={SetCategory} />
                 </>
                 :
                 <>
