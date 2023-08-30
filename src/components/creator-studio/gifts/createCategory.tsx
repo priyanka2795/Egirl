@@ -56,7 +56,6 @@ const CreateCategory = ({ CategoryClose, Steps, Previous, AddCategory, SetCatego
                         />
                     </div>
                     <div className='grid grid-cols-2 gap-3 mt-6 font-semibold text-white'>
-                        <button className='rounded-[14px] px-5 py-3 border border-[#FFFFFF52]' onClick={() => CategoryClose(false)}>Cancel</button>
                         {Steps === 3 ?
                             <button className='rounded-[14px] px-5 py-3 border border-[#FFFFFF52]' onClick={() => Previous(false)}>Cancel</button>
                             : <button className='rounded-[14px] px-5 py-3 border border-[#FFFFFF52]' onClick={() => CategoryClose(false)}>Cancel</button>
