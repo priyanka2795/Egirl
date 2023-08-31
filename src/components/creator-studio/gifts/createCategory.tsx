@@ -31,7 +31,7 @@ const CreateCategory = ({ CategoryClose, Steps }: CreateCategory) => {
                         <input type="text" id='category' placeholder='Type a category name' className='bg-[#FFFFFF0D] rounded-[14px] h-12 px-4 border-none active:border-[#5848BC] focus:border-[#5848BC] focus:ring-[#5848BC] text-white placeholder:text-[#979797]'
                         />
                     </div>
-                    <div className='grid grid-cols-2 mt-6 gap-3 text-white font-semibold'>
+                    <div className='grid grid-cols-2 gap-3 mt-6 font-semibold text-white'>
                         <button className='rounded-[14px] px-5 py-3 border border-[#FFFFFF52]' onClick={() => CategoryClose(false)}>Cancel</button>
                         {Steps === 3 ?
                             <button className='bg-[#5848BC] rounded-[14px] px-5 py-3' >Next</button>
