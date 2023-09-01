@@ -105,7 +105,7 @@ const CreatorStudioSidebar = ({
           />
           <SidebarMenuItem
             text='Image Generator'
-            href='/home'
+            href='/image-generator'
             Icon={ImageGeneratorIcon}
             IconActive={HomeActiveIcon}
             StyleClasses={`${
