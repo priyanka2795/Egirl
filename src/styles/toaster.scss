@@ -1,0 +1,28 @@
+.Toastify__toast-container {
+    --toastify-toast-width: max-content;
+}
+
+div.Toastify__toast {
+    margin: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    border-radius: 14px;
+    background-color: #2EAA1B;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.Toastify__toast > button>  svg {
+    display: none;
+}
+
+.Toastify--animate-icon {
+    display: none;
+}
+
+div.Toastify__toast-icon {
+    display: none;
+ }

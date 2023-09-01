@@ -9,6 +9,10 @@ import CreateGift from './createGift';
 interface CategoryPopup {
     closeState: any;
     GiftsView:any;
+    GiftName:any;
+    SetGiftName:any;
+    AddCategory:any;
+    SetCategory:any;
 }
 
 const albumdata = [
@@ -23,14 +27,14 @@ const albumdata = [
         imgPath: AlbumSecound,
     },
 ]
-function SelectImage({ closeState,GiftsView }: CategoryPopup) {
+function SelectImage({ closeState,GiftsView,AddCategory,SetCategory,GiftName,SetGiftName }: CategoryPopup) {
     const [createGift, setCreateGift] = useState(false);
-    const [toggle, setToggle] = useState(false);
+    const [toggle, setToggle] = useState(true);
 
     return (
         <>
             {createGift ?
-                <CreateGift createGiftClose={closeState} GiftsView={GiftsView} />
+                <CreateGift createGiftClose={closeState} GiftsView={GiftsView} AddCategory={AddCategory}SetCategory={SetCategory} Previous={setCreateGift} GiftName={GiftName} SetGiftName={SetGiftName} />
                 :
                 <>
                     <div className='flex justify-between items-center border-b border-[#FFFFFF14] p-6'>
@@ -63,12 +67,6 @@ function SelectImage({ closeState,GiftsView }: CategoryPopup) {
                                     {albumdata.map((item) => (
                                         <div className='rounded-xl overflow-hidden w-[300px] h-[300px] relative cursor-pointer' onClick={() => setCreateGift(true)}>
                                             <Image className='w-full h-full object-cover' src={item.imgPath} alt={''} />
-                                            <div className='absolute bottom-0 w-full'>
-                                                <div className='flex items-end justify-between h-36 px-4 pb-3 bg-gradient-to-t to-[#00000000] from-[#000000CC] text-[15px] font-semibold'>
-                                                    <p>Fantasy world & nature</p>
-                                                    <p>124</p>
-                                                </div>
-                                            </div>
                                         </div>
                                     ))}
                                 </div>

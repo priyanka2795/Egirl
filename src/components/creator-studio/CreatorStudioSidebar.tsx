@@ -91,7 +91,7 @@ const CreatorStudioSidebar = ({
           </div>
           <SidebarMenuItem
             text='View Images'
-            href='/home'
+            href='/view-images'
             Icon={ViewImg}
             IconActive={HomeActiveIcon}
             StyleClasses={`${
@@ -105,7 +105,7 @@ const CreatorStudioSidebar = ({
           />
           <SidebarMenuItem
             text='Image Generator'
-            href='/home'
+            href='/image-generator'
             Icon={ImageGeneratorIcon}
             IconActive={HomeActiveIcon}
             StyleClasses={`${
@@ -208,7 +208,7 @@ const CreatorStudioSidebar = ({
           />
           <SidebarMenuItem
             text='Style Generator'
-            href='/home'
+            href='/style-generator'
             Icon={StyleGenerator}
             IconActive={HomeActiveIcon}
             StyleClasses={`${

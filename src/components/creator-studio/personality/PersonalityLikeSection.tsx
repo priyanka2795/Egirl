@@ -120,8 +120,8 @@ const PersonalityLikeSection = () => {
     <>
       <div className='w-full flex flex-col h-auto max-w-full rounded-lg bg-[#121212]'>
           <div className='flex justify-between max-w-full p-6 pb-5'>
-            <div className="w-full">
-              {showHoverModal && <PersonalityHoverModal />}
+            <div className="w-full">  
+              {showHoverModal && <PersonalityHoverModal />} 
               <h2 className='text-lg font-bold leading-[110%] flex gap-[6px]'>
                 Likes 
                 <div onClick={() => {setShowHoverModal(!showHoverModal)}}><InfoIcon /></div>

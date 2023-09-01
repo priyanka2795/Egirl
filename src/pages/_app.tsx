@@ -1,4 +1,5 @@
 import '@styles/globals.scss';
+import '@styles/toaster.scss';
 import "../components/explore/CardStack.scss"
 import "../components/messages/TypingIndicator.scss"
 import "../components/creator-studio/common/MultiStepRangeSliderStyle.scss"
@@ -15,6 +16,7 @@ import { useEffect, useState } from 'react';
 import SupabaseAuthContextProvider from '@lib/context/supabase-auth-context';
 import Script from 'next/script';
 import { Database } from '../../types/database';
+
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;

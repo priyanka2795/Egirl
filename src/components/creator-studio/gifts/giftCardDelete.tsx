@@ -9,8 +9,14 @@ interface DeletePopup {
     Heading: string;
     Content: string;
     Img: any;
+    DeleteGift: any;
+    DeleteIndex: any;
+    DeleteAllGift: any;
+    DeleteBtnStep: any;
+    DeleteActionCategory:any;
+    CategoryActionIndex:any;
 }
-function GiftCardDelete({ DeleteModal, Heading, Content, Img }: DeletePopup) {
+function GiftCardDelete({ DeleteModal, Heading, Content, Img, DeleteGift, DeleteIndex, DeleteAllGift, DeleteBtnStep,DeleteActionCategory,CategoryActionIndex }: DeletePopup) {
 
     return (
         <>
@@ -38,8 +44,17 @@ function GiftCardDelete({ DeleteModal, Heading, Content, Img }: DeletePopup) {
                         </div>
                         <div className='grid grid-cols-2 mt-6 gap-3 text-white font-semibold'>
                             <button className='rounded-[14px] px-5 py-3 border border-[#FFFFFF52]' onClick={() => DeleteModal(false)}>Cancel</button>
-                            <button className='bg-[#FF5336] rounded-[14px] px-5 py-3' onClick={() => DeleteModal(false)}>Delete</button>
-
+                            {DeleteBtnStep === 1 ?
+                                <button className='bg-[#FF5336] rounded-[14px] px-5 py-3' onClick={() => DeleteGift(DeleteIndex)}>Delete</button>
+                                : DeleteBtnStep === 2 ?
+                                    <button className='bg-[#FF5336] rounded-[14px] px-5 py-3' onClick={() => {
+                                        DeleteAllGift([]);
+                                        DeleteModal(false);
+                                    }}>Delete</button> :  <button className='bg-[#FF5336] rounded-[14px] px-5 py-3' onClick={() => {
+                                        DeleteActionCategory(CategoryActionIndex);
+                                        DeleteModal(false);
+                                    }}>Delete</button>
+                            }
                         </div>
                     </div>
                 </div>
