@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
 import ViewStyleModal from './style-generator/ViewStyleModal';
+import StyleGeneratorNext from './style-generator/StyleGeneratorNext';
+
+interface NotificationModalProp {
+    setNotificationModal: any;
+}
 
 const notification = [
     {
@@ -19,9 +24,10 @@ const notification = [
     },
 ];
 
-const NotificationModal = () => {
+const NotificationModal = ({setNotificationModal} : NotificationModalProp) => {
     const [activeNotification, setActiveNotification] = useState('Any Lee');
     const [viewStyleModal, setViewStyleModal] = useState(false);
+    const [styleGenNext, setStyleGenNext] = useState(false);
   return (
     <>
     <div className='absolute overflow-hidden top-[72px] right-0 flex flex-col rounded-[14px] bg-[#1A1A1A] w-[484px] z-[1]'>
@@ -42,7 +48,10 @@ const NotificationModal = () => {
         })}
     </div>
     {
-        viewStyleModal && <ViewStyleModal setViewStyleModal={setViewStyleModal} />
+        viewStyleModal && <ViewStyleModal setViewStyleModal={setViewStyleModal} setStyleGenNext={setStyleGenNext} setNotificationModal={setNotificationModal} />
+    }
+    {
+        styleGenNext && <StyleGeneratorNext />
     }
     </>
   )
