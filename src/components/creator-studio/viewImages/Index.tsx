@@ -19,12 +19,6 @@ const ViewImagesIndex = () => {
     </div>
     <ViewImagesMainPage />
 
-    {/* {
-      showCreateCategory && <CreateCategory CategoryClose={setShowCreateCategory} setShowCreateGift={setShowCreateGift} />
-    } */}
-    {/* {
-      showCreateGift && <CreateGift />
-    } */}
     </>
   )
 }

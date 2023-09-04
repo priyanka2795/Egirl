@@ -12,6 +12,7 @@ import crossIcon from '../../../../public/assets/xmark-style.png'
 import StyleGenHoverModal from './StyleGenHoverModal';
 import AddImagesModal from './AddImagesModal';
 import StyleGenDeleteModal from './StyleGenDeleteModal';
+import image from '../../../../public/assets/image-plus.png';
 
 const images = [
   {
@@ -35,6 +36,7 @@ const StyleGeneratorNext = () => {
   const [styleGenHoverModal, setStyleGenHoverModal] = useState(false);
   const [addImagesModal, setAddImagesModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
+  const [showCards, setShowCards] = useState(true);
   
 
   return (
@@ -54,7 +56,7 @@ const StyleGeneratorNext = () => {
           />
         </div>
 
-        <div className='flex-col flex'>
+        <div className='flex flex-col'>
           <h6 className='text-[13px] text-[#979797]'>Category</h6>
           <div className='px-4 py-3 text-[15px] bg-white/[0.08] rounded-[14px] text-[#979797]'>Choose category</div>
           
@@ -65,7 +67,7 @@ const StyleGeneratorNext = () => {
         <div className='flex flex-col gap-2'> 
         <div className='flex gap-1'>
           <div className='text-white text-[18px] font-bold leading-6'>Images </div>
-          <div className='text-[#979797] text-[18px] font-bold leading-6'>5/40</div>
+          <div className='text-[#979797] text-[18px] font-bold leading-6'>{showCards ? '5/40' : '0/40'  }</div>
         </div>
         <div className='flex gap-2'>
           <Image src={circleInformation} alt={''} />
@@ -83,27 +85,38 @@ const StyleGeneratorNext = () => {
         </div>
       </div>
 
-      <div className='grid grid-cols-3 gap-5'>
-        {images.map((item,index) => {
-          return(
-            <div key={index} className='relative flex flex-col rounded-[14px]'>
-              <Image src={item.image} alt={''} />
-              <div className='h-[128px] p-4 flex flex-col gap-2 bg-[#1A1A1A]'>
-                <div className='pl-4 h-full pr-3 py-3 rounded-[14px] bg-white/[0.03]'>
-                  <div className='items-center flex justify-between h-1/2'>
-                    <div className='text-[#979797] text-[15px] font-normal leading-6'>Add label</div>
-                    <div className='text-[#515151] text-[13px] font-normal leading-[18px]'>100</div>
-                  </div>
-                </div>
-              </div>
-              {/* <div className='absolute top-0 right-0 flex p-[6px] rounded-[100px] bg-white/[0.48]'>
-                <Image src={crossIcon} alt={''} />
-              </div> */}
-            </div>
-          );
-        })}
-      </div>
-    </div>
+      {showCards ? 
+       <div className='grid grid-cols-3 gap-5'>
+       {images.map((item,index) => {
+         return(
+           <div key={index} className='relative flex flex-col rounded-[14px]'>
+             <Image src={item.image} alt={''} />
+             <div className='h-[128px] p-4 flex flex-col gap-2 bg-[#1A1A1A]'>
+               <div className='pl-4 h-full pr-3 py-3 rounded-[14px] bg-white/[0.03]'>
+                 <div className='flex items-center justify-between h-1/2'>
+                   <div className='text-[#979797] text-[15px] font-normal leading-6'>Add label</div>
+                   <div className='text-[#515151] text-[13px] font-normal leading-[18px]'>100</div>
+                 </div>
+               </div>
+             </div>
+             {/* <div className='absolute top-0 right-0 flex p-[6px] rounded-[100px] bg-white/[0.48]'>
+               <Image src={crossIcon} alt={''} />
+             </div> */}
+           </div>
+         );
+       })}
+     </div> :
+     <div className='flex flex-col h-[320px] gap-5 justify-center items-center'>
+     <div className='flex flex-col items-center justify-center gap-3'>
+       <div className='flex p-4 rounded-[100px] bg-white/[0.05]'>
+         <Image src={image} alt={''} />
+       </div>
+       <div className='text-center text-[#979797] text-[13px] font-normal leading-[18px]'>Add images for style generation</div>
+     </div>
+     <button className='px-4 py-[10px] rounded-[12px] bg-white/[0.08] justify-center items-center text-white text-[14px] font-bold leading-5'>Add images</button>
+   </div>
+  }
+  </div>
 
     <div className='p-6 flex flex-col p-6 justify-center items-end border-t border-white/[0.08] '>
       {styleGenHoverModal && <StyleGenHoverModal />}
@@ -114,7 +127,7 @@ const StyleGeneratorNext = () => {
       addImagesModal && <AddImagesModal setAddImagesModal={setAddImagesModal} />
     }
     {
-      deleteModal && <StyleGenDeleteModal setDeleteModal={setDeleteModal} />
+      deleteModal && <StyleGenDeleteModal setDeleteModal={setDeleteModal} setShowCards={setShowCards} />
     }
     </>
   );

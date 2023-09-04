@@ -61,11 +61,11 @@ export function Modal({
           <div
             className={cn(
               'fixed inset-0 overflow-y-auto p-4',
-              className ?? 'flex items-center justify-center'
+              className ?? 'flex items-center justify-center '
             )}
           >
             <Dialog.Panel
-              className={modalClassName}
+              className={`${modalClassName} max-h-[86vh] overflow-y-auto `}
               as={motion.div}
               {...(modalAnimation ?? modal)}
               onClick={closePanelOnClick ? closeModal : undefined}
