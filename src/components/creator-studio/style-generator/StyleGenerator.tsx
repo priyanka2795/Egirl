@@ -4,8 +4,13 @@ import circleInformation from '../../../../public/assets/circle-information.png'
 import image from '../../../../public/assets/image-plus.png'
 import StyleGenHoverModal from './StyleGenHoverModal';
 import AddImagesModal from './AddImagesModal';
-import GoToGeneratorModal from './GoTOGeneratorModal';
+import GoToGeneratorModal from './GoToGeneratorModal';
+
+const options = [
+
+];
 const StyleGenerator = () => {
+  const options = ['Choose category', 'Character', 'Clothing', 'Accessories', 'Locations', 'Object'];
   const [styleGenHoverModal, setStyleGenHoverModal] = useState(false);
   const [goToModal, setGoToModal] = useState(false);
   
@@ -26,10 +31,17 @@ const StyleGenerator = () => {
           />
         </div>
 
-        <div className='flex-col flex'>
+        <div className='flex flex-col'>
           <h6 className='text-[13px] text-[#979797]'>Category</h6>
-          <div className='px-4 py-3 text-[15px] bg-white/[0.08] rounded-[14px] text-[#979797]'>Choose category</div>
-          
+          <select id='category' name='category' className='rounded-[14px] border-none bg-white/[0.05] px-4 py-3 text-[15px] font-normal leading-6 text-[#979797] focus:ring-0'>
+                  <option value='Female'>Choose category</option>
+                  <option value='Male'>Character</option>
+                  <option value='Other'>Clothing</option>
+                  <option value='Other'>Accessories</option>
+                  <option value='Other'>Locations</option>
+                  <option value='Other'>Object</option>
+          </select>
+         
         </div>
       </div>
 
@@ -45,7 +57,7 @@ const StyleGenerator = () => {
       </div>
 
       <div className='flex flex-col h-[320px] gap-5 justify-center items-center'>
-        <div className='flex flex-col gap-3 justify-center items-center'>
+        <div className='flex flex-col items-center justify-center gap-3'>
           <div className='flex p-4 rounded-[100px] bg-white/[0.05]'>
             <Image src={image} alt={''} />
           </div>
