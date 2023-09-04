@@ -5,9 +5,10 @@ import xMark from '../../../../public/assets/xmark (1).png';
 
 interface StyleGenDeleteModalProp {
     setDeleteModal: any;
+    setShowCards: any;
 }
 
-const StyleGenDeleteModal = ( {setDeleteModal} : StyleGenDeleteModalProp ) => {
+const StyleGenDeleteModal = ( {setDeleteModal, setShowCards} : StyleGenDeleteModalProp ) => {
 //   const [styleGenHoverModal, setStyleGenHoverModal] = useState(false);
   return (
     <div>
@@ -25,8 +26,8 @@ const StyleGenDeleteModal = ( {setDeleteModal} : StyleGenDeleteModalProp ) => {
         <div className='flex flex-col gap-8 p-6'>
             <div className='text-center text-white text-[15px] font-normal leading-5'>Are you sure you want to delete all added images?</div>
             <div className='flex gap-3'>
-                <button className='w-1/2 px-5 py-[13px] justify-center items-center rounded-[14px] border border-white/[0.32] text-white text-[16px] font-bold leading-[22px]' onClick={() => setDeleteModal(false)}>Cancel</button>
-                <button className='w-1/2 px-5 py-[13px] justify-center items-center rounded-[14px] border border-transparent bg-[#FF5336] text-white text-[16px] font-bold leading-[22px]' onClick={() => setDeleteModal(false)}>Delete</button>
+                <button className='w-1/2 px-5 py-[13px] justify-center items-center rounded-[14px] border border-white/[0.32] text-white text-[16px] font-bold leading-[22px]' onClick={() => {setDeleteModal(false), setShowCards(true)}}>Cancel</button>
+                <button className='w-1/2 px-5 py-[13px] justify-center items-center rounded-[14px] border border-transparent bg-[#FF5336] text-white text-[16px] font-bold leading-[22px]' onClick={() => {setDeleteModal(false), setShowCards(false)}}>Delete</button>
             </div>
         </div>
       </Modal>

@@ -1,13 +1,19 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
-import circleInformation from '../../../../public/assets/circle-information.png'
-import image from '../../../../public/assets/image-plus.png'
+import circleInformation from '../../../../public/assets/circle-information.png';
+import chevronDown from '../../../../public/assets/chevron-down2.png';
+import chevronUp from '../../../../public/assets/chevron-up.png';
+import image from '../../../../public/assets/image-plus.png';
 import StyleGenHoverModal from './StyleGenHoverModal';
 import AddImagesModal from './AddImagesModal';
-import GoToGeneratorModal from './GoTOGeneratorModal';
+import GoToGeneratorModal from './GoToGeneratorModal';
+
 const StyleGenerator = () => {
+  const options = ['Choose category', 'Character', 'Clothing', 'Accessories', 'Locations', 'Object'];
   const [styleGenHoverModal, setStyleGenHoverModal] = useState(false);
   const [goToModal, setGoToModal] = useState(false);
+  const [showDropDown, setShowDropDown] = useState(false);
+  const [inputText, setInputText] = useState('Choose category');
   
   return (
     <>
@@ -22,14 +28,24 @@ const StyleGenerator = () => {
             type='text'
             name='name'
             placeholder='Enter Name'
-            className='rounded-[14px] focus:ring-0 px-4 py-3 border-none bg-white/[0.08] placeholder:text-[#979797] text-[#979797]'
+            className='border border-transparent rounded-[14px] focus:ring-0 px-4 py-3 border-none bg-white/[0.05] placeholder:text-[#979797] text-[#979797]'
           />
         </div>
 
-        <div className='flex-col flex'>
+        <div className='relative flex flex-col'>
           <h6 className='text-[13px] text-[#979797]'>Category</h6>
-          <div className='px-4 py-3 text-[15px] bg-white/[0.08] rounded-[14px] text-[#979797]'>Choose category</div>
-          
+          <div className={`px-4 py-3 rounded-[14px] flex justify-between ${showDropDown ? 'border border-[#515151]' : 'border border-transparent bg-white/[0.05]'}`}>
+            <div className='text-[#979797] text-[15px] font-normal leading-6'>{inputText}</div>
+            <Image onClick={() => {setShowDropDown(!showDropDown)}} src={showDropDown ? chevronUp : chevronDown} alt={''} />
+          </div>
+          {showDropDown && 
+          <div className='top-[78px] absolute w-full px-0 py-1 flex flex-col rounded-[14px] bg-[#1A1A1A]'>
+            {options.map((item,index) => {
+              return (
+              <div key={index} className='cursor-pointe mx-2 my-1 px-2 py-[6px] bg-[#1A1A1A] text-white text-[14px] font-normal leading-[18px] hover:bg-white/[0.05] hover:rounded-[8px]' onClick={() => {setInputText(item)}}>{item}</div>);
+            })}
+          </div>
+          }
         </div>
       </div>
 
@@ -45,7 +61,7 @@ const StyleGenerator = () => {
       </div>
 
       <div className='flex flex-col h-[320px] gap-5 justify-center items-center'>
-        <div className='flex flex-col gap-3 justify-center items-center'>
+        <div className='flex flex-col items-center justify-center gap-3'>
           <div className='flex p-4 rounded-[100px] bg-white/[0.05]'>
             <Image src={image} alt={''} />
           </div>

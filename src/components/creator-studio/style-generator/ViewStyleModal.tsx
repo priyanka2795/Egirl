@@ -7,9 +7,12 @@ import heart from '../../../../public/assets/heart-alt.png';
 import circleInformation from '../../../../public/assets/circle-information8.png';
 import arrowDown from '../../../../public/assets/chevron-down2.png';
 import shop from '../../../../public/assets/shop.png';
+import StyleGeneratorNext from './StyleGeneratorNext';
 
 interface ViewStyleModalProps {
     setViewStyleModal: any;
+    setStyleGenNext: any;
+    setNotificationModal:any;
 }
 
 const list = [
@@ -31,25 +34,26 @@ const list = [
     },
 ];
 
-const ViewStyleModal = ( {setViewStyleModal} : ViewStyleModalProps ) => {
-//   const [styleGenHoverModal, setStyleGenHoverModal] = useState(false);
+const ViewStyleModal = ( {setViewStyleModal, setStyleGenNext, setNotificationModal} : ViewStyleModalProps ) => {
+  
   return (
+    <>
     <div>
       <Modal
         open={true}
-        modalClassName='flex overflow-hidden max-w-xl w-full rounded-[20px] h-max bg-[#1A1A1A] max-w-[1376px]'
+        modalClassName='flex overflow-hidden w-full rounded-[20px] h-max bg-[#1A1A1A] max-w-[1376px]'
         closeModal={() => setViewStyleModal (false)}
         modalOverlayStyle='!bg-black/80'
       >
        <Image src={modalImg} alt={''} />
-       <div className='flex flex-col w-[32%]'>
-        <div className='px-6 pt-6 pb-5 flex flex-col gap-4'>
+       <div className='flex flex-col w-[448px]'>
+        <div className='flex flex-col gap-4 px-6 pt-6 pb-5'>
             <div className='flex flex-col gap-[2px]'>
                 <div className='text-white text-[22px] font-bold leading-8'>Any Lee</div>
                 <div className='text-[#979797] text-[18px] font-normal leading-6'>Not posted</div>
             </div>
             <div className='flex gap-3'>
-                <button className='w-full flex gap-2 justify-center items-center px-5 py-[13px] rounded-[14px] bg-white/[0.08]'>
+                <button className='w-full flex gap-2 justify-center items-center px-5 py-[13px] rounded-[14px] bg-white/[0.08]' onClick={() => {setStyleGenNext(true), setViewStyleModal (false), setNotificationModal(false)}}>
                     <Image src={pen} alt={''} />
                     <div className='text-white text-[16px] font-bold leading-[22px]'>Edit Style</div>
                 </button>
@@ -58,7 +62,7 @@ const ViewStyleModal = ( {setViewStyleModal} : ViewStyleModalProps ) => {
                 </button>
             </div>
         </div>
-        <div className='h-full px-6 pb-6 flex flex-col justify-between'>
+        <div className='flex flex-col justify-between h-full px-6 pb-6'>
             <div className='flex flex-col gap-5'>
                 <div className='flex flex-col gap-[14px]'>
                 <div className='text-white text-[15px] font-semibold leading-5'>Model Details</div>
@@ -87,6 +91,8 @@ const ViewStyleModal = ( {setViewStyleModal} : ViewStyleModalProps ) => {
        </div>
       </Modal>
     </div>
+    
+    </>
   );
 };
 

@@ -59,7 +59,7 @@ const CreatorStudioNavbar = ({
             <BellIcon
               onClick={handleNotificationModal}
             />
-            {notificationModal && <NotificationModal />}
+            {notificationModal && <NotificationModal setNotificationModal={setNotificationModal} />}
           </div>
           <div className="relative">
             <UserImg
