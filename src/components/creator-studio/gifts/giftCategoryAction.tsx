@@ -63,7 +63,7 @@ function GiftCategoryAction({ AddCategory, SetCategory, }: GiftCategoryAction) {
     }
 
 
- 
+
 
 
 
@@ -122,7 +122,7 @@ function GiftCategoryAction({ AddCategory, SetCategory, }: GiftCategoryAction) {
                     </div>
                 </button>
             </div>
-            
+
             {closeState &&
                 <EditCategoryAction closeModal={setCloseState} EditCategoryActionModal={editCategoryActionModal} EditName={editName} SetEditName={setEditName} UpdateCategoryName={UpdateCategoryName} DeleteActionCategory={DeleteActionCategory} CategoryActionIndex={categoryActionIndex} />
             }

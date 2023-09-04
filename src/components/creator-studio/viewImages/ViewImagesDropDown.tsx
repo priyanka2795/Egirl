@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import plusIcon from '../../../../public/assets/plus-gray.png';
 import gift from '../../../../public/assets/gift-icon.png';
 import user from '../../../../public/assets/circle-user.png';
-import image from '../../../../public/assets/image-square.png';
+import imageSquare from '../../../../public/assets/image-square.png';
+import image from '../../../../public/assets/image.png';
 import undo from '../../../../public/assets/Undo.png';
 import deleteIcon from '../../../../public/assets/trash-blank-alt.png';
 import Image from 'next/image';
 import CreateCategory from './createCategory';
-import CreateGift from './createGift';
+import CreateGift from './moveAlbumModal';
 import SuccessModal from './successModal';
 
 const images = [
@@ -16,15 +17,15 @@ const images = [
     text: 'Create new post'
   },
   {
-    image: gift,
-    text: 'Create gift'
+    image: image,
+    text: 'Make album cover'
   },
   {
     image: user,
     text: 'Make profile picture'
   },
   {
-    image: image,
+    image: imageSquare,
     text: 'Make profile cover'
   },
   {
@@ -37,26 +38,25 @@ const images = [
   },
 ];
 interface ViewImagesDropDown {
-  ActiveTabs:any;
+  DeleteImage:any;
 }
-const ViewImagesDropDown = ({ActiveTabs}:ViewImagesDropDown) => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  
- 
+const ViewImagesDropDown = ({ DeleteImage}: ViewImagesDropDown) => {
+
+
   return (
     <>
-      <div className='absolute top-[223px] right-[747px] flex flex-col py-1 w-[200px] h-max rounded-[14px] bg-[#1A1A1A]'>
+      <div className='flex flex-col w-[218px] rounded-[14px] bg-[#1A1A1A]'>
         {images.map((item, index) => {
           return (
-            <div key={index} className={`${activeIndex === index && 'rounded-[8px] bg-white/[0.05]'} cursor-pointer flex gap-2 px-4 py-[10px]`} onClick={() => ActiveTabs(index)}>
+            <div key={index} className={`cursor-pointer flex gap-2 px-4 py-[10px]`}onClick={(e) => DeleteImage(e)} >
               <Image src={item.image} alt={''} />
-              <div className='text-[#FFFFFF] text-[14px] font-normal leading-[18px]'>{item.text}</div>
+              <div className='text-[#FFFFFF] text-[14px] font-normal leading-[18px]' >{item.text}</div>
             </div>
           );
         })}
       </div>
 
-      
+
     </>
 
   )
