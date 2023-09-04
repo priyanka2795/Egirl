@@ -22,7 +22,7 @@ import SendWhiteIcon from './svg/send-white-icon.svg';
 import { useState } from 'react';
 import Date from './ChatTypes/Date';
 import Message from './ChatTypes/Message';
-import VoiceModeToggle from './Toggler';
+import VoiceModeToggle from '../common/Toggler';
 import DefaultChatViewDropdown from './DefaultChatViewDropdown';
 import MessageSlider from './MessageSlider';
 import { Modal } from '@components/modal/modal';

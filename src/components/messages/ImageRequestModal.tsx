@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import RandomImageToggle from './Toggler';
+import RandomImageToggle from '../common/Toggler';
 import CloseIcon from './svg/close-icon.svg';
 
 type ImageRequestModal = {

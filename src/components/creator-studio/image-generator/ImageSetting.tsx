@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ImageDimension from './ImageDimension';
 import ImageNumber from './ImageNumber';
-import Toggle from '@components/messages/Toggler';
+import Toggle from '@components/common/Toggler';
 import PlusIcon from '../../../../public/assets/svgImages/plus-icon.svg'
 
 const ImageSetting = () => {
