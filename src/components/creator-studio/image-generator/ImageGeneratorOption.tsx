@@ -2,9 +2,11 @@ import React,{useState} from 'react';
 import ShuffleSvg from "../../../../public/assets/svgImages/shuffle.svg"
 import PlusIconSvg from "../../../../public/assets/svgImages/plus-icon.svg"
 import Toggle from '@components/common/Toggler';
+import AddTagModal from './AddTagModal';
 
 const ImageGeneratorOption = () => {
     const [prompt, setPrompt] = useState(false);
+    const [tagState, setTagState] = useState(false);
   return (
     <>
      <div className="border-b border-white/[0.08] p-4">
@@ -16,16 +18,16 @@ const ImageGeneratorOption = () => {
             </div>
           </div>
 
-          <div className='flex text-base font-bold text-white h-max w-[142px] items-center justify-center gap-2 rounded-[14px] bg-white bg-opacity-10 px-5 py-3'>
+          <div className='flex text-base font-bold text-white h-max w-[142px] items-center justify-center gap-2 rounded-[14px] bg-white bg-opacity-10 px-5 py-3 cursor-pointer'>
               Add style <PlusIconSvg/>
           </div>
 
-          <div className='flex text-base font-bold text-white h-max w-[130px] items-center justify-center gap-2 rounded-[14px] bg-white bg-opacity-10 px-5 py-3'>
+          <div className='flex text-base font-bold text-white h-max w-[130px] items-center justify-center gap-2 rounded-[14px] bg-white bg-opacity-10 px-5 py-3 cursor-pointer' onClick={() => setTagState (!tagState)}>
               Add tag <PlusIconSvg/>
           </div>
         </div>
 
-        <div className='flex w-12 items-center justify-center gap-2 rounded-[14px] bg-white bg-opacity-10 py-3'>
+        <div className='flex w-12 items-center justify-center gap-2 rounded-[14px] bg-white bg-opacity-10 py-3 cursor-pointer'>
            <ShuffleSvg/>
         </div>
       </div>
@@ -38,6 +40,10 @@ const ImageGeneratorOption = () => {
     <div className="p-4">
         <div className="bg-[#5848BC] px-5 py-[13px] font-bold text-base w-max rounded-[14px] ml-auto">Generate</div>
     </div>
+
+    {tagState &&
+      <AddTagModal closeDeleteModal={setTagState}/>
+    }
     </>
    
   );

@@ -14,7 +14,7 @@ const Toggle = ({ handleToggleState, toggleState, toggleText, infoIcon,toggleCla
       <div
         onClick={handleToggleState}
         className={`toggler h-6 w-10 cursor-pointer rounded-2xl pt-0.5 shadow ${toggleClasses} ${
-          toggleState ? 'bg-[#5848BC]' : toggleClasses ? toggleClasses: 'bg-[#8d8d8d]'
+          toggleState===true ? '!bg-[#5848BC]' : toggleClasses ? toggleClasses: 'bg-[#8d8d8d]'
         }`}
       >
         <div
