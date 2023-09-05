@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ViewStylesTab from './ViewStylesTab';
 import Image from 'next/image';
 import img1 from '../../../../public/assets/view-style-img1.png';
 import img2 from '../../../../public/assets/view-style-img2.png';
 import img3 from '../../../../public/assets/view-style-img3.png';
+import ViewStyleModal from '../style-generator/ViewStyleModal';
+import modalImg from '../../../../public/assets/view-style-modal-img.png'
 
 
 const generatedStyle = [
@@ -58,6 +60,7 @@ const generatedStyle = [
 ];
 
 const Generatedstyle = () => {
+    const [viewStyleModal, setViewStyleModal] = useState(false);
   return (
     <>
     <ViewStylesTab component={'GeneratedStyle'} />
@@ -65,7 +68,7 @@ const Generatedstyle = () => {
     {generatedStyle.map((item,index) => {
                 return(
                     <div key={index} className='overflow-hidden flex flex-col rounded-[16px] bg-white/[0.05]'>
-                        <Image src={item.image} alt={''} />
+                        <Image onClick={() => {setViewStyleModal(true)}} src={item.image} alt={''} />
                         <div className='flex flex-col gap-3 p-4'>
                             <div className='text-white text-[15px] font-semibold leading-5'>{item.name}</div>
                              <div className='flex gap-2'>
@@ -78,6 +81,9 @@ const Generatedstyle = () => {
                 );
             })}
     </div>
+    {
+        viewStyleModal && <ViewStyleModal image={modalImg} setViewStyleModal={setViewStyleModal} />
+    }
     </>
   )
 }
