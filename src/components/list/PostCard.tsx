@@ -5,8 +5,11 @@ import PreviewContent from './PreviewContent';
 import PostsContent from './PostsContent';
 import MediaContent from './MediaContent';
 
+interface PostCardProps{
+  postCardStyle?:string
+}
 
-const PostCard = () => {
+const PostCard = ({postCardStyle}:PostCardProps) => {
   const tabContent = ['Preview', 'Posts', 'Media'];
   const [exploreSelectedTab, setExploreSelected] = useState('Preview');
 
@@ -15,7 +18,7 @@ const PostCard = () => {
   };
 
   return (
-    <div className='mt-5 w-[59%] rounded-[14px] bg-[#121212]'>
+    <div className={`mt-5 rounded-[14px] bg-[#121212] ${postCardStyle ? postCardStyle:'w-[59%] '}`}>
       <div className='flex w-full gap-3 border-b border-white/[0.08] px-6 pb-[20px] pt-6'>
         {tabContent.map((items, index) => {
           return (
