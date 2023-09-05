@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ViewStyleModal from './style-generator/ViewStyleModal';
 import StyleGeneratorNext from './style-generator/StyleGeneratorNext';
+import modalImg from '../../../public/assets/style-modal-img.png';
 
 interface NotificationModalProp {
     setNotificationModal: any;
@@ -48,7 +49,7 @@ const NotificationModal = ({setNotificationModal} : NotificationModalProp) => {
         })}
     </div>
     {
-        viewStyleModal && <ViewStyleModal setViewStyleModal={setViewStyleModal} setStyleGenNext={setStyleGenNext} setNotificationModal={setNotificationModal} />
+        viewStyleModal && <ViewStyleModal setViewStyleModal={setViewStyleModal} setStyleGenNext={setStyleGenNext} setNotificationModal={setNotificationModal} image={modalImg} />
     }
     {
         styleGenNext && <StyleGeneratorNext />
