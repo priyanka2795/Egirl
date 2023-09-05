@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import ViewImagesTab from './ViewImagesTab'
 import VIMainImageBlock from './VIMainImageBlock'
-import SuccessModal from './successModal';
-import CreateGift from './moveAlbumModal';
-import CreateCategory from './createCategory';
+
+
 
 const tabContent = ['All images', 'Posted', 'Not posted', 'Albums'];
 

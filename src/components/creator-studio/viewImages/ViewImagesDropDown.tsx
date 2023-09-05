@@ -48,7 +48,7 @@ const ViewImagesDropDown = ({ DeleteImage}: ViewImagesDropDown) => {
       <div className='flex flex-col w-[218px] rounded-[14px] bg-[#1A1A1A]'>
         {images.map((item, index) => {
           return (
-            <div key={index} className={`cursor-pointer flex gap-2 px-4 py-[10px]`}onClick={(e) => DeleteImage(e)} >
+            <div key={index} className={`cursor-pointer flex gap-2 px-4 py-[10px]`} onClick={(e) => DeleteImage(e)} >
               <Image src={item.image} alt={''} />
               <div className='text-[#FFFFFF] text-[14px] font-normal leading-[18px]' >{item.text}</div>
             </div>
