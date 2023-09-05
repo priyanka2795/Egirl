@@ -35,11 +35,10 @@ const ViewImagesTab = ({ tabContent, exploreSelectedTab, setExploreSelected }: V
 
   const handleExploreSelected = (e: any) => {
     setExploreSelected(e.target.innerText);
-
   };
 
   const AlbumSelectShort = (index: any) => {
-    setAlbumShortTab(index)
+    setAlbumShortTab(index);
   }
   const SelectShort = (index: any) => {
     setShortTab(index)
@@ -79,7 +78,7 @@ const ViewImagesTab = ({ tabContent, exploreSelectedTab, setExploreSelected }: V
                 }
               </div>
             </button>
-            <div className='flex relative'>
+            <div className='relative flex'>
               <div className='p-2 cursor-pointer' onClick={() => setAlbumShortSelect(!albumShortSelect)}>
                 <Image src={arrowUpArrowDown} alt={''} />
               </div>
@@ -102,7 +101,7 @@ const ViewImagesTab = ({ tabContent, exploreSelectedTab, setExploreSelected }: V
           </>
           :
           <>
-            <div className='flex relative'>
+            <div className='relative flex'>
               <div className='p-2 cursor-pointer' onClick={() => setShortSelect(!shortSelect)}>
                 <Image src={arrowUpArrowDown} alt={''} />
               </div>
@@ -130,8 +129,8 @@ const ViewImagesTab = ({ tabContent, exploreSelectedTab, setExploreSelected }: V
               {filterToggle &&
 
                 <div className='bg-[#272727] p-6 rounded-[14px] w-[346px] shadow-[0px 8px 12px 0px #0000001F] absolute top-7 right-0 z-50 flex flex-col gap-5'>
-                  <div className='flex justify-between items-center'>
-                    <h5 className='font-bold text-lg'>Filter</h5>
+                  <div className='flex items-center justify-between'>
+                    <h5 className='text-lg font-bold'>Filter</h5>
                     <p className='text-[#979797]'>Clear all</p>
                   </div>
                   <div className='relative'>
