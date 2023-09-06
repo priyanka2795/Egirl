@@ -5,7 +5,8 @@ import img1 from '../../../../public/assets/view-style-img1.png';
 import img2 from '../../../../public/assets/view-style-img2.png';
 import img3 from '../../../../public/assets/view-style-img3.png';
 import ViewStyleModal from '../style-generator/ViewStyleModal';
-import modalImg from '../../../../public/assets/view-style-modal-img.png'
+import modalImg from '../../../../public/assets/view-style-modal-img.png';
+import pen from '../../../../public/assets/pen2.png';
 
 
 const generatedStyle = [
@@ -61,13 +62,14 @@ const generatedStyle = [
 
 const Generatedstyle = () => {
     const [viewStyleModal, setViewStyleModal] = useState(false);
+    const [postStyleModal, setPostStyleModal] = useState(false);
   return (
     <>
     <ViewStylesTab component={'GeneratedStyle'} />
     <div className='grid grid-cols-3 gap-3'>
     {generatedStyle.map((item,index) => {
                 return(
-                    <div key={index} className='overflow-hidden flex flex-col rounded-[16px] bg-white/[0.05]'>
+                    <div key={index} className='relative group overflow-hidden flex flex-col rounded-[16px] bg-white/[0.05]'>
                         <Image onClick={() => {setViewStyleModal(true)}} src={item.image} alt={''} />
                         <div className='flex flex-col gap-3 p-4'>
                             <div className='text-white text-[15px] font-semibold leading-5'>{item.name}</div>
@@ -77,12 +79,15 @@ const Generatedstyle = () => {
                                 <div className='px-[10px] py-1 rounded-[8px] bg-white/[0.08] text-[13px] font-normal leading-[18px]'>{item.button1}</div>
                             </div>
                         </div>
+                        <div className='cursor-pointer invisible w-[40px] h-[40px] flex items-center justify-center group-hover:visible group-hover:opacity-100 absolute rounded-full bg-black/[0.48] top-[10px] right-[12px]'>
+                            <Image className='' src={pen} alt={''} />
+                        </div>
                     </div>
                 );
             })}
     </div>
     {
-        viewStyleModal && <ViewStyleModal image={modalImg} setViewStyleModal={setViewStyleModal} />
+        viewStyleModal && <ViewStyleModal image={modalImg} setViewStyleModal={setViewStyleModal} postStyleModal={postStyleModal} setPostStyleModal={setPostStyleModal} />
     }
     </>
   )
