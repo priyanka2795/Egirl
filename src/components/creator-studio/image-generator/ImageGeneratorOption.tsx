@@ -6,6 +6,7 @@ import AddTagModal from './AddTagModal';
 import { Modal } from '@components/modal/modal';
 import ImageGallery from './ImageGallery';
 import CloseIcon from '../../../../public/assets/svgImages/close-icon.svg';
+import Image from 'next/image';
 
 const ImageGeneratorOption = () => {
   const [prompt, setPrompt] = useState(false);
@@ -127,7 +128,7 @@ const ImageGeneratorOption = () => {
             </div>
           </div>
           {/* frame */}
-          <div className='flex items-start self-stretch gap-3 px-2 pt-1 pb-0'>
+          <div className='flex items-start self-stretch gap-3 px-8 pt-4 pb-0'>
             {/* tab */}
             <div className='flex items-center px-4 py-2 gap-1.5 rounded-xl bg-white/[0.16]'>
               <div className='text-[15px] font-bold leading-5'>Your Styles</div>
@@ -141,8 +142,26 @@ const ImageGeneratorOption = () => {
           {/* Input */}
           <div className='flex flex-col items-start self-stretch gap-4 px-0 pt-4 pb-8'>
             {/* search bar */}
-            <div >
-              
+            <div className='flex flex-col items-start self-stretch gap-4'>
+              <div className='flex flex-col items-start self-stretch gap-4 px-8 pt-0 pb-6 border-white/[0.08] border-b'>
+              <div className='flex w-full gap-[10px] rounded-[14px] bg-white/[0.05] px-4 py-3'>
+              <div className='w-6 h-6'>
+                <Image
+                  className='w-full h-full'
+                  src={CloseIcon}
+                  alt={''}
+                  id='myinput'
+                />
+              </div>
+              <input
+                
+                
+                placeholder='Search'
+                type='text'
+                className='border-none bg-transparent p-0 text-[15px] font-light leading-6 text-[#979797] focus:ring-0 '
+              />
+            </div>
+              </div>
             </div>
           </div>
           
