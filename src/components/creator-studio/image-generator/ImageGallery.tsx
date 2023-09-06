@@ -38,6 +38,16 @@ const ImageGallery = () => {
     { name: 'Fantasy', img: pic },
     
   ];
+  const tab = [
+    {name:"Prompt"},
+    {name:"Negative prompt"},
+  ]
+  const [expploreSelected,setExploreSelected] = useState('')
+  
+  const handleExploreSelected = (e: any) => {
+    setExploreSelected(e.target.innerText)
+
+  };
 
   const [isHovered, setIsHovered] = useState(false);
 
@@ -124,8 +134,8 @@ const ImageGallery = () => {
                 onClick={handleviewModal}
                 className='relative group hover:bg-[#5848BC] flex h-[174px] w-[175px] cursor-pointer justify-center  overflow-hidden rounded-xl  bg-white/[0.05] '
               >
-                <div  className='flex items-center p-0.5 group-hover:bg-[#5848BC]'>
-                  <Image src={item.img} className=' shrink-0' />
+                  <div  className={`rounded-t-sm  flex items-center p-0.5 group-hover:bg-[#5848BC] ${item.name === "None" ? "h-[calc(100%-43.5px)] w-full justify-center":""}`}>
+                  <Image src={item.img} className='rounded-xl shrink-0' />
                 </div>
 
                 <div  className='focus:ring-violet-[#5848BC] absolute bottom-0 top-3/4 flex w-full items-center justify-center gap-2.5 bg-black/[0.80] p-2  group-hover:bg-[#5848BC] focus:outline-none focus:ring active:bg-[#5848BC]'>
@@ -134,10 +144,6 @@ const ImageGallery = () => {
                   </div>
                 </div>
               </div>
-              
-              
-
-    
             );
           })}
         </div>
@@ -263,14 +269,47 @@ const ImageGallery = () => {
                         <div className='flex flex-col items-start self-stretch gap-3'>
                           <div className='flex items-center self-stretch justify-between'>
                             <div className='flex items-start '>
-                              <div className='flex items-start px-3 py-2 gap-2.5 rounded-xl	bg-white/[0.16]'>
+                              {/* tab */}
+                              <div 
+                              onClick={(e) => handleExploreSelected(e)}
+                              className={`flex cursor-pointer gap-2.5 rounded-xl px-4 py-2 text-[15px] font-bold ${expploreSelected
+                                ? ' bg-white bg-opacity-20 text-white  '
+                                : 'text-neutral-400'
+                                }`}
+                              >
                                 <div className='text-sm font-bold leading-[18px]'>Prompt</div>
-
+                                    
                               </div>
-                              <div className='flex items-start gap-2.5 py-2 px-3 rounded-xl'>
+                              
+                              {/* tab */}
+                              <div 
+                              onClick={(e) => handleExploreSelected(e)}
+                              className={`flex cursor-pointer gap-2.5 rounded-xl px-4 py-2 text-[15px] font-bold ${expploreSelected
+                                ? ' bg-white bg-opacity-20 text-white  '
+                                : 'text-neutral-400'
+                                }`}
+                              >
                                 <div className='text-[#979797] text-sm leading-[18px] font-semibold	'>Negative prompt</div>
                               </div>
                               
+                              {/* {
+                                tab.map((items: any, index: any)=>{
+                                  return(
+                                    <>
+                                      <div 
+                                      key={index}
+                              onClick={(e) => handleExploreSelected(e)}
+                              className={`flex cursor-pointer gap-2.5 rounded-xl px-4 py-2 text-[15px] font-bold ${expploreSelected === items.length
+                                ? ' bg-white bg-opacity-20 text-white  '
+                                : 'text-neutral-400'
+                                }`}
+                              >
+                                <div className='text-[#979797] text-sm leading-[18px] font-semibold	'>{items.name}</div>
+                              </div>
+                                    </>
+                                  )
+                                })
+                              } */}
                               
                             </div>
                             <div className='justify-end w-6 h-6'>
