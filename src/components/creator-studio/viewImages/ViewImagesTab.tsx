@@ -69,6 +69,8 @@ const ViewImagesTab = ({ tabContent, exploreSelectedTab, setExploreSelected }: V
   const [selectTag, setSelectTag] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
   const [filterActive, setFilterActive] = useState(false);
+  const [checked, setChecked] = useState([] as any);
+  const [styleChecked, setStyleChecked] = useState([] as any);
 
   const handleExploreSelected = (e: any) => {
     setExploreSelected(e.target.innerText);
@@ -88,6 +90,9 @@ const ViewImagesTab = ({ tabContent, exploreSelectedTab, setExploreSelected }: V
     } else {
       if (selectedOptions.length < 4) {
         setSelectedOptions([...selectedOptions, option]);
+        if (selectedOptions.length === 3) {
+          setSelectTag(false)
+        }
       }
     }
   };
@@ -115,10 +120,6 @@ const ViewImagesTab = ({ tabContent, exploreSelectedTab, setExploreSelected }: V
   };
 
 
-
-
-  const [checked, setChecked] = useState([] as any);
-  const [styleChecked, setStyleChecked] = useState([] as any);
   const handleCheckAllChange = (e: any) => {
     const { name } = e.target;
     console.log(name, 'e.target.name');
@@ -136,9 +137,6 @@ const ViewImagesTab = ({ tabContent, exploreSelectedTab, setExploreSelected }: V
   const handleStyleChange = (e: any, c: any) => {
     setStyleChecked((prevChecked: any) => e.target.checked ? [...prevChecked, c.styleName] : prevChecked.filter((item: any) => item !== c.styleName));
   };
-
-
-
 
   return (
     <div className='flex justify-between pb-5 border-b border-white/[0.08]' ref={dropdownRef}>
@@ -237,7 +235,7 @@ const ViewImagesTab = ({ tabContent, exploreSelectedTab, setExploreSelected }: V
                         <h5 className='text-lg font-bold'>{selectTag ? 'Tags' : 'Filter'}</h5>
                       </div>
                       {selectTag ? '' :
-                        <button className='text-[#979797]' onClick={() => { setFilterActive(false) }}>Clear all</button>
+                        <button className='text-[#979797]' onClick={() => { setFilterActive(false),setStyleChecked([]),setChecked([]),setSelectedOptions([]) }}>Clear all</button>
                       }
                     </div>
                     </div>
