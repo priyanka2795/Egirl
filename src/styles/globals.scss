@@ -551,6 +551,10 @@ span.audio-recorder-status,span.audio-recorder-timer{
 .creator-studio-components .post-card-slider .slick-slide.slick-active div {
   width:100% !important;
 }
+.sub-banner > span{
+  height: 100% !important;
+  object-fit: cover;
+}
 
 .anim{
   transition: all 0.8s ease-in-out;

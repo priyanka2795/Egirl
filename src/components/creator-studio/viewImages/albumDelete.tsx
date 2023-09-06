@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
 import crossIcon from '../../../../public/assets/xmark (1).png';
-import AlbumFirst from '../../../../public/assets/gallery-tab-img.png';
 import { Modal } from '@components/modal/modal';
 
 interface DeletePopup {
@@ -9,8 +8,9 @@ interface DeletePopup {
     Heading: string;
     Content: string;
     Name:any;
+    LastName:any;
 }
-function AlbumDelete({ DeleteModal, Heading, Content,Name }: DeletePopup) {
+function AlbumDelete({ DeleteModal, Heading, Content,Name,LastName }: DeletePopup) {
 
     return (
         <>
@@ -29,7 +29,7 @@ function AlbumDelete({ DeleteModal, Heading, Content,Name }: DeletePopup) {
                     </div>
                     <div className='p-6'>
                         <div className='text-center mb-5 max-w-[290px] m-auto'>
-                            <p>{Content} <span className='font-semibold'>{Name}</span> </p>
+                            <p>{Content} <span className='font-semibold'>{Name}</span> {LastName} </p>
                         </div>
                         <div className='grid grid-cols-2 mt-6 gap-3 text-white font-semibold'>
                             <button className='rounded-[14px] px-5 py-3 border border-[#FFFFFF52]' onClick={() => DeleteModal(false)}>Cancel</button>
