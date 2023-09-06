@@ -7,18 +7,43 @@ import AlbumFirst from '../../../../public/assets/gallery-tab-img.png';
 import Pencil from '../../../../public/assets/pen.svg';
 import image1 from '../../../../public/assets/vi-image-1.png'
 import ViewImagesDropDown from './ViewImagesDropDown';
+import user from '../../../../public/assets/circle-user.png';
+import imageSquare from '../../../../public/assets/image-square.png';
+import image from '../../../../public/assets/image.png';
+import undo from '../../../../public/assets/Undo.png';
+import deleteIcon from '../../../../public/assets/trash-blank-alt.png';
+// import Image from 'next/image';
+const images = [
+    {
+        image: image,
+        text: 'Make album cover'
+    },
+    {
+        image: user,
+        text: 'Make profile picture'
+    },
+    {
+        image: imageSquare,
+        text: 'Make profile cover'
+    },
+    {
+        image: undo,
+        text: 'Move to album'
+    },
+    {
+        image: deleteIcon,
+        text: 'Delete'
+    },
+];
 
 interface EditAlbum {
     CloseModal: any;
 }
 const EditAlbum = ({ CloseModal }: EditAlbum) => {
-    const [showDropDown, setShowDropDown] = useState(false)
-    const [dropDownIndex, setDropDownIndex] = useState()
+    const [editAlbumImg, setEditAlbumImg] = useState(null)
     const [coverImg, setCoverImg] = useState(false);
-
-    const ShowDropDown = (index: any) => {
-        setShowDropDown(!showDropDown);
-        setDropDownIndex(index)
+    const EditAlbumImgToggle = (index: any) => {
+        setEditAlbumImg((prev) => (prev === index ? null : index));
     }
     return (
         <Modal
@@ -31,14 +56,14 @@ const EditAlbum = ({ CloseModal }: EditAlbum) => {
                 <>
                     <div className='flex justify-between items-center border-b border-[#FFFFFF14] p-6'>
                         <h5 className='text-lg font-semibold'>Choose a cover for the Fantasy world & nature album</h5>
-                        <div className='w-6 h-6 cursor-pointer' onClick={() => CloseModal(false)}>
+                        <div className='w-6 h-6 cursor-pointer' onClick={() => setCoverImg(false)}>
                             <Image className='w-full h-full' src={crossIcon} alt={''} />
                         </div>
                     </div>
-                    <div className='p-6'>
+                    <div className='p-6 overflow-y-auto h-[500px]'>
                         <div className='grid grid-cols-4 gap-2'>
                             {Array(10).fill('2').map(() => (
-                                <div>
+                                <div className='' onClick={()=>setCoverImg(false)}>
                                     <Image src={AlbumFirst} className='w-full h-full' />
                                 </div>
                             ))}
@@ -46,7 +71,6 @@ const EditAlbum = ({ CloseModal }: EditAlbum) => {
                     </div>
                 </>
                 :
-
                 <>
                     <div className='flex justify-between items-center border-b border-[#FFFFFF14] p-6'>
                         <h5 className='text-lg font-semibold'>Edit album</h5>
@@ -54,8 +78,6 @@ const EditAlbum = ({ CloseModal }: EditAlbum) => {
                             <Image className='w-full h-full' src={crossIcon} alt={''} />
                         </div>
                     </div>
-
-
                     <div className='p-6'>
                         <div className='flex gap-4 border-b border-[#FFFFFF14] pb-5'>
                             <div className='rounded-[14px] w-[257px] h-[200px] overflow-hidden relative'>
@@ -67,7 +89,7 @@ const EditAlbum = ({ CloseModal }: EditAlbum) => {
                             </div>
 
                             <div className='flex-1'>
-                                <div className='flex flex-col text-[#979797] pb-3'>
+                                <div className='flex flex-col text-[#979797] mb-3'>
                                     <label htmlFor="category" className='text-[13px] font-semibold pb-[6px]'>Album Name</label>
                                     <div className='relative'>
                                         <div className='absolute top-3 left-2'>
@@ -81,39 +103,51 @@ const EditAlbum = ({ CloseModal }: EditAlbum) => {
                                 </div>
 
                                 <div className='flex flex-col text-[#979797] '>
-                                    <label htmlFor="category" className='text-[13px] font-semibold pb-[6px]'>Description (Optional)</label>
+                                    <label htmlFor="Description" className='text-[13px] font-semibold pb-[6px]'>Description (Optional)</label>
                                     <div className='relative'>
                                         <div className='absolute top-3 left-2'>
                                             <Star />
                                         </div>
-                                        <input type="text" id='category' placeholder='Enter your email' className='bg-[#FFFFFF0D] rounded-[14px] h-12 w-full py-4 pl-10 border-none active:border-[#5848BC] focus:border-[#5848BC] focus:ring-[#5848BC] text-white placeholder:text-[#979797]' name='category' />
+                                        <input type="text" id='Description' placeholder='Enter your email' className='bg-[#FFFFFF0D] rounded-[14px] h-12 w-full py-4 pl-10 border-none active:border-[#5848BC] focus:border-[#5848BC] focus:ring-[#5848BC] text-white placeholder:text-[#979797]' name='category' />
                                         <div className='absolute top-3 right-2'>
                                             <Star />
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
 
                         <div className='pt-6'>
-                            <p className='font-semibold'>Images</p>
-                            <div className='grid grid-cols-3 gap-2'>
-                                {Array(5).fill('2').map((item, index) => (
-                                    <div className='w-[245px] relative'>
-                                        <Image src={image1} className='w-full h-full' />
-                                        <div className='p-1.5 bg-[#0000007A] rounded-full absolute top-2 right-2 cursor-pointer' onClick={() => ShowDropDown(index)}>
-                                            <Pencil />
-                                        </div>
-                                        {showDropDown &&
-                                            <>{dropDownIndex === index ?
+                            <p className='font-semibold pb-3'>Images</p>
+                            <div className='h-[500px] overflow-y-auto overflow-x-hidden'>
+                                <div className='grid grid-cols-3 gap-2 '>
+                                    {Array(8).fill('2').map((item, index) => (
+                                        <div className='w-[240px] relative'>
+                                            <Image src={image1} className='w-full h-full' />
+                                            <div className='p-1.5 bg-[#0000007A] rounded-full absolute top-2 right-2 cursor-pointer' onClick={() => EditAlbumImgToggle(index)}>
+                                                <Pencil />
+                                            </div>
+                                            {editAlbumImg === index &&
                                                 <div className='absolute top-12 right-3 z-50' >
-                                                    <ViewImagesDropDown />
-                                                </div> : ''}
-                                            </>
-                                        }</div>
-                                ))}
+                                                    <div className='flex flex-col w-[218px] rounded-[14px] bg-[#1A1A1A]'>
+                                                        {images.map((item, index) => {
+                                                            return (
+                                                                <div key={index} className={`cursor-pointer flex gap-2 px-4 py-[10px]`}>
+                                                                    <Image src={item.image} alt={''} />
+                                                                    <div className='text-[#FFFFFF] text-[14px] font-normal leading-[18px]' >{item.text}</div>
+                                                                </div>
+                                                            );
+                                                        })}
+                                                    </div>
+                                                </div>}
 
+                                        </div>
+                                    ))}
+
+                                </div>
                             </div>
+
                         </div>
 
                         <div className='flex items-center justify-end mt-6 gap-3 text-white font-semibold'>

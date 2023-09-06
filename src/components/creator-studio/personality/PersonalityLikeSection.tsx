@@ -14,13 +14,6 @@ const PersonalityLikeSection = () => {
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
   const [showHoverModal , setShowHoverModal] = useState(false);
 
-  // const handleOptionChange = (option: string) => {
-  //   if (selectedOptions.includes(option)) {
-  //     setSelectedOptions(selectedOptions.filter((o) => o !== option));
-  //   } else {
-  //     setSelectedOptions([...selectedOptions, option]);
-  //   }
-  // };
   const handleOptionChange = (option: string) => {
     if (selectedOptions.includes(option)) {
       setSelectedOptions(selectedOptions.filter((o) => o !== option));

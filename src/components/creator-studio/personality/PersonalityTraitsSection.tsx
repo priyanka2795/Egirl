@@ -20,15 +20,8 @@ const PersonalityTraitsSection = () => {
   const handleCloseTraits = () => {
     setOpenT(false), setSelectedTab(true);
   };
-  // const handleOptionChangeT = (optionT: string) => {
-  //   if (selectedOptionsT.includes(optionT)) {
-  //     setSelectedOptionsT(selectedOptionsT.filter((o) => o !== optionT));
-  //   } else {
-  //     setSelectedOptionsT([...selectedOptionsT, optionT]);
-  //     console.log('ye he length', optionT.length);
-  //     setAdvance(optionT.length);
-  //   }
-  // };
+
+  
   const handleOptionChangeT = (optionT: string) => {
     if (selectedOptionsT.includes(optionT)) {
       setSelectedOptionsT(selectedOptionsT.filter((o) => o !== optionT));
@@ -36,6 +29,7 @@ const PersonalityTraitsSection = () => {
       setAdvance(optionT.length);
       if (selectedOptionsT.length < 10) {
         setSelectedOptionsT([...selectedOptionsT, optionT]);
+      
       } 
     }
   };
@@ -60,6 +54,37 @@ const PersonalityTraitsSection = () => {
     handleClearSelection();
     setAdvance(0);
   };
+
+   
+  const alphabet = [
+    { name: 'A'},
+    { name: 'B'},
+    { name: 'C'},
+    { name: 'D'},
+    { name: 'E'},
+    { name: 'F'},
+    { name: 'G'},
+    { name: 'H'},
+    { name: 'I'},
+    { name: 'J'},
+    { name: 'K'},
+    { name: 'L'},
+    { name: 'M'},
+    { name: 'N'},
+    { name: 'O'},
+    { name: 'P'},
+    { name: 'Q'},
+    { name: 'R'},
+    { name: 'S'},
+    { name: 'T'},
+    { name: 'U'},
+    { name: 'V'},
+    { name: 'W'},
+    { name: 'X'},
+    { name: 'Y'},
+    { name: 'Z'}
+  ]
+  
   return (
     <>
       <div className='flex h-auto w-full max-w-full flex-col rounded-lg bg-[#121212]'>
@@ -622,6 +647,16 @@ const PersonalityTraitsSection = () => {
               </div>
             </div>
           </div>
+          {/* SCROLL BAR */}
+        {/* <div className='absolute flex flex-col items-start justify-between w-3 h-auto inset-2 '>
+        {alphabet.map((alphabets)=>{
+          return(
+            <div className='self-stretch text-[#979797] align-center font-[11px] font-semibold leading-4 tracking-wide uppercase'>{alphabets.name}</div>
+          )
+        })}
+          
+          
+        </div>  */}
         </div>
 
         <div className='relative mt-2'></div>

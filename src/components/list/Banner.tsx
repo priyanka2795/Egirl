@@ -4,13 +4,14 @@ import messageInfoIcon from '../../../public/assets/message-square-info.png';
 import blockIcon from '../../../public/assets/block-icon.png';
 import bookmarkIcon from '../../../public/assets/bookmark.png';
 import linkIcon from '../../../public/assets/link-icon.png';
-import Cover from '../../../public/assets/cover.png';
+import Cover from '../../../public/assets/cover-1.png';
 import avatar from '../../../public/assets/mika-chan-sub-banner.png';
 import userCheckIcon from '../../../public/assets/user-check-icon.png';
 import threeDotsIcon from '../../../public/assets/three-dots-icon.png';
 import blueTickIcon from '../../../public/assets/badge-check.png';
 import locationIcon from '../../../public/assets/location-icon.png';
 import calendarIcon from '../../../public/assets/calendar-icon.png';
+import VerifiedIcon from '../../../public/assets/svgImages/verified-icon.svg';
 import CollectionCoverModal from './CollectionCoverModal';
 import AddToCollectionModal from './AddToCollectionModal';
 import LeftArrow from './svg/leftArrow.svg';
@@ -77,9 +78,16 @@ const actions = [
 
 interface BannerProp {
   backFromProfile?: React.Dispatch<React.SetStateAction<boolean>>;
-  styleProperty?: string
+  styleProperty?: string;
+  followBtnStyle?: string;
+  followText?: string;
 }
-const Banner = ({ backFromProfile , styleProperty}: BannerProp) => {
+const Banner = ({
+  backFromProfile,
+  styleProperty,
+  followBtnStyle,
+  followText
+}: BannerProp) => {
   const [actionDivShow, setActionDivShow] = useState(false);
   const [exploreSelectedTab, setExploreSelected] = useState('');
   const [collectionModalState, setCollectionModalState] = useState(false);
@@ -100,7 +108,7 @@ const Banner = ({ backFromProfile , styleProperty}: BannerProp) => {
   };
 
   return (
-    <div className={`${styleProperty ? styleProperty : "px-8"}`}>
+    <div className={`${styleProperty ? styleProperty : 'px-8'}`}>
       {backFromProfile === undefined ? (
         ''
       ) : (
@@ -117,24 +125,29 @@ const Banner = ({ backFromProfile , styleProperty}: BannerProp) => {
 
       <div>
         <div className='h-max w-full overflow-hidden rounded-[16px] bg-[#121212]'>
-          <div className='block w-full'>
+          <div className='block w-full sub-banner'>
             <Image className='w-full h-full' src={Cover} alt='' />
             <div className='mb-5 mt-[-62px] flex w-full items-center justify-between px-[24px]'>
               <div className='relative h-[120px] w-[120px] overflow-hidden rounded-full'>
                 <Image className='w-full h-full' src={avatar} alt='' />
               </div>
               <div className='flex gap-[12px] self-end'>
-                <button className='flex h-max gap-2 rounded-[14px] bg-white/[0.08] px-[20px] py-[13px]'>
-                  <Image
-                    src={userCheckIcon}
-                    alt=''
-                    className='object-contain'
-                  />
-                  <div className='text-[16px] font-bold text-[#FFFFFF]'>
-                    Following
-                  </div>
+                <button
+                  className={`flex h-max gap-2 rounded-[14px] px-[20px] py-[11px] text-[16px] font-bold ${
+                    followBtnStyle
+                      ? followBtnStyle
+                      : 'bg-white/[0.08] text-white'
+                  }`}
+                >
+                  {followBtnStyle ? "":   <Image
+                      src={userCheckIcon}
+                      alt=''
+                      className='object-contain'
+                    />}
+
+                  {followText ? followText : 'Following'}
                 </button>
-                <button className='h-max rounded-[14px] bg-[#5848BC] px-[20px] py-[13px] text-base font-bold text-[#FFFFFF]'>
+                <button className='h-max rounded-[14px] bg-[#5848BC] px-[20px] py-[11px] text-base font-bold text-white border border-[#5848BC]'>
                   Subscribe
                 </button>
                 <div className='relative'>
@@ -181,19 +194,20 @@ const Banner = ({ backFromProfile , styleProperty}: BannerProp) => {
 
           <div className='flex px-6 pb-[24px]'>
             <div className=''>
-              <div className='flex gap-[2px]'>
+              <div className='flex items-center gap-[2px]'>
                 <div className='text-[22px] font-bold text-[#FFFFFF]'>
                   Mika-chan
                 </div>
-                <div className='mt-2 h-[24px] w-[24px]'>
-                  <Image className='w-full h-full' src={blueTickIcon} alt='' />
+                <div className='h-[24px] w-[24px]'>
+                  <VerifiedIcon />
+                  {/* <Image className='w-full h-full' src={blueTickIcon} alt='' /> */}
                 </div>
               </div>
 
-              <div className='mt-[2px] text-[15px] font-normal text-[#979797]'>
+              <div className='text-[15px] font-normal text-[#979797]'>
                 @mikachan
               </div>
-              <div className='mt-[12px] text-[15px] font-normal text-[#FFFFFF]'>
+              <div className='mt-3 w-full max-w-[73%] text-[15px] font-normal leading-[20px] text-[#FFFFFF]'>
                 Shy fox girl looking for adventure
                 ·冒険を探している恥ずかしがり屋のキツ I have a personality and
                 emotions. I can experience joy, sadness, anger, and everything

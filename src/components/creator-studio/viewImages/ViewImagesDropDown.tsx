@@ -7,7 +7,6 @@ import image from '../../../../public/assets/image.png';
 import undo from '../../../../public/assets/Undo.png';
 import deleteIcon from '../../../../public/assets/trash-blank-alt.png';
 import Image from 'next/image';
-import CreateCategory from './createCategory';
 import CreateGift from './moveAlbumModal';
 import SuccessModal from './successModal';
 
@@ -42,13 +41,12 @@ interface ViewImagesDropDown {
 }
 const ViewImagesDropDown = ({ DeleteImage}: ViewImagesDropDown) => {
 
-
   return (
     <>
       <div className='flex flex-col w-[218px] rounded-[14px] bg-[#1A1A1A]'>
         {images.map((item, index) => {
           return (
-            <div key={index} className={`cursor-pointer flex gap-2 px-4 py-[10px]`}onClick={(e) => DeleteImage(e)} >
+            <div key={index} className={`cursor-pointer flex gap-2 px-4 py-[10px]`} onClick={(e) => DeleteImage(e)} >
               <Image src={item.image} alt={''} />
               <div className='text-[#FFFFFF] text-[14px] font-normal leading-[18px]' >{item.text}</div>
             </div>
@@ -62,4 +60,7 @@ const ViewImagesDropDown = ({ DeleteImage}: ViewImagesDropDown) => {
   )
 }
 
-export default ViewImagesDropDown
+export default ViewImagesDropDown;
+
+
+

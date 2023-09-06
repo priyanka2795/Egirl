@@ -10,9 +10,10 @@ import shop from '../../../../public/assets/shop.png';
 import StyleGeneratorNext from './StyleGeneratorNext';
 
 interface ViewStyleModalProps {
-    setViewStyleModal: any;
-    setStyleGenNext: any;
-    setNotificationModal:any;
+    setViewStyleModal?: any;
+    setStyleGenNext?: any;
+    setNotificationModal?:any;
+    image: any;
 }
 
 const list = [
@@ -34,18 +35,18 @@ const list = [
     },
 ];
 
-const ViewStyleModal = ( {setViewStyleModal, setStyleGenNext, setNotificationModal} : ViewStyleModalProps ) => {
+const ViewStyleModal = ( {setViewStyleModal, setStyleGenNext, setNotificationModal, image} : ViewStyleModalProps ) => {
   
   return (
     <>
     <div>
       <Modal
         open={true}
-        modalClassName='flex overflow-hidden w-full rounded-[20px] h-max bg-[#1A1A1A] max-w-[1376px]'
+        modalClassName='flex overflow-hidden w-full rounded-[20px] bg-[#1A1A1A] max-w-[1376px]'
         closeModal={() => setViewStyleModal (false)}
         modalOverlayStyle='!bg-black/80'
       >
-       <Image src={modalImg} alt={''} />
+       <Image className='object-contain' src={image} alt={''} />
        <div className='flex flex-col w-[448px]'>
         <div className='flex flex-col gap-4 px-6 pt-6 pb-5'>
             <div className='flex flex-col gap-[2px]'>

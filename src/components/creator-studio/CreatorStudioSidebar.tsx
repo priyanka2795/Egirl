@@ -180,7 +180,7 @@ const CreatorStudioSidebar = ({
           </div>
           <SidebarMenuItem
             text='View Styles'
-            href='/home'
+            href='/view-style'
             Icon={ViewStyleIcon}
             IconActive={HomeActiveIcon}
             StyleClasses={`${

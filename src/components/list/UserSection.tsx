@@ -13,9 +13,12 @@ const settings = {
     slidesToScroll: 1
   };
 
-const UserSection = () => {
+  interface UserSectionInterface {
+    userSectionStyle?: string;
+  }
+const UserSection = ({userSectionStyle}:UserSectionInterface) => {
   return (
-        <div className='bg-[#121212] rounded-[14px] w-[39%] h-max mt-5'>
+        <div className={`bg-[#121212] rounded-[14px] h-max mt-5 ${userSectionStyle ? userSectionStyle:' w-[39%]'}`}>
                 <div className='flex justify-between p-6 border-b border-white/[0.08]'>
                     <div className='text-[#FFFFFF] text-[18px] font-bold'>You might like</div>
                     <div className='flex gap-3'>
