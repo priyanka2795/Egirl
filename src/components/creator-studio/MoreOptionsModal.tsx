@@ -22,10 +22,7 @@ const moreDropdown = [
 const MoreOptionsModal = () => {
   return (
     <>
-      <div className='flex h-max w-[260px] flex-col rounded-[14px] bg-[#1A1A1A] px-0 py-2
-   
-      bottom-[45px]  fixed z-10 -ml-1
-      '>
+      <div className='flex h-max w-[260px] flex-col rounded-[14px] bg-[#1A1A1A] px-0 py-2 bottom-[45px] fixed z-10 -ml-1'>
       {moreDropdown.map((item) => {
         return (
           
