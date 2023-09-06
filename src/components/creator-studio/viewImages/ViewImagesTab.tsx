@@ -1,15 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
-import grid from '../../../../public/assets/grid-horizontal.png';
 import arrowUpArrowDown from '../../../../public/assets/arrow-down-arrow-up2.png';
 import filter from '../../../../public/assets/filter.png';
 import Image from 'next/image';
 import UnSelectIcon from "../svg/short_border.svg";
 import SelectIcon from "../svg/short_select.svg";
+import crossIcon from '../../../../public/assets/xmark (1).png';
 import Prev from '../../../../public/assets/arrow-left.svg';
 import Search from '../../../../public/assets/search-alt (1).png';
-import crossIcon from '../../../../public/assets/xmark (1).png';
-import AlbumDelete from './albumDelete';
-import SearchBar from '@components/common/Search/SearchBar';
 import Information from '../../../../public/assets/circle-information2.png';
 
 interface ViewImagesTab {
@@ -21,14 +18,31 @@ interface ViewImagesTab {
 const Albumshort = ['Default', 'Sort ascending', 'Sort descending'];
 const short = ['Newest first', 'Oldest first'];
 
-const FilterData = [
-  {
-    Modal: ['All models', 'Artistic', 'Fantasy', 'Photoreal', 'Stable (Old)', 'Model 1', 'Model 1', 'Model 1', 'Model 1', 'Model 1', 'Model 1', 'Model 1']
-  },
-  {
-    Style: ['All style', 'Label', 'Label', 'Label', 'Label', 'Label', 'Label', 'Label', 'Label', 'Label'],
-  }
+
+const Modal = [
+  { id: "1", modalName: "Stable" },
+  { id: "2", modalName: "Artistic" },
+  { id: "3", modalName: "Fantasy" },
+  { id: "4", modalName: "Photoreal" },
+  { id: "5", modalName: "Model 1" },
+  { id: "6", modalName: "Model 2" },
+  { id: "7", modalName: "Model 3" },
 ];
+
+const Style = [
+  { id: "1", styleName: "Stable" },
+  { id: "2", styleName: "Artistic" },
+  { id: "3", styleName: "Fantasy" },
+  { id: "4", styleName: "Photoreal" },
+  { id: "5", styleName: "Style 1" },
+  { id: "6", styleName: "Style 2" },
+  { id: "7", styleName: "Style 3" },
+  { id: "8", styleName: "Style 3" },
+  { id: "9", styleName: "Style 3" },
+  { id: "10", styleName: "Style 3" },
+  { id: "11", styleName: "Style 3" },
+];
+
 const TagData = [
   'Anime',
   'Animal crossing',
@@ -66,14 +80,7 @@ const ViewImagesTab = ({ tabContent, exploreSelectedTab, setExploreSelected }: V
   const SelectShort = (index: any) => {
     setShortTab(index)
   }
-  const handleChange = (e: any) => {
-    const { name, checked } = e.target;
-    console.log(name, 'name');
-    console.log(checked, 'Check');
-    if (name === 'All models') {
 
-    }
-  }
   const handleOptionChange = (option: string) => {
     if (selectedOptions.includes(option)) {
       setSelectedOptions(selectedOptions.filter((o) => o !== option));
@@ -92,7 +99,7 @@ const ViewImagesTab = ({ tabContent, exploreSelectedTab, setExploreSelected }: V
   }
 
   const dropdownRef = useRef(null);
-  
+
   useEffect(() => {
     document.addEventListener('click', handleClickOutside);
     return () => {
@@ -101,11 +108,35 @@ const ViewImagesTab = ({ tabContent, exploreSelectedTab, setExploreSelected }: V
   }, []);
   const handleClickOutside = (e: MouseEvent) => {
     if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-      setFilterToggle(false);
+      // setFilterToggle(false);
       setShortSelect(false);
       setAlbumShortSelect(false);
     }
   };
+
+
+
+
+  const [checked, setChecked] = useState([] as any);
+  const [styleChecked, setStyleChecked] = useState([] as any);
+  const handleCheckAllChange = (e: any) => {
+    const { name } = e.target;
+    console.log(name, 'e.target.name');
+    if (name === 'modalAll') {
+      setChecked(e.target.checked ? Modal.map((c) => c.modalName) : [])
+
+    } else if (name === 'styleAll') {
+      setStyleChecked(e.target.checked ? Style.map((c) => c.styleName) : [])
+    }
+  };
+
+  const handleCountryChange = (e: any, c: any) => {
+    setChecked((prevChecked: any) => e.target.checked ? [...prevChecked, c.modalName] : prevChecked.filter((item: any) => item !== c.modalName));
+  };
+  const handleStyleChange = (e: any, c: any) => {
+    setStyleChecked((prevChecked: any) => e.target.checked ? [...prevChecked, c.styleName] : prevChecked.filter((item: any) => item !== c.styleName));
+  };
+
 
 
 
@@ -129,7 +160,7 @@ const ViewImagesTab = ({ tabContent, exploreSelectedTab, setExploreSelected }: V
         })}
       </div>
 
-      <div className='flex items-center gap-2'>
+      <div className='flex items-center gap-2' >
         {exploreSelectedTab === 'Albums' ?
           <>
             <button className={`relative ${isActive ? "w-[360px]" : 'w-[30px] h-9'}`} >
@@ -141,7 +172,7 @@ const ViewImagesTab = ({ tabContent, exploreSelectedTab, setExploreSelected }: V
                 <span className='absolute right-2 top-2' onClick={() => setActive(!isActive)} ><Image className='w-full h-full' src={crossIcon} alt={''} /></span> : ''
               }
             </button>
-            <div className='relative flex'>
+            <div className='relative flex' >
               <div className={`cursor-pointer w-9 h-9 flex justify-center items-center rounded-full ${albumShortSelect && 'bg-[#FFFFFF14]'}`} onClick={() => setAlbumShortSelect(!albumShortSelect)}>
                 <Image src={arrowUpArrowDown} alt={''} />
               </div>
@@ -164,7 +195,7 @@ const ViewImagesTab = ({ tabContent, exploreSelectedTab, setExploreSelected }: V
           </>
           :
           <>
-            <div className='relative flex'>
+            <div className='relative flex' >
               <div className={`h-9 w-9 flex justify-center items-center cursor-pointer rounded-full ${shortSelect && 'bg-[#FFFFFF14]'}`} onClick={() => { setShortSelect(!shortSelect), setFilterToggle(false) }}>
                 <Image src={arrowUpArrowDown} alt={''} />
               </div>
@@ -184,7 +215,7 @@ const ViewImagesTab = ({ tabContent, exploreSelectedTab, setExploreSelected }: V
               }
             </div>
 
-            <div className='relative'>
+            <div className='relative' >
               <button className={`h-9 w-9 flex justify-center items-center cursor-pointer rounded-full ${filterToggle && 'bg-[#FFFFFF14]'}`} onClick={() => { setFilterToggle(!filterToggle), setShortSelect(false) }}>
                 <div className='relative pt-2'>
                   <Image src={filter} alt={''} />
@@ -194,7 +225,7 @@ const ViewImagesTab = ({ tabContent, exploreSelectedTab, setExploreSelected }: V
               </button>
 
               {filterToggle &&
-                <div className='bg-[#272727] rounded-[14px] w-[346px] shadow-[0px 8px 12px 0px #0000001F] absolute top-12 right-0 z-50'>
+                <div className='bg-[#272727] rounded-[14px] w-[346px] shadow-[0px 8px 12px 0px #0000001F] absolute top-12 right-0 z-50' >
                   <div className='flex flex-col gap-3 px-6 py-5'>
                     <div className='flex items-center justify-between'>
                       <div className='flex items-center gap-2'>
@@ -209,13 +240,15 @@ const ViewImagesTab = ({ tabContent, exploreSelectedTab, setExploreSelected }: V
                         <button className='text-[#979797]' onClick={() => { setFilterActive(false) }}>Clear all</button>
                       }
                     </div>
-                    {selectTag ? <div className='flex items-center gap-1 '>
-                      <Image src={Information} /> <p className='text-[#979797] text-xs'>The maximum number of filters is 4</p>
-                    </div> : ''}
-                    <div className='relative'>
-                      <div className='absolute left-2 top-2.5'><Image src={Search} className='' /></div>
-                      <input type="text" id='category' placeholder='Search' className='bg-[#FFFFFF0D] rounded-[14px] h-10 w-full pl-8 border-none active:border-none focus:border-none focus:ring-0 text-white placeholder:text-[#979797]' name='category' />
                     </div>
+                    {selectTag ? 
+                    <div className='flex items-center gap-1 px-6 pb-3'>
+                    <Image src={Information} /> <p className='text-[#979797] text-xs'>The maximum number of filters is 4</p>
+                  </div> : ''}
+
+                  <div className='relative mb-5 mx-6'>
+                    <div className='absolute left-2 top-2.5'><Image src={Search} className='' /></div>
+                    <input type="text" id='category' placeholder='Search' className='bg-[#FFFFFF0D] rounded-[14px] h-10 w-full pl-8 border-none active:border-none focus:border-none focus:ring-0 text-white placeholder:text-[#979797]' name='category' />
                   </div>
 
                   {selectTag ?
@@ -225,7 +258,7 @@ const ViewImagesTab = ({ tabContent, exploreSelectedTab, setExploreSelected }: V
                           {TagData.map((items, index) => {
                             return (
                               <div
-                                className='relative mb-3'
+                                className='relative mb-3 '
                                 key={index}
                                 onClick={() => {
                                   selectedOptions.includes(items);
@@ -236,13 +269,13 @@ const ViewImagesTab = ({ tabContent, exploreSelectedTab, setExploreSelected }: V
                                   name='option'
                                   checked={selectedOptions.includes(items)}
                                   onChange={() => handleOptionChange(items)}
-                                  className='styled-checkbox checkbox peer absolute left-[23px] top-[13px] hidden bg-zinc-800'
+                                  className='styled-checkbox checkbox peer absolute left-[23px] top-[13px] hidden bg-zinc-800 '
                                   type='checkbox'
                                   value={`${index}`}
                                 />
                                 <label
                                   htmlFor={`${index}`}
-                                  className='mb-4 h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[white] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
+                                  className='mb-4 h-10 w-max cursor-pointer rounded-3xl px-3 py-2 pl-3 text-base text-[white] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4] bg-[#FFFFFF0D]'
                                   id={`${index}`}
                                 >
                                   {items}
@@ -259,34 +292,49 @@ const ViewImagesTab = ({ tabContent, exploreSelectedTab, setExploreSelected }: V
                       </div>
                     </div>
                     :
-                    <div className='overflow-y-auto h-[500px] p-6'>
-                      <div className='border-b border-b-[#FFFFFF14] '>
-                        <p className='text-[#979797] uppercase	'>Model</p>
+                    <div className='overflow-y-auto h-[500px] px-6'>
+                      <div className="border-b border-b-[#FFFFFF14] ">
+                        <p className='text-[#979797] uppercase'>Model</p>
                         <div className={`flex flex-col gap-4 py-3 overflow-hidden ${viewAll ? 'h-auto' : 'h-[200px]'}`}>
-                          {FilterData[0]?.Modal?.map((item) => (
-                            <div className='flex items-center gap-2'>
-                              <input type="checkbox" name={item} id={item} className='w-5 h-5 text-[#5848BC] border-[#FFFFFF3D] rounded focus:ring-0 dark:focus:ring-0 dark:ring-offset-0  bg-transparent ' onChange={(e) => handleChange(e)} />
-                              <label htmlFor={item}>{item}</label>
+                          <div className='flex items-center gap-2'>
+                            <input className="w-5 h-5 text-[#5848BC] border-[#FFFFFF3D] rounded focus:ring-0 dark:focus:ring-0 dark:ring-offset-0  bg-transparent" type="checkbox" name='modalAll' id="modalAll" checked={checked.length === Modal.length}
+                              onChange={(e) => handleCheckAllChange(e)} />
+                            <label className="" htmlFor="modalAll">All Model</label>
+                          </div>
+
+                          {Modal.map((c) => (
+                            <div className="flex items-center gap-2" key={c.id}>
+                              <input className="w-5 h-5 text-[#5848BC] border-[#FFFFFF3D] rounded focus:ring-0 dark:focus:ring-0 dark:ring-offset-0  bg-transparent " type="checkbox" id={c.id} checked={checked.includes(c.modalName)}
+                                onChange={(e) => handleCountryChange(e, c)} />
+                              <label htmlFor={c.id}>{c.modalName}</label>
                             </div>
                           ))}
                         </div>
-                        <button className='text-[#8C7DD0] pb-5' onClick={() => setViewAll(!viewAll)}>View all</button>
+                        <button className={`text-[#8C7DD0] pb-5 ${viewAll ? 'opacity-50 cursor-not-allowed' : 'opacity-100'}`} onClick={() => setViewAll(true)}>View all</button>
                       </div>
 
-                      <div className='border-b border-b-[#FFFFFF14] mt-3'>
+                      <div className="border-b border-b-[#FFFFFF14] mt-3">
                         <p className='text-[#979797] uppercase	'>Style</p>
                         <div className={`flex flex-col gap-4 py-3 overflow-hidden ${viewAllStyle ? 'h-auto' : 'h-[200px]'}`}>
-                          {FilterData[1]?.Style?.map((items) => (
-                            <div className='flex items-center gap-2'>
-                              <input type="checkbox" id={items} className='w-5 h-5 text-[#5848BC] border-[#FFFFFF3D] rounded focus:ring-0 dark:focus:ring-0 dark:ring-offset-0  bg-transparent ' />
-                              <label htmlFor={items}>{items}</label>
+                          <div className='flex items-center gap-2'>
+                            <input className="w-5 h-5 text-[#5848BC] border-[#FFFFFF3D] rounded focus:ring-0 dark:focus:ring-0 dark:ring-offset-0  bg-transparent" type="checkbox" name='styleAll' id="styleAll" checked={styleChecked.length === Style.length}
+                              onChange={(e) => handleCheckAllChange(e)} />
+                            <label className="" htmlFor="styleAll">All Style</label>
+                          </div>
+
+                          {Style.map((c) => (
+                            <div className="flex items-center gap-2" key={c.id}>
+                              <input className="w-5 h-5 text-[#5848BC] border-[#FFFFFF3D] rounded focus:ring-0 dark:focus:ring-0 dark:ring-offset-0  bg-transparent " type="checkbox" id={c.id} checked={styleChecked.includes(c.styleName)}
+                                onChange={(e) => handleStyleChange(e, c)} />
+                              <label htmlFor={c.id}>{c.styleName}</label>
                             </div>
                           ))}
                         </div>
-                        <button className='text-[#8C7DD0] pb-5' onClick={() => setViewAllStyle(!viewAllStyle)}>View all</button>
+                        <button className={`text-[#8C7DD0] pb-5 ${viewAllStyle ? 'opacity-50 cursor-not-allowed' : 'opacity-100'}`} onClick={() => setViewAllStyle(true)}>View all</button>
                       </div>
 
-                      <div className='border-b border-b-[#FFFFFF14] mt-3'>
+
+                      <div className='mt-3'>
                         <p className='text-[#979797] uppercase'>Tags</p>
                         <div className={`flex flex-col gap-4 py-3 overflow-hidden`}>
                           {selectedOptions.map((items) => (
@@ -302,7 +350,7 @@ const ViewImagesTab = ({ tabContent, exploreSelectedTab, setExploreSelected }: V
 
                   }
                   {selectTag ? '' :
-                    <div className='p-6'>
+                    <div className='p-5 mt-2 border-t border-t-[#FFFFFF14]'>
                       <button className='bg-[#5848BC] rounded-[14px] px-5 py-3 w-full' onClick={() => ApplyFilter()}>Apply</button>
                     </div>
                   }

@@ -44,8 +44,9 @@ const images = [
 ];
 interface VIMainImageBlock {
   ToggleMenu: any;
+  SetAlbumImages: any;
 }
-const VIMainImageBlock = ({ ToggleMenu }: VIMainImageBlock) => {
+const VIMainImageBlock = ({ ToggleMenu, SetAlbumImages }: VIMainImageBlock) => {
   const [allImages, setAllImages] = useState(images);
   const [showDropDown, setShowDropDown] = useState(null);
   const [allImage, setAllImage] = useState(null);
@@ -55,6 +56,7 @@ const VIMainImageBlock = ({ ToggleMenu }: VIMainImageBlock) => {
   const [deleteImageModal, setDeleteImageModal] = useState(false)
   const [moveAlbumModal, setMoveAlbumModal] = useState(false)
 
+  const dropdownRef = useRef(null);
 
   const AlbumImageToggle = (index: any) => {
     setShowDropDown((prev) => (prev === index ? null : index));
@@ -76,15 +78,6 @@ const VIMainImageBlock = ({ ToggleMenu }: VIMainImageBlock) => {
     }
   }
 
-  // const MyDelete = (ind: any) => {
-  //   const myData = allImages.filter((item: any, index: number, array: any) => index !== ind);
-  //   console.log(myData,'myData');
-
-  // }
-
-
-  const dropdownRef = useRef(null);
-  
   useEffect(() => {
     document.addEventListener('click', handleClickOutside);
     return () => {
@@ -98,18 +91,19 @@ const VIMainImageBlock = ({ ToggleMenu }: VIMainImageBlock) => {
     }
   };
 
-
   return (
     <>
-      <div className='grid grid-cols-3 gap-3' ref={dropdownRef}>
-        {ToggleMenu ?
-          <>
+      {ToggleMenu ?
+        <>
+          <div className='grid grid-cols-3 gap-3' ref={dropdownRef}>
             {images.map((item, index) => (
-              <div key={index} className='relative group w-full h-full' >
+              <div key={index} className='relative group w-full h-full sub-banner' >
                 <Image className='w-full object-cover ' src={item.image} alt={''} />
-                <div className=' absolute bottom-[7px] flex justify-between items-end bg-gradient-to-t to-[#00000000] from-[#000000CC] h-[150px] w-full px-5 pb-3 font-semibold'>
-                  <p>Fantasy world & nature</p>
-                  <p>4</p>
+                <div className=' absolute bottom-0 bg-gradient-to-t to-[#00000000] from-[#000000CC] h-[150px] w-full px-5 pb-3 font-semibold flex'  >
+                  <div className='flex justify-between items-end w-full '>
+                    <p className='cursor-pointer ' onClick={() => SetAlbumImages(true)}>Fantasy world & nature</p>
+                    <p className='cursor-pointer ' onClick={() => SetAlbumImages(true)}>4</p>
+                  </div>
                 </div>
                 <div className='cursor-pointer invisible w-[30px] h-[30px] flex items-center justify-center group-hover:visible group-hover:opacity-100 absolute top-[7px] right-[7px] rounded-full bg-black/[0.48]' onClick={() => { AlbumImageToggle(index) }}>
                   <Image className='' src={threeDots} alt={''} />
@@ -130,19 +124,20 @@ const VIMainImageBlock = ({ ToggleMenu }: VIMainImageBlock) => {
                     </button>
                   </div>
                 )}
-
               </div>
-
-
-
             ))}
-          </>
-          : <>
+          </div>
+        </>
+        : <>
+
+
+
+          <div className='grid grid-cols-3 gap-2' ref={dropdownRef}>
             {allImages.map((item, index) => (
-              <div className='relative group w-full h-full' key={index} >
-                <Image className='w-full object-cover ' src={item.image} alt={''} />
+              <div className='relative group w-full h-full bg-red-100 sub-banner ' key={index} >
+                <Image className=' object-cover !w-full h-full' src={item.image} alt={''} />
                 <div className='cursor-pointer invisible w-[30px] h-[30px] flex items-center justify-center group-hover:visible group-hover:opacity-100 absolute top-[7px] right-[7px] rounded-full bg-black/[0.48]' onClick={() => AllImageToggle(index)}>
-                  <Image className='' src={threeDots} alt={''} />
+                  <Image className='w-full h-full' src={threeDots} alt={''} />
                 </div>
                 {allImage === index && (
                   <div className='absolute top-12 right-3 z-50' >
@@ -151,16 +146,19 @@ const VIMainImageBlock = ({ ToggleMenu }: VIMainImageBlock) => {
                 )}
               </div>
             ))}
-          </>
-        }
-      </div>
+          </div>
+        </>
+      }
 
-      {deleteModal && <AlbumDelete DeleteModal={setDeleteModal} Heading={'Delete album'} Content={'Are you sure you want to delete the'} Name={'Fantasy world & nature'} />}
+      {deleteModal && <AlbumDelete DeleteModal={setDeleteModal} Heading={'Delete album'} Content={'Are you sure you want to delete the'} Name={'Fantasy world & nature'} LastName={"album?"} />}
       {editAlbum && <EditAlbum CloseModal={setEditAlbum} />}
       {albumDetails && <AlbumDetailsModal CloseModal={setAlbumDetails} />}
 
-      {deleteImageModal && <AlbumDelete DeleteModal={setDeleteImageModal} Heading={'Delete image'} Content={'Are you sure you want to delete the image?'} Name />}
+      {deleteImageModal && <AlbumDelete DeleteModal={setDeleteImageModal} Heading={'Delete image'} Content={'Are you sure you want to delete the image?'} Name LastName />}
       {moveAlbumModal && <MoveAlbumModal MoveModalClose={setMoveAlbumModal} />}
+
+
+
     </>
 
 
