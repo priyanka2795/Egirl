@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import grid from '../../../../public/assets/grid-horizontal.png';
 import arrowUpArrowDown from '../../../../public/assets/arrow-down-arrow-up2.png';
 import filter from '../../../../public/assets/filter.png';
@@ -42,7 +42,7 @@ const TagData = [
   'ASMR',
   'Aesthetically',
 ];
-// const Alphabet = ['ABCDEFGHIJKLMNOPQRSTUVWXYZ'];
+const Alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const ViewImagesTab = ({ tabContent, exploreSelectedTab, setExploreSelected }: ViewImagesTab) => {
   const [shortSelect, setShortSelect] = useState(false);
   const [shortTab, setShortTab] = useState(1);
@@ -85,12 +85,32 @@ const ViewImagesTab = ({ tabContent, exploreSelectedTab, setExploreSelected }: V
     }
   };
 
+  const alphabetArray = Alphabet.split('');
   const ApplyFilter = () => {
     setFilterActive(true);
     setFilterToggle(false)
   }
+
+  const dropdownRef = useRef(null);
+  
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+  const handleClickOutside = (e: MouseEvent) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+      setFilterToggle(false);
+      setShortSelect(false);
+      setAlbumShortSelect(false);
+    }
+  };
+
+
+
   return (
-    <div className='flex justify-between pb-5 border-b border-white/[0.08]'>
+    <div className='flex justify-between pb-5 border-b border-white/[0.08]' ref={dropdownRef}>
 
       <div className='flex items-start justify-start gap-3'>
         {tabContent.map((items: any, index: any) => {
@@ -179,7 +199,7 @@ const ViewImagesTab = ({ tabContent, exploreSelectedTab, setExploreSelected }: V
                     <div className='flex justify-between items-center'>
                       <div className='flex items-center gap-2'>
                         {selectTag ?
-                          <div className='' onClick={() => setSelectTag(false)}>
+                          <div className='cursor-pointer' onClick={() => setSelectTag(false)}>
                             <Prev />
                           </div>
                           : ''}
@@ -200,7 +220,7 @@ const ViewImagesTab = ({ tabContent, exploreSelectedTab, setExploreSelected }: V
 
                   {selectTag ?
                     <div className='overflow-y-auto h-[500px] '>
-                      <div className=' border-t border-t-[#FFFFFF14] p-6'>
+                      <div className=' border-t border-t-[#FFFFFF14] p-6 relative '>
                         <div className='flex flex-wrap gap-3 '>
                           {TagData.map((items, index) => {
                             return (
@@ -231,13 +251,11 @@ const ViewImagesTab = ({ tabContent, exploreSelectedTab, setExploreSelected }: V
                             );
                           })}
                         </div>
-                        {/* {Alphabet.map((item) => (
-                          <div className='flex gap-5'>
-                          
-                              <span>{item}</span>
-                           
-                          </div>
-                        ))} */}
+                        <div className='flex flex-col gap-1 w-4 absolute right-1 top-6'>
+                          {alphabetArray.map(letter => (
+                            <span className={`text-[11px] cursor-pointer ${letter === 'A' ? 'text-[#979797]' : 'text-[#515151]'}`}>{letter}</span>
+                          ))}
+                        </div>
                       </div>
                     </div>
                     :
