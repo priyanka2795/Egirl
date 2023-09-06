@@ -61,6 +61,7 @@ const VIMainImageBlock = ({ ToggleMenu }: VIMainImageBlock) => {
   }
   const AllImageToggle = (index: any) => {
     setAllImage((prev) => (prev === index ? null : index));
+
   }
   const DeleteImage = (e: any) => {
     const Data = e.target.innerText;
@@ -75,17 +76,32 @@ const VIMainImageBlock = ({ ToggleMenu }: VIMainImageBlock) => {
     }
   }
 
-  const MyDelete = (ind: any) => {
-    const myData = allImages.filter((item: any, index: number, array: any) => index !== ind);
-    console.log(myData,'myData');
-    
-  }
- 
+  // const MyDelete = (ind: any) => {
+  //   const myData = allImages.filter((item: any, index: number, array: any) => index !== ind);
+  //   console.log(myData,'myData');
+
+  // }
+
+
+  const dropdownRef = useRef(null);
+  
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+  const handleClickOutside = (e: MouseEvent) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+      setAllImage(null);
+      setShowDropDown(null);
+    }
+  };
 
 
   return (
     <>
-      <div className='grid grid-cols-3 gap-3'>
+      <div className='grid grid-cols-3 gap-3' ref={dropdownRef}>
         {ToggleMenu ?
           <>
             {images.map((item, index) => (
@@ -100,15 +116,15 @@ const VIMainImageBlock = ({ ToggleMenu }: VIMainImageBlock) => {
                 </div>
                 {showDropDown === index && (
                   <div className='bg-[#1A1A1A] p-4 flex flex-col gap-3 rounded-[14px] w-[218px] absolute right-2 top-10 z-50' >
-                    <button className='flex items-center gap-2' onClick={() => {setEditAlbum(true),setShowDropDown(null)}}>
+                    <button className='flex items-center gap-2' onClick={() => { setEditAlbum(true), setShowDropDown(null) }}>
                       <Image src={Pencil} className='w-[18px] h-[18px]' alt='' />
                       <p>Edit</p>
                     </button>
-                    <button className='flex items-center gap-2' onClick={() => {setAlbumDetails(true),setShowDropDown(null)}}>
+                    <button className='flex items-center gap-2' onClick={() => { setAlbumDetails(true), setShowDropDown(null) }}>
                       <Image src={Information} className='w-[18px] h-[18px]' alt='' />
                       <p>Details</p>
                     </button>
-                    <button className='flex items-center gap-2' onClick={() => {(setDeleteModal(true)),setShowDropDown(null)}}>
+                    <button className='flex items-center gap-2' onClick={() => { (setDeleteModal(true)), setShowDropDown(null) }}>
                       <Image src={Delete} className='w-[18px] h-[18px]' alt={''} />
                       <p>Delete</p>
                     </button>
@@ -129,7 +145,7 @@ const VIMainImageBlock = ({ ToggleMenu }: VIMainImageBlock) => {
                   <Image className='' src={threeDots} alt={''} />
                 </div>
                 {allImage === index && (
-                  <div className='absolute top-12 right-3 z-50' onClick={() => MyDelete(index)}>
+                  <div className='absolute top-12 right-3 z-50' >
                     <ViewImagesDropDown DeleteImage={DeleteImage} />
                   </div>
                 )}
