@@ -54,7 +54,6 @@ const FilterData = [
 const AddTagModal = ({ closeDeleteModal }: AddTagModalProp) => {
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 
-  console.log('selectedOptions', selectedOptions);
   const handleOptionChange = (option: string) => {
     console.log(option, 'resr');
     if (selectedOptions.includes(option)) {
