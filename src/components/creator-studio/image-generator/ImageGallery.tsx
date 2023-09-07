@@ -134,11 +134,10 @@ const ImageGallery = () => {
                 className='group relative flex h-[174px] w-[175px] cursor-pointer justify-center overflow-hidden  rounded-xl bg-white/[0.05]  hover:bg-[#5848BC] '
               >
                 <div
-                  className={`flex  items-center rounded-t-sm p-0.5 group-hover:bg-[#5848BC] ${
-                    item.name === 'None'
+                  className={`flex  items-center rounded-t-sm p-0.5 group-hover:bg-[#5848BC] ${item.name === 'None'
                       ? 'h-[calc(100%-43.5px)] w-full justify-center'
                       : ''
-                  }`}
+                    }`}
                 >
                   <Image src={item.img} className='shrink-0 rounded-xl' />
                 </div>
@@ -292,27 +291,26 @@ const ImageGallery = () => {
                   {/*  */}
 
                   {advanceModal ? (
-                    <div className='flex flex-col items-start self-stretch gap-3'>
-                      <div className='flex items-center self-stretch justify-between'>
-                        <div className='flex items-start '>
+                    <div className='flex flex-col gap-3'>
+                      <div className='flex items-center justify-between'>
+                        <div className='flex items-center gap-2 '>
                           {tabContent.map((items: any, index: any) => {
                             return (
                               <div
                                 key={index}
                                 onClick={(e) => handleExploreSelected(e)}
-                                className={`flex cursor-pointer gap-2.5 rounded-xl px-4 py-2 text-[15px] font-bold ${
-                                  exploreSelectedTab === items
+                                className={`cursor-pointer gap-2.5 rounded-xl px-4 py-2 text-[15px] font-bold ${exploreSelectedTab === items
                                     ? ' bg-white bg-opacity-20 text-white  '
                                     : 'text-neutral-400'
-                                }`}
+                                  }`}
                               >
                                 {items}
                               </div>
                             );
                           })}
-                          <div className='justify-end w-6 h-6'>
-                            <Copy />
-                          </div>
+                        </div>
+                        <div className=' w-6 h-6 cursor-pointer'>
+                          <Copy />
                         </div>
                       </div>
 
@@ -385,7 +383,7 @@ const ImageGallery = () => {
                 {/* <div className='flex flex-col	items-start gap-4 self-stretch rounded-xl bg-white/[0.05] px-4 py-3.5'>
                             
                             </div> */}
-                            
+
 
                 {/* creator information  */}
                 <div className='flex flex-col items-start gap-4 self-stretch border-b border-white/[0.08] pb-0'>
@@ -417,7 +415,7 @@ const ImageGallery = () => {
             </div>
           </div>
         </div>
-        
+
       </Modal>
     </div>
   );

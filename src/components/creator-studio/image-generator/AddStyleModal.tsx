@@ -22,7 +22,7 @@ const AddedStyle = [
   { name: 'Fantasy', img: pic },
 
 ]
-interface AddStyleModal {
+interface AddStyleModal { 
   SetOpenStyle: any;
 }
 const StyleTab = ['Your Styles', 'Popular'];

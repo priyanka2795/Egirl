@@ -8,6 +8,7 @@ import ImageGallery from './ImageGallery';
 import CloseIcon from '../../../../public/assets/svgImages/close-icon.svg';
 
 import AddStyleModal from './AddStyleModal';
+import Tooltip from '@components/common/tooltip';
 
 
 const ImageGeneratorOption = () => {
@@ -49,8 +50,11 @@ const ImageGeneratorOption = () => {
             </div>
           </div>
 
-          <div className='flex w-12 cursor-pointer items-center justify-center gap-2 rounded-[14px] bg-white bg-opacity-10 py-3'>
+          <div className='flex w-12 cursor-pointer items-center justify-center gap-2 rounded-[14px] bg-white bg-opacity-10 py-3 relative group'>
             <ShuffleSvg />
+            <div className='absolute -top-2.5 -left-16'>
+            <Tooltip Text={'Add a random prompt'}/>
+            </div>
           </div>
         </div>
 
