@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import pic from '../../../../public/assets/Collar.png';
 import none from '../../../../public/assets/None.png';
-// import Image from 'next/image';
-import SearchIcon from '@components/common/Search/SearchIcon';
 import Image from 'next/image';
 import searchIcon from '../../../../public/assets/search-alt.png';
 import { Modal } from '@components/modal/modal';
@@ -11,10 +9,9 @@ import Cross from '../../../../public/assets/svgImages/close-icon.svg';
 import Correct from '../svg/correct.svg';
 import Heart from '../svg/heart.svg';
 import Info from '../svg/info.svg';
-import ArrowUpper from '../svg/arrow-upper.svg';
 import Copy from '../svg/Copy.svg';
 import avtar from '../../../../public/assets/avatar-cs-1.png';
-import { log } from 'node:console';
+import AdvanceArrow from '../svg/AdvanceArrow';
 
 const ImageGallery = () => {
   const [viewModal, setviewModal] = React.useState(false);
@@ -38,15 +35,12 @@ const ImageGallery = () => {
     { name: 'Anime', img: pic },
     { name: 'Fantasy', img: pic }
   ];
-  const tabContent = ['Prompt','Negative prompt'];
+  const tabContent = ['Prompt', 'Negative prompt'];
   const [exploreSelectedTab, setExploreSelected] = useState('Prompt');
-
 
   const handleExploreSelected = (e: any) => {
     setExploreSelected(e.target.innerText);
-
   };
-  
 
   const [isHovered, setIsHovered] = useState(false);
 
@@ -90,6 +84,11 @@ const ImageGallery = () => {
   const handleMouseLeave = () => {
     setIsHovered(false);
   };
+
+  const [advanceModal, setAdvanceModal] = React.useState(false);
+  function AdvanceModal() {
+    setAdvanceModal(!advanceModal);
+  }
 
   return (
     <div>
@@ -272,98 +271,121 @@ const ImageGallery = () => {
                 </div>
                 {/* generation data block */}
                 <div className='flex flex-col	items-start gap-4 self-stretch rounded-xl bg-white/[0.05] px-4 py-3.5'>
-                  <div className='flex items-center self-stretch justify-between'>
+                  <div
+                    onClick={AdvanceModal}
+                    className='flex items-center self-stretch justify-between'
+                  >
                     <b className='text-[15px] font-semibold leading-5'>
                       Generation data
                     </b>
-                    <ArrowUpper />
+
+                    <div
+                      className={`h-6 w-6 ${advanceModal ? 'rotate-180' : ''}`}
+                      id='myDiv'
+                    >
+                      <button>
+                        <AdvanceArrow />
+                      </button>
+                    </div>
                   </div>
+
                   {/*  */}
-                  <div className='flex flex-col items-start self-stretch gap-3'>
-                    <div className='flex items-center self-stretch justify-between'>
-                      <div className='flex items-start '>
-                        {tabContent.map((items: any, index: any) => {
-                          return (
-                            <div
-                              key={index}
-                              onClick={(e) => handleExploreSelected(e)}
-                              className={`flex cursor-pointer gap-2.5 rounded-xl px-4 py-2 text-[15px] font-bold ${
-                                exploreSelectedTab === items
-                                  ? ' bg-white bg-opacity-20 text-white  '
-                                  : 'text-neutral-400'
-                              }`}
-                            >
-                              {items}
-                            </div>
-                          );
-                        })}
-                        <div className='justify-end w-6 h-6'>
-                          <Copy />
-                        </div>
-                      </div>
-                    </div>
 
-                    <div className='flex items-start gap-2.5 self-stretch'>
-                      <div className='text-sm font-normal leading-[18px]'>
-                        Best quality, masterpiece, ultra high res,
-                        (photorealistic), raw photo, 1girl, offshoulder, in the
-                        dark, deep shadow, low key,
-                      </div>
-                    </div>
-                    {/* Row 1 */}
-                    <div className='flex items-start gap-[51px] self-stretch'>
-                      {/* Iteam1 */}
-                      <div className='flex w-[90px] flex-col items-start gap-1'>
-                        <div className='text-sm font-semibold leading-[18px]'>
-                          CFG scale
-                        </div>
-                        <div className='text-sm font-normal leading-[18px] text-[#979797]'>
-                          7
-                        </div>
-                      </div>
-                      {/* Iteam2 */}
-                      <div className='flex flex-col items-start gap-1'>
-                        <div className='text-sm font-semibold leading-[18px]'>
-                          Steps
-                        </div>
-                        <div className='text-sm font-normal leading-[18px] text-[#979797]'>
-                          40
+                  {advanceModal ? (
+                    <div className='flex flex-col items-start self-stretch gap-3'>
+                      <div className='flex items-center self-stretch justify-between'>
+                        <div className='flex items-start '>
+                          {tabContent.map((items: any, index: any) => {
+                            return (
+                              <div
+                                key={index}
+                                onClick={(e) => handleExploreSelected(e)}
+                                className={`flex cursor-pointer gap-2.5 rounded-xl px-4 py-2 text-[15px] font-bold ${
+                                  exploreSelectedTab === items
+                                    ? ' bg-white bg-opacity-20 text-white  '
+                                    : 'text-neutral-400'
+                                }`}
+                              >
+                                {items}
+                              </div>
+                            );
+                          })}
+                          <div className='justify-end w-6 h-6'>
+                            <Copy />
+                          </div>
                         </div>
                       </div>
-                      {/* Iteam3 */}
-                      <div className='flex flex-col items-start gap-1'>
-                        <div className='text-sm font-semibold leading-[18px]'>
-                          Sampler
-                        </div>
-                        <div className='text-sm font-normal leading-[18px] text-[#979797]'>
-                          Eular a
-                        </div>
-                      </div>
-                    </div>
 
-                    {/* Row 2 */}
-                    <div className='flex items-start gap-[51px] self-stretch'>
-                      {/* Iteam1 */}
-                      <div className='flex w-[90px] flex-col items-start gap-1'>
-                        <div className='text-sm font-semibold leading-[18px]'>
-                          Seed
-                        </div>
-                        <div className='text-sm font-normal leading-[18px] text-[#979797]'>
-                          13145374738
+                      <div className='flex items-start gap-2.5 self-stretch'>
+                        <div className='text-sm font-normal leading-[18px]'>
+                          Best quality, masterpiece, ultra high res,
+                          (photorealistic), raw photo, 1girl, offshoulder, in
+                          the dark, deep shadow, low key,
                         </div>
                       </div>
-                      {/* Iteam2 */}
-                      <div className='flex flex-col items-start gap-1'>
-                        <div className='text-sm font-semibold leading-[18px]'>
-                          Clip Skip
+                      {/* Row 1 */}
+                      <div className='flex items-start gap-[51px] self-stretch'>
+                        {/* Iteam1 */}
+                        <div className='flex w-[90px] flex-col items-start gap-1'>
+                          <div className='text-sm font-semibold leading-[18px]'>
+                            CFG scale
+                          </div>
+                          <div className='text-sm font-normal leading-[18px] text-[#979797]'>
+                            7
+                          </div>
                         </div>
-                        <div className='text-sm font-normal leading-[18px] text-[#979797]'>
-                          2
+                        {/* Iteam2 */}
+                        <div className='flex flex-col items-start gap-1'>
+                          <div className='text-sm font-semibold leading-[18px]'>
+                            Steps
+                          </div>
+                          <div className='text-sm font-normal leading-[18px] text-[#979797]'>
+                            40
+                          </div>
+                        </div>
+                        {/* Iteam3 */}
+                        <div className='flex flex-col items-start gap-1'>
+                          <div className='text-sm font-semibold leading-[18px]'>
+                            Sampler
+                          </div>
+                          <div className='text-sm font-normal leading-[18px] text-[#979797]'>
+                            Eular a
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Row 2 */}
+                      <div className='flex items-start gap-[51px] self-stretch'>
+                        {/* Iteam1 */}
+                        <div className='flex w-[90px] flex-col items-start gap-1'>
+                          <div className='text-sm font-semibold leading-[18px]'>
+                            Seed
+                          </div>
+                          <div className='text-sm font-normal leading-[18px] text-[#979797]'>
+                            13145374738
+                          </div>
+                        </div>
+                        {/* Iteam2 */}
+                        <div className='flex flex-col items-start gap-1'>
+                          <div className='text-sm font-semibold leading-[18px]'>
+                            Clip Skip
+                          </div>
+                          <div className='text-sm font-normal leading-[18px] text-[#979797]'>
+                            2
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  ) : (
+                    <></>
+                  )}
                 </div>
+
+                {/* copy arrow  */}
+                {/* <div className='flex flex-col	items-start gap-4 self-stretch rounded-xl bg-white/[0.05] px-4 py-3.5'>
+                            
+                            </div> */}
+                            
 
                 {/* creator information  */}
                 <div className='flex flex-col items-start gap-4 self-stretch border-b border-white/[0.08] pb-0'>
@@ -395,6 +417,7 @@ const ImageGallery = () => {
             </div>
           </div>
         </div>
+        
       </Modal>
     </div>
   );
