@@ -10,10 +10,17 @@ const SelfMode = [
   { name: 'Artistic', img: pic },
   { name: 'Red Dress', img: pic },
   { name: 'Fantasy', img: pic },
-  { name: 'Photoreal', img: pic },
-  { name: 'Artistic', img: pic },
+  { name: 'Photocell', img: pic },
+  { name: 'Artistries', img: pic },
+  { name: 'Animes', img: pic },
+  { name: 'Fantast', img: pic },
+]
+const AddedStyle = [
   { name: 'Anime', img: pic },
+  { name: 'Artistic', img: pic },
+  { name: 'Red Dress', img: pic },
   { name: 'Fantasy', img: pic },
+
 ]
 interface AddStyleModal {
   SetOpenStyle: any;
@@ -24,23 +31,12 @@ const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
   const [styleTabs, setStyleTabs] = useState('Your Styles')
   const [selectImages, setSelectImages] = useState([] as any);
 
-  // const SelectImage = (name: any) => {
-  //   setSelectImages([...selectImages, name])
-  //   // const filtered = selectImages.filter((obj:any) => {return obj === name;});
-  // }
-
 
   const SelectImage = (name: any) => {
-    console.log(name, 'resr');
-    if (selectImages.includes(name)) {
-      setSelectImages(selectImages.filter((o:any) => o !== name));
-    } else {
-      if (selectImages.length < 10) {
-        setSelectImages([...selectImages, name]);
-      }
-    }
-  };
-console.log(selectImages,'selectImages');
+    // setSelectImages([...selectImages, name])
+    setSelectImages((prev: any) => (prev === name ? null : name));
+  }
+
 
   return (
 
@@ -88,30 +84,44 @@ console.log(selectImages,'selectImages');
             />
           </div>
         </div>
-
-        <div className='mt-4 flex flex-col gap-4 px-8'>
-          {/* self made */}
-          <h6 className='text-lg font-bold leading-6 text-white'>Self Made</h6>
-          <div className='grid grid-cols-4 gap-x-3 gap-y-4'>
-            {SelfMode.map((items) => {
-              return (
+        <div className='h-[500px] overflow-y-auto '>
+          <div className='mt-4 flex flex-col gap-4 px-8 '>
+            {/* self made */}
+            <h6 className='text-lg font-bold leading-6 text-white'>Self Made</h6>
+            <div className='grid grid-cols-4 gap-x-3 gap-y-4'>
+              {SelfMode.map((items) => (
                 <>
-                  <div className='group relative h-[174px] w-[175px] rounded-xl cursor-pointer bg-[#121212] overflow-hidden border-[2px] border-[#121212] hover:border-[#5848BC]' onClick={() => SelectImage(items.name)}>
-                    <div className={`group-hover:bg-[#5848BC] `}>
+                  <div className={`group relative h-[174px] w-[175px] rounded-xl cursor-pointer bg-[#121212] overflow-hidden border-[2px] ${selectImages === items.name ? 'border-[#5848BC]' : 'border-[#121212]'} `} onClick={() => SelectImage(items.name)}>
+                    <div className={``}>
                       <Image src={items.img} className='shrink-0 rounded-xl' />
                     </div>
-                    <div className='absolute bottom-0 bg-[#000000CC] group-hover:bg-[#5848BC] h-[34px] w-full flex justify-center items-center '>
+                    <div className={`absolute bottom-0 ${selectImages === items.name ? 'bg-[#5848BC]' : 'bg-[#000000CC]'} h-[34px] w-full flex justify-center items-center `}>
                       <p className='text-[13px] font-semibold'>{items.name}</p>
                     </div>
                   </div>
-
                 </>
-              )
-            })
-            }
-          </div>
+              ))}
+            </div>
+            <h6 className='text-lg font-bold leading-6 text-white'>Added Styles</h6>
+            <div className='grid grid-cols-4 gap-x-3 gap-y-4'>
+              {AddedStyle.map((items) => (
+                <>
+                  <div className={`group relative h-[174px] w-[175px] rounded-xl cursor-pointer bg-[#121212] overflow-hidden border-[2px]  border-[#121212] `} >
+                    <div className={``}>
+                      <Image src={items.img} className='shrink-0 rounded-xl' />
+                    </div>
+                    <div className={`absolute bottom-0 h-[34px] w-full flex justify-center items-center bg-[#000000CC]`}>
+                      <p className='text-[13px] font-semibold'>{items.name}</p>
+                    </div>
+                  </div>
+                </>
+              ))}
+            </div>
 
+          </div>
         </div>
+
+
         {/* Added Styles */}
 
 
