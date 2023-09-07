@@ -7,6 +7,9 @@ import { Modal } from '@components/modal/modal';
 import ImageGallery from './ImageGallery';
 import CloseIcon from '../../../../public/assets/svgImages/close-icon.svg';
 import Image from 'next/image';
+import searchIcon from '../../../../public/assets/search-alt.png';
+import AddStyleModal from './AddStyleModal';
+
 
 const ImageGeneratorOption = () => {
   const [prompt, setPrompt] = useState(false);
@@ -148,14 +151,12 @@ const ImageGeneratorOption = () => {
               <div className='w-6 h-6'>
                 <Image
                   className='w-full h-full'
-                  src={CloseIcon}
+                  src={searchIcon}
                   alt={''}
                   id='myinput'
                 />
               </div>
               <input
-                
-                
                 placeholder='Search'
                 type='text'
                 className='border-none bg-transparent p-0 text-[15px] font-light leading-6 text-[#979797] focus:ring-0 '
@@ -163,6 +164,23 @@ const ImageGeneratorOption = () => {
             </div>
               </div>
             </div>
+
+            {/* image gallery */}
+            <AddStyleModal/>
+          </div>
+          <div className='flex flex-row self-stretch gap-3 px-8 pt-4 pb-8'>
+            <button
+              onClick={handleCloseGenre}
+              className='flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-white/[0.32] px-5 py-[13px] font-bold'
+            >
+              Cancel
+            </button>
+            <button
+              onClick={handleCloseGenre}
+              className='flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-[#5848BC] bg-[#5848BC] px-5 py-[13px] font-bold'
+            >
+              Save
+            </button>
           </div>
           
         </div>
