@@ -37,12 +37,12 @@ const ImageAndIdeaGeneratorTab = () => {
           setActiveTab={setActiveTab}
           tabContentArray={tabContent}
         />
-        <div className="py-[80px] flex flex-col gap-4 justify-center w-full items-center">
+        {/* <div className="py-[80px] flex flex-col gap-4 justify-center w-full items-center">
           <div className="bg-white/[0.05] rounded-full w-max p-5">
             <SquareImage />
           </div>
           <p className="text-sm text-[#979797]">Your image generations will be shown here</p>
-        </div>
+        </div> */}
 
         <div className='rounded-[20px] border border-[#FFFFFF29] '>
           <div className='p-6 flex justify-between items-center cursor-pointer' >
