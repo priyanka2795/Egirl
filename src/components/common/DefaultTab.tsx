@@ -22,7 +22,7 @@ const DefaultTab = ({
   };
   return (
     <div className='flex items-center justify-between border-b border-white border-opacity-10'>
-      <div className='flex justify-between px-8 py-4'>
+      <div className='flex justify-between py-4'>
         <div className='flex items-start justify-start gap-3'>
           {tabContentArray.map((items: string, index: number) => {
             return (

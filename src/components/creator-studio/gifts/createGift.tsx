@@ -73,7 +73,7 @@ function CreateGift({ createGiftClose, GiftsView, Previous, AddCategory,SetCateg
                                 <div>
                                     <Edit className='w-full h-full' alt={''} />
                                 </div>
-                                <div className='absolute -top-2 -left-2.5 transform -translate-y-2/4 -translate-x-0 transition-all'>
+                                <div className='absolute -top-2 -left-12 w-max transform -translate-y-2/4 -translate-x-0 transition-all'>
                                     <Tooltip Text={'Edit'} />
                                 </div>
                             </div>

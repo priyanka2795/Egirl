@@ -79,12 +79,12 @@ const CreatorStudioSidebar = ({
             } `}
           />
           <div
-            className={`h-10 items-start justify-start gap-2.5 px-3 py-2.5 ${
-              shrinkSideBar === true ? 'hidden' : 'inline-flex '
+            className={`${
+              shrinkSideBar === true ? 'border-b-2 border-[#252525] mb-2' : 'inline-flex h-10 items-start justify-start gap-2.5 px-3 py-2.5 '
             }`}
           >
             <div
-              className={`text-[13px] font-semibold uppercase leading-tight tracking-tight text-neutral-600`}
+              className={`${shrinkSideBar === true ? 'hidden':'text-[13px] font-semibold uppercase leading-tight tracking-tight text-neutral-600 '}`}
             >
               Images
             </div>
@@ -119,11 +119,11 @@ const CreatorStudioSidebar = ({
           />
 
           <div
-            className={`h-10 items-start justify-start gap-2.5 px-3 py-2.5 ${
-              shrinkSideBar === true ? 'hidden' : 'inline-flex '
+            className={` ${
+              shrinkSideBar === true ? 'border-b-2 border-[#252525] mb-2' : 'inline-flex h-10 items-start justify-start gap-2.5 px-3 py-2.5'
             }`}
           >
-            <div className='text-[13px] font-semibold uppercase leading-tight tracking-tight text-neutral-600'>
+            <div className={`text-[13px] font-semibold uppercase leading-tight tracking-tight text-neutral-600 ${shrinkSideBar === true ?'hidden':''}`}>
               Chatbot
             </div>
           </div>
@@ -170,11 +170,11 @@ const CreatorStudioSidebar = ({
             } `}
           />
           <div
-            className={`h-10 items-start justify-start gap-2.5 px-3 py-2.5 ${
-              shrinkSideBar === true ? 'hidden' : 'inline-flex '
+            className={`${
+              shrinkSideBar === true ? 'border-b-2 border-[#252525] mb-2' : 'h-10 items-start justify-start gap-2.5 px-3 py-2.5 inline-flex '
             }`}
           >
-            <div className='text-[13px] font-semibold uppercase leading-tight tracking-tight text-neutral-600'>
+            <div className={`${shrinkSideBar === true ? 'hidden' : 'text-[13px] font-semibold uppercase leading-tight tracking-tight text-neutral-600'}`}>
               Styles
             </div>
           </div>
