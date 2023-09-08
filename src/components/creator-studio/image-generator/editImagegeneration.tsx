@@ -11,7 +11,6 @@ interface EditImageGeneration {
 }
 
 const EditImageGeneration = ({ ImageGenerationClose }: EditImageGeneration) => {
-
     const [prompt, setPrompt] = useState(false)
 
     return (
@@ -23,7 +22,7 @@ const EditImageGeneration = ({ ImageGenerationClose }: EditImageGeneration) => {
         >
             <div className='flex justify-between items-center border-b border-[#FFFFFF14] p-6'>
                 <h5 className='text-lg font-semibold'>Edit Image generation</h5>
-                <div className='w-6 h-6 cursor-pointer' >
+                <div className='w-6 h-6 cursor-pointer' onClick={() => ImageGenerationClose(false)}>
                     <Image className='w-full h-full' src={crossIcon} alt={''} />
                 </div>
             </div>
@@ -31,7 +30,6 @@ const EditImageGeneration = ({ ImageGenerationClose }: EditImageGeneration) => {
                 <div className='flex justify-between gap-4 pb-7'>
                     <div className='flex gap-4'>
                         <div
-                            // onClick={handleOpenGenre}
                             className='flex h-max w-[300px] items-center justify-start gap-2.5 rounded-[14px] bg-white bg-opacity-5 px-4 py-[13px]'
                         >
                             <div className='text-[15px] font-normal leading-normal text-neutral-400'>
@@ -40,24 +38,20 @@ const EditImageGeneration = ({ ImageGenerationClose }: EditImageGeneration) => {
                         </div>
 
                         <div
-                            // onClick={() => setOpenStyle(true)}
                             className='flex h-max w-[142px] cursor-pointer items-center justify-center gap-2 rounded-[14px] bg-white bg-opacity-10 px-5 py-3 text-base font-bold text-white'>
                             Add style <PlusIconSvg />
                         </div>
 
-                        <div
-                            className='flex h-max w-[130px] cursor-pointer items-center justify-center gap-2 rounded-[14px] bg-white bg-opacity-10 px-5 py-3 text-base font-bold text-white'
-                        // onClick={() => setTagState(!tagState)}
-                        >
+                        <div className='flex h-max w-[130px] cursor-pointer items-center justify-center gap-2 rounded-[14px] bg-white bg-opacity-10 px-5 py-3 text-base font-bold text-white'>
                             Add tag <PlusIconSvg />
                         </div>
                     </div>
 
                     <div className='flex w-12 cursor-pointer items-center justify-center gap-2 rounded-[14px] bg-white bg-opacity-10 py-3 relative group'>
                         <ShuffleSvg />
-                        <div className='absolute -top-2.5 -left-16 z-50'>
+                        {/* <div className='absolute -top-12 w-max -left-16 z-50'>
                             <Tooltip Text={'Add a random prompt'} />
-                        </div>
+                        </div> */}
                     </div>
                 </div>
 
@@ -84,10 +78,10 @@ const EditImageGeneration = ({ ImageGenerationClose }: EditImageGeneration) => {
                 />
 
                 <div className='flex gap-3 items-center justify-end'>
-                    <button className='w-max rounded-[14px] border border-[#FFFFFF52] px-5 py-[13px] text-base font-bold'>
+                    <button className='w-max rounded-[14px] border border-[#FFFFFF52] px-5 py-[13px] text-base font-bold' onClick={() => ImageGenerationClose(false)}>
                         Cancel
                     </button>
-                    <button className='w-max rounded-[14px] bg-[#5848BC] px-5 py-[13px] text-base font-bold'>
+                    <button className='w-max rounded-[14px] bg-[#5848BC] px-5 py-[13px] text-base font-bold' onClick={() => ImageGenerationClose(false)}>
                         Generate
                     </button>
 
