@@ -81,7 +81,7 @@ const EditAlbum = ({ CloseModal }: EditAlbum) => {
     return (
         <Modal
             open={true}
-            modalClassName='flex flex-col h-fit rounded-[14px] bg-[#1A1A1A] w-[844px]'
+            modalClassName={`flex flex-col h-fit rounded-[14px] bg-[#1A1A1A] ${coverImg ? ' w-[844px]':'w-[799px]'}`}
             closeModal={() => CloseModal(false)}
             modalOverlayStyle='!bg-black/80'
         >
@@ -114,7 +114,7 @@ const EditAlbum = ({ CloseModal }: EditAlbum) => {
                     <div className='p-6'>
                         <div className='flex gap-4 border-b border-[#FFFFFF14] pb-5'>
                             <div className='rounded-[14px] w-[257px] h-[200px] overflow-hidden relative'>
-                                <Image src={AlbumFirst} className='w-full h-full object-cover' />
+                                <Image src={AlbumFirst} className='object-cover w-full h-full' />
                                 <div className='absolute bottom-0 left-0 h-10 bg-[#000000A3] w-full flex justify-center items-center gap-[6px] cursor-pointer' onClick={() => setCoverImg(true)}>
                                     <Pencil />
                                     <p> Edit cover</p>
@@ -141,12 +141,12 @@ const EditAlbum = ({ CloseModal }: EditAlbum) => {
                                 <div className='grid grid-cols-3 gap-2 '>
                                     {images.map((item, index) => (
                                         <div className='w-[240px] h-[190px] sub-banner  relative '>
-                                            <Image src={item.image} className='' />
+                                            <Image src={item.image} className='object-cover' />
                                             <div className='p-1.5 bg-[#0000007A] rounded-full absolute top-2 right-2 cursor-pointer' onClick={() => EditAlbumImgToggle(index)}>
                                                 <Pencil />
                                             </div>
                                             {editAlbumImg === index &&
-                                                <div className='absolute top-12 right-3 z-50' >
+                                                <div className='absolute z-50 top-12 right-3' >
                                                     <div className='flex flex-col w-[218px] rounded-[14px] bg-[#1A1A1A]'>
                                                         {CoverImage.map((item, index) => {
                                                             return (
@@ -167,7 +167,7 @@ const EditAlbum = ({ CloseModal }: EditAlbum) => {
 
                         </div>
 
-                        <div className='flex items-center justify-end mt-6 gap-3 text-white font-semibold'>
+                        <div className='flex items-center justify-end gap-3 mt-6 font-semibold text-white'>
                             <button className='rounded-[14px] px-5 py-3 border border-[#FFFFFF52]' onClick={() => CloseModal(false)}>Cancel</button>
                             <button className='bg-[#5848BC] rounded-[14px] px-5 py-3 ' onClick={() => CloseModal()}>Save</button>
 
