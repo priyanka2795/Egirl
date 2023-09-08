@@ -6,6 +6,8 @@ import Image from 'next/image';
 
 interface ViewStyleAlbumsProps {
     setGeneratedStyle: any;
+    setAddedStyle: any;
+    setPostedStyle: any;
 };
 
 const album = [
@@ -26,7 +28,7 @@ const album = [
     }
 ];
 
-const ViewStyleAlbums = ( {setGeneratedStyle} : ViewStyleAlbumsProps) => {
+const ViewStyleAlbums = ( {setGeneratedStyle, setAddedStyle, setPostedStyle} : ViewStyleAlbumsProps) => {
   return (
     <div className='flex flex-col gap-4 mt-5'>
         <div className='text-white text-[18px] font-bold leading-6'>Albums</div>
@@ -43,14 +45,30 @@ const ViewStyleAlbums = ( {setGeneratedStyle} : ViewStyleAlbumsProps) => {
                                 <div className='text-white text-[15px] font-semibols leading-5'>{item.number}</div>
                             </div>
                         </div> :
+                        index === 1 ?
+                        <div key={index} className='relative' onClick={() => {setAddedStyle(true)}}>
+                            <Image className='rounded-[16px]' src={item.image} alt={''} />
+                            <div className='absolute w-full top-[177px] pb-3 px-[19px] flex justify-between'>
+                                <div className='text-white text-[15px] font-semibols leading-5'>{item.name}</div>
+                                <div className='text-white text-[15px] font-semibols leading-5'>{item.number}</div>
+                            </div>
+                        </div> :
+                        index === 2 ?
+                        <div key={index} className='relative' onClick={() => {setPostedStyle(true)}}>
+                            <Image className='rounded-[16px]' src={item.image} alt={''} />
+                            <div className='absolute w-full top-[177px] pb-3 px-[19px] flex justify-between'>
+                                <div className='text-white text-[15px] font-semibols leading-5'>{item.name}</div>
+                                <div className='text-white text-[15px] font-semibols leading-5'>{item.number}</div>
+                            </div>
+                        </div> :
                         <div key={index} className='relative'>
-                <Image className='rounded-[16px]' src={item.image} alt={''} />
-                <div className='absolute w-full top-[177px] pb-3 px-[19px] flex justify-between'>
-                    <div className='text-white text-[15px] font-semibols leading-5'>{item.name}</div>
-                    <div className='text-white text-[15px] font-semibols leading-5'>{item.number}</div>
-                </div>
+                            <Image className='rounded-[16px]' src={item.image} alt={''} />
+                            <div className='absolute w-full top-[177px] pb-3 px-[19px] flex justify-between'>
+                                <div className='text-white text-[15px] font-semibols leading-5'>{item.name}</div>
+                                <div className='text-white text-[15px] font-semibols leading-5'>{item.number}</div>
+                            </div>
                         </div>
-                  }  
+                    }  
                 </>
                 );
             })}

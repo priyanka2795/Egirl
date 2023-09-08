@@ -56,13 +56,9 @@ const allImages = [
     },
 ];
 
-const ViewStyleAllImages = () => {
+const FavoriteStyles = () => {
   return (
     <div className='flex flex-col gap-4 mt-5'>
-      <div className='flex gap-[4px]'>
-        <div className='text-white text-[18px] font-bold leading-6'>All models </div>
-        <div className='text-[#979797] text-[18px] font-bold leading-6'>124</div>
-      </div>
       <div className='flex flex-col gap-3'>
         <div className='grid grid-cols-3 gap-3'>
             {allImages.map((item,index) => {
@@ -87,10 +83,9 @@ const ViewStyleAllImages = () => {
                 );
             })}
         </div>
-        <div></div>
       </div>
     </div>
   )
 }
 
-export default ViewStyleAllImages;
+export default FavoriteStyles;
