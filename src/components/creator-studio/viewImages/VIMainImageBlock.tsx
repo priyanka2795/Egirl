@@ -6,6 +6,10 @@ import image4 from '../../../../public/assets/vi-image-4.png'
 import image5 from '../../../../public/assets/vi-image-5.png'
 import image6 from '../../../../public/assets/vi-image-6.png'
 import image7 from '../../../../public/assets/vi-image-7.png'
+import AlbumImg from '../../../../public/assets/album1.png'
+import AlbumImg1 from '../../../../public/assets/album2.png'
+import AlbumImg2 from '../../../../public/assets/album3.png'
+import AlbumImg3 from '../../../../public/assets/album4.png'
 import threeDots from '../../../../public/assets/dots-horizontal3.png'
 import Image from 'next/image';
 import Delete from '../../../../public/assets/delete-icon.png';
@@ -40,6 +44,21 @@ const images = [
   },
   {
     image: image6
+  },
+];
+
+const album = [
+  {
+    image: AlbumImg
+  },
+  {
+    image: AlbumImg1
+  },
+  {
+    image: AlbumImg2
+  },
+  {
+    image: AlbumImg3
   },
 ];
 interface VIMainImageBlock {
@@ -96,7 +115,7 @@ const VIMainImageBlock = ({ ToggleMenu, SetAlbumImages }: VIMainImageBlock) => {
       {ToggleMenu ?
         <>
           <div className='grid grid-cols-3 gap-3' ref={dropdownRef}>
-            {images.map((item, index) => (
+            {album.map((item, index) => (
               <div key={index} className='relative group w-full h-full sub-banner' >
                 <Image className='w-full object-cover ' src={item.image} alt={''} />
                 <div className=' absolute bottom-0 bg-gradient-to-t to-[#00000000] from-[#000000CC] h-[150px] w-full px-5 pb-3 font-semibold flex'  >

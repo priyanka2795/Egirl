@@ -51,7 +51,7 @@ const ViewImagesMainPage = () => {
           </div>
           <div className='grid grid-cols-3 gap-3'>
             {Array(5).fill('0').map((_,index) => (
-              <div className='relative group w-full h-full'  >
+              <div className='relative group w-full h-full sub-banner'>
                 <Image className='w-full object-cover ' src={image6} alt={''} />
                 <div className='cursor-pointer invisible w-[30px] h-[30px] flex items-center justify-center group-hover:visible group-hover:opacity-100 absolute top-[7px] right-[7px] rounded-full bg-black/[0.48]'onClick={() => AllImageToggle(index)} >
                   <Image className='' src={threeDots} alt={''} />

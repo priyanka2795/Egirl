@@ -69,6 +69,8 @@ const ViewImagesTab = ({ tabContent, exploreSelectedTab, setExploreSelected }: V
   const [selectTag, setSelectTag] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
   const [filterActive, setFilterActive] = useState(false);
+  const [checked, setChecked] = useState([] as any);
+  const [styleChecked, setStyleChecked] = useState([] as any);
 
   const handleExploreSelected = (e: any) => {
     setExploreSelected(e.target.innerText);
@@ -88,14 +90,23 @@ const ViewImagesTab = ({ tabContent, exploreSelectedTab, setExploreSelected }: V
     } else {
       if (selectedOptions.length < 4) {
         setSelectedOptions([...selectedOptions, option]);
+        if (selectedOptions.length === 3) {
+          setSelectTag(false)
+        }
       }
     }
   };
+  console.log(selectedOptions, 'selectedOptions');
 
   const alphabetArray = Alphabet.split('');
   const ApplyFilter = () => {
-    setFilterActive(true);
-    setFilterToggle(false)
+    console.log(styleChecked, 'styleChecked');
+    if (styleChecked.length === 0 && checked.length === 0 && selectedOptions.length === 0) {
+      setFilterToggle(false);
+    } else {
+      setFilterToggle(false);
+      setFilterActive(true);
+    }
   }
 
   const dropdownRef = useRef(null);
@@ -115,10 +126,6 @@ const ViewImagesTab = ({ tabContent, exploreSelectedTab, setExploreSelected }: V
   };
 
 
-
-
-  const [checked, setChecked] = useState([] as any);
-  const [styleChecked, setStyleChecked] = useState([] as any);
   const handleCheckAllChange = (e: any) => {
     const { name } = e.target;
     console.log(name, 'e.target.name');
@@ -136,9 +143,6 @@ const ViewImagesTab = ({ tabContent, exploreSelectedTab, setExploreSelected }: V
   const handleStyleChange = (e: any, c: any) => {
     setStyleChecked((prevChecked: any) => e.target.checked ? [...prevChecked, c.styleName] : prevChecked.filter((item: any) => item !== c.styleName));
   };
-
-
-
 
   return (
     <div className='flex justify-between pb-5 border-b border-white/[0.08]' ref={dropdownRef}>
@@ -237,14 +241,14 @@ const ViewImagesTab = ({ tabContent, exploreSelectedTab, setExploreSelected }: V
                         <h5 className='text-lg font-bold'>{selectTag ? 'Tags' : 'Filter'}</h5>
                       </div>
                       {selectTag ? '' :
-                        <button className='text-[#979797]' onClick={() => { setFilterActive(false) }}>Clear all</button>
+                        <button className='text-[#979797]' onClick={() => { setFilterActive(false), setStyleChecked([]), setChecked([]), setSelectedOptions([]) }}>Clear all</button>
                       }
                     </div>
-                    </div>
-                    {selectTag ? 
+                  </div>
+                  {selectTag ?
                     <div className='flex items-center gap-1 px-6 pb-3'>
-                    <Image src={Information} /> <p className='text-[#979797] text-xs'>The maximum number of filters is 4</p>
-                  </div> : ''}
+                      <Image src={Information} /> <p className='text-[#979797] text-xs'>The maximum number of filters is 4</p>
+                    </div> : ''}
 
                   <div className='relative mb-5 mx-6'>
                     <div className='absolute left-2 top-2.5'><Image src={Search} className='' /></div>
@@ -338,8 +342,10 @@ const ViewImagesTab = ({ tabContent, exploreSelectedTab, setExploreSelected }: V
                         <p className='text-[#979797] uppercase'>Tags</p>
                         <div className={`flex flex-col gap-4 py-3 overflow-hidden`}>
                           {selectedOptions.map((items) => (
+                            console.log(items, 'items Chhh'),
+
                             <div className='flex items-center gap-2'>
-                              <input type="checkbox" id={items} className='w-5 h-5 text-[#5848BC] border-[#FFFFFF3D] rounded focus:ring-0 dark:focus:ring-0 dark:ring-offset-0  bg-transparent ' checked />
+                              <input type="checkbox" id={items} className='w-5 h-5 text-[#5848BC] border-[#FFFFFF3D] rounded focus:ring-0 dark:focus:ring-0 dark:ring-offset-0  bg-transparent ' checked={checked} />
                               <label htmlFor={items}>{items}</label>
                             </div>
                           ))}
