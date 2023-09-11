@@ -74,10 +74,10 @@ const StyleGeneratorNext = () => {
         </div>
         </div>
         <div className='flex gap-[10px]'>
-          <div className='flex p-[10px] justify-center items-center rounded-[12px] border border-white/[0.32]' onClick={() => setDeleteModal(true)}>
+          <div className='flex p-[10px] h-max justify-center items-center rounded-[12px] border border-white/[0.32]' onClick={() => setDeleteModal(true)}>
             <Image className='' src={deleteIcon} alt={''} />
           </div>
-          <button className='flex justify-center border border-transparent items-center px-4 py-[10px] gap-[6px] rounded-[12px] bg-white/[0.08]'>
+          <button className='h-max flex justify-center border border-transparent items-center px-4 py-[9px] gap-[6px] rounded-[12px] bg-white/[0.08]'>
             <Image src={plus} alt={''} />
             <div className='text-white text-[14px] font-bold leading-5'>Add images</div>
           </button>
@@ -92,15 +92,12 @@ const StyleGeneratorNext = () => {
              <Image src={item.image} alt={''} />
              <div className='h-[128px] p-4 flex flex-col gap-2 bg-[#1A1A1A]'>
                <div className='pl-4 h-full pr-3 py-3 rounded-[14px] bg-white/[0.03]'>
-                 <div className='flex items-center justify-between h-1/2'>
+                 <div className='flex items-center justify-between'>
                    <div className='text-[#979797] text-[15px] font-normal leading-6'>Add label</div>
                    <div className='text-[#515151] text-[13px] font-normal leading-[18px]'>100</div>
                  </div>
                </div>
              </div>
-             {/* <div className='absolute top-0 right-0 flex p-[6px] rounded-[100px] bg-white/[0.48]'>
-               <Image src={crossIcon} alt={''} />
-             </div> */}
            </div>
          );
        })}
