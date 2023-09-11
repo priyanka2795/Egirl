@@ -6,49 +6,33 @@ import image1 from '../../../../public/assets/vi-image-1.png'
 import image2 from '../../../../public/assets/vi-image-2.png'
 import image3 from '../../../../public/assets/vi-image-3.png'
 import image4 from '../../../../public/assets/vi-image-4.png'
-
+import AlbumImg from '../../../../public/assets/album1.png'
+import AlbumImg1 from '../../../../public/assets/album2.png'
+import AlbumImg2 from '../../../../public/assets/album3.png'
+import AlbumImg3 from '../../../../public/assets/album4.png'
 
 const MoveAlbum = [
     {
         name: 'Giant dog chasing a bun...',
         gifts: '8',
-        image: image1,
+        image: AlbumImg,
     },
     {
         name: 'Fantasy world & nature',
         gifts: '8',
-        image: image2,
+        image: AlbumImg1,
     },
     {
         name: 'Fantasy world & nature',
         gifts: '9',
-        image: image3,
+        image: AlbumImg2,
     },
     {
         name: 'Fantasy world & nature',
         gifts: '7',
-        image: image4,
+        image: AlbumImg3,
     },
-    {
-        name: 'Giant dog chasing a bun...',
-        gifts: '8',
-        image: image1,
-    },
-    {
-        name: 'Fantasy world & nature',
-        gifts: '8',
-        image: image2,
-    },
-    {
-        name: 'Fantasy world & nature',
-        gifts: '9',
-        image: image3,
-    },
-    {
-        name: 'Fantasy world & nature',
-        gifts: '7',
-        image: image4,
-    },
+    
 ]
 interface MoveAlbumModal {
     MoveModalClose: any;
@@ -84,8 +68,8 @@ const MoveAlbumModal = ({ MoveModalClose, }: MoveAlbumModal) => {
             <div className='p-6 overflow-y-auto max-h-[700px]'>
                 <div className='grid grid-cols-3 gap-[10px]'>
                     {MoveAlbum.map((items, index) => (
-                        <div key={index} className='relative group w-[300px] h-[300px] overflow-hidden' >
-                            <Image className='w-full object-cover ' src={items.image} alt={''} />
+                        <div key={index} className='relative group sub-banner' >
+                            <Image className='w-full h-full object-cover ' src={items.image} alt={''} />
                             <div className=' absolute bottom-0 flex justify-between items-end bg-gradient-to-t to-[#00000000] from-[#000000CC] h-[150px] w-full px-5 pb-3 font-semibold'>
                                 <p>{items.name}</p>
                                 <p>{items.gifts}</p>
