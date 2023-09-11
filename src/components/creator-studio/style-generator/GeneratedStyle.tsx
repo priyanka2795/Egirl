@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
 import arrowLeft from '../../../../public/assets/arrow-left.png';
 import floderImg1 from '../../../../public/assets/folder1-img1.png';
 import floderImg2 from '../../../../public/assets/folder1-img2.png';
@@ -17,6 +17,12 @@ import floderImg13 from '../../../../public/assets/folder4-img1.png';
 import floderImg14 from '../../../../public/assets/folder4-img2.png';
 import floderImg15 from '../../../../public/assets/folder4-img3.png';
 import floderImg16 from '../../../../public/assets/folder4-img4.png';
+import Generatedstyle from '../view-Styles/Generatedstyle';
+
+interface GeneratedStyleProps {
+    setGeneratedStyle: any;
+    setViewStyleGenerated: any;
+}
 
 const generatedStyle = [
     {
@@ -60,15 +66,17 @@ const generatedStyle = [
     },
 ];
 
-const GeneratedStyle = () => {
+const GeneratedStyle = ({setGeneratedStyle, setViewStyleGenerated} : GeneratedStyleProps) => {
+
     return(
+        <>
         <div className='flex flex-col gap-5 p-8'>
             <div className='flex justify-between'>
-                <div className='flex gap-2 items-center'>
-                    <Image className='object-contain' src={arrowLeft} alt={''} />
+                <div className='flex items-center gap-2'>
+                    <Image className='object-contain' onClick={() => {setGeneratedStyle(false)}} src={arrowLeft} alt={''} />
                     <div className='text-white text-[22px] font-bold leading-8'>Styles Being Generated</div>
                 </div>
-                <button className='px-5 py-[13px] justify-center items-center rounded-[14px] bg-white/[0.08] text-white text-[16px] font-bold leading-[22px]'>View Generated</button>
+                <button className='px-5 py-[13px] justify-center items-center rounded-[14px] bg-white/[0.08] text-white text-[16px] font-bold leading-[22px]' onClick={() => {setViewStyleGenerated(true)}}>View Generated</button>
             </div>
             <div className='grid grid-cols-3 gap-5'>
                 {generatedStyle.map((item,index) => {
@@ -103,6 +111,7 @@ const GeneratedStyle = () => {
                 })}
             </div>
         </div>
+        </>
     )
 }
 
