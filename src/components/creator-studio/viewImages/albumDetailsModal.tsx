@@ -27,7 +27,7 @@ const AlbumDetailsModal = ({ CloseModal }: AlbumDetailsModal) => {
             modalOverlayStyle='!bg-black/80'
         >
             <div className='flex justify-between items-center border-b border-[#FFFFFF14] p-6'>
-                <h5 className='text-lg font-semibold'>AlbumDetailsModal</h5>
+                <h5 className='text-lg font-semibold'>Album details</h5>
                 <div className='w-6 h-6 cursor-pointer' onClick={() => CloseModal(false)}>
                     <Image className='w-full h-full' src={crossIcon} alt={''} />
                 </div>
@@ -35,7 +35,7 @@ const AlbumDetailsModal = ({ CloseModal }: AlbumDetailsModal) => {
             <div className='p-6'>
                 <div className='bg-[#FFFFFF0D] rounded-[14px] p-5 flex flex-col gap-5'>
                     <div className='flex justify-between items-center'>
-                        <p className='font-semibold '>Images <span className='text-[#515151] ml-1'>8</span></p>
+                        <p className='font-semibold text-[15px]'>Images <span className='text-[#515151] ml-1'>8</span></p>
                         <div>
                             <Image className='w-full h-full' src={Pencil} alt={''} />
                         </div>
@@ -48,8 +48,8 @@ const AlbumDetailsModal = ({ CloseModal }: AlbumDetailsModal) => {
                         ))                        }
                     </div>
                     <div className=''>
-                        <h5 className='font-bold'>Fantasy world & nature album</h5>
-                        <p className='text-[#979797] leading-5 '>Fantasy worlds are fictional settings that are often inspired by mythological, historical, or imaginary places. These worlds can be inhabited by various creatures such as dragons, unicorns, or fairies, and are often characterized by magic, adventure, and quests.</p>
+                        <h5 className='font-bold text-sm pb-[6px]'>Fantasy world & nature album</h5>
+                        <p className='text-[#979797] leading-5 text-sm'>Fantasy worlds are fictional settings that are often inspired by mythological, historical, or imaginary places. These worlds can be inhabited by various creatures such as dragons, unicorns, or fairies, and are often characterized by magic, adventure, and quests.</p>
                     </div>
                 </div>
 

@@ -2,72 +2,71 @@ import React, { useState } from 'react'
 import crossIcon from '../../../../public/assets/xmark (1).png';
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
-import AlbumFirst from '../../../../public/assets/gallery-tab-img.png';
-import Check from '../svg/check.svg';
-import plusIcon from '../../../../public/assets/plus-large.png';
 import image1 from '../../../../public/assets/vi-image-1.png'
 import image2 from '../../../../public/assets/vi-image-2.png'
 import image3 from '../../../../public/assets/vi-image-3.png'
 import image4 from '../../../../public/assets/vi-image-4.png'
-import Tooltip from '../gifts/tooltip';
-import Star from "../svg/star.svg";
 
+
+const MoveAlbum = [
+    {
+        name: 'Giant dog chasing a bun...',
+        gifts: '8',
+        image: image1,
+    },
+    {
+        name: 'Fantasy world & nature',
+        gifts: '8',
+        image: image2,
+    },
+    {
+        name: 'Fantasy world & nature',
+        gifts: '9',
+        image: image3,
+    },
+    {
+        name: 'Fantasy world & nature',
+        gifts: '7',
+        image: image4,
+    },
+    {
+        name: 'Giant dog chasing a bun...',
+        gifts: '8',
+        image: image1,
+    },
+    {
+        name: 'Fantasy world & nature',
+        gifts: '8',
+        image: image2,
+    },
+    {
+        name: 'Fantasy world & nature',
+        gifts: '9',
+        image: image3,
+    },
+    {
+        name: 'Fantasy world & nature',
+        gifts: '7',
+        image: image4,
+    },
+]
 interface MoveAlbumModal {
     MoveModalClose: any;
     // SetToaster: any;
 }
-const MoveAlbumModal = ({ MoveModalClose,  }: MoveAlbumModal) => {
-    const MoveAlbum = [
-        {
-            name: 'Giant dog chasing a bun...',
-            gifts: '8',
-            image: image1,
-        },
-        {
-            name: 'Fantasy world & nature',
-            gifts: '8',
-            image: image2,
-        },
-        {
-            name: 'Fantasy world & nature',
-            gifts: '9',
-            image: image3,
-        },
-        {
-            name: 'Fantasy world & nature',
-            gifts: '7',
-            image: image4,
-        },
-        {
-            name: 'Giant dog chasing a bun...',
-            gifts: '8',
-            image: image1,
-        },
-        {
-            name: 'Fantasy world & nature',
-            gifts: '8',
-            image: image2,
-        },
-        {
-            name: 'Fantasy world & nature',
-            gifts: '9',
-            image: image3,
-        },
-        {
-            name: 'Fantasy world & nature',
-            gifts: '7',
-            image: image4,
-        },
-    ]
-    const [selectTab, setSelectTab] = useState(0);
-    const [categoryHide, setCategoryHide] = useState(false);
 
-    const handleChange = (e: any) => {
+const MoveAlbumModal = ({ MoveModalClose, }: MoveAlbumModal) => {
 
-    }
-    const AllCategory = () => {
-        setCategoryHide(true);
-    }
+    // const [selectTab, setSelectTab] = useState(0);
+    // const [categoryHide, setCategoryHide] = useState(false);
+
+    // const handleChange = (e: any) => {
+
+    // }
+    // const AllCategory = () => {
+    //     setCategoryHide(true);
+    // }
+    
     return (
         <Modal
             open={true}

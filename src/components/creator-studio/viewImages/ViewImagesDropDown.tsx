@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import plusIcon from '../../../../public/assets/plus-gray.png';
-import gift from '../../../../public/assets/gift-icon.png';
 import user from '../../../../public/assets/circle-user.png';
 import imageSquare from '../../../../public/assets/image-square.png';
 import image from '../../../../public/assets/image.png';
 import undo from '../../../../public/assets/Undo.png';
 import deleteIcon from '../../../../public/assets/trash-blank-alt.png';
 import Image from 'next/image';
-import CreateGift from './moveAlbumModal';
-import SuccessModal from './successModal';
 
 const images = [
   {

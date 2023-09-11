@@ -7,10 +7,10 @@ interface DeletePopup {
     DeleteModal: any;
     Heading: string;
     Content: string;
-    Name:any;
-    LastName:any;
+    deleteImageGenerationIndex:any;
+    DeleteGeneration:any;
 }
-function AlbumDelete({ DeleteModal, Heading, Content,Name,LastName }: DeletePopup) {
+function DeleteGenerationModal({ DeleteModal, Heading, Content,DeleteGeneration,deleteImageGenerationIndex}: DeletePopup) {
 
     return (
         <>
@@ -29,11 +29,11 @@ function AlbumDelete({ DeleteModal, Heading, Content,Name,LastName }: DeletePopu
                     </div>
                     <div className='p-6'>
                         <div className='text-center mb-5 max-w-[290px] m-auto'>
-                            <p>{Content} <span className='font-semibold'>{Name}</span> {LastName} </p>
+                            <p>{Content}<span className='font-semibold'></span></p>
                         </div>
                         <div className='grid grid-cols-2 mt-6 gap-3 text-white font-semibold'>
                             <button className='rounded-[14px] px-5 py-3 border border-[#FFFFFF52]' onClick={() => DeleteModal(false)}>Cancel</button>
-                            <button className='bg-[#FF5336] rounded-[14px] px-5 py-3' onClick={() => DeleteModal(false)}>Delete</button>
+                            <button className='bg-[#FF5336] rounded-[14px] px-5 py-3' onClick={() => DeleteGeneration(deleteImageGenerationIndex)} >Delete</button>
 
                         </div>
                     </div>
@@ -43,4 +43,4 @@ function AlbumDelete({ DeleteModal, Heading, Content,Name,LastName }: DeletePopu
     )
 }
 
-export default AlbumDelete
+export default DeleteGenerationModal

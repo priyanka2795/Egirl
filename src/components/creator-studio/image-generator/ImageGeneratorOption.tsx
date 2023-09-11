@@ -7,12 +7,20 @@ import { Modal } from '@components/modal/modal';
 import ImageGallery from './ImageGallery';
 import CloseIcon from '../../../../public/assets/svgImages/close-icon.svg';
 
+import AddStyleModal from './AddStyleModal';
+import Tooltip from '@components/common/tooltip';
+
+
 const ImageGeneratorOption = () => {
   const [prompt, setPrompt] = useState(false);
   const [tagState, setTagState] = useState(false);
+
   const [openGenre, setOpenGenre] = React.useState(false);
   const handleOpenGenre = () => setOpenGenre(true);
   const handleCloseGenre = () => setOpenGenre(false);
+
+  const [openStyle, setOpenStyle] = React.useState(false);
+
 
   return (
     <>
@@ -28,7 +36,9 @@ const ImageGeneratorOption = () => {
               </div>
             </div>
 
-            <div className='flex h-max w-[142px] cursor-pointer items-center justify-center gap-2 rounded-[14px] bg-white bg-opacity-10 px-5 py-3 text-base font-bold text-white'>
+            <div
+              onClick={() => setOpenStyle(true)}
+              className='flex h-max w-[142px] cursor-pointer items-center justify-center gap-2 rounded-[14px] bg-white bg-opacity-10 px-5 py-3 text-base font-bold text-white'>
               Add style <PlusIconSvg />
             </div>
 
@@ -40,8 +50,11 @@ const ImageGeneratorOption = () => {
             </div>
           </div>
 
-          <div className='flex w-12 cursor-pointer items-center justify-center gap-2 rounded-[14px] bg-white bg-opacity-10 py-3'>
+          <div className='flex w-12 cursor-pointer items-center justify-center gap-2 rounded-[14px] bg-white bg-opacity-10 py-3 relative group'>
             <ShuffleSvg />
+            <div className='absolute -top-12 w-max -left-16'>
+              <Tooltip Text={'Add a random prompt'} />
+            </div>
           </div>
         </div>
 
@@ -51,7 +64,12 @@ const ImageGeneratorOption = () => {
           name='w3review'
           placeholder='Type a prompt ...'
         ></textarea>
-
+        {prompt &&
+          <div className='flex flex-col gap-[6px] mb-6'>
+            <label className='text-[#979797]' htmlFor="negative">Negative prompt</label>
+            <input type="text" id='negative' placeholder='Type a negative prompt...' className='bg-[#FFFFFF0D] rounded-[14px] h-12 px-4 border-none active:border-[#5848BC] focus:border-[#5848BC] focus:ring-[#5848BC] text-white placeholder:text-[#979797]' name='negative' />
+          </div>
+        }
         <Toggle
           handleToggleState={() => setPrompt(!prompt)}
           toggleState={prompt}
@@ -76,26 +94,12 @@ const ImageGeneratorOption = () => {
         modalClassName={`bg-[#121212] flex  flex-col flex-start relative rounded-[20px]`}
       >
         <div className='flex flex-col items-start rounded-[20px] bg-[#121212] '>
-          <div className='flex items-start gap-2.5 self-stretch border-b-white/[0.08] px-8	 pb-6 pt-8'>
+          <div className='flex items-start gap-2.5 self-stretch border-b-white/[0.08] px-8 border-white/[0.08] border-b pb-6 pt-8'>
             <div className='flex w-full text-lg font-bold leading-6 decoration-white'>
               Genre
             </div>
             <div onClick={handleCloseGenre}>
               <CloseIcon />
-              {/* <svg
-                xmlns='http://www.w3.org/2000/svg'
-                width='24'
-                height='24'
-                viewBox='0 0 24 24'
-                fill='none'
-              >
-                <path
-                  fill-rule='evenodd'
-                  clip-rule='evenodd'
-                  d='M18.7071 6.70711C19.0976 6.31658 19.0976 5.68342 18.7071 5.29289C18.3166 4.90237 17.6834 4.90237 17.2929 5.29289L12 10.5858L6.70711 5.29289C6.31658 4.90237 5.68342 4.90237 5.29289 5.29289C4.90237 5.68342 4.90237 6.31658 5.29289 6.70711L10.5858 12L5.29289 17.2929C4.90237 17.6834 4.90237 18.3166 5.29289 18.7071C5.68342 19.0976 6.31658 19.0976 6.70711 18.7071L12 13.4142L17.2929 18.7071C17.6834 19.0976 18.3166 19.0976 18.7071 18.7071C19.0976 18.3166 19.0976 17.6834 18.7071 17.2929L13.4142 12L18.7071 6.70711Z'
-                  fill='white'
-                />
-              </svg> */}
             </div>
           </div>
 
@@ -116,6 +120,8 @@ const ImageGeneratorOption = () => {
           </div>
         </div>
       </Modal>
+      {openStyle && <AddStyleModal SetOpenStyle={setOpenStyle} />}
+
     </>
   );
 };

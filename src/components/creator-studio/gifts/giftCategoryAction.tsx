@@ -106,7 +106,7 @@ function GiftCategoryAction({ AddCategory, SetCategory, }: GiftCategoryAction) {
 
                     <button className='pt-1 relative group ' onClick={() => setCreateCategory(true)}>
                         <Image src={plusIcon} alt='' className='h-[18px] w-[18px]' />
-                        <div className='absolute -left-[118px] -top-2.5 transform -translate-y-2/4 -translate-x-0 transition-all z-50'>
+                        <div className='absolute -left-[118px] -top-12 w-max transform -translate-y-2/4 -translate-x-0 transition-all z-50'>
                             <Tooltip Text={'You can create only 4 categories'} />
                         </div>
                     </button>
