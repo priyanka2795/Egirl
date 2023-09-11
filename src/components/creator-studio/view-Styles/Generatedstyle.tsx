@@ -66,7 +66,7 @@ const Generatedstyle = () => {
   return (
     <>
     <ViewStylesTab component={'GeneratedStyle'} />
-    <div className='grid grid-cols-3 gap-3'>
+    <div className='grid grid-cols-3 gap-3 mb-14'>
     {generatedStyle.map((item,index) => {
                 return(
                     <div key={index} className='relative group overflow-hidden flex flex-col rounded-[16px] bg-white/[0.05]'>

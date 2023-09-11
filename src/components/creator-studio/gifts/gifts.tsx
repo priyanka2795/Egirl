@@ -123,14 +123,15 @@ function Gifts() {
           ))}
         </div>
 
-        {giftCard && <GiftCardEditModal closeModal={setGiftCard} GiftEditModal={giftEditPopup} DeleteGift={DeleteGift} DeleteIndex={deleteIndex} DeleteBtnStep={deleteBtnStep} />
+        {
+          giftCard && <GiftCardEditModal closeModal={setGiftCard} GiftEditModal={giftEditPopup} DeleteGift={DeleteGift} DeleteIndex={deleteIndex} DeleteBtnStep={deleteBtnStep} />
         }
 
-        {deleteModal &&
+        {
+          deleteModal &&
           <GiftCardDelete DeleteModal={setDeleteModal} Heading={'Delete all gifts'}
             Content={'Are you sure you want to delete all gifts from the Date category?'}
             Img={true} DeleteGift DeleteIndex DeleteAllGift={setGiftCardName} DeleteBtnStep={deleteBtnStep} CategoryActionIndex DeleteActionCategory />
-           
         }
 
       </>
@@ -147,7 +148,8 @@ function Gifts() {
         </div>
       }
 
-      {giftModal && <GiftCreateModal closeModal={setGiftModal} GiftsView={setGiftsView} GiftName={GiftCardName} SetGiftName={setGiftCardName} AddCategory={addCategory} SetCategory={setAddCategory} />
+      {
+        giftModal && <GiftCreateModal closeModal={setGiftModal} GiftsView={setGiftsView} GiftName={GiftCardName} SetGiftName={setGiftCardName} AddCategory={addCategory} SetCategory={setAddCategory} />
       }
 
     </>

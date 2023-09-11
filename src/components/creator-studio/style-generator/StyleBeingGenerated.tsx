@@ -1,7 +1,11 @@
 import React from 'react'
 import ClockSvg from "../../../../public/assets/svgImages/clock-img.svg"
 
-const StyleBeingGenerated = () => {
+interface StyleBeingGeneratedProps{
+  setGeneratedStyle: any;
+}
+
+const StyleBeingGenerated = ({setGeneratedStyle} : StyleBeingGeneratedProps) => {
   return (
     <div className="p-6 bg-white/[0.05] rounded-[14px] flex justify-between items-center">
         <div className="flex gap-4">
@@ -13,9 +17,9 @@ const StyleBeingGenerated = () => {
                 <p className="text-sm text-[#979797]">You don’t have any generating styles.</p>
             </div>
         </div>
-        <div className="text-[15px] text-[#979797]">0 styles</div>
+        <div className="cursor-pointer text-[15px] text-[#979797]" onClick={() => {setGeneratedStyle(true)}}>4 styles</div>
     </div>
   )
 }
 
-export default StyleBeingGenerated
+export default StyleBeingGenerated;

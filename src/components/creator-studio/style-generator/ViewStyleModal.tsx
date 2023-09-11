@@ -52,7 +52,7 @@ const ViewStyleModal = ( {setViewStyleModal, setStyleGenNext, setNotificationMod
         <div className='w-[67%]'>
             <Image className='object-contain' src={image} alt={''} />
         </div>
-        <div className='flex flex-col w-[33%]'>
+        <div className='flex flex-col w-[33%] h-full'>
         <div className='flex flex-col gap-4 px-6 pt-6 pb-5'>
             <div className='flex flex-col gap-[2px]'>
                 <div className='text-white text-[22px] font-bold leading-8'>Any Lee</div>
