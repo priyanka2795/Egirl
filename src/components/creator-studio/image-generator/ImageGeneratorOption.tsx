@@ -19,6 +19,8 @@ import Edit from '../../../../public/assets/pen.svg';
 import People from '../../../../public/assets/body.png';
 import PoseExample from './poseExample';
 import PosingModal from './posingModal';
+import ArrowRight from '../../../../public/assets/chevron-right.png';
+
 
 interface ImageGeneratorOption {
   InpaintingToggle: any;
@@ -51,11 +53,10 @@ const ImageGeneratorOption = ({ InpaintingToggle, PosingToggle }: ImageGenerator
           <div className='flex gap-4'>
             <div
               onClick={handleOpenGenre}
-              className='flex h-max w-[300px] items-center justify-start gap-2.5 rounded-[14px] bg-white bg-opacity-5 px-4 py-[13px]'
+              className='flex justify-between h-max w-[300px] items-center gap-2.5 rounded-[14px] bg-white bg-opacity-5 px-4 py-[13px]'
             >
-              <div className='text-[15px] font-normal leading-normal text-neutral-400'>
-                Genre
-              </div>
+              <p className='text-[15px] font-normal leading-normal text-neutral-400'>Genre</p>
+              <Image src={ArrowRight} className='w-full h-full' />
             </div>
 
             <div
@@ -218,7 +219,7 @@ const ImageGeneratorOption = ({ InpaintingToggle, PosingToggle }: ImageGenerator
 
       {/* Posing Modals */}
       {poseExample && <PoseExample PoseExampleClose={setPoseExample} />}
-      {posing && <PosingModal PosingClose={setPosing}/>}
+      {posing && <PosingModal PosingClose={setPosing} />}
 
     </>
   );
