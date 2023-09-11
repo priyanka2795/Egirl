@@ -63,6 +63,11 @@ const generatedStyle = [
         img2: floderImg14,
         img3: floderImg15,
         img4: floderImg16,
+        name: 'White bag',
+        button: 'Accessories',
+        completed: '95% to complete',
+        time: '~1 min',
+        width: '95%'
     },
 ];
 
@@ -98,11 +103,10 @@ const GeneratedStyle = ({setGeneratedStyle, setViewStyleGenerated} : GeneratedSt
                                         <div className='text-white text-[13px] font-normal leading-[18px]'>{item.completed}</div>
                                         <div className='text-[#979797] text-[13px] font-normal leading-[18px]'>{item.time}</div>
                                     </div>
-                                    {index === 3 ? <></> :
-                                    <div className='overflow-hidden h-2 bg-[#7362C6]/[0.24] rounded-[100px]'>
+                                    <div className='overflow-hidden h-2 bg-[#5848BC]/[0.24] rounded-[100px]'>
                                         <div className={`w-[${item.width}] h-full bg-[#7362C6]`}></div>
                                     </div>
-                                    }
+                             
                                     
                                 </div>
                             </div>

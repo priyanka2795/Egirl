@@ -36,7 +36,7 @@ const StyleGenerator = () => {
         <div className='relative flex flex-col'>
           <h6 className='text-[13px] text-[#979797]'>Category</h6>
           <div className={`cursor-pointer px-4 py-3 rounded-[14px] flex justify-between ${showDropDown ? 'border border-[#515151]' : 'border border-transparent bg-white/[0.05]'}`} onClick={() => {setShowDropDown(!showDropDown)}}>
-            <div className={`${showDropDown ? 'text-white' : 'text-[#979797]'} text-[15px] font-normal leading-6`}>{inputText}</div>
+            <div className={`${showDropDown || inputText !== 'Choose category' ? 'text-white' : 'text-[#979797]'} text-[15px] font-normal leading-6`}>{inputText}</div>
             <Image src={showDropDown ? chevronUp : chevronDown} alt={''} />
           </div>
           {showDropDown && 
