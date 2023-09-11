@@ -6,9 +6,12 @@ import AddTagModal from './AddTagModal';
 import { Modal } from '@components/modal/modal';
 import ImageGallery from './ImageGallery';
 import CloseIcon from '../../../../public/assets/svgImages/close-icon.svg';
+import Question from '../../../../public/assets/circle-question.png';
+import ImageSquare from '../../../../public/assets/image-square.png';
 
 import AddStyleModal from './AddStyleModal';
 import Tooltip from '@components/common/tooltip';
+import Image from 'next/image';
 
 
 const ImageGeneratorOption = () => {
@@ -78,6 +81,21 @@ const ImageGeneratorOption = () => {
           toggleClasses={'bg-[#383838]'}
           subHeading={true}
         />
+        <div className='py-6'>
+          <div className='flex gap-1 items-center pb-3'>
+            <p className='text-[15px] font-bold'>Inpainting</p>
+            <Image src={Question} className='w-full h-full' />
+          </div>
+          <div className='flex justify-center items-center bg-[#1A1A1A] rounded-[14px] p-6'>
+            <div className='flex flex-col items-center gap-3'>
+              <div className='w-[56px] h-[56px] bg-[#FFFFFF0D] flex items-center justify-center rounded-full'>
+                <div className='w-6 h-6 '><Image src={ImageSquare} className='w-full h-full object-cover' />                  </div>
+              </div>
+              <p className='text-[#979797] text-[13px]'>Choose an image you want to inpaint on</p>
+              <button className='bg-[#FFFFFF14] rounded-xl px-4 py-[10px] font-bold'>Select image</button>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className='p-4'>

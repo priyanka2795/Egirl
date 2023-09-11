@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import DefaultTab from '@components/common/DefaultTab';
 import Information from '../../../../public/assets/circle-information2.png'
 import Dots from '../../../../public/assets/dots-horizontal.png'
@@ -27,6 +27,7 @@ const images = [
   { img: Image5 },
 ]
 const tabContent = ['Image Generation', 'Idea Generation'];
+
 const ImageAndIdeaGeneratorTab = () => {
   const [activeTab, setActiveTab] = useState('Image Generation');
   const [imageGeneration, setImageGeneration] = useState(null);
@@ -35,7 +36,7 @@ const ImageAndIdeaGeneratorTab = () => {
   const [deleteImageGeneration, setDeleteImageGeneration] = useState(false);
   const [imageGenerationAgain, setImageGenerationAgain] = useState([1]);
   const [deleteImageGenerationIndex, setDeleteImageGenerationIndex] = useState();
-  
+
   // Idea Generation
   const [ideaGenerationInput, setIdeaGenerationInput] = useState('');
   const [allIdeaGeneration, setAllIdeaGeneration] = useState<any[]>([]);
@@ -74,7 +75,31 @@ const ImageAndIdeaGeneratorTab = () => {
   }
   const IdeaGenerationAccordion = (index: any) => {
     setIdeaGeneration((prev) => (prev === index ? null : index));
+  }
 
+  // drag and drop Items 
+  const [promptItems, setPromptItems] = useState(['Silver hair', 'Almond-shaped eyes', 'Lean and agile', 'Scarred cheek', 'Elegantly poised', 'Broad shoulders', 'Bald-headed', 'Enigmatic gaze']);
+  const [colorChange, setColorChange] = useState();
+
+  const dragItem = useRef();
+  const dragOverItem = useRef();
+  const dragStart = (e: any, position: any) => {
+    dragItem.current = position;
+  };
+  const dragEnter = (e: any, position: any) => {
+    dragOverItem.current = position;
+  };
+  const drop = (e: any) => {
+    const copyListItems = [...promptItems];
+    const dragItemContent = copyListItems[dragItem.current];
+    copyListItems.splice(dragItem.current, 1);
+    copyListItems.splice(dragOverItem.current, 0, dragItemContent);
+    dragItem.current = null;
+    dragOverItem.current = null;
+    setPromptItems(copyListItems);
+  };
+  const SubmitData = (e: any) => {
+    setColorChange(e)
   }
 
   return (
@@ -171,12 +196,11 @@ const ImageAndIdeaGeneratorTab = () => {
                     <div className='absolute bottom-[85px] left-[27%] z-50 max-w-[280px]  text-center text-[12px] break-words'>
                       <Tooltip Text={item.name} />
                     </div>
-
                   </div>
                   {ideaGeneration === index &&
-                    <div className='border-t border-[#FFFFFF29] p-6 relative'>
+                    <div className='border-t border-[#FFFFFF29] p-6 relative pb-16' >
                       <div className='flex flex-wrap gap-2 '>
-                        {Array(4).fill('0').map(() => (
+                        {/* {Array(4).fill('0').map(() => (
                           <>
                             <div className='bg-[#FFFFFF14] px-[10px] py-[7px] rounded-[10px] flex gap-2 items-center cursor-pointer'>
                               <Image src={GridVertical} />
@@ -187,9 +211,26 @@ const ImageAndIdeaGeneratorTab = () => {
                               <p className='font-bold'>Almond-shaped eyes</p>
                             </div>
                           </>
+                        ))} */}
+
+                        {promptItems.map((item, index) => (
+                          <>
+                            <div className={`${colorChange == item ? 'bg-[#5848BC]' : 'bg-[#FFFFFF14] '} px-[10px] py-[7px] rounded-[10px] flex gap-2 items-center cursor-pointer`}
+                              onClick={() => SubmitData(item)}
+                              onDragStart={(e) => dragStart(e, index)}
+                              onDragEnter={(e) => dragEnter(e, index)}
+                              onDragEnd={drop}
+                              key={index}
+                              draggable>
+                              <div className='flex items-center gap-1' >
+                                <Image src={GridVertical} className='cursor-crosshair' />
+                                <p> {item}</p>
+                              </div>
+                            </div>
+                          </>
                         ))}
                       </div>
-                      <div className='bg-[#FFFFFF14] px-4 py-[10px] rounded-xl flex gap-2 items-center absolute right-5 bottom-4 cursor-pointer'>
+                      <div className='bg-[#FFFFFF14] px-4 py-[10px] rounded-xl flex gap-2 items-center absolute right-5 bottom-3 cursor-pointer'>
                         <Image src={CopyIcon} />
                         <p className='font-bold'>Copy prompt</p>
                       </div>
@@ -202,9 +243,11 @@ const ImageAndIdeaGeneratorTab = () => {
             </div>
             : ''
         }
-
-
       </div>
+
+
+
+
       {
         editImageGeneration &&
         <EditImageGeneration ImageGenerationClose={setEditImageGeneration} />
