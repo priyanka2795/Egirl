@@ -15,6 +15,10 @@ import VerifiedIcon from '../../../public/assets/svgImages/verified-icon.svg';
 import CollectionCoverModal from './CollectionCoverModal';
 import AddToCollectionModal from './AddToCollectionModal';
 import LeftArrow from './svg/leftArrow.svg';
+import cameraIcon from '../../../public/assets/white-camera.png';
+import galleryIcon from '../../../public/assets/gallery-icon.png';
+import deleteIcon from '../../../public/assets/delete-icon.png';
+import UpdatePhotoModal from './UpdatePhotoModal';
 
 const posts = [
   {
@@ -76,6 +80,17 @@ const actions = [
   }
 ];
 
+const uploadPhoto = [
+  {
+    icon: galleryIcon,
+    name: 'Update photo'
+  },
+  {
+    icon: deleteIcon,
+    name: 'Delete'
+  }
+];
+
 interface BannerProp {
   backFromProfile?: React.Dispatch<React.SetStateAction<boolean>>;
   styleProperty?: string;
@@ -91,6 +106,9 @@ const Banner = ({
   const [actionDivShow, setActionDivShow] = useState(false);
   const [exploreSelectedTab, setExploreSelected] = useState('');
   const [collectionModalState, setCollectionModalState] = useState(false);
+  const [uploadPhotoShow, setUploadPhotoShow] = useState(false);
+  const [updatePhoto, setUpdatePhoto] = useState('');
+  const [updatePhotoModalState, setUpdatePhotoModalState] = useState(false);
 
   const handleExploreSelected = (e: any) => {
     setExploreSelected(e.target.innerText);
@@ -101,10 +119,22 @@ const Banner = ({
       setCollectionModalState(false);
     }
   };
-  console.log(exploreSelectedTab, 'test');
+  console.log(exploreSelectedTab, 'test', 'updatePhoto---', updatePhoto);
 
   const handleActionDivShow = (e: any) => {
     setActionDivShow(!actionDivShow);
+  };
+
+  const handleUploadPhotoShow = (e: any) => {
+    setUploadPhotoShow(!uploadPhotoShow);
+  };
+  const handleUploadSelected = (e: any) => {
+    setUpdatePhoto(e.target.innerText);
+    if (e.target.innerText === 'Update photo') {
+      setUpdatePhotoModalState(true);
+    } else {
+      setUpdatePhotoModalState(false);
+    }
   };
 
   return (
@@ -113,7 +143,7 @@ const Banner = ({
         ''
       ) : (
         <div
-          className='flex gap-2 my-4 text-lg font-bold cursor-pointer'
+          className='my-4 flex cursor-pointer gap-2 text-lg font-bold'
           onClick={() => {
             backFromProfile(false);
           }}
@@ -125,11 +155,47 @@ const Banner = ({
 
       <div>
         <div className='h-max w-full overflow-hidden rounded-[16px] bg-[#121212]'>
-          <div className='block w-full sub-banner'>
-            <Image className='w-full h-full' src={Cover} alt='' />
+          <div className='sub-banner block w-full'>
+            <Image className='relative h-full w-full' src={Cover} alt='' />
+            <div className='absolute right-[28px] top-[20px] cursor-pointer'>
+              <Image
+                className='relative'
+                src={cameraIcon}
+                alt=''
+                onClick={(e) => handleUploadPhotoShow(e)}
+              />
+              {uploadPhotoShow ? (
+                <div className='absolute right-0 top-[65px] z-0 flex h-max w-[218] w-[218px] flex-col items-start rounded-[14px] bg-[#1A1A1A] px-2 py-2'>
+                  {uploadPhoto.map((item, index) => {
+                    return (
+                      <div
+                        key={index}
+                        onClick={(e) => handleUploadSelected(e)}
+                        className={`flex w-full cursor-pointer gap-2 px-[16px] py-[10px] ${
+                          updatePhoto === item.name
+                            ? ' rounded-[8px] bg-white/[0.12] '
+                            : ''
+                        }`}
+                      >
+                        <Image
+                          className='object-contain'
+                          src={item.icon}
+                          alt={''}
+                        />
+                        <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                          {item.name}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              ) : (
+                ''
+              )}
+            </div>
             <div className='mb-5 mt-[-62px] flex w-full items-center justify-between px-[24px]'>
               <div className='relative h-[120px] w-[120px] overflow-hidden rounded-full'>
-                <Image className='w-full h-full' src={avatar} alt='' />
+                <Image className='h-full w-full' src={avatar} alt='' />
               </div>
               <div className='flex gap-[12px] self-end'>
                 <button
@@ -139,15 +205,19 @@ const Banner = ({
                       : 'bg-white/[0.08] text-white'
                   }`}
                 >
-                  {followBtnStyle ? "":   <Image
+                  {followBtnStyle ? (
+                    ''
+                  ) : (
+                    <Image
                       src={userCheckIcon}
                       alt=''
                       className='object-contain'
-                    />}
+                    />
+                  )}
 
                   {followText ? followText : 'Following'}
                 </button>
-                <button className='h-max rounded-[14px] bg-[#5848BC] px-[20px] py-[11px] text-base font-bold text-white border border-[#5848BC]'>
+                <button className='h-max rounded-[14px] border border-[#5848BC] bg-[#5848BC] px-[20px] py-[11px] text-base font-bold text-white'>
                   Subscribe
                 </button>
                 <div className='relative'>
@@ -267,6 +337,10 @@ const Banner = ({
 
       {collectionModalState && (
         <AddToCollectionModal closeModalState={setCollectionModalState} />
+      )}
+
+      {updatePhotoModalState && (
+        <UpdatePhotoModal closeModalState={setUpdatePhotoModalState} />
       )}
     </div>
   );
