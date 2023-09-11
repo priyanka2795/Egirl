@@ -49,17 +49,41 @@ const images = [
 
 const album = [
   {
-    image: AlbumImg
+   id:1,
+   image: image5,
+   albumName: "Giant dog chasing a bunch of ...",
+   albumImageCount: '8'
   },
   {
-    image: AlbumImg1
+    id:2,
+    image: image4,
+    albumName: "Fantasy world & nature",
+    albumImageCount: '4'
   },
   {
-    image: AlbumImg2
+    id:3,
+    image: AlbumImg1,
+    albumName: "Fantasy world & nature",
+    albumImageCount: '5'
   },
   {
-    image: AlbumImg3
+    id:4,
+    image: AlbumImg2,
+    albumName: "Fantasy world & nature",
+    albumImageCount: '4'
   },
+  {
+    id:5,
+    image: AlbumImg3,
+    albumName: "Fantasy world & nature",
+    albumImageCount: '4'
+  },
+  {
+    id:6,
+    image: AlbumImg,
+    albumName: "Fantasy world & nature",
+    albumImageCount: '4'
+  }
 ];
 interface VIMainImageBlock {
   ToggleMenu: any;
@@ -115,19 +139,19 @@ const VIMainImageBlock = ({ ToggleMenu, SetAlbumImages }: VIMainImageBlock) => {
       {ToggleMenu ?
         <>
           <div className='grid grid-cols-3 gap-3' ref={dropdownRef}>
-            {album.map((item, index) => (
-              <div key={index} className='relative group w-full h-full sub-banner' >
+            {album.map((item) => (
+              <div key={item.id} className='relative group w-full h-full sub-banner' >
                 <Image className='w-full object-cover ' src={item.image} alt={''} />
                 <div className=' absolute bottom-0 bg-gradient-to-t to-[#00000000] from-[#000000CC] h-[150px] w-full px-5 pb-3 font-semibold flex'  >
                   <div className='flex justify-between items-end w-full '>
-                    <p className='cursor-pointer ' onClick={() => SetAlbumImages(true)}>Fantasy world & nature</p>
-                    <p className='cursor-pointer ' onClick={() => SetAlbumImages(true)}>4</p>
+                    <p className='cursor-pointer ' onClick={() => SetAlbumImages(true)}>{item.albumName}</p>
+                    <p className='cursor-pointer ' onClick={() => SetAlbumImages(true)}>{item.albumImageCount}</p>
                   </div>
                 </div>
                 <div className='cursor-pointer invisible w-[30px] h-[30px] flex items-center justify-center group-hover:visible group-hover:opacity-100 absolute top-[7px] right-[7px] rounded-full bg-black/[0.48]' onClick={() => { AlbumImageToggle(index) }}>
                   <Image className='' src={threeDots} alt={''} />
                 </div>
-                {showDropDown === index && (
+                {showDropDown === item.id && (
                   <div className='bg-[#1A1A1A] p-4 flex flex-col gap-3 rounded-[14px] w-[218px] absolute right-2 top-10 z-50' >
                     <button className='flex items-center gap-2' onClick={() => { setEditAlbum(true), setShowDropDown(null) }}>
                       <Image src={Pencil} className='w-[18px] h-[18px]' alt='' />
