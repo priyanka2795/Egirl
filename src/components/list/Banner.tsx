@@ -15,6 +15,10 @@ import VerifiedIcon from '../../../public/assets/svgImages/verified-icon.svg';
 import CollectionCoverModal from './CollectionCoverModal';
 import AddToCollectionModal from './AddToCollectionModal';
 import LeftArrow from './svg/leftArrow.svg';
+import { Modal } from '@components/modal/modal';
+import CharacterAdd from '@components/creator-studio/NewCharacter/CharacterAdd';
+import Cross from '../../../public/assets/svgImages/close-icon.svg';
+
 
 const posts = [
   {
@@ -91,6 +95,7 @@ const Banner = ({
   const [actionDivShow, setActionDivShow] = useState(false);
   const [exploreSelectedTab, setExploreSelected] = useState('');
   const [collectionModalState, setCollectionModalState] = useState(false);
+  
 
   const handleExploreSelected = (e: any) => {
     setExploreSelected(e.target.innerText);
@@ -107,8 +112,17 @@ const Banner = ({
     setActionDivShow(!actionDivShow);
   };
 
+  const [viewModal, setviewModal] = useState(false);
+  const handleviewModal = () => {setviewModal(true),console.log("clickkk")}
+  const handlecloseModal = () => setviewModal(false);
+
   return (
     <div className={`${styleProperty ? styleProperty : 'px-8'}`}>
+      <button
+      onClick={handleviewModal}
+      >
+        ok
+      </button>
       {backFromProfile === undefined ? (
         ''
       ) : (
@@ -268,6 +282,23 @@ const Banner = ({
       {collectionModalState && (
         <AddToCollectionModal closeModalState={setCollectionModalState} />
       )}
+
+<Modal
+     open={viewModal}
+     closeModal={handlecloseModal}
+     modalOverlayStyle='!bg-black/80 '
+     modalClassName={`bg-[#121212] flex  flex-col flex-start rounded-[20px]`}
+   >
+    <div className='flex items-start gap-2 self-stretch border-b border-white/[0.08] p-6'>
+        <div className='w-full gap-1 text-lg font-bold leading-6'>
+          Add New Character
+        </div>
+        <div className='w-6 h-6' onClick={handlecloseModal}>
+          <Cross />
+        </div>
+      </div>
+     <CharacterAdd />
+   </Modal>
     </div>
   );
 };
