@@ -8,12 +8,15 @@ import circleInformation from '../../../../public/assets/circle-information8.png
 import arrowDown from '../../../../public/assets/chevron-down2.png';
 import shop from '../../../../public/assets/shop.png';
 import StyleGeneratorNext from './StyleGeneratorNext';
+import PostStyleModal from '../view-Styles/PostStyleModal';
 
 interface ViewStyleModalProps {
     setViewStyleModal?: any;
     setStyleGenNext?: any;
     setNotificationModal?:any;
     image: any;
+    postStyleModal: any;
+    setPostStyleModal: any;
 }
 
 const list = [
@@ -35,7 +38,7 @@ const list = [
     },
 ];
 
-const ViewStyleModal = ( {setViewStyleModal, setStyleGenNext, setNotificationModal, image} : ViewStyleModalProps ) => {
+const ViewStyleModal = ( {setViewStyleModal, setStyleGenNext, setNotificationModal, image, postStyleModal, setPostStyleModal} : ViewStyleModalProps ) => {
   
   return (
     <>
@@ -46,8 +49,10 @@ const ViewStyleModal = ( {setViewStyleModal, setStyleGenNext, setNotificationMod
         closeModal={() => setViewStyleModal (false)}
         modalOverlayStyle='!bg-black/80'
       >
-       <Image className='object-contain' src={image} alt={''} />
-       <div className='flex flex-col w-[448px]'>
+        <div className='w-[67%]'>
+            <Image className='object-contain' src={image} alt={''} />
+        </div>
+        <div className='flex flex-col w-[33%]'>
         <div className='flex flex-col gap-4 px-6 pt-6 pb-5'>
             <div className='flex flex-col gap-[2px]'>
                 <div className='text-white text-[22px] font-bold leading-8'>Any Lee</div>
@@ -84,7 +89,7 @@ const ViewStyleModal = ( {setViewStyleModal, setStyleGenNext, setNotificationMod
                     <Image src={arrowDown} alt={''} />
                 </div>
             </div>
-            <div className='px-5 py-[13px] justify-center items-center rounded-[14px] bg-[#5848BC] flex gap-2'>
+            <div className='cursor-pointer px-5 py-[13px] justify-center items-center rounded-[14px] bg-[#5848BC] flex gap-2' onClick={() => {setPostStyleModal(true)}}>
                 <Image className='object-contain' src={shop} alt={''} />
                 <div className='text-white text-[16px] font-bold leading-[22px]'>Post Style</div>
             </div>
@@ -92,7 +97,9 @@ const ViewStyleModal = ( {setViewStyleModal, setStyleGenNext, setNotificationMod
        </div>
       </Modal>
     </div>
-    
+    {
+        postStyleModal && <PostStyleModal setPostStyleModal={setPostStyleModal} />
+    }
     </>
   );
 };

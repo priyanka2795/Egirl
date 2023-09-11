@@ -9,7 +9,7 @@ import modalImg from '../../../../public/assets/view-style-modal-img.png';
 import pen from '../../../../public/assets/pen2.png';
 
 
-const generatedStyle = [
+const postedStyle = [
     {
         image: img1,
         name: 'A-Zovya Photoreal',
@@ -60,14 +60,14 @@ const generatedStyle = [
     },
 ];
 
-const Generatedstyle = () => {
+const Postedstyle = () => {
     const [viewStyleModal, setViewStyleModal] = useState(false);
     const [postStyleModal, setPostStyleModal] = useState(false);
   return (
     <>
-    <ViewStylesTab component={'GeneratedStyle'} />
+    <ViewStylesTab component={'PostedStyle'} />
     <div className='grid grid-cols-3 gap-3'>
-    {generatedStyle.map((item,index) => {
+    {postedStyle.map((item,index) => {
                 return(
                     <div key={index} className='relative group overflow-hidden flex flex-col rounded-[16px] bg-white/[0.05]'>
                         <Image onClick={() => {setViewStyleModal(true)}} src={item.image} alt={''} />
@@ -93,4 +93,4 @@ const Generatedstyle = () => {
   )
 }
 
-export default Generatedstyle;
+export default Postedstyle;

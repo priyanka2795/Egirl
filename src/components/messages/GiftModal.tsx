@@ -123,7 +123,7 @@ const GiftModal = ({ closeModal, setShowGiftImg, setShowGiftName, setShowGiftMsg
                                 <Image className='object-contain' src={tokenIcon} alt={''} />
                                 <div className='text-[#FFFFFF] text-[12px] font-normal leading-4'>2</div>
                             </div>
-                            }
+                            } 
                         </div>
                     );
                 })}
