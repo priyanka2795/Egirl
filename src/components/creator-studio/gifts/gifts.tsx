@@ -136,7 +136,7 @@ function Gifts() {
 
       </>
         :
-        <div className='flex justify-center items-center max-w-[243px] w-full h-full m-auto'>
+        <div className='flex justify-center items-center max-w-[243px] w-full h-[calc(100%-40px)] m-auto'>
           <div className='flex flex-col items-center gap-3 text-center'>
             <div className='w-14 h-14 rounded-full bg-[#FFFFFF0D] flex justify-center items-center '>
               <ImagePlusIcon />
