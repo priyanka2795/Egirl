@@ -20,7 +20,11 @@ import People from '../../../../public/assets/body.png';
 import PoseExample from './poseExample';
 import PosingModal from './posingModal';
 import ArrowRight from '../../../../public/assets/chevron-right.png';
-
+import PoseImage from '../../../../public/assets/poseimage3.png';
+import Grid from '../../../../public/assets/dots-vertical.png';
+import SearchIcon from '../../../../public/assets/search-alt (1).png';
+import RightIcon from '../../../../public/assets/check-cs.png';
+import DeleteIcon from '../../../../public/assets/delete-icon.png';
 
 interface ImageGeneratorOption {
   InpaintingToggle: any;
@@ -36,15 +40,37 @@ const ImageGeneratorOption = ({ InpaintingToggle, PosingToggle }: ImageGenerator
   const [selectImageModal, setSelectImageModal] = useState(false)
   const [inpaintingModal, setInpaintingModal] = useState(false);
   const [inpaintingCreated, setInpaintingCreated] = useState(false)
+  const [editInpainting, setEditInpainting] = useState(false)
+
   // Posing Modal
   const [posing, setPosing] = useState(false)
   const [poseExample, setPoseExample] = useState(false)
-  // const [selectImageModal, setSelectImageModal] = useState(false)
-  // const [inpaintingModal, setInpaintingModal] = useState(false);
-  // const [inpaintingCreated, setInpaintingCreated] = useState(false)
+  const [posingCreated, setPosingCreated] = useState(false)
+  const [editPosing, setEditPosing] = useState(false)
+
+
   const handleOpenGenre = () => setOpenGenre(true);
   const handleCloseGenre = () => setOpenGenre(false);
 
+  // Prompt Box
+  const [promptTags, setPromptTags] = useState([] as any)
+  const [editPrompt, setEditPrompt] = useState(null)
+
+
+  function handleKeyDown(e: any) {
+    if (e.key !== 'Enter') return
+    const value = e.target.value
+    if (!value.trim()) return
+    setPromptTags([...promptTags, value])
+    e.target.value = ''
+  }
+  const EditPromptData = (index: any) => {
+    setEditPrompt((prev) => (prev === index ? null : index));
+
+  }
+  function removeTag(index: any) {
+    setPromptTags(promptTags.filter((el: any, i: any) => i !== index))
+  }
 
   return (
     <>
@@ -81,12 +107,43 @@ const ImageGeneratorOption = ({ InpaintingToggle, PosingToggle }: ImageGenerator
           </div>
         </div>
 
-        <textarea
-          className='mb-6 h-[124px] w-full resize-none rounded-[14px] border-none bg-[#000000]/[0.48]'
-          id=''
-          name='w3review'
-          placeholder='Type a prompt ...'
-        ></textarea>
+
+        <div className="bg-[#0000007A] mb-6 py-3 px-4 h-[124px] rounded-[14px] w-full flex items-start flex-wrap content-start">
+          <div className='flex items-center flex-wrap gap-2'>
+            {promptTags.map((tag: any, index: any) => (
+              <div className='relative'>
+                <div className={`flex items-center ${editPrompt === index ? 'bg-[#403BAC]' : 'bg-[#FFFFFF29]'} gap-2 rounded-xl px-[10px] py-2  cursor-pointer`} key={index} onClick={() => EditPromptData(index)}>
+                  <Image src={Grid} className='w-full h-full' />
+                  <span className="text">{tag}</span>
+                  {/* <span className="cursor-pointer" onClick={() => removeTag(index)}>&times;</span> */}
+                  {editPrompt === index &&
+                    <div className='bg-[#1A1A1A] w-[243px] h-auto rounded-[14px] absolute top-12 left-0 z-50'>
+                      <div className='bg-[#FFFFFF0D] gap-[6px] m-4 px-3 rounded-[10px] flex items-center justify-between'>
+                        <Image src={SearchIcon} className='w-full h-full object-cover ' />
+                        <input type="text" placeholder='Search' className='bg-transparent rounded-[14px] h-10 p-0 border-none active:border-none focus:border-none focus:ring-0 text-white placeholder:text-[#979797] w-[160px]' />
+                      </div>
+                      <div className='flex flex-col gap-[10px]'>
+                        {Array(4).fill('0').map(() => (
+                          <div className='bg-[#FFFFFF0D] px-4 py-[10px] flex justify-between items-center'>
+                            <p>Mica-chan</p>
+                            <Image src={RightIcon} className='w-full h-full' />
+                          </div>
+                        ))}
+                      </div>
+                      <div className='py-[10px] px-4'>
+                        <button className='bg-[#FFFFFF14] w-full rounded-[10px] py-[7px] flex items-center justify-center font-bold text-[#979797] gap-[6px]'>
+                          <Image src={DeleteIcon} className='w-full h-full' /> Delete</button>
+                      </div>
+                    </div>}
+                </div>
+              </div>
+
+            ))}
+          </div>
+          <input onKeyDown={handleKeyDown} type="text" className="w-[150px] bg-transparent border-none focus:border-none focus:ring-0" placeholder='Type a prompt ...' />
+        </div>
+
+
         {prompt &&
           <div className='flex flex-col gap-[6px] mb-6'>
             <label className='text-[#979797]' htmlFor="negative">Negative prompt</label>
@@ -112,7 +169,7 @@ const ImageGeneratorOption = ({ InpaintingToggle, PosingToggle }: ImageGenerator
               <div className='flex items-center'>
                 <div className='w-[140px] h-[140px] sub-banner relative'>
                   <Image src={Image1} className='w-full h-full object-cover rounded-[14px]' />
-                  <div className='absolute bg-[#0000007A] flex items-center justify-center w-[30px] h-[30px] rounded-full top-3 right-3 group' onClick={() => setInpaintingModal(true)}>
+                  <div className='absolute bg-[#0000007A] flex items-center justify-center w-[30px] h-[30px] rounded-full top-3 right-3 group' onClick={() => { setInpaintingModal(true), setEditInpainting(true) }}>
                     <Edit />
                     <div className='absolute -top-12 -left-8 w-max'>
                       <Tooltip Text={'Edit image'} />
@@ -139,26 +196,30 @@ const ImageGeneratorOption = ({ InpaintingToggle, PosingToggle }: ImageGenerator
               <div className='cursor-pointer pt-1.5' onClick={() => setPoseExample(true)}><Image src={Question} className='w-full h-full' /></div>
             </div>
 
-            {/* <div className='flex items-center'>
-                <div className='w-[140px] h-[140px] sub-banner relative'>
-                  <Image src={People} className='w-full h-full object-cover rounded-[14px]' />
-                  <div className='absolute bg-[#0000007A] flex items-center justify-center w-[30px] h-[30px] rounded-full top-3 right-3 group' onClick={() => setInpaintingModal(true)}>
-                    <Edit />
-                    <div className='absolute -top-12 -left-8 w-max'>
-                      <Tooltip Text={'Edit image'} />
-                    </div>
+            {posingCreated ? <div className='flex items-center'>
+              <div className='w-[140px] h-[140px] sub-banner rounded-[14px] relative'>
+                <Image src={PoseImage} className='w-full h-full object-cover rounded-[14px]' />
+                <div className='absolute bg-[#0000007A] flex items-center justify-center w-[30px] h-[30px] rounded-full top-3 right-3 group' onClick={() => { setPosing(true), setEditPosing(true) }}>
+                  <Edit />
+                  <div className='absolute -top-12 -left-8 w-max '>
+                    <Tooltip Text={'Edit image'} />
                   </div>
                 </div>
-              </div> */}
-
-            <div className='flex justify-center items-center bg-[#1A1A1A] rounded-[14px] p-6'>
-              <div className='flex flex-col items-center gap-3'>
-                <div className='w-[56px] h-[56px] bg-[#FFFFFF0D] flex items-center justify-center rounded-full'>
-                  <Image src={People} className='w-full h-full object-cover' /></div>
-                <p className='text-[#979797] text-[13px]'>Pose mode helps you put your Egirl in the pose of your choosing.</p>
-                <button className='bg-[#FFFFFF14] rounded-xl px-4 py-[10px] font-bold'>Add pose</button>
+                <div className='h-[34px] bg-[#0000007A] absolute bottom-0 left-0 w-full flex justify-center items-center rounded-b-[14px]'>
+                  <p className='font-semibold text-[13px]'>Default pose</p>
+                </div>
               </div>
-            </div>
+            </div> :
+
+              <div className='flex justify-center items-center bg-[#1A1A1A] rounded-[14px] p-6'>
+                <div className='flex flex-col items-center gap-3'>
+                  <div className='w-[56px] h-[56px] bg-[#FFFFFF0D] flex items-center justify-center rounded-full'>
+                    <Image src={People} className='w-full h-full object-cover' /></div>
+                  <p className='text-[#979797] text-[13px]'>Pose mode helps you put your Egirl in the pose of your choosing.</p>
+                  <button className='bg-[#FFFFFF14] rounded-xl px-4 py-[10px] font-bold' onClick={() => setPosing(true)}>Add pose</button>
+                </div>
+              </div>
+            }
           </div>
         }
 
@@ -215,11 +276,11 @@ const ImageGeneratorOption = ({ InpaintingToggle, PosingToggle }: ImageGenerator
         <SelectImage CloseModal={setSelectImageModal} SetInpaintingModal={setInpaintingModal} />
       }
       {inpaintingModal &&
-        <InpaintingModals CloseInpaintingModal={setInpaintingModal} SetInpaintingCreated={setInpaintingCreated} />}
+        <InpaintingModals CloseInpaintingModal={setInpaintingModal} SetInpaintingCreated={setInpaintingCreated} EditInpainting={editInpainting} />}
 
       {/* Posing Modals */}
       {poseExample && <PoseExample PoseExampleClose={setPoseExample} />}
-      {posing && <PosingModal PosingClose={setPosing} />}
+      {posing && <PosingModal PosingClose={setPosing} SetPosingCreated={setPosingCreated} EditPosing={editPosing} />}
 
     </>
   );
