@@ -197,7 +197,9 @@ const AddedStyleModal = ({setAddedStyleModal}:AddedStyleModalProp) => {
             <div className='flex p-6 border-t border-white/[0.08] bg-[#1A1A1A] w-full'>
                 <div className='flex px-5 py-4 rounded-[14px] bg-white/[0.05] justify-between'>
                     <div className='text-[#979797] text-[15px] font-normal leading-6'>Type your comment ...</div>
-                    <Image src={smiley} alt={''} />
+                    <Image src={smiley} alt={''} /> 
+                    
+                    
                 </div>
             </div>
         </div>
