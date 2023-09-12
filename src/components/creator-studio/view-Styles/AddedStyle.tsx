@@ -7,6 +7,7 @@ import img3 from '../../../../public/assets/view-style-img3.png';
 import ViewStyleModal from '../style-generator/ViewStyleModal';
 import modalImg from '../../../../public/assets/view-style-modal-img.png';
 import pen from '../../../../public/assets/pen2.png';
+import AddedStyleModal from './AddedStyleModal';
 
 
 const addedStyle = [
@@ -61,7 +62,7 @@ const addedStyle = [
 ];
 
 const Addedstyle = () => {
-    const [viewStyleModal, setViewStyleModal] = useState(false);
+    const [addedStyleModal, setAddedStyleModal] = useState(false);
     const [postStyleModal, setPostStyleModal] = useState(false);
   return (
     <>
@@ -70,7 +71,7 @@ const Addedstyle = () => {
     {addedStyle.map((item,index) => {
                 return(
                     <div key={index} className='relative group overflow-hidden flex flex-col rounded-[16px] bg-white/[0.05]'>
-                        <Image onClick={() => {setViewStyleModal(true)}} src={item.image} alt={''} />
+                        <Image onClick={() => {setAddedStyleModal(true)}} src={item.image} alt={''} />
                         <div className='flex flex-col gap-3 p-4'>
                             <div className='text-white text-[15px] font-semibold leading-5'>{item.name}</div>
                              <div className='flex gap-2'>
@@ -87,7 +88,7 @@ const Addedstyle = () => {
             })}
     </div>
     {
-        viewStyleModal && <ViewStyleModal image={modalImg} setViewStyleModal={setViewStyleModal} postStyleModal={postStyleModal} setPostStyleModal={setPostStyleModal} />
+        addedStyleModal && <AddedStyleModal setAddedStyleModal={setAddedStyleModal} />
     }
     </>
   )

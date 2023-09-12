@@ -7,6 +7,7 @@ import img3 from '../../../../public/assets/view-style-img3.png';
 import ViewStyleModal from '../style-generator/ViewStyleModal';
 import modalImg from '../../../../public/assets/view-style-modal-img.png';
 import pen from '../../../../public/assets/pen2.png';
+import PostStyleModal from './PostStyleModal';
 
 
 const generatedStyle = [
@@ -87,7 +88,10 @@ const Generatedstyle = () => {
             })}
     </div>
     {
-        viewStyleModal && <ViewStyleModal image={modalImg} setViewStyleModal={setViewStyleModal} postStyleModal={postStyleModal} setPostStyleModal={setPostStyleModal} />
+        viewStyleModal && <ViewStyleModal image={modalImg} setViewStyleModal={setViewStyleModal} postStyleModal={postStyleModal} setPostStyleModal={setPostStyleModal} component={'GeneratedStyle'} />
+    }
+    {
+        postStyleModal && <PostStyleModal setPostStyleModal={setPostStyleModal} />
     }
     </>
   )
