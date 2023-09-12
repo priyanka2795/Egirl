@@ -199,7 +199,7 @@ const AddedStyleModal = ({setAddedStyleModal}:AddedStyleModalProp) => {
                     <div className='text-[#979797] text-[15px] font-normal leading-6'>Type your comment ...</div>
                     <Image src={smiley} alt={''} /> 
                     
-                    
+                          
                 </div>
             </div>
         </div>
