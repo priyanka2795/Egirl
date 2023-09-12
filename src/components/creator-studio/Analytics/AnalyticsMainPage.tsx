@@ -285,7 +285,7 @@ const AnalyticsMainPage = () => {
                     <div className='text-center text-[13px] font-normal leading-[18px] text-[#979797]'>
                       Total earnings
                     </div>
-                    <div className='leading-12 text-center text-[36px] font-bold text-white'>
+                    <div className='leading-[48px] text-center text-[36px] font-bold text-white'>
                       {showChanges ? '$42,726' : '$0'}
                     </div>
                   </div>
@@ -694,7 +694,7 @@ const AnalyticsMainPage = () => {
           closeConvertCredits={setShowCashoutModal}
           heading={'Cash out'}
           available={'Available to cash out'}
-          amount={'$22,121.5'}
+          amount={'22,121.5'}
           buttonText={'Cash out'}
         />
       )}
@@ -705,7 +705,7 @@ const AnalyticsMainPage = () => {
           setShowErrormModal={setShowErrormModal}
           notify={notify}
           converting={`You’re about to cash out `}
-          credits={'$5,530'}
+          credits={'5,530'}
           text={
             '. This action cannot be undone. Please review the details carefully before confirming.'
           }
