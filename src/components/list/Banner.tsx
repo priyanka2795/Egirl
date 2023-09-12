@@ -119,7 +119,7 @@ const Banner = ({
       setCollectionModalState(false);
     }
   };
-  console.log(exploreSelectedTab, 'test', 'updatePhoto---', updatePhoto);
+  // console.log(exploreSelectedTab, 'test', 'updatePhoto---', updatePhoto);
 
   const handleActionDivShow = (e: any) => {
     setActionDivShow(!actionDivShow);
