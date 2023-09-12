@@ -113,15 +113,14 @@ const Banner = ({
   };
 
   const [viewModal, setviewModal] = useState(false);
-  const handleviewModal = () => {setviewModal(true),console.log("clickkk")}
-  const handlecloseModal = () => setviewModal(false);
+  
 
   return (
     <div className={`${styleProperty ? styleProperty : 'px-8'}`}>
       <button
-      onClick={handleviewModal}
+      onClick={()=>setviewModal(true)}
       >
-        ok
+        Add Character
       </button>
       {backFromProfile === undefined ? (
         ''
@@ -283,22 +282,11 @@ const Banner = ({
         <AddToCollectionModal closeModalState={setCollectionModalState} />
       )}
 
-<Modal
-     open={viewModal}
-     closeModal={handlecloseModal}
-     modalOverlayStyle='!bg-black/80 '
-     modalClassName={`bg-[#121212] flex  flex-col flex-start rounded-[20px]`}
-   >
-    <div className='flex items-start gap-2 self-stretch border-b border-white/[0.08] p-6'>
-        <div className='w-full gap-1 text-lg font-bold leading-6'>
-          Add New Character
-        </div>
-        <div className='w-6 h-6' onClick={handlecloseModal}>
-          <Cross />
-        </div>
-      </div>
-     <CharacterAdd />
-   </Modal>
+
+{viewModal &&
+   <CharacterAdd SetviewModal={setviewModal}/>
+
+}
     </div>
   );
 };
