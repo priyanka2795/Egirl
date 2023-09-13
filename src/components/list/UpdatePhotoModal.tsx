@@ -1,94 +1,42 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, createRef } from 'react';
+import Cropper, { ReactCropperElement } from 'react-cropper';
+import 'cropperjs/dist/cropper.css';
 import CloseIcon from '../../../public/assets/svgImages/close-icon.svg';
 import { Modal } from '@components/modal/modal';
-import ReactCrop, {
-  centerCrop,
-  makeAspectCrop,
-  Crop,
-  PixelCrop
-} from 'react-image-crop';
-import { canvasPreview } from './canvasPreview';
-import { useDebounceEffect } from './useDebounceEffect';
-import 'react-image-crop/dist/ReactCrop.css';
 import PreviewProfile from './PreviewProfile';
-// import Image from 'next/image';
-
-function centerAspectCrop(
-  mediaWidth: number,
-  mediaHeight: number,
-  aspect: number
-) {
-  return centerCrop(
-    makeAspectCrop(
-      {
-        unit: '%',
-        width: 90
-      },
-      aspect,
-      mediaWidth,
-      mediaHeight
-    ),
-    mediaWidth,
-    mediaHeight
-  );
-}
 
 interface UpdatePhotoProps {
   closeModalState: any;
 }
+
+const defaultSrc =
+  'https://raw.githubusercontent.com/roadmanfong/react-cropper/master/example/img/child.jpg';
 const UpdatePhotoModal = ({ closeModalState }: UpdatePhotoProps) => {
-  const [imgSrc, setImgSrc] = useState('');
-  const previewCanvasRef = useRef<HTMLCanvasElement>(null);
-  const imgRef = useRef<HTMLImageElement>(null);
-  const [crop, setCrop] = useState<Crop>();
-  const [completedCrop, setCompletedCrop] = useState<PixelCrop>();
-  const [scale, setScale] = useState(1);
-  const [rotate, setRotate] = useState(0);
-  const [aspect, setAspect] = useState<number | undefined>(16 / 9);
   const [isPreview, setIsPreview] = useState(false);
-
-  function onSelectFile(e: React.ChangeEvent<HTMLInputElement>) {
-    if (e.target.files && e.target.files.length > 0) {
-      setCrop(undefined); // Makes crop preview update between images.
-      const reader = new FileReader();
-      reader.addEventListener('load', () =>
-        setImgSrc(reader.result?.toString() || '')
-      );
-      reader.readAsDataURL(e.target.files[0]);
-    }
-  }
-
-  function onImageLoad(e: React.SyntheticEvent<HTMLImageElement>) {
-    if (aspect) {
-      const { width, height } = e.currentTarget;
-      setCrop(centerAspectCrop(width, height, aspect));
-    }
-  }
-
-  useDebounceEffect(
-    async () => {
-      if (
-        completedCrop?.width &&
-        completedCrop?.height &&
-        imgRef.current &&
-        previewCanvasRef.current
-      ) {
-        // We use canvasPreview as it's much faster than imgPreview.
-        canvasPreview(
-          imgRef.current,
-          previewCanvasRef.current,
-          completedCrop,
-          scale,
-          rotate
-        );
-      }
-    },
-    100,
-    [completedCrop, scale, rotate]
-  );
+  const [image, setImage] = useState('');
+  const [cropData, setCropData] = useState('#');
+  const cropperRef = createRef<ReactCropperElement>();
 
   const handleShowPreview = () => {
+    if (typeof cropperRef.current?.cropper !== 'undefined') {
+      setCropData(cropperRef.current?.cropper.getCroppedCanvas().toDataURL());
+    }
     setIsPreview(true);
+  };
+
+  const onChange = (e: any) => {
+    e.preventDefault();
+    let files;
+    if (e.dataTransfer) {
+      files = e.dataTransfer.files;
+    } else if (e.target) {
+      files = e.target.files;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      setImage(reader.result as any);
+    };
+    reader.readAsDataURL(files[0]);
   };
 
   return (
@@ -113,43 +61,27 @@ const UpdatePhotoModal = ({ closeModalState }: UpdatePhotoProps) => {
       </div>
       <div className='p-5 pb-0'>
         {isPreview ? (
-          <PreviewProfile />
+          <PreviewProfile cropData={cropData} />
         ) : (
-          <>
-            <div className='Crop-Controls'>
-              <input type='file' accept='image/*' onChange={onSelectFile} />
-            </div>
-            {!!imgSrc && (
-              <ReactCrop
-                crop={crop}
-                onChange={(_, percentCrop) => setCrop(percentCrop)}
-                onComplete={(c) => setCompletedCrop(c)}
-                aspect={aspect}
-                minHeight={200}
-              >
-                <img
-                  ref={imgRef}
-                  alt='Crop me'
-                  src={imgSrc}
-                  style={{ transform: `scale(${scale}) rotate(${rotate}deg)` }}
-                  onLoad={onImageLoad}
-                />
-              </ReactCrop>
-            )}
-            {!!completedCrop && (
-              <div>
-                <canvas
-                  ref={previewCanvasRef}
-                  style={{
-                    border: '1px solid black',
-                    objectFit: 'contain',
-                    width: completedCrop.width,
-                    height: completedCrop.height
-                  }}
-                />
-              </div>
-            )}
-          </>
+          <div className='w-full'>
+            <input type='file' onChange={onChange} className='mb-5' />
+            <Cropper
+              ref={cropperRef}
+              zoomTo={0.5}
+              initialAspectRatio={1}
+              preview='.img-preview'
+              src={image}
+              viewMode={1}
+              minCropBoxHeight={10}
+              minCropBoxWidth={10}
+              background={false}
+              responsive={true}
+              autoCropArea={1}
+              checkOrientation={false}
+              guides={true}
+              className='h-full w-full'
+            />
+          </div>
         )}
       </div>
 
