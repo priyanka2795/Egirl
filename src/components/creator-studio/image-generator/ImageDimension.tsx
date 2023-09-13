@@ -23,7 +23,7 @@ const ImageDimension = () => {
         {imageDimesions.map((items) => {
           return (
             <div
-              className={`${items.id} rounded-[12px] border border-[#515151] px-3 py-[10px] text-center`}
+              className={`${items.id} rounded-[12px] border border-[#515151] px-3 py-[10px] text-center `}
             >
               <h6 className='text-sm font-bold'>{items.area}</h6>
               <p className='text-xs text-[#979797]'>{items.text}</p>

@@ -112,6 +112,7 @@ const Banner = ({
   const [updatePhotoModalState, setUpdatePhotoModalState] = useState(false);
   const [deleteProfileCModalState, setDeleteProfileModalState] =
     useState(false);
+  const [viewModal, setviewModal] = useState(false);
 
   const handleExploreSelected = (e: any) => {
     setExploreSelected(e.target.innerText);
@@ -142,6 +143,7 @@ const Banner = ({
 
   return (
     <div className={`${styleProperty ? styleProperty : 'px-8'}`}>
+      <button onClick={() => setviewModal(true)}>Add Character</button>
       {backFromProfile === undefined ? (
         ''
       ) : (
@@ -158,9 +160,9 @@ const Banner = ({
 
       <div>
         <div className='h-max w-full overflow-hidden rounded-[16px] bg-[#121212]'>
-          <div className='sub-banner block w-full'>
-            <Image className='relative h-full w-full' src={Cover} alt='' />
-            <div className='absolute right-[28px] top-[20px] cursor-pointer'>
+          <div className='sub-banner relative block w-full'>
+            <Image className='h-full w-full ' src={Cover} alt='' />
+            <div className='absolute right-[20px] top-[20px] cursor-pointer'>
               <Image
                 className='relative'
                 src={cameraIcon}

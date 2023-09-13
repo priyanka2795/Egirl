@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
 import arrowLeft from '../../../../public/assets/arrow-left.png';
 import floderImg1 from '../../../../public/assets/folder1-img1.png';
 import floderImg2 from '../../../../public/assets/folder1-img2.png';
@@ -17,6 +17,12 @@ import floderImg13 from '../../../../public/assets/folder4-img1.png';
 import floderImg14 from '../../../../public/assets/folder4-img2.png';
 import floderImg15 from '../../../../public/assets/folder4-img3.png';
 import floderImg16 from '../../../../public/assets/folder4-img4.png';
+import Generatedstyle from '../view-Styles/Generatedstyle';
+
+interface GeneratedStyleProps {
+    setGeneratedStyle: any;
+    setViewStyleGenerated: any;
+}
 
 const generatedStyle = [
     {
@@ -57,18 +63,25 @@ const generatedStyle = [
         img2: floderImg14,
         img3: floderImg15,
         img4: floderImg16,
+        name: 'White bag',
+        button: 'Accessories',
+        completed: '95% to complete',
+        time: '~1 min',
+        width: '95%'
     },
 ];
 
-const GeneratedStyle = () => {
+const GeneratedStyle = ({setGeneratedStyle, setViewStyleGenerated} : GeneratedStyleProps) => {
+
     return(
+        <>
         <div className='flex flex-col gap-5 p-8'>
             <div className='flex justify-between'>
-                <div className='flex gap-2 items-center'>
-                    <Image className='object-contain' src={arrowLeft} alt={''} />
+                <div className='flex items-center gap-2'>
+                    <Image className='object-contain' onClick={() => {setGeneratedStyle(false)}} src={arrowLeft} alt={''} />
                     <div className='text-white text-[22px] font-bold leading-8'>Styles Being Generated</div>
                 </div>
-                <button className='px-5 py-[13px] justify-center items-center rounded-[14px] bg-white/[0.08] text-white text-[16px] font-bold leading-[22px]'>View Generated</button>
+                <button className='px-5 py-[13px] justify-center items-center rounded-[14px] bg-white/[0.08] text-white text-[16px] font-bold leading-[22px]' onClick={() => {setViewStyleGenerated(true)}}>View Generated</button>
             </div>
             <div className='grid grid-cols-3 gap-5'>
                 {generatedStyle.map((item,index) => {
@@ -90,11 +103,10 @@ const GeneratedStyle = () => {
                                         <div className='text-white text-[13px] font-normal leading-[18px]'>{item.completed}</div>
                                         <div className='text-[#979797] text-[13px] font-normal leading-[18px]'>{item.time}</div>
                                     </div>
-                                    {index === 3 ? <></> :
-                                    <div className='overflow-hidden h-2 bg-[#7362C6]/[0.24] rounded-[100px]'>
+                                    <div className='overflow-hidden h-2 bg-[#5848BC]/[0.24] rounded-[100px]'>
                                         <div className={`w-[${item.width}] h-full bg-[#7362C6]`}></div>
                                     </div>
-                                    }
+                             
                                     
                                 </div>
                             </div>
@@ -103,6 +115,7 @@ const GeneratedStyle = () => {
                 })}
             </div>
         </div>
+        </>
     )
 }
 

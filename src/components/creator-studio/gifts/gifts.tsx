@@ -123,19 +123,20 @@ function Gifts() {
           ))}
         </div>
 
-        {giftCard && <GiftCardEditModal closeModal={setGiftCard} GiftEditModal={giftEditPopup} DeleteGift={DeleteGift} DeleteIndex={deleteIndex} DeleteBtnStep={deleteBtnStep} />
+        {
+          giftCard && <GiftCardEditModal closeModal={setGiftCard} GiftEditModal={giftEditPopup} DeleteGift={DeleteGift} DeleteIndex={deleteIndex} DeleteBtnStep={deleteBtnStep} />
         }
 
-        {deleteModal &&
+        {
+          deleteModal &&
           <GiftCardDelete DeleteModal={setDeleteModal} Heading={'Delete all gifts'}
             Content={'Are you sure you want to delete all gifts from the Date category?'}
             Img={true} DeleteGift DeleteIndex DeleteAllGift={setGiftCardName} DeleteBtnStep={deleteBtnStep} CategoryActionIndex DeleteActionCategory />
-           
         }
 
       </>
         :
-        <div className='flex justify-center items-center max-w-[243px] w-full h-full m-auto'>
+        <div className='flex justify-center items-center max-w-[243px] w-full h-[calc(100%-40px)] m-auto'>
           <div className='flex flex-col items-center gap-3 text-center'>
             <div className='w-14 h-14 rounded-full bg-[#FFFFFF0D] flex justify-center items-center '>
               <ImagePlusIcon />
@@ -147,7 +148,8 @@ function Gifts() {
         </div>
       }
 
-      {giftModal && <GiftCreateModal closeModal={setGiftModal} GiftsView={setGiftsView} GiftName={GiftCardName} SetGiftName={setGiftCardName} AddCategory={addCategory} SetCategory={setAddCategory} />
+      {
+        giftModal && <GiftCreateModal closeModal={setGiftModal} GiftsView={setGiftsView} GiftName={GiftCardName} SetGiftName={setGiftCardName} AddCategory={addCategory} SetCategory={setAddCategory} />
       }
 
     </>

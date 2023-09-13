@@ -1,22 +1,20 @@
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
-import React, { useState } from 'react';
-import modalImg from '../../../../public/assets/style-modal-img.png';
+import React from 'react';
 import pen from '../../../../public/assets/pen.png';
 import heart from '../../../../public/assets/heart-alt.png';
 import circleInformation from '../../../../public/assets/circle-information8.png';
 import arrowDown from '../../../../public/assets/chevron-down2.png';
 import shop from '../../../../public/assets/shop.png';
-import StyleGeneratorNext from './StyleGeneratorNext';
-import PostStyleModal from '../view-Styles/PostStyleModal';
 
 interface ViewStyleModalProps {
     setViewStyleModal?: any;
     setStyleGenNext?: any;
     setNotificationModal?:any;
-    image: any;
-    postStyleModal: any;
-    setPostStyleModal: any;
+    image?: any;
+    postStyleModal?: any;
+    setPostStyleModal?: any;
+    component?: any;
 }
 
 const list = [
@@ -38,7 +36,16 @@ const list = [
     },
 ];
 
-const ViewStyleModal = ( {setViewStyleModal, setStyleGenNext, setNotificationModal, image, postStyleModal, setPostStyleModal} : ViewStyleModalProps ) => {
+const ViewStyleModal = ( {setViewStyleModal, setStyleGenNext, setNotificationModal, image, postStyleModal, setPostStyleModal, component} : ViewStyleModalProps ) => {
+
+    const handlePostStyleButton = () => {
+        if(component === 'GeneratedStyle') {
+            setPostStyleModal(true);
+            setViewStyleModal(false);
+        } else {
+            setViewStyleModal(false);
+        }
+    }
   
   return (
     <>
@@ -52,24 +59,24 @@ const ViewStyleModal = ( {setViewStyleModal, setStyleGenNext, setNotificationMod
         <div className='w-[67%]'>
             <Image className='object-contain' src={image} alt={''} />
         </div>
-        <div className='flex flex-col w-[33%]'>
-        <div className='flex flex-col gap-4 px-6 pt-6 pb-5'>
-            <div className='flex flex-col gap-[2px]'>
-                <div className='text-white text-[22px] font-bold leading-8'>Any Lee</div>
-                <div className='text-[#979797] text-[18px] font-normal leading-6'>Not posted</div>
-            </div>
-            <div className='flex gap-3'>
-                <button className='w-full flex gap-2 justify-center items-center px-5 py-[13px] rounded-[14px] bg-white/[0.08]' onClick={() => {setStyleGenNext(true), setViewStyleModal (false), setNotificationModal(false)}}>
-                    <Image src={pen} alt={''} />
-                    <div className='text-white text-[16px] font-bold leading-[22px]'>Edit Style</div>
-                </button>
-                <button className='w-max p-[14px] rounded-[14px] bg-white/[0.08] justify-center items-center'>
-                    <Image className='object-contain' src={heart} alt={''} />
-                </button>
-            </div>
-        </div>
-        <div className='flex flex-col justify-between h-full px-6 pb-6'>
-            <div className='flex flex-col gap-5'>
+        <div className='h-[inherit] flex flex-col w-[33%] justify-between px-6 pb-[13px]'>
+            <div>
+                <div className='flex flex-col gap-4 pt-6 pb-5'>
+                <div className='flex flex-col gap-[2px]'>
+                    <div className='text-white text-[22px] font-bold leading-8'>Any Lee</div>
+                    <div className='text-[#979797] text-[18px] font-normal leading-6'>Not posted</div>
+                </div>
+                <div className='flex gap-3'>
+                    <button className='w-full flex gap-2 justify-center items-center px-5 py-[13px] rounded-[14px] bg-white/[0.08]' onClick={() => {setStyleGenNext(true), setViewStyleModal (false)}}>
+                        <Image src={pen} alt={''} />
+                        <div className='text-white text-[16px] font-bold leading-[22px]'>Edit Style</div>
+                    </button>
+                    <button className='flex w-max p-[14px] rounded-[14px] bg-white/[0.08] justify-center items-center'>
+                        <Image className='object-contain' src={heart} alt={''} />
+                    </button>
+                </div>
+                </div>
+                <div className='flex flex-col gap-5 pb-6'>
                 <div className='flex flex-col gap-[14px]'>
                 <div className='text-white text-[15px] font-semibold leading-5'>Model Details</div>
                 {list.map((item,index) => {
@@ -88,18 +95,15 @@ const ViewStyleModal = ( {setViewStyleModal, setStyleGenNext, setNotificationMod
                     <div className='text-white text-[15px] font-semibold leading-5'>Generation data</div>
                     <Image src={arrowDown} alt={''} />
                 </div>
+                </div>
             </div>
-            <div className='cursor-pointer px-5 py-[13px] justify-center items-center rounded-[14px] bg-[#5848BC] flex gap-2' onClick={() => {setPostStyleModal(true)}}>
+            <div className='h-max flex cursor-pointer px-6 py-[13px] justify-center items-center rounded-[14px] bg-[#5848BC] gap-2' onClick={handlePostStyleButton}>
                 <Image className='object-contain' src={shop} alt={''} />
                 <div className='text-white text-[16px] font-bold leading-[22px]'>Post Style</div>
             </div>
         </div>
-       </div>
       </Modal>
     </div>
-    {
-        postStyleModal && <PostStyleModal setPostStyleModal={setPostStyleModal} />
-    }
     </>
   );
 };

@@ -29,7 +29,7 @@ const albumdata = [
 ]
 function SelectImage({ closeState,GiftsView,AddCategory,SetCategory,GiftName,SetGiftName }: CategoryPopup) {
     const [createGift, setCreateGift] = useState(false);
-    const [toggle, setToggle] = useState(true);
+    const [toggle, setToggle] = useState(false);
 
     return (
         <>
