@@ -7,6 +7,7 @@ const ImageGeneratorIndex = () => {
 
   const [inpaintingToggle, setInpaintingToggle] = useState(false)
   const [posingToggle, setPosingToggle] = useState(false);
+  const [myCharacterToggle, setMyCharacterToggle] = useState(false);
 
 
   return (
@@ -19,15 +20,15 @@ const ImageGeneratorIndex = () => {
             </h5>
           </div>
 
-          
 
-          <ImageGeneratorOption InpaintingToggle={inpaintingToggle} PosingToggle={posingToggle} />
+
+          <ImageGeneratorOption InpaintingToggle={inpaintingToggle} PosingToggle={posingToggle} MyCharacterToggle={myCharacterToggle} EditGeneration={true} EditTooltip={true}/>
         </div>
         <ImageAndIdeaGeneratorTab />
       </div>
 
       <div className="max-w-[256px] w-full">
-        <ImageSetting SetInpaintingToggle={setInpaintingToggle} InpaintingToggle={inpaintingToggle} SetPosingToggle={setPosingToggle} PosingToggle={posingToggle} />
+        <ImageSetting SetInpaintingToggle={setInpaintingToggle} InpaintingToggle={inpaintingToggle} SetPosingToggle={setPosingToggle} PosingToggle={posingToggle} SetMyCharacterToggle={setMyCharacterToggle}  MyCharacterToggle={myCharacterToggle}/>
       </div>
     </div>
   );
