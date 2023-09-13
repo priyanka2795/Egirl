@@ -6,9 +6,10 @@ import image from '../../../../public/assets/image-plus.png';
 
 interface GoToGeneratorModalProp {
     setGoToModal: any;
+    setAddImagesModal: any;
 }
 
-const GoToGeneratorModal = ( {setGoToModal} : GoToGeneratorModalProp ) => {
+const GoToGeneratorModal = ( {setGoToModal, setAddImagesModal} : GoToGeneratorModalProp ) => {
 //   const [styleGenHoverModal, setStyleGenHoverModal] = useState(false);
   return (
     <div>
@@ -26,16 +27,16 @@ const GoToGeneratorModal = ( {setGoToModal} : GoToGeneratorModalProp ) => {
             <Image onClick={() => {setGoToModal(false)}} src={xMark} alt={''} />
         </div>
         <div className='h-[372px] flex flex-col gap-5 justify-center items-center'>
-            <div className='flex flex-col gap-3'>
-                <div className='w-max p-6 rounded-[100px] bg-white/[0.05]'>
-                    <Image src={image} alt={''} />
+            <div className='flex flex-col items-center justify-center gap-3'>
+                <div className='w-max py-5 px-[24px] rounded-[100px] bg-white/[0.05]'>
+                    <Image className='!mt-[3px]' src={image} alt={''} />
                 </div>
                 <div className='flex flex-col gap-1'>
                     <div className='text-center text-[15px] font-normal leading-5'>You don’t have any images</div>
                     <div className='text-center text-[13px] font-normal leading-[18px]'>Click on the button to generate images for model generation.</div>
                 </div>
             </div>
-            <button className='px-4 py-[10px] justify-center items-center rounded-[12px] bg-white/[0.08] text-white text-[14px] font-bold leading-5'>Go to Image Generator</button>
+            <button className='px-4 py-[10px] justify-center items-center rounded-[12px] bg-white/[0.08] text-white text-[14px] font-bold leading-5' onClick={() => {setAddImagesModal(true), setGoToModal(false)}}>Go to Image Generator</button>
         </div>
       </Modal>
     </div>

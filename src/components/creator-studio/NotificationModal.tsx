@@ -49,7 +49,7 @@ const NotificationModal = ({setNotificationModal} : NotificationModalProp) => {
         })}
     </div>
     {
-        viewStyleModal && <ViewStyleModal setViewStyleModal={setViewStyleModal} setStyleGenNext={setStyleGenNext} setNotificationModal={setNotificationModal} image={modalImg} />
+        viewStyleModal && <ViewStyleModal setViewStyleModal={setViewStyleModal} setStyleGenNext={setStyleGenNext} setNotificationModal={setNotificationModal} image={modalImg} component={'NotificationModal'} />
     }
     {
         styleGenNext && <StyleGeneratorNext />

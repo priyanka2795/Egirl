@@ -140,15 +140,15 @@ const VIMainImageBlock = ({ ToggleMenu, SetAlbumImages }: VIMainImageBlock) => {
         <>
           <div className='grid grid-cols-3 gap-3' ref={dropdownRef}>
             {album.map((item) => (
-              <div key={item.id} className='relative group w-full h-full sub-banner' >
-                <Image className='w-full object-cover ' src={item.image} alt={''} />
+              <div key={item.id} className='relative w-full h-full group sub-banner' >
+                <Image className='object-cover w-full ' src={item.image} alt={''} />
                 <div className=' absolute bottom-0 bg-gradient-to-t to-[#00000000] from-[#000000CC] h-[150px] w-full px-5 pb-3 font-semibold flex'  >
-                  <div className='flex justify-between items-end w-full '>
+                  <div className='flex items-end justify-between w-full '>
                     <p className='cursor-pointer ' onClick={() => SetAlbumImages(true)}>{item.albumName}</p>
                     <p className='cursor-pointer ' onClick={() => SetAlbumImages(true)}>{item.albumImageCount}</p>
                   </div>
                 </div>
-                <div className='cursor-pointer invisible w-[30px] h-[30px] flex items-center justify-center group-hover:visible group-hover:opacity-100 absolute top-[7px] right-[7px] rounded-full bg-black/[0.48]' onClick={() => { AlbumImageToggle(index) }}>
+                <div className='cursor-pointer invisible w-[30px] h-[30px] flex items-center justify-center group-hover:visible group-hover:opacity-100 absolute top-[7px] right-[7px] rounded-full bg-black/[0.48]' onClick={() => { AlbumImageToggle(item.id) }}>
                   <Image className='' src={threeDots} alt={''} />
                 </div>
                 {showDropDown === item.id && (
@@ -177,13 +177,13 @@ const VIMainImageBlock = ({ ToggleMenu, SetAlbumImages }: VIMainImageBlock) => {
 
           <div className='grid grid-cols-3 gap-2' ref={dropdownRef}>
             {allImages.map((item, index) => (
-              <div className='relative group w-full h-full bg-red-100 sub-banner ' key={index} >
+              <div className='relative w-full h-full bg-red-100 group sub-banner ' key={index} >
                 <Image className=' object-cover !w-full h-full' src={item.image} alt={''} />
                 <div className='cursor-pointer invisible w-[30px] h-[30px] flex items-center justify-center group-hover:visible group-hover:opacity-100 absolute top-[7px] right-[7px] rounded-full bg-black/[0.48]' onClick={() => AllImageToggle(index)}>
                   <Image className='w-full h-full' src={threeDots} alt={''} />
                 </div>
                 {allImage === index && (
-                  <div className='absolute top-12 right-3 z-50' >
+                  <div className='absolute z-50 top-12 right-3' >
                     <ViewImagesDropDown DeleteImage={DeleteImage} />
                   </div>
                 )}

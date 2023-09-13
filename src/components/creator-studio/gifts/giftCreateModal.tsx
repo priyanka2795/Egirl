@@ -18,7 +18,7 @@ function giftCreateModal({ closeModal,GiftsView,GiftName,SetGiftName,AddCategory
         <>
             <Modal 
                 open={true} 
-                modalClassName='flex flex-col h-auto  rounded-[14px] bg-[#1A1A1A]'
+                modalClassName='flex flex-col h-auto rounded-[14px] bg-[#1A1A1A]'
                 closeModal={() => closeModal(false)}
                 modalOverlayStyle='!bg-black/80'
             >

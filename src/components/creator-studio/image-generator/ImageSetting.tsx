@@ -8,7 +8,13 @@ import Information from '../../../../public/assets/circle-information4.png'
 import Image from 'next/image';
 import RangePicker from '../common/RangePicker';
 
-const ImageSetting = () => {
+interface ImageSetting {
+  SetInpaintingToggle: any;
+  InpaintingToggle: any;
+  SetPosingToggle:any;
+  PosingToggle:any
+}
+const ImageSetting = ({ SetInpaintingToggle, InpaintingToggle,PosingToggle ,SetPosingToggle}: ImageSetting) => {
   const [inpainting, setInpainting] = useState(false);
   const [posing, setPosing] = useState(false);
   const [mycharacter, setMycharacter] = useState(false);
@@ -31,7 +37,7 @@ const ImageSetting = () => {
           <div className="flex justify-between">
             <h6 className='text-sm font-semibold'>Inpainting</h6>
             <Toggle
-              handleToggleState={() => { setInpainting(!inpainting), console.log(inpainting, 'toggle state') }}
+              handleToggleState={() => { setInpainting(!inpainting), SetInpaintingToggle(!InpaintingToggle) }}
               toggleState={inpainting}
               toggleText={``}
               infoIcon={'hidden'} toggleClasses={'bg-[#383838]'}
@@ -41,7 +47,7 @@ const ImageSetting = () => {
           <div className="flex justify-between mt-[30px]">
             <h6 className='text-sm font-semibold'>Posing</h6>
             <Toggle
-              handleToggleState={() => setPosing(!posing)}
+              handleToggleState={() => {setPosing(!posing),SetPosingToggle(!PosingToggle)}}
               toggleState={posing}
               toggleText={``}
               infoIcon={'hidden'} toggleClasses={'bg-[#383838]'}
@@ -59,7 +65,7 @@ const ImageSetting = () => {
           </div>
         </div>
         <div className='px-5'>
-          <button className="py-6 flex items-center justify-between w-full" onClick={()=>setAdvancedSettings(!advancedSettings)}>
+          <button className="py-6 flex items-center justify-between w-full" onClick={() => setAdvancedSettings(!advancedSettings)}>
             <h6 className="text-sm font-semibold">Advanced settings</h6>
             <div>
               <PlusIcon />

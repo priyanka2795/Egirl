@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ImageGeneratorOption from './ImageGeneratorOption';
 import ImageAndIdeaGeneratorTab from './ImageAndIdeaGeneratorTab';
 import ImageSetting from './ImageSetting';
 
 const ImageGeneratorIndex = () => {
+
+  const [inpaintingToggle, setInpaintingToggle] = useState(false)
+  const [posingToggle, setPosingToggle] = useState(false);
+
+
   return (
     <div className="flex justify-between gap-8">
       <div className="w-full">
@@ -13,13 +18,16 @@ const ImageGeneratorIndex = () => {
               Image generator
             </h5>
           </div>
-          <ImageGeneratorOption />
+
+          
+
+          <ImageGeneratorOption InpaintingToggle={inpaintingToggle} PosingToggle={posingToggle} />
         </div>
         <ImageAndIdeaGeneratorTab />
       </div>
 
       <div className="max-w-[256px] w-full">
-        <ImageSetting />
+        <ImageSetting SetInpaintingToggle={setInpaintingToggle} InpaintingToggle={inpaintingToggle} SetPosingToggle={setPosingToggle} PosingToggle={posingToggle} />
       </div>
     </div>
   );

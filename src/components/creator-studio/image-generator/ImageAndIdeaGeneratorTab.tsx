@@ -58,6 +58,7 @@ const ImageAndIdeaGeneratorTab = () => {
     setImageGenerationAgain((oldValue: any[]) => {
       return oldValue.filter((item: any, index: number, array: any) => index !== ind)
     });
+    setImageGenerationToggle(null)
   }
 
   // Idea Generation
@@ -83,6 +84,7 @@ const ImageAndIdeaGeneratorTab = () => {
 
   const dragItem = useRef();
   const dragOverItem = useRef();
+
   const dragStart = (e: any, position: any) => {
     dragItem.current = position;
   };
@@ -103,7 +105,7 @@ const ImageAndIdeaGeneratorTab = () => {
   }
 
   return (
-    <div className='mt-5 bg-[#121212] rounded-[14px] pb-6 px-6'>
+    <div className='mt-5 bg-[#121212] rounded-[14px] pb-10 px-6'>
       <div className="border-b-white/[0.08]">
         <DefaultTab
           activeListTab={activeTab}
@@ -127,7 +129,7 @@ const ImageAndIdeaGeneratorTab = () => {
                       <button onClick={() => ImageGenerationMenu(index)}><Image src={Dots} /></button>
                       {imageGenerationToggle === index &&
                         <div className='bg-[#1A1A1A] p-4 flex flex-col gap-3 rounded-[14px] w-[218px] absolute right-0 top-8 z-50' >
-                          <button className='flex items-center gap-2' onClick={() => setEditImageGeneration(true)}>
+                          <button className='flex items-center gap-2' onClick={() => { setEditImageGeneration(true), setImageGenerationToggle(null) }}>
                             <Image src={Pencil} className='w-[18px] h-[18px]' alt='' />
                             <p>Edit</p>
                           </button>
@@ -169,7 +171,7 @@ const ImageAndIdeaGeneratorTab = () => {
               <div className='rounded-[14px] bg-[#FFFFFF0D] p-5'>
                 <label htmlFor="prompt" className='text-[#FFFFFFCC] text-[13px] font-semibold mb-[6px]'>Type a prompt concept</label>
                 <div className='flex items-center gap-4'>
-                  <textarea id='prompt' placeholder='Start typing your idea' className='bg-[#FFFFFF0D] rounded-[14px] w-full h-[72px] border-none active:border-[#5848BC] focus:border-[#5848BC] focus:ring-[#5848BC] resize-none text-white placeholder:text-[#979797] overflow-visible placeholder:pt-1' value={ideaGenerationInput} name='prompt' onChange={(e) => HandleChange(e)}></textarea>
+                  <textarea id='prompt' placeholder='Start typing your idea' className='bg-[#FFFFFF0D] rounded-[14px] w-full h-[48px] border-none active:border-[#5848BC] focus:border-[#5848BC] focus:ring-[#5848BC] resize-none text-white placeholder:text-[#979797] overflow-visible placeholder:pt-1' value={ideaGenerationInput} name='prompt' onChange={(e) => HandleChange(e)}></textarea>
                   <button className='w-max rounded-[14px] bg-[#5848BC] px-5 py-[13px] text-base font-bold flex-shrink-0' onClick={() => GenerateIdea()}>Generate Ideas</button>
                 </div>
                 <div className='flex items-center gap-2 mt-3'>
@@ -177,67 +179,57 @@ const ImageAndIdeaGeneratorTab = () => {
                   <p className='text-[#979797] text-[13px]'>Idea generation helps you come up with prompt ideas</p>
                 </div>
               </div>
-              <h5 className='text-[22px] font-bold'>Generated ideas</h5>
               {allIdeaGeneration.map((item, index) => (
-                console.log(item, 'item'),
-                <div className='rounded-[20px] border border-[#FFFFFF29]'>
-                  <div className='p-6 flex justify-between items-center cursor-pointer relative group max-w-[650px]' >
-                    <div className='w-full truncate' onClick={() => IdeaGenerationAccordion(index)}>{item.name}</div>
-                    <div className='flex items-center gap-1 '>
-                      <div className='relative'>
-                        <button ><Image src={Dots} /></button>
-                      </div>
-                      <div onClick={() => IdeaGenerationAccordion(index)}>
-                        {ideaGeneration === index ? <Image src={ArrowUp} />
-                          : <Image src={ArrowDown} />
-                        }
-                      </div>
-                    </div>
-                    <div className='absolute bottom-[85px] left-[27%] z-50 max-w-[280px]  text-center text-[12px] break-words'>
-                      <Tooltip Text={item.name} />
-                    </div>
-                  </div>
-                  {ideaGeneration === index &&
-                    <div className='border-t border-[#FFFFFF29] p-6 relative pb-16' >
-                      <div className='flex flex-wrap gap-2 '>
-                        {/* {Array(4).fill('0').map(() => (
-                          <>
-                            <div className='bg-[#FFFFFF14] px-[10px] py-[7px] rounded-[10px] flex gap-2 items-center cursor-pointer'>
-                              <Image src={GridVertical} />
-                              <p className='font-bold'>Silver hair</p>
-                            </div>
-                            <div className='bg-[#5848BC] px-[10px] py-[7px] rounded-[10px] flex gap-2 items-center cursor-pointer'>
-                              <Image src={GridVertical} />
-                              <p className='font-bold'>Almond-shaped eyes</p>
-                            </div>
-                          </>
-                        ))} */}
+                <>
+                  <h5 className='text-[22px] font-bold'>Generated ideas</h5>
 
-                        {promptItems.map((item, index) => (
-                          <>
-                            <div className={`${colorChange == item ? 'bg-[#5848BC]' : 'bg-[#FFFFFF14] '} px-[10px] py-[7px] rounded-[10px] flex gap-2 items-center cursor-pointer`}
-                              onClick={() => SubmitData(item)}
-                              onDragStart={(e) => dragStart(e, index)}
-                              onDragEnter={(e) => dragEnter(e, index)}
-                              onDragEnd={drop}
-                              key={index}
-                              draggable>
-                              <div className='flex items-center gap-1' >
-                                <Image src={GridVertical} className='cursor-crosshair' />
-                                <p> {item}</p>
+                  <div className='rounded-[20px] border border-[#FFFFFF29]'>
+                    <div className='p-6 flex justify-between items-center cursor-pointer relative group max-w-[650px]' >
+                      <div className='w-full truncate' onClick={() => IdeaGenerationAccordion(index)}>{item.name}</div>
+                      <div className='flex items-center gap-1 '>
+                        <div className='relative'>
+                          <button ><Image src={Dots} /></button>
+                        </div>
+                        <div onClick={() => IdeaGenerationAccordion(index)}>
+                          {ideaGeneration === index ? <Image src={ArrowUp} />
+                            : <Image src={ArrowDown} />
+                          }
+                        </div>
+                      </div>
+                      <div className='absolute bottom-[85px] left-[27%] z-50 max-w-[280px]  text-center text-[12px] break-words'>
+                        <Tooltip Text={item.name} />
+                      </div>
+                    </div>
+                    {ideaGeneration === index &&
+                      <div className='border-t border-[#FFFFFF29] p-6 relative pb-16' >
+                        <div className='flex flex-wrap gap-2 '>
+                          {promptItems.map((item, index) => (
+                            <>
+                              <div className={`${colorChange == item ? 'bg-[#5848BC]' : 'bg-[#FFFFFF14] '} px-[10px] py-[7px] rounded-[10px] flex gap-2 items-center cursor-pointer`}
+                                onClick={() => SubmitData(item)}
+                                onDragStart={(e) => dragStart(e, index)}
+                                onDragEnter={(e) => dragEnter(e, index)}
+                                onDragEnd={drop}
+                                key={index}
+                                draggable>
+                                <div className='flex items-center gap-1' >
+                                  <Image src={GridVertical} className='cursor-crosshair' />
+                                  <p> {item}</p>
+                                </div>
                               </div>
-                            </div>
-                          </>
-                        ))}
+                            </>
+                          ))}
+                        </div>
+                        <div className='bg-[#FFFFFF14] px-4 py-[10px] rounded-xl flex gap-2 items-center absolute right-5 bottom-3 cursor-pointer'>
+                          <Image src={CopyIcon} />
+                          <p className='font-bold'>Copy prompt</p>
+                        </div>
                       </div>
-                      <div className='bg-[#FFFFFF14] px-4 py-[10px] rounded-xl flex gap-2 items-center absolute right-5 bottom-3 cursor-pointer'>
-                        <Image src={CopyIcon} />
-                        <p className='font-bold'>Copy prompt</p>
-                      </div>
-                    </div>
-                  }
+                    }
 
-                </div>
+                  </div>
+                </>
+
               ))}
 
             </div>
@@ -248,9 +240,7 @@ const ImageAndIdeaGeneratorTab = () => {
 
 
 
-      {
-        editImageGeneration &&
-        <EditImageGeneration ImageGenerationClose={setEditImageGeneration} />
+      {editImageGeneration && <EditImageGeneration ImageGenerationClose={setEditImageGeneration} />
       }
       {
         deleteImageGeneration &&

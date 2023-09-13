@@ -6,6 +6,8 @@ import PlusIconSvg from '../../../../public/assets/svgImages/plus-icon.svg';
 import crossIcon from '../../../../public/assets/xmark-style.png';
 import Toggle from '@components/common/Toggler';
 import Tooltip from '@components/common/tooltip';
+import ArrowRight from '../../../../public/assets/chevron-right.png';
+
 interface EditImageGeneration {
     ImageGenerationClose: any
 }
@@ -29,12 +31,9 @@ const EditImageGeneration = ({ ImageGenerationClose }: EditImageGeneration) => {
             <div className='p-6'>
                 <div className='flex justify-between gap-4 pb-7'>
                     <div className='flex gap-4'>
-                        <div
-                            className='flex h-max w-[300px] items-center justify-start gap-2.5 rounded-[14px] bg-white bg-opacity-5 px-4 py-[13px]'
-                        >
-                            <div className='text-[15px] font-normal leading-normal text-neutral-400'>
-                                Genre
-                            </div>
+                        <div className='flex justify-between h-max w-[300px] items-center gap-2.5 rounded-[14px] bg-white bg-opacity-5 px-4 py-[13px]'>
+                            <p className='text-[15px] font-normal leading-normal text-neutral-400'>Genre</p>
+                            <Image src={ArrowRight} className='w-full h-full' />
                         </div>
 
                         <div
