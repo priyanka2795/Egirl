@@ -6,6 +6,15 @@ import avatart2 from '../../../public/assets/avatar-cs-2.png';
 import avatart3 from '../../../public/assets/avatar-cs-3.png';
 import check from '../../../public/assets/check-cs.png';
 import plusIcon from '../../../public/assets/plus-white.png';
+import SidebarMenuItem from '@components/common/Sidebar/SidebarMenuItem';
+import AnalyticsIcon from './svg/AnalyticsIcon';
+import HomeActiveIcon from './svg/HomeActiveIcon';
+import blank from '../../components/creator-studio/svg/blank.svg';
+
+interface SidebarModals {
+  shrinkSideBar: boolean;
+  setShrinkSideBar: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
 const sidebarModal = [
   {
@@ -22,7 +31,11 @@ const sidebarModal = [
   }
 ];
 
-const SidebarModal = () => {
+const SidebarModal = ({
+  shrinkSideBar,
+  setShrinkSideBar
+}: SidebarModals) => {
+  
   const [activeProfile, setActiveProfile] = useState('Mika-chan');
   return (
     <div className={`top-[131px] mt-2 flex h-max w-[260px] flex-col rounded-[14px] bg-[#1A1A1A] px-0 pb-3 pt-2 fixed z-10 -ml-1`}>
@@ -33,9 +46,24 @@ const SidebarModal = () => {
               <Image className='w-full h-full' src={userProfileIcon} alt={''} />
             </div>
           </div>
-          <div className='text-[14px] font-normal leading-[18px] text-[#FFFFFF]'>
-            All Characters
+          <div className='text-[8px] font-normal leading-[18px] text-[#ffffff]'>
+          <SidebarMenuItem
+            text='All Characters'
+            href='/allcharacter'
+            Icon={blank}
+            IconActive={blank}
+            StyleClasses={`${
+              shrinkSideBar === true
+                ? ''
+                : 'text-[#ffffff] text-[5px] mt-[-8px] leading-[4px] mr-[5px]'
+            }`}
+            sideBarMenuText={`${
+              shrinkSideBar === true ? '' : ' '
+            } `}
+          />
+            {/* All Characters */}
           </div>
+          
         </div>
       </div>
 
