@@ -30,6 +30,8 @@ interface ImageGeneratorOption {
   InpaintingToggle: any;
   PosingToggle: any;
 }
+
+const EditPromptName = ['Mica-chan', 'Blue Jeans', 'Gold Chain', 'White Sunglasses', 'Black top']
 const ImageGeneratorOption = ({ InpaintingToggle, PosingToggle }: ImageGeneratorOption) => {
   const [prompt, setPrompt] = useState(false);
   const [tagState, setTagState] = useState(false);
@@ -55,9 +57,15 @@ const ImageGeneratorOption = ({ InpaintingToggle, PosingToggle }: ImageGenerator
   // Prompt Box
   const [promptTags, setPromptTags] = useState([] as any)
   const [editPrompt, setEditPrompt] = useState(null)
+  const [editPromptMenu, setEditPromptMenu] = useState(EditPromptName)
+  const [editPromptMenuIndex, setEditPromptMenuIndex] = useState('Blue Jeans')
 
+  const DeletePromptMenu = (item: any) => {
+    setEditPromptMenu(editPromptMenu.filter((el: any, i: any) => el !== item))
+  }
 
   function handleKeyDown(e: any) {
+    setEditPrompt(null)
     if (e.key !== 'Enter') return
     const value = e.target.value
     if (!value.trim()) return
@@ -116,28 +124,29 @@ const ImageGeneratorOption = ({ InpaintingToggle, PosingToggle }: ImageGenerator
                   <Image src={Grid} className='w-full h-full' />
                   <span className="text">{tag}</span>
                   {/* <span className="cursor-pointer" onClick={() => removeTag(index)}>&times;</span> */}
-                  {editPrompt === index &&
-                    <div className='bg-[#1A1A1A] w-[243px] h-auto rounded-[14px] absolute top-12 left-0 z-50'>
-                      <div className='bg-[#FFFFFF0D] gap-[6px] m-4 px-3 rounded-[10px] flex items-center justify-between'>
-                        <Image src={SearchIcon} className='w-full h-full object-cover ' />
-                        <input type="text" placeholder='Search' className='bg-transparent rounded-[14px] h-10 p-0 border-none active:border-none focus:border-none focus:ring-0 text-white placeholder:text-[#979797] w-[160px]' />
-                      </div>
-                      <div className='flex flex-col gap-[10px]'>
-                        {Array(4).fill('0').map(() => (
-                          <div className='bg-[#FFFFFF0D] px-4 py-[10px] flex justify-between items-center'>
-                            <p>Mica-chan</p>
-                            <Image src={RightIcon} className='w-full h-full' />
-                          </div>
-                        ))}
-                      </div>
+                </div>
+                {editPrompt === index &&
+                  <div className='bg-[#1A1A1A] w-[243px] h-auto rounded-[14px] absolute top-12 left-0 z-50'>
+                    <div className='bg-[#FFFFFF0D] gap-[6px] m-4 px-3 rounded-[10px] flex items-center justify-between'>
+                      <Image src={SearchIcon} className='w-full h-full object-cover ' />
+                      <input type="text" placeholder='Search' className='bg-transparent rounded-[14px] h-10 p-0 border-none active:border-none focus:border-none focus:ring-0 text-white placeholder:text-[#979797] w-[160px]' />
+                    </div>
+                    <div className='flex flex-col gap-[10px]'>
+                      {editPromptMenu.map((items, index) => (
+                        
+                        <div className={`${editPromptMenuIndex === items ? 'bg-[#FFFFFF0D]' : ''} px-4 py-[10px] flex justify-between items-center cursor-pointer`} onClick={() => { setEditPromptMenuIndex(items) }}>
+                          <p>{items}</p>
+                          {editPromptMenuIndex === items ? <Image src={RightIcon} className='w-full h-full' /> : ''}
+                        </div>
+                      ))}
                       <div className='py-[10px] px-4'>
-                        <button className='bg-[#FFFFFF14] w-full rounded-[10px] py-[7px] flex items-center justify-center font-bold text-[#979797] gap-[6px]'>
+                        <button className='bg-[#FFFFFF14] w-full rounded-[10px] py-[7px] flex items-center justify-center font-bold text-[#979797] gap-[6px]' onClick={() => DeletePromptMenu(editPromptMenuIndex)}>
                           <Image src={DeleteIcon} className='w-full h-full' /> Delete</button>
                       </div>
-                    </div>}
-                </div>
-              </div>
+                    </div>
 
+                  </div>}
+              </div>
             ))}
           </div>
           <input onKeyDown={handleKeyDown} type="text" className="w-[150px] bg-transparent border-none focus:border-none focus:ring-0" placeholder='Type a prompt ...' />
