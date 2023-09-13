@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import aiImg1 from '../../../../public/assets/vs-all-images-img1.png';
 import aiImg2 from '../../../../public/assets/vs-all-images-img2.png';
 import aiImg3 from '../../../../public/assets/vs-all-images-img3.png';
 import star from '../../../../public/assets/star.png';
 import Image from 'next/image';
+import FavoriteStyleModal from './FavoriteStyleModal';
 
 const allImages = [
     {
@@ -57,14 +58,16 @@ const allImages = [
 ];
 
 const FavoriteStyles = () => {
+    const [favoriteStyleModal, setFavoriteStyleModal] = useState(false);
   return (
+    <>
     <div className='flex flex-col gap-4 mt-5'>
       <div className='flex flex-col gap-3'>
         <div className='grid grid-cols-3 gap-3'>
             {allImages.map((item,index) => {
                 return(
                     <div key={index} className='overflow-hidden flex flex-col rounded-[16px] bg-white/[0.05]'>
-                        <Image src={item.image} alt={''} />
+                        <Image onClick={() => {setFavoriteStyleModal(true)}} src={item.image} alt={''} />
                         <div className='flex flex-col gap-3 p-4'>
                             <div className='flex justify-between'>
                                 <div className='text-white text-[15px] font-semibold leading-5'>{item.name}</div>
@@ -85,6 +88,10 @@ const FavoriteStyles = () => {
         </div>
       </div>
     </div>
+    {
+        favoriteStyleModal && <FavoriteStyleModal setFavoriteStyleModal={setFavoriteStyleModal} />
+    }
+    </>
   )
 }
 

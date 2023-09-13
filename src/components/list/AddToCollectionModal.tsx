@@ -93,7 +93,7 @@ const AddToCollectionModal = ({closeModalState} : AddToCollectionProps) => {
                                     <label htmlFor={`checked-${index}`}></label>
                                   </div>
                                 </div>
-                            </div>
+                            </div>  
                             <div className='flex flex-col items-start self-stretch gap-3 p-4'>
                                 <div className='flex items-center self-stretch gap-1'>
                                     <div className='text-sm font-semibold text-[#FFFFFF]'>

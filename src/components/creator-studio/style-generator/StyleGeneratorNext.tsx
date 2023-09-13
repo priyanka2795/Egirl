@@ -15,6 +15,10 @@ import StyleGenDeleteModal from './StyleGenDeleteModal';
 import image from '../../../../public/assets/image-plus.png';
 import downArrow from '../../../../public/assets/down-arrow-img.png';
 
+interface StyleGeneratorNextProps {
+  setStyleGeneratorNext: any;
+}
+
 const images = [
   {
     image: img1
@@ -33,10 +37,11 @@ const images = [
   },
 ];
 
-const StyleGeneratorNext = () => {
+const StyleGeneratorNext = ({setStyleGeneratorNext} : StyleGeneratorNextProps) => {
   const [styleGenHoverModal, setStyleGenHoverModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
   const [showCards, setShowCards] = useState(true);
+  const [showAddImagesModal, setShowAddImagesModal] = useState(false);
   
 
   return (
@@ -84,9 +89,9 @@ const StyleGeneratorNext = () => {
               <div className='absolute -top-[25px] -right-[15px] w-10 h-[24px]'>
                 <Image className='w-full h-full' src={downArrow} alt={''} />
               </div>
+            </div>
           </div>
-          </div>
-          <button className='h-max flex justify-center border border-transparent items-center px-4 py-[9px] gap-[6px] rounded-[12px] bg-white/[0.08]'>
+          <button className='h-max flex justify-center border border-transparent items-center px-4 py-[9px] gap-[6px] rounded-[12px] bg-white/[0.08]' onClick={() => {setShowAddImagesModal(true)}}>
             <Image src={plus} alt={''} />
             <div className='text-white text-[14px] font-bold leading-5'>Add images</div>
           </button>
@@ -138,6 +143,9 @@ const StyleGeneratorNext = () => {
     </div>
     {
       deleteModal && <StyleGenDeleteModal setDeleteModal={setDeleteModal} setShowCards={setShowCards} />
+    }
+    {
+      showAddImagesModal && <AddImagesModal setAddImagesModal={setShowAddImagesModal} setStyleGeneratorNext={setStyleGeneratorNext} />
     }
     </>
   );
