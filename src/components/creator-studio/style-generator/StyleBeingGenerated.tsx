@@ -2,7 +2,7 @@ import React from 'react'
 import ClockSvg from "../../../../public/assets/svgImages/clock-img.svg"
 
 interface StyleBeingGeneratedProps{
-  setGeneratedStyle: any;
+  setGeneratedStyle?: any;
 }
 
 const StyleBeingGenerated = ({setGeneratedStyle} : StyleBeingGeneratedProps) => {
