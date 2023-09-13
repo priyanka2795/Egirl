@@ -7,6 +7,7 @@ import image from '../../../../public/assets/image-plus.png';
 import AddImagesModal from './AddImagesModal';
 import GoToGeneratorModal from './GoToGeneratorModal';
 import downArrow from '../../../../public/assets/down-arrow-img.png';
+import CompleteGeneration from './CompleteGeneration';
 
 const StyleGenerator = () => {
   const options = ['Choose category', 'Character', 'Clothing', 'Accessories', 'Locations', 'Object'];
@@ -15,6 +16,7 @@ const StyleGenerator = () => {
   const [showDropDown, setShowDropDown] = useState(false);
   const [inputText, setInputText] = useState('Choose category');
   const [addImagesModal, setAddImagesModal] = useState(false);
+  const [completeGeneration, setCompleteGeneration] = useState(false);
   
   return (
     <>
@@ -43,7 +45,7 @@ const StyleGenerator = () => {
           <div className='top-[78px] absolute w-full px-0 py-1 flex flex-col rounded-[14px] bg-[#1A1A1A]'>
             {options.map((item,index) => {
               return (
-              <div key={index} className='cursor-pointer mx-2 my-1 px-2 py-[6px] bg-[#1A1A1A] text-white text-[14px] font-normal leading-[18px] hover:bg-white/[0.05] hover:rounded-[8px]' onClick={() => {setInputText(item)}}>{item}</div>);
+              <div key={index} className='cursor-pointer mx-2 my-1 px-2 py-[6px] bg-[#1A1A1A] text-white text-[14px] font-normal leading-[18px] hover:bg-white/[0.05] hover:rounded-[8px]' onClick={() => {setInputText(item), setShowDropDown(false)}}>{item}</div>);
             })}
           </div>
           }
@@ -72,8 +74,8 @@ const StyleGenerator = () => {
       </div>
     </div>
 
-    <div className=' p-6 flex flex-col p-6 justify-center items-end border-t border-white/[0.08] '>
-      <div className='cursor-pointer relative flex group px-5 py-[13px] justify-center items-center bg-[#5848BC]/[0.32] rounded-[14px] text-white text-[16px] font-bold leading-[22px]' onClick={() => {setAddImagesModal(true)}}>Generate
+    <div className='flex flex-col p-6 justify-center items-end border-t border-white/[0.08] '>
+      <div className='cursor-pointer relative flex group px-5 py-[13px] justify-center items-center bg-[#5848BC]/[0.32] rounded-[14px] text-white text-[16px] font-bold leading-[22px]' onClick={() => {setCompleteGeneration(true)}}>Generate
         <div className='invisible group-hover:visible group-hover:opacity-100'>
           <div className='absolute bottom-[62px] -left-[30px] w-[169px] flex justify-center items-center px-3 py-[6px] rounded-[6px] bg-[#303030] text-white text-center text-[12px] font-normal leading-4'>
             Add images for style generation
@@ -82,14 +84,15 @@ const StyleGenerator = () => {
             <Image className='w-full h-full' src={downArrow} alt={''} />
           </div>
         </div>
+        {completeGeneration && <CompleteGeneration setCompleteGeneration={setCompleteGeneration} />}
       </div>
     </div>
     </div>
     {
-      addImagesModal && <AddImagesModal setAddImagesModal={setAddImagesModal} />
+      goToModal && <GoToGeneratorModal setGoToModal={setGoToModal} setAddImagesModal={setAddImagesModal} />  
     }
     {
-      goToModal && <GoToGeneratorModal setGoToModal={setGoToModal} />  
+      addImagesModal && <AddImagesModal setAddImagesModal={setAddImagesModal} />
     }
     </>
   );

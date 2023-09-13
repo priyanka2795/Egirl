@@ -1,14 +1,11 @@
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
-import React, { useState } from 'react';
-import modalImg from '../../../../public/assets/style-modal-img.png';
+import React from 'react';
 import pen from '../../../../public/assets/pen.png';
 import heart from '../../../../public/assets/heart-alt.png';
 import circleInformation from '../../../../public/assets/circle-information8.png';
 import arrowDown from '../../../../public/assets/chevron-down2.png';
 import shop from '../../../../public/assets/shop.png';
-import StyleGeneratorNext from './StyleGeneratorNext';
-import PostStyleModal from '../view-Styles/PostStyleModal';
 
 interface ViewStyleModalProps {
     setViewStyleModal?: any;
@@ -17,6 +14,7 @@ interface ViewStyleModalProps {
     image?: any;
     postStyleModal?: any;
     setPostStyleModal?: any;
+    component?: any;
 }
 
 const list = [
@@ -38,7 +36,16 @@ const list = [
     },
 ];
 
-const ViewStyleModal = ( {setViewStyleModal, setStyleGenNext, setNotificationModal, image, postStyleModal, setPostStyleModal} : ViewStyleModalProps ) => {
+const ViewStyleModal = ( {setViewStyleModal, setStyleGenNext, setNotificationModal, image, postStyleModal, setPostStyleModal, component} : ViewStyleModalProps ) => {
+
+    const handlePostStyleButton = () => {
+        if(component === 'GeneratedStyle') {
+            setPostStyleModal(true);
+            setViewStyleModal(false);
+        } else {
+            setViewStyleModal(false);
+        }
+    }
   
   return (
     <>
@@ -60,7 +67,7 @@ const ViewStyleModal = ( {setViewStyleModal, setStyleGenNext, setNotificationMod
                     <div className='text-[#979797] text-[18px] font-normal leading-6'>Not posted</div>
                 </div>
                 <div className='flex gap-3'>
-                    <button className='w-full flex gap-2 justify-center items-center px-5 py-[13px] rounded-[14px] bg-white/[0.08]' onClick={() => {setStyleGenNext(true), setViewStyleModal (false), setNotificationModal(false)}}>
+                    <button className='w-full flex gap-2 justify-center items-center px-5 py-[13px] rounded-[14px] bg-white/[0.08]' onClick={() => {setStyleGenNext(true), setViewStyleModal (false)}}>
                         <Image src={pen} alt={''} />
                         <div className='text-white text-[16px] font-bold leading-[22px]'>Edit Style</div>
                     </button>
@@ -90,16 +97,13 @@ const ViewStyleModal = ( {setViewStyleModal, setStyleGenNext, setNotificationMod
                 </div>
                 </div>
             </div>
-            <div className='h-max flex cursor-pointer px-6 py-[13px] justify-center items-center rounded-[14px] bg-[#5848BC] gap-2' onClick={() => {setPostStyleModal(true), setViewStyleModal (false)}}>
+            <div className='h-max flex cursor-pointer px-6 py-[13px] justify-center items-center rounded-[14px] bg-[#5848BC] gap-2' onClick={handlePostStyleButton}>
                 <Image className='object-contain' src={shop} alt={''} />
                 <div className='text-white text-[16px] font-bold leading-[22px]'>Post Style</div>
             </div>
         </div>
       </Modal>
     </div>
-    {
-        postStyleModal && <PostStyleModal setPostStyleModal={setPostStyleModal} />
-    }
     </>
   );
 };

@@ -7,7 +7,7 @@ import Rest from '../../../../public/assets/rotate-cw.png';
 import ImageSquare from '../../../../public/assets/image-square-white.png';
 import BrushWhite from '../../../../public/assets/paintbrush-alt-white.png';
 import ArrowDown from '../../../../public/assets/chevron-down.png';
-import Backward from '../../../../public/assets/flip-backward.png';
+import Backward from '../../../../public/assets/flip-backward-white.png';
 import Forward from '../../../../public/assets/flip-forward.png';
 import RangePicker from '../common/RangePicker';
 import Tooltip from '@components/common/tooltip';
@@ -15,8 +15,9 @@ import Tooltip from '@components/common/tooltip';
 interface InpaintingModals {
   CloseInpaintingModal: any;
   SetInpaintingCreated: any;
+  EditInpainting: any;
 }
-const InpaintingModals = ({ CloseInpaintingModal, SetInpaintingCreated }: InpaintingModals) => {
+const InpaintingModals = ({ CloseInpaintingModal, SetInpaintingCreated, EditInpainting }: InpaintingModals) => {
 
   const [brushSize, setBrushSize] = useState([20]);
   const [brushSizeToggle, setBrushSizeToggle] = useState(false);
@@ -30,7 +31,7 @@ const InpaintingModals = ({ CloseInpaintingModal, SetInpaintingCreated }: Inpain
     >
       {/* Header */}
       <div className='flex justify-between items-center border-b-white/[0.08] border-white/[0.08] border-b px-6 pb-6'>
-        <h5 className='text-lg font-bold'>Inpainting </h5>
+        <h5 className='text-lg font-bold'>{EditInpainting ? 'Edit' : ''} Inpainting </h5>
         <button className='w-[24px] h-[24px]' onClick={() => CloseInpaintingModal(false)}>
           <Image src={CloseIcon} className='' />
         </button>

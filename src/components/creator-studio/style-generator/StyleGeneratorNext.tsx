@@ -13,6 +13,7 @@ import StyleGenHoverModal from './StyleGenHoverModal';
 import AddImagesModal from './AddImagesModal';
 import StyleGenDeleteModal from './StyleGenDeleteModal';
 import image from '../../../../public/assets/image-plus.png';
+import downArrow from '../../../../public/assets/down-arrow-img.png';
 
 const images = [
   {
@@ -74,8 +75,16 @@ const StyleGeneratorNext = () => {
         </div>
         </div>
         <div className='flex gap-[10px]'>
-          <div className='flex p-[10px] h-max justify-center items-center rounded-[12px] border border-white/[0.32]' onClick={() => setDeleteModal(true)}>
+          <div className='relative group flex p-[10px] h-max justify-center items-center rounded-[12px] border border-white/[0.32]' onClick={() => setDeleteModal(true)}>
             <Image className='' src={deleteIcon} alt={''} />
+            <div className='invisible group-hover:visible group-hover:opacity-100'>
+              <div className='absolute flex items-center justify-center w-[119px] h-[34px] -top-[48px] -right-[39px] px-3 py-[6px] rounded-[6px] bg-[#303030] text-white text-center text-[12px] font-normal leading-4'>
+              Delete all images
+              </div>
+              <div className='absolute -top-[25px] -right-[15px] w-10 h-[24px]'>
+                <Image className='w-full h-full' src={downArrow} alt={''} />
+              </div>
+          </div>
           </div>
           <button className='h-max flex justify-center border border-transparent items-center px-4 py-[9px] gap-[6px] rounded-[12px] bg-white/[0.08]'>
             <Image src={plus} alt={''} />
@@ -115,8 +124,16 @@ const StyleGeneratorNext = () => {
   </div>
 
     <div className='p-6 flex flex-col p-6 justify-center items-end border-t border-white/[0.08] '>
-      {styleGenHoverModal && <StyleGenHoverModal />}
-      <button className='flex px-5 py-[13px] justify-center items-center bg-[#5848BC]/[0.32] rounded-[14px] text-white text-[16px] font-bold leading-[22px]' onClick={() => {setStyleGenHoverModal(!styleGenHoverModal)}}>Generate</button>
+      <div className='cursor-pointer relative flex group px-5 py-[13px] justify-center items-center bg-[#5848BC]/[0.32] rounded-[14px] text-white text-[16px] font-bold leading-[22px]'>Generate
+        <div className='invisible group-hover:visible group-hover:opacity-100'>
+          <div className='absolute bottom-[62px] -left-[30px] w-[169px] h-[34px] flex justify-center items-center px-3 py-[6px] rounded-[6px] bg-[#303030] text-white text-center text-[12px] font-normal leading-4'>
+          Please fill in labels
+          </div>
+          <div className='absolute -top-[25px] right-[20px] w-10 h-[24px]'>
+            <Image className='w-full h-full' src={downArrow} alt={''} />
+          </div>
+        </div>
+      </div>
     </div>
     </div>
     {
