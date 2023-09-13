@@ -84,7 +84,7 @@ const AddedStyleModal = ({setAddedStyleModal}:AddedStyleModalProp) => {
     <div>
       <Modal
         open={true}
-        modalClassName='flex overflow-hidden w-full rounded-[20px] bg-[#1A1A1A] max-w-[1376px]'
+        modalClassName='flex overflow-hidden w-full rounded-[20px] bg-[#1A1A1A] max-w-[1376px] overflow-y-hidden'
         closeModal={() => setAddedStyleModal (false)}
         modalOverlayStyle='!bg-black/80'
       >
@@ -98,7 +98,8 @@ const AddedStyleModal = ({setAddedStyleModal}:AddedStyleModalProp) => {
             </div>
         </div>
         <div className='h-[inherit] flex flex-col w-[33%]'>
-            <div className='flex flex-col gap-4 px-6 pt-6 pb-5'>
+          <div className="h-[calc(86vh-100px)] overflow-y-auto">
+              <div className='flex flex-col gap-4 px-6 pt-6 pb-5'>
                 <div className='flex flex-col gap-[2px]'>
                     <div className='text-white text-[22px] font-bold leading-8'>Any Lee</div>
                     <div className='text-[#979797] text-[18px] font-normal leading-6'>Not posted</div>
@@ -194,6 +195,7 @@ const AddedStyleModal = ({setAddedStyleModal}:AddedStyleModalProp) => {
                     </div>
                 </div>
             </div>
+          </div>
             <div className='flex p-6 border-t border-white/[0.08] bg-[#1A1A1A] w-full'>
                 <div className='flex px-5 py-4 rounded-[14px] bg-white/[0.05] justify-between'>
                     <div className='text-[#979797] text-[15px] font-normal leading-6'>Type your comment ...</div>
