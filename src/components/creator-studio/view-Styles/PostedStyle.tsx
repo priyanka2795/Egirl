@@ -87,7 +87,7 @@ const Postedstyle = () => {
             })}
     </div>
     {
-        viewStyleModal && <ViewStyleModal image={modalImg} setViewStyleModal={setViewStyleModal} postStyleModal={postStyleModal} setPostStyleModal={setPostStyleModal} />
+        viewStyleModal && <ViewStyleModal image={modalImg} setViewStyleModal={setViewStyleModal} postStyleModal={postStyleModal} setPostStyleModal={setPostStyleModal} component={'Postedstyle'} />
     }
     </>
   )
