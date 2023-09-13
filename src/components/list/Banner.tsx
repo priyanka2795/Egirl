@@ -148,7 +148,7 @@ const Banner = ({
         ''
       ) : (
         <div
-          className='my-4 flex cursor-pointer gap-2 text-lg font-bold'
+          className='flex gap-2 my-4 text-lg font-bold cursor-pointer'
           onClick={() => {
             backFromProfile(false);
           }}
@@ -160,8 +160,8 @@ const Banner = ({
 
       <div>
         <div className='h-max w-full overflow-hidden rounded-[16px] bg-[#121212]'>
-          <div className='sub-banner relative block w-full'>
-            <Image className='h-full w-full ' src={Cover} alt='' />
+          <div className='relative block w-full sub-banner'>
+            <Image className='w-full h-full ' src={Cover} alt='' />
             <div className='absolute right-[20px] top-[20px] cursor-pointer'>
               <Image
                 className='relative'
@@ -200,7 +200,7 @@ const Banner = ({
             </div>
             <div className='mb-5 mt-[-62px] flex w-full items-center justify-between px-[24px]'>
               <div className='relative h-[120px] w-[120px] overflow-hidden rounded-full'>
-                <Image className='h-full w-full' src={avatar} alt='' />
+                <Image className='w-full h-full' src={avatar} alt='' />
               </div>
               <div className='flex gap-[12px] self-end'>
                 <button
