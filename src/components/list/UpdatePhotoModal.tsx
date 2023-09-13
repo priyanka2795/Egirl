@@ -7,21 +7,27 @@ import PreviewProfile from './PreviewProfile';
 
 interface UpdatePhotoProps {
   closeModalState: any;
+  closeDropdown: any;
 }
 
 const defaultSrc =
   'https://raw.githubusercontent.com/roadmanfong/react-cropper/master/example/img/child.jpg';
-const UpdatePhotoModal = ({ closeModalState }: UpdatePhotoProps) => {
+const UpdatePhotoModal = ({
+  closeModalState,
+  closeDropdown
+}: UpdatePhotoProps) => {
   const [isPreview, setIsPreview] = useState(false);
   const [image, setImage] = useState('');
-  const [cropData, setCropData] = useState('#');
+  const [cropData, setCropData] = useState('');
   const cropperRef = createRef<ReactCropperElement>();
 
   const handleShowPreview = () => {
-    if (typeof cropperRef.current?.cropper !== 'undefined') {
-      setCropData(cropperRef.current?.cropper.getCroppedCanvas().toDataURL());
+    if (image) {
+      if (typeof cropperRef.current?.cropper !== 'undefined') {
+        setCropData(cropperRef.current?.cropper.getCroppedCanvas().toDataURL());
+      }
+      setIsPreview(true);
     }
-    setIsPreview(true);
   };
 
   const onChange = (e: any) => {
@@ -43,7 +49,9 @@ const UpdatePhotoModal = ({ closeModalState }: UpdatePhotoProps) => {
     <Modal
       open={true}
       modalClassName='flex flex-col h-max w-[753px] rounded-[20px] bg-[#121212] overflow-hidden mt-10 mb-10 ml-5 bookmark-img-text'
-      closeModal={() => closeModalState(false)}
+      closeModal={() => {
+        closeModalState(false), closeDropdown(false);
+      }}
       modalOverlayStyle='!bg-black/80'
     >
       <div className='flex gap-2 border-b border-white/[0.08] p-6'>
@@ -54,7 +62,9 @@ const UpdatePhotoModal = ({ closeModalState }: UpdatePhotoProps) => {
           className={`${
             isPreview ? 'ml-[605px]' : 'ml-[519px]'
           } mt-1 h-6 w-6 cursor-pointer`}
-          onClick={() => closeModalState(false)}
+          onClick={() => {
+            closeModalState(false), closeDropdown(false);
+          }}
         >
           <CloseIcon />
         </div>
@@ -112,7 +122,9 @@ const UpdatePhotoModal = ({ closeModalState }: UpdatePhotoProps) => {
           ) : (
             <button
               className='flex items-center justify-center rounded-xl border border-white/[0.32] px-4 py-[10px] text-[14px] font-bold text-[#FFFFFF]'
-              onClick={() => closeModalState(false)}
+              onClick={() => {
+                closeModalState(false), closeDropdown(false);
+              }}
             >
               Cancel
             </button>
@@ -120,7 +132,9 @@ const UpdatePhotoModal = ({ closeModalState }: UpdatePhotoProps) => {
 
           <button
             className='flex items-center justify-center rounded-xl bg-[#5848BC] px-4 py-[10px] text-[14px] font-bold text-[#FFFFFF]'
-            onClick={() => closeModalState(false)}
+            onClick={() => {
+              closeModalState(false), closeDropdown(false);
+            }}
           >
             Save
           </button>

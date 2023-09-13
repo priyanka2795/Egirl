@@ -19,6 +19,7 @@ import cameraIcon from '../../../public/assets/white-camera.png';
 import galleryIcon from '../../../public/assets/gallery-icon.png';
 import deleteIcon from '../../../public/assets/delete-icon.png';
 import UpdatePhotoModal from './UpdatePhotoModal';
+import DeleteProfileCover from './DeleteProfileCover';
 
 const posts = [
   {
@@ -109,6 +110,8 @@ const Banner = ({
   const [uploadPhotoShow, setUploadPhotoShow] = useState(false);
   const [updatePhoto, setUpdatePhoto] = useState('');
   const [updatePhotoModalState, setUpdatePhotoModalState] = useState(false);
+  const [deleteProfileCModalState, setDeleteProfileModalState] =
+    useState(false);
 
   const handleExploreSelected = (e: any) => {
     setExploreSelected(e.target.innerText);
@@ -119,7 +122,6 @@ const Banner = ({
       setCollectionModalState(false);
     }
   };
-  // console.log(exploreSelectedTab, 'test', 'updatePhoto---', updatePhoto);
 
   const handleActionDivShow = (e: any) => {
     setActionDivShow(!actionDivShow);
@@ -132,8 +134,9 @@ const Banner = ({
     setUpdatePhoto(e.target.innerText);
     if (e.target.innerText === 'Update photo') {
       setUpdatePhotoModalState(true);
-    } else {
-      setUpdatePhotoModalState(false);
+    }
+    if (e.target.innerText === 'Delete') {
+      setDeleteProfileModalState(true);
     }
   };
 
@@ -340,7 +343,17 @@ const Banner = ({
       )}
 
       {updatePhotoModalState && (
-        <UpdatePhotoModal closeModalState={setUpdatePhotoModalState} />
+        <UpdatePhotoModal
+          closeModalState={setUpdatePhotoModalState}
+          closeDropdown={setUploadPhotoShow}
+        />
+      )}
+
+      {deleteProfileCModalState && (
+        <DeleteProfileCover
+          closeDeleteModal={setDeleteProfileModalState}
+          closeDropdown={setUploadPhotoShow}
+        />
       )}
     </div>
   );
