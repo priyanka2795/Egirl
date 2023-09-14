@@ -21,6 +21,22 @@ const CreatorStudioNavbar = ({
 }: CreatorStudioNavbarProp) => {
   const [notificationModal, setNotificationModal] = useState(false);
   const [balanceModal, setBalanceModal] = useState(false);
+  const sidebarVariableCreatorStudio = sessionStorage.getItem('sideBarCollapseCS');
+  const [sideBarCS ,setSidebarCS] = useState(sidebarVariableCreatorStudio ? sidebarVariableCreatorStudio : '')
+
+  // useEffect(() => {
+  //   setSidebarCS(sidebarVariableCreatorStudio ? sidebarVariableCreatorStudio : '');
+  // }, [sidebarVariableCreatorStudio]);
+
+  const handleSidebarWidth = () => {
+    if (sideBarCS) {
+      setSidebarCS('');
+      sessionStorage.setItem('sideBarCollapseCS', '');
+    } else {
+      setSidebarCS('true');
+      sessionStorage.setItem('sideBarCollapseCS', 'true');
+    }
+  };
 
   const handleNotificationModal = () => {
     if(balanceModal === true) {
@@ -47,7 +63,8 @@ const CreatorStudioNavbar = ({
           <div
             className='duration-80 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full ease-in hover:bg-[#252525]'
             onClick={() => {
-              setShrinkSideBar(!shrinkSideBar);
+              setShrinkSideBar(!shrinkSideBar),
+              handleSidebarWidth()
             }}
           >
             <MenuIcon />
