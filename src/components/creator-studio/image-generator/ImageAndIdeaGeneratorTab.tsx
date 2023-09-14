@@ -29,6 +29,7 @@ const images = [
 const tabContent = ['Image Generation', 'Idea Generation'];
 
 const ImageAndIdeaGeneratorTab = () => {
+  let Data = sessionStorage.getItem("sideBarCollapseCS");
   const [activeTab, setActiveTab] = useState('Image Generation');
   const [imageGeneration, setImageGeneration] = useState(null);
   const [imageGenerationToggle, setImageGenerationToggle] = useState(null);
@@ -106,20 +107,8 @@ const ImageAndIdeaGeneratorTab = () => {
   const SubmitData = (e: any) => {
     setColorChange(e)
   }
-  useEffect(() => {
-    const Data = sessionStorage.getItem("sideBarCollapse");
-    console.log(Data, 'sessionStorage Data');
+ 
 
-  }, [])
-  const DataGet = (e:any) => {
-    const data =  e.target.innerText;
-    console.log(data,'data data');
-    if (data.length <= 10) {
-      console.log('true');
-      
-    }
-    
-  }
   return (
     <div className='mt-5 bg-[#121212] rounded-[14px] pb-10 px-6'>
       <div className="border-b-white/[0.08]">
@@ -202,7 +191,7 @@ const ImageAndIdeaGeneratorTab = () => {
                 <>
                   <div className='rounded-[20px] border border-[#FFFFFF29]'>
                     <div className='p-6 flex justify-between items-center gap-2 cursor-pointer relative group ' >
-                      <div className='w-full break-all text-ellipsis ' onClick={(e) => { IdeaGenerationAccordion(index), DataGet(e) }}>{item.name}</div>
+                      <div className={`w-full break-all text-ellipsis ${Data === '' ? 'truncate' : ''}`} onClick={(e) => { IdeaGenerationAccordion(index) }}>{item.name}</div>
                       <div className='flex items-center gap-1 '>
                         <div className='relative'>
                           <button ><Image src={Dots} /></button>

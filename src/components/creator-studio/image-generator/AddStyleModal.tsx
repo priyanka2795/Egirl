@@ -31,31 +31,38 @@ const StyleTab = ['Your Styles', 'Popular'];
 const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
 
   const [styleTabs, setStyleTabs] = useState('Your Styles')
-  const [selectImages, setSelectImages] = useState([] as any);
   const [tooltip, setTooltip] = useState(false);
-  const [selfMode, setSelfMode] = useState();
-
-
-  const SelectImage = (name: any) => {
-    setSelectImages((prev: any) => (prev === name ? null : name));
-    // if (selectImages.length < 4) {
-    //   setSelectImages([...selectImages, name]);
-    // }
-    // if (selectImages.length === 4) { setTooltip(true) }
-    // const GetData = selectImages.find((item: any) => item === name);
-  }
+  const [selfModeImages, setSelfModeImages] = useState(SelfMode);
+  const [selfImageSearch, setSelfImageSearch] = useState(false);
   const [searchStyle, setSearchStyle] = useState('');
+  const [selectedItems, setSelectedItems] = useState<string[]>([]);
 
+  const SelectImage = (name: string) => {
+    if (selectedItems.length > 3) {
+      setSelectedItems(selectedItems.filter((item) => item !== name));
+
+    } else {
+      if (selectedItems.includes(name)) {
+        setSelectedItems(selectedItems.filter((item) => item !== name));
+      } else {
+        setSelectedItems([...selectedItems, name]);
+      }
+    }
+  }
   const handleInputChange = (e: any) => {
     const searchTerm = e.target.value;
     setSearchStyle(searchTerm);
     const filteredItems = SelfMode.filter((user) =>
       user.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    // setEditPromptMenu(filteredItems);
-    console.log(filteredItems, 'filteredItems');
+    setSelfModeImages(filteredItems);
+    if (filteredItems.length === 0) {
+      setSelfImageSearch(true)
+    } else { setSelfImageSearch(false) }
 
   }
+
+
   return (
 
     <Modal
@@ -83,7 +90,6 @@ const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
           ))}
 
         </div>
-
         {/* search bar */}
         <div className='px-8 pb-6 border-b border-[#FFFFFF14]'>
           <div className='flex w-full gap-[10px] rounded-[10px] bg-white/[0.05] p-3'>
@@ -105,30 +111,34 @@ const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
           </div>
         </div>
         {/* Imges  */}
-        <div className='h-[500px] overflow-y-auto '>
+        <div className=''>
           <div className='mt-4 flex flex-col gap-4 px-8 '>
             {/* self made */}
             <h6 className='text-lg font-bold leading-6 text-white'>Self Made</h6>
-            <div className='grid grid-cols-4 gap-x-3 gap-y-4'>
-              {SelfMode.map((items, index) => (
-                <>
-                  <div key={index} className={`relative h-[174px] w-[175px] rounded-xl cursor-pointer bg-[#121212] overflow-hidden border-[2px] ${selectImages === items.name ? 'border-[#5848BC]' : 'border-[#121212]'} `} onClick={() => SelectImage(items.name)}>
+            {selfImageSearch ?
+              <p className='text-[#979797] font-bold text-center'>Image Not Found</p>
+              : <div className='grid grid-cols-4 gap-x-3 gap-y-4'>
+                {selfModeImages.map((items, index) => (
+                  <div key={index} className={`relative h-[174px] w-[175px] rounded-xl cursor-pointer bg-[#121212] overflow-hidden border-[3px] ${selectedItems.includes(items.name) ? 'border-[#5848BC]' : 'border-[#121212]'} `} onClick={() => SelectImage(items.name)}>
                     <div className={``}>
                       <Image src={items.img} className='shrink-0 rounded-xl' />
                     </div>
-                    <div className={`absolute bottom-0 ${selectImages === items.name ? 'bg-[#5848BC]' : 'bg-[#000000CC]'} h-[34px] w-full flex justify-center items-center group`}>
+                    <div className={`absolute bottom-0 ${selectedItems.includes(items.name) ? 'bg-[#5848BC]' : 'bg-[#000000CC]'} h-[34px] w-full flex justify-center items-center group`}>
                       <p className='text-[13px] font-semibold'>{items.name}</p>
-                      {tooltip &&
+                      {selectedItems.length > 3 &&
                         <div className='absolute -top-14 left-30 text-center text-xs'>
                           <Tooltip Text='You can select maximum of 4 styles' />
                         </div>
                       }
                     </div>
                   </div>
-                </>
-              ))}
-            </div>
-            <h6 className='text-lg font-bold leading-6 text-white'>Added Styles</h6>
+                ))}
+              </div>
+            }
+
+
+            {/* Added Styles */}
+            {/* <h6 className='text-lg font-bold leading-6 text-white'>Added Styles</h6>
             <div className='grid grid-cols-4 gap-x-3 gap-y-4'>
               {AddedStyle.map((items, index) => (
                 <>
@@ -142,14 +152,10 @@ const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
                   </div>
                 </>
               ))}
-            </div>
+            </div> */}
 
           </div>
         </div>
-
-
-        {/* Added Styles */}
-
 
         <div className='flex flex-row self-stretch gap-3 px-8 pt-4 pb-8'>
           <button
