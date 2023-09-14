@@ -4,6 +4,7 @@ import pic from '../../../../public/assets/Collar.png';
 import { Modal } from '@components/modal/modal';
 import CloseIcon from '../../../../public/assets/xmark-style.png';
 import searchIcon from '../../../../public/assets/search-alt.png';
+import Tooltip from '@components/common/tooltip';
 
 const SelfMode = [
   { name: 'Anime', img: pic },
@@ -22,21 +23,26 @@ const AddedStyle = [
   { name: 'Fantasy', img: pic },
 
 ]
-interface AddStyleModal { 
+interface AddStyleModal {
   SetOpenStyle: any;
 }
 const StyleTab = ['Your Styles', 'Popular'];
 
 const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
+
   const [styleTabs, setStyleTabs] = useState('Your Styles')
   const [selectImages, setSelectImages] = useState([] as any);
+  const [tooltip, setTooltip] = useState(false);
 
 
   const SelectImage = (name: any) => {
-    // setSelectImages([...selectImages, name])
     setSelectImages((prev: any) => (prev === name ? null : name));
+    // if (selectImages.length < 4) {
+    //   setSelectImages([...selectImages, name]);
+    // }
+    // if (selectImages.length === 4) { setTooltip(true) }
+    // const GetData = selectImages.find((item: any) => item === name);
   }
-
 
   return (
 
@@ -48,7 +54,7 @@ const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
     >
       <div className='rounded-[20px] bg-[#121212] '>
         {/* Header */}
-        <div className='flex justify-between items-center border-b-white/[0.08] px-8 border-white/[0.08] border-b pb-6 pt-8'>
+        <div className='flex justify-between items-center border-b-white/[0.08] border-white/[0.08] border-b p  -8'>
           <h5 className='text-lg font-bold'>
             Style
           </h5>
@@ -89,14 +95,19 @@ const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
             {/* self made */}
             <h6 className='text-lg font-bold leading-6 text-white'>Self Made</h6>
             <div className='grid grid-cols-4 gap-x-3 gap-y-4'>
-              {SelfMode.map((items) => (
+              {SelfMode.map((items, index) => (
                 <>
-                  <div className={`group relative h-[174px] w-[175px] rounded-xl cursor-pointer bg-[#121212] overflow-hidden border-[2px] ${selectImages === items.name ? 'border-[#5848BC]' : 'border-[#121212]'} `} onClick={() => SelectImage(items.name)}>
+                  <div key={index} className={`relative h-[174px] w-[175px] rounded-xl cursor-pointer bg-[#121212] overflow-hidden border-[2px] ${selectImages === items.name ? 'border-[#5848BC]' : 'border-[#121212]'} `} onClick={() => SelectImage(items.name)}>
                     <div className={``}>
                       <Image src={items.img} className='shrink-0 rounded-xl' />
                     </div>
-                    <div className={`absolute bottom-0 ${selectImages === items.name ? 'bg-[#5848BC]' : 'bg-[#000000CC]'} h-[34px] w-full flex justify-center items-center `}>
+                    <div className={`absolute bottom-0 ${selectImages === items.name ? 'bg-[#5848BC]' : 'bg-[#000000CC]'} h-[34px] w-full flex justify-center items-center group`}>
                       <p className='text-[13px] font-semibold'>{items.name}</p>
+                      {tooltip &&
+                        <div className='absolute -top-14 left-30 text-center text-xs'>
+                          <Tooltip Text='You can select maximum of 4 styles' />
+                        </div>
+                      }
                     </div>
                   </div>
                 </>
@@ -104,9 +115,9 @@ const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
             </div>
             <h6 className='text-lg font-bold leading-6 text-white'>Added Styles</h6>
             <div className='grid grid-cols-4 gap-x-3 gap-y-4'>
-              {AddedStyle.map((items) => (
+              {AddedStyle.map((items, index) => (
                 <>
-                  <div className={`group relative h-[174px] w-[175px] rounded-xl cursor-pointer bg-[#121212] overflow-hidden border-[2px]  border-[#121212] `} >
+                  <div key={index} className={`group relative h-[174px] w-[175px] rounded-xl cursor-pointer bg-[#121212] overflow-hidden border-[2px]  border-[#121212] `} >
                     <div className={``}>
                       <Image src={items.img} className='shrink-0 rounded-xl' />
                     </div>

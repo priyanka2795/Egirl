@@ -6,13 +6,15 @@ import arrowLeft from '../../../../public/assets/arrow-left2.png';
 import search from '../../../../public/assets/search-alt (2).png';
 import Image from 'next/image';
 import Sort from './Sort';
+import crossIcon from '../../../../public/assets/xmark (1).png';
 
 interface ViewStylesTabProps {
-  component: string;
+  component?: string;
   setGeneratedStyle?: any;
-  generatedStyle? : boolean;
-  tabContent: any;
-  exploreSelectedTab: any;
+  setAddedStyle?: any;
+  setPostedStyle?: any;
+  tabContent?: any;
+  exploreSelectedTab?: any;
   setExploreSelected? : any;
 }
 
@@ -31,10 +33,20 @@ const images = [
     },
 ];
 
-const ViewStylesTab = ({component, setGeneratedStyle, generatedStyle, tabContent, exploreSelectedTab, setExploreSelected} : ViewStylesTabProps) => {
-    const [activeIndex, setActiveIndex] = useState();
+const ViewStylesTab = ({component, setGeneratedStyle, setAddedStyle, setPostedStyle, tabContent, exploreSelectedTab, setExploreSelected} : ViewStylesTabProps) => {
+    const [activeIndex, setActiveIndex] = useState(-1);
     const [showSort, setShowSort] = useState(false);
+    const [isActive, setActive] = useState(false);
     
+    const handleActionButtons = (index:any) => {
+      setActiveIndex(index);
+      if(index === 0) {
+        setActive(!isActive);
+      }
+      else if(index === 2) {
+        setShowSort(!showSort);
+      }
+    }
   return (
     <>
     <div className='flex justify-between mt-6'>
@@ -48,7 +60,7 @@ const ViewStylesTab = ({component, setGeneratedStyle, generatedStyle, tabContent
        </div> :
        component === 'AddedStyle' ? 
        <div className='flex items-center gap-2'>
-       <Image className='object-contain' src={arrowLeft} alt={''} />
+       <Image className='object-contain' onClick={() => {setAddedStyle(false)}} src={arrowLeft} alt={''} />
        <div className='flex gap-1'>
          <div className='text-white text-[18px] font-bold leading-6'>Added Styles </div>
          <div className='text-[#979797] text-[18px] font-bold leading-6'>(128)</div>
@@ -56,7 +68,7 @@ const ViewStylesTab = ({component, setGeneratedStyle, generatedStyle, tabContent
        </div> :
        component === 'PostedStyle' ?
        <div className='flex items-center gap-2'>
-       <Image className='object-contain' src={arrowLeft} alt={''} />
+       <Image className='object-contain' onClick={() => {setPostedStyle(false)}} src={arrowLeft} alt={''} />
        <div className='flex gap-1'>
          <div className='text-white text-[18px] font-bold leading-6'>Posted Styles </div>
          <div className='text-[#979797] text-[18px] font-bold leading-6'>(8)</div>
@@ -83,19 +95,19 @@ const ViewStylesTab = ({component, setGeneratedStyle, generatedStyle, tabContent
         <div className='flex'>
         {images.map((item, index) => {
             return(
-                <div className='flex'>
-                  {index === 2 ? 
-                  <>
-                  <div className={`px-3 py-2 justify-center items-center rounded-[100px] ${activeIndex === index ? 'bg-white/[0.05]' : ''}`} onClick={() => {setActiveIndex(index), setShowSort(!showSort)}}>
-                  <Image className='mt-[3px]' src={item.image} alt={''} />
+                <div className={`relative flex ${isActive ? "w-[360px]" : ''}`}>
+                  <div className={`flex py-2 px-[10px] justify-center items-center rounded-[100px] ${activeIndex === index ? 'bg-white/[0.05]' : ''}`} onClick={() => handleActionButtons(index)}>
+                    <Image className='mt-[3px]' src={item.image} alt={''} />
                   </div>
-                  {
-                    showSort && <Sort />
+                  {index === 0 && isActive && 
+                  <div className='absolute right-2 top-2' onClick={() => setActive(!isActive)}>
+                    <input type="text" className={`border border-[#FFFFFF52] bg-transparent rounded-[14px] h-10 px-4 placeholder:text-white active:border-[#FFFFFF52] focus:border-[#FFFFFF52] focus:ring-transparent pl-10 text-[14px] w-full ${isActive ? "border" : 'border-none'}`} placeholder='Search' />
+                    <Image className='w-full h-full' src={crossIcon} alt={''} />
+                  </div>
                   }
-                  </> : 
-                  <div className={`px-3 py-2 justify-center items-center rounded-[100px] ${activeIndex === index ? 'bg-white/[0.05]' : ''}`} onClick={() => setActiveIndex(index)}>
-                  <Image className='mt-[3px]' src={item.image} alt={''} />
-                  </div>
+                  
+                  {
+                    index === 2 && showSort && <Sort />
                   }
                 </div>
             );

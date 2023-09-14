@@ -3,17 +3,21 @@ import CreateStudioLogo from './svg/creator-studio-logo.svg';
 import MenuIcon from './svg/menu.svg';
 import UserImg from './svg/user-img.svg';
 import BellIcon from './svg/bell.svg';
-import NotificationModal from './NotificationModal';
 import BalanceModal from './BalanceModal';
 import Link from 'next/link';
+import CreatorStudioNotificationModal from './CreatorStudioNotificationModal';
 
 interface CreatorStudioNavbarProp {
   shrinkSideBar: boolean;
   setShrinkSideBar: React.Dispatch<React.SetStateAction<boolean>>;
+  setStyleGenNext?: React.Dispatch<React.SetStateAction<boolean>>;
+  styleGenNext?:boolean;
 }
 const CreatorStudioNavbar = ({
   shrinkSideBar,
-  setShrinkSideBar
+  setShrinkSideBar,
+  styleGenNext,
+  setStyleGenNext
 }: CreatorStudioNavbarProp) => {
   const [notificationModal, setNotificationModal] = useState(false);
   const [balanceModal, setBalanceModal] = useState(false);
@@ -59,7 +63,7 @@ const CreatorStudioNavbar = ({
             <BellIcon
               onClick={handleNotificationModal}
             />
-            {notificationModal && <NotificationModal setNotificationModal={setNotificationModal} />}
+            {notificationModal && <CreatorStudioNotificationModal setNotificationModal={setNotificationModal} setStyleGenNext={setStyleGenNext} styleGenNext={styleGenNext}/>}
           </div>
           <div className="relative">
             <UserImg

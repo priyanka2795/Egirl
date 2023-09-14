@@ -9,6 +9,9 @@ import modalImg from '../../../../public/assets/view-style-modal-img.png';
 import pen from '../../../../public/assets/pen2.png';
 import AddedStyleModal from './AddedStyleModal';
 
+interface AddedstyleProps {
+    setAddedStyle: any;
+}
 
 const addedStyle = [
     {
@@ -61,13 +64,13 @@ const addedStyle = [
     },
 ];
 
-const Addedstyle = () => {
+const Addedstyle = ({setAddedStyle} : AddedstyleProps) => {
     const [addedStyleModal, setAddedStyleModal] = useState(false);
-    const [postStyleModal, setPostStyleModal] = useState(false);
+
   return (
     <>
-    <ViewStylesTab component={'AddedStyle'} />
-    <div className='grid grid-cols-3 gap-3'>
+    <ViewStylesTab component={'AddedStyle'} setAddedStyle={setAddedStyle} />
+    <div className='grid grid-cols-3 gap-3 mt-5'>
     {addedStyle.map((item,index) => {
                 return(
                     <div key={index} className='relative group overflow-hidden flex flex-col rounded-[16px] bg-white/[0.05]'>

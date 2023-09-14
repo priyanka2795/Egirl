@@ -67,7 +67,7 @@ const ViewStyleModal = ( {setViewStyleModal, setStyleGenNext, setNotificationMod
                     <div className='text-[#979797] text-[18px] font-normal leading-6'>Not posted</div>
                 </div>
                 <div className='flex gap-3'>
-                    <button className='w-full flex gap-2 justify-center items-center px-5 py-[13px] rounded-[14px] bg-white/[0.08]' onClick={() => {setStyleGenNext(true), setViewStyleModal (false)}}>
+                    <button className='w-full flex gap-2 justify-center items-center px-5 py-[13px] rounded-[14px] bg-white/[0.08]' onClick={() => {setStyleGenNext(true), setViewStyleModal (false) , setNotificationModal(false)}}>
                         <Image src={pen} alt={''} />
                         <div className='text-white text-[16px] font-bold leading-[22px]'>Edit Style</div>
                     </button>
@@ -97,7 +97,7 @@ const ViewStyleModal = ( {setViewStyleModal, setStyleGenNext, setNotificationMod
                 </div>
                 </div>
             </div>
-            <div className='h-max flex cursor-pointer px-6 py-[13px] justify-center items-center rounded-[14px] bg-[#5848BC] gap-2' onClick={handlePostStyleButton}>
+            <div className='h-max flex cursor-pointer px-6 py-[13px] justify-center items-center rounded-[14px] bg-[#5848BC] gap-2' onClick={() => {handlePostStyleButton(), setNotificationModal(false)}}>
                 <Image className='object-contain' src={shop} alt={''} />
                 <div className='text-white text-[16px] font-bold leading-[22px]'>Post Style</div>
             </div>
