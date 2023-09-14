@@ -11,9 +11,9 @@ const initialValues = {
   username: ''
 };
 interface CharacterAdd {
-  SetviewModal: any;
+  NewCharacterClose: any;
 }
-const CharacterAdd = ({ SetviewModal }: CharacterAdd) => {
+const CharacterAdd = ({ NewCharacterClose }: CharacterAdd) => {
  
   const { values, errors, handleBlur, touched, handleChange, handleSubmit } =
     useFormik({
@@ -22,14 +22,14 @@ const CharacterAdd = ({ SetviewModal }: CharacterAdd) => {
       onSubmit: (values, action) => {
         console.log('Values', values);
         action.resetForm();
-        SetviewModal(false);
+        // NewCharacterClose(false);
       }
     });
 
   return (
     <Modal
       open={true}
-      closeModal={() => SetviewModal(false)}
+      closeModal={() => NewCharacterClose(false)}
       modalOverlayStyle='!bg-black/80 '
       modalClassName={`bg-[#121212] flex  flex-col flex-start rounded-[20px]`}
     >
@@ -37,7 +37,7 @@ const CharacterAdd = ({ SetviewModal }: CharacterAdd) => {
         <div className='w-full gap-1 text-lg font-bold leading-6'>
           Add New Character
         </div>
-        <div className='w-6 h-6' onClick={() => SetviewModal(false)}>
+        <div className='w-6 h-6' onClick={() => NewCharacterClose(false)}>
           <Cross />
         </div>
       </div>
@@ -100,7 +100,7 @@ const CharacterAdd = ({ SetviewModal }: CharacterAdd) => {
             {/* buttons */}
             <div className='flex items-start self-stretch gap-3 '>
               <button 
-              onClick={()=>SetviewModal(false)}
+              onClick={()=>NewCharacterClose(false)}
               className='w-[50%] h-12 items-center gap-2 rounded-[14px] border border-white/[0.32] px-5 py-[13px] text-base font-bold leading-[22px]'>
                 Cancel
               </button>
