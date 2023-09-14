@@ -33,6 +33,7 @@ const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
   const [styleTabs, setStyleTabs] = useState('Your Styles')
   const [selectImages, setSelectImages] = useState([] as any);
   const [tooltip, setTooltip] = useState(false);
+  const [selfMode, setSelfMode] = useState();
 
 
   const SelectImage = (name: any) => {
@@ -43,7 +44,18 @@ const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
     // if (selectImages.length === 4) { setTooltip(true) }
     // const GetData = selectImages.find((item: any) => item === name);
   }
+  const [searchStyle, setSearchStyle] = useState('');
 
+  const handleInputChange = (e: any) => {
+    const searchTerm = e.target.value;
+    setSearchStyle(searchTerm);
+    const filteredItems = SelfMode.filter((user) =>
+      user.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    // setEditPromptMenu(filteredItems);
+    console.log(filteredItems, 'filteredItems');
+
+  }
   return (
 
     <Modal
@@ -54,7 +66,7 @@ const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
     >
       <div className='rounded-[20px] bg-[#121212] '>
         {/* Header */}
-        <div className='flex justify-between items-center border-b-white/[0.08] border-white/[0.08] border-b p  -8'>
+        <div className='flex justify-between items-center border-b-white/[0.08] border-white/[0.08] border-b p-8'>
           <h5 className='text-lg font-bold'>
             Style
           </h5>
@@ -87,9 +99,12 @@ const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
               placeholder='Search'
               type='text'
               className='border-none bg-transparent p-0 text-[15px] font-light leading-6 placeholder:text-[#979797] focus:ring-0 flex-1'
+              value={searchStyle}
+              onChange={handleInputChange}
             />
           </div>
         </div>
+        {/* Imges  */}
         <div className='h-[500px] overflow-y-auto '>
           <div className='mt-4 flex flex-col gap-4 px-8 '>
             {/* self made */}

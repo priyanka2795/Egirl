@@ -331,7 +331,7 @@ const ImageGeneratorOption = ({ InpaintingToggle, PosingToggle, MyCharacterToggl
           </div>
         </div> : ''}
 
-      {tagState && <AddTagModal closeDeleteModal={setTagState} />}
+      
       <Modal
         open={openGenre}
         closeModal={handleCloseGenre}
@@ -343,7 +343,7 @@ const ImageGeneratorOption = ({ InpaintingToggle, PosingToggle, MyCharacterToggl
             <div className='flex w-full text-lg font-bold leading-6 decoration-white'>
               Genre
             </div>
-            <div onClick={handleCloseGenre}>
+            <div className='cursor-pointer' onClick={handleCloseGenre} >
               <CloseIcon />
             </div>
           </div>
@@ -366,7 +366,7 @@ const ImageGeneratorOption = ({ InpaintingToggle, PosingToggle, MyCharacterToggl
         </div>
       </Modal>
       {openStyle && <AddStyleModal SetOpenStyle={setOpenStyle} />}
-
+      {tagState && <AddTagModal closeDeleteModal={setTagState} />}
       {/* Inpainting Modals */}
 
       {inpaintingExample &&
