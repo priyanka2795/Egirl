@@ -8,7 +8,8 @@ import img3 from '../../../../public/assets/style-gen-img3.png';
 import img4 from '../../../../public/assets/style-gen-img4.png';
 
 interface AddImagesModalProps {
-  setAddImagesModal: any;
+  setAddImagesModal?: any;
+  setStyleGeneratorNext?: any;
 }
 
 const albums = [
@@ -39,7 +40,7 @@ const allPhotos = [
   }
 ];
 
-const AddImagesModal = ({ setAddImagesModal }: AddImagesModalProps) => {
+const AddImagesModal = ({ setAddImagesModal, setStyleGeneratorNext }: AddImagesModalProps) => {
   const [toggle, setToggle] = useState(false);
   //   const [styleGenHoverModal, setStyleGenHoverModal] = useState(false);
 
@@ -107,8 +108,14 @@ const AddImagesModal = ({ setAddImagesModal }: AddImagesModalProps) => {
               <div className='grid grid-cols-2 gap-2 rounded-[12px] overflow-hidden'>
                 {allPhotos.map((item, index) => {
                   return (
-                    <div key={index} className='h-[256px]'>
+                    <div key={index} className='relative h-[256px] add-to-collection'>
                       <Image src={item.image} alt={''} />
+                      <div className='absolute top-0 right-0 w-full h-full custom-checkbox'>
+                        <div className='pt-4 pr-4 text-right'>
+                          <input type='checkbox' id={`checked-${index}`} />
+                          <label htmlFor={`checked-${index}`}></label>
+                        </div>
+                      </div>
                     </div>
                   );
                 })}
@@ -125,7 +132,7 @@ const AddImagesModal = ({ setAddImagesModal }: AddImagesModalProps) => {
           </button>
           <button
             className='w-1/2 items-center justify-center rounded-[14px] border border-transparent bg-[#5848BC] px-5 py-[13px] text-[16px] font-bold leading-[22px] text-white'
-            onClick={() => setAddImagesModal(false)}
+            onClick={() => {setAddImagesModal(false), setStyleGeneratorNext(true)}}
           >
             Save
           </button>

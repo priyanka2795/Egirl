@@ -4,9 +4,18 @@ import confetti from '../../../../public/assets/Confetti.png';
 import xMark from '../../../../public/assets/xmark-green.png';
 
 interface CompleteGenerationProp {
+  completeGeneration: boolean;
   setCompleteGeneration: React.Dispatch<React.SetStateAction<boolean>>;
 }
-const CompleteGeneration = ( {setCompleteGeneration} : CompleteGenerationProp ) => {
+const CompleteGeneration = ( {completeGeneration, setCompleteGeneration} : CompleteGenerationProp ) => {
+
+  const handleCrossIcon = () => {
+    setCompleteGeneration(!completeGeneration);
+    console.log(">>>cross", completeGeneration);
+    
+  }
+  console.log(">>>cross", completeGeneration);
+
   return (
     <div className='absolute -top-[46px] -right-[33px] w-[420px] flex gap-4 p-5 rounded-[14px] border border-[#5AD02E]/[0.16] bg-[#11160F]'>
       <div className='flex p-3 rounded-[100px] bg-[#5AD02E]/[0.08] h-max'>
@@ -16,7 +25,7 @@ const CompleteGeneration = ( {setCompleteGeneration} : CompleteGenerationProp ) 
         <div className='flex flex-col gap-1'>
           <div className='flex justify-between'>
             <div className='text-[#5AD02E] text-[14px] font-semibold leading-[18px]'>Congratulations!</div>
-            <Image className='object-contain' onClick={() => {setCompleteGeneration(false)}} src={xMark} alt={''} />
+            <Image className='object-contain' onClick={handleCrossIcon} src={xMark} alt={''} />
           </div>
           <div className='text-white text-[14px] font-normal leading-[18px]'>Your generation is complete.</div>
         </div>

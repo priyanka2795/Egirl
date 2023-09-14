@@ -1,14 +1,10 @@
 import React from 'react';
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
-import pen from '../../../../public/assets/pen.png';
 import heart from '../../../../public/assets/heart-alt.png';
 import circleInformation from '../../../../public/assets/circle-information8.png';
 import arrowDown from '../../../../public/assets/chevron-down2.png';
-import shop from '../../../../public/assets/shop.png';
-import modalImg from '../../../../public/assets/added-style-modal.png';
-import arrowLeft from '../../../../public/assets/chevron-left.png';
-import arrowRight from '../../../../public/assets/chevron-right-white.png';
+import modalImg from '../../../../public/assets/view-style-modal-img.png';
 import check from '../../../../public/assets/check-white.png';
 import avatar from '../../../../public/assets/image-avatar.png';
 import star from '../../../../public/assets/star.png';
@@ -16,8 +12,8 @@ import rightArrow from '../../../../public/assets/chevron-right-3.png';
 import avatar2 from '../../../../public/assets/viewStyle-modal-2.png';
 import smiley from '../../../../public/assets/face-smile-icon.png';
 
-interface AddedStyleModalProp {
-    setAddedStyleModal: any;
+interface FavoriteStyleModalProps {
+    setFavoriteStyleModal: any;
 }
 
 const list = [
@@ -78,24 +74,18 @@ const ratings = [
     }
 ];
 
-const AddedStyleModal = ({setAddedStyleModal}:AddedStyleModalProp) => {
+const FavoriteStyleModal = ({setFavoriteStyleModal}:FavoriteStyleModalProps) => {
   return (
     <>
     <div>
       <Modal
         open={true}
         modalClassName='flex overflow-hidden w-full rounded-[20px] bg-[#1A1A1A] max-w-[1376px] overflow-y-hidden'
-        closeModal={() => setAddedStyleModal (false)}
+        closeModal={() => setFavoriteStyleModal (false)}
         modalOverlayStyle='!bg-black/80'
       >
-        <div className='relative flex items-center justify-center bg-[#121212] w-[67%]'>
+        <div className='w-[67%]'>
             <Image className='object-contain' src={modalImg} alt={''} />
-            <div className='absolute left-[24px] flex p-1 justify-center items-center rounded-[100px] bg-black/[0.32]'>
-                <Image className='object-contain' src={arrowLeft} alt={''} />
-            </div>
-            <div className='absolute right-[24px] flex p-1 justify-center items-center rounded-[100px] bg-black/[0.32]'>
-                <Image className='object-contain' src={arrowRight} alt={''} />
-            </div>
         </div>
         <div className='h-[inherit] flex flex-col w-[33%]'>
           <div className="h-[calc(86vh-100px)] overflow-y-auto">
@@ -197,7 +187,7 @@ const AddedStyleModal = ({setAddedStyleModal}:AddedStyleModalProp) => {
             </div>
           </div>
             <div className='flex p-6 border-t border-white/[0.08] bg-[#1A1A1A] w-full'>
-                <div className='flex px-5 py-4 rounded-[14px] bg-white/[0.05] justify-between'>
+                <div className='flex px-5 py-4 rounded-[14px] bg-white/[0.05] justify-between w-full'>
                     <div className='text-[#979797] text-[15px] font-normal leading-6'>Type your comment ...</div>
                     <Image src={smiley} alt={''} /> 
                 </div>
@@ -209,4 +199,4 @@ const AddedStyleModal = ({setAddedStyleModal}:AddedStyleModalProp) => {
   )
 }
 
-export default AddedStyleModal;
+export default FavoriteStyleModal;

@@ -11,6 +11,7 @@ import Backward from '../../../../public/assets/flip-backward-white.png';
 import Forward from '../../../../public/assets/flip-forward.png';
 import RangePicker from '../common/RangePicker';
 import Tooltip from '@components/common/tooltip';
+import RestWhite from '../../../../public/assets/rotate-cw-white.png';
 
 interface InpaintingModals {
   CloseInpaintingModal: any;
@@ -25,7 +26,7 @@ const InpaintingModals = ({ CloseInpaintingModal, SetInpaintingCreated, EditInpa
   return (
     <Modal
       open={true}
-      modalClassName='flex flex-col w-full rounded-[20px] h-max bg-[#121212] max-w-[760px] py-8'
+      modalClassName='flex flex-col w-full rounded-[20px] h-max bg-[#121212] max-w-[1012px] py-8'
       closeModal={() => CloseInpaintingModal(false)}
       modalOverlayStyle='!bg-black/80'
     >
@@ -60,8 +61,10 @@ const InpaintingModals = ({ CloseInpaintingModal, SetInpaintingCreated, EditInpa
 
             </div>
             <div className='bg-[#000000CC]  rounded-[100px] flex items-center gap-1 p-3 cursor-pointer'>
-              <Image src={Rest} className='w-full h-full' />
-              <p className='text-[#FFFFFF7A]'>Reset</p>
+              {EditInpainting ? <Image src={RestWhite} className='w-full h-full' />  :
+                <Image src={Rest} className='w-full h-full' />
+              }
+              <p className={`${EditInpainting?'text-white':'text-[#FFFFFF7A]'}`}>Reset</p>
             </div>
           </div>
           <div className='bg-[#000000CC] rounded-[100px] flex items-center justify-center gap-3 py-3 px-5 absolute bottom-3 left-3'>
@@ -73,7 +76,11 @@ const InpaintingModals = ({ CloseInpaintingModal, SetInpaintingCreated, EditInpa
       </div>
       <div className='font-semibold text-white flex justify-end items-center gap-3 mx-6 mt-6'>
         <button className='rounded-[14px] px-5 py-3 border border-[#FFFFFF52]' onClick={() => CloseInpaintingModal(false)}>Cancel</button>
-        <button className='bg-[#5848BC] rounded-[14px] px-5 py-3' onClick={() => { SetInpaintingCreated(true), CloseInpaintingModal(false) }}>Create</button>
+        {EditInpainting ?
+          <button className='bg-[#5848BC] rounded-[14px] px-5 py-3' onClick={() => { CloseInpaintingModal(false) }}>Save</button>
+          :
+          <button className='bg-[#5848BC] rounded-[14px] px-5 py-3' onClick={() => { SetInpaintingCreated(true), CloseInpaintingModal(false) }}>Create</button>
+        }
       </div>
 
     </Modal >

@@ -21,13 +21,13 @@ const ViewStyleMainPage = () => {
       <button className="cursor-pointer bg-[#5848BC] flex items-center justify-center h-10 gap-1.5 rounded-xl px-4 py-[10px]">Generate Style</button>
     </div>
     {generatedStyle ? 
-    <Generatedstyle /> : 
+    <Generatedstyle setGeneratedStyle={setGeneratedStyle} /> : 
     addedStyle ? 
-    <Addedstyle /> :
+    <Addedstyle setAddedStyle={setAddedStyle} /> :
     postedStyle ? 
-    <Postedstyle /> :
+    <Postedstyle setPostedStyle={setPostedStyle} /> :
     <>
-    <ViewStylesTab component={'mainPage'} setGeneratedStyle={setGeneratedStyle} generatedStyle={generatedStyle} tabContent={tabContent} exploreSelectedTab={exploreSelectedTab} setExploreSelected={setExploreSelected} />
+    <ViewStylesTab component={'mainPage'} tabContent={tabContent} exploreSelectedTab={exploreSelectedTab} setExploreSelected={setExploreSelected} />
     {exploreSelectedTab === 'Your Styles' ? 
     <>
     <ViewStyleAlbums setGeneratedStyle={setGeneratedStyle} setAddedStyle={setAddedStyle} setPostedStyle={setPostedStyle} />

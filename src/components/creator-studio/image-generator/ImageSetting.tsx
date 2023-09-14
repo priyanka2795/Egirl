@@ -9,15 +9,14 @@ import Image from 'next/image';
 import RangePicker from '../common/RangePicker';
 
 interface ImageSetting {
-  SetInpaintingToggle: any;
   InpaintingToggle: any;
-  SetPosingToggle:any;
-  PosingToggle:any
+  SetInpaintingToggle: any;
+  PosingToggle: any;
+  SetPosingToggle: any;
+  MyCharacterToggle: any;
+  SetMyCharacterToggle: any;
 }
-const ImageSetting = ({ SetInpaintingToggle, InpaintingToggle,PosingToggle ,SetPosingToggle}: ImageSetting) => {
-  const [inpainting, setInpainting] = useState(false);
-  const [posing, setPosing] = useState(false);
-  const [mycharacter, setMycharacter] = useState(false);
+const ImageSetting = ({ SetInpaintingToggle, InpaintingToggle, PosingToggle, SetPosingToggle, MyCharacterToggle, SetMyCharacterToggle }: ImageSetting) => {
   const [guidanceScale, setGuidanceScale] = useState([19])
   const [stepScale, setStepScale] = useState([83])
   const [tiling, setTiling] = useState(false);
@@ -37,8 +36,8 @@ const ImageSetting = ({ SetInpaintingToggle, InpaintingToggle,PosingToggle ,SetP
           <div className="flex justify-between">
             <h6 className='text-sm font-semibold'>Inpainting</h6>
             <Toggle
-              handleToggleState={() => { setInpainting(!inpainting), SetInpaintingToggle(!InpaintingToggle) }}
-              toggleState={inpainting}
+              handleToggleState={() => SetInpaintingToggle(!InpaintingToggle)}
+              toggleState={InpaintingToggle}
               toggleText={``}
               infoIcon={'hidden'} toggleClasses={'bg-[#383838]'}
             />
@@ -47,8 +46,8 @@ const ImageSetting = ({ SetInpaintingToggle, InpaintingToggle,PosingToggle ,SetP
           <div className="flex justify-between mt-[30px]">
             <h6 className='text-sm font-semibold'>Posing</h6>
             <Toggle
-              handleToggleState={() => {setPosing(!posing),SetPosingToggle(!PosingToggle)}}
-              toggleState={posing}
+              handleToggleState={() => SetPosingToggle(!PosingToggle)}
+              toggleState={PosingToggle}
               toggleText={``}
               infoIcon={'hidden'} toggleClasses={'bg-[#383838]'}
             />
@@ -57,8 +56,8 @@ const ImageSetting = ({ SetInpaintingToggle, InpaintingToggle,PosingToggle ,SetP
           <div className="flex justify-between mt-[30px] pb-5 border-b border-white/[0.08]">
             <h6 className='text-sm font-semibold'>My character</h6>
             <Toggle
-              handleToggleState={() => setMycharacter(!mycharacter)}
-              toggleState={mycharacter}
+              handleToggleState={() => SetMyCharacterToggle(!MyCharacterToggle)}
+              toggleState={MyCharacterToggle}
               toggleText={``}
               infoIcon={'hidden'} toggleClasses={'bg-[#383838]'}
             />

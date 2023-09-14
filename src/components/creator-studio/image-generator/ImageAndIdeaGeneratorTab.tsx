@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import DefaultTab from '@components/common/DefaultTab';
 import Information from '../../../../public/assets/circle-information2.png'
 import Dots from '../../../../public/assets/dots-horizontal.png'
@@ -41,6 +41,7 @@ const ImageAndIdeaGeneratorTab = () => {
   const [ideaGenerationInput, setIdeaGenerationInput] = useState('');
   const [allIdeaGeneration, setAllIdeaGeneration] = useState<any[]>([]);
   const [ideaGeneration, setIdeaGeneration] = useState(null);
+  const [generatedIdeas, setGeneratedIdeas] = useState(false);
 
   // ImageGeneration 
   const ImageGenerationMenu = (index: any) => {
@@ -67,11 +68,13 @@ const ImageAndIdeaGeneratorTab = () => {
     setIdeaGenerationInput(value);
   }
   const GenerateIdea = () => {
+
     if (ideaGenerationInput === '') {
       alert('please Enter Idea')
     } else {
       setAllIdeaGeneration([...allIdeaGeneration, { name: ideaGenerationInput }])
       setIdeaGenerationInput('');
+      setGeneratedIdeas(true)
     }
   }
   const IdeaGenerationAccordion = (index: any) => {
@@ -103,7 +106,20 @@ const ImageAndIdeaGeneratorTab = () => {
   const SubmitData = (e: any) => {
     setColorChange(e)
   }
+  useEffect(() => {
+    const Data = sessionStorage.getItem("sideBarCollapse");
+    console.log(Data, 'sessionStorage Data');
 
+  }, [])
+  const DataGet = (e:any) => {
+    const data =  e.target.innerText;
+    console.log(data,'data data');
+    if (data.length <= 10) {
+      console.log('true');
+      
+    }
+    
+  }
   return (
     <div className='mt-5 bg-[#121212] rounded-[14px] pb-10 px-6'>
       <div className="border-b-white/[0.08]">
@@ -171,7 +187,7 @@ const ImageAndIdeaGeneratorTab = () => {
               <div className='rounded-[14px] bg-[#FFFFFF0D] p-5'>
                 <label htmlFor="prompt" className='text-[#FFFFFFCC] text-[13px] font-semibold mb-[6px]'>Type a prompt concept</label>
                 <div className='flex items-center gap-4'>
-                  <textarea id='prompt' placeholder='Start typing your idea' className='bg-[#FFFFFF0D] rounded-[14px] w-full h-[48px] border-none active:border-[#5848BC] focus:border-[#5848BC] focus:ring-[#5848BC] resize-none text-white placeholder:text-[#979797] overflow-visible placeholder:pt-1' value={ideaGenerationInput} name='prompt' onChange={(e) => HandleChange(e)}></textarea>
+                  <textarea id='prompt' placeholder='Start typing your idea' className='bg-[#FFFFFF0D] rounded-[14px] w-full h-[48px] border-none active:border-none focus:border-[#5848BC] focus:ring-0 resize-none text-white placeholder:text-[#979797] overflow-visible placeholder:pt-1' value={ideaGenerationInput} name='prompt' onChange={(e) => HandleChange(e)}></textarea>
                   <button className='w-max rounded-[14px] bg-[#5848BC] px-5 py-[13px] text-base font-bold flex-shrink-0' onClick={() => GenerateIdea()}>Generate Ideas</button>
                 </div>
                 <div className='flex items-center gap-2 mt-3'>
@@ -179,13 +195,14 @@ const ImageAndIdeaGeneratorTab = () => {
                   <p className='text-[#979797] text-[13px]'>Idea generation helps you come up with prompt ideas</p>
                 </div>
               </div>
+              {generatedIdeas &&
+                <h5 className='text-[22px] font-bold'>Generated ideas</h5>
+              }
               {allIdeaGeneration.map((item, index) => (
                 <>
-                  <h5 className='text-[22px] font-bold'>Generated ideas</h5>
-
                   <div className='rounded-[20px] border border-[#FFFFFF29]'>
-                    <div className='p-6 flex justify-between items-center cursor-pointer relative group max-w-[650px]' >
-                      <div className='w-full truncate' onClick={() => IdeaGenerationAccordion(index)}>{item.name}</div>
+                    <div className='p-6 flex justify-between items-center gap-2 cursor-pointer relative group ' >
+                      <div className='w-full break-all text-ellipsis ' onClick={(e) => { IdeaGenerationAccordion(index), DataGet(e) }}>{item.name}</div>
                       <div className='flex items-center gap-1 '>
                         <div className='relative'>
                           <button ><Image src={Dots} /></button>
