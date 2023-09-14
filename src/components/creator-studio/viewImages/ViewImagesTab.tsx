@@ -250,7 +250,7 @@ const ViewImagesTab = ({ tabContent, exploreSelectedTab, setExploreSelected }: V
                       <Image src={Information} /> <p className='text-[#979797] text-xs'>The maximum number of filters is 4</p>
                     </div> : ''}
 
-                  <div className='relative mb-5 mx-6'>
+                  <div className='relative mx-6 mb-5'>
                     <div className='absolute left-2 top-2.5'><Image src={Search} className='' /></div>
                     <input type="text" id='category' placeholder='Search' className='bg-[#FFFFFF0D] rounded-[14px] h-10 w-full pl-8 border-none active:border-none focus:border-none focus:ring-0 text-white placeholder:text-[#979797]' name='category' />
                   </div>

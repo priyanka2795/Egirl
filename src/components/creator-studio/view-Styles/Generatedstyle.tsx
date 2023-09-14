@@ -75,7 +75,7 @@ const Generatedstyle = ({setGeneratedStyle}:GeneratedstyleProp) => {
     {generatedStyle.map((item,index) => {
                 return(
                     <div key={index} className='relative group overflow-hidden flex flex-col rounded-[16px] bg-white/[0.05]'>
-                        <Image onClick={() => {setViewStyleModal(true)}} src={item.image} alt={''} />
+                        <Image onClick={() => {setViewStyleModal(true)}} className='w-[350px] h-[347px]' src={item.image} alt={''} />
                         <div className='flex flex-col gap-3 p-4'>
                             <div className='text-white text-[15px] font-semibold leading-5'>{item.name}</div>
                              <div className='flex gap-2'>
