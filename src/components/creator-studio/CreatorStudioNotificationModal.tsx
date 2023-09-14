@@ -5,6 +5,8 @@ import modalImg from '../../../public/assets/style-modal-img.png';
 
 interface NotificationModalProp {
     setNotificationModal: any;
+    setStyleGenNext?:React.Dispatch<React.SetStateAction<boolean>>;
+    styleGenNext?:boolean;
 }
 
 const notification = [
@@ -25,10 +27,10 @@ const notification = [
     },
 ];
 
-const NotificationModal = ({setNotificationModal} : NotificationModalProp) => {
+const CreatorStudioNotificationModal = ({setNotificationModal , setStyleGenNext, styleGenNext} : NotificationModalProp) => {
     const [activeNotification, setActiveNotification] = useState('Any Lee');
     const [viewStyleModal, setViewStyleModal] = useState(false);
-    const [styleGenNext, setStyleGenNext] = useState(false);
+    // const [styleGenNext, setStyleGenNext] = useState(false);
   return (
     <>
     <div className='absolute overflow-hidden top-[31px] right-0 flex flex-col rounded-[14px] bg-[#1A1A1A] w-[484px] z-[1]'>
@@ -51,11 +53,11 @@ const NotificationModal = ({setNotificationModal} : NotificationModalProp) => {
     {
         viewStyleModal && <ViewStyleModal setViewStyleModal={setViewStyleModal} setStyleGenNext={setStyleGenNext} setNotificationModal={setNotificationModal} image={modalImg} component={'NotificationModal'} />
     }
-    {
+    {/* {
         styleGenNext && <StyleGeneratorNext />
-    }
+    } */}
     </>
   )
 }
 
-export default NotificationModal;
+export default CreatorStudioNotificationModal;

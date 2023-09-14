@@ -10,7 +10,7 @@ const CreatorStudio = () => {
     <Banner styleProperty={'px-0 pt-2'} followBtnStyle={'border border-[#7362C6] bg-transparent text-[#7362C6]'} followText={'Follow'}/>
 
     <div className='flex gap-5 max-w-[1196px] justify-between'>
-      <div className="flex flex-col max-w-[59%]">
+      <div className="flex flex-col max-w-[59%] w-full">
         <PostInput />
         <PostCard postCardStyle={'w-full'}/>
       </div>

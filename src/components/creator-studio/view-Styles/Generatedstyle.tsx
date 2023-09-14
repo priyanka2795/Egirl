@@ -9,6 +9,10 @@ import modalImg from '../../../../public/assets/view-style-modal-img.png';
 import pen from '../../../../public/assets/pen2.png';
 import PostStyleModal from './PostStyleModal';
 
+interface GeneratedstyleProp {
+    setGeneratedStyle?: any;
+}
+
 
 const generatedStyle = [
     {
@@ -61,13 +65,13 @@ const generatedStyle = [
     },
 ];
 
-const Generatedstyle = () => {
+const Generatedstyle = ({setGeneratedStyle}:GeneratedstyleProp) => {
     const [viewStyleModal, setViewStyleModal] = useState(false);
     const [postStyleModal, setPostStyleModal] = useState(false);
   return (
     <>
-    <ViewStylesTab component={'GeneratedStyle'} />
-    <div className='grid grid-cols-3 gap-3 mb-14'>
+    <ViewStylesTab component={'GeneratedStyle'} setGeneratedStyle={setGeneratedStyle} />
+    <div className='grid grid-cols-3 gap-3 mt-5 mb-14'>
     {generatedStyle.map((item,index) => {
                 return(
                     <div key={index} className='relative group overflow-hidden flex flex-col rounded-[16px] bg-white/[0.05]'>

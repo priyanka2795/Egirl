@@ -7,7 +7,11 @@ import img3 from '../../../../public/assets/view-style-img3.png';
 import ViewStyleModal from '../style-generator/ViewStyleModal';
 import modalImg from '../../../../public/assets/view-style-modal-img.png';
 import pen from '../../../../public/assets/pen2.png';
+import PostedStyleModal from './PostedStyleModal';
 
+interface PostedstyleProps {
+    setPostedStyle: any;
+}
 
 const postedStyle = [
     {
@@ -60,17 +64,16 @@ const postedStyle = [
     },
 ];
 
-const Postedstyle = () => {
-    const [viewStyleModal, setViewStyleModal] = useState(false);
-    const [postStyleModal, setPostStyleModal] = useState(false);
+const Postedstyle = ({setPostedStyle}:PostedstyleProps) => {
+    const [postedStyleModal, setPostedStyleModal] = useState(false);
   return (
     <>
-    <ViewStylesTab component={'PostedStyle'} />
-    <div className='grid grid-cols-3 gap-3'>
+    <ViewStylesTab component={'PostedStyle'} setPostedStyle={setPostedStyle} />
+    <div className='grid grid-cols-3 gap-3 mt-5'>
     {postedStyle.map((item,index) => {
                 return(
                     <div key={index} className='relative group overflow-hidden flex flex-col rounded-[16px] bg-white/[0.05]'>
-                        <Image onClick={() => {setViewStyleModal(true)}} src={item.image} alt={''} />
+                        <Image onClick={() => {setPostedStyleModal(true)}} src={item.image} alt={''} />
                         <div className='flex flex-col gap-3 p-4'>
                             <div className='text-white text-[15px] font-semibold leading-5'>{item.name}</div>
                              <div className='flex gap-2'>
@@ -87,7 +90,7 @@ const Postedstyle = () => {
             })}
     </div>
     {
-        viewStyleModal && <ViewStyleModal image={modalImg} setViewStyleModal={setViewStyleModal} postStyleModal={postStyleModal} setPostStyleModal={setPostStyleModal} component={'Postedstyle'} />
+        postedStyleModal && <PostedStyleModal setPostedStyleModal={setPostedStyleModal} />
     }
     </>
   )

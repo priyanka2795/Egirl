@@ -41,8 +41,8 @@ const ViewStyleAlbums = ( {setGeneratedStyle, setAddedStyle, setPostedStyle} : V
                         <div key={index} className='relative' onClick={() => {setGeneratedStyle(true)}}>
                             <Image className='rounded-[16px]' src={item.image} alt={''} />
                             <div className='absolute w-full top-[177px] pb-3 px-[19px] flex justify-between'>
-                                <div className='text-white text-[15px] font-semibols leading-5'>{item.name}</div>
-                                <div className='text-white text-[15px] font-semibols leading-5'>{item.number}</div>
+                                <div className='text-white text-[15px] font-semibold leading-5'>{item.name}</div>
+                                <div className='text-white text-[15px] font-semibold leading-5'>{item.number}</div>
                             </div>
                         </div> :
                         index === 1 ?
