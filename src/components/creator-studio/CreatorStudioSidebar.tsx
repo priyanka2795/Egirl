@@ -37,12 +37,16 @@ const CreatorStudioSidebar = ({
           shrinkSideBar === true ? 'max-w-[68px]' : ' max-w-[300px]'
         }`}
       >
-        <div className={`${shrinkSideBar !== true ? "max-w-[276px] mx-3 ": 'mx-2'}`}>
+        <div
+          className={`${
+            shrinkSideBar !== true ? 'mx-3 max-w-[276px] ' : 'mx-2'
+          }`}
+        >
           <div
             className='flex cursor-pointer items-center justify-between py-[14px] pl-3 pr-4'
             onClick={() => setSidebarModal(!sidebarModal)}
           >
-            <div className='relative flex items-center w-full gap-2'>
+            <div className='relative flex w-full items-center gap-2'>
               <div className='h-[32px] w-[32px]'>
                 <Image
                   src={avtar}
@@ -59,7 +63,7 @@ const CreatorStudioSidebar = ({
               </div>
               {sidebarModal && <SidebarModal />}
             </div>
-            <div className='h-full mt-2'>
+            <div className='mt-2 h-full'>
               <Image src={arrowDown} alt='' />
             </div>
           </div>
@@ -80,11 +84,17 @@ const CreatorStudioSidebar = ({
           />
           <div
             className={`${
-              shrinkSideBar === true ? 'border-b-2 border-[#252525] mb-2' : 'inline-flex h-10 items-start justify-start gap-2.5 px-3 py-2.5 '
+              shrinkSideBar === true
+                ? 'mb-2 border-b-2 border-[#252525]'
+                : 'inline-flex h-10 items-start justify-start gap-2.5 px-3 py-2.5 '
             }`}
           >
             <div
-              className={`${shrinkSideBar === true ? 'hidden':'text-[13px] font-semibold uppercase leading-tight tracking-tight text-neutral-600 '}`}
+              className={`${
+                shrinkSideBar === true
+                  ? 'hidden'
+                  : 'text-[13px] font-semibold uppercase leading-tight tracking-tight text-neutral-600 '
+              }`}
             >
               Images
             </div>
@@ -120,10 +130,16 @@ const CreatorStudioSidebar = ({
 
           <div
             className={` ${
-              shrinkSideBar === true ? 'border-b-2 border-[#252525] mb-2' : 'inline-flex h-10 items-start justify-start gap-2.5 px-3 py-2.5'
+              shrinkSideBar === true
+                ? 'mb-2 border-b-2 border-[#252525]'
+                : 'inline-flex h-10 items-start justify-start gap-2.5 px-3 py-2.5'
             }`}
           >
-            <div className={`text-[13px] font-semibold uppercase leading-tight tracking-tight text-neutral-600 ${shrinkSideBar === true ?'hidden':''}`}>
+            <div
+              className={`text-[13px] font-semibold uppercase leading-tight tracking-tight text-neutral-600 ${
+                shrinkSideBar === true ? 'hidden' : ''
+              }`}
+            >
               Chatbot
             </div>
           </div>
@@ -171,10 +187,18 @@ const CreatorStudioSidebar = ({
           />
           <div
             className={`${
-              shrinkSideBar === true ? 'border-b-2 border-[#252525] mb-2' : 'h-10 items-start justify-start gap-2.5 px-3 py-2.5 inline-flex '
+              shrinkSideBar === true
+                ? 'mb-2 border-b-2 border-[#252525]'
+                : 'inline-flex h-10 items-start justify-start gap-2.5 px-3 py-2.5 '
             }`}
           >
-            <div className={`${shrinkSideBar === true ? 'hidden' : 'text-[13px] font-semibold uppercase leading-tight tracking-tight text-neutral-600'}`}>
+            <div
+              className={`${
+                shrinkSideBar === true
+                  ? 'hidden'
+                  : 'text-[13px] font-semibold uppercase leading-tight tracking-tight text-neutral-600'
+              }`}
+            >
               Styles
             </div>
           </div>
@@ -194,7 +218,7 @@ const CreatorStudioSidebar = ({
           />
           <SidebarMenuItem
             text='Marketplace'
-            href='/home'
+            href='/marketplace'
             Icon={MarketplaceIcon}
             IconActive={HomeActiveIcon}
             StyleClasses={`${
@@ -222,23 +246,27 @@ const CreatorStudioSidebar = ({
           />
         </div>
 
-        <div className={`${shrinkSideBar !== true ? "max-w-[276px] mx-3 ": 'mx-2'}`}>
         <div
-          className='relative flex items-center gap-2 py-3 pl-3 cursor-pointer mt-[50px]'
-          onClick={() => setMoreOptionsModal(!moreOptionsModal)}
+          className={`${
+            shrinkSideBar !== true ? 'mx-3 max-w-[276px] ' : 'mx-2'
+          }`}
         >
-          <div>
-            <MoreIcon />
-          </div>
-          <p
-            className={`text-[15px] font-semibold text-white ${
-              shrinkSideBar === true ? '!hidden' : 'w-full'
-            }`}
+          <div
+            className='relative mt-[50px] flex cursor-pointer items-center gap-2 py-3 pl-3'
+            onClick={() => setMoreOptionsModal(!moreOptionsModal)}
           >
-            More
-          </p>
-          {moreOptionsModal && <MoreOptionsModal />}
-        </div>
+            <div>
+              <MoreIcon />
+            </div>
+            <p
+              className={`text-[15px] font-semibold text-white ${
+                shrinkSideBar === true ? '!hidden' : 'w-full'
+              }`}
+            >
+              More
+            </p>
+            {moreOptionsModal && <MoreOptionsModal />}
+          </div>
         </div>
       </div>
     </>
