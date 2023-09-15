@@ -17,7 +17,7 @@ import downArrow from '../../../../public/assets/down-arrow-img.png';
 
 interface FavoriteStyleModalProps {
     closeModal: any;
-    component: string;
+    component?: string;
 }
 
 const list = [
