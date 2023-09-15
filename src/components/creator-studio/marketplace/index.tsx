@@ -6,12 +6,12 @@ import SearchBox from './SearchBox';
 
 function MarketPlaceIndex() {
   return (
-    <>
+    <div className=''>
       <SearchBox />
       <MarketPlaceSlider />
       <MarketPlaceFilters />
       <AllStylesCollection />
-    </>
+    </div>
   );
 }
 

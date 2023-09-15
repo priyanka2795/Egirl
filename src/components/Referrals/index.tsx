@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import sendIcon from '../../../public/assets/send-icon.png'
-import userAddIcon from '../../../public/assets/user-add-icon.png'
-import percentageIcon from '../../../public/assets/percentage-icon.png'
+import sendIcon from '../../../public/assets/send-icon.png';
+import userAddIcon from '../../../public/assets/user-add-icon.png';
+import percentageIcon from '../../../public/assets/percentage-icon.png';
 import linkIcon from '../../../public/assets/link-icon2.png';
 import graph from '../../../public/assets/referral-graph.png';
 import informationIcon from '../../../public/assets/circle-information2.png';
@@ -31,7 +31,7 @@ const programSteps = [
     step: 'Step 3',
     action: 'Get a % of spending',
     work: 'Earn up to 15% of your referrals spending'
-  },
+  }
 ];
 
 const array2 = [
@@ -42,7 +42,7 @@ const array2 = [
   {
     number: '0',
     name: 'People you have referred '
-  },
+  }
 ];
 
 // const buttons = [
@@ -54,121 +54,183 @@ const array2 = [
 //   },
 // ];
 
-
 const ReferralsIndex = () => {
   const [showModal, setShowModal] = useState(false);
   const [showConvertCredits, setshowConvertCredits] = useState(false);
   const [confirmModal, setconfirmModal] = useState(false);
   return (
     <>
-    <div className='flex flex-col items-center gap-20 w-[1020px] px-40 py-20'>
-      <div className='flex flex-col items-center w-full gap-10'>
-        <div className='flex flex-col gap-3'>
-          <div className='text-[#FFFFFF] text-[32px] font-bold leading-10 text-center'>Referral Program</div>
-          <div className='text-center text-[#979797] text-[15px] font-normal leading-5'>Earn up to 15% of your referrals spending on Egirls.ai</div>
-        </div>
-        <div className='relative flex justify-between w-full'>
-          {programSteps.map((item, index) => {
-            return(
-              <div key={index} className='flex flex-col items-center gap-5 max-w-[182px]'>
-                <div className='flex p-6 rounded-[100px] bg-white/[0.05]'>
-                  <Image className='w-full h-full' src={item.image} alt={''} />
-                </div>
-                <div className='flex flex-col gap-[10px] items-center'>
-                  <div className='flex w-[181px] flex-col items-center'>
-                    <div className='text-[#979797] text-[14px] font-bold leading-6 text-center'>{item.step}</div>
-                    <div className='text-center text-[18px] font-bold leading-6 text-[#FFFFFF]'>{item.action}</div>
+      <div className='flex w-[1020px] flex-col items-center gap-20 px-40 py-20'>
+        <div className='flex w-full flex-col items-center gap-10'>
+          <div className='flex flex-col gap-3'>
+            <div className='text-center text-[32px] font-bold leading-10 text-[#FFFFFF]'>
+              Referral Program
+            </div>
+            <div className='text-center text-[15px] font-normal leading-5 text-[#979797]'>
+              Earn up to 15% of your referrals spending on Egirls.ai
+            </div>
+          </div>
+          <div className='relative flex w-full justify-between'>
+            {programSteps.map((item, index) => {
+              return (
+                <div
+                  key={index}
+                  className='flex max-w-[182px] flex-col items-center gap-5'
+                >
+                  <div className='flex rounded-[100px] bg-white/[0.05] p-6'>
+                    <Image
+                      className='h-full w-full'
+                      src={item.image}
+                      alt={''}
+                    />
                   </div>
-                  <div className='text-center text-[#979797] text-[14px] font-normal leading-[18px]'>{item.work}</div>
-                </div>
-              </div>
-            );
-          })}
-          <div className='absolute top-[24px] left-[169px] w-[77px] h-[6px]'>
-            <Image className='w-full h-full' src={arc1} alt={''} />
-          </div>
-          <div className='absolute top-[28px] right-[221px] w-[77px] h-[6px]'>
-            <Image className='w-full h-full' src={arc2} alt={''} />
-          </div>
-        </div>
-      </div>
-
-      <div className='flex flex-col w-full gap-6'>
-        <div className='text-[#FFFFFF] items-center text-[32px] text-center font-bold leading-10'>Referral Link</div>
-        <div className='flex items-start w-full gap-2 '>
-          <div className='grow flex pl-[20px] pr-[12px] py-4 items-center gap-2 rounded-[12px] bg-white/[0.05]'>
-            <div className='w-6 h-6'>
-              <Image className='w-full h-full' src={linkIcon} alt={''} />
-            </div>
-            <div className='text-[#979797] text-[14px] font-normal leading-5'>egirls.com/qwert1234</div>
-          </div>
-          <button className='w-max flex items-center justify-center px-6 py-4 bg-[#5848BC] rounded-[16px] text-[#FFFFFF] text-[18px] font-bold leading-6'>Copy link</button>
-        </div>
-      </div>
-
-      <div className='flex flex-col w-full gap-6'>
-        <div className='text-[#FFFFFF] text-center text-[32px] font-bold leading-10'>Your earnings</div>
-        <div className='flex flex-col w-full gap-2'>
-          <div className='flex items-center justify-center gap-12 py-8 px-14 rounded-[20px] bg-white/[0.05]'>
-            <div className='w-[49%] h-[144px] relative '>
-              <div className='mt-2 flex flex-col items-center gap-2 absolute top-[39px] left-[1px] bottom-[10px] w-full h-full'>
-                <div className='text-[#FFFFFF] text-center text-[26px] font-bold leading-8'>5%</div>
-                <div className='text-[#FFFFFF] text-center text-[26px] font-bold leading-8'>Earnings</div>
-                <div className='text-[#979797] text-[14px] font-normal leading-[18px]'>0/100 people referred</div>
-              </div>
-              {/* <Image className='w-full h-full' src={graph} alt={''} /> */}
-              <Chart/>
-            </div>
-            <div className='w-[49%] flex flex-col items-start gap-1'>
-              <div className='text-[#FFFFFF] text-[36px] font-bold leading-12'>$0</div>
-              <div className='text-[#FFFFFF] text-[18px] font-bold leading-6'>Available to cash out</div>
-              <div className='flex gap-1'>
-                <div className='text-[#979797] text-[14px] font-normal leading-[18px] cursor-pointer' onClick={() =>{setShowModal(true)}}>Earnings – Tier 1</div>
-                <div className='w-[18px] h-[18px]'>
-                  <Image className='w-full h-full' src={informationIcon} alt={''} />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className='grid grid-cols-2 gap-2'>
-            {array2.map((item) => {
-              return(
-                <div className='flex flex-col items-center justify-center gap-1 py-6 pl-6 pr-10 rounded-[14px] bg-white/[0.05]'>
-                  <div className='text-center text-[#FFFFFF] text-[30px] font-bold leading-10'>{item.number}</div>
-                  <div className='text-[#979797] text-center text-[13px] font-normal leading-[18px]'>{item.name}</div>
+                  <div className='flex flex-col items-center gap-[10px]'>
+                    <div className='flex w-[181px] flex-col items-center'>
+                      <div className='text-center text-[14px] font-bold leading-6 text-[#979797]'>
+                        {item.step}
+                      </div>
+                      <div className='text-center text-[18px] font-bold leading-6 text-[#FFFFFF]'>
+                        {item.action}
+                      </div>
+                    </div>
+                    <div className='text-center text-[14px] font-normal leading-[18px] text-[#979797]'>
+                      {item.work}
+                    </div>
+                  </div>
                 </div>
               );
             })}
+            <div className='absolute left-[169px] top-[24px] h-[6px] w-[77px]'>
+              <Image className='h-full w-full' src={arc1} alt={''} />
+            </div>
+            <div className='absolute right-[221px] top-[28px] h-[6px] w-[77px]'>
+              <Image className='h-full w-full' src={arc2} alt={''} />
+            </div>
           </div>
-          
-          <div className='grid grid-cols-2 gap-2'>
-            <button className='flex items-center justify-center rounded-[16px] bg-[#5848BC] text-[#FFFFFF] text-[18px] font-bold leading-6 px-6 py-4' onClick={() =>{setshowConvertCredits(true)}}>Convert to tokens</button>
-            <button className='flex items-center justify-center rounded-[16px] bg-[#5848BC] text-[#FFFFFF] text-[18px] font-bold leading-6 px-6 py-4'>Cash out</button>
+        </div>
+
+        <div className='flex w-full flex-col gap-6'>
+          <div className='items-center text-center text-[32px] font-bold leading-10 text-[#FFFFFF]'>
+            Referral Link
+          </div>
+          <div className='flex w-full items-start gap-2 '>
+            <div className='flex grow items-center gap-2 rounded-[12px] bg-white/[0.05] py-4 pl-[20px] pr-[12px]'>
+              <div className='h-6 w-6'>
+                <Image className='h-full w-full' src={linkIcon} alt={''} />
+              </div>
+              <div className='text-[14px] font-normal leading-5 text-[#979797]'>
+                egirls.com/qwert1234
+              </div>
+            </div>
+            <button className='flex w-max items-center justify-center rounded-[16px] bg-[#5848BC] px-6 py-4 text-[18px] font-bold leading-6 text-[#FFFFFF]'>
+              Copy link
+            </button>
+          </div>
+        </div>
+
+        <div className='flex w-full flex-col gap-6'>
+          <div className='text-center text-[32px] font-bold leading-10 text-[#FFFFFF]'>
+            Your earnings
+          </div>
+          <div className='flex w-full flex-col gap-2'>
+            <div className='flex items-center justify-center gap-12 rounded-[20px] bg-white/[0.05] px-14 py-8'>
+              <div className='relative h-[144px] w-[49%] '>
+                <div className='absolute bottom-[10px] left-[1px] top-[39px] mt-2 flex h-full w-full flex-col items-center gap-2'>
+                  <div className='text-center text-[26px] font-bold leading-8 text-[#FFFFFF]'>
+                    5%
+                  </div>
+                  <div className='text-center text-[26px] font-bold leading-8 text-[#FFFFFF]'>
+                    Earnings
+                  </div>
+                  <div className='text-[14px] font-normal leading-[18px] text-[#979797]'>
+                    0/100 people referred
+                  </div>
+                </div>
+                {/* <Image className='w-full h-full' src={graph} alt={''} /> */}
+                <Chart />
+              </div>
+              <div className='flex w-[49%] flex-col items-start gap-1'>
+                <div className='leading-12 text-[36px] font-bold text-[#FFFFFF]'>
+                  $0
+                </div>
+                <div className='text-[18px] font-bold leading-6 text-[#FFFFFF]'>
+                  Available to cash out
+                </div>
+                <div className='flex gap-1'>
+                  <div
+                    className='cursor-pointer text-[14px] font-normal leading-[18px] text-[#979797]'
+                    onClick={() => {
+                      setShowModal(true);
+                    }}
+                  >
+                    Earnings – Tier 1
+                  </div>
+                  <div className='h-[18px] w-[18px]'>
+                    <Image
+                      className='h-full w-full'
+                      src={informationIcon}
+                      alt={''}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className='grid grid-cols-2 gap-2'>
+              {array2.map((item) => {
+                return (
+                  <div className='flex flex-col items-center justify-center gap-1 rounded-[14px] bg-white/[0.05] py-6 pl-6 pr-10'>
+                    <div className='text-center text-[30px] font-bold leading-10 text-[#FFFFFF]'>
+                      {item.number}
+                    </div>
+                    <div className='text-center text-[13px] font-normal leading-[18px] text-[#979797]'>
+                      {item.name}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className='grid grid-cols-2 gap-2'>
+              <button
+                className='flex items-center justify-center rounded-[16px] bg-[#5848BC] px-6 py-4 text-[18px] font-bold leading-6 text-[#FFFFFF]'
+                onClick={() => {
+                  setshowConvertCredits(true);
+                }}
+              >
+                Convert to tokens
+              </button>
+              <button className='flex items-center justify-center rounded-[16px] bg-[#5848BC] px-6 py-4 text-[18px] font-bold leading-6 text-[#FFFFFF]'>
+                Cash out
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    {
-      showModal && 
-      <TierModal closeModalState={setShowModal} />
-    }
-    {
-      showConvertCredits && 
-      <ConvertCreditsModal closeConvertCredits={setshowConvertCredits} confirmModal={setconfirmModal} heading={'Convert to tokens'} available={'Available to convert'} amount={'$1,000'} buttonText={'Convert'} />
-    }
-    {
-      confirmModal &&      
-      <ConfirmConversionModal 
-      closeConfirmModal={setconfirmModal} 
-      convertCredits={setshowConvertCredits}
-      converting={`You're converting`}
-      credits={'$250 into 1000 credits'} 
-      text={'. This action cannot be undone. Please review the details carefully before confirming.'}
-      /> 
-    }
+      {showModal && <TierModal closeModalState={setShowModal} />}
+      {showConvertCredits && (
+        <ConvertCreditsModal
+          closeConvertCredits={setshowConvertCredits}
+          confirmModal={setconfirmModal}
+          heading={'Convert to tokens'}
+          available={'Available to convert'}
+          amount={'$1,000'}
+          buttonText={'Convert'}
+        />
+      )}
+      {confirmModal && (
+        <ConfirmConversionModal
+          closeConfirmModal={setconfirmModal}
+          convertCredits={setshowConvertCredits}
+          converting={`You're converting`}
+          credits={'$250 into 1000 credits'}
+          text={
+            '. This action cannot be undone. Please review the details carefully before confirming.'
+          }
+        />
+      )}
     </>
-  )
-}
+  );
+};
 
-export default ReferralsIndex
+export default ReferralsIndex;

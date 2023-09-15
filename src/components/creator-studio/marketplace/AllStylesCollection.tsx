@@ -70,7 +70,7 @@ const AllStylesCollection = () => {
           </div>
           <div className='relative'>
             <div
-              className='flex cursor-pointer gap-2 border-l border-white/10 pl-2'
+              className='flex cursor-pointer gap-2 border-l border-white/10 pl-2 '
               onClick={handleDuration}
             >
               <p>Month</p>
