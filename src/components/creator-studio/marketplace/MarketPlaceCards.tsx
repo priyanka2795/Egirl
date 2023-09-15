@@ -77,7 +77,7 @@ const MarketPlaceCards = () => {
                 className='rounded-xl object-cover'
               />
 
-              <div className='absolute bottom-0 right-0 flex h-full w-full flex-col items-start justify-start justify-end px-6 pb-6 hover:backdrop-brightness-50 '>
+              <div className='absolute bottom-0 right-0 flex h-full w-full flex-col items-start justify-start justify-end px-6 pb-3 hover:backdrop-brightness-50 '>
                 <div className='absolute left-0 top-0 inline-flex h-6 w-[276px] items-center  justify-start gap-1.5 px-6 pt-6'>
                   <div className='relative flex h-6 w-6 rounded-[100px] '>
                     <Image

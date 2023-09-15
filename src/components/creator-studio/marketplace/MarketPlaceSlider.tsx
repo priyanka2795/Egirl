@@ -56,7 +56,7 @@ const galleryArray = [
 ];
 
 const MarketPlaceSlider = () => {
-  const [selectedFilter, setSelectedFilter] = useState('All');
+  const [selectedFilter, setSelectedFilter] = useState('');
 
   const handleSelectedFilter = (e: any) => {
     setSelectedFilter(e.target.innerText);
@@ -84,18 +84,18 @@ const MarketPlaceSlider = () => {
   }, []);
 
   return (
-    <div className='mb-8 mt-8 flex '>
+    <div className='mb-8 mt-8 px-3'>
       <Slider
         {...settings}
         ref={sliderRef}
-        className='explore-gallery-filter flex w-[907px]'
+        className='explore-gallery-filter marketplace-slider flex w-[907px]'
       >
         {galleryArray.map((items) => {
           return (
             <div
               onClick={(e) => handleSelectedFilter(e)}
               key={items.id}
-              className={`list-last-item relative z-10 mr-3 !flex h-[56px] w-max cursor-pointer items-center justify-start gap-2 rounded-full py-3 pl-3 
+              className={`list-last-item relative z-10 mr-3 !flex h-[56px] w-max cursor-pointer items-center justify-start gap-2 rounded-full py-3 pl-3
             pr-4 last:mr-0  ${
               selectedFilter === items.filterText
                 ? 'bg-[#5848BC]'
