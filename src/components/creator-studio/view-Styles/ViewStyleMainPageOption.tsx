@@ -14,10 +14,10 @@ const ViewStyleMainPageOption = () => {
         <Image src={banner} alt={''} />
       </div>
       <div className='flex flex-col gap-[22px] pb-6 items-center mt-[70px]'>
-        <div className='flex flex-col'>
+        <div className='flex flex-col items-center justify-center'>
             <div className='flex gap-1'>
-                <div className='text-white text-[22px] font-bold leading-8'>Gayle Frami</div>
-                <div className='flex items-center justify-center px-0 py-1'>
+                <div className='text-white text-[22px] font-bold leading-8 text-center'>Gayle Frami</div>
+                <div className='flex items-center justify-center px-0 py-1 text-center'>
                     <Image src={blueTick} alt={''} />
                 </div>
             </div>
@@ -32,15 +32,14 @@ const ViewStyleMainPageOption = () => {
         <div className='flex gap-3'>
             <button className='flex px-4 py-[10px] justify-center items-center rounded-[12px] bg-[#5848BC] text-white text-[14px] font-bold leading-5'>Follow</button>
             <button className='flex px-4 py-[10px] justify-center items-center rounded-[12px] bg-white/[0.08] text-white text-[14px] font-bold leading-5'>View profile</button>
-            <button className='flex items-center rounded-[12px] bg-white/[0.08] p-[11px]'>
-                <Image src={threeDots} alt={''} />
+            <button className='flex items-center rounded-[12px] bg-white/[0.03] p-[11px]'>
+                <Image className='object-contain' src={threeDots} alt={''} />
             </button>
         </div>
       </div>
       <div className='absolute top-[118px] right-[436px]'>
         <Image className='rounded-[100px]' src={avatar} alt={''} />
       </div>
-      
     </div>
   )
 }

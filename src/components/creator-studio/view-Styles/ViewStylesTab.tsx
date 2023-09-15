@@ -106,7 +106,7 @@ const ViewStylesTab = ({component, setGeneratedStyle, setAddedStyle, setPostedSt
                     <Image className={`mt-[3px] ${index === 0 && isActive && 'invisible'}`} src={item.image} alt={''} />
                   </div>
                   {index === 0 && isActive && 
-                  <div className='absolute -top-[3px] -right-[1px] flex w-[360px] px-3 py-[10px] justify-between rounded-[10px] bg-white/[0.05] right-2 top-2'>
+                  <div className='absolute -top-[4px] -right-[1px] flex w-[360px] px-3 py-[10px] justify-between rounded-[10px] bg-white/[0.05] right-2 top-2'>
                     <div className='items-center flex gap-[6px]'>
                       <Image className='' src={searchIcon} alt={''} />
                       <input type="text" className={`focus:ring-0 border-none h-0 bg-transparent pl-0 text-[#979797] text-[14px] font-normal leading-5 placeholder:text-[#979797] placeholder:text-[14px]`} placeholder='Search' />

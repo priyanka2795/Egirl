@@ -73,7 +73,7 @@ const StyleGenerator = ({setStyleGeneratorNext}:StyleGeneratorProps) => {
         <button className='px-4 py-[10px] rounded-[12px] bg-white/[0.08] justify-center items-center text-white text-[14px] font-bold leading-5' onClick={() => {setGoToModal(true)}}>Add images</button>
       </div>
       </div>
-      <div className='flex flex-col p-6 justify-center items-end border-t border-white/[0.08] '>
+      <div className='flex flex-col p-6 justify-center items-end border-t border-white/[0.08] '> 
       <div className='cursor-pointer relative flex group px-5 py-[13px] justify-center items-center bg-[#5848BC]/[0.32] rounded-[14px] text-white text-[16px] font-bold leading-[22px]' onClick={() => {setCompleteGeneration(true)}}>Generate
         <div className='invisible group-hover:visible group-hover:opacity-100'>
           <div className='absolute bottom-[62px] -left-[30px] w-[169px] flex justify-center items-center px-3 py-[6px] rounded-[6px] bg-[#303030] text-white text-center text-[12px] font-normal leading-4'>

@@ -89,7 +89,7 @@ const FavoriteStyles = () => {
       </div>
     </div>
     {
-        favoriteStyleModal && <FavoriteStyleModal setFavoriteStyleModal={setFavoriteStyleModal} />
+        favoriteStyleModal && <FavoriteStyleModal closeModal={setFavoriteStyleModal} component={'FavoriteStyles'} />
     }
     </>
   )
