@@ -11,9 +11,9 @@ import img5 from '../../../../public/assets/style-gen-img9.png'
 import crossIcon from '../../../../public/assets/xmark-style.png'
 import StyleGenHoverModal from './StyleGenHoverModal';
 import AddImagesModal from './AddImagesModal';
-import StyleGenDeleteModal from './StyleGenDeleteModal';
 import image from '../../../../public/assets/image-plus.png';
 import downArrow from '../../../../public/assets/down-arrow-img.png';
+import AlbumDelete from '../viewImages/albumDelete';
 
 interface StyleGeneratorNextProps {
   setStyleGeneratorNext: any;
@@ -39,7 +39,7 @@ const images = [
 
 const StyleGeneratorNext = ({setStyleGeneratorNext} : StyleGeneratorNextProps) => {
   const [styleGenHoverModal, setStyleGenHoverModal] = useState(false);
-  const [deleteModal, setDeleteModal] = useState(false);
+  const [deleteStyleGenModal, setDeleteStyleGenModal] = useState(false);
   const [showCards, setShowCards] = useState(true);
   const [showAddImagesModal, setShowAddImagesModal] = useState(false);
   
@@ -80,7 +80,7 @@ const StyleGeneratorNext = ({setStyleGeneratorNext} : StyleGeneratorNextProps) =
         </div>
         </div>
         <div className='flex gap-[10px]'>
-          <div className='relative group flex p-[10px] h-max justify-center items-center rounded-[12px] border border-white/[0.32]' onClick={() => setDeleteModal(true)}>
+          <div className='relative group flex p-[10px] h-max justify-center items-center rounded-[12px] border border-white/[0.32]' onClick={() => setDeleteStyleGenModal(true)}>
             <Image className='' src={deleteIcon} alt={''} />
             <div className='invisible group-hover:visible group-hover:opacity-100'>
               <div className='absolute flex items-center justify-center w-[119px] h-[34px] -top-[48px] -right-[39px] px-3 py-[6px] rounded-[6px] bg-[#303030] text-white text-center text-[12px] font-normal leading-4'>
@@ -142,7 +142,8 @@ const StyleGeneratorNext = ({setStyleGeneratorNext} : StyleGeneratorNextProps) =
     </div>
     </div>
     {
-      deleteModal && <StyleGenDeleteModal setDeleteModal={setDeleteModal} setShowCards={setShowCards} />
+      deleteStyleGenModal &&
+      <AlbumDelete DeleteModal={setDeleteStyleGenModal} Heading={'Delete all images'} Content={'Are you sure you want to delete all added images?'} setShowCards={setShowCards} component={'StyleGeneration'} />
     }
     {
       showAddImagesModal && <AddImagesModal setAddImagesModal={setShowAddImagesModal} setStyleGeneratorNext={setStyleGeneratorNext} />

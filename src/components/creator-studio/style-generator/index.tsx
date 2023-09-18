@@ -12,7 +12,7 @@ const StyleGeneratorIndex = () => {
   return (
     <div className="flex flex-col gap-5">
       {generatedStyle ? 
-      viewStyleGenerated ? <Generatedstyle /> : 
+      viewStyleGenerated ? <Generatedstyle setViewStyleGenerated={setViewStyleGenerated} ViewStyle={true} /> : 
       <GeneratedStyle setGeneratedStyle={setGeneratedStyle} setViewStyleGenerated={setViewStyleGenerated} /> :
       <>
       <StyleBeingGenerated setGeneratedStyle={setGeneratedStyle} />

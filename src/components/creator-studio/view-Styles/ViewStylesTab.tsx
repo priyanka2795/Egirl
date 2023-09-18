@@ -18,6 +18,8 @@ interface ViewStylesTabProps {
   tabContent?: any;
   exploreSelectedTab?: any;
   setExploreSelected? : any;
+  setViewStyleGenerated?: any;
+  ViewStyle?: any;
 }
 
 const images = [
@@ -35,7 +37,7 @@ const images = [
     },
 ];
 
-const ViewStylesTab = ({component, setGeneratedStyle, setAddedStyle, setPostedStyle, tabContent, exploreSelectedTab, setExploreSelected} : ViewStylesTabProps) => {
+const ViewStylesTab = ({component, setGeneratedStyle, setAddedStyle, setPostedStyle, tabContent, exploreSelectedTab, setExploreSelected, setViewStyleGenerated, ViewStyle} : ViewStylesTabProps) => {
     const [activeIndex, setActiveIndex] = useState(-1);
     const [showSort, setShowSort] = useState(false);
     const [isActive, setActive] = useState(false);
@@ -53,12 +55,21 @@ const ViewStylesTab = ({component, setGeneratedStyle, setAddedStyle, setPostedSt
         setViewStyleFilter(!viewStyleFilter);
       }
     }
+
+    const handleArrow = () => {
+      if(ViewStyle === true) {
+        setViewStyleGenerated(false);
+      } else {
+        setGeneratedStyle(false);
+      }
+    }
+
   return (
     <>
     <div className='flex justify-between mt-6'>
       {component === 'GeneratedStyle' ? 
        <div className='flex items-center gap-2'>
-       <Image className='object-contain' onClick={() => {setGeneratedStyle(false)}} src={arrowLeft} alt={''} />
+       <Image className='object-contain' onClick={handleArrow} src={arrowLeft} alt={''} />
        <div className='flex gap-1'>
          <div className='text-white text-[18px] font-bold leading-6'>Generated Styles </div>
          <div className='text-[#979797] text-[18px] font-bold leading-6'>(8)</div>

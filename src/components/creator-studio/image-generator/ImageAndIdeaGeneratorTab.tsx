@@ -18,6 +18,7 @@ import Delete from '../../../../public/assets/delete-icon.png'
 import EditImageGeneration from './editImagegeneration';
 import DeleteGenerationModal from './DeleteGenerationModal';
 import Tooltip from '@components/common/tooltip';
+import AlbumDelete from '../viewImages/albumDelete';
 
 const images = [
   { img: Image1 },
@@ -128,7 +129,7 @@ const ImageAndIdeaGeneratorTab = () => {
           <div className='flex flex-col gap-3 mt-6'>
             {imageGenerationAgain.map((items, index) => (
               <div className='rounded-[20px] border border-[#FFFFFF29]' key={index}>
-                <div className='p-6 flex justify-between items-center cursor-pointer' >
+                <div className='flex items-center justify-between p-6 cursor-pointer' >
                   <div className='w-full' onClick={() => imageGenerationAccordion(index)}>Anime, Photoreal, Artistic, Fantasy, Blue Jeans</div>
                   <div className='flex items-center gap-1 '>
                     <div className='relative'>
@@ -191,7 +192,7 @@ const ImageAndIdeaGeneratorTab = () => {
               {allIdeaGeneration.map((item, index) => (
                 <>
                   <div className='rounded-[20px] border border-[#FFFFFF29]'>
-                    <div className='p-6 flex justify-between items-center gap-2 cursor-pointer relative group ' >
+                    <div className='relative flex items-center justify-between gap-2 p-6 cursor-pointer group ' >
                       <div className={` break-all text-ellipsis truncate ${SessionData ? 'w-[761px]' : 'w-[570px]'}`} onClick={(e) => { IdeaGenerationAccordion(index) }}>{item.name}</div>
                       <div className='flex items-center gap-1 '>
                         <div className='relative'>
@@ -251,7 +252,7 @@ const ImageAndIdeaGeneratorTab = () => {
       }
       {
         deleteImageGeneration &&
-        <DeleteGenerationModal DeleteModal={setDeleteImageGeneration} deleteImageGenerationIndex={deleteImageGenerationIndex} DeleteGeneration={DeleteGeneration} Heading={'Delete generation'} Content={'Are you sure you want to delete the image generation?'} />
+        <AlbumDelete DeleteModal={setDeleteImageGeneration} Heading={'Delete generation'} Content={'Are you sure you want to delete the image generation?'} component={'ImageAndIdeaGeneratorTab'} deleteImageGenerationIndex={deleteImageGenerationIndex} DeleteGeneration={DeleteGeneration} />
       }
     </div >
   );
