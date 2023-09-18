@@ -9,7 +9,7 @@ const CreatorStudioLayout = ({ children }: any) => {
   const [styleGenNext, setStyleGenNext] = useState(false);
   return (
     <React.Fragment>
-      <main className='mx-auto h-screen min-h-screen max-w-[1320px] overflow-hidden'>
+      <main className='mx-auto h-screen min-h-screen max-w-[1440px] overflow-hidden'>
         <CreatorStudioNavbar
           shrinkSideBar={shrinkSideBar}
           setShrinkSideBar={setShrinkSideBar}

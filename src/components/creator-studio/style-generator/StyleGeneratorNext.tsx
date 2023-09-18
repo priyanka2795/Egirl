@@ -16,7 +16,7 @@ import image from '../../../../public/assets/image-plus.png';
 import downArrow from '../../../../public/assets/down-arrow-img.png';
 
 interface StyleGeneratorNextProps {
-  setStyleGeneratorNext: any;
+  setStyleGeneratorNext?: any;
 }
 
 const images = [
