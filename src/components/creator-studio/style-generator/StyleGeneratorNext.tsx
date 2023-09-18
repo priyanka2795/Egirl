@@ -16,7 +16,7 @@ import downArrow from '../../../../public/assets/down-arrow-img.png';
 import AlbumDelete from '../viewImages/albumDelete';
 
 interface StyleGeneratorNextProps {
-  setStyleGeneratorNext: any;
+  setStyleGeneratorNext?: any;
 }
 
 const images = [
