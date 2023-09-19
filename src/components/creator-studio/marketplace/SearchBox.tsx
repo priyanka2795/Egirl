@@ -16,7 +16,7 @@ const SearchBox = () => {
     }
   };
   return (
-    <div className='flex justify-between'>
+    <div className='flex items-center justify-between'>
       <div className='text-[22px] font-bold leading-8 text-[#FFFFFF]'>
         Marketplace
       </div>
@@ -42,7 +42,7 @@ const SearchBox = () => {
                       .fill('')
                       .map(() => {
                         return (
-                          <div className='cursor-pointer px-2 py-1 hover:rounded-md hover:bg-white hover:bg-opacity-10'>
+                          <div className='px-2 py-1 cursor-pointer hover:rounded-md hover:bg-white hover:bg-opacity-10'>
                             annim
                           </div>
                         );
@@ -51,12 +51,12 @@ const SearchBox = () => {
                 )}
               </div>
               <div
-                className='h-6 w-6 cursor-pointer'
+                className='w-6 h-6 cursor-pointer'
                 onClick={() => {
                   setShowSearchBar(false), setShowSearchBox(false);
                 }}
               >
-                <Image className='h-full w-full' src={crossIcon} alt={''} />
+                <Image className='w-full h-full' src={crossIcon} alt={''} />
               </div>
             </div>
           </div>

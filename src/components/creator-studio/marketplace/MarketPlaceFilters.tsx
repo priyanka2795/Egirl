@@ -30,14 +30,14 @@ const MarketPlaceFilters = () => {
   };
   return (
     <div className='mt-8'>
-      <div className='grid grid-cols-4 gap-[14px] self-stretch'>
+      <div className='grid self-stretch grid-cols-4 gap-3'>
         <div>
-          <div className='text-[13px] text-[#979797]'>Style</div>
+          <div className='text-[13px] text-[#979797] font-semibold leading-[18px]'>Style</div>
           <div className='relative cursor-pointer' onClick={handleStyle}>
             <div
-              className={`mt-2 flex justify-between rounded-xl ${
-                style ? 'border border-[#515151]' : 'border border-transparent'
-              } bg-white/10 p-3`}
+              className={`mt-2 flex justify-between rounded-xl p-3 ${
+                style ? 'border border-[#515151] bg-transparent' : 'border border-transparent bg-white/10'
+              }`}
             >
               <div className='text-[15px] text-[#FFF]'>Realistic</div>
               <Image
@@ -68,14 +68,14 @@ const MarketPlaceFilters = () => {
           </div>
         </div>
         <div>
-          <div className='text-[13px] text-[#979797]'>Subcategory</div>
+          <div className='text-[13px] text-[#979797] font-semibold leading-[18px]'>Subcategory</div>
           <div className='relative cursor-pointer' onClick={handleAccessories}>
             <div
-              className={`mt-2 flex justify-between rounded-xl ${
+              className={`mt-2 flex justify-between rounded-xl p-3 ${
                 accessories
-                  ? 'border border-[#515151]'
-                  : 'border border-transparent'
-              } bg-white/10 p-3`}
+                  ? 'border border-[#515151] bg-transparent'
+                  : 'border border-transparent bg-white/10'
+              }`}
             >
               <div className='text-[15px] text-[#FFF]'>Choose Clothing</div>
               <Image
@@ -106,16 +106,16 @@ const MarketPlaceFilters = () => {
           </div>
         </div>
         <div>
-          <div className='text-[13px] text-[#979797]'>
+          <div className='text-[13px] text-[#979797] font-semibold leading-[18px]'>
             Clothing & Accessories
           </div>
           <div className='relative cursor-pointer' onClick={handleSubCategory}>
             <div
-              className={`mt-2 flex justify-between rounded-xl ${
+              className={`mt-2 flex justify-between rounded-xl p-3 ${
                 subCategory
-                  ? 'border border-[#515151]'
-                  : 'border border-transparent'
-              } bg-white/10 p-3`}
+                  ? 'border border-[#515151] bg-transparent'
+                  : 'border border-transparent bg-white/10'
+              }`}
             >
               <div className='text-[15px] text-[#FFF]'>Choose Accessories</div>
               <Image
@@ -146,12 +146,12 @@ const MarketPlaceFilters = () => {
           </div>
         </div>
         <div>
-          <div className='text-[13px] text-[#979797]'>Price</div>
+          <div className='text-[13px] text-[#979797] font-semibold leading-[18px]'>Price</div>
           <div className='relative cursor-pointer' onClick={handlePrice}>
             <div
-              className={`mt-2 flex justify-between rounded-xl ${
-                price ? 'border border-[#515151]' : 'border border-transparent'
-              } bg-white/10 p-3`}
+              className={`mt-2 flex justify-between rounded-xl p-3 ${
+                price ? 'border border-[#515151] bg-transparent' : 'border border-transparent bg-white/10'
+              }`}
             >
               <div className='text-[15px] text-[#FFF]'>Free</div>
               <Image
