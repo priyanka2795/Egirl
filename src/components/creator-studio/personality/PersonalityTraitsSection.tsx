@@ -88,9 +88,9 @@ const PersonalityTraitsSection = () => {
   return (
     <>
       <div className='flex h-auto w-full max-w-full flex-col rounded-lg bg-[#121212]'>
-        <div className='flex justify-between max-w-full p-6 pb-5'>
-          <div className='w-full'>
-            <h2 className='flex gap-[6px] text-lg font-bold leading-[110%]'>
+        <div className='flex items-center justify-between max-w-full p-6'>
+          <div className='flex flex-col gap-[2px]'>
+            <h2 className='flex gap-[6px] text-lg font-bold items-center'>
               Traits
               <InfoIcon />
             </h2>
@@ -98,7 +98,7 @@ const PersonalityTraitsSection = () => {
           </div>
 
           <button
-            className='flex h-[40px] w-[84px] items-center justify-center justify-center rounded-xl border border-white/[0.32] text-sm font-bold'
+            className='flex items-center justify-center px-4 py-[10px] rounded-[12px] border border-white/[0.32] text-white text-[14px] font-bold leading-5'
             onClick={handleOpenTraits}
           >
             + Add

@@ -53,7 +53,7 @@ const Voice = () => {
         </button>
       </div>
 
-      <div className='flex max-h-[892px] flex-col gap-4 rounded-[14px] bg-[#121212] p-6'>
+      {/* <div className='flex max-h-[892px] flex-col gap-4 rounded-[14px] bg-[#121212] p-6'>
         <div className='flex justify-between'>
           <div className='text-[18px] font-bold leading-6 text-[#FFFFFF]'>
             All voice generations
@@ -107,7 +107,7 @@ const Voice = () => {
             </div>
           );
         })}
-      </div>
+      </div> */}
     </div>
     {
       voiceModal && <VoiceGeneratorModal closeModal={setVoiceModal} />

@@ -10,7 +10,7 @@ interface Props {
 }
 const Toggle = ({ handleToggleState, toggleState, toggleText, infoIcon,toggleClasses, subHeading }: Props) => {
   return (
-    <div className='flex items-center gap-2'>
+    <div className='flex gap-[10px]'>
       <div
         onClick={handleToggleState}
         className={`toggler h-6 w-10 cursor-pointer rounded-2xl pt-0.5 shadow ${toggleClasses} ${
@@ -24,10 +24,10 @@ const Toggle = ({ handleToggleState, toggleState, toggleText, infoIcon,toggleCla
         />
       </div>
       <div className="flex flex-col">
-      <h4 className='text-sm text-white'>{toggleText}</h4>
+      <h4 className='text-[14px] font-normal leading-[18px] text-white'>{toggleText}</h4>
       {
         subHeading &&
-      <h6 className="text-xs text-[#515151] ">Text</h6>
+      <h6 className="text-[12px] font-normal leading-4 text-[#515151] ">Text</h6>
       }
       </div>
       {infoIcon !== "hidden" &&
