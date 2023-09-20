@@ -143,7 +143,7 @@ const Banner = ({
 
   return (
     <div className={`${styleProperty ? styleProperty : 'px-8'}`}>
-      <button onClick={() => setviewModal(true)}>Add Character</button>
+      {/* <button onClick={() => setviewModal(true)}>Add Character</button> */}
       {backFromProfile === undefined ? (
         ''
       ) : (

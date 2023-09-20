@@ -7,7 +7,7 @@ import { Modal } from '@components/modal/modal';
 import girlPic from '../../../../public/assets/girl.png';
 import Cross from '../../../../public/assets/svgImages/close-icon.svg';
 import Correct from '../svg/correct.svg';
-// import Heart from '../svg/heart.svg';
+import Heart from '../svg/heart-white.svg';
 import Info from '../svg/info.svg';
 import Copy from '../svg/Copy.svg';
 import avtar from '../../../../public/assets/avatar-cs-1.png';
@@ -200,7 +200,7 @@ const ImageGallery = () => {
                 {/*  */}
                 <button className='flex items-start '>
                   <button className='flex items-center justify-center gap-2.5 rounded-[14px] bg-white/[0.08] p-3.5'>
-                    {/* <Heart /> */}
+                    <Heart />
                   </button>
                 </button>
               </div>

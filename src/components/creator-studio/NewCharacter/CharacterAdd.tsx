@@ -17,7 +17,7 @@ const CharacterAdd = ({ NewCharacterClose }: CharacterAdd) => {
  
   const { values, errors, handleBlur, touched, handleChange, handleSubmit } =
     useFormik({
-      validationSchema: signUpSchema,
+      // validationSchema: signUpSchema,
       initialValues: initialValues,
       onSubmit: (values, action) => {
         console.log('Values', values);
@@ -25,7 +25,10 @@ const CharacterAdd = ({ NewCharacterClose }: CharacterAdd) => {
         // NewCharacterClose(false);
       }
     });
-
+    const nameLength = values.name.length
+    const usernameLength = values.username.length
+    console.log("values name length ",nameLength)
+    console.log("values username length ",usernameLength)
   return (
     <Modal
       open={true}
@@ -37,8 +40,8 @@ const CharacterAdd = ({ NewCharacterClose }: CharacterAdd) => {
         <div className='w-full gap-1 text-lg font-bold leading-6'>
           Add New Character
         </div>
-        <div className='w-6 h-6' onClick={() => NewCharacterClose(false)}>
-          <Cross />
+        <div className='w-6 h-6' >
+          <Cross onClick={() => NewCharacterClose(false)}/>
         </div>
       </div>
       <form onSubmit={handleSubmit}>
@@ -55,7 +58,8 @@ const CharacterAdd = ({ NewCharacterClose }: CharacterAdd) => {
                       
                            </input>
                        </div> */}
-              <div className={errors.name && touched.name ? "border border-[#FF5336] flex w-full flex-col gap-[10px] rounded-[14px] bg-white/[0.05] px-4 py-3":'flex w-full flex-col gap-[10px] rounded-[14px] bg-white/[0.05] px-4 py-3'}>
+                       {/* errors.name && touched.name  */}
+              <div className={nameLength==0 && touched.name ? "border border-[#FF5336] flex w-full flex-col gap-[10px] rounded-[14px] bg-white/[0.05] px-4 py-3":'flex w-full flex-col gap-[10px] rounded-[14px] bg-white/[0.05] px-4 py-3'}>
                 <input
                   name='name'
                   placeholder='ex. Mika-chan'
@@ -68,7 +72,7 @@ const CharacterAdd = ({ NewCharacterClose }: CharacterAdd) => {
                 />
 
               </div>
-              {errors.name && touched.name ? (
+              {nameLength==0 && touched.name ? (
                   <p className='text-[#FF5336] '>{errors.name}</p>
                 ) : null}
             </div>
@@ -78,9 +82,10 @@ const CharacterAdd = ({ NewCharacterClose }: CharacterAdd) => {
               <div className='self-stretch text-[13px] font-semibold leading-[18px] text-[#979797]'>
                 Username
               </div>
-
-              <div className={errors.username && touched.username ? "border border-[#FF5336] flex w-full flex-col gap-[10px] rounded-[14px] bg-white/[0.05] px-4 py-3":'flex w-full flex-col gap-[10px] rounded-[14px] bg-white/[0.05] px-4 py-3'}>
+                {/* errors.username && touched.username  */}
+              <div className={usernameLength==0 && touched.username ? "border border-[#FF5336] flex w-full flex-col gap-[10px] rounded-[14px] bg-white/[0.05] px-4 py-3":'flex w-full flex-col gap-[10px] rounded-[14px] bg-white/[0.05] px-4 py-3'}>
                 <input
+                  
                   name='username'
                   autoComplete='off'
                   value={values.username}
@@ -92,7 +97,7 @@ const CharacterAdd = ({ NewCharacterClose }: CharacterAdd) => {
                 />
                 
               </div>
-              {errors.username && touched.username ? (
+              {usernameLength==0 && touched.username ? (
                   <p className='text-[#FF5336] text-sm font-normal leading-[18px]'>{errors.username}</p>
                 ) : null}
             </div>
