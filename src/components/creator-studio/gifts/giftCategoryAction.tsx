@@ -106,7 +106,7 @@ function GiftCategoryAction({ AddCategory, SetCategory, }: GiftCategoryAction) {
 
                     <button className='relative pt-1 group ' onClick={() => setCreateCategory(true)}>
                         <Image src={plusIcon} alt='' className='h-[18px] w-[18px]' />
-                        <div className='absolute -left-[118px] -top-12 w-max transform -translate-y-2/4 -translate-x-0 transition-all z-50'>
+                        <div className='absolute -left-[119px] -top-[5px] w-max transform -translate-y-2/4 -translate-x-0 transition-all z-50'>
                             <Tooltip Text={'You can create only 4 categories'} />
                         </div>
                     </button>
@@ -126,13 +126,14 @@ function GiftCategoryAction({ AddCategory, SetCategory, }: GiftCategoryAction) {
                 </button>
             </div>
 
-            {closeState &&
-                <EditCategoryAction closeModal={setCloseState} EditCategoryActionModal={editCategoryActionModal} EditName={editName} SetEditName={setEditName} UpdateCategoryName={UpdateCategoryName} DeleteActionCategory={DeleteActionCategory} CategoryActionIndex={categoryActionIndex} />
+            {
+                closeState && <EditCategoryAction closeModal={setCloseState} EditCategoryActionModal={editCategoryActionModal} EditName={editName} SetEditName={setEditName} UpdateCategoryName={UpdateCategoryName} DeleteActionCategory={DeleteActionCategory} CategoryActionIndex={categoryActionIndex} />
             }
-            {createCategory && <CreateCategory CategoryClose={setCreateCategory} Steps={4} AddCategory={AddCategory} SetCategory={SetCategory} Previous />
+            {
+                createCategory && <CreateCategory CategoryClose={setCreateCategory} Steps={4} AddCategory={AddCategory} SetCategory={SetCategory} Previous />
             }
         </>
     )
 }
 
-export default GiftCategoryAction
+export default GiftCategoryAction;

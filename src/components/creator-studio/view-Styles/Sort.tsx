@@ -6,7 +6,7 @@ const Sort = () => {
     const text = ['Default', 'Sort ascending', 'Sort descending'];
     const [activeButton, setActiveButton] = useState(0);
   return (
-    <div className='w-[170px] z-10 absolute top-[108px] right-[50px] px-0 py-1 flex flex-col rounded-[14px] bg-[#1A1A1A]'>
+    <div className='w-[170px] z-10 absolute top-[47px] right-0 px-0 py-1 flex flex-col rounded-[14px] bg-[#1A1A1A]'>
       {text.map((item,index) => {
         return(
             <div key={index} className='flex gap-2 px-4 py-2' onClick={() => {setActiveButton(index)}}>

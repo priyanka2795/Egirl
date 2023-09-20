@@ -7,10 +7,26 @@ interface DeletePopup {
     DeleteModal: any;
     Heading: string;
     Content: string;
-    Name:any;
-    LastName:any;
+    Name?:any;
+    LastName?:any;
+    setShowCards?: any;
+    component?: any;
+    deleteImageGenerationIndex?: any;
+    DeleteGeneration?: any;
 }
-function AlbumDelete({ DeleteModal, Heading, Content,Name,LastName }: DeletePopup) {
+function AlbumDelete({ DeleteModal, Heading, Content,Name,LastName,setShowCards,component,deleteImageGenerationIndex,DeleteGeneration }: DeletePopup) {
+
+    const handleDeleteButton = () => {
+        if(component === 'StyleGeneration') {
+            DeleteModal(false);
+            setShowCards(false);
+        } else if(component === 'ImageAndIdeaGeneratorTab') {
+            DeleteGeneration(deleteImageGenerationIndex);
+        }
+        else {
+            DeleteModal(false);
+        }
+    }
 
     return (
         <>
@@ -31,9 +47,9 @@ function AlbumDelete({ DeleteModal, Heading, Content,Name,LastName }: DeletePopu
                         <div className='text-center mb-5 max-w-[290px] m-auto'>
                             <p>{Content} <span className='font-semibold'>{Name}</span> {LastName} </p>
                         </div>
-                        <div className='grid grid-cols-2 mt-6 gap-3 text-white font-semibold'>
+                        <div className='grid grid-cols-2 gap-3 mt-6 font-semibold text-white'>
                             <button className='rounded-[14px] px-5 py-3 border border-[#FFFFFF52]' onClick={() => DeleteModal(false)}>Cancel</button>
-                            <button className='bg-[#FF5336] rounded-[14px] px-5 py-3' onClick={() => DeleteModal(false)}>Delete</button>
+                            <button className='bg-[#FF5336] rounded-[14px] px-5 py-3' onClick={handleDeleteButton}>Delete</button>
 
                         </div>
                     </div>

@@ -124,7 +124,7 @@ const VoiceGeneratorModal = ({ closeModal }: VoiceGeneratorModalProp) => {
               </div>
               <textarea
                 placeholder='Type something'
-                className='h-[105px] w-full rounded-[14px] border-none bg-white/[0.05] py-3 pl-4 pr-3 text-[15px] font-normal leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
+                className='h-[105px] w-full rounded-[14px] border-none bg-white/[0.05] py-3 pl-4 pr-3 text-[15px] font-normal leading-6 text-[#979797] placeholder:text-[#979797] resize-none focus:ring-0'
               />
             </div>
           </div>

@@ -1,19 +1,13 @@
 import React from 'react';
-import SearchIcon from '../svg/search.svg';
 import MarketPlaceSlider from './MarketPlaceSlider';
 import MarketPlaceFilters from './MarketPlaceFilters';
 import AllStylesCollection from './AllStylesCollection';
+import SearchBox from './SearchBox';
+
 function MarketPlaceIndex() {
   return (
-    <div>
-      <div className='flex justify-between'>
-        <div className='text-[22px] font-bold leading-8 text-[#FFFFFF]'>
-          Marketplace
-        </div>
-        <div>
-          <SearchIcon />
-        </div>
-      </div>
+    <div className=''>
+      <SearchBox />
       <MarketPlaceSlider />
       <MarketPlaceFilters />
       <AllStylesCollection />

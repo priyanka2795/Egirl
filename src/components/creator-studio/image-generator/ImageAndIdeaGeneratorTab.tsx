@@ -18,6 +18,7 @@ import Delete from '../../../../public/assets/delete-icon.png'
 import EditImageGeneration from './editImagegeneration';
 import DeleteGenerationModal from './DeleteGenerationModal';
 import Tooltip from '@components/common/tooltip';
+import AlbumDelete from '../viewImages/albumDelete';
 
 const images = [
   { img: Image1 },
@@ -29,6 +30,7 @@ const images = [
 const tabContent = ['Image Generation', 'Idea Generation'];
 
 const ImageAndIdeaGeneratorTab = () => {
+  let SessionData = sessionStorage.getItem("sideBarCollapseCS");
   const [activeTab, setActiveTab] = useState('Image Generation');
   const [imageGeneration, setImageGeneration] = useState(null);
   const [imageGenerationToggle, setImageGenerationToggle] = useState(null);
@@ -68,7 +70,6 @@ const ImageAndIdeaGeneratorTab = () => {
     setIdeaGenerationInput(value);
   }
   const GenerateIdea = () => {
-
     if (ideaGenerationInput === '') {
       alert('please Enter Idea')
     } else {
@@ -106,20 +107,10 @@ const ImageAndIdeaGeneratorTab = () => {
   const SubmitData = (e: any) => {
     setColorChange(e)
   }
-  useEffect(() => {
-    const Data = sessionStorage.getItem("sideBarCollapse");
-    console.log(Data, 'sessionStorage Data');
 
-  }, [])
-  const DataGet = (e:any) => {
-    const data =  e.target.innerText;
-    console.log(data,'data data');
-    if (data.length <= 10) {
-      console.log('true');
-      
-    }
-    
-  }
+
+
+
   return (
     <div className='mt-5 bg-[#121212] rounded-[14px] pb-10 px-6'>
       <div className="border-b-white/[0.08]">
@@ -138,7 +129,7 @@ const ImageAndIdeaGeneratorTab = () => {
           <div className='flex flex-col gap-3 mt-6'>
             {imageGenerationAgain.map((items, index) => (
               <div className='rounded-[20px] border border-[#FFFFFF29]' key={index}>
-                <div className='p-6 flex justify-between items-center cursor-pointer' >
+                <div className='flex items-center justify-between p-6 cursor-pointer' >
                   <div className='w-full' onClick={() => imageGenerationAccordion(index)}>Anime, Photoreal, Artistic, Fantasy, Blue Jeans</div>
                   <div className='flex items-center gap-1 '>
                     <div className='relative'>
@@ -187,7 +178,7 @@ const ImageAndIdeaGeneratorTab = () => {
               <div className='rounded-[14px] bg-[#FFFFFF0D] p-5'>
                 <label htmlFor="prompt" className='text-[#FFFFFFCC] text-[13px] font-semibold mb-[6px]'>Type a prompt concept</label>
                 <div className='flex items-center gap-4'>
-                  <textarea id='prompt' placeholder='Start typing your idea' className='bg-[#FFFFFF0D] rounded-[14px] w-full h-[48px] border-none active:border-none focus:border-[#5848BC] focus:ring-0 resize-none text-white placeholder:text-[#979797] overflow-visible placeholder:pt-1' value={ideaGenerationInput} name='prompt' onChange={(e) => HandleChange(e)}></textarea>
+                  <textarea id='prompt' placeholder='Start typing your idea' className='bg-[#FFFFFF0D] rounded-[14px] w-full h-[48px] border-none active:border-none focus:border-[#5848BC] focus:ring-0 resize-none text-white placeholder:text-[#979797] overflow-visible pt-[13px] ' value={ideaGenerationInput} name='prompt' onChange={(e) => HandleChange(e)}></textarea>
                   <button className='w-max rounded-[14px] bg-[#5848BC] px-5 py-[13px] text-base font-bold flex-shrink-0' onClick={() => GenerateIdea()}>Generate Ideas</button>
                 </div>
                 <div className='flex items-center gap-2 mt-3'>
@@ -201,8 +192,8 @@ const ImageAndIdeaGeneratorTab = () => {
               {allIdeaGeneration.map((item, index) => (
                 <>
                   <div className='rounded-[20px] border border-[#FFFFFF29]'>
-                    <div className='p-6 flex justify-between items-center gap-2 cursor-pointer relative group ' >
-                      <div className='w-full break-all text-ellipsis ' onClick={(e) => { IdeaGenerationAccordion(index), DataGet(e) }}>{item.name}</div>
+                    <div className='relative flex items-center justify-between gap-2 p-6 cursor-pointer group ' >
+                      <div className={` break-all text-ellipsis truncate ${SessionData ? 'w-[761px]' : 'w-[570px]'}`} onClick={(e) => { IdeaGenerationAccordion(index) }}>{item.name}</div>
                       <div className='flex items-center gap-1 '>
                         <div className='relative'>
                           <button ><Image src={Dots} /></button>
@@ -213,7 +204,7 @@ const ImageAndIdeaGeneratorTab = () => {
                           }
                         </div>
                       </div>
-                      <div className='absolute bottom-[85px] left-[27%] z-50 max-w-[280px]  text-center text-[12px] break-words'>
+                      <div className='absolute bottom-  [85px] left-[27%] z-50 max-w-[280px]  text-center text-[12px] break-words'>
                         <Tooltip Text={item.name} />
                       </div>
                     </div>
@@ -261,7 +252,7 @@ const ImageAndIdeaGeneratorTab = () => {
       }
       {
         deleteImageGeneration &&
-        <DeleteGenerationModal DeleteModal={setDeleteImageGeneration} deleteImageGenerationIndex={deleteImageGenerationIndex} DeleteGeneration={DeleteGeneration} Heading={'Delete generation'} Content={'Are you sure you want to delete the image generation?'} />
+        <AlbumDelete DeleteModal={setDeleteImageGeneration} Heading={'Delete generation'} Content={'Are you sure you want to delete the image generation?'} component={'ImageAndIdeaGeneratorTab'} deleteImageGenerationIndex={deleteImageGenerationIndex} DeleteGeneration={DeleteGeneration} />
       }
     </div >
   );

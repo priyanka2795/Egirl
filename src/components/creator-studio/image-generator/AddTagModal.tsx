@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Modal } from '@components/modal/modal';
-import CloseIcon from '../../../../public/assets/svgImages/close-icon.svg';
+import CloseIcon from '../../../../public/assets/xmark-large.png';
 import Image from 'next/image';
 import SearchBar from '@components/common/Search/SearchBar';
+import searchIcon from '../../../../public/assets/search-alt.png';
 
 interface AddTagModalProp {
   closeDeleteModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -53,6 +54,9 @@ const FilterData = [
 
 const AddTagModal = ({ closeDeleteModal }: AddTagModalProp) => {
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+  const [searchTags, setSearchTags] = useState('')
+  const [addTags, setAddTags] = useState(FilterData)
+  const [tagsSearch, setTagsSearch] = useState(false)
 
   const handleOptionChange = (option: string) => {
     console.log(option, 'resr');
@@ -69,6 +73,23 @@ const AddTagModal = ({ closeDeleteModal }: AddTagModalProp) => {
     setSelectedOptions(selectedOptions.filter((o) => o !== option));
   };
 
+
+  const handleInputChange = (e: any) => {
+    const searchTerm = e.target.value;
+    setSearchTags(searchTerm);
+    const filteredItems = FilterData.filter((user) => {
+      const tagsLowerCase = user.tags.some((tag) => (
+        tag.toLowerCase().includes(searchTerm.toLowerCase())
+      ));
+      return tagsLowerCase;
+    });
+    setAddTags(filteredItems)
+    if (filteredItems.length === 0) {
+      setTagsSearch(true)
+    } else { setTagsSearch(false) }
+
+  }
+
   return (
     <Modal
       open={true}
@@ -78,23 +99,36 @@ const AddTagModal = ({ closeDeleteModal }: AddTagModalProp) => {
     >
       <div className='CloseIcon flex justify-between border-b border-white border-opacity-10 px-8 pb-6'>
         <h6 className='text-lg font-bold leading-normal text-white'> Tags</h6>
-        <div>
-          <CloseIcon />
+        <div className='cursor-pointer' onClick={() => closeDeleteModal(false)}>
+          <Image src={CloseIcon} />
         </div>
       </div>
 
-      <SearchBar />
-      {selectedOptions.length> 0 && (
+      <div className='px-8 py-4'>
+        <div className='flex w-full gap-[10px] rounded-[14px] bg-white/[0.05] px-4 py-3'>
+          <div className='h-6 w-6'>
+            <Image className='h-full w-full' src={searchIcon} alt={''} />
+          </div>
+          <input
+            type='text'
+            className='border-none w-full bg-transparent p-0 text-[15px] font-light focus:ring-0 placeholder:text-[#979797]'
+            placeholder='Search'
+            value={searchTags}
+            onChange={handleInputChange}
+          />
+        </div>
+      </div>
+
+      {selectedOptions.length > 0 && (
         <div
-          className={`flex flex-wrap gap-2 ${
-            selectedOptions.length > 0 ? 'p-6 pt-0' : ''
-          }`}
+          className={`flex flex-wrap gap-2  border-b border-[#FFFFFF14] ${selectedOptions.length > 0 ? 'p-6 pt-0' : ''
+            }`}
         >
           <div className='flex flex-wrap gap-5 '>
             {selectedOptions.map((option) => (
               <div
                 key={option}
-                className='flex gap-2 rounded-xl bg-neutral-800 pb-3 pl-5 pr-5 pt-3 text-sm'
+                className='flex gap-1 items-center rounded-xl bg-neutral-800 p-2 text-xs text-[#979797]'
               >
                 {option}{' '}
                 <span
@@ -124,45 +158,48 @@ const AddTagModal = ({ closeDeleteModal }: AddTagModalProp) => {
         </div>
       )}
 
-      <div className='mb-4 px-7'>
-        {FilterData.map((data) => {
-          return (
-            <div key={data.id}>
-              <h6 className='p-4 pl-0 text-[#979797]'>{data.title}</h6>
-              <div className='flex flex-wrap gap-3'>
-                {data.tags.map((items, index) => {
-                  return (
-                    <div
-                      className='relative mb-3'
-                      key={index}
-                      onClick={() => {
-                        selectedOptions.includes(items);
-                      }}
-                    >
-                      <input
-                        id={`${data.id}` + `${index}`}
-                        name='option'
-                        checked={selectedOptions.includes(items)}
-                        onChange={() => handleOptionChange(items)}
-                        className='styled-checkbox checkbox peer absolute left-[23px] top-[13px] hidden bg-zinc-800'
-                        type='checkbox'
-                        value={`${data.id}` + `${index}`}
-                      />
-                      <label
-                        htmlFor={`${data.id}` + `${index}`}
-                        className='mb-4 h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[white] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
-                        id={`${data.id}` + `${index}`}
+      {tagsSearch ? <p className='text-[#979797] font-bold text-center'>Image Not Found</p> :
+        <div className='mb-4 px-7'>
+          {addTags.map((data) => {
+            return (
+              <div key={data.id}>
+                <h6 className='p-4 pl-0 text-[#979797]'>{data.title}</h6>
+                <div className='flex flex-wrap gap-3 '>
+                  {data.tags.map((items, index) => {
+                    return (
+                      <div
+                        className='relative mb-3'
+                        key={index}
+                        onClick={() => {
+                          selectedOptions.includes(items);
+                        }}
                       >
-                        {items}
-                      </label>
-                    </div>
-                  );
-                })}
+                        <input
+                          id={`${data.id}` + `${index}`}
+                          name='option'
+                          checked={selectedOptions.includes(items)}
+                          onChange={() => handleOptionChange(items)}
+                          className='styled-checkbox checkbox peer absolute left-[23px] top-[13px] hidden bg-zinc-800'
+                          type='checkbox'
+                          value={`${data.id}` + `${index}`}
+                        />
+                        <label
+                          htmlFor={`${data.id}` + `${index}`}
+                          className='mb-4 h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[white] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
+                          id={`${data.id}` + `${index}`}
+                        >
+                          {items}
+                        </label>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
+      }
+
 
       <div className='flex w-full gap-3 px-6 py-4'>
         <button

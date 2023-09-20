@@ -34,7 +34,7 @@ const generatedStyle = [
         button: 'Character',
         completed: '52% to complete',
         time: '~7 min',
-        width: '52%'
+        width: '50%'
     },
     {
         img1: floderImg5,
@@ -75,7 +75,7 @@ const GeneratedStyle = ({setGeneratedStyle, setViewStyleGenerated} : GeneratedSt
 
     return(
         <>
-        <div className='flex flex-col gap-5 p-8'>
+        <div className='flex flex-col gap-5'>
             <div className='flex justify-between'>
                 <div className='flex items-center gap-2'>
                     <Image className='object-contain' onClick={() => {setGeneratedStyle(false)}} src={arrowLeft} alt={''} />
@@ -104,10 +104,8 @@ const GeneratedStyle = ({setGeneratedStyle, setViewStyleGenerated} : GeneratedSt
                                         <div className='text-[#979797] text-[13px] font-normal leading-[18px]'>{item.time}</div>
                                     </div>
                                     <div className='overflow-hidden h-2 bg-[#5848BC]/[0.24] rounded-[100px]'>
-                                        <div className={`w-[${item.width}] h-full bg-[#7362C6]`}></div>
+                                        <div className={`w-[${item.width}] flex h-full bg-[#7362C6]`}></div>
                                     </div>
-                             
-                                    
                                 </div>
                             </div>
                         </div>

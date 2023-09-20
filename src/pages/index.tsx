@@ -69,7 +69,7 @@ export default function UserLanding(): JSX.Element {
               ></XMarkIcon>
             </div>
           </div>
-          <div className='pt-20 space-y-20'>
+          <div className='space-y-20 pt-20'>
             <div className=''>
               <button>
                 <span className='text-[32px] font-[500] text-[#5848BC] underline underline-offset-8 hover:decoration-[white] sm:text-[48px]'>
@@ -95,7 +95,7 @@ export default function UserLanding(): JSX.Element {
             </div>
           </div>
 
-          <div className='absolute flex justify-center inset-x-10 bottom-16'>
+          <div className='absolute inset-x-10 bottom-16 flex justify-center'>
             <div
               className='flex w-full justify-center rounded-[12px] bg-[#5848BC] px-[18px] py-[10px] lg:hidden'
               onClick={hideSideShowBeta()}
@@ -133,9 +133,9 @@ export default function UserLanding(): JSX.Element {
       <Footer />
 
       {/* Socials sticky */}
-      <div className='sticky bottom-0 right-0 z-10 flex justify-end float-right w-full'>
+      <div className='sticky bottom-0 right-0 z-10 float-right flex w-full justify-end'>
         <div className='h-[60px] w-[160px] rounded-tl-xl bg-[#5848BC]'>
-          <div className='grid items-center h-full grid-cols-4 p-3 justify-items-center '>
+          <div className='grid h-full grid-cols-4 items-center justify-items-center p-3 '>
             <a
               href='https://discord.gg/uvAaAkbhEm'
               target='_blank'

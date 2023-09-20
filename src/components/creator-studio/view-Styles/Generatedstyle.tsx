@@ -11,6 +11,8 @@ import PostStyleModal from './PostStyleModal';
 
 interface GeneratedstyleProp {
     setGeneratedStyle?: any;
+    setViewStyleGenerated?: any;
+    ViewStyle?: any;
 }
 
 
@@ -65,17 +67,17 @@ const generatedStyle = [
     },
 ];
 
-const Generatedstyle = ({setGeneratedStyle}:GeneratedstyleProp) => {
+const Generatedstyle = ({setGeneratedStyle, setViewStyleGenerated, ViewStyle}:GeneratedstyleProp) => {
     const [viewStyleModal, setViewStyleModal] = useState(false);
     const [postStyleModal, setPostStyleModal] = useState(false);
   return (
     <>
-    <ViewStylesTab component={'GeneratedStyle'} setGeneratedStyle={setGeneratedStyle} />
+    <ViewStylesTab component={'GeneratedStyle'} setGeneratedStyle={setGeneratedStyle} setViewStyleGenerated={setViewStyleGenerated} ViewStyle={ViewStyle} />
     <div className='grid grid-cols-3 gap-3 mt-5 mb-14'>
     {generatedStyle.map((item,index) => {
                 return(
                     <div key={index} className='relative group overflow-hidden flex flex-col rounded-[16px] bg-white/[0.05]'>
-                        <Image onClick={() => {setViewStyleModal(true)}} src={item.image} alt={''} />
+                        <Image onClick={() => {setViewStyleModal(true)}} className='w-[350px] h-[347px]' src={item.image} alt={''} />
                         <div className='flex flex-col gap-3 p-4'>
                             <div className='text-white text-[15px] font-semibold leading-5'>{item.name}</div>
                              <div className='flex gap-2'>

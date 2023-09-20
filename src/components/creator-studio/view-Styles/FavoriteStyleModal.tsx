@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
 import heart from '../../../../public/assets/heart-alt.png';
 import circleInformation from '../../../../public/assets/circle-information8.png';
 import arrowDown from '../../../../public/assets/chevron-down2.png';
+import arrowUp from '../../../../public/assets/chevron-up.png';
+import copy from '../../../../public/assets/file-copy.png';
 import modalImg from '../../../../public/assets/view-style-modal-img.png';
 import check from '../../../../public/assets/check-white.png';
 import avatar from '../../../../public/assets/image-avatar.png';
@@ -11,9 +13,11 @@ import star from '../../../../public/assets/star.png';
 import rightArrow from '../../../../public/assets/chevron-right-3.png';
 import avatar2 from '../../../../public/assets/viewStyle-modal-2.png';
 import smiley from '../../../../public/assets/face-smile-icon.png';
+import downArrow from '../../../../public/assets/down-arrow-img.png';
 
 interface FavoriteStyleModalProps {
-    setFavoriteStyleModal: any;
+    closeModal: any;
+    component?: string;
 }
 
 const list = [
@@ -74,14 +78,41 @@ const ratings = [
     }
 ];
 
-const FavoriteStyleModal = ({setFavoriteStyleModal}:FavoriteStyleModalProps) => {
+const generationDataItem = [
+    {
+        text: 'CFG scale',
+        number: '7'
+    },
+    {
+        text: 'Steps',
+        number: '40'
+    },
+    {
+        text: 'Sampler',
+        number: 'Euler a'
+    },
+    {
+        text: 'Seed',
+        number: '13145374738'
+    },
+    {
+        text: 'Clip Skip',
+        number: '2'
+    }
+];
+
+
+const FavoriteStyleModal = ({closeModal, component}:FavoriteStyleModalProps) => {
+    const generationDataTab = ['Prompt', 'Negative prompt'];
+    const [generationData, setGenerationData] = useState(false);
+    const [activeIndex, setActiveIndex] = useState(0);
   return (
     <>
     <div>
       <Modal
         open={true}
         modalClassName='flex overflow-hidden w-full rounded-[20px] bg-[#1A1A1A] max-w-[1376px] overflow-y-hidden'
-        closeModal={() => setFavoriteStyleModal (false)}
+        closeModal={() => closeModal(false)}
         modalOverlayStyle='!bg-black/80'
       >
         <div className='w-[67%]'>
@@ -123,10 +154,55 @@ const FavoriteStyleModal = ({setFavoriteStyleModal}:FavoriteStyleModalProps) => 
                         <div className='text-white text-[14px] font-normal leading-[18px]'>After a lot of tests I'm finally releasing my mix. This started as a model to make After a lot of tests I'm finally releasing my mix. This started as a model to make.</div>
                     </div>
                 </div>
+                {component === 'FavoriteStyles' ? 
                 <div className='px-4 py-[14px] flex justify-between rounded-[12px] bg-white/[0.05]'>
                     <div className='text-white text-[15px] font-semibold leading-5'>Generation data</div>
                     <Image src={arrowDown} alt={''} />
+                </div> :
+                <div className='flex flex-col px-4 py-[14px] gap-4 rounded-[12px] bg-white/[0.05]'>
+                    <div className='flex items-center justify-between' onClick={() => {setGenerationData(!generationData)}}>
+                        <div className='text-white text-[15px] font-semibold leading-5'>Generation data</div>
+                        <Image src={generationData ? arrowUp : arrowDown} alt={''} />
+                    </div>
+                    {generationData ? 
+                    <div className='flex flex-col gap-3'>
+                        <div className='flex items-center justify-between'>
+                            <div className='flex'>
+                                {generationDataTab.map((item,index) => {
+                                    return(
+                                        <div key={index} className={`cursor-pointer flex px-3 py-2 rounded-[12px] justify-center items-center text-[14px] leading-[18px] ${activeIndex === index ? 'bg-white/[0.16] text-white font-bold' : 'text-[#979797] font-semibold'}`} onClick={() => {setActiveIndex(index)}}>{item}</div>
+                                    );
+                                })}
+                            </div>
+                            <div className='relative group'>
+                                <Image className='object-contain cursor-pointer' src={copy} alt={''} />
+                                <div className='invisible group-hover:visible group-hover:opacity-100'>
+                                    <div className='absolute -top-[38px] -right-[16px] px-3 py-[6px] flex justify-center items-center rounded-[6px] bg-[#303030] text-white text-[12px] font-normal leading-4'>Copy</div>
+                                    <div className='absolute -top-[22px] -right-[26px] w-10 h-[24px]'>
+                                        <Image className='w-full h-full' src={downArrow} alt={''} />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='text-white text-[14px] font-normal leading-[18px]'>Best quality, masterpiece, ultra high res, (photorealistic), raw photo, 1girl, offshoulder, in the dark, deep shadow, low key,</div>
+                        <div className='grid grid-cols-3 gap-x-[51px] gap-y-3'>
+                            {generationDataItem.map((item,index) => {
+                                return(
+                                    <div key={index} className='flex flex-col gap-1'>
+                                        <div className='text-white text-[14px] font-semibold leading-[18px]'>{item.text}</div>
+                                        <div className='text-[#979797] text-[14px] font-normal leading-[18px]'>{item.number}</div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                        <div></div>
+                    </div> :
+                    <></>
+                    }
+                    
                 </div>
+                }
+                
                 <div className='pb-5 flex flex-col gap-4 border-b border-white/[0.08]'>
                     <div className='text-white text-[15px] font-semibold leading-5'>Creator information</div>
                     <div className='flex justify-between'>

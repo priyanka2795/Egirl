@@ -35,9 +35,9 @@ interface ImageGeneratorOption {
   PosingToggle: any;
   MyCharacterToggle: any;
   EditGeneration: any;
-  EditTooltip:any
+  EditTooltip: any
 }
-const ImageGeneratorOption = ({ InpaintingToggle, PosingToggle, MyCharacterToggle, EditGeneration,EditTooltip}: ImageGeneratorOption) => {
+const ImageGeneratorOption = ({ InpaintingToggle, PosingToggle, MyCharacterToggle, EditGeneration, EditTooltip }: ImageGeneratorOption) => {
   const [prompt, setPrompt] = useState(false);
   const [tagState, setTagState] = useState(false);
   const [openGenre, setOpenGenre] = React.useState(false);
@@ -67,7 +67,8 @@ const ImageGeneratorOption = ({ InpaintingToggle, PosingToggle, MyCharacterToggl
 
 
   const DeletePromptMenu = (item: any) => {
-    setEditPromptMenu(editPromptMenu.filter((el: any, i: any) => el !== item))
+    setEditPromptMenu(editPromptMenu.filter((el: any, i: any) => el !== item));
+    setEditPrompt(null);
   }
 
   function handleKeyDown(e: any) {
@@ -121,6 +122,7 @@ const ImageGeneratorOption = ({ InpaintingToggle, PosingToggle, MyCharacterToggl
 
   // searchPromptMenu
   const [searchPromptMenu, setSearchPromptMenu] = useState('')
+  const [showPromptMenu, setShowPromptMenu] = useState(false)
   const handleInputChange = (e: any) => {
     const searchTerm = e.target.value;
     setSearchPromptMenu(searchTerm);
@@ -136,8 +138,21 @@ const ImageGeneratorOption = ({ InpaintingToggle, PosingToggle, MyCharacterToggl
       Prompt.toLowerCase().includes(searchPrompt.toLowerCase())
     );
     setPromptTagsHint(filteredItems);
+
+    if (filteredItems.length === 0) {
+      setShowPromptMenu(true)
+    } else {
+      setShowPromptMenu(false)
+    }
   }
 
+  const HandleTypeHint = (e: any) => {
+    const PromptHint = e.target.innerText
+    setPromptHint(PromptHint)
+    setPromptTags([...promptTags, PromptHint])
+    setShowPromptMenu(true);
+    setPromptHint('')
+  }
   return (
     <>
       <div className=' p-4'>
@@ -173,7 +188,7 @@ const ImageGeneratorOption = ({ InpaintingToggle, PosingToggle, MyCharacterToggl
               </div> : ''}
           </div>
         </div>
-        <div className="bg-[#0000007A] mb-6 py-3 px-4 h-[124px] rounded-[14px] w-full flex items-start flex-wrap content-start">
+        <div className="bg-[#0000007A] mb-6 py-3 px-4 min-h-[124px] h-auto rounded-[14px] w-full flex items-start flex-wrap content-start">
           <div className='flex items-center flex-wrap gap-2'>
             {MyCharacterToggle &&
               <div className='bg-[#403BAC] flex items-center gap-1 rounded-xl px-[10px] py-2 cursor-pointer'>
@@ -217,15 +232,19 @@ const ImageGeneratorOption = ({ InpaintingToggle, PosingToggle, MyCharacterToggl
               </div>
             ))}
           </div>
-          <div className='relative'>
+          <div className='relative z-10'>
             <input onKeyDown={handleKeyDown} type="text" className="w-[150px] bg-transparent border-none focus:border-none focus:ring-0" placeholder='Type a prompt ...' value={promptHint} onChange={handleChangePromptHint} />
-            <div className='bg-[#1A1A1A] rounded-[14px] shadow-md'>
-              {promptHint === '' ? '' :
-                <>{promptTagsHint.map((items) => (
-                  <p className='px-4 py-[10px]'>{items}</p>
-                ))}
-                </>}
-            </div>
+            {showPromptMenu ? "" :
+              <>
+                {promptHint === '' ? '' :
+                  <div className='rounded-[14px] shadow-md p-2 bg-[#1A1A1A] '>
+                    {promptTagsHint.map((items) => (
+                      <div className='p-2 rounded-lg cursor-pointer hover:bg-[#FFFFFF0D]' onClick={(e) => HandleTypeHint(e)}>{items}</div>
+                    ))}
+                  </div>}
+              </>
+            }
+
           </div>
         </div>
 
@@ -314,7 +333,7 @@ const ImageGeneratorOption = ({ InpaintingToggle, PosingToggle, MyCharacterToggl
           </div>
         </div> : ''}
 
-      {tagState && <AddTagModal closeDeleteModal={setTagState} />}
+      
       <Modal
         open={openGenre}
         closeModal={handleCloseGenre}
@@ -326,7 +345,7 @@ const ImageGeneratorOption = ({ InpaintingToggle, PosingToggle, MyCharacterToggl
             <div className='flex w-full text-lg font-bold leading-6 decoration-white'>
               Genre
             </div>
-            <div onClick={handleCloseGenre}>
+            <div className='cursor-pointer' onClick={handleCloseGenre} >
               <CloseIcon />
             </div>
           </div>
@@ -348,8 +367,9 @@ const ImageGeneratorOption = ({ InpaintingToggle, PosingToggle, MyCharacterToggl
           </div>
         </div>
       </Modal>
+          
       {openStyle && <AddStyleModal SetOpenStyle={setOpenStyle} />}
-
+      {tagState && <AddTagModal closeDeleteModal={setTagState} />}
       {/* Inpainting Modals */}
 
       {inpaintingExample &&
