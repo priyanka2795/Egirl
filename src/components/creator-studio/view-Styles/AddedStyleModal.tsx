@@ -116,7 +116,7 @@ const AddedStyleModal = ({setAddedStyleModal}:AddedStyleModalProp) => {
             </div>
             <div className='flex flex-col gap-5 px-6 pb-6'>
                 <div className='flex flex-col gap-[14px]'>
-                    <div className='text-white text-[15px] font-semibold leading-5'>Model Details</div>
+                    <div className='text-white text-[15px] font-normal leading-5'>Model Details</div>
                     {list.map((item,index) => {
                     return(
                         <div key={index} className='flex gap-5'>
@@ -134,7 +134,7 @@ const AddedStyleModal = ({setAddedStyleModal}:AddedStyleModalProp) => {
                     </div>
                 </div>
                 <div className='px-4 py-[14px] flex justify-between rounded-[12px] bg-white/[0.05]'>
-                    <div className='text-white text-[15px] font-semibold leading-5'>Generation data</div>
+                    <div className='text-white text-[15px] font-normal leading-5'>Generation data</div>
                     <Image src={arrowDown} alt={''} />
                 </div>
                 <div className='pb-5 flex flex-col gap-4 border-b border-white/[0.08]'>

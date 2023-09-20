@@ -175,10 +175,10 @@ const VIMainImageBlock = ({ ToggleMenu, SetAlbumImages }: VIMainImageBlock) => {
 
 
 
-          <div className='grid grid-cols-3 gap-2' ref={dropdownRef}>
+          <div className='grid grid-cols-3 gap-3' ref={dropdownRef}>
             {allImages.map((item, index) => (
-              <div className='relative w-full h-full bg-red-100 group sub-banner ' key={index} >
-                <Image className=' object-cover !w-full h-full' src={item.image} alt={''} />
+              <div className='relative w-full h-full bg-red-100 group sub-banner rounded-[16px]' key={index} >
+                <Image className=' object-cover !w-full h-full rounded-[16px]' src={item.image} alt={''} />
                 <div className='cursor-pointer invisible w-[30px] h-[30px] flex items-center justify-center group-hover:visible group-hover:opacity-100 absolute top-[7px] right-[7px] rounded-full bg-black/[0.48]' onClick={() => AllImageToggle(index)}>
                   <Image className='w-full h-full' src={threeDots} alt={''} />
                 </div>

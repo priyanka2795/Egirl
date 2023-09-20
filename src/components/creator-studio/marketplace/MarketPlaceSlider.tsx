@@ -112,7 +112,7 @@ const MarketPlaceSlider = () => {
                 />
               </div>
 
-              <div className='text-[15px] font-semibold leading-tight text-white'>
+              <div className='text-[15px] font-semibold leading-5 text-white'>
                 <p>{items.filterText}</p>
               </div>
             </div>

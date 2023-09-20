@@ -136,15 +136,14 @@ function Gifts() {
 
       </>
         :
-        <div className='flex justify-center items-center max-w-[243px] w-full h-[calc(100%-40px)] m-auto'>
-          <div className='flex flex-col items-center gap-3 text-center'>
-            <div className='w-14 h-14 rounded-full bg-[#FFFFFF0D] flex justify-center items-center '>
+        <div className='flex flex-col justify-center items-center h-[514px] m-auto'>
+          <div className='flex flex-col items-center justify-center gap-3 text-center w-[243px]'>
+            <div className='p-4 rounded-full bg-[#FFFFFF0D] flex justify-center items-center '>
               <ImagePlusIcon />
             </div>
-            <p className='text-[#979797] text-[13px]'>You don’t have any categories and gifts.
+            <p className='text-[#979797] text-[13px] font-normal leading-[18px]'>You don’t have any categories and gifts.
               Click on the button to create it.</p>
-          </div>
-
+          </div>  
         </div>
       }
 
