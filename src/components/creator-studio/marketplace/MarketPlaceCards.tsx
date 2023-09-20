@@ -67,7 +67,7 @@ const MarketPlaceCards = () => {
   };
   return (
     <>
-      <div className='grid grid-cols-3 gap-4 '>
+      <div className='grid grid-cols-3 gap-3'>
         {exploreGallery.map((items) => {
           return (
             <div className='relative cursor-pointer gallery-card-collection sub-banner group'>

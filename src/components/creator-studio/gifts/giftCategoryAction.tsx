@@ -126,13 +126,14 @@ function GiftCategoryAction({ AddCategory, SetCategory, }: GiftCategoryAction) {
                 </button>
             </div>
 
-            {closeState &&
-                <EditCategoryAction closeModal={setCloseState} EditCategoryActionModal={editCategoryActionModal} EditName={editName} SetEditName={setEditName} UpdateCategoryName={UpdateCategoryName} DeleteActionCategory={DeleteActionCategory} CategoryActionIndex={categoryActionIndex} />
+            {
+                closeState && <EditCategoryAction closeModal={setCloseState} EditCategoryActionModal={editCategoryActionModal} EditName={editName} SetEditName={setEditName} UpdateCategoryName={UpdateCategoryName} DeleteActionCategory={DeleteActionCategory} CategoryActionIndex={categoryActionIndex} />
             }
-            {createCategory && <CreateCategory CategoryClose={setCreateCategory} Steps={4} AddCategory={AddCategory} SetCategory={SetCategory} Previous />
+            {
+                createCategory && <CreateCategory CategoryClose={setCreateCategory} Steps={4} AddCategory={AddCategory} SetCategory={SetCategory} Previous />
             }
         </>
     )
 }
 
-export default GiftCategoryAction
+export default GiftCategoryAction;

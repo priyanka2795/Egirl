@@ -104,7 +104,7 @@ const GeneratedStyle = ({setGeneratedStyle, setViewStyleGenerated} : GeneratedSt
                                         <div className='text-[#979797] text-[13px] font-normal leading-[18px]'>{item.time}</div>
                                     </div>
                                     <div className='overflow-hidden h-2 bg-[#5848BC]/[0.24] rounded-[100px]'>
-                                        <div className={`w-[${item.width}] h-full bg-[#7362C6]`}></div>
+                                        <div className={`w-[${item.width}] flex h-full bg-[#7362C6]`}></div>
                                     </div>
                                 </div>
                             </div>

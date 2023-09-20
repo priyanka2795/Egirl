@@ -571,10 +571,11 @@ span.audio-recorder-timer {
 //   padding-left: 0px;
 // }
 .marketplace-slider .slick-next {
-  right: -17px;
+  right: -16px;
 }
 .marketplace-slider .slick-prev {
-  left: -17px;
+  left: -19px;
+  z-index: 1;
 }
 .marketplace-slider .slick-list {
   padding-left: 12px;

@@ -84,11 +84,11 @@ const MarketPlaceSlider = () => {
   }, []);
 
   return (
-    <div className='mb-8 mt-8 px-3'>
+    <div className='px-3 mt-6 mb-6'>
       <Slider
         {...settings}
         ref={sliderRef}
-        className='explore-gallery-filter marketplace-slider flex w-[907px]'
+        className='explore-gallery-filter marketplace-slider flex w-[993px]'
       >
         {galleryArray.map((items) => {
           return (
@@ -106,7 +106,7 @@ const MarketPlaceSlider = () => {
                 className={`flex items-center justify-center rounded-3xl bg-white bg-opacity-5`}
               >
                 <Image
-                  className='h-8 w-16 rounded-full'
+                  className='w-16 h-8 rounded-full'
                   src={items.filterImg}
                   alt=''
                 />

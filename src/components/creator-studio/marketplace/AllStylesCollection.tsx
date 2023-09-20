@@ -33,12 +33,12 @@ const AllStylesCollection = () => {
 
   return (
     <>
-      <div className='mb-3 mt-5 flex justify-between'>
-        <div className='text-[18px] font-bold text-[#FFF]'>All Styles</div>
-        <div className='grid grid-cols-2 gap-2'>
+      <div className='flex justify-between mt-8 mb-4'>
+        <div className='text-[18px] font-bold leading-6 text-[#FFF]'>All Styles</div>
+        <div className='flex gap-4'>
           <div className='relative'>
             <div
-              className='flex cursor-pointer gap-2 pl-2'
+              className='flex gap-2 pr-2 border-r border-white/[0.08] cursor-pointer'
               onClick={handleNewest}
             >
               <p>Newest</p>
@@ -70,7 +70,7 @@ const AllStylesCollection = () => {
           </div>
           <div className='relative'>
             <div
-              className='flex cursor-pointer gap-2 border-l border-white/10 pl-2 '
+              className='flex gap-2 cursor-pointer'
               onClick={handleDuration}
             >
               <p>Month</p>
