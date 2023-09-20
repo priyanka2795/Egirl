@@ -177,7 +177,7 @@ const ImageAndIdeaGeneratorTab = () => {
               <div className='rounded-[14px] bg-[#FFFFFF0D] p-5'>
                 <label htmlFor="prompt" className='text-[#FFFFFFCC] text-[13px] font-semibold mb-[6px]'>Type a prompt concept</label>
                 <div className='flex items-center gap-4'>
-                  <textarea id='prompt' placeholder='Start typing your idea' className='bg-[#FFFFFF0D] rounded-[14px] w-full h-[48px] border-none active:border-none focus:border-[#5848BC] focus:ring-0 resize-none text-white placeholder:text-[#979797] overflow-visible placeholder:pt-1' value={ideaGenerationInput} name='prompt' onChange={(e) => HandleChange(e)}></textarea>
+                  <textarea id='prompt' placeholder='Start typing your idea' className='bg-[#FFFFFF0D] rounded-[14px] w-full h-[48px] border-none active:border-none focus:border-[#5848BC] focus:ring-0 resize-none text-white placeholder:text-[#979797] overflow-visible pt-[13px] ' value={ideaGenerationInput} name='prompt' onChange={(e) => HandleChange(e)}></textarea>
                   <button className='w-max rounded-[14px] bg-[#5848BC] px-5 py-[13px] text-base font-bold flex-shrink-0' onClick={() => GenerateIdea()}>Generate Ideas</button>
                 </div>
                 <div className='flex items-center gap-2 mt-3'>
@@ -203,7 +203,7 @@ const ImageAndIdeaGeneratorTab = () => {
                           }
                         </div>
                       </div>
-                      <div className='absolute bottom-[85px] left-[27%] z-50 max-w-[280px]  text-center text-[12px] break-words'>
+                      <div className='absolute bottom-  [85px] left-[27%] z-50 max-w-[280px]  text-center text-[12px] break-words'>
                         <Tooltip Text={item.name} />
                       </div>
                     </div>

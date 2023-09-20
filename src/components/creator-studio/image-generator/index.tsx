@@ -11,7 +11,7 @@ const ImageGeneratorIndex = () => {
 
 
   return (
-    <div className="flex justify-between gap-8">
+    <div className="flex justify-between gap-4">
       <div className="w-full">
         <div className='rounded-[14px] bg-[#121212]'>
           <div className='px-4 pt-4 pb-6'>

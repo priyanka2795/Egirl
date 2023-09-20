@@ -149,7 +149,9 @@ const ImageGeneratorOption = ({ InpaintingToggle, PosingToggle, MyCharacterToggl
   const HandleTypeHint = (e: any) => {
     const PromptHint = e.target.innerText
     setPromptHint(PromptHint)
+    setPromptTags([...promptTags, PromptHint])
     setShowPromptMenu(true);
+    setPromptHint('')
   }
   return (
     <>
@@ -186,7 +188,7 @@ const ImageGeneratorOption = ({ InpaintingToggle, PosingToggle, MyCharacterToggl
               </div> : ''}
           </div>
         </div>
-        <div className="bg-[#0000007A] mb-6 py-3 px-4 h-[124px] rounded-[14px] w-full flex items-start flex-wrap content-start">
+        <div className="bg-[#0000007A] mb-6 py-3 px-4 min-h-[124px] h-auto rounded-[14px] w-full flex items-start flex-wrap content-start">
           <div className='flex items-center flex-wrap gap-2'>
             {MyCharacterToggle &&
               <div className='bg-[#403BAC] flex items-center gap-1 rounded-xl px-[10px] py-2 cursor-pointer'>
@@ -365,6 +367,7 @@ const ImageGeneratorOption = ({ InpaintingToggle, PosingToggle, MyCharacterToggl
           </div>
         </div>
       </Modal>
+          
       {openStyle && <AddStyleModal SetOpenStyle={setOpenStyle} />}
       {tagState && <AddTagModal closeDeleteModal={setTagState} />}
       {/* Inpainting Modals */}
