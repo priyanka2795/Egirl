@@ -11,6 +11,7 @@ import Correct from '../svg/correct.svg';
 import Info from '../svg/info.svg';
 import Copy from '../svg/Copy.svg';
 import avtar from '../../../../public/assets/avatar-cs-1.png';
+import ExpandIcon from '../../../../public/assets/expand-alt.png';
 import AdvanceArrow from '../svg/AdvanceArrow';
 
 const ImageGallery = () => {
@@ -130,7 +131,7 @@ const ImageGallery = () => {
             }
             return (
               <div
-                onClick={handleviewModal}
+                
                 className='group relative flex h-[174px] w-[175px] cursor-pointer justify-center overflow-hidden  rounded-xl bg-white/[0.05]  hover:bg-[#5848BC] '
               >
                 <div
@@ -141,6 +142,9 @@ const ImageGallery = () => {
                   }`}
                 >
                   <Image src={item.img} className='shrink-0 rounded-xl' />
+                </div>
+                <div className='w-[30px] h-[30px] bg-[#0000007A]  justify-center items-center rounded-full absolute top-2 right-2 hidden group-hover:flex' onClick={handleviewModal}>
+                    <Image src={ExpandIcon} className='w-full h-full' />
                 </div>
 
                 <div className='focus:ring-violet-[#5848BC] absolute bottom-0 top-3/4 flex w-full items-center justify-center gap-2.5 bg-black/[0.80] p-2  focus:outline-none focus:ring active:bg-[#5848BC] group-hover:bg-[#5848BC]'>
@@ -158,8 +162,8 @@ const ImageGallery = () => {
       <Modal
         open={viewModal}
         closeModal={handleviewModal}
-        modalOverlayStyle='!bg-black/80 '
-        modalClassName={`bg-[#121212] flex  flex-col flex-start relative rounded-[20px]`}
+        modalOverlayStyle='!bg-black/10  '
+        modalClassName={`bg-[#121212] flex flex-col flex-start relative rounded-[20px]`}
       >
         <div className='shadow-[0px 32px 96px 0px rgba(0, 0, 0, 0.40)] inline-flex items-center rounded-[20px] bg-[#121212]'>
           {/* box 1 */}
