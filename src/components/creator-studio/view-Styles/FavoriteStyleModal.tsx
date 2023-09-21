@@ -137,7 +137,7 @@ const FavoriteStyleModal = ({closeModal, component}:FavoriteStyleModalProps) => 
             </div>
             <div className='flex flex-col gap-5 px-6 pb-6'>
                 <div className='flex flex-col gap-[14px]'>
-                    <div className='text-white text-[15px] font-semibold leading-5'>Model Details</div>
+                    <div className='text-white text-[15px] font-normal leading-5'>Model Details</div>
                     {list.map((item,index) => {
                     return(
                         <div key={index} className='flex gap-5'>
@@ -156,12 +156,12 @@ const FavoriteStyleModal = ({closeModal, component}:FavoriteStyleModalProps) => 
                 </div>
                 {component === 'FavoriteStyles' ? 
                 <div className='px-4 py-[14px] flex justify-between rounded-[12px] bg-white/[0.05]'>
-                    <div className='text-white text-[15px] font-semibold leading-5'>Generation data</div>
+                    <div className='text-white text-[15px] font-normal leading-5'>Generation data</div>
                     <Image src={arrowDown} alt={''} />
                 </div> :
                 <div className='flex flex-col px-4 py-[14px] gap-4 rounded-[12px] bg-white/[0.05]'>
                     <div className='flex items-center justify-between' onClick={() => {setGenerationData(!generationData)}}>
-                        <div className='text-white text-[15px] font-semibold leading-5'>Generation data</div>
+                        <div className='text-white text-[15px] font-normal leading-5'>Generation data</div>
                         <Image src={generationData ? arrowUp : arrowDown} alt={''} />
                     </div>
                     {generationData ? 

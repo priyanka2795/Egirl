@@ -95,7 +95,7 @@ const PostedStyleModal = ({setPostedStyleModal}:PostedStyleModalprops) => {
                 <div className='flex gap-3'>
                     <button className='w-full flex gap-2 justify-center items-center px-5 py-[13px] rounded-[14px] bg-white/[0.08]'>
                         <Image src={pen} alt={''} />
-                        <div className='text-white text-[16px] font-bold leading-[22px]'>Edit Style</div>
+                        <div className='text-white text-[16px] font-normal leading-[22px]'>Edit Style</div>
                     </button>
                     <button className='flex w-max p-[14px] rounded-[14px] bg-white/[0.08] justify-center items-center'>
                         <Image className='object-contain' src={heart} alt={''} />
@@ -104,7 +104,7 @@ const PostedStyleModal = ({setPostedStyleModal}:PostedStyleModalprops) => {
                 </div>
                 <div className='flex flex-col gap-5 pb-6'>
                 <div className='flex flex-col gap-[14px]'>
-                <div className='text-white text-[15px] font-semibold leading-5'>Model Details</div>
+                <div className='text-white text-[15px] font-normal leading-5'>Model Details</div>
                 {list.map((item,index) => {
                 return(
                     <div key={index} className='flex gap-5'>
@@ -118,7 +118,7 @@ const PostedStyleModal = ({setPostedStyleModal}:PostedStyleModalprops) => {
             })}
                 </div>
                 <div className='px-4 py-[14px] flex justify-between rounded-[12px] bg-white/[0.05]'>
-                    <div className='text-white text-[15px] font-semibold leading-5'>Generation data</div>
+                    <div className='text-white text-[15px] font-normal leading-5'>Generation data</div>
                     <Image src={arrowDown} alt={''} />
                 </div>
                 </div>
