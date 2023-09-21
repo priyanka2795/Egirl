@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
-import avtar from '../../../public/assets/avatar.png';
+import avtar from '../../../public/assets/mica-chan-avatar-image.png';
 import arrowDown from '../../../public/assets/arrow-down.png';
 // import ChartIcon from '../../../public/assets/Chart.svg';
 import SidebarMenuItem from '@components/common/Sidebar/SidebarMenuItem';
@@ -44,23 +44,23 @@ const CreatorStudioSidebar = ({
             className='flex cursor-pointer items-center justify-between py-[14px] pl-3 pr-4'
             onClick={() => setSidebarModal(true)}
           >
-            <div className='relative flex w-full items-center gap-2'>
+            <div className='relative flex items-center w-full gap-2'>
               <div className='h-[32px] w-[32px]'>
                 <Image
                   src={avtar}
                   alt=''
-                  className='h-[32px] w-[32px] object-cover'
+                  className='h-[32px] w-[32px] rounded-[100px] object-cover'
                 />
               </div>
               <div
-                className={`text-[18px] font-medium ${shrinkSideBar === true ? '!hidden' : ''
+                className={`text-white text-[15px] font-semibold leading-5 ${shrinkSideBar === true ? '!hidden' : ''
                   }`}
               >
                 Mika-chan
               </div>
               {sidebarModal && <SidebarModal SetSidebarModal={setSidebarModal} />}
             </div>
-            <div className='mt-2 h-full'>
+            <div className='h-full mt-2'>
               <Image src={arrowDown} alt='' />
             </div>
           </div>
@@ -86,7 +86,7 @@ const CreatorStudioSidebar = ({
             <div
               className={`${shrinkSideBar === true
                   ? 'hidden'
-                  : 'text-[13px] font-semibold uppercase leading-tight tracking-tight text-neutral-600 '
+                  : 'text-[13px] font-semibold uppercase leading-5 tracking-tight text-neutral-600 '
                 }`}
             >
               Images
@@ -124,7 +124,7 @@ const CreatorStudioSidebar = ({
               }`}
           >
             <div
-              className={`text-[13px] font-semibold uppercase leading-tight tracking-tight text-neutral-600 ${shrinkSideBar === true ? 'hidden' : ''
+              className={`text-[13px] font-semibold uppercase leading-5 tracking-tight text-neutral-600 ${shrinkSideBar === true ? 'hidden' : ''
                 }`}
             >
               Chatbot
@@ -231,7 +231,7 @@ const CreatorStudioSidebar = ({
               <MoreIcon />
             </div>
             <p
-              className={`text-[15px] font-semibold text-white ${shrinkSideBar === true ? '!hidden' : 'w-full'
+              className={`text-white text-[15px] font-semibold leading-5 ${shrinkSideBar === true ? '!hidden' : 'w-full'
                 }`}
             >
               More

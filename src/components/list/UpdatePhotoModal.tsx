@@ -8,16 +8,19 @@ import PreviewProfile from './PreviewProfile';
 interface UpdatePhotoProps {
   closeModalState: any;
   closeDropdown: any;
+  image: any;
+  setImage: any;
 }
 
 const defaultSrc =
   'https://raw.githubusercontent.com/roadmanfong/react-cropper/master/example/img/child.jpg';
 const UpdatePhotoModal = ({
   closeModalState,
-  closeDropdown
+  closeDropdown,
+  image,
+  setImage
 }: UpdatePhotoProps) => {
   const [isPreview, setIsPreview] = useState(false);
-  const [image, setImage] = useState('');
   const [cropData, setCropData] = useState('');
   const cropperRef = createRef<ReactCropperElement>();
 
@@ -89,7 +92,7 @@ const UpdatePhotoModal = ({
               autoCropArea={1}
               checkOrientation={false}
               guides={true}
-              className='h-full w-full'
+              className='w-full h-full'
             />
           </div>
         )}

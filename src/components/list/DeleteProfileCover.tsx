@@ -5,10 +5,12 @@ import CloseIcon from '../../../public/assets/svgImages/close-icon.svg';
 interface DeleteCollectionModalProp {
   closeDeleteModal: any;
   closeDropdown: any;
+  setRemoveCover:any;
 }
 const DeleteProfileCover = ({
   closeDeleteModal,
-  closeDropdown
+  closeDropdown,
+  setRemoveCover
 }: DeleteCollectionModalProp) => {
   return (
     <Modal
@@ -35,14 +37,14 @@ const DeleteProfileCover = ({
           </div>
         </div>
 
-        <div className='flex w-full items-center gap-4 px-6 pb-3 pt-6'>
+        <div className='flex items-center w-full gap-4 px-6 pt-6 pb-3'>
           <p className='mx-auto w-full max-w-[290px] text-center text-base'>
             Are you sure you want to delete your profile cover?
           </p>
         </div>
 
-        <div className='w-full px-6 pb-6 pt-5'>
-          <div className='w-ful flex gap-3'>
+        <div className='w-full px-6 pt-5 pb-6'>
+          <div className='flex gap-3 w-ful'>
             <button
               className='w-1/2 rounded-[14px] border border-white/[32] px-[20px] py-[11px] text-base font-bold'
               onClick={() => {
@@ -54,7 +56,7 @@ const DeleteProfileCover = ({
             <button
               className='w-1/2 rounded-[14px] bg-[#5848BC] px-[20px] py-[11px] text-base font-bold text-white'
               onClick={() => {
-                closeDeleteModal(false), closeDropdown(false);
+                closeDeleteModal(false), closeDropdown(false), setRemoveCover(true);
               }}
             >
               Delete

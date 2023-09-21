@@ -70,7 +70,7 @@ const MarketPlaceCards = () => {
       <div className='grid grid-cols-3 gap-3'>
         {exploreGallery.map((items) => {
           return (
-            <div className='relative cursor-pointer gallery-card-collection sub-banner group'>
+            <div className='relative cursor-pointer gallery-card-collection sub-banner group max-h-[346px]'>
               <Image
                 src={items.mainImg}
                 alt=''
@@ -86,7 +86,7 @@ const MarketPlaceCards = () => {
                       alt=''
                     />
                   </div>
-                  <div className='text-[15px] font-semibold text-white'>
+                  <div className='text-[15px] font-semibold leading-5 text-white'>
                     {items.userName}
                   </div>
                 </div>
