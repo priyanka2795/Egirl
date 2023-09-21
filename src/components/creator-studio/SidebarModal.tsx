@@ -13,8 +13,8 @@ import blank from '../../components/creator-studio/svg/blank.svg';
 import CharacterAdd from './NewCharacter/CharacterAdd';
 
 interface SidebarModals {
-  // shrinkSideBar: boolean;
-  // setShrinkSideBar: React.Dispatch<React.SetStateAction<boolean>>;
+  shrinkSideBar: boolean;
+  setShrinkSideBar: React.Dispatch<React.SetStateAction<boolean>>;
   SetSidebarModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -34,8 +34,8 @@ const sidebarModal = [
 ];
 
 const SidebarModal = ({
-  // shrinkSideBar,
-  // setShrinkSideBar,
+  shrinkSideBar,
+  setShrinkSideBar,
   SetSidebarModal
 }: SidebarModals) => {
 
@@ -44,7 +44,7 @@ const SidebarModal = ({
 
   return (
     <div className={`top-[131px] mt-2 flex h-max w-[260px] flex-col rounded-[14px] bg-[#1A1A1A] px-0 pb-3 pt-2 fixed z-10 -ml-1`}>
-      {/* <div className='px-6 py-[14px]'>
+      <div className='px-6 py-[14px]'>
         <div className='flex gap-[10px] '>
           <div className='h-8 h-max w-8 items-center justify-center rounded-full bg-white/[0.08] p-2'>
             <div className='w-4 h-4 overflow-hidden rounded-full'>
@@ -67,7 +67,7 @@ const SidebarModal = ({
           </div>
 
         </div>
-      </div> */}
+      </div>
 
       {sidebarModal.map((item) => {
         return (

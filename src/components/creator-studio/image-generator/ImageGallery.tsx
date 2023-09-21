@@ -38,6 +38,7 @@ const ImageGallery = () => {
   ];
   const tabContent = ['Prompt', 'Negative prompt'];
   const [exploreSelectedTab, setExploreSelected] = useState('Prompt');
+  const [selectImage, setSelectImage] = useState('')
 
   const handleExploreSelected = (e: any) => {
     setExploreSelected(e.target.innerText);
@@ -131,11 +132,11 @@ const ImageGallery = () => {
             }
             return (
               <div
-                
-                className='group relative flex h-[174px] w-[175px] cursor-pointer justify-center overflow-hidden  rounded-xl bg-white/[0.05]  hover:bg-[#5848BC] '
+                onClick={()=>setSelectImage(item.name)}
+                className={`relative flex h-[174px] w-[175px] cursor-pointer justify-center overflow-hidden  rounded-xl bg-white/[0.05] ${selectImage  === item.name ? 'bg-[#5848BC]' :'' }  `}
               >
                 <div
-                  className={`flex  items-center rounded-t-sm p-0.5 group-hover:bg-[#5848BC] ${
+                  className={`flex  items-center rounded-t-sm p-0.5 ${selectImage  === item.name ? 'bg-[#5848BC]' :'' }  ${
                     item.name === 'None'
                       ? 'h-[calc(100%-43.5px)] w-full justify-center'
                       : ''
@@ -147,8 +148,8 @@ const ImageGallery = () => {
                     <Image src={ExpandIcon} className='w-full h-full' />
                 </div>
 
-                <div className='focus:ring-violet-[#5848BC] absolute bottom-0 top-3/4 flex w-full items-center justify-center gap-2.5 bg-black/[0.80] p-2  focus:outline-none focus:ring active:bg-[#5848BC] group-hover:bg-[#5848BC]'>
-                  <div className='overflow-hidden text-ellipsis whitespace-nowrap text-center text-[13px] font-semibold leading-[18px] group-hover:bg-[#5848BC]'>
+                <div className={`focus:ring-violet-[#5848BC] absolute bottom-0 top-3/4 flex w-full items-center justify-center gap-2.5 bg-black/[0.80] p-2  focus:outline-none focus:ring active:bg-[#5848BC] ${selectImage  === item.name ? 'bg-[#5848BC]' :'' } `}>
+                  <div className={`overflow-hidden text-ellipsis whitespace-nowrap text-center text-[13px] font-semibold leading-[18px] ${selectImage  === item.name ? 'bg-[#5848BC]' :'' } `}>
                     {item.name}
                   </div>
                 </div>
