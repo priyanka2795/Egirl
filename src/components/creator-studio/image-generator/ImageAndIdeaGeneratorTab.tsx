@@ -134,7 +134,7 @@ const   ImageAndIdeaGeneratorTab = () => {
                   <div className='w-full' onClick={() => imageGenerationAccordion(index)}>Anime, Photoreal, Artistic, Fantasy, Blue Jeans</div>
                   <div className='flex items-center gap-1 '>
                     <div className='relative'>
-                      <button onClick={() => ImageGenerationMenu(index)}><Image src={Dots} /></button>
+                      <button onClick={() => ImageGenerationMenu(index)}><Image src={Dots} alt={''} /></button>
                       {imageGenerationToggle === index &&
                         <div className='bg-[#1A1A1A] p-4 flex flex-col gap-3 rounded-[14px] w-[218px] absolute right-0 top-8 z-50' >
                           <button className='flex items-center gap-2' onClick={() => { setEditImageGeneration(true), setImageGenerationToggle(null) }}>

@@ -140,8 +140,8 @@ const VIMainImageBlock = ({ ToggleMenu, SetAlbumImages }: VIMainImageBlock) => {
         <>
           <div className='grid grid-cols-3 gap-3' ref={dropdownRef}>
             {album.map((item) => (
-              <div key={item.id} className='relative w-full h-full group sub-banner' >
-                <Image className='object-cover w-full ' src={item.image} alt={''} />
+              <div key={item.id} className='relative w-full h-full overflow-hidden rounded-[16px] group sub-banner max-h-[412px] max-w-[412px]' >
+                <Image className='object-cover w-full rounded-[16px]' src={item.image} alt={''} />
                 <div className=' absolute bottom-0 bg-gradient-to-t to-[#00000000] from-[#000000CC] h-[150px] w-full px-5 pb-3 font-semibold flex'  >
                   <div className='flex items-end justify-between w-full '>
                     <p className='cursor-pointer ' onClick={() => SetAlbumImages(true)}>{item.albumName}</p>

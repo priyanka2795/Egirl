@@ -113,7 +113,9 @@ const Banner = ({
   const [deleteProfileModalState, setDeleteProfileModalState] = useState(false);
   const [viewModal, setviewModal] = useState(false);
   const [removeCover, setRemoveCover] = useState(false);
-  const [image, setImage] = useState(Cover);
+  const [image, setImage] = useState('');
+  const [cropData, setCropData] = useState('');
+  const [updatedProfile, setUpdatedProfile] = useState(false);
 
   const handleExploreSelected = (e: any) => {
     setExploreSelected(e.target.innerText);
@@ -164,7 +166,9 @@ const Banner = ({
           <div className='relative block w-full sub-banner'>
             {removeCover ? 
             <div className='w-[1092px] h-[200px] bg-[#121212]'></div> : 
-            <Image className='w-full h-full ' src={image} alt='' />
+            updatedProfile ? 
+            <img className='w-[1092px] h-[200px] ' src={cropData} alt='' /> :
+            <Image className='w-full h-full ' src={Cover} alt='' />
             }
             <div className='absolute right-[20px] top-[20px] cursor-pointer'>
               <Image
@@ -354,6 +358,9 @@ const Banner = ({
           closeDropdown={setUploadPhotoShow}
           image={image}
           setImage={setImage}
+          cropData={cropData}
+          setCropData={setCropData}
+          setUpdatedProfile={setUpdatedProfile}
         />
       )}
 

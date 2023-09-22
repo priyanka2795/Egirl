@@ -10,6 +10,9 @@ interface UpdatePhotoProps {
   closeDropdown: any;
   image: any;
   setImage: any;
+  cropData: any;
+  setCropData: any;
+  setUpdatedProfile: any;
 }
 
 const defaultSrc =
@@ -18,10 +21,12 @@ const UpdatePhotoModal = ({
   closeModalState,
   closeDropdown,
   image,
-  setImage
+  setImage,
+  cropData,
+  setCropData,
+  setUpdatedProfile
 }: UpdatePhotoProps) => {
   const [isPreview, setIsPreview] = useState(false);
-  const [cropData, setCropData] = useState('');
   const cropperRef = createRef<ReactCropperElement>();
 
   const handleShowPreview = () => {
@@ -30,6 +35,25 @@ const UpdatePhotoModal = ({
         setCropData(cropperRef.current?.cropper.getCroppedCanvas().toDataURL());
       }
       setIsPreview(true);
+    }
+  };
+
+  const handleSaveButton = () => {
+    if(isPreview) {
+      closeModalState(false);
+      closeDropdown(false);
+      setUpdatedProfile(true);
+    } else {
+      closeModalState(false);
+      closeDropdown(false);
+      setUpdatedProfile(true);
+
+      if (image) {
+        if (typeof cropperRef.current?.cropper !== 'undefined') {
+          setCropData(cropperRef.current?.cropper.getCroppedCanvas().toDataURL());
+        }
+      // setIsPreview(true);
+      }
     }
   };
 
@@ -135,9 +159,7 @@ const UpdatePhotoModal = ({
 
           <button
             className='flex items-center justify-center rounded-xl bg-[#5848BC] px-4 py-[10px] text-[14px] font-bold text-[#FFFFFF]'
-            onClick={() => {
-              closeModalState(false), closeDropdown(false);
-            }}
+            onClick={handleSaveButton}
           >
             Save
           </button>
