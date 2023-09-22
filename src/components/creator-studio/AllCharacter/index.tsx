@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import plusIcon from '../../../../public/assets/plus-large.png';
 import Image from 'next/image';
 import AvtarLarge from '../../../../public/assets/AvatarLarge.png';
@@ -8,7 +8,7 @@ import avtar4 from '../../../../public/assets/Avatar 4.png';
 import palette from '../../../../public/assets/palette.png';
 import dotsHorizontal from '../../../../public/assets/dots-horizontal.png';
 import userpic from '../../../components/creator-studio/svg/user-alt-1.png';
-
+import CharacterAdd from '../NewCharacter/CharacterAdd';
 const data = [
   {
     name: 'Mika-chan',
@@ -39,7 +39,10 @@ const data = [
     pic: avtar4
   }
 ];
+
 const Create = () => {
+  const [newCharacter, setNewCharacter] = useState(false);
+
   return (
     <div>
       {/* Heading */}
@@ -49,10 +52,16 @@ const Create = () => {
           <h6 className='font-[18px] font-bold leading-6 text-[#515151]'>4</h6>
         </div>
 
-        <button className='mr-4 flex items-center justify-center gap-1.5 self-stretch rounded-xl bg-[#5848BC] px-4 py-2.5 text-sm font-bold leading-5 '>
+        <button
+          onClick={() => {
+            setNewCharacter(true);
+          }}
+          className='mr-4 flex items-center justify-center gap-1.5 self-stretch rounded-xl bg-[#5848BC] px-4 py-2.5 text-sm font-bold leading-5 '
+        >
           <Image className='h-full w-full' src={plusIcon} alt={''} />
           New Character
         </button>
+        {newCharacter && <CharacterAdd NewCharacterClose={setNewCharacter} />}
       </div>
       {/* row */}
       <div className='mt-[10px] flex items-start gap-5'>

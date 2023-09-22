@@ -14,7 +14,6 @@ interface CharacterAdd {
   NewCharacterClose: any;
 }
 const CharacterAdd = ({ NewCharacterClose }: CharacterAdd) => {
- 
   const { values, errors, handleBlur, touched, handleChange, handleSubmit } =
     useFormik({
       // validationSchema: signUpSchema,
@@ -25,10 +24,8 @@ const CharacterAdd = ({ NewCharacterClose }: CharacterAdd) => {
         // NewCharacterClose(false);
       }
     });
-    const nameLength = values.name.length
-    const usernameLength = values.username.length
-    console.log("values name length ",nameLength)
-    console.log("values username length ",usernameLength)
+  const nameLength = values.name.length;
+  const usernameLength = values.username.length;
   return (
     <Modal
       open={true}
@@ -40,8 +37,8 @@ const CharacterAdd = ({ NewCharacterClose }: CharacterAdd) => {
         <div className='w-full gap-1 text-lg font-bold leading-6'>
           Add New Character
         </div>
-        <div className='w-6 h-6' >
-          <Cross onClick={() => NewCharacterClose(false)}/>
+        <div className='h-6 w-6'>
+          <Cross onClick={() => NewCharacterClose(false)} />
         </div>
       </div>
       <form onSubmit={handleSubmit}>
@@ -58,8 +55,14 @@ const CharacterAdd = ({ NewCharacterClose }: CharacterAdd) => {
                       
                            </input>
                        </div> */}
-                       {/* errors.name && touched.name  */}
-              <div className={nameLength==0 && touched.name ? "border border-[#FF5336] flex w-full flex-col gap-[10px] rounded-[14px] bg-white/[0.05] px-4 py-3":'flex w-full flex-col gap-[10px] rounded-[14px] bg-white/[0.05] px-4 py-3'}>
+              {/* errors.name && touched.name  */}
+              <div
+                className={
+                  nameLength == 0 && touched.name
+                    ? 'flex w-full flex-col gap-[10px] rounded-[14px] border border-[#FF5336] bg-white/[0.05] px-4 py-3'
+                    : 'flex w-full flex-col gap-[10px] rounded-[14px] bg-white/[0.05] px-4 py-3'
+                }
+              >
                 <input
                   name='name'
                   placeholder='ex. Mika-chan'
@@ -70,11 +73,10 @@ const CharacterAdd = ({ NewCharacterClose }: CharacterAdd) => {
                   onBlur={handleBlur}
                   className='border-none bg-transparent p-0 text-[15px] font-normal leading-6 text-[#979797] focus:ring-0 '
                 />
-
               </div>
-              {nameLength==0 && touched.name ? (
-                  <p className='text-[#FF5336] '>{errors.name}</p>
-                ) : null}
+              {nameLength == 0 && touched.name ? (
+                <p className='text-[#FF5336] '>{errors.name}</p>
+              ) : null}
             </div>
 
             {/* username */}
@@ -82,10 +84,15 @@ const CharacterAdd = ({ NewCharacterClose }: CharacterAdd) => {
               <div className='self-stretch text-[13px] font-semibold leading-[18px] text-[#979797]'>
                 Username
               </div>
-                {/* errors.username && touched.username  */}
-              <div className={usernameLength==0 && touched.username ? "border border-[#FF5336] flex w-full flex-col gap-[10px] rounded-[14px] bg-white/[0.05] px-4 py-3":'flex w-full flex-col gap-[10px] rounded-[14px] bg-white/[0.05] px-4 py-3'}>
+              {/* errors.username && touched.username  */}
+              <div
+                className={
+                  usernameLength == 0 && touched.username
+                    ? 'flex w-full flex-col gap-[10px] rounded-[14px] border border-[#FF5336] bg-white/[0.05] px-4 py-3'
+                    : 'flex w-full flex-col gap-[10px] rounded-[14px] bg-white/[0.05] px-4 py-3'
+                }
+              >
                 <input
-                  
                   name='username'
                   autoComplete='off'
                   value={values.username}
@@ -95,23 +102,25 @@ const CharacterAdd = ({ NewCharacterClose }: CharacterAdd) => {
                   type='text'
                   className='border-none bg-transparent p-0 text-[15px] font-normal leading-6 text-[#979797] focus:ring-0 '
                 />
-                
               </div>
-              {usernameLength==0 && touched.username ? (
-                  <p className='text-[#FF5336] text-sm font-normal leading-[18px]'>{errors.username}</p>
-                ) : null}
+              {usernameLength == 0 && touched.username ? (
+                <p className='text-sm font-normal leading-[18px] text-[#FF5336]'>
+                  {errors.username}
+                </p>
+              ) : null}
             </div>
 
             {/* buttons */}
-            <div className='flex items-start self-stretch gap-3 '>
-              <button 
-              onClick={()=>NewCharacterClose(false)}
-              className='w-[50%] h-12 items-center gap-2 rounded-[14px] border border-white/[0.32] px-5 py-[13px] text-base font-bold leading-[22px]'>
+            <div className='flex items-start gap-3 self-stretch '>
+              <button
+                onClick={() => NewCharacterClose(false)}
+                className='h-12 w-[50%] items-center gap-2 rounded-[14px] border border-white/[0.32] px-5 py-[13px] text-base font-bold leading-[22px]'
+              >
                 Cancel
               </button>
               <button
                 type='submit'
-                className='w-[50%] h-12 items-center gap-2 rounded-[14px] bg-[#5848BC]  px-5 py-[13px] text-base font-bold leading-[22px]'
+                className='h-12 w-[50%] items-center gap-2 rounded-[14px] bg-[#5848BC]  px-5 py-[13px] text-base font-bold leading-[22px]'
               >
                 Create
               </button>
