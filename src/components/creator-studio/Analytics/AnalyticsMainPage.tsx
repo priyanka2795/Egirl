@@ -20,12 +20,137 @@ import poland from '../../../../public/assets/poland.png';
 import spain from '../../../../public/assets/spain.png';
 import china from '../../../../public/assets/china.png';
 import arrowDownSolid from '../../../../public/assets/down-arrow-img.png';
-
+import arrowNarrowRight from '../../../../public/assets/arrow-narrow-right.png';
 import ConvertCreditsModal from '@components/Referrals/ConvertCreditsModal';
 import ConfirmConversionModal from '@components/Referrals/ConfirmConversionModal';
 import ErrorModal from './ErrorModal';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import SelectIcon from '../svg/short_select.svg';
+import UnSelectIcon from '../svg/short_border.svg';
+
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend
+} from 'recharts';
+import { type } from 'os';
+
+const month = [
+  { name: 'JAN' },
+  { name: 'FEB' },
+  { name: 'MAR' },
+  { name: 'APR' },
+
+  { name: 'MAY' },
+  { name: 'JUN' },
+  { name: 'JUL' },
+  { name: 'AUG' },
+
+  { name: 'SEP' },
+  { name: 'OCT' },
+  { name: 'NOV' },
+  { name: 'DEC' }
+];
+
+const amount = [
+  { name: '150k' },
+  { name: '100k' },
+  { name: '50k' },
+  { name: '10k' },
+  { name: '1k' }
+];
+
+const types = [
+  'All',
+  'Subs',
+  'Request',
+  'Gifts',
+  'General chatting',
+  'Style roaylties'
+];
+
+const data = [
+  {
+    // name: 'JAN',
+
+    pv: 9000,
+    qv: 1000,
+    rv: 4000,
+    sv: 4000,
+    uv: 4000
+  },
+  {
+    // name: 'FEB',
+    uv: 3000,
+    pv: 1398,
+    amt: 2210
+  },
+  {
+    // name: 'MAR',
+    uv: 2000,
+    pv: 9800,
+    amt: 2290
+  },
+  {
+    // name: 'APR',
+    uv: 2780,
+    pv: 3908,
+    amt: 2000
+  },
+  {
+    // name: 'MAY',
+    uv: 1890,
+    pv: 4800,
+    amt: 2181
+  },
+  {
+    // name: 'JUN',
+    uv: 2390,
+    pv: 3800,
+    amt: 2500
+  },
+  {
+    // name: 'JUL',
+    uv: 3490,
+    pv: 4300,
+    amt: 2100
+  },
+  {
+    // name: 'AUG',
+    uv: 3490,
+    pv: 4300,
+    amt: 2100
+  },
+  {
+    // name: 'SEP',
+    uv: 3490,
+    pv: 4300,
+    amt: 2100
+  },
+  {
+    // name: 'OCT',
+    uv: 3490,
+    pv: 4300,
+    amt: 2100
+  },
+  {
+    // name: 'NOV',
+    uv: 3490,
+    pv: 4300,
+    amt: 2100
+  },
+  {
+    // name: 'DEC',
+    uv: 3490,
+    pv: 4300,
+    amt: 2100
+  }
+];
 
 const accountAnalytics = [
   {
@@ -134,48 +259,48 @@ const countries = [
   }
 ];
 
-const progressBarData= [
-    {
-        id:1,
-        color: "#403BAC",
-        title: "Subs",
-        amount: "$10,128",
-        percent: '25%',
-        width: "47%"
-    },
-    {
-        id:2,
-        color: "#4F43B6",
-        title: "Requests",
-        amount: "$12k",
-        percent: '12.5%',
-        width:"17%",
-    },
-    {       
-        id:3,
-        color: "#5848BC",
-        title: "Gifts",
-        amount: "$10,128",
-        percent: '8%',
-        width:'17%'
-    },
-    {
-        id:4,
-        color: "#7362C6",
-        title: "General chatting",
-        amount: "$10,128",
-        percent: '4%',
-        width:'10%',
-    },
-    {
-        id:5,
-        color: "#8C7DD0",
-        title: "Style royalties",
-        amount: "$10,128",
-        percent: '<1%',
-        width:'9%'
-    }
-]
+const progressBarData = [
+  {
+    id: 1,
+    color: '#403BAC',
+    title: 'Subs',
+    amount: '$10,128',
+    percent: '25%',
+    width: '47%'
+  },
+  {
+    id: 2,
+    color: '#4F43B6',
+    title: 'Requests',
+    amount: '$12k',
+    percent: '12.5%',
+    width: '17%'
+  },
+  {
+    id: 3,
+    color: '#5848BC',
+    title: 'Gifts',
+    amount: '$10,128',
+    percent: '8%',
+    width: '17%'
+  },
+  {
+    id: 4,
+    color: '#7362C6',
+    title: 'General chatting',
+    amount: '$10,128',
+    percent: '4%',
+    width: '10%'
+  },
+  {
+    id: 5,
+    color: '#8C7DD0',
+    title: 'Style royalties',
+    amount: '$10,128',
+    percent: '<1%',
+    width: '9%'
+  }
+];
 const colors = [
   '#272727',
   '#232323',
@@ -200,6 +325,12 @@ const AnalyticsMainPage = () => {
     setShowConfirmModal(false), toast.success('Cashout successful');
   };
 
+  const [shortTab, setShortTab] = useState(1);
+
+  const SelectShort = (index: any) => {
+    setShortTab(index);
+  };
+
   return (
     <>
       <div className='flex flex-col'>
@@ -212,7 +343,7 @@ const AnalyticsMainPage = () => {
           Account Analytics
         </div>
 
-        <div className='grid grid-cols-3 gap-4 mt-6'>
+        <div className='mt-6 grid grid-cols-3 gap-4'>
           {accountAnalytics.map((item, index) => {
             return (
               <div
@@ -233,9 +364,9 @@ const AnalyticsMainPage = () => {
                   </div>
                   <div className='flex gap-3'>
                     <div className='flex gap-1'>
-                      <div className='w-5 h-5'>
+                      <div className='h-5 w-5'>
                         <Image
-                          className='w-full h-full'
+                          className='h-full w-full'
                           src={showChanges ? item.image : arrowRight}
                           alt={''}
                         />
@@ -260,9 +391,10 @@ const AnalyticsMainPage = () => {
           })}
         </div>
 
-        <div className='flex gap-4 mt-4'>
-          <div className='flex flex-col w-2/3 gap-4'>
-            <div className='flex flex-col gap-2 rounded-[16px] bg-[#121212] p-5'>
+        <div className='mt-4 flex gap-4'>
+          <div className='flex w-2/3 flex-col gap-4'>
+            <div className='flex  flex-col gap-2 rounded-[16px] bg-[#121212] p-5'>
+              {/* top */}
               <div className='flex items-center justify-between'>
                 <div className='flex items-center gap-3'>
                   <div className='flex rounded-[100px] bg-white/[0.08] p-2'>
@@ -274,249 +406,221 @@ const AnalyticsMainPage = () => {
                 </div>
                 <div className='flex gap-2'>
                   <div className='text-[15px] font-normal leading-5 text-white'>
-                    Month
+                    Year
                   </div>
                   <Image src={arrowDown} alt={''} />
                 </div>
               </div>
-              <div className='flex flex-col gap-5'>
-                <div className='flex flex-col gap-1'>
-                  <div className='flex flex-col gap-2'>
-                    <div className='text-center text-[13px] font-normal leading-[18px] text-[#979797]'>
-                      Total earnings
-                    </div>
-                    <div className='leading-[48px] text-center text-[36px] font-bold text-white'>
-                      {showChanges ? '$42,726' : '$0'}
-                    </div>
-                  </div>
-                  <div className='flex items-center justify-center gap-3'>
-                    <div className='flex gap-1'>
-                      <Image
-                        src={showChanges ? greenArrowUp : arrowRight}
-                        alt={''}
-                      />
-                      <div
-                        className={`${
-                          showChanges ? 'text-[#5AD02E]' : 'text-[#979797]'
-                        } text-[15px] font-normal leading-5`}
-                      >
-                        {showChanges ? '20.7%' : '0%'}
+              {/* bottom */}
+              <div className='flex flex-col items-start gap-8 self-stretch'>
+                {/* values */}
+                <div className='flex items-start justify-between self-stretch'>
+                  {/* total revenue */}
+                  <div className='flex flex-col items-start gap-1 '>
+                    <div className='flex	 flex-col items-start gap-0.5'>
+                      <label className='text-[13px] font-normal leading-[18px] text-[#979797]'>
+                        Total Revenue
+                      </label>
+                      <div className='text-4xl font-bold leading-[48px]'>
+                        {showChanges ? '$42,726' : '$0'}
                       </div>
                     </div>
-                    <div className='text-[15px] font-normal leading-5 text-white'>
-                      {showChanges
-                        ? '+ $7k earnings this month'
-                        : '$0 earnings this month'}
+                    <div className='flex items-center gap-3'>
+                      <div className='flex items-center gap-1'>
+                        <div className='h-5 w-5'>
+                          {showChanges ? (
+                            <Image src={greenArrowUp} />
+                          ) : (
+                            <Image src={arrowNarrowRight} />
+                          )}
+                        </div>
+                        {showChanges ? (
+                          <div className='text-[15px] font-normal leading-5 text-[#5AD02E]'>
+                            20.7%
+                          </div>
+                        ) : (
+                          <div className='text-[15px] font-normal leading-5 text-[#979797]'>
+                            0%
+                          </div>
+                        )}
+                      </div>
+                      <div className='text-[15px] font-normal leading-5'>
+                        {showChanges
+                          ? '+ $7k earnings this month'
+                          : '+ $0 earnings this month'}
+                      </div>
                     </div>
+                  </div>
+                  {/* available cash */}
+                  <div className='flex items-center gap-[50px] self-stretch border-l border-white/[0.08] border-l-white/[0.08] pl-0'>
+                    <div className='flex flex-col items-start gap-1 pl-10'>
+                      <label className='font-[13px] font-normal leading-[18px] text-[#979797]'>
+                        Available to cashout
+                      </label>
+                      <div className='flex items-center gap-2'>
+                        <div className='text-3xl font-bold leading-10'>
+                          {showChanges ? '$22,121.5' : '$0'}
+                        </div>
+                      </div>
+                    </div>
+                    <button className='items-center justify-center gap-1.5 rounded-xl bg-[#5848BC] px-4	py-2.5'>
+                      <div className='text-[14px] font-bold leading-5'>
+                        Cash out
+                      </div>
+                    </button>
                   </div>
                 </div>
+                {/* graph */}
+                <div className='flex items-start gap-3 self-stretch'>
+                  {/* amount */}
+                  <div className='mt-4 flex h-[174px] flex-col items-end justify-between text-[#979797]'>
+                    {amount.map((data) => {
+                      return (
+                        <div className='text-center text-[11px] font-bold uppercase leading-4 tracking-[0.3px]'>
+                          {data.name}
+                        </div>
+                      );
+                    })}
+                  </div>
+                  {/* dates graph */}
+                  <div className='flex flex-col items-start gap-4 '>
+                    {/* graph */}
+                    <div className='flex h-[174px] flex-col items-center justify-center self-stretch'>
+                      {showChanges ? (
+                        <div className=''>
+                          <div className=''>
+                            <BarChart
+                              width={620}
+                              height={300}
+                              data={data}
+                              margin={{
+                                top: 20,
+                                right: 30,
+                                left: 10,
+                                bottom: 24
+                              }}
+                            >
+                              {/* <CartesianGrid /> */}
+                              <XAxis dataKey='name' />
+                              {/* <YAxis /> */}
+                              <Tooltip />
+                              {/* <Legend /> */}
+                              <Bar
+                                dataKey='pv'
+                                stackId='a'
+                                fill='#996BE0'
+                                radius={[0, 0, 5, 5]}
+                              />
+                              <Bar dataKey='pv' stackId='a' fill='#E295F9' />
+                              <Bar dataKey='pv' stackId='a' fill='#779DF8' />
+                              <Bar dataKey='uv' stackId='a' fill='#EFAC6A' />
+                              <Bar
+                                dataKey='pv'
+                                stackId='a'
+                                fill='#E2F47A'
+                                radius={[5, 5, 0, 0]}
+                              />
+                            </BarChart>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className='mt-9 flex  w-[600px] flex-col items-start gap-10'>
+                          <div className='h-px w-[100%] shrink-0 self-stretch bg-white/[0.08]'></div>
+                          <div className='h-px w-[100%] shrink-0 self-stretch bg-white/[0.08]'></div>
+                          <div className='h-px w-[100%] shrink-0 self-stretch bg-white/[0.08]'></div>
+                          <div className='h-px w-[100%] shrink-0 self-stretch bg-white/[0.08]'></div>
+                          <div className='h-px w-[100%] shrink-0 self-stretch bg-white/[0.08]'></div>
+                        </div>
+                      )}
+                    </div>
+                    {showChanges ? (
+                      <div>
+                        {/* bottom line */}
+                        <div className='ml-5 mt-4 flex items-center gap-[26px] self-stretch'>
+                          {month.map((data) => {
+                            return (
+                              <div className='text-[11px] font-bold uppercase leading-4 tracking-[0.3px] text-[#979797]'>
+                                {data.name}
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    ) : (
+                      <></>
+                    )}
+                  </div>
+                </div>
+                {/* here  */}
                 {showChanges ? (
-                  <div className='flex h-[32px] items-center rounded-[100px] text-[12px] font-semibold leading-4 text-white'>
-                   { progressBarData.map((item) =>{
-                    return(
-                        <div key={item.id}
-                        className={`group cursor-pointer relative w-[${item.width}] first:rounded-bl-[8px] first:rounded-tl-[8px] last:rounded-br-[8px] last:rounded-tr-[8px] bg-[${item.color}] py-1 text-center hover:rounded-b-[8px] hover:rounded-t-[8px] hover:bg-[${item.color}] hover:py-2`}
-                        onMouseEnter={() => setShowUpdatedFilterInBar(`${item.title}`)}
-                      >                           
-                        {item.percent}
-                        <div className='invisible absolute left-0 top-[-63px] w-full opacity-0 group-hover:visible group-hover:opacity-[100]'>
-                          <div className='mx-[auto] w-max rounded-[12px] bg-[#272727] px-[14px] py-3'>
-                            <h6 className='text-xs text-[#979797]'>{item.title}</h6>
-                            <p className='text-sm font-bold'>{item.amount}</p>
-                          </div>
-                          <div className='-mt-[6px]'>
-                            <Image
-                              src={arrowDownSolid}
-                              className='object-contain'
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    )
-                   })}
+                  <div className='flex flex-col'>
+                    <div className='mt-2 flex items-center justify-center gap-6 self-stretch'>
+                      {/* item */}
 
-                    {/* <div
-                      className='group relative w-[47%] rounded-bl-[8px] rounded-tl-[8px] bg-[#403BAC] py-1 text-center hover:rounded-b-[8px] hover:rounded-t-[8px] hover:bg-[#403BAC] hover:py-2'
-                      onMouseEnter={() => setShowUpdatedFilterInBar('Subs')}
-                    >
-                      25%
-                      <div className='invisible absolute left-0 top-[-63px] w-full opacity-0 group-hover:visible group-hover:opacity-[100]'>
-                        <div className='mx-[auto] w-max rounded-[12px] bg-[#272727] px-[14px] py-3'>
-                          <h6 className='text-xs text-[#979797]'>Subs</h6>
-                          <p className='text-sm font-bold'>$10,128</p>
-                        </div>
-                        <div className='-mt-[6px]'>
-                          <Image
-                            src={arrowDownSolid}
-                            className='object-contain'
-                          />
-                        </div>
+                      <div className='flex items-center gap-2'>
+                        <div
+                          className={`h-2.5 w-4 rounded-sm bg-[#E295F9]`}
+                        ></div>
+                        <label className='text-[13px] font-normal leading-[18px]'>
+                          Subs
+                        </label>
+                      </div>
+                      <div className='flex items-center gap-2'>
+                        <div
+                          className={`h-2.5 w-4 rounded-sm bg-[#E295F9]`}
+                        ></div>
+                        <label className='text-[13px] font-normal leading-[18px]'>
+                          Requests
+                        </label>
+                      </div>
+                      <div className='flex items-center gap-2'>
+                        <div
+                          className={`h-2.5 w-4 rounded-sm bg-[#779DF8]`}
+                        ></div>
+                        <label className='text-[13px] font-normal leading-[18px]'>
+                          Gifts
+                        </label>
+                      </div>
+                      <div className='flex items-center gap-2'>
+                        <div
+                          className={`h-2.5 w-4 rounded-sm bg-[#EFAC6A]`}
+                        ></div>
+                        <label className='text-[13px] font-normal leading-[18px]'>
+                          General chatting
+                        </label>
+                      </div>
+                      <div className='flex items-center gap-2'>
+                        <div
+                          className={`h-2.5 w-4 rounded-sm bg-[#E2F47A]`}
+                        ></div>
+                        <label className='text-[13px] font-normal leading-[18px]'>
+                          Style royalties
+                        </label>
                       </div>
                     </div>
+                    {/* types */}
 
-                    <div
-                      className='group relative w-[17%] bg-[#4F43B6] py-1 text-center hover:rounded-[8px] hover:bg-[#4F43B6] hover:py-2'
-                      onMouseEnter={() => setShowUpdatedFilterInBar('Requests')}
-                    >
-                      12.5%
-                      <div className='invisible absolute left-0 top-[-63px] w-full opacity-0 group-hover:visible group-hover:opacity-[100]'>
-                        <div className='mx-[auto] w-max rounded-[12px] bg-[#272727] px-[14px] py-3'>
-                          <h6 className='text-xs text-[#979797]'>Requests</h6>
-                          <p className='text-sm font-bold'>$10,128</p>
+                    <div className='mt-5 flex items-center justify-center gap-6 self-stretch '>
+                      {types.map((item, index) => (
+                        <div
+                          className='flex items-center gap-2'
+                          onClick={() => SelectShort(index)}
+                        >
+                          {shortTab == index ? (
+                            <SelectIcon />
+                          ) : (
+                            <UnSelectIcon />
+                          )}
+                          <p className='text-sm font-normal leading-[18px]'>
+                            {item}
+                          </p>
                         </div>
-                        <div className='-mt-[6px]'>
-                          <Image
-                            src={arrowDownSolid}
-                            className='object-contain'
-                          />
-                        </div>
-                      </div>
+                      ))}
                     </div>
-
-                    <div
-                      className='group relative w-[17%] bg-[#4F43B6] py-1 text-center hover:rounded-[8px] hover:bg-[#4F43B6] hover:py-2'
-                      onMouseEnter={() => setShowUpdatedFilterInBar('Gifts')}
-                    >
-                      12.5%
-                      <div className='invisible absolute left-0 top-[-63px] w-full opacity-0 group-hover:visible group-hover:opacity-[100]'>
-                        <div className='mx-[auto] w-max rounded-[12px] bg-[#272727] px-[14px] py-3'>
-                          <h6 className='text-xs text-[#979797]'>Gifts</h6>
-                          <p className='text-sm font-bold'>$10,128</p>
-                        </div>
-                        <div className='-mt-[6px]'>
-                          <Image
-                            src={arrowDownSolid}
-                            className='object-contain'
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className='group relative w-[17%] bg-[#5848BC] py-1 text-center hover:rounded-[8px] hover:bg-[#5848BC] hover:py-2'
-                      onMouseEnter={() =>
-                        setShowUpdatedFilterInBar('General chatting')
-                      }
-                    >
-                      8%
-                      <div className='invisible absolute left-0 top-[-63px] w-full opacity-0 group-hover:visible group-hover:opacity-[100]'>
-                        <div className='mx-[auto] w-max rounded-[12px] bg-[#272727] px-[14px] py-3'>
-                          <h6 className='text-xs text-[#979797]'>General chatting</h6>
-                          <p className='text-sm font-bold'>$10,128</p>
-                        </div>
-                        <div className='-mt-[6px]'>
-                          <Image
-                            src={arrowDownSolid}
-                            className='object-contain'
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className='relative group w-[10%] bg-[#7362C6] py-1 text-center hover:rounded-[8px] hover:bg-[#7362C6] hover:py-2'
-                      onMouseEnter={() =>
-                        setShowUpdatedFilterInBar('Style royalties')
-                      }
-                    >
-                      4%
-                      <div className='invisible absolute left-0 top-[-63px] w-full opacity-0 group-hover:visible group-hover:opacity-[100]'>
-                        <div className='mx-[auto] w-max rounded-[12px] bg-[#272727] px-[14px] py-3'>
-                          <h6 className='text-xs text-[#979797]'>Subs</h6>
-                          <p className='text-sm font-bold'>$10,128</p>
-                        </div>
-                        <div className='-mt-[6px]'>
-                          <Image
-                            src={arrowDownSolid}
-                            className='object-contain'
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className='w-[9%] rounded-br-[8px] rounded-tr-[8px] bg-[#8C7DD0] py-1 text-center hover:rounded-bl-[8px] hover:rounded-tl-[8px] hover:bg-[#8C7DD0] hover:py-2'
-                      onMouseEnter={() =>
-                        setShowUpdatedFilterInBar('Style royalties')
-                      }
-                    >
-                      1%
-                    </div> */}
                   </div>
                 ) : (
-                  <div className='items-center rounded-[100px] bg-white/[0.05] py-1 text-center text-[12px] font-semibold leading-4 text-[#515151]'>
-                    0%
-                  </div>
+                  <></>
                 )}
-                <div className='flex gap-6 pb-4'>
-                  <div className='flex w-1/2 flex-col gap-[10px]'>
-                    {side1.map((item, index) => {
-                      return (
-                        <div
-                          key={index}
-                          className={`${
-                            showUpdatedFilterInBar === item.text
-                              ? 'opacity-100'
-                              : 'opacity-40'
-                          } flex justify-between`}
-                        >
-                          <div className='flex items-center gap-2'>
-                            <Image src={circleBlue} alt={''} />
-                            <div className='text-[13px] font-normal leading-[18px] text-[#979797]'>
-                              {item.text}
-                            </div>
-                          </div>
-                          <div className='text-[13px] font-semibold leading-[18px] text-white'>
-                            {showChanges ? item.amount : '$0'}
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                  <div className='flex w-1/2 flex-col gap-[10px]'>
-                    {side2.map((item, index) => {
-                      return (
-                        <div
-                          key={index}
-                          className={`flex justify-between ${
-                            showUpdatedFilterInBar === item.text
-                              ? 'opacity-100'
-                              : 'opacity-40'
-                          }`}
-                        >
-                          <div className='flex items-center gap-2'>
-                            <Image src={circleBlue} alt={''} />
-                            <div className='text-[13px] font-normal leading-[18px] text-[#979797]'>
-                              {item.text}
-                            </div>
-                          </div>
-                          <div className='text-[13px] font-semibold leading-[18px] text-white'>
-                            {showChanges ? item.amount : '$0'}
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-              <div className='mt-[9px] flex flex-col gap-1 border-t border-[#272727] pt-[9px]'>
-                <div className='text-[13px] font-normal leading-[18px] text-[#979797]'>
-                  Available to cashout
-                </div>
-                <div className='flex justify-between'>
-                  <div className='text-[30px] font-bold leading-10 text-white'>
-                    {showChanges ? '$22,121.5' : '$0'}
-                  </div>
-                  <button
-                    className={`flex h-max items-center justify-center rounded-[10px] px-4 py-[10px] ${
-                      showChanges
-                        ? 'bg-[#5848BC] text-white'
-                        : 'bg-[#5848BC]/[0.3] text-white/[0.32] pointer-events-none'
-                    } text-[14px] font-bold leading-5`}
-                    onClick={() => {
-                      setShowCashoutModal(true), setAnalyticsPage(true);
-                    }}
-                  >
-                    Cash out
-                  </button>
-                </div>
               </div>
             </div>
             <div className='flex flex-col gap-8 rounded-[16px] bg-[#121212] px-5 pb-12 pt-5'>
@@ -559,7 +663,7 @@ const AnalyticsMainPage = () => {
                     </div>
                   </div>
                 </div>
-                <div className='flex flex-col w-1/2 gap-4'>
+                <div className='flex w-1/2 flex-col gap-4'>
                   <div className='text-[15px] font-normal leading-5 text-[#979797]'>
                     Image requests
                   </div>
@@ -592,7 +696,7 @@ const AnalyticsMainPage = () => {
               </div>
             </div>
           </div>
-          <div className='flex flex-col w-1/3 gap-4'>
+          <div className='flex w-1/3 flex-col gap-4'>
             <div className='flex flex-col gap-8 rounded-[16px] bg-[#121212] p-5'>
               <div className='flex items-center gap-3'>
                 <div className='flex rounded-[100px] bg-white/[0.08] p-2'>
