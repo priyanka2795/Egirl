@@ -326,9 +326,24 @@ const AnalyticsMainPage = () => {
   };
 
   const [shortTab, setShortTab] = useState(1);
+  const [selectIndex, setSelectIndex] = useState();
+  const [selectSub, setSelectSub] = useState('');
+  const [selectAll, setSelectAll] = useState('');
 
   const SelectShort = (index: any) => {
     setShortTab(index);
+    setSelectIndex(index);
+    if (index == 0) {
+      console.log('all');
+      setSelectAll(index);
+      setSelectSub('');
+    }
+    if (index == 1) {
+      console.log('sub');
+      setSelectSub(index);
+      console.log('sub select', selectSub);
+      setSelectAll('');
+    }
   };
 
   return (
@@ -464,7 +479,12 @@ const AnalyticsMainPage = () => {
                       </div>
                     </div>
                     <button className='items-center justify-center gap-1.5 rounded-xl bg-[#5848BC] px-4	py-2.5'>
-                      <div className='text-[14px] font-bold leading-5'>
+                      <div
+                        className='text-[14px] font-bold leading-5'
+                        onClick={() => {
+                          setShowCashoutModal(true), setAnalyticsPage(true);
+                        }}
+                      >
                         Cash out
                       </div>
                     </button>
@@ -487,49 +507,128 @@ const AnalyticsMainPage = () => {
                     {/* graph */}
                     <div className='flex h-[174px] flex-col items-center justify-center self-stretch'>
                       {showChanges ? (
-                        <div className=''>
-                          <div className=''>
-                            <BarChart
-                              width={620}
-                              height={300}
-                              data={data}
-                              margin={{
-                                top: 20,
-                                right: 30,
-                                left: 10,
-                                bottom: 24
-                              }}
-                            >
-                              {/* <CartesianGrid /> */}
-                              <XAxis dataKey='name' />
-                              {/* <YAxis /> */}
-                              <Tooltip />
-                              {/* <Legend /> */}
-                              <Bar
-                                dataKey='pv'
-                                stackId='a'
-                                fill='#996BE0'
-                                radius={[0, 0, 5, 5]}
-                              />
-                              <Bar dataKey='pv' stackId='a' fill='#E295F9' />
-                              <Bar dataKey='pv' stackId='a' fill='#779DF8' />
-                              <Bar dataKey='uv' stackId='a' fill='#EFAC6A' />
-                              <Bar
-                                dataKey='pv'
-                                stackId='a'
-                                fill='#E2F47A'
-                                radius={[5, 5, 0, 0]}
-                              />
-                            </BarChart>
+                        <div>
+                          <div className='relative mt-9  flex w-[600px] flex-col items-start gap-10'>
+                            <div className='h-px w-[100%] shrink-0 self-stretch bg-white/[0.08]'></div>
+                            <div className='h-px w-[100%] shrink-0 self-stretch bg-white/[0.08]'></div>
+                            <div className='h-px w-[100%] shrink-0 self-stretch bg-white/[0.08]'></div>
+                            <div className='h-px w-[100%] shrink-0 self-stretch bg-white/[0.08]'></div>
+                            <div className='h-px w-[100%] shrink-0 self-stretch bg-white/[0.08]'></div>
+
+                            <div className='absolute mt-[-82px]'>
+                              {selectSub ? (
+                                <BarChart
+                                  width={620}
+                                  height={300}
+                                  data={data}
+                                  margin={{
+                                    top: 20,
+                                    right: 30,
+                                    left: 10,
+                                    bottom: 24
+                                  }}
+                                >
+                                  {/* <CartesianGrid /> */}
+                                  <XAxis dataKey='name' />
+                                  {/* <YAxis /> */}
+                                  {/* <Tooltip /> */}
+                                  {/* <Legend /> */}
+                                  <Bar
+                                    dataKey='pv'
+                                    stackId='a'
+                                    fill='#996BE0'
+                                    radius={[0, 0, 5, 5]}
+                                    className='cursor-pointer '
+                                  />
+                                  <Bar
+                                    dataKey='pv'
+                                    stackId='a'
+                                    fill='#996BE0'
+                                    className='cursor-pointer '
+                                  />
+                                  <Bar
+                                    dataKey='pv'
+                                    stackId='a'
+                                    fill='#996BE0'
+                                    className='cursor-pointer '
+                                  />
+                                  <Bar
+                                    dataKey='uv'
+                                    stackId='a'
+                                    fill='#996BE0'
+                                    className='cursor-pointer '
+                                  />
+                                  <Bar
+                                    dataKey='pv'
+                                    stackId='a'
+                                    fill='#996BE0'
+                                    radius={[5, 5, 0, 0]}
+                                    className='cursor-pointer '
+                                  />
+                                </BarChart>
+                              ) : (
+                                <BarChart
+                                  width={620}
+                                  height={300}
+                                  data={data}
+                                  margin={{
+                                    top: 20,
+                                    right: 30,
+                                    left: 10,
+                                    bottom: 24
+                                  }}
+                                >
+                                  {/* <CartesianGrid /> */}
+                                  <XAxis dataKey='name' />
+                                  {/* <YAxis /> */}
+                                  {/* <Tooltip /> */}
+                                  {/* <Legend /> */}
+                                  <Bar
+                                    dataKey='pv'
+                                    stackId='a'
+                                    fill='#996BE0'
+                                    radius={[0, 0, 5, 5]}
+                                    className='cursor-pointer '
+                                  />
+                                  <Bar
+                                    dataKey='pv'
+                                    stackId='a'
+                                    fill='#E295F9'
+                                    className='cursor-pointer '
+                                  />
+                                  <Bar
+                                    dataKey='pv'
+                                    stackId='a'
+                                    fill='#779DF8'
+                                    className='cursor-pointer '
+                                  />
+                                  <Bar
+                                    dataKey='uv'
+                                    stackId='a'
+                                    fill='#EFAC6A'
+                                    className='cursor-pointer '
+                                  />
+                                  <Bar
+                                    dataKey='pv'
+                                    stackId='a'
+                                    fill='#E2F47A'
+                                    radius={[5, 5, 0, 0]}
+                                    className='cursor-pointer '
+                                  />
+                                </BarChart>
+                              )}
+                            </div>
                           </div>
                         </div>
                       ) : (
-                        <div className='mt-9 flex  w-[600px] flex-col items-start gap-10'>
-                          <div className='h-px w-[100%] shrink-0 self-stretch bg-white/[0.08]'></div>
-                          <div className='h-px w-[100%] shrink-0 self-stretch bg-white/[0.08]'></div>
-                          <div className='h-px w-[100%] shrink-0 self-stretch bg-white/[0.08]'></div>
-                          <div className='h-px w-[100%] shrink-0 self-stretch bg-white/[0.08]'></div>
-                          <div className='h-px w-[100%] shrink-0 self-stretch bg-white/[0.08]'></div>
+                        <div>
+                          <div className='relative mt-9  flex w-[600px] flex-col items-start gap-10'>
+                            <div className='h-px w-[100%] shrink-0 self-stretch bg-white/[0.08]'></div>
+                            <div className='h-px w-[100%] shrink-0 self-stretch bg-white/[0.08]'></div>
+                            <div className='h-px w-[100%] shrink-0 self-stretch bg-white/[0.08]'></div>
+                            <div className='h-px w-[100%] shrink-0 self-stretch bg-white/[0.08]'></div>
+                            <div className='h-px w-[100%] shrink-0 self-stretch bg-white/[0.08]'></div>
+                          </div>
                         </div>
                       )}
                     </div>
@@ -559,7 +658,7 @@ const AnalyticsMainPage = () => {
 
                       <div className='flex items-center gap-2'>
                         <div
-                          className={`h-2.5 w-4 rounded-sm bg-[#E295F9]`}
+                          className={`h-2.5 w-4 rounded-sm bg-[#996BE0]`}
                         ></div>
                         <label className='text-[13px] font-normal leading-[18px]'>
                           Subs
