@@ -206,11 +206,11 @@ const Banner = ({
                 ''
               )}
             </div>
-            <div className='mb-5 mt-[-62px] flex w-full items-center justify-between px-[24px]'>
+            <div className={`mb-5 flex w-full items-center justify-between px-[24px]  ${updatedProfile ? 'mt-[-56px]' : 'mt-[-62px]'}`}>
               <div className='relative h-[120px] w-[120px] overflow-hidden rounded-full'>
                 <Image className='w-full h-full' src={avatar} alt='' />
               </div>
-              <div className='flex gap-[12px] self-end'>
+              <div className={'flex gap-[12px] self-end'}>
                 <button
                   className={`flex h-max gap-2 rounded-[14px] px-[20px] py-[11px] text-[16px] font-bold ${
                     followBtnStyle
