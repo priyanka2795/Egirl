@@ -28,7 +28,24 @@ import RightIcon from '../../../../public/assets/check-cs.png';
 import DeleteIcon from '../../../../public/assets/delete-icon.png';
 
 const EditPromptName = ['Mica-chan', 'Blue Jeans', 'Gold Chain', 'White Sunglasses', 'Black top'];
-const PromptTagsSearch = ['Green top with white', 'Green top with white collar', 'Green top with white sleeve', 'Green top with white flower and big cloud', 'Green top with white belt', 'Green top with white lines and hearts', 'Green top with white, red and yellow spots'];
+
+
+const PromptTagsSearch =[
+  {
+title:'Suggestions',
+tags:['Green top with white','Green top with white collar']
+  },
+  {
+    title:'Tags',
+    tags:['Green top with white sleeve', 'Green top with white flower and big cloud', 'Green top with white belt']
+      },
+      {
+        title:'Styles',
+    tags:['Green top with white lines and hearts', 'Green top with white, red and yellow spots', 'Green white belt']
+        
+      }
+
+    ];
 
 interface ImageGeneratorOption {
   InpaintingToggle: any;
@@ -123,6 +140,7 @@ const ImageGeneratorOption = ({ InpaintingToggle, PosingToggle, MyCharacterToggl
   // searchPromptMenu
   const [searchPromptMenu, setSearchPromptMenu] = useState('')
   const [showPromptMenu, setShowPromptMenu] = useState(false)
+
   const handleInputChange = (e: any) => {
     const searchTerm = e.target.value;
     setSearchPromptMenu(searchTerm);
@@ -131,20 +149,27 @@ const ImageGeneratorOption = ({ InpaintingToggle, PosingToggle, MyCharacterToggl
     );
     setEditPromptMenu(filteredItems);
   }
+
   const handleChangePromptHint = (e: any) => {
     const searchPrompt = e.target.value;
     setPromptHint(searchPrompt);
-    const filteredItems = PromptTagsSearch.filter((Prompt) =>
-      Prompt.toLowerCase().includes(searchPrompt.toLowerCase())
-    );
-    setPromptTagsHint(filteredItems);
 
+    const filteredItems = PromptTagsSearch.filter((user) => {
+      const tagsLowerCase = user.tags.some((tag) => (
+        tag.toLowerCase().includes(searchPrompt.toLowerCase())
+      ));
+      return tagsLowerCase;
+    });
+       
+    console.log(filteredItems, 'filteredItems');
+    setPromptTagsHint(filteredItems)
     if (filteredItems.length === 0) {
       setShowPromptMenu(true)
     } else {
       setShowPromptMenu(false)
     }
   }
+
 
   const HandleTypeHint = (e: any) => {
     const PromptHint = e.target.innerText
@@ -243,8 +268,14 @@ const ImageGeneratorOption = ({ InpaintingToggle, PosingToggle, MyCharacterToggl
               <>
                 {promptHint === '' ? '' :
                   <div className='rounded-[14px] shadow-md p-2 bg-[#1A1A1A] '>
-                    {promptTagsHint.map((items) => (
-                      <div className='p-2 rounded-lg cursor-pointer hover:bg-[#FFFFFF0D]' onClick={(e) => HandleTypeHint(e)}>{items}</div>
+                    {promptTagsHint.map((items,index) => (
+                      <>
+                      <p className='text-[#979797] font-bold'>{items.title}</p>
+                     {items.tags.map((item)=>(
+                       <div className='p-2 rounded-lg cursor-pointer hover:bg-[#FFFFFF0D]' onClick={(e) => HandleTypeHint(e)}>{item}</div>
+                     ))
+                     }
+                      </>
                     ))}
                   </div>}
               </>
