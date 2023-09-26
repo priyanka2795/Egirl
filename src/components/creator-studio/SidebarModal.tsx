@@ -13,8 +13,8 @@ import blank from '../../components/creator-studio/svg/blank.svg';
 import CharacterAdd from './NewCharacter/CharacterAdd';
 
 interface SidebarModals {
-  shrinkSideBar: boolean;
-  setShrinkSideBar: React.Dispatch<React.SetStateAction<boolean>>;
+  // shrinkSideBar: boolean;
+  // setShrinkSideBar: React.Dispatch<React.SetStateAction<boolean>>;
   SetSidebarModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -34,8 +34,8 @@ const sidebarModal = [
 ];
 
 const SidebarModal = ({
-  shrinkSideBar,
-  setShrinkSideBar,
+  // shrinkSideBar,
+  // setShrinkSideBar,
   SetSidebarModal
 }: SidebarModals) => {
   const [activeProfile, setActiveProfile] = useState('Mika-chan');
@@ -43,13 +43,13 @@ const SidebarModal = ({
 
   return (
     <div
-      className={`fixed top-[131px] z-10 -ml-1 mt-2 flex h-max w-[260px] flex-col rounded-[14px] bg-[#1A1A1A] px-0 pb-3 pt-2 `}
+      className={`fixed top-[131px] z-10 -ml-1 mt-2 flex h-max w-[260px] flex-col rounded-[14px] bg-[#1A1A1A] px-0 pb-3 pt-2`}
     >
-      <div className='px-6 py-[14px]'>
+      {/* <div className='px-6 py-[14px]'>
         <div className='flex gap-[10px] '>
           <div className='h-8 h-max w-8 items-center justify-center rounded-full bg-white/[0.08] p-2'>
-            <div className='h-4 w-4 overflow-hidden rounded-full'>
-              <Image className='h-full w-full' src={userProfileIcon} alt={''} />
+            <div className='w-4 h-4 overflow-hidden rounded-full'>
+              <Image className='w-full h-full' src={userProfileIcon} alt={''} />
             </div>
           </div>
           <div className='text-[8px] font-normal leading-[18px] text-[#ffffff]'>
@@ -58,23 +58,25 @@ const SidebarModal = ({
               href='/allcharacter'
               Icon={blank}
               IconActive={blank}
-              StyleClasses={`${
-                shrinkSideBar === true
-                  ? ''
-                  : 'text-[#ffffff] text-[5px] mt-[-8px] leading-[4px] mr-[5px]'
-              }`}
-              sideBarMenuText={`${shrinkSideBar === true ? '' : ' '} `}
+              StyleClasses={`${shrinkSideBar === true
+                ? ''
+                : 'text-[#ffffff] text-[5px] mt-[-8px] leading-[4px] mr-[5px]'
+                }`}
+              sideBarMenuText={`${shrinkSideBar === true ? '' : ' '
+                } `}
             />
           </div>
-        </div>
-      </div>
 
-      {sidebarModal.map((item) => {
+        </div>
+      </div> */}
+
+      {sidebarModal.map((item, index) => {
         return (
           <div
             onClick={() => {
               setActiveProfile(item.name);
             }}
+            key={index}
           >
             {activeProfile === item.name ? (
               <div className='flex px-4 py-[6px]'>

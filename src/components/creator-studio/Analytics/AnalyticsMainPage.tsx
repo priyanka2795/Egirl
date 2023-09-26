@@ -474,9 +474,12 @@ const AnalyticsMainPage = () => {
                 <div className='flex items-start gap-3 self-stretch'>
                   {/* amount */}
                   <div className='mt-4 flex h-[174px] flex-col items-end justify-between text-[#979797]'>
-                    {amount.map((data) => {
+                    {amount.map((data, index) => {
                       return (
-                        <div className='text-center text-[11px] font-bold uppercase leading-4 tracking-[0.3px]'>
+                        <div
+                          key={index}
+                          className='text-center text-[11px] font-bold uppercase leading-4 tracking-[0.3px]'
+                        >
                           {data.name}
                         </div>
                       );
@@ -537,9 +540,12 @@ const AnalyticsMainPage = () => {
                       <div>
                         {/* bottom line */}
                         <div className='ml-5 mt-4 flex items-center gap-[26px] self-stretch'>
-                          {month.map((data) => {
+                          {month.map((data, index) => {
                             return (
-                              <div className='text-[11px] font-bold uppercase leading-4 tracking-[0.3px] text-[#979797]'>
+                              <div
+                                key={index}
+                                className='text-[11px] font-bold uppercase leading-4 tracking-[0.3px] text-[#979797]'
+                              >
                                 {data.name}
                               </div>
                             );

@@ -34,15 +34,15 @@ const AlbumDetailsModal = ({ CloseModal }: AlbumDetailsModal) => {
             </div>
             <div className='p-6'>
                 <div className='bg-[#FFFFFF0D] rounded-[14px] p-5 flex flex-col gap-5'>
-                    <div className='flex justify-between items-center'>
+                    <div className='flex items-center justify-between'>
                         <p className='font-semibold text-[15px]'>Images <span className='text-[#515151] ml-1'>8</span></p>
                         <div>
                             <Image className='w-full h-full' src={Pencil} alt={''} />
                         </div>
                     </div>
                     <div className='grid grid-cols-8 gap-2'>
-                        {detailsImages.map((items)=>(
-                        <div className='w-[80px] h-[80px] rounded-[7px] overflow-hidden'>
+                        {detailsImages.map((items,index)=>(
+                        <div key={index} className='w-[80px] h-[80px] rounded-[7px] overflow-hidden'>
                             <Image className='w-full h-full' src={items} alt={''} />
                         </div>
                         ))                        }

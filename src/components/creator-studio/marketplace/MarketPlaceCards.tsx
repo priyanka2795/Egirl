@@ -68,16 +68,19 @@ const MarketPlaceCards = () => {
   return (
     <>
       <div className='grid grid-cols-3 gap-3'>
-        {exploreGallery.map((items) => {
+        {exploreGallery.map((items, index) => {
           return (
-            <div className='relative cursor-pointer gallery-card-collection sub-banner group max-h-[346px]'>
+            <div
+              key={index}
+              className='gallery-card-collection sub-banner group relative max-h-[346px] cursor-pointer'
+            >
               <Image
                 src={items.mainImg}
                 alt=''
-                className='object-cover rounded-xl'
+                className='rounded-xl object-cover'
               />
 
-              <div className='absolute bottom-0 right-0 flex flex-col items-start justify-start justify-end w-full h-full px-6 pb-3 hover:backdrop-brightness-50 '>
+              <div className='absolute bottom-0 right-0 flex h-full w-full flex-col items-start justify-start justify-end px-6 pb-3 hover:backdrop-brightness-50 '>
                 <div className='absolute left-0 top-0 inline-flex h-6 w-[276px] items-center  justify-start gap-1.5 px-6 pt-6'>
                   <div className='relative flex h-6 w-6 rounded-[100px] '>
                     <Image
@@ -102,9 +105,10 @@ const MarketPlaceCards = () => {
                   </div>
                 </div>
                 <div className='flex items-start justify-start gap-1.5'>
-                  {items.categoryList.map((data) => {
+                  {items.categoryList.map((data, index) => {
                     return (
                       <div
+                        key={index}
                         className={`show-card"} flex items-center justify-start gap-1 rounded-md bg-white bg-opacity-10 px-2 py-[3px] text-center text-sm font-normal leading-[18px] text-white`}
                       >
                         {data}
@@ -117,9 +121,7 @@ const MarketPlaceCards = () => {
           );
         })}
       </div>
-      {showStyleModal && (
-        <FavoriteStyleModal closeModal={setShowStyleModal} />
-      )}
+      {showStyleModal && <FavoriteStyleModal closeModal={setShowStyleModal} />}
     </>
   );
 };

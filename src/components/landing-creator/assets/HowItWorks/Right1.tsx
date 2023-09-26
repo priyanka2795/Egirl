@@ -211,7 +211,7 @@ const SvgComponent = (props: Props) => (
       d='M436.4 497.3v2.5l1.7-1.8 5.7-6H455l-1.6-1.7-15.3-16.6-1.7-2v25.6z'
       fill='#000'
       stroke='#fff'
-      stroke-width='2'
+      strokeWidth='2'
     />
     <defs>
       <linearGradient

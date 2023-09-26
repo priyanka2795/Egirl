@@ -11,13 +11,14 @@ const SvgComponent = (props: Props) => (
     xmlnsXlink='http://www.w3.org/1999/xlink'
     {...props}
   >
-    <g clip-path='url(#clip0_1286_17269)'>
+    <g clipPath='url(#clip0_1286_17269)'>
       <rect width='397' height='466' rx='16' fill='#fff' />
       <path
         fill='url(#pattern0999888uugahsgiuyogwy8eb7877)'
         d='M-3-21h403.7v528H-3z'
       />
-    </g>color-interpolation-filters
+    </g>
+    color-interpolation-filters
     <defs>
       <clipPath id='clip0_1286_17269'>
         <rect width='397' height='466' rx='16' fill='#fff' />

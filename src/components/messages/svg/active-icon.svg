@@ -11,6 +11,6 @@
     r='5'
     fill='#FF5336'
     stroke='#121212'
-    stroke-width='2'
+    strokeWidth='2'
   />
 </svg>

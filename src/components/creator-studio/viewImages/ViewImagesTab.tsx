@@ -210,7 +210,7 @@ const ViewImagesTab = ({
                   className='absolute right-2 top-2'
                   onClick={() => setActive(!isActive)}
                 >
-                  <Image className='h-full w-full' src={crossIcon} alt={''} />
+                  <Image className='w-full h-full' src={crossIcon} alt={''} />
                 </span>
               ) : (
                 ''
@@ -231,8 +231,9 @@ const ViewImagesTab = ({
                   <>
                     {Albumshort.map((item, index) => (
                       <div
-                        className='flex cursor-pointer items-center gap-2'
+                        className='flex items-center gap-2 cursor-pointer'
                         onClick={() => AlbumSelectShort(index)}
+                        key={index}
                       >
                         {albumShortTab == index ? (
                           <SelectIcon />
@@ -265,8 +266,9 @@ const ViewImagesTab = ({
                   <>
                     {short.map((item, index) => (
                       <div
-                        className='flex cursor-pointer items-center gap-2'
+                        className='flex items-center gap-2 cursor-pointer'
                         onClick={() => SelectShort(index)}
+                        key={index}
                       >
                         {shortTab == index ? <SelectIcon /> : <UnSelectIcon />}
                         <p>{item}</p>
@@ -387,9 +389,10 @@ const ViewImagesTab = ({
                             );
                           })}
                         </div>
-                        <div className='absolute right-1 top-6 flex w-4 flex-col gap-1'>
-                          {alphabetArray.map((letter) => (
+                        <div className='absolute flex flex-col w-4 gap-1 right-1 top-6'>
+                          {alphabetArray.map((letter,index) => (
                             <span
+                            key={index}
                               className={`cursor-pointer text-[11px] ${
                                 letter === 'A'
                                   ? 'text-[#979797]'
@@ -501,8 +504,8 @@ const ViewImagesTab = ({
                         <div
                           className={`flex flex-col gap-4 overflow-hidden py-3`}
                         >
-                          {selectedOptions.map((items) => (
-                            <div className='flex items-center gap-2'>
+                          {selectedOptions.map((items,index) => (
+                            <div className='flex items-center gap-2' key={index}>
                               <input
                                 type='checkbox'
                                 id={items}

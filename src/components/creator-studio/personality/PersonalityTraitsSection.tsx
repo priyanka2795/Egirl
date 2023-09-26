@@ -129,9 +129,9 @@ const PersonalityTraitsSection = () => {
                       <path
                         d='M4.5 4.5L13.5 13.5M13.5 4.5L4.5 13.5'
                         stroke='#979797'
-                        stroke-width='1.35'
-                        stroke-linecap='round'
-                        stroke-linejoin='round'
+                        strokeWidth='1.35'
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
                       />
                     </svg>
                   </span>
@@ -371,9 +371,9 @@ const PersonalityTraitsSection = () => {
                       <path
                         d='M4.5 4.5L13.5 13.5M13.5 4.5L4.5 13.5'
                         stroke='#979797'
-                        stroke-width='1.35'
-                        stroke-linecap='round'
-                        stroke-linejoin='round'
+                        strokeWidth='1.35'
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
                       />
                     </svg>
                   </span>
