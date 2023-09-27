@@ -5,7 +5,7 @@ import React from 'react';
 const creatorStudio = () => {
   return (
     <CreatorStudioLayout>
-      <CreatorStudio/>
+      <CreatorStudio />
     </CreatorStudioLayout>
   );
 };

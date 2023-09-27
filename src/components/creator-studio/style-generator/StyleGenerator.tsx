@@ -10,89 +10,156 @@ import downArrow from '../../../../public/assets/down-arrow-img.png';
 import CompleteGeneration from './CompleteGeneration';
 
 interface StyleGeneratorProps {
-  setStyleGeneratorNext: any;
+  setStyleGeneratorNext: (value: boolean) => void;
 }
 
-const StyleGenerator = ({setStyleGeneratorNext}:StyleGeneratorProps) => {
-  const options = ['Choose category', 'Character', 'Clothing', 'Accessories', 'Locations', 'Object'];
+const StyleGenerator = ({ setStyleGeneratorNext }: StyleGeneratorProps) => {
+  const options = [
+    'Choose category',
+    'Character',
+    'Clothing',
+    'Accessories',
+    'Locations',
+    'Object'
+  ];
   const [styleGenHoverModal, setStyleGenHoverModal] = useState(false);
   const [goToModal, setGoToModal] = useState(false);
   const [showDropDown, setShowDropDown] = useState(false);
   const [inputText, setInputText] = useState('Choose category');
   const [addImagesModal, setAddImagesModal] = useState(false);
   const [completeGeneration, setCompleteGeneration] = useState(false);
-  
+
   return (
     <>
-    <div className='flex flex-col rounded-[14px] bg-[#121212]'>
-      <div className='flex flex-col gap-6 p-6'>
-        <div className='text-white text-[22px] font-bold leading-8'>Style Generator</div>
-        <div className="grid grid-cols-2 gap-4">
-          <div className='flex flex-col gap-[6px]'>
-            <h6 className='text-[13px] text-[#979797]'>Name</h6>
-            <input
-              type='text'
-              name='name'
-              placeholder='Ex. Bunny girl'
-              className='border border-transparent rounded-[14px] focus:ring-0 px-4 py-3 border-none bg-white/[0.05] placeholder:text-[#979797] text-white'
-            />
+      <div className='flex flex-col rounded-[14px] bg-[#121212]'>
+        <div className='flex flex-col gap-6 p-6'>
+          <div className='text-[22px] font-bold leading-8 text-white'>
+            Style Generator
           </div>
-          <div className='relative flex flex-col gap-[6px]'>
-          <h6 className='text-[13px] text-[#979797]'>Category</h6>
-          <div className={`cursor-pointer px-4 py-3 rounded-[14px] flex justify-between ${showDropDown ? 'border border-[#515151]' : 'border border-transparent bg-white/[0.05]'}`} onClick={() => {setShowDropDown(!showDropDown)}}>
-            <div className={`${showDropDown || inputText !== 'Choose category' ? 'text-white' : 'text-[#979797]'} text-[15px] font-normal leading-6`}>{inputText}</div>
-            <Image src={showDropDown ? chevronUp : chevronDown} alt={''} />
+          <div className='grid grid-cols-2 gap-4'>
+            <div className='flex flex-col gap-[6px]'>
+              <h6 className='text-[13px] text-[#979797]'>Name</h6>
+              <input
+                type='text'
+                name='name'
+                placeholder='Ex. Bunny girl'
+                className='rounded-[14px] border border-none border-transparent bg-white/[0.05] px-4 py-3 text-white placeholder:text-[#979797] focus:ring-0'
+              />
+            </div>
+            <div className='relative flex flex-col gap-[6px]'>
+              <h6 className='text-[13px] text-[#979797]'>Category</h6>
+              <div
+                className={`flex cursor-pointer justify-between rounded-[14px] px-4 py-3 ${
+                  showDropDown
+                    ? 'border border-[#515151]'
+                    : 'border border-transparent bg-white/[0.05]'
+                }`}
+                onClick={() => {
+                  setShowDropDown(!showDropDown);
+                }}
+              >
+                <div
+                  className={`${
+                    showDropDown || inputText !== 'Choose category'
+                      ? 'text-white'
+                      : 'text-[#979797]'
+                  } text-[15px] font-normal leading-6`}
+                >
+                  {inputText}
+                </div>
+                <Image src={showDropDown ? chevronUp : chevronDown} alt={''} />
+              </div>
+              {showDropDown && (
+                <div className='absolute top-[78px] flex w-full flex-col rounded-[14px] bg-[#1A1A1A] px-0 py-1'>
+                  {options.map((item, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className='mx-2 my-1 cursor-pointer bg-[#1A1A1A] px-2 py-[6px] text-[14px] font-normal leading-[18px] text-white hover:rounded-[8px] hover:bg-white/[0.05]'
+                        onClick={() => {
+                          setInputText(item), setShowDropDown(false);
+                        }}
+                      >
+                        {item}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
           </div>
-          {showDropDown && 
-          <div className='top-[78px] absolute w-full px-0 py-1 flex flex-col rounded-[14px] bg-[#1A1A1A]'>
-            {options.map((item,index) => {
-              return (
-              <div key={index} className='cursor-pointer mx-2 my-1 px-2 py-[6px] bg-[#1A1A1A] text-white text-[14px] font-normal leading-[18px] hover:bg-white/[0.05] hover:rounded-[8px]' onClick={() => {setInputText(item), setShowDropDown(false)}}>{item}</div>);
-            })}
+          <div className='flex flex-col gap-2'>
+            <div className='flex gap-1'>
+              <div className='text-[18px] font-bold leading-6 text-white'>
+                Images{' '}
+              </div>
+              <div className='text-[18px] font-bold leading-6 text-[#979797]'>
+                0/40
+              </div>
+            </div>
+            <div className='flex gap-2'>
+              <Image src={circleInformation} alt={''} />
+              <div className='text-[12px] font-normal leading-4 text-[#979797]'>
+                You need to select a minimum of 4 images to generate the style
+              </div>
+            </div>
           </div>
-          }
+          <div className='flex h-[320px] flex-col items-center justify-center gap-5'>
+            <div className='flex flex-col items-center justify-center gap-3'>
+              <div className='flex rounded-[100px] bg-white/[0.05] p-4'>
+                <Image src={image} alt={''} />
+              </div>
+              <div className='text-center text-[13px] font-normal leading-[18px] text-[#979797]'>
+                Add images for style generation
+              </div>
+            </div>
+            <button
+              className='items-center justify-center rounded-[12px] bg-white/[0.08] px-4 py-[10px] text-[14px] font-bold leading-5 text-white'
+              onClick={() => {
+                setGoToModal(true);
+              }}
+            >
+              Add images
+            </button>
           </div>
         </div>
-        <div className='flex flex-col gap-2'>
-        <div className='flex gap-1'>
-          <div className='text-white text-[18px] font-bold leading-6'>Images </div>
-          <div className='text-[#979797] text-[18px] font-bold leading-6'>0/40</div>
-        </div>
-        <div className='flex gap-2'>
-          <Image src={circleInformation} alt={''} />
-          <div className='text-[#979797] text-[12px] font-normal leading-4'>You need to select a minimum of 4 images to generate the style</div>
-        </div>
-        </div>
-        <div className='flex flex-col h-[320px] gap-5 justify-center items-center'>
-        <div className='flex flex-col items-center justify-center gap-3'>
-          <div className='flex p-4 rounded-[100px] bg-white/[0.05]'>
-            <Image src={image} alt={''} />
+        <div className='flex flex-col items-end justify-center border-t border-white/[0.08] p-6 '>
+          <div
+            className='group relative flex cursor-pointer items-center justify-center rounded-[14px] bg-[#5848BC]/[0.32] px-5 py-[13px] text-[16px] font-bold leading-[22px] text-white'
+            onClick={() => {
+              setCompleteGeneration(true);
+            }}
+          >
+            Generate
+            <div className='invisible group-hover:visible group-hover:opacity-100'>
+              <div className='absolute -left-[30px] bottom-[62px] flex w-[169px] items-center justify-center rounded-[6px] bg-[#303030] px-3 py-[6px] text-center text-[12px] font-normal leading-4 text-white'>
+                Add images for style generation
+              </div>
+              <div className='absolute -top-[25px] right-[20px] h-[24px] w-10'>
+                <Image className='h-full w-full' src={downArrow} alt={''} />
+              </div>
+            </div>
+            {completeGeneration && (
+              <CompleteGeneration
+                completeGeneration={completeGeneration}
+                setCompleteGeneration={setCompleteGeneration}
+              />
+            )}
           </div>
-          <div className='text-center text-[#979797] text-[13px] font-normal leading-[18px]'>Add images for style generation</div>
         </div>
-        <button className='px-4 py-[10px] rounded-[12px] bg-white/[0.08] justify-center items-center text-white text-[14px] font-bold leading-5' onClick={() => {setGoToModal(true)}}>Add images</button>
       </div>
-      </div>
-      <div className='flex flex-col p-6 justify-center items-end border-t border-white/[0.08] '> 
-      <div className='cursor-pointer relative flex group px-5 py-[13px] justify-center items-center bg-[#5848BC]/[0.32] rounded-[14px] text-white text-[16px] font-bold leading-[22px]' onClick={() => {setCompleteGeneration(true)}}>Generate
-        <div className='invisible group-hover:visible group-hover:opacity-100'>
-          <div className='absolute bottom-[62px] -left-[30px] w-[169px] flex justify-center items-center px-3 py-[6px] rounded-[6px] bg-[#303030] text-white text-center text-[12px] font-normal leading-4'>
-            Add images for style generation
-          </div>
-          <div className='absolute -top-[25px] right-[20px] w-10 h-[24px]'>
-            <Image className='w-full h-full' src={downArrow} alt={''} />
-          </div>
-        </div>
-        {completeGeneration && <CompleteGeneration completeGeneration={completeGeneration} setCompleteGeneration={setCompleteGeneration} />}
-      </div>
-      </div>
-    </div>
-    {
-      goToModal && <GoToGeneratorModal setGoToModal={setGoToModal} setAddImagesModal={setAddImagesModal} />  
-    }
-    {
-      addImagesModal && <AddImagesModal setAddImagesModal={setAddImagesModal} setStyleGeneratorNext={setStyleGeneratorNext} />
-    }
+      {goToModal && (
+        <GoToGeneratorModal
+          setGoToModal={setGoToModal}
+          setAddImagesModal={setAddImagesModal}
+        />
+      )}
+      {addImagesModal && (
+        <AddImagesModal
+          setAddImagesModal={setAddImagesModal}
+          setStyleGeneratorNext={setStyleGeneratorNext}
+        />
+      )}
     </>
   );
 };

@@ -14,7 +14,7 @@ const PersonalityS1 = () => {
 
   const [shortTab, setShortTab] = useState(1);
 
-  const SelectShort = (index: any) => {
+  const SelectShort = (index: number) => {
     setShortTab(index);
   };
 

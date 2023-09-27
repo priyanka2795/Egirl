@@ -11,7 +11,7 @@ import { log } from 'node:console';
 const button = [
   {
     text: '0',
-    amount: 0,
+    amount: 0
   },
   {
     text: '25%',
@@ -38,8 +38,8 @@ interface ConvertCreditsModalProp {
   available: string;
   amount: string;
   buttonText: string;
-  analyticsPage?: any;
-  setAnalyticsPage?: any;
+  analyticsPage?: boolean;
+  setAnalyticsPage?: (value: boolean) => void;
 }
 
 const ConvertCreditsModal = ({
@@ -71,9 +71,15 @@ const ConvertCreditsModal = ({
         closeConvertCredits(false);
       }, 400);
   };
-  let totalAmount = amount.replace(/\,/g,'');
-  var totalAmountNum  = Number(totalAmount);
-  console.log('amount:',totalAmount ,'inputValue:' ,inputValue ,inputValue > totalAmountNum ? 'true':'false')
+  let totalAmount = amount.replace(/\,/g, '');
+  var totalAmountNum = Number(totalAmount);
+  console.log(
+    'amount:',
+    totalAmount,
+    'inputValue:',
+    inputValue,
+    inputValue > totalAmountNum ? 'true' : 'false'
+  );
 
   return (
     <>
@@ -89,12 +95,12 @@ const ConvertCreditsModal = ({
               {heading}
             </div>
             <div
-              className='w-6 h-6'
+              className='h-6 w-6'
               onClick={() => {
                 closeConvertCredits(false);
               }}
             >
-              <Image className='w-full h-full' src={crossIcon} alt={''} />
+              <Image className='h-full w-full' src={crossIcon} alt={''} />
             </div>
           </div>
 
@@ -109,37 +115,41 @@ const ConvertCreditsModal = ({
                     ${amount}
                   </div>
                 </div>
-                <div className={`relative flex flex-col gap-2 rounded-[14px] border ${inputValue > totalAmountNum ? "border-[#FF5336]":'border-transparent'}`}>
-                  
-                    
-                  
+                <div
+                  className={`relative flex flex-col gap-2 rounded-[14px] border ${
+                    inputValue > totalAmountNum
+                      ? 'border-[#FF5336]'
+                      : 'border-transparent'
+                  }`}
+                >
                   <div className='flex rounded-[14px] bg-white/[0.05] px-4 py-3'>
-                    <div className='w-6 h-6'>
+                    <div className='h-6 w-6'>
                       <Image
-                        className='w-full h-full'
+                        className='h-full w-full'
                         src={dollarSign}
                         alt={''}
                       />
                     </div>
-                  
-                   <input
+
+                    <input
                       type='number'
-                      value={percentAmount ? button[activeIndex].amount : inputValue}                     
+                      value={
+                        percentAmount ? button[activeIndex].amount : inputValue
+                      }
                       id='input'
                       onChange={checkLength}
                       placeholder={'0.00'}
                       className='text-15px mt-1 h-0 border-none bg-transparent font-normal leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
                     />
-                   
                   </div>
                   {analyticsPage ? (
                     ''
                   ) : (
                     <>
                       <div className='flex rounded-[14px] bg-white/[0.05] px-4 py-3'>
-                        <div className='w-6 h-6'>
+                        <div className='h-6 w-6'>
                           <Image
-                            className='w-full h-full'
+                            className='h-full w-full'
                             src={coin}
                             alt={''}
                           />
@@ -152,7 +162,7 @@ const ConvertCreditsModal = ({
                         />
                       </div>
                       <div className='absolute left-[149px] top-[33px] flex rounded-[100px] border-2 border-[#1A1A1A] bg-[#272727] p-[6px]'>
-                        <Image className='w-5 h-5' src={arrowDown} alt={''} />
+                        <Image className='h-5 w-5' src={arrowDown} alt={''} />
                       </div>
                     </>
                   )}
@@ -161,31 +171,33 @@ const ConvertCreditsModal = ({
               <div className='grid grid-cols-2 gap-2'>
                 {button.map((item, index) => {
                   return (
-                   <>
-                   { 
-                     <button
-                     key={index}
-                     className={`flex items-center justify-center rounded-[12px] first:hidden ${
-                       activeIndex === index
-                         ? 'border-[#7362C6] text-[#7362C6]'
-                         : 'border-white/[0.32] text-[#FFFFFF]'
-                     } border px-4 py-[10px] text-[14px] font-bold leading-5`}
-                     onClick={() => {
-                       setActiveIndex(index), setPercentAmount(true),
-                         console.log('>>>', button[activeIndex].amount);
-                     }}
-                   >
-                     {item.text}
-                   </button>
-                   }
-                   </>
+                    <React.Fragment key={index}>
+                      {
+                        <button
+                          key={index}
+                          className={`flex items-center justify-center rounded-[12px] first:hidden ${
+                            activeIndex === index
+                              ? 'border-[#7362C6] text-[#7362C6]'
+                              : 'border-white/[0.32] text-[#FFFFFF]'
+                          } border px-4 py-[10px] text-[14px] font-bold leading-5`}
+                          onClick={() => {
+                            setActiveIndex(index),
+                              setPercentAmount(true),
+                              console.log('>>>', button[activeIndex].amount);
+                          }}
+                        >
+                          {item.text}
+                        </button>
+                      }
+                    </React.Fragment>
                   );
                 })}
               </div>
             </div>
             <button
               className={`flex items-center justify-center rounded-[16px] px-6 py-4 text-[18px] font-bold leading-6 ${
-                (inputLength > 0 && inputValue < totalAmountNum)  || percentAmount === true 
+                (inputLength > 0 && inputValue < totalAmountNum) ||
+                percentAmount === true
                   ? 'bg-[#5848BC] text-[#FFFFFF]'
                   : 'pointer-events-none bg-[#515151] text-[#979797]'
               }`}

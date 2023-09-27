@@ -16,7 +16,7 @@ import smiley from '../../../../public/assets/face-smile-icon.png';
 import downArrow from '../../../../public/assets/down-arrow-img.png';
 
 interface FavoriteStyleModalProps {
-  closeModal: any;
+  closeModal: (value: boolean) => void;
   component?: string;
 }
 
@@ -118,11 +118,11 @@ const FavoriteStyleModal = ({
           modalOverlayStyle='!bg-black/80'
         >
           <div className='w-[67%]'>
-            <Image className='object-contain' src={modalImg} alt=''  />
+            <Image className='object-contain' src={modalImg} alt='' />
           </div>
           <div className='flex h-[inherit] w-[33%] flex-col'>
             <div className='h-[calc(86vh-100px)] overflow-y-auto'>
-              <div className='flex flex-col gap-4 px-6 pt-6 pb-5'>
+              <div className='flex flex-col gap-4 px-6 pb-5 pt-6'>
                 <div className='flex flex-col gap-[2px]'>
                   <div className='text-[22px] font-bold leading-8 text-white'>
                     Any Lee
@@ -133,13 +133,13 @@ const FavoriteStyleModal = ({
                 </div>
                 <div className='flex gap-3'>
                   <button className='flex w-full items-center justify-center gap-2 rounded-[14px] bg-white/[0.08] px-5 py-[13px]'>
-                    <Image src={check} alt=''  />
+                    <Image src={check} alt='' />
                     <div className='text-[16px] font-bold leading-[22px] text-white'>
                       Added
                     </div>
                   </button>
                   <button className='flex w-max items-center justify-center rounded-[14px] bg-white/[0.08] p-[14px]'>
-                    <Image className='object-contain' src={heart} alt=''  />
+                    <Image className='object-contain' src={heart} alt='' />
                   </button>
                 </div>
               </div>
@@ -155,13 +155,13 @@ const FavoriteStyleModal = ({
                           <div className='text-[14px] font-normal leading-[18px] text-[#979797]'>
                             {item.type}
                           </div>
-                          {
-                            item.image && <Image
-                            className='object-contain'
-                            src={item.image}
-                            alt=''/>
-                          }
-                          
+                          {item.image && (
+                            <Image
+                              className='object-contain'
+                              src={item.image}
+                              alt=''
+                            />
+                          )}
                         </div>
                         <div className='text-[14px] font-normal leading-[18px] text-white'>
                           {item.style}
@@ -185,7 +185,7 @@ const FavoriteStyleModal = ({
                     <div className='text-[15px] font-normal leading-5 text-white'>
                       Generation data
                     </div>
-                    <Image src={arrowDown} alt=''  />
+                    <Image src={arrowDown} alt='' />
                   </div>
                 ) : (
                   <div className='flex flex-col gap-4 rounded-[12px] bg-white/[0.05] px-4 py-[14px]'>
@@ -201,7 +201,6 @@ const FavoriteStyleModal = ({
                       <Image
                         src={generationData ? arrowUp : arrowDown}
                         alt=''
-                      
                       />
                     </div>
                     {generationData ? (
@@ -226,12 +225,11 @@ const FavoriteStyleModal = ({
                               );
                             })}
                           </div>
-                          <div className='relative group'>
+                          <div className='group relative'>
                             <Image
-                              className='object-contain cursor-pointer'
+                              className='cursor-pointer object-contain'
                               src={copy}
                               alt=''
-                             
                             />
                             <div className='invisible group-hover:visible group-hover:opacity-100'>
                               <div className='absolute -right-[16px] -top-[38px] flex items-center justify-center rounded-[6px] bg-[#303030] px-3 py-[6px] text-[12px] font-normal leading-4 text-white'>
@@ -239,10 +237,9 @@ const FavoriteStyleModal = ({
                               </div>
                               <div className='absolute -right-[26px] -top-[22px] h-[24px] w-10'>
                                 <Image
-                                  className='w-full h-full'
+                                  className='h-full w-full'
                                   src={downArrow}
                                   alt=''
-                                 
                                 />
                               </div>
                             </div>
@@ -281,7 +278,7 @@ const FavoriteStyleModal = ({
                   </div>
                   <div className='flex justify-between'>
                     <div className='flex gap-3'>
-                      <Image className='rounded-[100px]' src={avatar} alt=''  />
+                      <Image className='rounded-[100px]' src={avatar} alt='' />
                       <div className='flex flex-col gap-[2px]'>
                         <div className='text-[15px] font-semibold leading-5 text-white'>
                           Gayle Frami
@@ -316,7 +313,7 @@ const FavoriteStyleModal = ({
                       </div>
                     </div>
                     <div className='flex items-center'>
-                      <Image src={rightArrow} alt=''/>
+                      <Image src={rightArrow} alt='' />
                     </div>
                   </div>
                   <div className='flex flex-col gap-3'>
@@ -331,7 +328,6 @@ const FavoriteStyleModal = ({
                               className='rounded-[100px] object-contain'
                               src={item?.image}
                               alt=''
-                              
                             />
                           </div>
                           <div className='flex w-full flex-col gap-[6px]'>
@@ -341,7 +337,7 @@ const FavoriteStyleModal = ({
                                   {item.name}
                                 </div>
                                 <div className='flex items-center gap-[2px]'>
-                                  <Image src={star} alt=''  />
+                                  <Image src={star} alt='' />
                                   <div className='mt-[3px] text-[14px] font-semibold leading-[18px] text-[#979797]'>
                                     {item?.ratings}
                                   </div>
@@ -367,7 +363,7 @@ const FavoriteStyleModal = ({
                 <div className='text-[15px] font-normal leading-6 text-[#979797]'>
                   Type your comment ...
                 </div>
-                <Image src={smiley} alt=''  />
+                <Image src={smiley} alt='' />
               </div>
             </div>
           </div>

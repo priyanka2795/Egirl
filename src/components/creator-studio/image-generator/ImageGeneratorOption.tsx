@@ -27,53 +27,75 @@ import SearchIcon from '../../../../public/assets/search-alt (1).png';
 import RightIcon from '../../../../public/assets/check-cs.png';
 import DeleteIcon from '../../../../public/assets/delete-icon.png';
 
-const EditPromptName = ['Mica-chan', 'Blue Jeans', 'Gold Chain', 'White Sunglasses', 'Black top'];
-const PromptTagsSearch = ['Green top with white', 'Green top with white collar', 'Green top with white sleeve', 'Green top with white flower and big cloud', 'Green top with white belt', 'Green top with white lines and hearts', 'Green top with white, red and yellow spots'];
+const EditPromptName = [
+  'Mica-chan',
+  'Blue Jeans',
+  'Gold Chain',
+  'White Sunglasses',
+  'Black top'
+];
+const PromptTagsSearch = [
+  'Green top with white',
+  'Green top with white collar',
+  'Green top with white sleeve',
+  'Green top with white flower and big cloud',
+  'Green top with white belt',
+  'Green top with white lines and hearts',
+  'Green top with white, red and yellow spots'
+];
 
 interface ImageGeneratorOption {
-  InpaintingToggle: any;
-  PosingToggle: any;
-  MyCharacterToggle: any;
-  EditGeneration: any;
-  EditTooltip: any
+  InpaintingToggle: boolean;
+  PosingToggle: boolean;
+  MyCharacterToggle: boolean;
+  EditGeneration: boolean;
+  EditTooltip: boolean;
 }
-const ImageGeneratorOption = ({ InpaintingToggle, PosingToggle, MyCharacterToggle, EditGeneration, EditTooltip }: ImageGeneratorOption) => {
+const ImageGeneratorOption = ({
+  InpaintingToggle,
+  PosingToggle,
+  MyCharacterToggle,
+  EditGeneration,
+  EditTooltip
+}: ImageGeneratorOption) => {
   const [prompt, setPrompt] = useState(false);
   const [tagState, setTagState] = useState(false);
   const [openGenre, setOpenGenre] = React.useState(false);
   const [openStyle, setOpenStyle] = React.useState(false);
   // Inpainting Modal
-  const [inpaintingExample, setInpaintingExample] = useState(false)
-  const [selectImageModal, setSelectImageModal] = useState(false)
+  const [inpaintingExample, setInpaintingExample] = useState(false);
+  const [selectImageModal, setSelectImageModal] = useState(false);
   const [inpaintingModal, setInpaintingModal] = useState(false);
-  const [inpaintingCreated, setInpaintingCreated] = useState(false)
-  const [editInpainting, setEditInpainting] = useState(false)
+  const [inpaintingCreated, setInpaintingCreated] = useState(false);
+  const [editInpainting, setEditInpainting] = useState(false);
   // Posing Modal
-  const [posing, setPosing] = useState(false)
-  const [poseExample, setPoseExample] = useState(false)
-  const [posingCreated, setPosingCreated] = useState(false)
-  const [editPosing, setEditPosing] = useState(false)
+  const [posing, setPosing] = useState(false);
+  const [poseExample, setPoseExample] = useState(false);
+  const [posingCreated, setPosingCreated] = useState(false);
+  const [editPosing, setEditPosing] = useState(false);
 
   const handleOpenGenre = () => setOpenGenre(true);
   const handleCloseGenre = () => setOpenGenre(false);
 
   // Prompt Box
-  const [promptTags, setPromptTags] = useState([] as any)
-  const [editPrompt, setEditPrompt] = useState(null)
-  const [editPromptMenu, setEditPromptMenu] = useState(EditPromptName)
-  const [editPromptMenuIndex, setEditPromptMenuIndex] = useState('Blue Jeans');
+  const [promptTags, setPromptTags] = useState([] as any);
+  const [editPrompt, setEditPrompt] = useState(null);
+  const [editPromptMenu, setEditPromptMenu] = useState(EditPromptName);
+  const [editPromptMenuIndex, setEditPromptMenuIndex] =
+    useState<string>('Blue Jeans');
   const [promptTagsHint, setPromptTagsHint] = useState(PromptTagsSearch);
   const [promptHint, setPromptHint] = useState('');
 
-
-  const DeletePromptMenu = (item: any) => {
-    setEditPromptMenu(editPromptMenu.filter((el: any, i: any) => el !== item));
+  const DeletePromptMenu = (item: string) => {
+    setEditPromptMenu(
+      editPromptMenu.filter((el: string, i: number) => el !== item)
+    );
     setEditPrompt(null);
-  }
+  };
 
   function handleKeyDown(e: any) {
     setEditPrompt(null);
-    const found = promptTags.find((Tags: any) => Tags == promptHint);
+    const found = promptTags.find((Tags: string) => Tags == promptHint);
     if (promptHint === found) {
       if (e.key === 'Enter') {
         setPromptHint('');
@@ -81,31 +103,30 @@ const ImageGeneratorOption = ({ InpaintingToggle, PosingToggle, MyCharacterToggl
       }
     } else {
       if (e.key === 'Enter') {
-        setPromptHint('')
+        setPromptHint('');
       }
-      if (e.key !== 'Enter') return
-      const value = e.target.value
-      if (!value.trim()) return
-      setPromptTags([...promptTags, value])
-      e.target.value = ''
+      if (e.key !== 'Enter') return;
+      const value = e.target.value;
+      if (!value.trim()) return;
+      setPromptTags([...promptTags, value]);
+      e.target.value = '';
     }
-
   }
 
-  const EditPromptData = (item: any) => {
+  const EditPromptData = (item: null) => {
     setEditPrompt((prev) => (prev === item ? null : item));
-  }
+  };
 
-  function removeTag(index: any) {
-    setPromptTags(promptTags.filter((el: any, i: any) => i !== index))
+  function removeTag(index: number) {
+    setPromptTags(promptTags.filter((el: string, i: number) => i !== index));
   }
-  // Drag And Drop Item 
+  // Drag And Drop Item
   const dragItem = useRef();
   const dragOverItem = useRef();
 
   const dragStart = (e: any, position: any) => {
     dragItem.current = position;
-    setEditPrompt(null)
+    setEditPrompt(null);
   };
   const dragEnter = (e: any, position: any) => {
     dragOverItem.current = position;
@@ -121,17 +142,17 @@ const ImageGeneratorOption = ({ InpaintingToggle, PosingToggle, MyCharacterToggl
   };
 
   // searchPromptMenu
-  const [searchPromptMenu, setSearchPromptMenu] = useState('')
-  const [showPromptMenu, setShowPromptMenu] = useState(false)
-  const handleInputChange = (e: any) => {
+  const [searchPromptMenu, setSearchPromptMenu] = useState('');
+  const [showPromptMenu, setShowPromptMenu] = useState(false);
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const searchTerm = e.target.value;
     setSearchPromptMenu(searchTerm);
     const filteredItems = EditPromptName.filter((user) =>
       user.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setEditPromptMenu(filteredItems);
-  }
-  const handleChangePromptHint = (e: any) => {
+  };
+  const handleChangePromptHint = (e: React.ChangeEvent<HTMLInputElement>) => {
     const searchPrompt = e.target.value;
     setPromptHint(searchPrompt);
     const filteredItems = PromptTagsSearch.filter((Prompt) =>
@@ -140,207 +161,337 @@ const ImageGeneratorOption = ({ InpaintingToggle, PosingToggle, MyCharacterToggl
     setPromptTagsHint(filteredItems);
 
     if (filteredItems.length === 0) {
-      setShowPromptMenu(true)
+      setShowPromptMenu(true);
     } else {
-      setShowPromptMenu(false)
+      setShowPromptMenu(false);
     }
-  }
+  };
 
-  const HandleTypeHint = (e: any) => {
-    const PromptHint = e.target.innerText
-    setPromptHint(PromptHint)
-    setPromptTags([...promptTags, PromptHint])
+  const HandleTypeHint = (e: React.MouseEvent<HTMLElement>) => {
+    const PromptHint = (e.target as HTMLElement).innerText;
+    setPromptHint(PromptHint);
+    setPromptTags([...promptTags, PromptHint]);
     setShowPromptMenu(true);
-    setPromptHint('')
-  }
+    setPromptHint('');
+  };
   return (
     <>
-    <div className='flex flex-col rounded-[14px] bg-[#121212]'>
-      <div className='flex flex-col gap-6 p-6'>
-        <div className='text-white text-[22px] font-bold leading-8'>Image generator</div>
-        <div className='flex flex-col gap-4'>
-          <div className='flex justify-between'>
-          <div className='flex gap-3'>
-            <div
-              onClick={handleOpenGenre}
-              className='flex justify-between w-[300px] items-center rounded-[14px] bg-white/[0.08] px-4 py-3'
-            >
-              <p className='text-[#979797] text-[15px] font-normal leading-6'>Genre</p>
-              <Image src={ArrowRight} className='w-full h-full' />
-            </div>
-
-            <div
-              onClick={() => setOpenStyle(true)}
-              className='flex cursor-pointer items-center justify-center gap-2 rounded-[14px] bg-white/[0.08] px-5 py-[13px] text-[16px] font-bold leading-[22px] text-white'>
-              Add style 
-              <PlusIconSvg />
-            </div>
-
-            <div
-              className='flex cursor-pointer items-center justify-center gap-2 rounded-[14px] bg-white/[0.08] px-5 py-[13px] text-[16px] font-bold leading-[22px] text-white'
-              onClick={() => setTagState(!tagState)}
-            >
-              Add tag 
-              <PlusIconSvg />
-            </div>
+      <div className='flex flex-col rounded-[14px] bg-[#121212]'>
+        <div className='flex flex-col gap-6 p-6'>
+          <div className='text-[22px] font-bold leading-8 text-white'>
+            Image generator
           </div>
-
-          <div className='flex w-12 cursor-pointer items-center justify-center gap-2 rounded-[14px] bg-white bg-opacity-10 py-3 relative group'>
-            <ShuffleSvg />
-            {EditTooltip ?
-              <div className='absolute z-50 -top-12 w-max -left-16'>
-                <Tooltip Text={'Add a random prompt'} />
-              </div> : ''}
-          </div>
-          </div>
-          <div className="bg-[#0000007A] py-3 px-4 min-h-[124px] h-auto rounded-[14px] w-full flex items-start flex-wrap content-start">
-          <div className='flex flex-wrap items-center gap-2'>
-            {MyCharacterToggle &&
-              <div className='bg-[#403BAC] flex items-center gap-1 rounded-xl px-[10px] py-2 cursor-pointer'>
-                <Image src={UserWhite} className='w-full h-full' />
-                <p className='text-[14px]'>Mika-chan</p>
-              </div>
-            }
-            {promptTags.map((tag: any, index: any) => (
-              <div className='relative bg-transparent'>
-                <div className={`flex items-center ${editPrompt === tag ? 'bg-[#403BAC]' : 'bg-[#FFFFFF29]'} gap-2 rounded-xl px-[10px] py-2 cursor-pointer`}
-                  key={index}
-                  onClick={() => EditPromptData(tag)}
-                  onDragStart={(e) => dragStart(e, index)}
-                  onDragEnter={(e) => dragEnter(e, index)}
-                  onDragEnd={drop}
-                  draggable>
-                  <Image src={Grid} className='w-full h-full' />
-                  <span className="text">{tag}</span>
-                  {/* <span className="cursor-pointer" onClick={() => removeTag(index)}>&times;</span> */}
+          <div className='flex flex-col gap-4'>
+            <div className='flex justify-between'>
+              <div className='flex gap-3'>
+                <div
+                  onClick={handleOpenGenre}
+                  className='flex w-[300px] items-center justify-between rounded-[14px] bg-white/[0.08] px-4 py-3'
+                >
+                  <p className='text-[15px] font-normal leading-6 text-[#979797]'>
+                    Genre
+                  </p>
+                  <Image src={ArrowRight} className='h-full w-full' />
                 </div>
-                {editPrompt === tag &&
-                  <div className='bg-[#1A1A1A] w-[243px] h-auto rounded-[14px] absolute top-12 left-0 z-50'>
-                    <div className='bg-[#FFFFFF0D] gap-[6px] m-4 px-3 rounded-[10px] flex items-center justify-between'>
-                      <Image src={SearchIcon} className='object-cover w-full h-full ' />
-                      <input type="text" placeholder='Search' className='bg-transparent rounded-[14px] h-10 p-0 border-none active:border-none focus:border-none focus:ring-0 text-white placeholder:text-[#979797] w-[160px]' value={searchPromptMenu}
-                        onChange={handleInputChange} />
+
+                <div
+                  onClick={() => setOpenStyle(true)}
+                  className='flex cursor-pointer items-center justify-center gap-2 rounded-[14px] bg-white/[0.08] px-5 py-[13px] text-[16px] font-bold leading-[22px] text-white'
+                >
+                  Add style
+                  <PlusIconSvg />
+                </div>
+
+                <div
+                  className='flex cursor-pointer items-center justify-center gap-2 rounded-[14px] bg-white/[0.08] px-5 py-[13px] text-[16px] font-bold leading-[22px] text-white'
+                  onClick={() => setTagState(!tagState)}
+                >
+                  Add tag
+                  <PlusIconSvg />
+                </div>
+              </div>
+
+              <div className='group relative flex w-12 cursor-pointer items-center justify-center gap-2 rounded-[14px] bg-white bg-opacity-10 py-3'>
+                <ShuffleSvg />
+                {EditTooltip ? (
+                  <div className='absolute -left-16 -top-12 z-50 w-max'>
+                    <Tooltip Text={'Add a random prompt'} />
+                  </div>
+                ) : (
+                  ''
+                )}
+              </div>
+            </div>
+            <div className='flex h-auto min-h-[124px] w-full flex-wrap content-start items-start rounded-[14px] bg-[#0000007A] px-4 py-3'>
+              <div className='flex flex-wrap items-center gap-2'>
+                {MyCharacterToggle && (
+                  <div className='flex cursor-pointer items-center gap-1 rounded-xl bg-[#403BAC] px-[10px] py-2'>
+                    <Image src={UserWhite} className='h-full w-full' />
+                    <p className='text-[14px]'>Mika-chan</p>
+                  </div>
+                )}
+                {promptTags.map((tag: any, index: number) => (
+                  <div className='relative bg-transparent' key={index}>
+                    <div
+                      className={`flex items-center ${
+                        editPrompt === tag ? 'bg-[#403BAC]' : 'bg-[#FFFFFF29]'
+                      } cursor-pointer gap-2 rounded-xl px-[10px] py-2`}
+                      key={index}
+                      onClick={() => EditPromptData(tag)}
+                      onDragStart={(e) => dragStart(e, index)}
+                      onDragEnter={(e) => dragEnter(e, index)}
+                      onDragEnd={drop}
+                      draggable
+                    >
+                      <Image src={Grid} className='h-full w-full' />
+                      <span className='text'>{tag}</span>
+                      {/* <span className="cursor-pointer" onClick={() => removeTag(index)}>&times;</span> */}
                     </div>
-                    <div className='flex flex-col gap-[10px]'>
-                      {editPromptMenu.map((items, index) => (
-                        <div className={`${editPromptMenuIndex === items ? 'bg-[#FFFFFF0D]' : ''} px-4 py-[10px] flex justify-between items-center cursor-pointer`} onClick={() => { setEditPromptMenuIndex(items) }}>
-                          <p>{items}</p>
-                          {editPromptMenuIndex === items ? <Image src={RightIcon} className='w-full h-full' /> : ''}
+                    {editPrompt === tag && (
+                      <div className='absolute left-0 top-12 z-50 h-auto w-[243px] rounded-[14px] bg-[#1A1A1A]'>
+                        <div className='m-4 flex items-center justify-between gap-[6px] rounded-[10px] bg-[#FFFFFF0D] px-3'>
+                          <Image
+                            src={SearchIcon}
+                            className='h-full w-full object-cover '
+                          />
+                          <input
+                            type='text'
+                            placeholder='Search'
+                            className='h-10 w-[160px] rounded-[14px] border-none bg-transparent p-0 text-white placeholder:text-[#979797] focus:border-none focus:ring-0 active:border-none'
+                            value={searchPromptMenu}
+                            onChange={handleInputChange}
+                          />
                         </div>
-                      ))}
-                      <div className='py-[10px] px-4'>
-                        <button className='bg-[#FFFFFF14] w-full rounded-[10px] py-[7px] flex items-center justify-center font-bold text-[#979797] gap-[6px]' onClick={() => DeletePromptMenu(editPromptMenuIndex)}>
-                          <Image src={DeleteIcon} className='w-full h-full' /> Delete</button>
+                        <div className='flex flex-col gap-[10px]'>
+                          {editPromptMenu.map((items, index) => (
+                            <div
+                              key={index}
+                              className={`${
+                                editPromptMenuIndex === items
+                                  ? 'bg-[#FFFFFF0D]'
+                                  : ''
+                              } flex cursor-pointer items-center justify-between px-4 py-[10px]`}
+                              onClick={() => {
+                                setEditPromptMenuIndex(items);
+                              }}
+                            >
+                              <p>{items}</p>
+                              {editPromptMenuIndex === items ? (
+                                <Image
+                                  src={RightIcon}
+                                  className='h-full w-full'
+                                />
+                              ) : (
+                                ''
+                              )}
+                            </div>
+                          ))}
+                          <div className='px-4 py-[10px]'>
+                            <button
+                              className='flex w-full items-center justify-center gap-[6px] rounded-[10px] bg-[#FFFFFF14] py-[7px] font-bold text-[#979797]'
+                              onClick={() =>
+                                DeletePromptMenu(editPromptMenuIndex)
+                              }
+                            >
+                              <Image
+                                src={DeleteIcon}
+                                className='h-full w-full'
+                              />{' '}
+                              Delete
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+              <div className='relative z-10'>
+                <input
+                  onKeyDown={handleKeyDown}
+                  type='text'
+                  className='w-[150px] border-none bg-transparent focus:border-none focus:ring-0'
+                  placeholder='Type a prompt ...'
+                  value={promptHint}
+                  onChange={handleChangePromptHint}
+                />
+                {showPromptMenu ? (
+                  ''
+                ) : (
+                  <>
+                    {promptHint === '' ? (
+                      ''
+                    ) : (
+                      <div className='rounded-[14px] bg-[#1A1A1A] p-2 shadow-md '>
+                        {promptTagsHint.map((items, index) => (
+                          <div
+                            key={index}
+                            className='cursor-pointer rounded-lg p-2 hover:bg-[#FFFFFF0D]'
+                            onClick={(e) => HandleTypeHint(e)}
+                          >
+                            {items}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+          <div>
+            {prompt && (
+              <div className='mb-6 flex flex-col gap-[6px]'>
+                <label className='text-[#979797]' htmlFor='negative'>
+                  Negative prompt
+                </label>
+                <input
+                  type='text'
+                  id='negative'
+                  placeholder='Type a negative prompt...'
+                  className='h-12 rounded-[14px] border-none bg-[#FFFFFF0D] px-4 text-white placeholder:text-[#979797] focus:border-[#5848BC] focus:ring-[#5848BC] active:border-[#5848BC]'
+                  name='negative'
+                />
+              </div>
+            )}
+            <Toggle
+              handleToggleState={() => setPrompt(!prompt)}
+              toggleState={prompt}
+              toggleText={`Negative Prompt`}
+              infoIcon={'hidden'}
+              toggleClasses={'bg-[#383838]'}
+              subHeading={true}
+            />
+            {InpaintingToggle && (
+              <div className='py-6'>
+                <div className='flex items-center gap-1 pb-3'>
+                  <p className='text-[15px] font-bold'>Inpainting</p>
+                  <div
+                    className='cursor-pointer pt-1.5'
+                    onClick={() => setInpaintingExample(true)}
+                  >
+                    <Image src={Question} className='h-full w-full' />
+                  </div>
+                </div>
+                {inpaintingCreated ? (
+                  <div className='flex items-center'>
+                    <div className='sub-banner relative h-[140px] w-[140px]'>
+                      <Image
+                        src={Image1}
+                        className='h-full w-full rounded-[14px] object-cover'
+                      />
+                      <div
+                        className='group absolute right-3 top-3 flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full bg-[#0000007A]'
+                        onClick={() => {
+                          setInpaintingModal(true), setEditInpainting(true);
+                        }}
+                      >
+                        <Edit />
+                        <div className='absolute -left-8 -top-12 w-max'>
+                          <Tooltip Text={'Edit image'} />
+                        </div>
                       </div>
                     </div>
-                  </div>}
+                  </div>
+                ) : (
+                  <div className='flex items-center justify-center rounded-[14px] bg-[#1A1A1A] p-6'>
+                    <div className='flex flex-col items-center gap-3'>
+                      <div className='flex h-[56px] w-[56px] items-center justify-center rounded-full bg-[#FFFFFF0D]'>
+                        <Image
+                          src={ImageSquare}
+                          className='h-full w-full object-cover'
+                        />{' '}
+                      </div>
+                      <p className='text-[13px] text-[#979797]'>
+                        Choose an image you want to inpaint on
+                      </p>
+                      <button
+                        className='rounded-xl bg-[#FFFFFF14] px-4 py-[10px] font-bold'
+                        onClick={() => setSelectImageModal(true)}
+                      >
+                        Select image
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
-            ))}
-          </div>
-          <div className='relative z-10'>
-            <input onKeyDown={handleKeyDown} type="text" className="w-[150px] bg-transparent border-none focus:border-none focus:ring-0" placeholder='Type a prompt ...' value={promptHint} onChange={handleChangePromptHint} />
-            {showPromptMenu ? "" :
-              <>
-                {promptHint === '' ? '' :
-                  <div className='rounded-[14px] shadow-md p-2 bg-[#1A1A1A] '>
-                    {promptTagsHint.map((items) => (
-                      <div className='p-2 rounded-lg cursor-pointer hover:bg-[#FFFFFF0D]' onClick={(e) => HandleTypeHint(e)}>{items}</div>
-                    ))}
-                  </div>}
-              </>
-            }
+            )}
 
-          </div>
+            {PosingToggle && (
+              <div className='py-6'>
+                <div className='flex items-center gap-1 pb-3'>
+                  <p className='text-[15px] font-bold'>Posing</p>
+                  <div
+                    className='cursor-pointer pt-1.5'
+                    onClick={() => setPoseExample(true)}
+                  >
+                    <Image src={Question} className='h-full w-full' />
+                  </div>
+                </div>
+
+                {posingCreated ? (
+                  <div className='flex items-center'>
+                    <div className='sub-banner relative h-[140px] w-[140px] rounded-[14px]'>
+                      <Image
+                        src={PoseImage}
+                        className='h-full w-full rounded-[14px] object-cover'
+                      />
+                      <div
+                        className='group absolute right-3 top-3 flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full bg-[#0000007A]'
+                        onClick={() => {
+                          setPosing(true), setEditPosing(true);
+                        }}
+                      >
+                        <Edit />
+                        <div className='absolute -left-8 -top-12 w-max '>
+                          <Tooltip Text={'Edit image'} />
+                        </div>
+                      </div>
+                      <div className='absolute bottom-0 left-0 flex h-[34px] w-full items-center justify-center rounded-b-[14px] bg-[#0000007A]'>
+                        <p className='text-[13px] font-semibold'>
+                          Default pose
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className='flex items-center justify-center rounded-[14px] bg-[#1A1A1A] p-6'>
+                    <div className='flex flex-col items-center gap-3'>
+                      <div className='flex h-[56px] w-[56px] items-center justify-center rounded-full bg-[#FFFFFF0D]'>
+                        <Image
+                          src={People}
+                          className='h-full w-full object-cover'
+                        />
+                      </div>
+                      <p className='text-[13px] text-[#979797]'>
+                        Pose mode helps you put your Egirl in the pose of your
+                        choosing.
+                      </p>
+                      <button
+                        className='rounded-xl bg-[#FFFFFF14] px-4 py-[10px] font-bold'
+                        onClick={() => setPosing(true)}
+                      >
+                        Add pose
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
         <div>
-        {prompt &&
-          <div className='flex flex-col gap-[6px] mb-6'>
-            <label className='text-[#979797]' htmlFor="negative">Negative prompt</label>
-            <input type="text" id='negative' placeholder='Type a negative prompt...' className='bg-[#FFFFFF0D] rounded-[14px] h-12 px-4 border-none active:border-[#5848BC] focus:border-[#5848BC] focus:ring-[#5848BC] text-white placeholder:text-[#979797]' name='negative' />
-          </div>
-        }
-        <Toggle
-          handleToggleState={() => setPrompt(!prompt)}
-          toggleState={prompt}
-          toggleText={`Negative Prompt`}
-          infoIcon={'hidden'}
-          toggleClasses={'bg-[#383838]'}
-          subHeading={true}
-        />
-        {InpaintingToggle &&
-          <div className='py-6'>
-            <div className='flex items-center gap-1 pb-3'>
-              <p className='text-[15px] font-bold'>Inpainting</p>
-              <div className='cursor-pointer pt-1.5' onClick={() => setInpaintingExample(true)}><Image src={Question} className='w-full h-full' /></div>
+          {EditGeneration ? (
+            <div className='border-t border-white/[0.08] p-6'>
+              <div className='ml-auto w-max items-center justify-center rounded-[14px] bg-[#5848BC] px-5 py-[13px] text-[16px] font-bold leading-[22px] text-white'>
+                Generate
+              </div>
             </div>
-            {inpaintingCreated ?
-              <div className='flex items-center'>
-                <div className='w-[140px] h-[140px] sub-banner relative'>
-                  <Image src={Image1} className='w-full h-full object-cover rounded-[14px]' />
-                  <div className='absolute bg-[#0000007A] cursor-pointer flex items-center justify-center w-[30px] h-[30px] rounded-full top-3 right-3 group' onClick={() => { setInpaintingModal(true), setEditInpainting(true) }}>
-                    <Edit />
-                    <div className='absolute -top-12 -left-8 w-max'>
-                      <Tooltip Text={'Edit image'} />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              : <div className='flex justify-center items-center bg-[#1A1A1A] rounded-[14px] p-6'>
-                <div className='flex flex-col items-center gap-3'>
-                  <div className='w-[56px] h-[56px] bg-[#FFFFFF0D] flex items-center justify-center rounded-full'>
-                    <Image src={ImageSquare} className='object-cover w-full h-full' />                    </div>
-                  <p className='text-[#979797] text-[13px]'>Choose an image you want to inpaint on</p>
-                  <button className='bg-[#FFFFFF14] rounded-xl px-4 py-[10px] font-bold' onClick={() => setSelectImageModal(true)}>Select image</button>
-                </div>
-              </div>
-            }
-          </div>
-        }
-
-        {PosingToggle &&
-          <div className='py-6'>
-            <div className='flex items-center gap-1 pb-3'>
-              <p className='text-[15px] font-bold'>Posing</p>
-              <div className='cursor-pointer pt-1.5' onClick={() => setPoseExample(true)}><Image src={Question} className='w-full h-full' /></div>
-            </div>
-
-            {posingCreated ? <div className='flex items-center'>
-              <div className='w-[140px] h-[140px] sub-banner rounded-[14px] relative'>
-                <Image src={PoseImage} className='w-full h-full object-cover rounded-[14px]' />
-                <div className='absolute bg-[#0000007A] cursor-pointer flex items-center justify-center w-[30px] h-[30px] rounded-full top-3 right-3 group' onClick={() => { setPosing(true), setEditPosing(true) }}>
-                  <Edit />
-                  <div className='absolute -top-12 -left-8 w-max '>
-                    <Tooltip Text={'Edit image'} />
-                  </div>
-                </div>
-                <div className='h-[34px] bg-[#0000007A] absolute bottom-0 left-0 w-full flex justify-center items-center rounded-b-[14px]'>
-                  <p className='font-semibold text-[13px]'>Default pose</p>
-                </div>
-              </div>
-            </div> :
-              <div className='flex justify-center items-center bg-[#1A1A1A] rounded-[14px] p-6'>
-                <div className='flex flex-col items-center gap-3'>
-                  <div className='w-[56px] h-[56px] bg-[#FFFFFF0D] flex items-center justify-center rounded-full'>
-                    <Image src={People} className='object-cover w-full h-full' /></div>
-                  <p className='text-[#979797] text-[13px]'>Pose mode helps you put your Egirl in the pose of your choosing.</p>
-                  <button className='bg-[#FFFFFF14] rounded-xl px-4 py-[10px] font-bold' onClick={() => setPosing(true)}>Add pose</button>
-                </div>
-              </div>
-            }
-          </div>
-        }
+          ) : (
+            ''
+          )}
         </div>
       </div>
-      <div>
-      {EditGeneration ?
-        <div className='p-6 border-t border-white/[0.08]'>
-          <div className='ml-auto justify-center items-center rounded-[14px] bg-[#5848BC] px-5 py-[13px] text-[16px] font-bold leading-[22px] text-white w-max'>
-            Generate
-          </div>
-        </div> : ''}
-      </div>
-    </div>      
       <Modal
         open={openGenre}
         closeModal={handleCloseGenre}
@@ -348,17 +499,17 @@ const ImageGeneratorOption = ({ InpaintingToggle, PosingToggle, MyCharacterToggl
         modalClassName={`bg-[#121212] flex  flex-col flex-start relative rounded-[20px]`}
       >
         <div className='flex flex-col items-start rounded-[20px] bg-[#121212] '>
-          <div className='flex items-start gap-2.5 self-stretch border-b-white/[0.08] px-8 border-white/[0.08] border-b pb-6 pt-8'>
+          <div className='flex items-start gap-2.5 self-stretch border-b border-white/[0.08] border-b-white/[0.08] px-8 pb-6 pt-8'>
             <div className='flex w-full text-lg font-bold leading-6 decoration-white'>
               Genre
             </div>
-            <div className='cursor-pointer' onClick={handleCloseGenre} >
+            <div className='cursor-pointer' onClick={handleCloseGenre}>
               <CloseIcon />
             </div>
           </div>
 
           <ImageGallery />
-          <div className='flex flex-row self-stretch gap-3 px-8 pt-4 pb-8'>
+          <div className='flex flex-row gap-3 self-stretch px-8 pb-8 pt-4'>
             <button
               onClick={handleCloseGenre}
               className='flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-white/[0.32] px-5 py-[13px] font-bold'
@@ -374,32 +525,45 @@ const ImageGeneratorOption = ({ InpaintingToggle, PosingToggle, MyCharacterToggl
           </div>
         </div>
       </Modal>
-          
+
       {openStyle && <AddStyleModal SetOpenStyle={setOpenStyle} />}
       {tagState && <AddTagModal closeDeleteModal={setTagState} />}
       {/* Inpainting Modals */}
 
-      {inpaintingExample &&
+      {inpaintingExample && (
         <InpaintingExample CloseModal={setInpaintingExample} />
-      }
-      {selectImageModal &&
-        <SelectImage CloseModal={setSelectImageModal} SetInpaintingModal={setInpaintingModal} />
-      }
-      {inpaintingModal &&
-        <InpaintingModals CloseInpaintingModal={setInpaintingModal} SetInpaintingCreated={setInpaintingCreated} EditInpainting={editInpainting} />}
+      )}
+      {selectImageModal && (
+        <SelectImage
+          CloseModal={setSelectImageModal}
+          SetInpaintingModal={setInpaintingModal}
+        />
+      )}
+      {inpaintingModal && (
+        <InpaintingModals
+          CloseInpaintingModal={setInpaintingModal}
+          SetInpaintingCreated={setInpaintingCreated}
+          EditInpainting={editInpainting}
+        />
+      )}
 
       {/* Posing Modals */}
       {poseExample && <PoseExample PoseExampleClose={setPoseExample} />}
-      {posing && <PosingModal PosingClose={setPosing} SetPosingCreated={setPosingCreated} EditPosing={editPosing} />}
-
+      {posing && (
+        <PosingModal
+          PosingClose={setPosing}
+          SetPosingCreated={setPosingCreated}
+          EditPosing={editPosing}
+        />
+      )}
     </>
   );
 };
 
 export default ImageGeneratorOption;
 
-
-{/* <>
+{
+  /* <>
       <div className='p-4 '>
         <div className='flex justify-between gap-4 pb-7 '>
           <div className='flex gap-4'>
@@ -452,182 +616,182 @@ export default ImageGeneratorOption;
                   draggable>
                   <Image src={Grid} className='w-full h-full' />
                   <span className="text">{tag}</span>
-                  {/* <span className="cursor-pointer" onClick={() => removeTag(index)}>&times;</span> */}
-      //           </div>
-      //           {editPrompt === tag &&
-      //             <div className='bg-[#1A1A1A] w-[243px] h-auto rounded-[14px] absolute top-12 left-0 z-50'>
-      //               <div className='bg-[#FFFFFF0D] gap-[6px] m-4 px-3 rounded-[10px] flex items-center justify-between'>
-      //                 <Image src={SearchIcon} className='object-cover w-full h-full ' />
-      //                 <input type="text" placeholder='Search' className='bg-transparent rounded-[14px] h-10 p-0 border-none active:border-none focus:border-none focus:ring-0 text-white placeholder:text-[#979797] w-[160px]' value={searchPromptMenu}
-      //                   onChange={handleInputChange} />
-      //               </div>
-      //               <div className='flex flex-col gap-[10px]'>
-      //                 {editPromptMenu.map((items, index) => (
-      //                   <div className={`${editPromptMenuIndex === items ? 'bg-[#FFFFFF0D]' : ''} px-4 py-[10px] flex justify-between items-center cursor-pointer`} onClick={() => { setEditPromptMenuIndex(items) }}>
-      //                     <p>{items}</p>
-      //                     {editPromptMenuIndex === items ? <Image src={RightIcon} className='w-full h-full' /> : ''}
-      //                   </div>
-      //                 ))}
-      //                 <div className='py-[10px] px-4'>
-      //                   <button className='bg-[#FFFFFF14] w-full rounded-[10px] py-[7px] flex items-center justify-center font-bold text-[#979797] gap-[6px]' onClick={() => DeletePromptMenu(editPromptMenuIndex)}>
-      //                     <Image src={DeleteIcon} className='w-full h-full' /> Delete</button>
-      //                 </div>
-      //               </div>
-      //             </div>}
-      //         </div>
-      //       ))}
-      //     </div>
-      //     <div className='relative z-10'>
-      //       <input onKeyDown={handleKeyDown} type="text" className="w-[150px] bg-transparent border-none focus:border-none focus:ring-0" placeholder='Type a prompt ...' value={promptHint} onChange={handleChangePromptHint} />
-      //       {showPromptMenu ? "" :
-      //         <>
-      //           {promptHint === '' ? '' :
-      //             <div className='rounded-[14px] shadow-md p-2 bg-[#1A1A1A] '>
-      //               {promptTagsHint.map((items) => (
-      //                 <div className='p-2 rounded-lg cursor-pointer hover:bg-[#FFFFFF0D]' onClick={(e) => HandleTypeHint(e)}>{items}</div>
-      //               ))}
-      //             </div>}
-      //         </>
-      //       }
+                  {/* <span className="cursor-pointer" onClick={() => removeTag(index)}>&times;</span> */
+}
+//           </div>
+//           {editPrompt === tag &&
+//             <div className='bg-[#1A1A1A] w-[243px] h-auto rounded-[14px] absolute top-12 left-0 z-50'>
+//               <div className='bg-[#FFFFFF0D] gap-[6px] m-4 px-3 rounded-[10px] flex items-center justify-between'>
+//                 <Image src={SearchIcon} className='object-cover w-full h-full ' />
+//                 <input type="text" placeholder='Search' className='bg-transparent rounded-[14px] h-10 p-0 border-none active:border-none focus:border-none focus:ring-0 text-white placeholder:text-[#979797] w-[160px]' value={searchPromptMenu}
+//                   onChange={handleInputChange} />
+//               </div>
+//               <div className='flex flex-col gap-[10px]'>
+//                 {editPromptMenu.map((items, index) => (
+//                   <div className={`${editPromptMenuIndex === items ? 'bg-[#FFFFFF0D]' : ''} px-4 py-[10px] flex justify-between items-center cursor-pointer`} onClick={() => { setEditPromptMenuIndex(items) }}>
+//                     <p>{items}</p>
+//                     {editPromptMenuIndex === items ? <Image src={RightIcon} className='w-full h-full' /> : ''}
+//                   </div>
+//                 ))}
+//                 <div className='py-[10px] px-4'>
+//                   <button className='bg-[#FFFFFF14] w-full rounded-[10px] py-[7px] flex items-center justify-center font-bold text-[#979797] gap-[6px]' onClick={() => DeletePromptMenu(editPromptMenuIndex)}>
+//                     <Image src={DeleteIcon} className='w-full h-full' /> Delete</button>
+//                 </div>
+//               </div>
+//             </div>}
+//         </div>
+//       ))}
+//     </div>
+//     <div className='relative z-10'>
+//       <input onKeyDown={handleKeyDown} type="text" className="w-[150px] bg-transparent border-none focus:border-none focus:ring-0" placeholder='Type a prompt ...' value={promptHint} onChange={handleChangePromptHint} />
+//       {showPromptMenu ? "" :
+//         <>
+//           {promptHint === '' ? '' :
+//             <div className='rounded-[14px] shadow-md p-2 bg-[#1A1A1A] '>
+//               {promptTagsHint.map((items) => (
+//                 <div className='p-2 rounded-lg cursor-pointer hover:bg-[#FFFFFF0D]' onClick={(e) => HandleTypeHint(e)}>{items}</div>
+//               ))}
+//             </div>}
+//         </>
+//       }
 
-      //     </div>
-      //   </div>
+//     </div>
+//   </div>
 
-      //   {prompt &&
-      //     <div className='flex flex-col gap-[6px] mb-6'>
-      //       <label className='text-[#979797]' htmlFor="negative">Negative prompt</label>
-      //       <input type="text" id='negative' placeholder='Type a negative prompt...' className='bg-[#FFFFFF0D] rounded-[14px] h-12 px-4 border-none active:border-[#5848BC] focus:border-[#5848BC] focus:ring-[#5848BC] text-white placeholder:text-[#979797]' name='negative' />
-      //     </div>
-      //   }
-      //   <Toggle
-      //     handleToggleState={() => setPrompt(!prompt)}
-      //     toggleState={prompt}
-      //     toggleText={`Negative Prompt`}
-      //     infoIcon={'hidden'}
-      //     toggleClasses={'bg-[#383838]'}
-      //     subHeading={true}
-      //   />
-      //   {InpaintingToggle &&
-      //     <div className='py-6'>
-      //       <div className='flex items-center gap-1 pb-3'>
-      //         <p className='text-[15px] font-bold'>Inpainting</p>
-      //         <div className='cursor-pointer pt-1.5' onClick={() => setInpaintingExample(true)}><Image src={Question} className='w-full h-full' /></div>
-      //       </div>
-      //       {inpaintingCreated ?
-      //         <div className='flex items-center'>
-      //           <div className='w-[140px] h-[140px] sub-banner relative'>
-      //             <Image src={Image1} className='w-full h-full object-cover rounded-[14px]' />
-      //             <div className='absolute bg-[#0000007A] cursor-pointer flex items-center justify-center w-[30px] h-[30px] rounded-full top-3 right-3 group' onClick={() => { setInpaintingModal(true), setEditInpainting(true) }}>
-      //               <Edit />
-      //               <div className='absolute -top-12 -left-8 w-max'>
-      //                 <Tooltip Text={'Edit image'} />
-      //               </div>
-      //             </div>
-      //           </div>
-      //         </div>
-      //         : <div className='flex justify-center items-center bg-[#1A1A1A] rounded-[14px] p-6'>
-      //           <div className='flex flex-col items-center gap-3'>
-      //             <div className='w-[56px] h-[56px] bg-[#FFFFFF0D] flex items-center justify-center rounded-full'>
-      //               <Image src={ImageSquare} className='object-cover w-full h-full' />                    </div>
-      //             <p className='text-[#979797] text-[13px]'>Choose an image you want to inpaint on</p>
-      //             <button className='bg-[#FFFFFF14] rounded-xl px-4 py-[10px] font-bold' onClick={() => setSelectImageModal(true)}>Select image</button>
-      //           </div>
-      //         </div>
-      //       }
-      //     </div>
-      //   }
+//   {prompt &&
+//     <div className='flex flex-col gap-[6px] mb-6'>
+//       <label className='text-[#979797]' htmlFor="negative">Negative prompt</label>
+//       <input type="text" id='negative' placeholder='Type a negative prompt...' className='bg-[#FFFFFF0D] rounded-[14px] h-12 px-4 border-none active:border-[#5848BC] focus:border-[#5848BC] focus:ring-[#5848BC] text-white placeholder:text-[#979797]' name='negative' />
+//     </div>
+//   }
+//   <Toggle
+//     handleToggleState={() => setPrompt(!prompt)}
+//     toggleState={prompt}
+//     toggleText={`Negative Prompt`}
+//     infoIcon={'hidden'}
+//     toggleClasses={'bg-[#383838]'}
+//     subHeading={true}
+//   />
+//   {InpaintingToggle &&
+//     <div className='py-6'>
+//       <div className='flex items-center gap-1 pb-3'>
+//         <p className='text-[15px] font-bold'>Inpainting</p>
+//         <div className='cursor-pointer pt-1.5' onClick={() => setInpaintingExample(true)}><Image src={Question} className='w-full h-full' /></div>
+//       </div>
+//       {inpaintingCreated ?
+//         <div className='flex items-center'>
+//           <div className='w-[140px] h-[140px] sub-banner relative'>
+//             <Image src={Image1} className='w-full h-full object-cover rounded-[14px]' />
+//             <div className='absolute bg-[#0000007A] cursor-pointer flex items-center justify-center w-[30px] h-[30px] rounded-full top-3 right-3 group' onClick={() => { setInpaintingModal(true), setEditInpainting(true) }}>
+//               <Edit />
+//               <div className='absolute -top-12 -left-8 w-max'>
+//                 <Tooltip Text={'Edit image'} />
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//         : <div className='flex justify-center items-center bg-[#1A1A1A] rounded-[14px] p-6'>
+//           <div className='flex flex-col items-center gap-3'>
+//             <div className='w-[56px] h-[56px] bg-[#FFFFFF0D] flex items-center justify-center rounded-full'>
+//               <Image src={ImageSquare} className='object-cover w-full h-full' />                    </div>
+//             <p className='text-[#979797] text-[13px]'>Choose an image you want to inpaint on</p>
+//             <button className='bg-[#FFFFFF14] rounded-xl px-4 py-[10px] font-bold' onClick={() => setSelectImageModal(true)}>Select image</button>
+//           </div>
+//         </div>
+//       }
+//     </div>
+//   }
 
-      //   {PosingToggle &&
-      //     <div className='py-6'>
-      //       <div className='flex items-center gap-1 pb-3'>
-      //         <p className='text-[15px] font-bold'>Posing</p>
-      //         <div className='cursor-pointer pt-1.5' onClick={() => setPoseExample(true)}><Image src={Question} className='w-full h-full' /></div>
-      //       </div>
+//   {PosingToggle &&
+//     <div className='py-6'>
+//       <div className='flex items-center gap-1 pb-3'>
+//         <p className='text-[15px] font-bold'>Posing</p>
+//         <div className='cursor-pointer pt-1.5' onClick={() => setPoseExample(true)}><Image src={Question} className='w-full h-full' /></div>
+//       </div>
 
-      //       {posingCreated ? <div className='flex items-center'>
-      //         <div className='w-[140px] h-[140px] sub-banner rounded-[14px] relative'>
-      //           <Image src={PoseImage} className='w-full h-full object-cover rounded-[14px]' />
-      //           <div className='absolute bg-[#0000007A] cursor-pointer flex items-center justify-center w-[30px] h-[30px] rounded-full top-3 right-3 group' onClick={() => { setPosing(true), setEditPosing(true) }}>
-      //             <Edit />
-      //             <div className='absolute -top-12 -left-8 w-max '>
-      //               <Tooltip Text={'Edit image'} />
-      //             </div>
-      //           </div>
-      //           <div className='h-[34px] bg-[#0000007A] absolute bottom-0 left-0 w-full flex justify-center items-center rounded-b-[14px]'>
-      //             <p className='font-semibold text-[13px]'>Default pose</p>
-      //           </div>
-      //         </div>
-      //       </div> :
-      //         <div className='flex justify-center items-center bg-[#1A1A1A] rounded-[14px] p-6'>
-      //           <div className='flex flex-col items-center gap-3'>
-      //             <div className='w-[56px] h-[56px] bg-[#FFFFFF0D] flex items-center justify-center rounded-full'>
-      //               <Image src={People} className='object-cover w-full h-full' /></div>
-      //             <p className='text-[#979797] text-[13px]'>Pose mode helps you put your Egirl in the pose of your choosing.</p>
-      //             <button className='bg-[#FFFFFF14] rounded-xl px-4 py-[10px] font-bold' onClick={() => setPosing(true)}>Add pose</button>
-      //           </div>
-      //         </div>
-      //       }
-      //     </div>
-      //   }
+//       {posingCreated ? <div className='flex items-center'>
+//         <div className='w-[140px] h-[140px] sub-banner rounded-[14px] relative'>
+//           <Image src={PoseImage} className='w-full h-full object-cover rounded-[14px]' />
+//           <div className='absolute bg-[#0000007A] cursor-pointer flex items-center justify-center w-[30px] h-[30px] rounded-full top-3 right-3 group' onClick={() => { setPosing(true), setEditPosing(true) }}>
+//             <Edit />
+//             <div className='absolute -top-12 -left-8 w-max '>
+//               <Tooltip Text={'Edit image'} />
+//             </div>
+//           </div>
+//           <div className='h-[34px] bg-[#0000007A] absolute bottom-0 left-0 w-full flex justify-center items-center rounded-b-[14px]'>
+//             <p className='font-semibold text-[13px]'>Default pose</p>
+//           </div>
+//         </div>
+//       </div> :
+//         <div className='flex justify-center items-center bg-[#1A1A1A] rounded-[14px] p-6'>
+//           <div className='flex flex-col items-center gap-3'>
+//             <div className='w-[56px] h-[56px] bg-[#FFFFFF0D] flex items-center justify-center rounded-full'>
+//               <Image src={People} className='object-cover w-full h-full' /></div>
+//             <p className='text-[#979797] text-[13px]'>Pose mode helps you put your Egirl in the pose of your choosing.</p>
+//             <button className='bg-[#FFFFFF14] rounded-xl px-4 py-[10px] font-bold' onClick={() => setPosing(true)}>Add pose</button>
+//           </div>
+//         </div>
+//       }
+//     </div>
+//   }
 
-      // </div>
-      // {EditGeneration ?
-      //   <div className='p-4 border-t border-white/[0.08]'>
-      //     <div className='ml-auto w-max rounded-[14px] bg-[#5848BC] px-5 py-[13px] text-base font-bold'>
-      //       Generate
-      //     </div>
-      //   </div> : ''}
+// </div>
+// {EditGeneration ?
+//   <div className='p-4 border-t border-white/[0.08]'>
+//     <div className='ml-auto w-max rounded-[14px] bg-[#5848BC] px-5 py-[13px] text-base font-bold'>
+//       Generate
+//     </div>
+//   </div> : ''}
 
-      
-      // <Modal
-      //   open={openGenre}
-      //   closeModal={handleCloseGenre}
-      //   modalOverlayStyle='!bg-black/80 '
-      //   modalClassName={`bg-[#121212] flex  flex-col flex-start relative rounded-[20px]`}
-      // >
-      //   <div className='flex flex-col items-start rounded-[20px] bg-[#121212] '>
-      //     <div className='flex items-start gap-2.5 self-stretch border-b-white/[0.08] px-8 border-white/[0.08] border-b pb-6 pt-8'>
-      //       <div className='flex w-full text-lg font-bold leading-6 decoration-white'>
-      //         Genre
-      //       </div>
-      //       <div className='cursor-pointer' onClick={handleCloseGenre} >
-      //         <CloseIcon />
-      //       </div>
-      //     </div>
+// <Modal
+//   open={openGenre}
+//   closeModal={handleCloseGenre}
+//   modalOverlayStyle='!bg-black/80 '
+//   modalClassName={`bg-[#121212] flex  flex-col flex-start relative rounded-[20px]`}
+// >
+//   <div className='flex flex-col items-start rounded-[20px] bg-[#121212] '>
+//     <div className='flex items-start gap-2.5 self-stretch border-b-white/[0.08] px-8 border-white/[0.08] border-b pb-6 pt-8'>
+//       <div className='flex w-full text-lg font-bold leading-6 decoration-white'>
+//         Genre
+//       </div>
+//       <div className='cursor-pointer' onClick={handleCloseGenre} >
+//         <CloseIcon />
+//       </div>
+//     </div>
 
-      //     <ImageGallery />
-      //     <div className='flex flex-row self-stretch gap-3 px-8 pt-4 pb-8'>
-      //       <button
-      //         onClick={handleCloseGenre}
-      //         className='flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-white/[0.32] px-5 py-[13px] font-bold'
-      //       >
-      //         Cancel
-      //       </button>
-      //       <button
-      //         onClick={handleCloseGenre}
-      //         className='flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-[#5848BC] bg-[#5848BC] px-5 py-[13px] font-bold'
-      //       >
-      //         Save
-      //       </button>
-      //     </div>
-      //   </div>
-      // </Modal>
-          
-      // {openStyle && <AddStyleModal SetOpenStyle={setOpenStyle} />}
-      // {tagState && <AddTagModal closeDeleteModal={setTagState} />}
-      // {/* Inpainting Modals */}
+//     <ImageGallery />
+//     <div className='flex flex-row self-stretch gap-3 px-8 pt-4 pb-8'>
+//       <button
+//         onClick={handleCloseGenre}
+//         className='flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-white/[0.32] px-5 py-[13px] font-bold'
+//       >
+//         Cancel
+//       </button>
+//       <button
+//         onClick={handleCloseGenre}
+//         className='flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-[#5848BC] bg-[#5848BC] px-5 py-[13px] font-bold'
+//       >
+//         Save
+//       </button>
+//     </div>
+//   </div>
+// </Modal>
 
-      // {inpaintingExample &&
-      //   <InpaintingExample CloseModal={setInpaintingExample} />
-      // }
-      // {selectImageModal &&
-      //   <SelectImage CloseModal={setSelectImageModal} SetInpaintingModal={setInpaintingModal} />
-      // }
-      // {inpaintingModal &&
-      //   <InpaintingModals CloseInpaintingModal={setInpaintingModal} SetInpaintingCreated={setInpaintingCreated} EditInpainting={editInpainting} />}
+// {openStyle && <AddStyleModal SetOpenStyle={setOpenStyle} />}
+// {tagState && <AddTagModal closeDeleteModal={setTagState} />}
+// {/* Inpainting Modals */}
 
-      // {/* Posing Modals */}
-      // {poseExample && <PoseExample PoseExampleClose={setPoseExample} />}
-      // {posing && <PosingModal PosingClose={setPosing} SetPosingCreated={setPosingCreated} EditPosing={editPosing} />}
+// {inpaintingExample &&
+//   <InpaintingExample CloseModal={setInpaintingExample} />
+// }
+// {selectImageModal &&
+//   <SelectImage CloseModal={setSelectImageModal} SetInpaintingModal={setInpaintingModal} />
+// }
+// {inpaintingModal &&
+//   <InpaintingModals CloseInpaintingModal={setInpaintingModal} SetInpaintingCreated={setInpaintingCreated} EditInpainting={editInpainting} />}
 
-    // </> 
+// {/* Posing Modals */}
+// {poseExample && <PoseExample PoseExampleClose={setPoseExample} />}
+// {posing && <PosingModal PosingClose={setPosing} SetPosingCreated={setPosingCreated} EditPosing={editPosing} />}
+
+// </>

@@ -24,21 +24,23 @@ const AllStylesCollection = () => {
   const handleDuration = () => {
     setShowDuration(!showDuration);
   };
-  const handleSelectedNewest = (ele: any) => {
+  const handleSelectedNewest = (ele: string) => {
     setSelectedNewest(ele);
   };
-  const handleSelectedDuration = (ele: any) => {
+  const handleSelectedDuration = (ele: string) => {
     setSelectedDuration(ele);
   };
 
   return (
     <>
-      <div className='flex justify-between mt-8 mb-4'>
-        <div className='text-[18px] font-bold leading-6 text-[#FFF]'>All Styles</div>
+      <div className='mb-4 mt-8 flex justify-between'>
+        <div className='text-[18px] font-bold leading-6 text-[#FFF]'>
+          All Styles
+        </div>
         <div className='flex gap-4'>
           <div className='relative'>
             <div
-              className='flex gap-2 pr-2 border-r border-white/[0.08] cursor-pointer'
+              className='flex cursor-pointer gap-2 border-r border-white/[0.08] pr-2'
               onClick={handleNewest}
             >
               <p>Newest</p>
@@ -69,10 +71,7 @@ const AllStylesCollection = () => {
             )}
           </div>
           <div className='relative'>
-            <div
-              className='flex gap-2 cursor-pointer'
-              onClick={handleDuration}
-            >
+            <div className='flex cursor-pointer gap-2' onClick={handleDuration}>
               <p>Month</p>
               <Image
                 src={showDuration ? arrowUp : arrowDown}

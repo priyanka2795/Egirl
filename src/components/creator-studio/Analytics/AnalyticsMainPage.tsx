@@ -706,7 +706,7 @@ const AnalyticsMainPage = () => {
                     {/* types */}
 
                     <div className='mt-5 flex items-center justify-center gap-6 self-stretch '>
-                      {types.map((item, index) => (
+                      {types.map((item, index: number) => (
                         <div
                           className='flex items-center gap-2'
                           onClick={() => SelectShort(index)}
