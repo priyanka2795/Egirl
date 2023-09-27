@@ -39,7 +39,7 @@ const ClearBookMarkModal = ({closeModalItem, heading, paragraph, setClearChat, s
     modalOverlayStyle='!bg-black/80' 
   > 
       <>
-        <div className='flex px-10 py-12'>
+        <div className='flex px-10 py-14'>
             <div className='flex flex-col items-center gap-4'>
                 <div className='flex w-[80px] h-[80px] px-6 py-[26px] justify-center items-center rounded-[100px] bg-[#FF5336]/[0.16]'>
                     <div className='w-8 h-8'>
@@ -54,10 +54,8 @@ const ClearBookMarkModal = ({closeModalItem, heading, paragraph, setClearChat, s
         </div>
 
         <div className='flex gap-3 px-6 py-4'>
-            <button className='w-1/2 flex px-5 py-[13px] rounded-[14px] border border-white/[0.32] justify-center' onClick={handleCancelButton}>
-                <div className='text-white text-[16px] font-bold'>Cancel</div>
-            </button>
-            <button className='w-1/2 flex px-5 py-[13px] rounded-[14px] bg-[#FF5336] text-white text-[16px] font-bold justify-center' onClick={handleClearButton}>Clear</button>
+            <button className='w-1/2 flex px-5 py-[13px] rounded-[14px] border border-white/[0.32] justify-center text-white text-[16px] font-bold leading-[22px]' onClick={handleCancelButton}>Cancel</button>
+            <button className='w-1/2 flex px-5 py-[13px] rounded-[14px] bg-[#FF5336] text-white text-[16px] font-bold leading-[22px] justify-center' onClick={handleClearButton}>Clear</button>
         </div>
     </>
   </Modal>

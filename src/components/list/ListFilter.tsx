@@ -1,23 +1,24 @@
 import Image from 'next/image'
 import React from 'react'
-import searchIcon from '../../../public/assets/search-icon.png'
-import arrowDownArrowUp from '../../../public/assets/arrow-down-arrow-up.png'
+import star from '../../../public/assets/star-blank.png'
+import arrowDown from '../../../public/assets/chevron-down.png'
 import filterIcon from '../../../public/assets/filter-icons.png'
 
 const ListFilter = () => {
   return (
-    <div className='flex items-center gap-[588px] justify-between'>
-            <div className='flex flex-col w-[320px] items-start justify-center gap-[6px] shrink-0 rounded-[12px]'>
-                <div className='flex items-start self-stretch gap-2 py-[10px] pl-[14px] pr-[12px] rounded-[12px] bg-white/10'>
-                    <Image className='w-[20px] h-[20px]' src={searchIcon} alt={''}/>
-                    <div className='text-[#979797] text-sm font-normal'>Search</div>
-                </div>
-            </div>
-            <div className='flex items-center gap-2'>
-                <Image className='w-[20px] h-[20px]' src={arrowDownArrowUp} alt={''}/>
-                <Image className='w-[20px] h-[20px]' src={filterIcon} alt={''}/>
+    <div className='flex items-center justify-between w-full'>
+        <div className='flex w-[320px] gap-[6px] px-3 py-[10px] items-center rounded-[10px] bg-white/[0.05]'>
+            <Image className='w-[20px] h-[20px]' src={star} alt={''}/>
+            <input type='text' placeholder='Search' className='flex h-0 bg-transparent border-none focus:ring-0 text-[#979797] text-[14px] font-normal leading-5 placeholder:text-[#979797] pl-0' />
+        </div>
+        <div className='flex items-center gap-2'>
+            <Image className='w-[20px] h-[20px]' src={filterIcon} alt={''}/>
+            <div className='flex gap-2 border-l border-white/[0.08] pl-2'>
+                <div className='text-white text-[15px] font-normal leading-5'>Newest</div>
+                <Image src={arrowDown} alt={''} />
             </div>
         </div>
+    </div>
   )
 }
 

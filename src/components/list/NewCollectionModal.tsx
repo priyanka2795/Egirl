@@ -18,13 +18,11 @@ const NewCollectionModal = ({closeModalItem} : CollectionModalProp) => {
     modalOverlayStyle='!bg-black/80'
   >    
   <div>  
-     <div className='flex justify-between w-full gap-2 p-6 border-b border-white/[0.08]'>
-        <div className='flex flex-col items-start gap-1 text-[#FFFFFF] text-lg font-bold w-[286px]'>Custom List
-        </div>
+    <div className='flex justify-between w-full gap-2 p-6 border-b border-white/[0.08]'>
+        <div className='flex flex-col items-start gap-1 text-[#FFFFFF] text-lg font-bold w-[286px]'>Edit collection</div>
         <div className='flex top-[7px] items-start gap-4 w-[24px] h-[24px] object-contain' onClick={() => closeModalItem(false)}>
             <CloseIcon/>
         </div>
-           
     </div>
 
         <div className='flex items-center w-full gap-4 px-6 pt-6 pb-3'>

@@ -50,7 +50,7 @@ const CollectionCard = ({
         )}
         {dropdownCardId === cardId ? (
           <>
-            <CardDropdown closeDropdown={getCardId}/>
+            <CardDropdown closeDropdown={getCardId} />
           </>
         ) :  null}
       </div>

@@ -9,8 +9,11 @@ import NewCollectionModal from './NewCollectionModal';
 import ListFilter from './ListFilter';
 import CollectionCard from './CollectionCard';
 import CollectionFilterContent from './CollectionFilterContent';
+import buttonPlusIcon from '../../../public/assets/plus-large.png';
+import CreateCollectionModal from './CreateCollectionModal';
+
 const CollectionOptions = () => {
-  const [newCollectionModal, setNewCollectionModal] = useState(false);
+  const [createCollectionModal, setCreateCollectionModal] = useState(false);
   const [imageDropdownId, setImageDropdownId] = useState('');
   const [selectedCardId, setSelectedCardId] = useState('false');
   const [filterByType , setFilterByType] = useState(false);
@@ -22,18 +25,27 @@ const [titleText , setTitleText] = useState("");
   }
   return (
     <>
-
-
+    
       { filterByType === true ?
       <CollectionFilterContent titleText={titleText} clearFilter={setFilterByType}/> :
   <>
-        <ListFilter />
-      <div className='mt-[14px] grid grid-cols-4 gap-4'>
-      <div className='flex flex-col items-center justify-center rounded-[16px] border border-white/[0.08] bg-[#121212]'>
+      <div className='flex flex-col gap-6'>
+        <div className='flex flex-col gap-4'>
+          <div className='flex items-center justify-between'>
+            <div className='text-white text-[22px] font-bold leading-8'>All collections</div>
+            <button className='bg-[#5848BC] flex items-center justify-center gap-[6px] rounded-[12px] px-4 py-[10px]' onClick={() => {setCreateCollectionModal(true)}}>
+              <Image className='h-[18px] w-[18px]' src={buttonPlusIcon} alt={''} />
+              Create
+            </button>
+          </div>
+          <ListFilter />
+        </div>
+        <div className='grid grid-cols-3 gap-4'>
+          {/* <div className='flex flex-col items-center justify-center rounded-[16px] border border-white/[0.08] bg-[#121212]'>
         <Image src={plusIcon} alt='' className='object-contain mb-4' />
         <div
           className='flex flex-col items-center justify-center cursor-pointer'
-          onClick={() => setNewCollectionModal(true)}
+          onClick={() => setCreateCollectionModal(true)}
         >
           <h5 className='mb-[20px] text-sm font-semibold'>
             Create a new collection{' '}
@@ -42,12 +54,12 @@ const [titleText , setTitleText] = useState("");
             Create
           </div>
         </div>
-      </div>
+          </div> */}
      
      <CollectionCard
         cardMainImg={model2}
         characterName='Realistic'
-        cardImgClasses='relative !max-h-[230px]'
+        cardImgClasses='relative !max-h-[308px]'
         cardId='card-1'
         getCardId={setImageDropdownId}
         dropdownCardId={imageDropdownId} 
@@ -57,7 +69,7 @@ const [titleText , setTitleText] = useState("");
       <CollectionCard
         cardMainImg={micaChan}
         characterName='Catgirls'
-        cardImgClasses='relative !max-h-[230px]'
+        cardImgClasses='relative !max-h-[308px]'
         cardId='card-2'
         getCardId={setImageDropdownId}
         dropdownCardId={imageDropdownId}
@@ -66,18 +78,19 @@ const [titleText , setTitleText] = useState("");
          
       <CollectionCard
         cardMainImg={mirandal}
-        characterName='One more long name...'
-        cardImgClasses='relative !max-h-[230px]'
+        characterName='Realistic'
+        cardImgClasses='relative !max-h-[308px]'
         cardId='card-3'
         getCardId={setImageDropdownId}
         dropdownCardId={imageDropdownId}
         filterFunction={(e : any) => handleFilterContent(e)}
       />
       </div>
+      </div>
   </>
     }
-      {newCollectionModal && (
-        <NewCollectionModal closeModalItem={setNewCollectionModal} />
+      {createCollectionModal && (
+        <CreateCollectionModal closeModalItem={setCreateCollectionModal} />
       )}
     </>
   );

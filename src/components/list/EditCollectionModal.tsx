@@ -17,8 +17,7 @@ const EditCollectionModal = ({closeEditModal , closeDropdown}: EditModalProp) =>
     // closeModal={() => closeModalItem(false)}
     closeModal={() => {closeEditModal(false) , closeDropdown('')}}
     modalOverlayStyle='!bg-black/80'
-  >    
-  <div>  
+  >     
      <div className='flex justify-between w-full gap-2 p-6 border-b border-white/[0.08]'>
         <div className='flex flex-col items-start gap-1 text-[#FFFFFF] text-lg font-bold w-[286px]'>Edit collection
         </div>           
@@ -48,10 +47,6 @@ const EditCollectionModal = ({closeEditModal , closeDropdown}: EditModalProp) =>
                 <button className='rounded-[14px] w-1/2 px-[20px] py-[13px] bg-[#5848BC] text-[16px] text-[#FFFFFF] font-bold' onClick={() => {closeEditModal(false),closeDropdown('')}}>Save</button>
             </div>
         </div>    
-  
-    
-  </div>
-  
   </Modal>
   )
 }

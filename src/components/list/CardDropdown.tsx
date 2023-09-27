@@ -5,17 +5,20 @@ import DeleteIcon from '../../../public/assets/svgImages/delete-icon.svg';
 import EditCollectionModal from './EditCollectionModal';
 import DeleteCollection from './DeleteCollection';
 import CollectionCoverModal from './CollectionCoverModal';
+import NewCollectionModal from './NewCollectionModal';
 
 interface cardDropdownProp{
   closeDropdown?: any;
 }
 const CardDropdown = ({closeDropdown}:cardDropdownProp) => {
-    const [editCollectionState, setEditCollectionState] = useState(false)
+    // const [editCollectionState, setEditCollectionState] = useState(false)
+    const [newCollectionModal, setNewCollectionModal] = useState(false)
     const [deleteCollectionState , setDeleteCollectionState] = useState(false)
     const [addCollectionState , setAddCollectionState] = useState(false)
 
     const handleEditCollection = () => {
-      setEditCollectionState(!editCollectionState);
+      // setEditCollectionState(!editCollectionState);
+      setNewCollectionModal(!newCollectionModal);
     }
 
   return (
@@ -28,12 +31,12 @@ const CardDropdown = ({closeDropdown}:cardDropdownProp) => {
           Edit
         </div>
       </div>
-      {/* <div className='flex items-center justify-start gap-2 self-stretch bg-[#1A1A1A] px-4 py-2.5  cursor-pointer' onClick={() => setAddCollectionState(!addCollectionState)}>
+      <div className='flex items-center justify-start gap-2 self-stretch bg-[#1A1A1A] px-4 py-2.5  cursor-pointer' onClick={() => setAddCollectionState(!addCollectionState)}>
         <AddIcon/>
         <div className='text-sm font-normal leading-none text-white shrink grow basis-0'>
           Add to collection
         </div>
-      </div> */}
+      </div>
       <div className='flex items-center justify-start gap-2 self-stretch bg-[#1A1A1A] px-4 py-2.5  cursor-pointer' onClick={() => setDeleteCollectionState(!deleteCollectionState)}>
        <DeleteIcon/>
         <div className='text-sm font-normal leading-none text-red-500 shrink grow basis-0'>
@@ -43,9 +46,13 @@ const CardDropdown = ({closeDropdown}:cardDropdownProp) => {
     </div>
   </div>
   {
+    newCollectionModal &&
+    <NewCollectionModal closeModalItem={setNewCollectionModal} />
+  }
+  {/* {
     editCollectionState &&
     <EditCollectionModal closeEditModal={setEditCollectionState} closeDropdown={closeDropdown}/>
-  }
+  } */}
   {
     deleteCollectionState &&
     <DeleteCollection closeDeleteModal={setDeleteCollectionState} closeDropdown={closeDropdown}/>
