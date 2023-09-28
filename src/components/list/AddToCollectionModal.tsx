@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
 import CloseIcon from '../../../public/assets/svgImages/close-icon.svg'
-import searchIcon from '../../../public/assets/search-icon.png'
+import starIcon from '../../../public/assets/star-grey.png'
 import plusIcon from '../../../public/assets/plus-block-icon.png';
 import MainImage from '../../../public/assets/gallery-tab-img-3.png';
 import pinkMobGirl from '../../../public/assets/gallery-tab-img-2.png';
@@ -44,9 +44,9 @@ const AddToCollectionModal = ({closeModalState} : AddToCollectionProps) => {
     modalOverlayStyle='!bg-black/80'
   >    
     {/* <div className=' h-max rounded-[20px] bg-[#1A1A1A] ml-20 mb-5'> */}
-        <div className='flex gap-2 p-6 border-b border-white/[0.08]'>
+        <div className='flex justify-between p-6 border-b border-white/[0.08] items-center'>
             <div className='flex text-white text-[18px] leading-6 font-bold'>Add to collection</div>
-            <div className='w-6 h-6 mt-1 ml-[528px] cursor-pointer' onClick={() => closeModalState(false)}>
+            <div className='flex w-6 h-6 cursor-pointer' onClick={() => closeModalState(false)}>
                 {/* <Image className='w-full h-full' src={crossIcon} alt={''} /> */}
                 <CloseIcon/>
             </div>
@@ -54,12 +54,12 @@ const AddToCollectionModal = ({closeModalState} : AddToCollectionProps) => {
 
         <div className='w-full pt-4'>
             <div className='w-full px-6 py-2'>
-                <div className=' w-full flex gap-[10px] rounded-[8px] px-4 py-3 bg-white/[0.05]'>
-                    <div className='w-6 h-6 mt-[10px]'>
-                        <Image className='w-full h-full' src={searchIcon} alt={''} />
+                <div className='w-full flex gap-[10px] rounded-[10px] px-4 py-3 bg-white/[0.05]'>
+                    <div className='w-6 h-6'>
+                        <Image className='w-full h-full' src={starIcon} alt={''} />
                     </div>
                     <div className="w-full">
-                        <input type='text' placeholder='Search' className='w-full bg-transparent border-none text-[#979797] text-[15px] font-normal focus:outline-0 focus:ring-0' />
+                        <input type='text' placeholder='Search' className='pl-0 bg-transparent border-none h-0 placeholder:text-[#979797] text-[#979797] text-[15px] font-normal leading-6 focus:outline-0 focus:ring-0' />
                     </div>
                 </div>
             </div>

@@ -11,6 +11,7 @@ import heartIconSubscription from '../../../public/assets/heart-with-plus-grey.p
 import userCheck from '../../../public/assets/user-check (1).png';
 import bookmark from '../../../public/assets/bookmark (2).png';
 import folderImage from '../../../public/assets/folder-image.png';
+import RealisticPage from './RealisticPage';
 
 const ListIndex = () => {
   const [activeListTab, setActiveListTab] = useState('Subscriptions');
@@ -20,6 +21,7 @@ const ListIndex = () => {
   const [showFollowing , setShowFollowing] = useState(false);
   const [showBookmark , setShowBookmark] = useState(false);
   const [showCollections , setShowCollections] = useState(false);
+  const [showRealistic , setShowRealistic] = useState(false);
   return (
     <div>
       {profileSectionState === true ? (
@@ -47,7 +49,9 @@ const ListIndex = () => {
               <SubscriptionInitialPage showContent={setShowFollowing} image={userCheck} text={'Check out explore tab to see more'} buttonText={'Explore'} />
             ) : activeListTab === 'Collections' ? (
               showCollections ? 
-              <CollectionOptions /> :
+              showRealistic ? 
+              <RealisticPage showProfile={setProfileSectionState} setShowRealistic={setShowRealistic} /> :
+              <CollectionOptions setShowRealistic={setShowRealistic} /> :
               <SubscriptionInitialPage showContent={setShowCollections} image={folderImage} text={'You have not any collection '} buttonText={'Create a collection'} />
             ) : activeListTab === 'Bookmarks' ? (
               showBookmark ? 

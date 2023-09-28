@@ -30,7 +30,7 @@ const EditCollectionModal = ({closeEditModal , closeDropdown}: EditModalProp) =>
             <div className='relative'>
                 <Image className='w-[72px] h-[72px]' src={avatar} alt={''} />
                 <div className="absolute left-[19px] top-[19px] h-4">
-                <Image className='w-[16px] h-[16px] bottom-4 right-[51px]' src={cameraIcon} alt={''} />
+                    <Image className='w-[16px] h-[16px] bottom-4 right-[51px]' src={cameraIcon} alt={''} />
                 </div>
             </div>
             <div className='flex flex-col h-[46px] items-start gap-[2px]'>

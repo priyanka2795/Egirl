@@ -8,10 +8,11 @@ import ListFilter from './ListFilter';
 
 interface SubscriptionOptionsProps {
   showProfile: React.Dispatch<React.SetStateAction<boolean>>;
+  component?: any;
 }
-const SubscriptionOptions = ({ showProfile }: SubscriptionOptionsProps) => {
+const SubscriptionOptions = ({ showProfile, component }: SubscriptionOptionsProps) => {
   return (
-    <div className='flex flex-col items-start self-stretch gap-4'>
+    <div className={`flex flex-col items-start self-stretch ${component === 'RealisticPage' ? 'gap-6' : 'gap-4'}`}>
       {/* <div className='flex items-center gap-[33rem] justify-between'>
             <div className='flex flex-col w-[320px] items-start justify-center gap-[6px] shrink-0 rounded-[12px]'>
                 <div className='flex items-start self-stretch gap-2 py-[10px] pl-[14px] pr-[12px] rounded-[12px] bg-white/10'>

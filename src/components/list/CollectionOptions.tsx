@@ -12,14 +12,18 @@ import CollectionFilterContent from './CollectionFilterContent';
 import buttonPlusIcon from '../../../public/assets/plus-large.png';
 import CreateCollectionModal from './CreateCollectionModal';
 
-const CollectionOptions = () => {
+interface CollectionOptionsProps {
+  setShowRealistic: any;
+}
+
+const CollectionOptions = ({setShowRealistic}:CollectionOptionsProps) => {
   const [createCollectionModal, setCreateCollectionModal] = useState(false);
   const [imageDropdownId, setImageDropdownId] = useState('');
   const [selectedCardId, setSelectedCardId] = useState('false');
   const [filterByType , setFilterByType] = useState(false);
-const [titleText , setTitleText] = useState("");
+  const [titleText , setTitleText] = useState("");
   
-  const handleFilterContent = (e:any) =>{
+  const handleFilterContent = (e:any) => {
     setFilterByType(true);
     setTitleText(e.target.innerHTML);
   }
@@ -64,6 +68,7 @@ const [titleText , setTitleText] = useState("");
         getCardId={setImageDropdownId}
         dropdownCardId={imageDropdownId} 
         filterFunction={(e : any) => handleFilterContent(e)}
+        setShowRealistic={setShowRealistic}
       />
 
       <CollectionCard
@@ -74,6 +79,7 @@ const [titleText , setTitleText] = useState("");
         getCardId={setImageDropdownId}
         dropdownCardId={imageDropdownId}
         filterFunction={(e : any) => handleFilterContent(e)}
+        setShowRealistic={setShowRealistic}
       />
          
       <CollectionCard
@@ -84,6 +90,7 @@ const [titleText , setTitleText] = useState("");
         getCardId={setImageDropdownId}
         dropdownCardId={imageDropdownId}
         filterFunction={(e : any) => handleFilterContent(e)}
+        setShowRealistic={setShowRealistic}
       />
       </div>
       </div>
