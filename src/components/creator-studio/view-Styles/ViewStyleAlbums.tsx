@@ -5,9 +5,9 @@ import albumImg3 from '../../../../public/assets/view-style-album-img3.png';
 import Image from 'next/image';
 
 interface ViewStyleAlbumsProps {
-  setGeneratedStyle: any;
-  setAddedStyle: any;
-  setPostedStyle: any;
+  setGeneratedStyle: React.Dispatch<React.SetStateAction<boolean>>;
+  setAddedStyle: React.Dispatch<React.SetStateAction<boolean>>;
+  setPostedStyle: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const album = [

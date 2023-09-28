@@ -39,7 +39,7 @@ interface ConvertCreditsModalProp {
   amount: string;
   buttonText: string;
   analyticsPage?: boolean;
-  setAnalyticsPage?: (value: boolean) => void;
+  setAnalyticsPage?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const ConvertCreditsModal = ({
@@ -58,11 +58,14 @@ const ConvertCreditsModal = ({
   const [inputValue, setInputValue] = useState(0);
   const [percentAmount, setPercentAmount] = useState(false);
 
-  const checkLength = (event: any) => {
+  const checkLength = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target as unknown as { value: number };
+
     setPercentAmount(false);
     setinputLength(event.target.value.length);
-    setInputValue(event.target.value);
-    setconvertedCoin(event.target.value * 10);
+
+    setInputValue(value);
+    setconvertedCoin(value * 10);
   };
 
   const handleModal = () => {

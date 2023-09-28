@@ -10,8 +10,8 @@ import pen from '../../../../public/assets/pen2.png';
 import PostStyleModal from './PostStyleModal';
 
 interface GeneratedstyleProp {
-  setGeneratedStyle?: (value: boolean) => void;
-  setViewStyleGenerated?: (value: boolean) => void;
+  setGeneratedStyle?: React.Dispatch<React.SetStateAction<boolean>>;
+  setViewStyleGenerated?: React.Dispatch<React.SetStateAction<boolean>>;
   ViewStyle?: boolean;
 }
 

@@ -155,7 +155,8 @@ const ViewImagesMainPage = () => {
           ) : (
             <VIMainImageBlock
               ToggleMenu={false}
-              SetAlbumImages
+              // SetAlbumImages
+              SetAlbumImages={setAlbumImages}
               AlbumData={albumData}
             />
           )}

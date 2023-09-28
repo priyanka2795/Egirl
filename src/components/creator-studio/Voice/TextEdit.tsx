@@ -5,11 +5,11 @@ import crossIcon from '../../../../public/assets/xmark4.png';
 
 interface TextEditProp {
   editedText?: string;
-  setEditedText?: any;
-  setShowEditedText?: any;
+  setEditedText: (value: string) => void;
+  setShowEditedText?: (value: string) => void;
   voiceGenerations?: any;
-  activeIndex?: any;
-  setTextEdit?: any;
+  activeIndex: number;
+  setTextEdit: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const TextEdit = ({

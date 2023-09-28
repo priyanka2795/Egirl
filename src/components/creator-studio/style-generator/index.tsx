@@ -6,9 +6,9 @@ import GeneratedStyle from './GeneratedStyle';
 import Generatedstyle from '../view-Styles/Generatedstyle';
 
 const StyleGeneratorIndex = () => {
-  const [generatedStyle, setGeneratedStyle] = useState(false);
-  const [viewStyleGenerated, setViewStyleGenerated] = useState(false);
-  const [styleGeneratorNext, setStyleGeneratorNext] = useState(false);
+  const [generatedStyle, setGeneratedStyle] = useState<boolean>(false);
+  const [viewStyleGenerated, setViewStyleGenerated] = useState<boolean>(false);
+  const [styleGeneratorNext, setStyleGeneratorNext] = useState<boolean>(false);
   return (
     <div>
       {generatedStyle ? (

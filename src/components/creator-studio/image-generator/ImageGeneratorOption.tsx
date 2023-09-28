@@ -65,14 +65,14 @@ const ImageGeneratorOption = ({
   // Inpainting Modal
   const [inpaintingExample, setInpaintingExample] = useState(false);
   const [selectImageModal, setSelectImageModal] = useState(false);
-  const [inpaintingModal, setInpaintingModal] = useState(false);
-  const [inpaintingCreated, setInpaintingCreated] = useState(false);
-  const [editInpainting, setEditInpainting] = useState(false);
+  const [inpaintingModal, setInpaintingModal] = useState<boolean>(false);
+  const [inpaintingCreated, setInpaintingCreated] = useState<boolean>(false);
+  const [editInpainting, setEditInpainting] = useState<boolean>(false);
   // Posing Modal
-  const [posing, setPosing] = useState(false);
+  const [posing, setPosing] = useState<boolean>(false);
   const [poseExample, setPoseExample] = useState(false);
-  const [posingCreated, setPosingCreated] = useState(false);
-  const [editPosing, setEditPosing] = useState(false);
+  const [posingCreated, setPosingCreated] = useState<boolean>(false);
+  const [editPosing, setEditPosing] = useState<boolean>(false);
 
   const handleOpenGenre = () => setOpenGenre(true);
   const handleCloseGenre = () => setOpenGenre(false);
@@ -93,7 +93,7 @@ const ImageGeneratorOption = ({
     setEditPrompt(null);
   };
 
-  function handleKeyDown(e: any) {
+  function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
     setEditPrompt(null);
     const found = promptTags.find((Tags: string) => Tags == promptHint);
     if (promptHint === found) {
@@ -121,17 +121,17 @@ const ImageGeneratorOption = ({
     setPromptTags(promptTags.filter((el: string, i: number) => i !== index));
   }
   // Drag And Drop Item
-  const dragItem = useRef();
-  const dragOverItem = useRef();
+  const dragItem = useRef<number | null>();
+  const dragOverItem = useRef<number | null>();
 
-  const dragStart = (e: any, position: any) => {
+  const dragStart = (e: React.DragEvent<HTMLDivElement>, position: number) => {
     dragItem.current = position;
     setEditPrompt(null);
   };
-  const dragEnter = (e: any, position: any) => {
+  const dragEnter = (e: React.DragEvent<HTMLDivElement>, position: number) => {
     dragOverItem.current = position;
   };
-  const drop = (e: any) => {
+  const drop = (e: React.DragEvent<HTMLDivElement>) => {
     const copyListItems = [...promptTags];
     const dragItemContent = copyListItems[dragItem.current];
     copyListItems.splice(dragItem.current, 1);

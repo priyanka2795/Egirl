@@ -10,7 +10,7 @@ import downArrow from '../../../../public/assets/down-arrow-img.png';
 import CompleteGeneration from './CompleteGeneration';
 
 interface StyleGeneratorProps {
-  setStyleGeneratorNext: (value: boolean) => void;
+  setStyleGeneratorNext: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const StyleGenerator = ({ setStyleGeneratorNext }: StyleGeneratorProps) => {

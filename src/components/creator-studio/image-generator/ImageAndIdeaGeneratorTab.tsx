@@ -28,26 +28,29 @@ const tabContent = ['Image Generation', 'Idea Generation'];
 const ImageAndIdeaGeneratorTab = () => {
   let SessionData = sessionStorage.getItem('sideBarCollapseCS');
   const [activeTab, setActiveTab] = useState('Image Generation');
-  const [imageGeneration, setImageGeneration] = useState(null);
-  const [imageGenerationToggle, setImageGenerationToggle] = useState(null);
-  const [editImageGeneration, setEditImageGeneration] = useState(false);
+  const [imageGeneration, setImageGeneration] = useState<number | null>(null);
+  const [imageGenerationToggle, setImageGenerationToggle] = useState<
+    number | null
+  >(null);
+  const [editImageGeneration, setEditImageGeneration] =
+    useState<boolean>(false);
   const [deleteImageGeneration, setDeleteImageGeneration] = useState(false);
   const [imageGenerationAgain, setImageGenerationAgain] = useState([1]);
   const [deleteImageGenerationIndex, setDeleteImageGenerationIndex] =
-    useState();
+    useState<number>();
   const [activeIndex, setActiveIndex] = useState(0);
 
   // Idea Generation
   const [ideaGenerationInput, setIdeaGenerationInput] = useState('');
   const [allIdeaGeneration, setAllIdeaGeneration] = useState<any[]>([]);
-  const [ideaGeneration, setIdeaGeneration] = useState(null);
+  const [ideaGeneration, setIdeaGeneration] = useState<number | null>(null);
   const [generatedIdeas, setGeneratedIdeas] = useState(false);
 
   // ImageGeneration
-  const ImageGenerationMenu = (index: any) => {
+  const ImageGenerationMenu = (index: number) => {
     setImageGenerationToggle((prev) => (prev === index ? null : index));
   };
-  const imageGenerationAccordion = (index: any) => {
+  const imageGenerationAccordion = (index: number) => {
     setImageGeneration((prev) => (prev === index ? null : index));
   };
   const GenerationAgain = () => {
@@ -57,7 +60,7 @@ const ImageAndIdeaGeneratorTab = () => {
     ]);
     setImageGenerationToggle(null);
   };
-  const DeleteGeneration = (ind: any) => {
+  const DeleteGeneration = (ind: number) => {
     setDeleteImageGeneration(false);
     setImageGenerationAgain((oldValue: any[]) => {
       return oldValue.filter(
@@ -68,7 +71,7 @@ const ImageAndIdeaGeneratorTab = () => {
   };
 
   // Idea Generation
-  const HandleChange = (e: any) => {
+  const HandleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const { value } = e.target;
     setIdeaGenerationInput(value);
   };
@@ -84,7 +87,7 @@ const ImageAndIdeaGeneratorTab = () => {
       setGeneratedIdeas(true);
     }
   };
-  const IdeaGenerationAccordion = (index: any) => {
+  const IdeaGenerationAccordion = (index: number) => {
     setIdeaGeneration((prev) => (prev === index ? null : index));
   };
 
@@ -101,16 +104,16 @@ const ImageAndIdeaGeneratorTab = () => {
   ]);
   const [colorChange, setColorChange] = useState();
 
-  const dragItem = useRef();
-  const dragOverItem = useRef();
+  const dragItem = useRef<number | null>();
+  const dragOverItem = useRef<number | null>();
 
-  const dragStart = (e: any, position: any) => {
+  const dragStart = (e: React.DragEvent<HTMLDivElement>, position: number) => {
     dragItem.current = position;
   };
-  const dragEnter = (e: any, position: any) => {
+  const dragEnter = (e: React.DragEvent<HTMLDivElement>, position: number) => {
     dragOverItem.current = position;
   };
-  const drop = (e: any) => {
+  const drop = (e: React.DragEvent<HTMLDivElement>) => {
     const copyListItems = [...promptItems];
     const dragItemContent = copyListItems[dragItem.current];
     copyListItems.splice(dragItem.current, 1);
@@ -314,7 +317,7 @@ const ImageAndIdeaGeneratorTab = () => {
                 {ideaGeneration === index && (
                   <div className='relative border-t border-[#FFFFFF29] p-6 pb-16'>
                     <div className='flex flex-wrap gap-2 '>
-                      {promptItems.map((item, index) => (
+                      {promptItems.map((item: string, index: number) => (
                         <>
                           <div
                             className={`${

@@ -17,7 +17,7 @@ import avatar2 from '../../../../public/assets/viewStyle-modal-2.png';
 import smiley from '../../../../public/assets/face-smile-icon.png';
 
 interface AddedStyleModalProp {
-  setAddedStyleModal: any;
+  setAddedStyleModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const list = [

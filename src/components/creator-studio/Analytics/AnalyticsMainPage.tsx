@@ -326,23 +326,21 @@ const AnalyticsMainPage = () => {
   };
 
   const [shortTab, setShortTab] = useState(1);
-  const [selectIndex, setSelectIndex] = useState();
-  const [selectSub, setSelectSub] = useState('');
-  const [selectAll, setSelectAll] = useState('');
+  const [selectIndex, setSelectIndex] = useState<number>();
+  const [selectSub, setSelectSub] = useState<number>();
+  const [selectAll, setSelectAll] = useState<number>();
 
-  const SelectShort = (index: any) => {
+  const SelectShort = (index: number) => {
     setShortTab(index);
     setSelectIndex(index);
     if (index == 0) {
-      console.log('all');
       setSelectAll(index);
-      setSelectSub('');
+      setSelectSub(0);
     }
     if (index == 1) {
       console.log('sub');
       setSelectSub(index);
-      console.log('sub select', selectSub);
-      setSelectAll('');
+      setSelectAll(0);
     }
   };
 

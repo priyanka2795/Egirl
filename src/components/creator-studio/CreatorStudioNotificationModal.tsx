@@ -4,7 +4,7 @@ import StyleGeneratorNext from './style-generator/StyleGeneratorNext';
 import modalImg from '../../../public/assets/style-modal-img.png';
 
 interface NotificationModalProp {
-  setNotificationModal: any;
+  setNotificationModal: React.Dispatch<React.SetStateAction<boolean>>;
   setStyleGenNext?: React.Dispatch<React.SetStateAction<boolean>>;
   styleGenNext?: boolean;
 }

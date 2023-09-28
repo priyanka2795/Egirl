@@ -10,9 +10,9 @@ import PlatformStyles from './PlatformStyles';
 import ViewStyleMainPageOption from './ViewStyleMainPageOption';
 
 const ViewStyleMainPage = () => {
-  const [generatedStyle, setGeneratedStyle] = useState(false);
-  const [addedStyle, setAddedStyle] = useState(false);
-  const [postedStyle, setPostedStyle] = useState(false);
+  const [generatedStyle, setGeneratedStyle] = useState<boolean>(false);
+  const [addedStyle, setAddedStyle] = useState<boolean>(false);
+  const [postedStyle, setPostedStyle] = useState<boolean>(false);
   const tabContent = ['Your Styles', 'Favorite Styles', 'Platform Styles'];
   const [exploreSelectedTab, setExploreSelected] = useState('Your Styles');
   const [mainPageOption, setMainPageOption] = useState(false);

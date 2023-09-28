@@ -7,7 +7,7 @@ import { Range } from 'react-range';
 import RangePicker from '../common/RangePicker';
 
 interface VoiceGeneratorModalProp {
-  closeModal: any;
+  closeModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const VoiceGeneratorModal = ({ closeModal }: VoiceGeneratorModalProp) => {

@@ -40,9 +40,9 @@ const VoiceNextPage = () => {
   const [state2, setState2] = useState([50]);
   const [state3, setState3] = useState([50]);
   const [inUse, setInUse] = useState(false);
-  const [textEdit, setTextEdit] = useState(false);
+  const [textEdit, setTextEdit] = useState<boolean>(false);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState<number>(0);
   // const [showEditedText, setShowEditedText] = useState(false);
   const [editedText, setEditedText] = useState<string>('');
   const [accentState, setAccentState] = useState([0]);

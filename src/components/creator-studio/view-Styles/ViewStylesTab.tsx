@@ -19,7 +19,7 @@ interface ViewStylesTabProps {
   exploreSelectedTab?: any;
   setExploreSelected?: any;
   setViewStyleGenerated?: any;
-  ViewStyle?: any;
+  ViewStyle?: boolean;
 }
 
 const images = [

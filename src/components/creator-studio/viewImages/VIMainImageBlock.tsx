@@ -45,8 +45,8 @@ const images = [
 ];
 
 interface VIMainImageBlock {
-  ToggleMenu: any;
-  SetAlbumImages: any;
+  ToggleMenu: boolean;
+  SetAlbumImages: React.Dispatch<React.SetStateAction<boolean>>;
   AlbumData: any;
 }
 const VIMainImageBlock = ({
@@ -55,23 +55,23 @@ const VIMainImageBlock = ({
   AlbumData
 }: VIMainImageBlock) => {
   const [allImages, setAllImages] = useState(images);
-  const [showDropDown, setShowDropDown] = useState(null);
-  const [allImage, setAllImage] = useState(null);
+  const [showDropDown, setShowDropDown] = useState<number | null>(null);
+  const [allImage, setAllImage] = useState<number | null>(null);
   const [deleteModal, setDeleteModal] = useState(false);
-  const [editAlbum, setEditAlbum] = useState(false);
+  const [editAlbum, setEditAlbum] = useState<boolean>(false);
   const [albumDetails, setAlbumDetails] = useState(false);
   const [deleteImageModal, setDeleteImageModal] = useState(false);
   const [moveAlbumModal, setMoveAlbumModal] = useState(false);
-  const dropdownRef = useRef(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const AlbumImageToggle = (index: any) => {
+  const AlbumImageToggle = (index: number) => {
     setShowDropDown((prev) => (prev === index ? null : index));
   };
-  const AllImageToggle = (index: any) => {
+  const AllImageToggle = (index: number) => {
     setAllImage((prev) => (prev === index ? null : index));
   };
-  const DeleteImage = (e: any) => {
-    const Data = e.target.innerText;
+  const DeleteImage = (e: React.MouseEvent<HTMLElement>) => {
+    const Data = (e.target as HTMLElement).innerText;
     if (Data === 'Delete') {
       setDeleteImageModal(true);
       setAllImage(null);
@@ -108,15 +108,15 @@ const VIMainImageBlock = ({
             {AlbumData.map((item: any) => (
               <div
                 key={item.id}
-                className='relative w-full h-full sub-banner group'
+                className='sub-banner group relative h-full w-full'
               >
                 <Image
-                  className='object-cover w-full '
+                  className='w-full object-cover '
                   src={item.image}
                   alt={''}
                 />
                 <div className=' absolute bottom-0 flex h-[150px] w-full bg-gradient-to-t from-[#000000CC] to-[#00000000] px-5 pb-3 font-semibold'>
-                  <div className='flex items-end justify-between w-full '>
+                  <div className='flex w-full items-end justify-between '>
                     <p
                       className='cursor-pointer '
                       onClick={() => SetAlbumImages(true)}
@@ -189,7 +189,7 @@ const VIMainImageBlock = ({
       ) : (
         <>
           <div className='grid grid-cols-3 gap-3' ref={dropdownRef}>
-            {allImages.map((item, index) => (
+            {allImages.map((item, index: number) => (
               <div
                 className='sub-banner group relative h-full w-full rounded-[16px] bg-red-100'
                 key={index}
@@ -203,10 +203,10 @@ const VIMainImageBlock = ({
                   className='invisible absolute right-[7px] top-[7px] flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full bg-black/[0.48] group-hover:visible group-hover:opacity-100'
                   onClick={() => AllImageToggle(index)}
                 >
-                  <Image className='w-full h-full' src={threeDots} alt={''} />
+                  <Image className='h-full w-full' src={threeDots} alt={''} />
                 </div>
                 {allImage === index && (
-                  <div className='absolute z-50 right-3 top-12'>
+                  <div className='absolute right-3 top-12 z-50'>
                     <ViewImagesDropDown DeleteImage={DeleteImage} />
                   </div>
                 )}
@@ -233,8 +233,8 @@ const VIMainImageBlock = ({
           DeleteModal={setDeleteImageModal}
           Heading={'Delete image'}
           Content={'Are you sure you want to delete the image?'}
-          Name
-          LastName
+          Name=''
+          LastName=''
         />
       )}
       {moveAlbumModal && <MoveAlbumModal MoveModalClose={setMoveAlbumModal} />}

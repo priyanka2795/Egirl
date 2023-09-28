@@ -23,7 +23,7 @@ function Gifts() {
   const [GiftCardName, setGiftCardName] = useState<string[]>([]);
   const [deleteModal, setDeleteModal] = useState<boolean>(false);
   const [deleteIndex, setDeleteIndex] = useState();
-  const [deleteBtnStep, setDeleteBtnStep] = useState(0);
+  const [deleteBtnStep, setDeleteBtnStep] = useState<number>(0);
   const [addCategory, setAddCategory] = useState<string[]>([]);
 
   const EditGift = (e: any) => {

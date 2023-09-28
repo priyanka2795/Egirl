@@ -43,85 +43,84 @@ const CoverImage = [
 
 const imagesCover = [
   {
-    id:1,
+    id: 1,
     image: image1
   },
   {
-    id:2,
+    id: 2,
     image: image3
   },
   {
-    id:3,
-    image: image4   
+    id: 3,
+    image: image4
   },
   {
-    id:4,
+    id: 4,
     image: image2
   },
   {
-    id:5,
-    image: image6    
+    id: 5,
+    image: image6
   },
   {
-    id:6,
-    image: image4   
+    id: 6,
+    image: image4
   },
   {
-    id:7,
-     image: image5
+    id: 7,
+    image: image5
   },
   {
-    id:8,
+    id: 8,
     image: image3
   },
   {
-    id:9,
+    id: 9,
     image: image1
   },
   {
-    id:10,
+    id: 10,
     image: image5
   }
 ];
 
 const images = [
-    {
-      image: image1
-    },
-    {
-      image: image2
-    },
-    {
-      image: image3
-    },
-    {
-      image: image4
-    },
-    {
-      image: image5
-    },
-    {
-      image: image6
-    },
-    {
-      image: image6
-    },
-    {
-      image: image4
-    }, 
-    {
-        image: image5
-    },
-  ];
-
+  {
+    image: image1
+  },
+  {
+    image: image2
+  },
+  {
+    image: image3
+  },
+  {
+    image: image4
+  },
+  {
+    image: image5
+  },
+  {
+    image: image6
+  },
+  {
+    image: image6
+  },
+  {
+    image: image4
+  },
+  {
+    image: image5
+  }
+];
 
 interface EditAlbum {
   CloseModal: any;
 }
 const EditAlbum = ({ CloseModal }: EditAlbum) => {
-  const [editAlbumImg, setEditAlbumImg] = useState(null);
+  const [editAlbumImg, setEditAlbumImg] = useState<number | null>(null);
   const [coverImg, setCoverImg] = useState(false);
-  const EditAlbumImgToggle = (index: any) => {
+  const EditAlbumImgToggle = (index: number) => {
     setEditAlbumImg((prev) => (prev === index ? null : index));
   };
   return (
@@ -140,20 +139,21 @@ const EditAlbum = ({ CloseModal }: EditAlbum) => {
               Choose a cover for the Fantasy world & nature album
             </h5>
             <div
-              className='w-6 h-6 cursor-pointer'
+              className='h-6 w-6 cursor-pointer'
               onClick={() => setCoverImg(false)}
             >
-              <Image className='w-full h-full' src={crossIcon} alt={''} />
+              <Image className='h-full w-full' src={crossIcon} alt={''} />
             </div>
           </div>
           <div className='h-[calc(100%-80px)] overflow-y-auto p-6'>
             <div className='grid grid-cols-4 gap-2'>
-              {imagesCover.map((items,index) => (
-                <div key={index}
+              {imagesCover.map((items, index) => (
+                <div
+                  key={index}
                   className='sub-banner h-[193px] w-[193px]'
                   onClick={() => setCoverImg(false)}
                 >
-                  <Image src={items.image} className='w-full h-full' />
+                  <Image src={items.image} className='h-full w-full' />
                 </div>
               ))}
             </div>
@@ -164,10 +164,10 @@ const EditAlbum = ({ CloseModal }: EditAlbum) => {
           <div className='flex items-center justify-between border-b border-[#FFFFFF14] p-6 '>
             <h5 className='text-lg font-semibold'>Edit album</h5>
             <div
-              className='w-6 h-6 cursor-pointer'
+              className='h-6 w-6 cursor-pointer'
               onClick={() => CloseModal(false)}
             >
-              <Image className='w-full h-full' src={crossIcon} alt={''} />
+              <Image className='h-full w-full' src={crossIcon} alt={''} />
             </div>
           </div>
           <div className='p-6'>
@@ -175,7 +175,7 @@ const EditAlbum = ({ CloseModal }: EditAlbum) => {
               <div className='relative h-[200px] w-[257px] overflow-hidden rounded-[14px]'>
                 <Image
                   src={AlbumFirst}
-                  className='object-cover w-full h-full'
+                  className='h-full w-full object-cover'
                 />
                 <div
                   className='absolute bottom-0 left-0 flex h-10 w-full cursor-pointer items-center justify-center gap-[6px] bg-[#000000A3]'
@@ -224,7 +224,10 @@ const EditAlbum = ({ CloseModal }: EditAlbum) => {
               <div className='h-[calc(86vh-482px)] overflow-y-auto overflow-x-hidden'>
                 <div className='grid grid-cols-3 gap-2 '>
                   {images.map((item, index) => (
-                    <div className='sub-banner relative h-[190px]  w-[240px] ' key={index}>
+                    <div
+                      className='sub-banner relative h-[190px]  w-[240px] '
+                      key={index}
+                    >
                       <Image src={item.image} className='object-cover' />
                       <div
                         className='absolute right-2 top-2 cursor-pointer rounded-full bg-[#0000007A] p-1.5'
@@ -233,7 +236,7 @@ const EditAlbum = ({ CloseModal }: EditAlbum) => {
                         <Pencil />
                       </div>
                       {editAlbumImg === index && (
-                        <div className='absolute z-50 right-3 top-12'>
+                        <div className='absolute right-3 top-12 z-50'>
                           <div className='flex w-[218px] flex-col rounded-[14px] bg-[#1A1A1A]'>
                             {CoverImage.map((item, index) => {
                               return (
@@ -257,7 +260,7 @@ const EditAlbum = ({ CloseModal }: EditAlbum) => {
               </div>
             </div>
 
-            <div className='flex items-center justify-end gap-3 mt-6 font-semibold text-white'>
+            <div className='mt-6 flex items-center justify-end gap-3 font-semibold text-white'>
               <button
                 className='rounded-[14px] border border-[#FFFFFF52] px-5 py-3'
                 onClick={() => CloseModal(false)}

@@ -10,11 +10,11 @@ import RangePicker from '../common/RangePicker';
 
 interface ImageSetting {
   InpaintingToggle: boolean;
-  SetInpaintingToggle: any;
+  SetInpaintingToggle: React.Dispatch<React.SetStateAction<boolean>>;
   PosingToggle: boolean;
-  SetPosingToggle: any;
+  SetPosingToggle: React.Dispatch<React.SetStateAction<boolean>>;
   MyCharacterToggle: boolean;
-  SetMyCharacterToggle: any;
+  SetMyCharacterToggle: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const ImageSetting = ({
   SetInpaintingToggle,
