@@ -13,7 +13,7 @@ import SuccessPage from '@components/add-card/SuccessPage';
 
 interface subscription {
   closeState?: any;
-  showSubscription: boolean;
+  showSubscription?: boolean;
 }
 const tabOption = ['Egirls+', 'Buy Tokens'];
 const featureOpt = [
@@ -27,7 +27,7 @@ const SubscriptionModal = ({ closeState, showSubscription }: subscription) => {
   const [tabSelectedOpt, setTabSelectedOpt] = useState(showSubscription ? 'Buy Tokens' : 'Egirls+');
   const handleActiveTab = (items: any) => {
     setTabSelectedOpt(items)
-    console.log(items, "hweee>>>>")
+    console.log(items, "hweee>>>>");
   }
   const [showErrorPage, setShowErrorPage] = useState(false);
   const [showSuccessPage, setShowSuccessPage] = useState(false);

@@ -37,6 +37,7 @@ const ListIndex = () => {
             setShowFollowing={setShowFollowing}
             setShowBookmark={setShowBookmark}
             setShowCollections={setShowCollections}
+            setShowRealistic={setShowRealistic}
           />
           <div className='px-8 py-4 h-[100vh]'>
             {activeListTab === 'Subscriptions' ? (

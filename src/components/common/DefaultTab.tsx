@@ -7,10 +7,11 @@ interface DefaultTabProp {
   setActiveTab: any;
   tabContentArray: string[];
   component?:any;
-  setShowSubscriptionOption: any;
-  setShowFollowing: any;
-  setShowBookmark: any;
-  setShowCollections: any;
+  setShowSubscriptionOption?: any;
+  setShowFollowing?: any;
+  setShowBookmark?: any;
+  setShowCollections?: any;
+  setShowRealistic?: any;
 }
 const DefaultTab = ({
   activeListTab,
@@ -20,11 +21,13 @@ const DefaultTab = ({
   setShowSubscriptionOption,
   setShowFollowing,
   setShowBookmark,
-  setShowCollections
+  setShowCollections,
+  setShowRealistic
 }: DefaultTabProp) => {
   const [exploreSelectedTab, setExploreSelected] = useState(activeListTab);
 
   const handleExploreSelected = (item:any) => {
+    setShowRealistic(false);
     setExploreSelected(item);
     setActiveTab(item);
     if(item === 'Subscriptions') {

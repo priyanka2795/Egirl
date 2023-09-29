@@ -106,7 +106,7 @@ const ConvertCreditsModal = ({
                     {available}
                   </div>
                   <div className='text-[15px] font-semibold leading-5 text-[#FFFFFF]'>
-                    ${amount}
+                    {amount}
                   </div>
                 </div>
                 <div className={`relative flex flex-col gap-2 rounded-[14px] border ${inputValue > totalAmountNum ? "border-[#FF5336]":'border-transparent'}`}>

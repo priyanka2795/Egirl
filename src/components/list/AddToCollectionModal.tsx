@@ -32,7 +32,7 @@ const collectionFrame = [
 ];
 
 interface AddToCollectionProps{
-    closeModalState:  any
+    closeModalState: any;
 }
 const AddToCollectionModal = ({closeModalState} : AddToCollectionProps) => {
     const [newCollectionModal, setNewCollectionModal] = useState(false);
@@ -116,4 +116,4 @@ const AddToCollectionModal = ({closeModalState} : AddToCollectionProps) => {
   )
 }
 
-export default AddToCollectionModal
+export default AddToCollectionModal;
