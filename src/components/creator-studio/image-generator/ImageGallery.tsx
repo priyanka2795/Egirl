@@ -40,14 +40,14 @@ const ImageGallery = () => {
   const [exploreSelectedTab, setExploreSelected] = useState('Prompt');
   const [selectImage, setSelectImage] = useState('');
 
-  const handleExploreSelected = (e: any) => {
-    setExploreSelected(e.target.innerText);
+  const handleExploreSelected = (e: React.MouseEvent<HTMLElement>) => {
+    setExploreSelected((e.target as HTMLElement).innerText);
   };
 
   const [isHovered, setIsHovered] = useState(false);
 
   const [searchTerm, setSearchTerm] = useState('');
-  const handleSearch = (e: any) => {
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
 
@@ -94,17 +94,17 @@ const ImageGallery = () => {
 
   return (
     <div>
-      <div className='flex flex-col items-start self-stretch gap-4 pt-4 pb-8'>
-        <div className='flex flex-col items-start self-stretch gap-4'>
-          <div className='flex flex-col items-start self-stretch gap-4 px-8 '>
+      <div className='flex flex-col items-start gap-4 self-stretch pb-8 pt-4'>
+        <div className='flex flex-col items-start gap-4 self-stretch'>
+          <div className='flex flex-col items-start gap-4 self-stretch px-8 '>
             {/* <div className='flex items-center px-4 py-3 gap-2.5 self-stretch rounded-[10px] bg-[#FFFFFF0D]'>
                   <SearchIcon/>
                   <input type='text' className='w-full border-none outline-none bg-[#FFFFFF0D]' placeholder='Search'/>
                 </div> */}
             <div className='flex w-full gap-[10px] rounded-[14px] bg-white/[0.05] px-4 py-3'>
-              <div className='w-6 h-6'>
+              <div className='h-6 w-6'>
                 <Image
-                  className='w-full h-full'
+                  className='h-full w-full'
                   src={searchIcon}
                   alt={''}
                   id='myinput'
@@ -122,7 +122,7 @@ const ImageGallery = () => {
         </div>
       </div>
       <div className='flex h-[550px] w-[800px] flex-col items-start gap-2.5 self-stretch px-8 py-0'>
-        <div className='flex flex-wrap items-start self-stretch gap-3'>
+        <div className='flex flex-wrap items-start gap-3 self-stretch'>
           {filteredEmp.map((item: any, index: any) => {
             let temp: any = data.find(
               (element: any) => element.name === item.name
@@ -132,7 +132,7 @@ const ImageGallery = () => {
             }
             return (
               <div
-              key={index}
+                key={index}
                 onClick={() => setSelectImage(index)}
                 className={`group relative flex h-[174px] w-[175px] cursor-pointer justify-center overflow-hidden  rounded-xl bg-white/[0.05] ${
                   selectImage === index ? 'bg-[#5848BC]' : ''
@@ -153,7 +153,7 @@ const ImageGallery = () => {
                   className='absolute right-2 top-2  hidden h-[30px] w-[30px] items-center justify-center rounded-full bg-[#0000007A] group-hover:flex'
                   onClick={handleviewModal}
                 >
-                  <Image src={ExpandIcon} className='w-full h-full' />
+                  <Image src={ExpandIcon} className='h-full w-full' />
                 </div>
 
                 <div
@@ -193,9 +193,9 @@ const ImageGallery = () => {
 
           <div className='flex w-[445px] flex-col items-start self-stretch'>
             {/* Top Block */}
-            <div className='flex flex-col items-start self-stretch gap-4 p-6 pt-5'>
+            <div className='flex flex-col items-start gap-4 self-stretch p-6 pt-5'>
               <div className='flex flex-col items-start gap-0.5 self-stretch'>
-                <div className='flex items-center self-stretch gap-2'>
+                <div className='flex items-center gap-2 self-stretch'>
                   <h5 className='w-full text-[22px] font-bold leading-8 text-white'>
                     A-Zovya Photoreal
                   </h5>
@@ -205,8 +205,8 @@ const ImageGallery = () => {
                 </div>
                 <div className='text-[18px] font-normal leading-6'>$4.99</div>
               </div>
-              <div className='flex items-start self-stretch gap-3'>
-                <button className='flex items-start w-full'>
+              <div className='flex items-start gap-3 self-stretch'>
+                <button className='flex w-full items-start'>
                   <button className='flex w-full items-center justify-center gap-2 rounded-[14px] border border-white/[0.32] px-5 py-[13px]'>
                     <Correct />
                     <div className='text-base font-bold leading-[22px] '>
@@ -230,7 +230,7 @@ const ImageGallery = () => {
                   Model Details
                 </b>
                 {/* iteam 1 */}
-                <div className='flex items-start self-stretch gap-5'>
+                <div className='flex items-start gap-5 self-stretch'>
                   <div className='flex w-[102px] items-center gap-1'>
                     <b className='text-sm font-normal leading-[18px] text-[#979797]'>
                       Model Type
@@ -242,7 +242,7 @@ const ImageGallery = () => {
                   </div>
                 </div>
                 {/* iteam 2 */}
-                <div className='flex items-start self-stretch gap-5'>
+                <div className='flex items-start gap-5 self-stretch'>
                   <div className='flex w-[102px] items-center gap-1'>
                     <b className='text-sm font-normal leading-[18px] text-[#979797]'>
                       Style
@@ -254,7 +254,7 @@ const ImageGallery = () => {
                   </div>
                 </div>
                 {/* iteam 3 */}
-                <div className='flex items-start self-stretch gap-5'>
+                <div className='flex items-start gap-5 self-stretch'>
                   <div className='flex w-[102px] items-center gap-1'>
                     <b className='text-sm font-normal leading-[18px] text-[#979797]'>
                       Category
@@ -265,7 +265,7 @@ const ImageGallery = () => {
                   </div>
                 </div>
                 {/* iteam 4 */}
-                <div className='flex items-start self-stretch gap-5'>
+                <div className='flex items-start gap-5 self-stretch'>
                   <div className='flex w-[102px] items-center gap-1'>
                     <b className='text-sm font-normal leading-[18px] text-[#979797]'>
                       Pricing
@@ -294,7 +294,7 @@ const ImageGallery = () => {
                 <div className='flex flex-col	items-start gap-4 self-stretch rounded-xl bg-white/[0.05] px-4 py-3.5'>
                   <div
                     onClick={AdvanceModal}
-                    className='flex items-center self-stretch justify-between'
+                    className='flex items-center justify-between self-stretch'
                   >
                     <b className='text-[15px] font-semibold leading-5'>
                       Generation data
@@ -316,7 +316,7 @@ const ImageGallery = () => {
                     <div className='flex flex-col gap-3'>
                       <div className='flex items-center justify-between'>
                         <div className='flex items-center gap-2 '>
-                          {tabContent.map((items: any, index: any) => {
+                          {tabContent.map((items: string, index: number) => {
                             return (
                               <div
                                 key={index}
@@ -332,7 +332,7 @@ const ImageGallery = () => {
                             );
                           })}
                         </div>
-                        <div className='w-6 h-6 cursor-pointer '>
+                        <div className='h-6 w-6 cursor-pointer '>
                           <Copy />
                         </div>
                       </div>
@@ -412,9 +412,9 @@ const ImageGallery = () => {
                   <div className='mb-4 text-[15px] font-semibold leading-5'>
                     Creator information
                   </div>
-                  <div className='flex items-center self-stretch justify-between mb-4'>
+                  <div className='mb-4 flex items-center justify-between self-stretch'>
                     <div className='flex items-center gap-3'>
-                      <div className='w-10 h-10 rounded-full '>
+                      <div className='h-10 w-10 rounded-full '>
                         <Image src={avtar} />
                       </div>
                       <div className='flex flex-col items-start gap-0.5'>

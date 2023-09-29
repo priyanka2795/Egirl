@@ -17,12 +17,12 @@ function Gifts() {
   const [giftModal, setGiftModal] = useState<boolean>(false);
   const [giftCard, setGiftCard] = useState<boolean>(false);
   const [toggle, setToggle] = useState<boolean>(false);
-  const [giftEditPopup, setGiftEditPopup] = useState();
+  const [giftEditPopup, setGiftEditPopup] = useState<number | undefined>();
   const [tabs, setTabs] = useState('');
   const [giftsView, setGiftsView] = useState<boolean>(false);
   const [GiftCardName, setGiftCardName] = useState<string[]>([]);
   const [deleteModal, setDeleteModal] = useState<boolean>(false);
-  const [deleteIndex, setDeleteIndex] = useState();
+  const [deleteIndex, setDeleteIndex] = useState<number | undefined>();
   const [deleteBtnStep, setDeleteBtnStep] = useState<number>(0);
   const [addCategory, setAddCategory] = useState<string[]>([]);
 
@@ -38,7 +38,7 @@ function Gifts() {
     setDeleteBtnStep(1);
   };
 
-  const DeleteGift = (ind: any) => {
+  const DeleteGift = (ind: number) => {
     setGiftCard(false);
     setGiftCardName((oldValue) => {
       return oldValue.filter(

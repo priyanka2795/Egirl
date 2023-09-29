@@ -73,7 +73,7 @@ const AddTagModal = ({ closeDeleteModal }: AddTagModalProp) => {
     setSelectedOptions(selectedOptions.filter((o) => o !== option));
   };
 
-  const handleInputChange = (e: any) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const searchTerm = e.target.value;
     setSearchTags(searchTerm);
     const filteredItems = FilterData.filter((user) => {

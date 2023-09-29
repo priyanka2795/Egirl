@@ -5,8 +5,8 @@ import xMark from '../../../../public/assets/xmark (1).png';
 import image from '../../../../public/assets/image-plus.png';
 
 interface GoToGeneratorModalProp {
-  setGoToModal: (value: boolean) => void;
-  setAddImagesModal: (value: boolean) => void;
+  setGoToModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setAddImagesModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const GoToGeneratorModal = ({

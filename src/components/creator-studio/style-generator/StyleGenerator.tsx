@@ -26,7 +26,7 @@ const StyleGenerator = ({ setStyleGeneratorNext }: StyleGeneratorProps) => {
   const [goToModal, setGoToModal] = useState(false);
   const [showDropDown, setShowDropDown] = useState(false);
   const [inputText, setInputText] = useState('Choose category');
-  const [addImagesModal, setAddImagesModal] = useState(false);
+  const [addImagesModal, setAddImagesModal] = useState<boolean>(false);
   const [completeGeneration, setCompleteGeneration] = useState(false);
 
   return (

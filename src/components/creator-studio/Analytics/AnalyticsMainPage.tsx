@@ -321,7 +321,7 @@ const AnalyticsMainPage = () => {
   const [showErrormModal, setShowErrormModal] = useState(false);
   const [showUpdatedFilterInBar, setShowUpdatedFilterInBar] = useState('');
 
-  const notify = () => {
+  const notify = (): void => {
     setShowConfirmModal(false), toast.success('Cashout successful');
   };
 

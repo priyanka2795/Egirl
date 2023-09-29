@@ -4,11 +4,11 @@ import crossIcon from '../../../../public/assets/xmark (1).png';
 import { Modal } from '@components/modal/modal';
 
 interface DeletePopup {
-  DeleteModal: any;
+  DeleteModal: React.Dispatch<React.SetStateAction<boolean>>;
   Heading: string;
   Content: string;
   deleteImageGenerationIndex: number;
-  DeleteGeneration: any;
+  DeleteGeneration: React.Dispatch<React.SetStateAction<number>>;
 }
 function DeleteGenerationModal({
   DeleteModal,

@@ -150,7 +150,7 @@ const ViewImagesTab = ({
     setChecked((prevChecked: any) =>
       e.target.checked
         ? [...prevChecked, c.modalName]
-        : prevChecked.filter((item: any) => item !== c.modalName)
+        : prevChecked.filter((item: string) => item !== c.modalName)
     );
   };
   const handleStyleChange = (
@@ -160,7 +160,7 @@ const ViewImagesTab = ({
     setStyleChecked((prevChecked: any) =>
       e.target.checked
         ? [...prevChecked, c.styleName]
-        : prevChecked.filter((item: any) => item !== c.styleName)
+        : prevChecked.filter((item: string) => item !== c.styleName)
     );
   };
 

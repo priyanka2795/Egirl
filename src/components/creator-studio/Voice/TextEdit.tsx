@@ -2,6 +2,7 @@ import Image from 'next/image';
 import React from 'react';
 import greenCheck from '../../../../public/assets/check-icon-green.png';
 import crossIcon from '../../../../public/assets/xmark4.png';
+import { VoiceGenerations } from './GenerationInterface';
 
 interface TextEditProp {
   editedText?: string;

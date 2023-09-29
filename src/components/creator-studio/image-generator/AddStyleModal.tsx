@@ -23,7 +23,7 @@ const AddedStyle = [
   { name: 'Fantasy', img: pic }
 ];
 interface AddStyleModal {
-  SetOpenStyle: any;
+  SetOpenStyle: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const StyleTab = ['Your Styles', 'Popular'];
 
@@ -46,7 +46,7 @@ const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
       }
     }
   };
-  const handleInputChange = (e: any) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const searchTerm = e.target.value;
     setSearchStyle(searchTerm);
     const filteredItems = SelfMode.filter((user) =>
@@ -87,7 +87,7 @@ const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
               className={`cursor-pointer gap-1.5 rounded-xl px-4 py-2 ${
                 styleTabs == items ? 'bg-white/[0.16]' : 'text-[#979797]'
               }`}
-              onClick={(e) => setStyleTabs(e.target.innerText)}
+              onClick={(e) => setStyleTabs((e.target as HTMLElement).innerText)}
             >
               <p className={`text-[15px] font-bold`}>{items}</p>
             </div>

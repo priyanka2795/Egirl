@@ -10,7 +10,7 @@ interface ConfirmConversionProp {
   converting: string;
   credits: string;
   text: string;
-  notify: any;
+  notify: () => void;
 }
 const ConfirmConversionModal = ({
   closeConfirmModal,

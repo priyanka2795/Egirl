@@ -133,7 +133,7 @@ const PosingModal = ({
     setPosePresetsActive((prev) => (prev === index ? null : index));
     setSelectPose(true);
   };
-  const PoseCreated = () => {
+  const PoseCreated = (): void => {
     SetPosingCreated(true);
     PosingClose(false);
   };

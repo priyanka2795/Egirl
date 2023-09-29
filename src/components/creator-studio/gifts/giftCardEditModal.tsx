@@ -12,9 +12,9 @@ import GiftCardDelete from './giftCardDelete';
 // dots-horizontal-white
 interface CardEditModal {
   closeModal: (value: boolean) => void;
-  GiftEditModal: undefined;
+  GiftEditModal: number | undefined;
   DeleteGift: any;
-  DeleteIndex: undefined;
+  DeleteIndex: number | undefined;
   DeleteBtnStep: number;
 }
 const moveData = [
