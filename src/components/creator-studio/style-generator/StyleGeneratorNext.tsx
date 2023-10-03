@@ -102,12 +102,12 @@ const StyleGeneratorNext = ({setStyleGeneratorNext} : StyleGeneratorNextProps) =
        <div className='grid grid-cols-3 gap-5'>
        {images.map((item,index) => {
          return(
-           <div key={index} className='relative flex flex-col rounded-[14px]'>
+           <div key={index} className='relative flex flex-col rounded-[14px] overflow-hidden'>
              <Image src={item.image} alt={''} />
              <div className='h-[128px] p-4 flex flex-col gap-2 bg-[#1A1A1A]'>
                <div className='pl-4 h-full pr-3 py-3 rounded-[14px] bg-white/[0.03]'>
                  <div className='flex items-center justify-between'>
-                   <div className='text-[#979797] text-[15px] font-normal leading-6'>Add label</div>
+                   <input type='text' className='text-[#979797] text-[15px] font-normal leading-6 placeholder:text-[#979797] h-0 border-none bg-transparent focus:ring-0 pl-0' placeholder='Add label' />
                    <div className='text-[#515151] text-[13px] font-normal leading-[18px]'>100</div>
                  </div>
                </div>

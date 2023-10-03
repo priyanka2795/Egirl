@@ -5,19 +5,19 @@ import greenArrows from '../../../public/assets/arrows-horizontal-green.png'
 
 
 interface ConfirmConversionProp{
-    closeConfirmModal: React.Dispatch<React.SetStateAction<boolean>>
-    convertCredits: React.Dispatch<React.SetStateAction<boolean>>
-    setShowErrormModal: React.Dispatch<React.SetStateAction<boolean>>
-    converting: string;
-    credits: string;
-    text: string;
-    notify: any;
+    closeConfirmModal: React.Dispatch<React.SetStateAction<boolean>>;
+    convertCredits: React.Dispatch<React.SetStateAction<boolean>>;
+    converting?: string;
+    credits?: string;
+    text?: string;
+    notify?: any;
+    setShowErrormModal?: any;  
 }
-const ConfirmConversionModal = ({closeConfirmModal , convertCredits, setShowErrormModal, converting, credits, text, notify}:ConfirmConversionProp) => {
+const ConfirmConversionModal = ({closeConfirmModal , convertCredits, converting, credits, text, notify, setShowErrormModal}:ConfirmConversionProp) => {
     
   return (
     <div>
-      <Modal
+        <Modal
             open={true}
             modalClassName='flex flex-col w-full rounded-2xl h-max bg-[#121212] max-w-[400px]'
             closeModal={() => closeConfirmModal(false)}
@@ -35,7 +35,7 @@ const ConfirmConversionModal = ({closeConfirmModal , convertCredits, setShowErro
             </div>
 
             <div className='flex gap-3 px-6 py-4'>
-                    <button className='w-1/2 px-5 py-[13px] justify-center items-center flex rounded-[14px] border border-white/[0.32] text-[#FFFFFF] text-[16px] font-bold leading-[22px]' onClick={() => {closeConfirmModal(false), convertCredits(true), setShowErrormModal(true)}}>Cancel</button>
+                    <button className='w-1/2 px-5 py-[13px] justify-center items-center flex rounded-[14px] border border-white/[0.32] text-[#FFFFFF] text-[16px] font-bold leading-[22px]' onClick={() => {closeConfirmModal(false), convertCredits(true)}}>Cancel</button>
                 <button className='w-1/2 px-5 py-[13px] justify-center items-center flex rounded-[14px] bg-[#5848BC] text-[#FFFFFF] text-[16px] font-bold leading-[22px]' onClick={notify}>Confirm</button>
             </div>
         </Modal>

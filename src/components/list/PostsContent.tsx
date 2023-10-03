@@ -2,9 +2,9 @@ import Image from 'next/image';
 import React from 'react';
 import heart from '../../../public/assets/Egirls+.png'
 
-const PostsContent = () => {
+const PostsContent = () => {  
   return (
-    <div className='flex flex-col items-center justify-center h-full gap-6'>
+    <div className='flex flex-col items-center justify-center gap-6 py-12'>
       <div className='flex flex-col items-center justify-center gap-4'>
         <div className='w-max flex p-5 rounded-[100px] bg-white/[0.05]'>
             <Image className='w-[21px] h-[20px]' src={heart} alt={''} />

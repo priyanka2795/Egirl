@@ -343,7 +343,7 @@ const AnalyticsMainPage = () => {
           Account Analytics
         </div>
 
-        <div className='mt-6 grid grid-cols-3 gap-4'>
+        <div className='grid grid-cols-3 gap-4 mt-6'>
           {accountAnalytics.map((item, index) => {
             return (
               <div
@@ -364,9 +364,9 @@ const AnalyticsMainPage = () => {
                   </div>
                   <div className='flex gap-3'>
                     <div className='flex gap-1'>
-                      <div className='h-5 w-5'>
+                      <div className='w-5 h-5'>
                         <Image
-                          className='h-full w-full'
+                          className='w-full h-full'
                           src={showChanges ? item.image : arrowRight}
                           alt={''}
                         />
@@ -391,8 +391,8 @@ const AnalyticsMainPage = () => {
           })}
         </div>
 
-        <div className='mt-4 flex gap-4'>
-          <div className='flex w-2/3 flex-col gap-4'>
+        <div className='flex gap-4 mt-4'>
+          <div className='flex flex-col w-2/3 gap-4'>
             <div className='flex  flex-col gap-2 rounded-[16px] bg-[#121212] p-5'>
               {/* top */}
               <div className='flex items-center justify-between'>
@@ -412,9 +412,9 @@ const AnalyticsMainPage = () => {
                 </div>
               </div>
               {/* bottom */}
-              <div className='flex flex-col items-start gap-8 self-stretch'>
+              <div className='flex flex-col items-start self-stretch gap-8'>
                 {/* values */}
-                <div className='flex items-start justify-between self-stretch'>
+                <div className='flex items-start self-stretch justify-between'>
                   {/* total revenue */}
                   <div className='flex flex-col items-start gap-1 '>
                     <div className='flex	 flex-col items-start gap-0.5'>
@@ -427,7 +427,7 @@ const AnalyticsMainPage = () => {
                     </div>
                     <div className='flex items-center gap-3'>
                       <div className='flex items-center gap-1'>
-                        <div className='h-5 w-5'>
+                        <div className='w-5 h-5'>
                           {showChanges ? (
                             <Image src={greenArrowUp} />
                           ) : (
@@ -471,7 +471,7 @@ const AnalyticsMainPage = () => {
                   </div>
                 </div>
                 {/* graph */}
-                <div className='flex items-start gap-3 self-stretch'>
+                <div className='flex items-start self-stretch gap-3'>
                   {/* amount */}
                   <div className='mt-4 flex h-[174px] flex-col items-end justify-between text-[#979797]'>
                     {amount.map((data) => {
@@ -554,7 +554,7 @@ const AnalyticsMainPage = () => {
                 {/* here  */}
                 {showChanges ? (
                   <div className='flex flex-col'>
-                    <div className='mt-2 flex items-center justify-center gap-6 self-stretch'>
+                    <div className='flex items-center self-stretch justify-center gap-6 mt-2'>
                       {/* item */}
 
                       <div className='flex items-center gap-2'>
@@ -600,7 +600,7 @@ const AnalyticsMainPage = () => {
                     </div>
                     {/* types */}
 
-                    <div className='mt-5 flex items-center justify-center gap-6 self-stretch '>
+                    <div className='flex items-center self-stretch justify-center gap-6 mt-5 '>
                       {types.map((item, index) => (
                         <div
                           className='flex items-center gap-2'
@@ -663,7 +663,7 @@ const AnalyticsMainPage = () => {
                     </div>
                   </div>
                 </div>
-                <div className='flex w-1/2 flex-col gap-4'>
+                <div className='flex flex-col w-1/2 gap-4'>
                   <div className='text-[15px] font-normal leading-5 text-[#979797]'>
                     Image requests
                   </div>
@@ -696,7 +696,7 @@ const AnalyticsMainPage = () => {
               </div>
             </div>
           </div>
-          <div className='flex w-1/3 flex-col gap-4'>
+          <div className='flex flex-col w-1/3 gap-4'>
             <div className='flex flex-col gap-8 rounded-[16px] bg-[#121212] p-5'>
               <div className='flex items-center gap-3'>
                 <div className='flex rounded-[100px] bg-white/[0.08] p-2'>

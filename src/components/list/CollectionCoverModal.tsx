@@ -8,6 +8,7 @@ import MainImage from '../../../public/assets/gallery-tab-img-3.png';
 
 interface CollectionCoverModalProps {
   closeAddCollectionModal?: any;
+  closeDropdown: any;
 }
 
 const imagesArray = [
@@ -28,7 +29,8 @@ const imagesArray = [
   MainImage
 ];
 const CollectionCoverModal = ({
-  closeAddCollectionModal
+  closeAddCollectionModal,
+  closeDropdown
 }: CollectionCoverModalProps) => {
   return (
     <Modal
@@ -44,7 +46,7 @@ const CollectionCoverModal = ({
           </div>
           <div
             className='top-[7px] flex h-[24px] w-[24px] cursor-pointer items-start gap-4 object-contain'
-            onClick={() => closeAddCollectionModal(false)}
+            onClick={() => {closeAddCollectionModal(false), closeDropdown('')}}
           >
             <CloseIcon />
           </div>
@@ -72,7 +74,7 @@ const CollectionCoverModal = ({
         <div className='flex items-end justify-end w-full gap-3 p-6 h-max'>
           <div
             className='flex items-center justify-center gap-2 px-5 py-3 border border-white cursor-pointer rounded-2xl border-opacity-30'
-            onClick={() => closeAddCollectionModal(false)}
+            onClick={() => {closeAddCollectionModal(false), closeDropdown('')}}
           >
             <div className='text-base font-bold leading-snug text-white'>
               Cancel
@@ -80,7 +82,7 @@ const CollectionCoverModal = ({
           </div>
           <div
             className='flex cursor-pointer items-center justify-center gap-2 rounded-2xl bg-[#5848BC] px-5 py-3'
-            onClick={() => closeAddCollectionModal(false)}
+            onClick={() => {closeAddCollectionModal(false), closeDropdown('')}}
           >
             <div className='text-base font-bold leading-snug text-white'>
               Create

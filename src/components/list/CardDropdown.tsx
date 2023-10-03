@@ -26,7 +26,7 @@ const CardDropdown = ({closeDropdown}:cardDropdownProp) => {
     <div className="absolute right-2 top-[66px]"> 
     <div className='flex flex-col items-start justify-start w-[218px] h-max py-2 shadow rounded-2xl bg-[#1A1A1A] overflow-hidden'>
       <div className='flex items-center justify-start gap-2 self-stretch bg-[#1A1A1A] px-4 py-2.5' onClick={handleEditCollection}>
-       <PenIcon/>
+       <PenIcon/>  
         <div className='text-sm font-normal leading-none text-white cursor-pointer shrink grow basis-0'>
           Edit
         </div>
@@ -47,7 +47,7 @@ const CardDropdown = ({closeDropdown}:cardDropdownProp) => {
   </div>
   {
     newCollectionModal &&
-    <NewCollectionModal closeModalItem={setNewCollectionModal} />
+    <NewCollectionModal closeModalItem={setNewCollectionModal} closeDropdown={closeDropdown} />
   }
   {/* {
     editCollectionState &&
@@ -58,7 +58,7 @@ const CardDropdown = ({closeDropdown}:cardDropdownProp) => {
     <DeleteCollection closeDeleteModal={setDeleteCollectionState} closeDropdown={closeDropdown}/>
   }
   {addCollectionState &&
-    <CollectionCoverModal closeAddCollectionModal={setAddCollectionState}/>
+    <CollectionCoverModal closeAddCollectionModal={setAddCollectionState} closeDropdown={closeDropdown}/>
   }
   </>
   )

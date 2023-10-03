@@ -26,7 +26,7 @@ const DefaultTab = ({
 }: DefaultTabProp) => {
   const [exploreSelectedTab, setExploreSelected] = useState(activeListTab);
 
-  const handleExploreSelected = (item:any) => {
+  const handleExploreSelected = (item:string) => {
     setShowRealistic(false);
     setExploreSelected(item);
     setActiveTab(item);
