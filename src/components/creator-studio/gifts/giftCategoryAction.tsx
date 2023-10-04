@@ -60,7 +60,7 @@ function GiftCategoryAction({ AddCategory, SetCategory }: GiftCategoryAction) {
 
   return (
     <>
-      <div className='flex items-center justify-between mt-4'>
+      <div className='mt-4 flex items-center justify-between'>
         <div className='flex items-center justify-center gap-3 '>
           {AddCategory.map((items: any, index: number) => (
             <div
@@ -85,7 +85,7 @@ function GiftCategoryAction({ AddCategory, SetCategory }: GiftCategoryAction) {
                         className='flex items-center gap-2'
                         onClick={() => EditCategoryName(items, 1)}
                       >
-                        <Image src={Pencil} className='w-full h-full' alt='' />
+                        <Image src={Pencil} className='h-full w-full' alt='' />
                         <p>Edit name</p>
                       </button>
 
@@ -95,7 +95,7 @@ function GiftCategoryAction({ AddCategory, SetCategory }: GiftCategoryAction) {
                       >
                         <Image
                           src={Delete}
-                          className='w-full h-full'
+                          className='h-full w-full'
                           alt={''}
                         />
                         <p>Delete</p>
@@ -110,7 +110,7 @@ function GiftCategoryAction({ AddCategory, SetCategory }: GiftCategoryAction) {
           ))}
 
           <button
-            className='relative pt-1 group '
+            className='group relative pt-1 '
             onClick={() => setCreateCategory(true)}
           >
             <Image src={plusIcon} alt='' className='h-[18px] w-[18px]' />
@@ -139,7 +139,7 @@ function GiftCategoryAction({ AddCategory, SetCategory }: GiftCategoryAction) {
                 className='absolute right-2 top-2'
                 onClick={() => setActive(!isActive)}
               >
-                <Image className='w-full h-full' src={crossIcon} alt={''} />
+                <Image className='h-full w-full' src={crossIcon} alt={''} />
               </span>
             ) : (
               ''

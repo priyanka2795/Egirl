@@ -11,7 +11,7 @@ import ImageSquare from '../svg/image-square.png';
 import GiftCardDelete from './giftCardDelete';
 // dots-horizontal-white
 interface CardEditModal {
-  closeModal: (value: boolean) => void;
+  closeModal: React.Dispatch<React.SetStateAction<boolean>>;
   GiftEditModal: number | undefined;
   DeleteGift: any;
   DeleteIndex: number | undefined;

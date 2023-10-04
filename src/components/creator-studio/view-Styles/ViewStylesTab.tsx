@@ -53,7 +53,7 @@ const ViewStylesTab = ({
   const [isActive, setActive] = useState(false);
   const [viewStyleFilter, setViewStyleFilter] = useState(false);
 
-  const handleActionButtons = (index: any) => {
+  const handleActionButtons = (index: number) => {
     setActiveIndex(index);
     if (index === 0) {
       setActive(!isActive);
@@ -132,7 +132,7 @@ const ViewStylesTab = ({
           </div>
         ) : (
           <div className='flex items-start justify-start gap-3'>
-            {tabContent.map((items: any, index: any) => {
+            {tabContent.map((items: string, index: number) => {
               return (
                 <div
                   key={index}

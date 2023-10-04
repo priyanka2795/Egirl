@@ -57,11 +57,11 @@ const VIMainImageBlock = ({
   const [allImages, setAllImages] = useState(images);
   const [showDropDown, setShowDropDown] = useState<number | null>(null);
   const [allImage, setAllImage] = useState<number | null>(null);
-  const [deleteModal, setDeleteModal] = useState(false);
+  const [deleteModal, setDeleteModal] = useState<boolean>(false);
   const [editAlbum, setEditAlbum] = useState<boolean>(false);
-  const [albumDetails, setAlbumDetails] = useState(false);
-  const [deleteImageModal, setDeleteImageModal] = useState(false);
-  const [moveAlbumModal, setMoveAlbumModal] = useState(false);
+  const [albumDetails, setAlbumDetails] = useState<boolean>(false);
+  const [deleteImageModal, setDeleteImageModal] = useState<boolean>(false);
+  const [moveAlbumModal, setMoveAlbumModal] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const AlbumImageToggle = (index: number) => {

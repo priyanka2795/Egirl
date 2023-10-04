@@ -6,7 +6,7 @@ import CreateCategory from './createCategory';
 
 interface giftCreateModalProp {
   closeModal: React.Dispatch<React.SetStateAction<boolean>>;
-  GiftsView: any;
+  GiftsView: React.Dispatch<React.SetStateAction<boolean>>;
   GiftName: string[];
   SetGiftName: React.Dispatch<React.SetStateAction<string[]>>;
   AddCategory: string[];

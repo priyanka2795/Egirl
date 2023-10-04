@@ -11,13 +11,13 @@ import CreateCategory from './createCategory';
 import Tooltip from './tooltip';
 
 interface CreateGiftPopup {
-  createGiftClose: any;
-  GiftsView: any;
-  Previous: any;
-  AddCategory: any;
-  SetCategory: any;
-  GiftName: any;
-  SetGiftName: any;
+  createGiftClose: React.Dispatch<React.SetStateAction<boolean>>;
+  GiftsView: React.Dispatch<React.SetStateAction<boolean>>;
+  Previous: React.Dispatch<React.SetStateAction<boolean>>;
+  AddCategory: string[];
+  SetCategory: React.Dispatch<React.SetStateAction<string[]>>;
+  GiftName: string[];
+  SetGiftName: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 function CreateGift({
@@ -73,10 +73,10 @@ function CreateGift({
           <div className='flex items-center justify-between border-b border-[#FFFFFF14] p-6'>
             <h5 className='text-lg font-semibold'>Create gift</h5>
             <div
-              className='w-6 h-6 cursor-pointer'
+              className='h-6 w-6 cursor-pointer'
               onClick={() => createGiftClose(false)}
             >
-              <Image className='w-full h-full' src={crossIcon} alt={''} />
+              <Image className='h-full w-full' src={crossIcon} alt={''} />
             </div>
           </div>
           <div className='flex flex-col gap-4 p-6'>
@@ -88,9 +88,9 @@ function CreateGift({
               />
               <div className='group absolute right-2 top-2 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-[#0000007A]'>
                 <div>
-                  <Edit className='w-full h-full' alt={''} />
+                  <Edit className='h-full w-full' alt={''} />
                 </div>
-                <div className='absolute transition-all transform -left-12 -top-2 w-max -translate-x-0 -translate-y-2/4'>
+                <div className='absolute -left-12 -top-2 w-max -translate-x-0 -translate-y-2/4 transform transition-all'>
                   <Tooltip Text={'Edit'} />
                 </div>
               </div>
@@ -157,7 +157,7 @@ function CreateGift({
               className='flex items-center gap-2 font-semibold '
               onClick={() => setCreateCategory(true)}
             >
-              <Image className='w-full h-full' src={plusIcon} alt={''} />
+              <Image className='h-full w-full' src={plusIcon} alt={''} />
               <p>New Category</p>
             </button>
 

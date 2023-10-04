@@ -8,7 +8,7 @@ import CreateGift from './createGift';
 
 interface CategoryPopup {
   closeState: React.Dispatch<React.SetStateAction<boolean>>;
-  GiftsView: boolean;
+  GiftsView: React.Dispatch<React.SetStateAction<boolean>>;
   GiftName: string[];
   SetGiftName: React.Dispatch<React.SetStateAction<string[]>>;
   AddCategory: string[];
@@ -35,7 +35,7 @@ function SelectImage({
   GiftName,
   SetGiftName
 }: CategoryPopup) {
-  const [createGift, setCreateGift] = useState(false);
+  const [createGift, setCreateGift] = useState<boolean>(false);
   const [toggle, setToggle] = useState(false);
 
   return (
@@ -55,13 +55,13 @@ function SelectImage({
           <div className='flex items-center justify-between border-b border-[#FFFFFF14] p-6'>
             <h5 className='text-lg font-semibold'>Select image</h5>
             <div
-              className='w-6 h-6 cursor-pointer'
+              className='h-6 w-6 cursor-pointer'
               onClick={() => closeState(false)}
             >
-              <Image className='w-full h-full' src={crossIcon} alt={''} />
+              <Image className='h-full w-full' src={crossIcon} alt={''} />
             </div>
           </div>
-          <div className='flex flex-col gap-3 p-6 overflow-y-auto '>
+          <div className='flex flex-col gap-3 overflow-y-auto p-6 '>
             <p className='font-semibold'>Albums</p>
             <div className='grid grid-cols-2 gap-2 '>
               {albumdata.map((item) => (
@@ -70,7 +70,7 @@ function SelectImage({
                   onClick={() => setCreateGift(true)}
                 >
                   <Image
-                    className='object-cover w-full h-full'
+                    className='h-full w-full object-cover'
                     src={item.imgPath}
                     alt={''}
                   />
@@ -99,7 +99,7 @@ function SelectImage({
                       onClick={() => setCreateGift(true)}
                     >
                       <Image
-                        className='object-cover w-full h-full'
+                        className='h-full w-full object-cover'
                         src={item.imgPath}
                         alt={''}
                       />
