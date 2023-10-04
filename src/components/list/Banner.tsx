@@ -20,6 +20,10 @@ import galleryIcon from '../../../public/assets/gallery-icon.png';
 import deleteIcon from '../../../public/assets/delete-icon.png';
 import UpdatePhotoModal from './UpdatePhotoModal';
 import DeleteProfileCover from './DeleteProfileCover';
+import pen from '../../../public/assets/pen.png';
+import eye from '../../../public/assets/eye.png';
+import trashBlank from '../../../public/assets/trash-blank-alt.png';
+import downArrow from '../../../public/assets/down-arrow-img.png';
 
 const posts = [
   {
@@ -81,6 +85,17 @@ const actions = [
   }
 ];
 
+const cratorProfileActions = [
+  {
+    icon: linkIcon,
+    name: 'Copy link to profile'
+  },
+  {
+    icon: trashBlank,
+    name: 'Delete'
+  },
+];
+
 const uploadPhoto = [
   {
     icon: galleryIcon,
@@ -97,12 +112,14 @@ interface BannerProp {
   styleProperty?: string;
   followBtnStyle?: string;
   followText?: string;
+  component?: string;
 }
 const Banner = ({
   backFromProfile,
   styleProperty,
   followBtnStyle,
-  followText
+  followText,
+  component
 }: BannerProp) => {
   const [actionDivShow, setActionDivShow] = useState(false);
   const [exploreSelectedTab, setExploreSelected] = useState('');
@@ -152,7 +169,7 @@ const Banner = ({
         ''
       ) : (
         <div
-          className='my-4 flex cursor-pointer gap-2 text-lg font-bold'
+          className='flex gap-2 my-4 text-lg font-bold cursor-pointer'
           onClick={() => {
             backFromProfile(false);
           }}
@@ -164,13 +181,13 @@ const Banner = ({
 
       <div>
         <div className='h-max w-full overflow-hidden rounded-[16px] bg-[#121212]'>
-          <div className='sub-banner relative block w-full'>
+          <div className='relative block w-full sub-banner'>
             {removeCover ? (
               <div className='h-[200px] w-[1092px] bg-[#121212]'></div>
             ) : updatedProfile ? (
               <img className='h-[200px] w-[1092px] ' src={cropData} alt='' />
             ) : (
-              <Image className='h-full w-full ' src={Cover} alt='' />
+              <Image className='w-full h-full ' src={Cover} alt='' />
             )}
             <div className='absolute right-[20px] top-[20px] cursor-pointer'>
               <Image
@@ -214,10 +231,10 @@ const Banner = ({
               }`}
             >
               <div className='relative h-[120px] w-[120px] overflow-hidden rounded-full'>
-                <Image className='h-full w-full' src={avatar} alt='' />
+                <Image className='w-full h-full' src={avatar} alt='' />
               </div>
-              <div className={'flex gap-[12px] self-end'}>
-                <button
+              <div className={'flex gap-3 self-end'}>
+                {/* <button
                   className={`flex h-max gap-2 rounded-[14px] px-[20px] py-[11px] text-[16px] font-bold ${
                     followBtnStyle
                       ? followBtnStyle
@@ -238,7 +255,22 @@ const Banner = ({
                 </button>
                 <button className='h-max rounded-[14px] border border-[#5848BC] bg-[#5848BC] px-[20px] py-[11px] text-base font-bold text-white'>
                   Subscribe
+                </button> */}
+                <button className='px-5 py-[13px] flex gap-2 justify-center items-center rounded-[14px] bg-white/[0.08]'>
+                  <Image src={pen} alt={''} />
+                  <div className='text-white text-[16px] font-bold leading-[22px]'>Edit profile</div>
                 </button>
+                <div className='group relative flex px-5 py-[13px] justify-center items-center rounded-[14px] bg-white/[0.08]'>
+                  <Image src={eye} alt={''} />
+                  <div className='invisible group-hover:visible group-hover:opacity-100'>
+                    <div className='absolute -left-[16px] bottom-[64px] flex items-center justify-center rounded-[6px] bg-[#303030] px-3 py-[6px] text-[12px] font-normal leading-4 text-white'>
+                      User view
+                    </div>
+                    <div className='absolute -top-[20px] -right-[2px] h-[24px] w-10'>
+                      <Image className='w-full h-full' src={downArrow} alt={''} />
+                    </div>
+                  </div>
+                </div>
                 <div className='relative'>
                   <Image
                     className='relative cursor-pointer'
@@ -248,7 +280,33 @@ const Banner = ({
                   />
                   {actionDivShow ? (
                     <>
-                      <div className='absolute right-0 top-[65px] z-0 flex h-max w-[218] w-[218px] flex-col items-start rounded-[14px] bg-[#1A1A1A] px-2 py-2'>
+                      <div className='absolute right-0 top-[65px] z-0 flex h-max w-[218px] flex-col items-start rounded-[14px] bg-[#1A1A1A] py-2'>
+                        {component === 'CreatorStudioProfile' ?
+                        <div className='w-full'>
+                          {cratorProfileActions.map((item, index) => {
+                          return (
+                            <div
+                              key={index}
+                              onClick={(e) => handleExploreSelected(e)}
+                              className={`flex items-center w-full cursor-pointer gap-2 px-[16px] py-[10px] ${
+                                exploreSelectedTab === item.name
+                                  ? 'rounded-[8px] bg-white/[0.12] w-full'
+                                  : ''
+                              }`}
+                            >
+                              <Image
+                                className='object-contain'
+                                src={item.icon}
+                                alt={''}
+                              />
+                              <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                                {item.name}
+                              </div>
+                            </div>
+                          );
+                        })} 
+                        </div> : 
+                        <div className='w-full'>
                         {actions.map((item, index) => {
                           return (
                             <div
@@ -271,6 +329,8 @@ const Banner = ({
                             </div>
                           );
                         })}
+                        </div>
+                        }
                       </div>
                     </>
                   ) : (
