@@ -131,6 +131,7 @@ const ViewImagesTab = ({
       // setFilterToggle(false);
       setShortSelect(false);
       setAlbumShortSelect(false);
+      setFilterToggle(false);
     }
   };
 
@@ -269,18 +270,16 @@ const ViewImagesTab = ({
               </div>
               {shortSelect && (
                 <div className='shadow-[0px 8px 12px 0px #0000001F] absolute right-0 top-12 z-50 flex w-[170px] flex-col gap-2 rounded-[14px] bg-[#1A1A1A] px-3 py-4'>
-                  <>
-                    {short.map((item, index) => (
-                      <div
-                        className='flex cursor-pointer items-center gap-2'
-                        onClick={() => SelectShort(index)}
-                        key={index}
-                      >
-                        {shortTab == index ? <SelectIcon /> : <UnSelectIcon />}
-                        <p>{item}</p>
-                      </div>
-                    ))}
-                  </>
+                  {short.map((item, index) => (
+                    <div
+                      className='flex cursor-pointer items-center gap-2'
+                      onClick={() => SelectShort(index)}
+                      key={index}
+                    >
+                      {shortTab == index ? <SelectIcon /> : <UnSelectIcon />}
+                      <p>{item}</p>
+                    </div>
+                  ))}
                 </div>
               )}
             </div>

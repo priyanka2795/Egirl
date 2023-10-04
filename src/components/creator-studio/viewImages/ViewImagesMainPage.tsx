@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ViewImagesTab from './ViewImagesTab';
 import VIMainImageBlock from './VIMainImageBlock';
 import Image from 'next/image';
@@ -83,9 +83,26 @@ const ViewImagesMainPage = () => {
     });
     setAlbumData(filteredItems);
   };
-
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    window.addEventListener('click', handleClickOutside);
+    return () => {
+      window.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+  const handleClickOutside = (e: MouseEvent) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(e.target as Node)
+    ) {
+      setAllImage(undefined);
+    }
+  };
   return (
-    <div className='mt-6 flex flex-col gap-5 rounded-[14px] bg-[#121212] p-6'>
+    <div
+      className='mt-6 flex flex-col gap-5 rounded-[14px] bg-[#121212] p-6'
+      ref={dropdownRef}
+    >
       {albumImages ? (
         <>
           <div className='flex justify-between border-b border-white/[0.08] pb-5'>
@@ -107,7 +124,7 @@ const ViewImagesMainPage = () => {
                 <div
                   className={`flex h-9 w-9 cursor-pointer items-center justify-center rounded-full `}
                 >
-                  <Image src={filter} alt={''} />
+                  <Image src={filter} alt='' />
                 </div>
               </div>
             </div>
