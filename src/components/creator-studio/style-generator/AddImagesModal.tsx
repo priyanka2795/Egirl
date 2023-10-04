@@ -40,7 +40,10 @@ const allPhotos = [
   }
 ];
 
-const AddImagesModal = ({ setAddImagesModal, setStyleGeneratorNext }: AddImagesModalProps) => {
+const AddImagesModal = ({
+  setAddImagesModal,
+  setStyleGeneratorNext
+}: AddImagesModalProps) => {
   const [toggle, setToggle] = useState(false);
   //   const [styleGenHoverModal, setStyleGenHoverModal] = useState(false);
 
@@ -79,7 +82,7 @@ const AddImagesModal = ({ setAddImagesModal, setStyleGeneratorNext }: AddImagesM
                 return (
                   <div key={index} className='relative'>
                     <Image src={item.image} alt={''} />
-                    <div className='absolute right-0 flex justify-between w-full px-4 bottom-5'>
+                    <div className='absolute bottom-5 right-0 flex w-full justify-between px-4'>
                       <div className='text-[15px] font-semibold leading-5 text-white'>
                         {item.text}
                       </div>
@@ -92,7 +95,7 @@ const AddImagesModal = ({ setAddImagesModal, setStyleGeneratorNext }: AddImagesM
               })}
             </div>
             <div
-              className='cursor-pointer flex items-center justify-center rounded-[12px] bg-white/[0.08] px-4 py-[10px] text-[14px] font-bold leading-5 text-white'
+              className='flex cursor-pointer items-center justify-center rounded-[12px] bg-white/[0.08] px-4 py-[10px] text-[14px] font-bold leading-5 text-white'
               onClick={() => {
                 setToggle(!toggle);
               }}
@@ -105,13 +108,16 @@ const AddImagesModal = ({ setAddImagesModal, setStyleGeneratorNext }: AddImagesM
               <div className='text-[15px] font-semibold leading-5 text-white'>
                 All photos
               </div>
-              <div className='grid grid-cols-2 gap-2 rounded-[12px] overflow-hidden'>
+              <div className='grid grid-cols-2 gap-2 overflow-hidden rounded-[12px]'>
                 {allPhotos.map((item, index) => {
                   return (
-                    <div key={index} className='relative h-[256px] add-to-collection'>
+                    <div
+                      key={index}
+                      className='add-to-collection relative h-[256px]'
+                    >
                       <Image src={item.image} alt={''} />
-                      <div className='absolute top-0 right-0 w-full h-full custom-checkbox'>
-                        <div className='pt-4 pr-4 text-right'>
+                      <div className='custom-checkbox absolute right-0 top-0 h-full w-full'>
+                        <div className='pr-4 pt-4 text-right'>
                           <input type='checkbox' id={`checked-${index}`} />
                           <label htmlFor={`checked-${index}`}></label>
                         </div>
@@ -132,7 +138,9 @@ const AddImagesModal = ({ setAddImagesModal, setStyleGeneratorNext }: AddImagesM
           </button>
           <button
             className='w-1/2 items-center justify-center rounded-[14px] border border-transparent bg-[#5848BC] px-5 py-[13px] text-[16px] font-bold leading-[22px] text-white'
-            onClick={() => {setAddImagesModal(false), setStyleGeneratorNext(true)}}
+            onClick={() => {
+              setAddImagesModal(false), setStyleGeneratorNext(true);
+            }}
           >
             Save
           </button>

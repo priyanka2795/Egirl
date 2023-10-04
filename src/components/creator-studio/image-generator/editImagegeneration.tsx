@@ -1,6 +1,6 @@
-import Image from 'next/image'
-import React, { useState } from 'react'
-import { Modal } from '@components/modal/modal'
+import Image from 'next/image';
+import React, { useState } from 'react';
+import { Modal } from '@components/modal/modal';
 import ShuffleSvg from '../../../../public/assets/svgImages/shuffle.svg';
 import PlusIconSvg from '../../../../public/assets/svgImages/plus-icon.svg';
 import crossIcon from '../../../../public/assets/xmark-style.png';
@@ -10,26 +10,29 @@ import ArrowRight from '../../../../public/assets/chevron-right.png';
 import ImageGeneratorOption from './ImageGeneratorOption';
 
 interface EditImageGeneration {
-    ImageGenerationClose: any
+  ImageGenerationClose: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const EditImageGeneration = ({ ImageGenerationClose }: EditImageGeneration) => {
-    const [prompt, setPrompt] = useState(false)
+  const [prompt, setPrompt] = useState(false);
 
-    return (
-        <Modal
-            open={true}
-            modalClassName='flex flex-col h-fit rounded-[14px] bg-[#1A1A1A] w-[1052px]'
-            closeModal={() => ImageGenerationClose(false)}
-            modalOverlayStyle='!bg-black/80'
+  return (
+    <Modal
+      open={true}
+      modalClassName='flex flex-col h-fit rounded-[14px] bg-[#1A1A1A] w-[1052px]'
+      closeModal={() => ImageGenerationClose(false)}
+      modalOverlayStyle='!bg-black/80'
+    >
+      <div className='flex items-center justify-between border-b border-[#FFFFFF14] p-6'>
+        <h5 className='text-lg font-semibold'>Edit Image generation</h5>
+        <div
+          className='h-6 w-6 cursor-pointer'
+          onClick={() => ImageGenerationClose(false)}
         >
-             <div className='flex justify-between items-center border-b border-[#FFFFFF14] p-6'>
-                <h5 className='text-lg font-semibold'>Edit Image generation</h5>
-                <div className='w-6 h-6 cursor-pointer' onClick={() => ImageGenerationClose(false)}>
-                    <Image className='w-full h-full' src={crossIcon} alt={''} />
-                </div>
-            </div> 
-{/* 
+          <Image className='h-full w-full' src={crossIcon} alt={''} />
+        </div>
+      </div>
+      {/* 
                  <div className='flex justify-between gap-4 pb-7'>
                     <div className='flex gap-4'>
                         <div className='flex justify-between h-max w-[300px] items-center gap-2.5 rounded-[14px] bg-white bg-opacity-5 px-4 py-[13px]'>
@@ -49,7 +52,7 @@ const EditImageGeneration = ({ ImageGenerationClose }: EditImageGeneration) => {
 
                     <div className='flex w-12 cursor-pointer items-center justify-center gap-2 rounded-[14px] bg-white bg-opacity-10 py-3 relative group'>
                         <ShuffleSvg />
-                       <div className='absolute -top-12 w-max -left-16 z-50'>
+                       <div className='absolute z-50 -top-12 w-max -left-16'>
                             <Tooltip Text={'Add a random prompt'} />
                         </div>
                     </div>
@@ -77,22 +80,30 @@ const EditImageGeneration = ({ ImageGenerationClose }: EditImageGeneration) => {
                     subHeading={true}
                 /> */}
 
-                <ImageGeneratorOption InpaintingToggle={false} PosingToggle={false} MyCharacterToggle={false} EditGeneration={false} EditTooltip={false}/>
+      <ImageGeneratorOption
+        InpaintingToggle={false}
+        PosingToggle={false}
+        MyCharacterToggle={false}
+        EditGeneration={false}
+        EditTooltip={false}
+      />
 
-                <div className='p-6 flex gap-3 items-center justify-end'>
-                    <button className='w-max rounded-[14px] border border-[#FFFFFF52] px-5 py-[13px] text-base font-bold' onClick={() => ImageGenerationClose(false)}>
-                        Cancel
-                    </button>
-                    <button className='w-max rounded-[14px] bg-[#5848BC] px-5 py-[13px] text-base font-bold' onClick={() => ImageGenerationClose(false)}>
-                        Generate
-                    </button>
-                </div>
-
-
-        </Modal >
-
-
-    )
-}
+      <div className='flex items-center justify-end gap-3 p-6'>
+        <button
+          className='w-max rounded-[14px] border border-[#FFFFFF52] px-5 py-[13px] text-base font-bold'
+          onClick={() => ImageGenerationClose(false)}
+        >
+          Cancel
+        </button>
+        <button
+          className='w-max rounded-[14px] bg-[#5848BC] px-5 py-[13px] text-base font-bold'
+          onClick={() => ImageGenerationClose(false)}
+        >
+          Generate
+        </button>
+      </div>
+    </Modal>
+  );
+};
 
 export default EditImageGeneration;

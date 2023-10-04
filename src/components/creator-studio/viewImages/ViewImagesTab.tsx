@@ -10,9 +10,9 @@ import Search from '../../../../public/assets/search-alt (1).png';
 import Information from '../../../../public/assets/circle-information2.png';
 
 interface ViewImagesTab {
-  tabContent: any;
-  exploreSelectedTab: any;
-  setExploreSelected: any;
+  tabContent: Array<string>;
+  exploreSelectedTab: string;
+  setExploreSelected: React.Dispatch<React.SetStateAction<string>>;
   HandleSearch: any;
   SearchTerm: string;
 }
@@ -78,13 +78,13 @@ const ViewImagesTab = ({
   const [checked, setChecked] = useState([] as any);
   const [styleChecked, setStyleChecked] = useState([] as any);
 
-  const handleExploreSelected = (e: any) => {
-    setExploreSelected(e.target.innerText);
+  const handleExploreSelected = (e: React.MouseEvent<HTMLElement>) => {
+    setExploreSelected((e.target as HTMLElement).innerText);
   };
-  const AlbumSelectShort = (index: any) => {
+  const AlbumSelectShort = (index: number) => {
     setAlbumShortTab(index);
   };
-  const SelectShort = (index: any) => {
+  const SelectShort = (index: number) => {
     setShortTab(index);
   };
 
@@ -115,7 +115,7 @@ const ViewImagesTab = ({
     }
   };
 
-  const dropdownRef = useRef(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     document.addEventListener('click', handleClickOutside);
@@ -134,7 +134,7 @@ const ViewImagesTab = ({
     }
   };
 
-  const handleCheckAllChange = (e: any) => {
+  const handleCheckAllChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name } = e.target;
     if (name === 'modalAll') {
       setChecked(e.target.checked ? Modal.map((c) => c.modalName) : []);
@@ -143,18 +143,24 @@ const ViewImagesTab = ({
     }
   };
 
-  const handleCountryChange = (e: any, c: any) => {
+  const handleCountryChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    c: any
+  ) => {
     setChecked((prevChecked: any) =>
       e.target.checked
         ? [...prevChecked, c.modalName]
-        : prevChecked.filter((item: any) => item !== c.modalName)
+        : prevChecked.filter((item: string) => item !== c.modalName)
     );
   };
-  const handleStyleChange = (e: any, c: any) => {
+  const handleStyleChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    c: any
+  ) => {
     setStyleChecked((prevChecked: any) =>
       e.target.checked
         ? [...prevChecked, c.styleName]
-        : prevChecked.filter((item: any) => item !== c.styleName)
+        : prevChecked.filter((item: string) => item !== c.styleName)
     );
   };
 
@@ -164,7 +170,7 @@ const ViewImagesTab = ({
       ref={dropdownRef}
     >
       <div className='flex items-start justify-start gap-3'>
-        {tabContent.map((items: any, index: any) => {
+        {tabContent.map((items: string, index: number) => {
           return (
             <div
               key={index}
@@ -233,6 +239,7 @@ const ViewImagesTab = ({
                       <div
                         className='flex cursor-pointer items-center gap-2'
                         onClick={() => AlbumSelectShort(index)}
+                        key={index}
                       >
                         {albumShortTab == index ? (
                           <SelectIcon />
@@ -267,6 +274,7 @@ const ViewImagesTab = ({
                       <div
                         className='flex cursor-pointer items-center gap-2'
                         onClick={() => SelectShort(index)}
+                        key={index}
                       >
                         {shortTab == index ? <SelectIcon /> : <UnSelectIcon />}
                         <p>{item}</p>
@@ -388,8 +396,9 @@ const ViewImagesTab = ({
                           })}
                         </div>
                         <div className='absolute right-1 top-6 flex w-4 flex-col gap-1'>
-                          {alphabetArray.map((letter) => (
+                          {alphabetArray.map((letter, index) => (
                             <span
+                              key={index}
                               className={`cursor-pointer text-[11px] ${
                                 letter === 'A'
                                   ? 'text-[#979797]'
@@ -501,8 +510,11 @@ const ViewImagesTab = ({
                         <div
                           className={`flex flex-col gap-4 overflow-hidden py-3`}
                         >
-                          {selectedOptions.map((items) => (
-                            <div className='flex items-center gap-2'>
+                          {selectedOptions.map((items, index) => (
+                            <div
+                              className='flex items-center gap-2'
+                              key={index}
+                            >
                               <input
                                 type='checkbox'
                                 id={items}

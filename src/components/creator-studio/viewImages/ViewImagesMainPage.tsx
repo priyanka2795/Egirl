@@ -56,7 +56,7 @@ const album = [
 ];
 const ViewImagesMainPage = () => {
   const [exploreSelectedTab, setExploreSelected] = useState('All images');
-  const [allImage, setAllImage] = useState(null);
+  const [allImage, setAllImage] = useState<number>();
   const [albumData, setAlbumData] = useState(album);
 
   // const [toaster, setToaster] = useState(false);
@@ -67,13 +67,13 @@ const ViewImagesMainPage = () => {
 
   const [albumImages, setAlbumImages] = useState(false);
 
-  const AllImageToggle = (index: any) => {
-    setAllImage((prev) => (prev === index ? null : index));
+  const AllImageToggle = (index: number) => {
+    setAllImage((prev) => (prev === index ? undefined : index));
   };
 
   // ViewImagesTab
-  const [searchTerm, setSearchTerm] = useState('');
-  const handleSearch = (e: any) => {
+  const [searchTerm, setSearchTerm] = useState<string>('');
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
     const filteredItems = album.filter((user) => {
       // user.albumName.toLowerCase().includes(searchTerm.toLowerCase())
@@ -115,7 +115,7 @@ const ViewImagesMainPage = () => {
           <div className='grid grid-cols-3 gap-3'>
             {Array(5)
               .fill('0')
-              .map((_, index) => (
+              .map((_, index: number) => (
                 <div className='sub-banner group relative h-full w-full'>
                   <Image
                     className='w-full object-cover '
@@ -155,7 +155,8 @@ const ViewImagesMainPage = () => {
           ) : (
             <VIMainImageBlock
               ToggleMenu={false}
-              SetAlbumImages
+              // SetAlbumImages
+              SetAlbumImages={setAlbumImages}
               AlbumData={albumData}
             />
           )}

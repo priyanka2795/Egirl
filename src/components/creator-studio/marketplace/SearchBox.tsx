@@ -9,7 +9,7 @@ const SearchBox = () => {
   const handleShowSearchBar = () => {
     setShowSearchBar(true);
   };
-  const handleSearchInput = (e: any) => {
+  const handleSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setShowSearchBox(true);
     if (!e.target.value) {
       setShowSearchBox(false);
@@ -42,7 +42,7 @@ const SearchBox = () => {
                       .fill('')
                       .map(() => {
                         return (
-                          <div className='px-2 py-1 cursor-pointer hover:rounded-md hover:bg-white hover:bg-opacity-10'>
+                          <div className='cursor-pointer px-2 py-1 hover:rounded-md hover:bg-white hover:bg-opacity-10'>
                             annim
                           </div>
                         );
@@ -51,12 +51,12 @@ const SearchBox = () => {
                 )}
               </div>
               <div
-                className='w-6 h-6 cursor-pointer'
+                className='h-6 w-6 cursor-pointer'
                 onClick={() => {
                   setShowSearchBar(false), setShowSearchBox(false);
                 }}
               >
-                <Image className='w-full h-full' src={crossIcon} alt={''} />
+                <Image className='h-full w-full' src={crossIcon} alt={''} />
               </div>
             </div>
           </div>

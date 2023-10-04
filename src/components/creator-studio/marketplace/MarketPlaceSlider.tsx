@@ -58,8 +58,8 @@ const galleryArray = [
 const MarketPlaceSlider = () => {
   const [selectedFilter, setSelectedFilter] = useState('');
 
-  const handleSelectedFilter = (e: any) => {
-    setSelectedFilter(e.target.innerText);
+  const handleSelectedFilter = (e: React.MouseEvent<HTMLElement>) => {
+    setSelectedFilter((e.target as HTMLElement).innerText);
   };
 
   const settings = {
@@ -84,7 +84,7 @@ const MarketPlaceSlider = () => {
   }, []);
 
   return (
-    <div className='px-3 mt-6 mb-6'>
+    <div className='mb-6 mt-6 px-3'>
       <Slider
         {...settings}
         ref={sliderRef}
@@ -106,7 +106,7 @@ const MarketPlaceSlider = () => {
                 className={`flex items-center justify-center rounded-3xl bg-white bg-opacity-5`}
               >
                 <Image
-                  className='w-16 h-8 rounded-full'
+                  className='h-8 w-16 rounded-full'
                   src={items.filterImg}
                   alt=''
                 />

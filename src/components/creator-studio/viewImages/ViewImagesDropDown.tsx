@@ -31,33 +31,32 @@ const images = [
   {
     image: deleteIcon,
     text: 'Delete'
-  },
+  }
 ];
 interface ViewImagesDropDown {
-  DeleteImage:any;
+  DeleteImage: any;
 }
-const ViewImagesDropDown = ({ DeleteImage}: ViewImagesDropDown) => {
-
+const ViewImagesDropDown = ({ DeleteImage }: ViewImagesDropDown) => {
   return (
     <>
-      <div className='flex flex-col w-[218px] rounded-[14px] bg-[#1A1A1A]'>
+      <div className='flex w-[218px] flex-col rounded-[14px] bg-[#1A1A1A]'>
         {images.map((item, index) => {
           return (
-            <div key={index} className={`cursor-pointer flex gap-2 px-4 py-[10px]`} onClick={(e) => DeleteImage(e)} >
+            <div
+              key={index}
+              className={`flex cursor-pointer gap-2 px-4 py-[10px]`}
+              onClick={(e) => DeleteImage(e)}
+            >
               <Image src={item.image} alt={''} />
-              <div className='text-[#FFFFFF] text-[14px] font-normal leading-[18px]' >{item.text}</div>
+              <div className='text-[14px] font-normal leading-[18px] text-[#FFFFFF]'>
+                {item.text}
+              </div>
             </div>
           );
         })}
       </div>
-
-
     </>
-
-  )
-}
+  );
+};
 
 export default ViewImagesDropDown;
-
-
-

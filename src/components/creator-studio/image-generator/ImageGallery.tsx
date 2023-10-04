@@ -40,14 +40,14 @@ const ImageGallery = () => {
   const [exploreSelectedTab, setExploreSelected] = useState('Prompt');
   const [selectImage, setSelectImage] = useState('');
 
-  const handleExploreSelected = (e: any) => {
-    setExploreSelected(e.target.innerText);
+  const handleExploreSelected = (e: React.MouseEvent<HTMLElement>) => {
+    setExploreSelected((e.target as HTMLElement).innerText);
   };
 
   const [isHovered, setIsHovered] = useState(false);
 
   const [searchTerm, setSearchTerm] = useState('');
-  const handleSearch = (e: any) => {
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
 
@@ -132,6 +132,7 @@ const ImageGallery = () => {
             }
             return (
               <div
+                key={index}
                 onClick={() => setSelectImage(index)}
                 className={`group relative flex h-[174px] w-[175px] cursor-pointer justify-center overflow-hidden  rounded-xl bg-white/[0.05] ${
                   selectImage === index ? 'bg-[#5848BC]' : ''
@@ -315,7 +316,7 @@ const ImageGallery = () => {
                     <div className='flex flex-col gap-3'>
                       <div className='flex items-center justify-between'>
                         <div className='flex items-center gap-2 '>
-                          {tabContent.map((items: any, index: any) => {
+                          {tabContent.map((items: string, index: number) => {
                             return (
                               <div
                                 key={index}

@@ -117,8 +117,8 @@ const Banner = ({
   const [cropData, setCropData] = useState('');
   const [updatedProfile, setUpdatedProfile] = useState(false);
 
-  const handleExploreSelected = (e: any) => {
-    setExploreSelected(e.target.innerText);
+  const handleExploreSelected = (e: React.MouseEvent<HTMLElement>) => {
+    setExploreSelected((e.target as HTMLElement).innerText);
 
     if (exploreSelectedTab === 'Add to collections') {
       setCollectionModalState(true);
@@ -127,19 +127,20 @@ const Banner = ({
     }
   };
 
-  const handleActionDivShow = (e: any) => {
+  const handleActionDivShow = (e: React.MouseEvent<HTMLElement>) => {
     setActionDivShow(!actionDivShow);
   };
 
-  const handleUploadPhotoShow = (e: any) => {
+  const handleUploadPhotoShow = (e: React.MouseEvent<HTMLElement>) => {
     setUploadPhotoShow(!uploadPhotoShow);
   };
-  const handleUploadSelected = (e: any) => {
-    setUpdatePhoto(e.target.innerText);
-    if (e.target.innerText === 'Update photo') {
+  const handleUploadSelected = (e: React.MouseEvent<HTMLElement>) => {
+    const value = (e.target as HTMLElement).innerText;
+    setUpdatePhoto(value);
+    if (value === 'Update photo') {
       setUpdatePhotoModalState(true);
     }
-    if (e.target.innerText === 'Delete') {
+    if (value === 'Delete') {
       setDeleteProfileModalState(true);
     }
   };
@@ -151,7 +152,7 @@ const Banner = ({
         ''
       ) : (
         <div
-          className='flex gap-2 my-4 text-lg font-bold cursor-pointer'
+          className='my-4 flex cursor-pointer gap-2 text-lg font-bold'
           onClick={() => {
             backFromProfile(false);
           }}
@@ -163,13 +164,14 @@ const Banner = ({
 
       <div>
         <div className='h-max w-full overflow-hidden rounded-[16px] bg-[#121212]'>
-          <div className='relative block w-full sub-banner'>
-            {removeCover ? 
-            <div className='w-[1092px] h-[200px] bg-[#121212]'></div> : 
-            updatedProfile ? 
-            <img className='w-[1092px] h-[200px] ' src={cropData} alt='' /> :
-            <Image className='w-full h-full ' src={Cover} alt='' />
-            }
+          <div className='sub-banner relative block w-full'>
+            {removeCover ? (
+              <div className='h-[200px] w-[1092px] bg-[#121212]'></div>
+            ) : updatedProfile ? (
+              <img className='h-[200px] w-[1092px] ' src={cropData} alt='' />
+            ) : (
+              <Image className='h-full w-full ' src={Cover} alt='' />
+            )}
             <div className='absolute right-[20px] top-[20px] cursor-pointer'>
               <Image
                 className='relative'
@@ -206,9 +208,13 @@ const Banner = ({
                 ''
               )}
             </div>
-            <div className={`mb-5 flex w-full items-center justify-between px-[24px]  ${updatedProfile ? 'mt-[-56px]' : 'mt-[-62px]'}`}>
+            <div
+              className={`mb-5 flex w-full items-center justify-between px-[24px]  ${
+                updatedProfile ? 'mt-[-56px]' : 'mt-[-62px]'
+              }`}
+            >
               <div className='relative h-[120px] w-[120px] overflow-hidden rounded-full'>
-                <Image className='w-full h-full' src={avatar} alt='' />
+                <Image className='h-full w-full' src={avatar} alt='' />
               </div>
               <div className={'flex gap-[12px] self-end'}>
                 <button
