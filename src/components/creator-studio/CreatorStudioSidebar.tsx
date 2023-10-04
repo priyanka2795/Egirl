@@ -30,6 +30,7 @@ const CreatorStudioSidebar = ({
   const [sidebarModal, setSidebarModal] = useState(false);
   const [moreOptionsModal, setMoreOptionsModal] = useState(false);
   // const [sideBarShrink, setSideBarShrink] = useState(false);
+  console.log('sidebarModal---', sidebarModal);
   return (
     <>
       <div
@@ -44,7 +45,7 @@ const CreatorStudioSidebar = ({
         >
           <div
             className='flex cursor-pointer items-center justify-between py-[14px] pl-3 pr-4'
-            onClick={() => setSidebarModal(true)}
+            onClick={() => setSidebarModal(!sidebarModal)}
           >
             <div className='relative flex w-full items-center gap-2'>
               <div className='h-[32px] w-[32px]'>
