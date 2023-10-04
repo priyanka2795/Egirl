@@ -43,85 +43,84 @@ const CoverImage = [
 
 const imagesCover = [
   {
-    id:1,
+    id: 1,
     image: image1
   },
   {
-    id:2,
+    id: 2,
     image: image3
   },
   {
-    id:3,
-    image: image4   
+    id: 3,
+    image: image4
   },
   {
-    id:4,
+    id: 4,
     image: image2
   },
   {
-    id:5,
-    image: image6    
+    id: 5,
+    image: image6
   },
   {
-    id:6,
-    image: image4   
+    id: 6,
+    image: image4
   },
   {
-    id:7,
-     image: image5
+    id: 7,
+    image: image5
   },
   {
-    id:8,
+    id: 8,
     image: image3
   },
   {
-    id:9,
+    id: 9,
     image: image1
   },
   {
-    id:10,
+    id: 10,
     image: image5
   }
 ];
 
 const images = [
-    {
-      image: image1
-    },
-    {
-      image: image2
-    },
-    {
-      image: image3
-    },
-    {
-      image: image4
-    },
-    {
-      image: image5
-    },
-    {
-      image: image6
-    },
-    {
-      image: image6
-    },
-    {
-      image: image4
-    }, 
-    {
-        image: image5
-    },
-  ];
-
+  {
+    image: image1
+  },
+  {
+    image: image2
+  },
+  {
+    image: image3
+  },
+  {
+    image: image4
+  },
+  {
+    image: image5
+  },
+  {
+    image: image6
+  },
+  {
+    image: image6
+  },
+  {
+    image: image4
+  },
+  {
+    image: image5
+  }
+];
 
 interface EditAlbum {
   CloseModal: any;
 }
 const EditAlbum = ({ CloseModal }: EditAlbum) => {
-  const [editAlbumImg, setEditAlbumImg] = useState(null);
+  const [editAlbumImg, setEditAlbumImg] = useState<number | null>(null);
   const [coverImg, setCoverImg] = useState(false);
-  const EditAlbumImgToggle = (index: any) => {
+  const EditAlbumImgToggle = (index: number) => {
     setEditAlbumImg((prev) => (prev === index ? null : index));
   };
   return (
@@ -148,8 +147,9 @@ const EditAlbum = ({ CloseModal }: EditAlbum) => {
           </div>
           <div className='h-[calc(100%-80px)] overflow-y-auto p-6'>
             <div className='grid grid-cols-4 gap-2'>
-              {imagesCover.map((items) => (
-                <div key={items.id}
+              {imagesCover.map((items, index) => (
+                <div
+                  key={index}
                   className='sub-banner h-[193px] w-[193px]'
                   onClick={() => setCoverImg(false)}
                 >
@@ -224,7 +224,10 @@ const EditAlbum = ({ CloseModal }: EditAlbum) => {
               <div className='h-[calc(86vh-482px)] overflow-y-auto overflow-x-hidden'>
                 <div className='grid grid-cols-3 gap-2 '>
                   {images.map((item, index) => (
-                    <div className='sub-banner relative h-[190px]  w-[240px] '>
+                    <div
+                      className='sub-banner relative h-[190px]  w-[240px] '
+                      key={index}
+                    >
                       <Image src={item.image} className='object-cover' />
                       <div
                         className='absolute right-2 top-2 cursor-pointer rounded-full bg-[#0000007A] p-1.5'

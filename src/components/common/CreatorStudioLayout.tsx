@@ -21,18 +21,17 @@ const CreatorStudioLayout = ({ children }: any) => {
             shrinkSideBar={shrinkSideBar}
             setShrinkSideBar={setShrinkSideBar}
           />
-        <div className='mt-8 pb-5 creator-studio-components main-content-scroller relative h-[calc(100vh-104px)] flex-grow overflow-y-auto overflow-x-hidden bg-main-background lg:min-w-[600px] pr-4'>
-         
-          {
-            styleGenNext ? <div className="flex flex-col gap-5">
-            <StyleBeingGenerated/>
-            <StyleGeneratorNext />
-            </div>
-           :  <>{children}</>
-          }
+          <div className='creator-studio-components main-content-scroller relative mt-8 h-[calc(100vh-104px)] flex-grow overflow-y-auto overflow-x-hidden bg-main-background pb-5 pr-4 lg:min-w-[600px]'>
+            {styleGenNext ? (
+              <div className='flex flex-col gap-5'>
+                <StyleBeingGenerated />
+                <StyleGeneratorNext />
+              </div>
+            ) : (
+              <>{children}</>
+            )}
           </div>
         </div>
-      
       </main>
     </React.Fragment>
   );

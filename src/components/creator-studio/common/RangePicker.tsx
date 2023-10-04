@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Range ,getTrackBackground } from 'react-range';
+import { Range, getTrackBackground } from 'react-range';
 
-interface RangePickerProp{
-  values?:any
-  setValues?: any
+interface RangePickerProp {
+  values?: any;
+  setValues?: any;
 }
-const RangePicker = ({values ,setValues}:RangePickerProp) => {
+const RangePicker = ({ values, setValues }: RangePickerProp) => {
   // const [values, setValues] = useState([0]);
   const min = 0;
   const max = 100;
@@ -19,8 +19,8 @@ const RangePicker = ({values ,setValues}:RangePickerProp) => {
         onChange={(values) => setValues(values)}
         renderTrack={({ props, children }) => (
           <div
-          onMouseDown={props.onMouseDown}
-          onTouchStart={props.onTouchStart}
+            onMouseDown={props.onMouseDown}
+            onTouchStart={props.onTouchStart}
             // {...props}
             style={{
               ...props.style,
@@ -30,24 +30,23 @@ const RangePicker = ({values ,setValues}:RangePickerProp) => {
               borderRadius: '2px'
             }}
           >
-             <div
+            <div
               ref={props.ref}
               style={{
-                height: "5px",
-                width: "100%",
-                borderRadius: "4px",
+                height: '5px',
+                width: '100%',
+                borderRadius: '4px',
                 background: getTrackBackground({
                   values,
-                  colors: ["#5848BC", "rgba(255, 255, 255, 0.08)"],
+                  colors: ['#5848BC', 'rgba(255, 255, 255, 0.08)'],
                   min: min,
                   max: max
                 }),
-                alignSelf: "center"
+                alignSelf: 'center'
               }}
             >
               {children}
             </div>
-          
           </div>
         )}
         renderThumb={({ props }) => (
@@ -64,7 +63,6 @@ const RangePicker = ({values ,setValues}:RangePickerProp) => {
           />
         )}
       />
-      
     </>
   );
 };

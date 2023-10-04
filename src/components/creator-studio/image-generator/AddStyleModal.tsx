@@ -1,5 +1,5 @@
-import Image from 'next/image'
-import React, { useState } from 'react'
+import Image from 'next/image';
+import React, { useState } from 'react';
 import pic from '../../../../public/assets/Collar.png';
 import { Modal } from '@components/modal/modal';
 import CloseIcon from '../../../../public/assets/xmark-style.png';
@@ -14,23 +14,21 @@ const SelfMode = [
   { name: 'Photocell', img: pic },
   { name: 'Artistries', img: pic },
   { name: 'Animes', img: pic },
-  { name: 'Fantast', img: pic },
-]
+  { name: 'Fantast', img: pic }
+];
 const AddedStyle = [
   { name: 'Anime', img: pic },
   { name: 'Artistic', img: pic },
   { name: 'Red Dress', img: pic },
-  { name: 'Fantasy', img: pic },
-
-]
+  { name: 'Fantasy', img: pic }
+];
 interface AddStyleModal {
-  SetOpenStyle: any;
+  SetOpenStyle: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const StyleTab = ['Your Styles', 'Popular'];
 
 const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
-
-  const [styleTabs, setStyleTabs] = useState('Your Styles')
+  const [styleTabs, setStyleTabs] = useState('Your Styles');
   const [tooltip, setTooltip] = useState(false);
   const [selfModeImages, setSelfModeImages] = useState(SelfMode);
   const [selfImageSearch, setSelfImageSearch] = useState(false);
@@ -40,7 +38,6 @@ const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
   const SelectImage = (name: string) => {
     if (selectedItems.length > 3) {
       setSelectedItems(selectedItems.filter((item) => item !== name));
-
     } else {
       if (selectedItems.includes(name)) {
         setSelectedItems(selectedItems.filter((item) => item !== name));
@@ -48,8 +45,8 @@ const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
         setSelectedItems([...selectedItems, name]);
       }
     }
-  }
-  const handleInputChange = (e: any) => {
+  };
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const searchTerm = e.target.value;
     setSearchStyle(searchTerm);
     const filteredItems = SelfMode.filter((user) =>
@@ -57,14 +54,13 @@ const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
     );
     setSelfModeImages(filteredItems);
     if (filteredItems.length === 0) {
-      setSelfImageSearch(true)
-    } else { setSelfImageSearch(false) }
-
-  }
-
+      setSelfImageSearch(true);
+    } else {
+      setSelfImageSearch(false);
+    }
+  };
 
   return (
-
     <Modal
       open={true}
       closeModal={() => SetOpenStyle(false)}
@@ -73,29 +69,36 @@ const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
     >
       <div className='rounded-[20px] bg-[#121212] '>
         {/* Header */}
-        <div className='flex justify-between items-center border-b-white/[0.08] border-white/[0.08] border-b p-8'>
-          <h5 className='text-lg font-bold'>
-            Style
-          </h5>
-          <button className='w-[24px] h-[24px]' onClick={() => SetOpenStyle(false)}>
+        <div className='flex items-center justify-between border-b border-white/[0.08] border-b-white/[0.08] p-8'>
+          <h5 className='text-lg font-bold'>Style</h5>
+          <button
+            className='h-[24px] w-[24px]'
+            onClick={() => SetOpenStyle(false)}
+          >
             <Image src={CloseIcon} className='' />
           </button>
         </div>
         {/* frame */}
         <div className='flex items-center gap-3 px-8 py-4'>
           {/* tab */}
-          {StyleTab.map((items) => (
-            <div className={`px-4 py-2 gap-1.5 rounded-xl cursor-pointer ${styleTabs == items ? 'bg-white/[0.16]' : 'text-[#979797]'}`} onClick={(e) => setStyleTabs(e.target.innerText)}><p className={`text-[15px] font-bold`}>{items}</p>
+          {StyleTab.map((items, index) => (
+            <div
+              key={index}
+              className={`cursor-pointer gap-1.5 rounded-xl px-4 py-2 ${
+                styleTabs == items ? 'bg-white/[0.16]' : 'text-[#979797]'
+              }`}
+              onClick={(e) => setStyleTabs((e.target as HTMLElement).innerText)}
+            >
+              <p className={`text-[15px] font-bold`}>{items}</p>
             </div>
           ))}
-
         </div>
         {/* search bar */}
-        <div className='px-8 pb-6 border-b border-[#FFFFFF14]'>
+        <div className='border-b border-[#FFFFFF14] px-8 pb-6'>
           <div className='flex w-full gap-[10px] rounded-[10px] bg-white/[0.05] p-3'>
-            <div className='w-6 h-6'>
+            <div className='h-6 w-6'>
               <Image
-                className='w-full h-full'
+                className='h-full w-full'
                 src={searchIcon}
                 alt={''}
                 id='myinput'
@@ -104,7 +107,7 @@ const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
             <input
               placeholder='Search'
               type='text'
-              className='border-none bg-transparent p-0 text-[15px] font-light leading-6 placeholder:text-[#979797] focus:ring-0 flex-1'
+              className='flex-1 border-none bg-transparent p-0 text-[15px] font-light leading-6 placeholder:text-[#979797] focus:ring-0'
               value={searchStyle}
               onChange={handleInputChange}
             />
@@ -114,28 +117,46 @@ const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
         <div className=''>
           <div className='mt-4 flex flex-col gap-4 px-8 '>
             {/* self made */}
-            <h6 className='text-lg font-bold leading-6 text-white'>Self Made</h6>
-            {selfImageSearch ?
-              <p className='text-[#979797] font-bold text-center'>Image Not Found</p>
-              : <div className='grid grid-cols-4 gap-x-3 gap-y-4'>
+            <h6 className='text-lg font-bold leading-6 text-white'>
+              Self Made
+            </h6>
+            {selfImageSearch ? (
+              <p className='text-center font-bold text-[#979797]'>
+                Image Not Found
+              </p>
+            ) : (
+              <div className='grid grid-cols-4 gap-x-3 gap-y-4'>
                 {selfModeImages.map((items, index) => (
-                  <div key={index} className={`relative h-[174px] w-[175px] rounded-xl cursor-pointer bg-[#121212] overflow-hidden border-[3px] ${selectedItems.includes(items.name) ? 'border-[#5848BC]' : 'border-[#121212]'} `} onClick={() => SelectImage(items.name)}>
+                  <div
+                    key={index}
+                    className={`relative h-[174px] w-[175px] cursor-pointer overflow-hidden rounded-xl border-[3px] bg-[#121212] ${
+                      selectedItems.includes(items.name)
+                        ? 'border-[#5848BC]'
+                        : 'border-[#121212]'
+                    } `}
+                    onClick={() => SelectImage(items.name)}
+                  >
                     <div className={``}>
                       <Image src={items.img} className='shrink-0 rounded-xl' />
                     </div>
-                    <div className={`absolute bottom-0 ${selectedItems.includes(items.name) ? 'bg-[#5848BC]' : 'bg-[#000000CC]'} h-[34px] w-full flex justify-center items-center group`}>
+                    <div
+                      className={`absolute bottom-0 ${
+                        selectedItems.includes(items.name)
+                          ? 'bg-[#5848BC]'
+                          : 'bg-[#000000CC]'
+                      } group flex h-[34px] w-full items-center justify-center`}
+                    >
                       <p className='text-[13px] font-semibold'>{items.name}</p>
-                      {selectedItems.length > 3 &&
-                        <div className='absolute -top-14 left-30 text-center text-xs'>
+                      {selectedItems.length > 3 && (
+                        <div className='left-30 absolute -top-14 text-center text-xs'>
                           <Tooltip Text='You can select maximum of 4 styles' />
                         </div>
-                      }
+                      )}
                     </div>
                   </div>
                 ))}
               </div>
-            }
-
+            )}
 
             {/* Added Styles */}
             {/* <h6 className='text-lg font-bold leading-6 text-white'>Added Styles</h6>
@@ -153,11 +174,10 @@ const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
                 </>
               ))}
             </div> */}
-
           </div>
         </div>
 
-        <div className='flex flex-row self-stretch gap-3 px-8 pt-4 pb-8'>
+        <div className='flex flex-row gap-3 self-stretch px-8 pb-8 pt-4'>
           <button
             onClick={() => SetOpenStyle(false)}
             className='flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-white/[0.32] px-5 py-[13px] font-bold'
@@ -171,11 +191,9 @@ const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
             Save
           </button>
         </div>
-
       </div>
-    </Modal >
+    </Modal>
+  );
+};
 
-  )
-}
-
-export default AddStyleModal
+export default AddStyleModal;

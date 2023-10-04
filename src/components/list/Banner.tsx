@@ -110,12 +110,15 @@ const Banner = ({
   const [uploadPhotoShow, setUploadPhotoShow] = useState(false);
   const [updatePhoto, setUpdatePhoto] = useState('');
   const [updatePhotoModalState, setUpdatePhotoModalState] = useState(false);
-  const [deleteProfileCModalState, setDeleteProfileModalState] =
-    useState(false);
+  const [deleteProfileModalState, setDeleteProfileModalState] = useState(false);
   const [viewModal, setviewModal] = useState(false);
+  const [removeCover, setRemoveCover] = useState(false);
+  const [image, setImage] = useState('');
+  const [cropData, setCropData] = useState('');
+  const [updatedProfile, setUpdatedProfile] = useState(false);
 
-  const handleExploreSelected = (e: any) => {
-    setExploreSelected(e.target.innerText);
+  const handleExploreSelected = (e: React.MouseEvent<HTMLElement>) => {
+    setExploreSelected((e.target as HTMLElement).innerText);
 
     if (exploreSelectedTab === 'Add to collections') {
       setCollectionModalState(true);
@@ -124,31 +127,32 @@ const Banner = ({
     }
   };
 
-  const handleActionDivShow = (e: any) => {
+  const handleActionDivShow = (e: React.MouseEvent<HTMLElement>) => {
     setActionDivShow(!actionDivShow);
   };
 
-  const handleUploadPhotoShow = (e: any) => {
+  const handleUploadPhotoShow = (e: React.MouseEvent<HTMLElement>) => {
     setUploadPhotoShow(!uploadPhotoShow);
   };
-  const handleUploadSelected = (e: any) => {
-    setUpdatePhoto(e.target.innerText);
-    if (e.target.innerText === 'Update photo') {
+  const handleUploadSelected = (e: React.MouseEvent<HTMLElement>) => {
+    const value = (e.target as HTMLElement).innerText;
+    setUpdatePhoto(value);
+    if (value === 'Update photo') {
       setUpdatePhotoModalState(true);
     }
-    if (e.target.innerText === 'Delete') {
+    if (value === 'Delete') {
       setDeleteProfileModalState(true);
     }
   };
 
   return (
     <div className={`${styleProperty ? styleProperty : 'px-8'}`}>
-      <button onClick={() => setviewModal(true)}>Add Character</button>
+      {/* <button onClick={() => setviewModal(true)}>Add Character</button> */}
       {backFromProfile === undefined ? (
         ''
       ) : (
         <div
-          className='flex gap-2 my-4 text-lg font-bold cursor-pointer'
+          className='my-4 flex cursor-pointer gap-2 text-lg font-bold'
           onClick={() => {
             backFromProfile(false);
           }}
@@ -160,8 +164,14 @@ const Banner = ({
 
       <div>
         <div className='h-max w-full overflow-hidden rounded-[16px] bg-[#121212]'>
-          <div className='relative block w-full sub-banner'>
-            <Image className='w-full h-full ' src={Cover} alt='' />
+          <div className='sub-banner relative block w-full'>
+            {removeCover ? (
+              <div className='h-[200px] w-[1092px] bg-[#121212]'></div>
+            ) : updatedProfile ? (
+              <img className='h-[200px] w-[1092px] ' src={cropData} alt='' />
+            ) : (
+              <Image className='h-full w-full ' src={Cover} alt='' />
+            )}
             <div className='absolute right-[20px] top-[20px] cursor-pointer'>
               <Image
                 className='relative'
@@ -178,7 +188,7 @@ const Banner = ({
                         onClick={(e) => handleUploadSelected(e)}
                         className={`flex w-full cursor-pointer gap-2 px-[16px] py-[10px] ${
                           updatePhoto === item.name
-                            ? ' rounded-[8px] bg-white/[0.12] '
+                            ? 'rounded-[8px] bg-white/[0.12]'
                             : ''
                         }`}
                       >
@@ -198,11 +208,15 @@ const Banner = ({
                 ''
               )}
             </div>
-            <div className='mb-5 mt-[-62px] flex w-full items-center justify-between px-[24px]'>
+            <div
+              className={`mb-5 flex w-full items-center justify-between px-[24px]  ${
+                updatedProfile ? 'mt-[-56px]' : 'mt-[-62px]'
+              }`}
+            >
               <div className='relative h-[120px] w-[120px] overflow-hidden rounded-full'>
-                <Image className='w-full h-full' src={avatar} alt='' />
+                <Image className='h-full w-full' src={avatar} alt='' />
               </div>
-              <div className='flex gap-[12px] self-end'>
+              <div className={'flex gap-[12px] self-end'}>
                 <button
                   className={`flex h-max gap-2 rounded-[14px] px-[20px] py-[11px] text-[16px] font-bold ${
                     followBtnStyle
@@ -242,7 +256,7 @@ const Banner = ({
                               onClick={(e) => handleExploreSelected(e)}
                               className={`flex w-full cursor-pointer gap-2 px-[16px] py-[10px] ${
                                 exploreSelectedTab === item.name
-                                  ? ' rounded-[8px] bg-white/[0.12] '
+                                  ? ' rounded-[8px] bg-white/[0.12]'
                                   : ''
                               }`}
                             >
@@ -348,13 +362,19 @@ const Banner = ({
         <UpdatePhotoModal
           closeModalState={setUpdatePhotoModalState}
           closeDropdown={setUploadPhotoShow}
+          image={image}
+          setImage={setImage}
+          cropData={cropData}
+          setCropData={setCropData}
+          setUpdatedProfile={setUpdatedProfile}
         />
       )}
 
-      {deleteProfileCModalState && (
+      {deleteProfileModalState && (
         <DeleteProfileCover
           closeDeleteModal={setDeleteProfileModalState}
           closeDropdown={setUploadPhotoShow}
+          setRemoveCover={setRemoveCover}
         />
       )}
     </div>

@@ -16,7 +16,7 @@ const SvgComponent = (props: Props) => (
       fill='url(#paint0_linear_1207_15834)'
       fillOpacity='.2'
     />
-    <g clip-path='url(#clip0_1207_15834)'>
+    <g clipPath='url(#clip0_1207_15834)'>
       <rect
         x='54'
         y='241.7'
@@ -73,7 +73,7 @@ const SvgComponent = (props: Props) => (
         d='M339.2 238c-.8.1-1.3 1-1.1 1.7.2.9 1 1.4 1.8 1.2.8-.2 1.3-1 1.1-1.8-.1-.8-1-1.3-1.8-1.1zm14.7-3.3c-.8.2-1.3 1-1.2 1.8a1.5 1.5 0 003-.7c-.2-.8-1-1.3-1.8-1.1zm-7.3 1.6c-.8.2-1.4 1-1.2 1.8.2.8 1 1.3 1.8 1.1.8-.1 1.3-1 1.2-1.7-.2-.8-1-1.4-1.8-1.2z'
         fill='#949698'
       />
-      <g clip-path='url(#clip1_1207_15834)'>
+      <g clipPath='url(#clip1_1207_15834)'>
         <rect
           x='100.5'
           y='339.9'
@@ -93,7 +93,7 @@ const SvgComponent = (props: Props) => (
           fill='#949698'
         />
       </g>
-      <g clip-path='url(#clip2_1207_15834)'>
+      <g clipPath='url(#clip2_1207_15834)'>
         <rect
           x='113.2'
           y='396.5'
@@ -211,7 +211,7 @@ const SvgComponent = (props: Props) => (
       d='M436.4 497.3v2.5l1.7-1.8 5.7-6H455l-1.6-1.7-15.3-16.6-1.7-2v25.6z'
       fill='#000'
       stroke='#fff'
-      stroke-width='2'
+      strokeWidth='2'
     />
     <defs>
       <linearGradient

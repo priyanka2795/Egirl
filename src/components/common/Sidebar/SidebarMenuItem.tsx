@@ -48,8 +48,8 @@ export default function SidebarMenuItem({
             <div className='flex flex-col'>
               <span
                 className={`${
-                  active ? 'font-bold' : 'font-medium'
-                } ${sideBarMenuText} hidden text-[18px] leading-8 xl:inline`}
+                  active ? 'font-bold' : 'font-semibold'
+                } ${sideBarMenuText} hidden text-[15px] leading-8 xl:inline`}
               >
                 {text}
               </span>

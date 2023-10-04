@@ -14,6 +14,7 @@ interface CollectionCardProps {
   cardId?: string;
   filterFunction?: any;
   subscription?: string;
+  setShowRealistic: any;
 }
 const CollectionCard = ({
   cardMainImg,
@@ -22,7 +23,8 @@ const CollectionCard = ({
   getCardId,
   dropdownCardId,
   cardId,
-  filterFunction
+  filterFunction,
+  setShowRealistic
 }: CollectionCardProps) => {   
   const [filterByType , setFilterByType] = useState(false);
   let filterTitle = "";
@@ -36,7 +38,7 @@ const CollectionCard = ({
       <div
         className={`flex h-full max-h-[180px] w-full justify-center self-stretch overflow-hidden ${cardImgClasses}`}
       >
-        <Image className='object-cover' src={cardMainImg} alt={''} />
+        <Image className='object-cover' src={cardMainImg} alt={''}  onClick={() => {setShowRealistic(true)}}/>
         {cardImgClasses && (
           <div
             id={`${cardId}`}
@@ -50,7 +52,7 @@ const CollectionCard = ({
         )}
         {dropdownCardId === cardId ? (
           <>
-            <CardDropdown closeDropdown={getCardId}/>
+            <CardDropdown closeDropdown={getCardId} />
           </>
         ) :  null}
       </div>

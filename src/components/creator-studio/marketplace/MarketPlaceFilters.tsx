@@ -14,7 +14,7 @@ const MarketPlaceFilters = () => {
   const handleAccessories = () => {
     setAccessories(!accessories);
   };
-  const handleStyle = (event: any) => {
+  const handleStyle = (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
     setStyle(!style);
   };
@@ -25,18 +25,22 @@ const MarketPlaceFilters = () => {
     setPrice(!price);
   };
 
-  const handleSelectedFilter = (ele: any) => {
+  const handleSelectedFilter = (ele: string) => {
     setSelectedFilter(ele);
   };
   return (
     <div className='mt-8'>
-      <div className='grid self-stretch grid-cols-4 gap-3'>
+      <div className='grid grid-cols-4 gap-3 self-stretch'>
         <div>
-          <div className='text-[13px] text-[#979797] font-semibold leading-[18px]'>Style</div>
+          <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
+            Style
+          </div>
           <div className='relative cursor-pointer' onClick={handleStyle}>
             <div
               className={`mt-2 flex justify-between rounded-xl p-3 ${
-                style ? 'border border-[#515151] bg-transparent' : 'border border-transparent bg-white/10'
+                style
+                  ? 'border border-[#515151] bg-transparent'
+                  : 'border border-transparent bg-white/10'
               }`}
             >
               <div className='text-[15px] text-[#FFF]'>Realistic</div>
@@ -68,7 +72,9 @@ const MarketPlaceFilters = () => {
           </div>
         </div>
         <div>
-          <div className='text-[13px] text-[#979797] font-semibold leading-[18px]'>Subcategory</div>
+          <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
+            Subcategory
+          </div>
           <div className='relative cursor-pointer' onClick={handleAccessories}>
             <div
               className={`mt-2 flex justify-between rounded-xl p-3 ${
@@ -106,7 +112,7 @@ const MarketPlaceFilters = () => {
           </div>
         </div>
         <div>
-          <div className='text-[13px] text-[#979797] font-semibold leading-[18px]'>
+          <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
             Clothing & Accessories
           </div>
           <div className='relative cursor-pointer' onClick={handleSubCategory}>
@@ -146,11 +152,15 @@ const MarketPlaceFilters = () => {
           </div>
         </div>
         <div>
-          <div className='text-[13px] text-[#979797] font-semibold leading-[18px]'>Price</div>
+          <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
+            Price
+          </div>
           <div className='relative cursor-pointer' onClick={handlePrice}>
             <div
               className={`mt-2 flex justify-between rounded-xl p-3 ${
-                price ? 'border border-[#515151] bg-transparent' : 'border border-transparent bg-white/10'
+                price
+                  ? 'border border-[#515151] bg-transparent'
+                  : 'border border-transparent bg-white/10'
               }`}
             >
               <div className='text-[15px] text-[#FFF]'>Free</div>

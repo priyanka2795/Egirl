@@ -104,7 +104,7 @@ export function TweetStats({
         <TweetOption
           className={cn(
             'hover:text-accent-green focus-visible:text-accent-green',
-            tweetIsRetweeted && 'text-accent-green [&>i>svg]:[stroke-width:2px]'
+            tweetIsRetweeted && 'text-accent-green [&>i>svg]:[strokeWidth:2px]'
           )}
           iconClassName='group-hover:bg-accent-green/10 group-active:bg-accent-green/20
                          group-focus-visible:bg-accent-green/10 group-focus-visible:ring-accent-green/80'

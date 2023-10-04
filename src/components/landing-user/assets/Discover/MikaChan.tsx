@@ -11,7 +11,7 @@ const SvgComponent = (props: Props) => (
     xmlnsXlink='http://www.w3.org/1999/xlink'
     {...props}
   >
-    <g clip-path='url(#clip0_1286_17279)'>
+    <g clipPath='url(#clip0_1286_17279)'>
       <rect width='397' height='466' rx='16' fill='#fff' />
       <rect
         x='-3.7'
