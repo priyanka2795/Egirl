@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import arrowDown from '../../../../public/assets/arrow-down.png';
 import arrowUp from '../../../../public/assets/arrow-up.png';
 import Image from 'next/image';
@@ -28,9 +28,28 @@ const MarketPlaceFilters = () => {
   const handleSelectedFilter = (ele: string) => {
     setSelectedFilter(ele);
   };
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+  const handleClickOutside = (e: MouseEvent) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(e.target as Node)
+    ) {
+      setStyle(false);
+      setAccessories(false);
+      setPrice(false);
+      setSubCategory(false);
+    }
+  };
   return (
     <div className='mt-8'>
-      <div className='grid grid-cols-4 gap-3 self-stretch'>
+      <div className='grid grid-cols-4 gap-3 self-stretch' ref={dropdownRef}>
         <div>
           <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
             Style

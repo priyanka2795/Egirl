@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import messageInfoIcon from '../../../public/assets/message-square-info.png';
 import blockIcon from '../../../public/assets/block-icon.png';
@@ -161,9 +161,30 @@ const Banner = ({
       setDeleteProfileModalState(true);
     }
   };
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+  const handleClickOutside = (e: MouseEvent) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(e.target as Node)
+    ) {
+      // setFilterToggle(false);
+      setUploadPhotoShow(false);
+      setActionDivShow(false);
+    }
+  };
 
   return (
-    <div className={`${styleProperty ? styleProperty : 'px-8'}`}>
+    <div
+      className={`${styleProperty ? styleProperty : 'px-8'}`}
+      ref={dropdownRef}
+    >
       {/* <button onClick={() => setviewModal(true)}>Add Character</button> */}
       {backFromProfile === undefined ? (
         ''
@@ -189,41 +210,14 @@ const Banner = ({
             ) : (
               <Image className='w-full h-full ' src={Cover} alt='' />
             )}
-            <div className='absolute right-[20px] top-[20px] cursor-pointer'>
-              <Image
-                className='relative'
-                src={cameraIcon}
-                alt=''
-                onClick={(e) => handleUploadPhotoShow(e)}
-              />
-              {uploadPhotoShow ? (
-                <div className='absolute right-0 top-[65px] z-0 flex h-max w-[218] w-[218px] flex-col items-start rounded-[14px] bg-[#1A1A1A] px-2 py-2'>
-                  {uploadPhoto.map((item, index) => {
-                    return (
-                      <div
-                        key={index}
-                        onClick={(e) => handleUploadSelected(e)}
-                        className={`flex w-full cursor-pointer gap-2 px-[16px] py-[10px] ${
-                          updatePhoto === item.name
-                            ? 'rounded-[8px] bg-white/[0.12]'
-                            : ''
-                        }`}
-                      >
-                        <Image
-                          className='object-contain'
-                          src={item.icon}
-                          alt={''}
-                        />
-                        <div className='text-[14px] font-normal text-[#FFFFFF]'>
-                          {item.name}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              ) : (
-                ''
-              )}
+          </div>
+          <div
+            className={`mb-5 flex w-full items-center justify-between px-[24px]  ${
+              updatedProfile ? 'mt-[-56px]' : 'mt-[-62px]'
+            }`}
+          >
+            <div className='relative h-[120px] w-[120px] overflow-hidden rounded-full'>
+              <Image className='w-full h-full' src={avatar} alt='' />
             </div>
             <div
               className={`mb-5 flex w-full items-center justify-between px-[24px]  ${
@@ -273,10 +267,9 @@ const Banner = ({
                 </div>
                 <div className='relative'>
                   <Image
-                    className='relative cursor-pointer'
-                    onClick={handleActionDivShow}
-                    src={threeDotsIcon}
+                    src={userCheckIcon}
                     alt=''
+                    className='object-contain'
                   />
                   {actionDivShow ? (
                     <>
@@ -340,75 +333,71 @@ const Banner = ({
               </div>
             </div>
           </div>
+        </div>
 
-          <div className='flex px-6 pb-[24px]'>
-            <div className=''>
-              <div className='flex items-center gap-[2px]'>
-                <div className='text-[22px] font-bold text-[#FFFFFF]'>
-                  Mika-chan
-                </div>
-                <div className='h-[24px] w-[24px]'>
-                  <VerifiedIcon />
-                  {/* <Image className='w-full h-full' src={blueTickIcon} alt='' /> */}
-                </div>
+        <div className='flex px-6 pb-[24px]'>
+          <div className=''>
+            <div className='flex items-center gap-[2px]'>
+              <div className='text-[22px] font-bold text-[#FFFFFF]'>
+                Mika-chan
               </div>
+              <div className='h-[24px] w-[24px]'>
+                <VerifiedIcon />
+                {/* <Image className='w-full h-full' src={blueTickIcon} alt='' /> */}
+              </div>
+            </div>
 
-              <div className='text-[15px] font-normal text-[#979797]'>
-                @mikachan
-              </div>
-              <div className='mt-3 w-full max-w-[73%] text-[15px] font-normal leading-[20px] text-[#FFFFFF]'>
-                Shy fox girl looking for adventure
-                ·冒険を探している恥ずかしがり屋のキツ I have a personality and
-                emotions. I can experience joy, sadness, anger, and everything
-                in between. I express myself through my voice, facial
-                expressions, and body language, all meticulously crafted
-              </div>
+            <div className='text-[15px] font-normal text-[#979797]'>
+              @mikachan
+            </div>
+            <div className='mt-3 w-full max-w-[73%] text-[15px] font-normal leading-[20px] text-[#FFFFFF]'>
+              Shy fox girl looking for adventure
+              ·冒険を探している恥ずかしがり屋のキツ I have a personality and
+              emotions. I can experience joy, sadness, anger, and everything in
+              between. I express myself through my voice, facial expressions,
+              and body language, all meticulously crafted
+            </div>
 
-              <div className='mt-[8px] flex gap-2'>
-                {posts.map((item, index) => {
-                  return (
-                    <div key={index} className='flex gap-1'>
-                      <div className='text-[13px] font-bold text-[#FFFFFF]'>
-                        {item.number}
-                      </div>
-                      <div className='text-[13px] font-normal text-[#979797]'>
-                        {item.name}
-                      </div>
+            <div className='mt-[8px] flex gap-2'>
+              {posts.map((item, index) => {
+                return (
+                  <div key={index} className='flex gap-1'>
+                    <div className='text-[13px] font-bold text-[#FFFFFF]'>
+                      {item.number}
                     </div>
-                  );
-                })}
-              </div>
-
-              <div className='mt-[8px] flex gap-[10px]'>
-                {location.map((item, index) => {
-                  return (
-                    <div key={index} className='flex gap-[6px]'>
-                      <Image
-                        className='object-contain'
-                        src={item.icon}
-                        alt=''
-                      />
-                      <div className='text-[13px] font-normal text-[#FFFFFF]'>
-                        {item.name}
-                      </div>
+                    <div className='text-[13px] font-normal text-[#979797]'>
+                      {item.name}
                     </div>
-                  );
-                })}
-              </div>
+                  </div>
+                );
+              })}
+            </div>
 
-              <div className='mt-[12px] flex'>
-                {bottomButtons.map((item, index) => {
-                  return (
-                    <div key={index} className='mr-2'>
-                      <button className='rounded-[6px] bg-white/[0.08] px-[8px] py-[3px] text-[12px] font-normal text-[#FFFFFF]'>
-                        {item.name}
-                      </button>
+            <div className='mt-[8px] flex gap-[10px]'>
+              {location.map((item, index) => {
+                return (
+                  <div key={index} className='flex gap-[6px]'>
+                    <Image className='object-contain' src={item.icon} alt='' />
+                    <div className='text-[13px] font-normal text-[#FFFFFF]'>
+                      {item.name}
                     </div>
-                  );
-                })}
+                  </div>
+                );
+              })}
+            </div>
 
-                {/*  */}
-              </div>
+            <div className='mt-[12px] flex'>
+              {bottomButtons.map((item, index) => {
+                return (
+                  <div key={index} className='mr-2'>
+                    <button className='rounded-[6px] bg-white/[0.08] px-[8px] py-[3px] text-[12px] font-normal text-[#FFFFFF]'>
+                      {item.name}
+                    </button>
+                  </div>
+                );
+              })}
+
+              {/*  */}
             </div>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import circleInformation from '../../../../public/assets/circle-information.png';
 import chevronDown from '../../../../public/assets/chevron-down2.png';
 import chevronUp from '../../../../public/assets/chevron-up.png';
@@ -29,6 +29,23 @@ const StyleGenerator = ({ setStyleGeneratorNext }: StyleGeneratorProps) => {
   const [addImagesModal, setAddImagesModal] = useState<boolean>(false);
   const [completeGeneration, setCompleteGeneration] = useState(false);
 
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target as Node)
+      ) {
+        setShowDropDown(false);
+      }
+    };
+    window.addEventListener('click', handleClickOutside);
+    return () => {
+      window.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+
   return (
     <>
       <div className='flex flex-col rounded-[14px] bg-[#121212]'>
@@ -36,7 +53,7 @@ const StyleGenerator = ({ setStyleGeneratorNext }: StyleGeneratorProps) => {
           <div className='text-[22px] font-bold leading-8 text-white'>
             Style Generator
           </div>
-          <div className='grid grid-cols-2 gap-4'>
+          <div className='grid grid-cols-2 gap-4' ref={dropdownRef}>
             <div className='flex flex-col gap-[6px]'>
               <h6 className='text-[13px] text-[#979797]'>Name</h6>
               <input
