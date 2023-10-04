@@ -6,11 +6,11 @@ import SelectImage from './selectImage';
 import NotFound from 'pages/404';
 
 interface CreateCategory {
-  CategoryClose: any;
+  CategoryClose: React.Dispatch<React.SetStateAction<boolean>>;
   Steps: any;
   Previous: any;
-  AddCategory: any;
-  SetCategory: any;
+  AddCategory: string[];
+  SetCategory: React.Dispatch<React.SetStateAction<string[]>>;
 }
 const CreateCategory = ({
   CategoryClose,
@@ -50,10 +50,10 @@ const CreateCategory = ({
         <div className='flex items-center justify-between border-b border-[#FFFFFF14] p-6'>
           <h5 className='text-lg font-semibold'>Create a new category</h5>
           <div
-            className='h-6 w-6 cursor-pointer'
+            className='w-6 h-6 cursor-pointer'
             onClick={() => CategoryClose(false)}
           >
-            <Image className='h-full w-full' src={crossIcon} alt={''} />
+            <Image className='w-full h-full' src={crossIcon} alt={''} />
           </div>
         </div>
         <div className='p-6'>
@@ -70,7 +70,7 @@ const CreateCategory = ({
               onChange={(e) => handleChange(e)}
             />
           </div>
-          <div className='mt-6 grid grid-cols-2 gap-3 font-semibold text-white'>
+          <div className='grid grid-cols-2 gap-3 mt-6 font-semibold text-white'>
             {Steps === 3 ? (
               <button
                 className='rounded-[14px] border border-[#FFFFFF52] px-5 py-3'

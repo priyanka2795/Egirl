@@ -6,12 +6,12 @@ import crossIcon from '../../../../public/assets/xmark (1).png';
 import GiftCardDelete from './giftCardDelete';
 
 interface EditCategoryPopup {
-  closeModal: (value: boolean) => void;
+  closeModal: React.Dispatch<React.SetStateAction<boolean>>;
   EditCategoryActionModal: any;
-  EditName: any;
-  SetEditName: any;
-  UpdateCategoryName: any;
-  DeleteActionCategory: any;
+  EditName: string;
+  SetEditName: React.Dispatch<React.SetStateAction<string>>;
+  UpdateCategoryName: () => void;
+  DeleteActionCategory: (value: number) => void;
   CategoryActionIndex: any;
 }
 
@@ -42,10 +42,10 @@ function EditCategoryAction({
             <div className='flex items-center justify-between border-b border-[#FFFFFF14] p-6'>
               <h5 className='text-lg font-semibold'>Edit category</h5>
               <div
-                className='h-6 w-6 cursor-pointer'
+                className='w-6 h-6 cursor-pointer'
                 onClick={() => closeModal(false)}
               >
-                <Image className='h-full w-full' src={crossIcon} alt={''} />
+                <Image className='w-full h-full' src={crossIcon} alt={''} />
               </div>
             </div>
             <div className='p-6'>
@@ -63,7 +63,7 @@ function EditCategoryAction({
                 />
               </div>
 
-              <div className='mt-6 grid grid-cols-2 gap-3 font-semibold text-white'>
+              <div className='grid grid-cols-2 gap-3 mt-6 font-semibold text-white'>
                 <button
                   className='rounded-[14px] border border-[#FFFFFF52] px-5 py-3'
                   onClick={() => closeModal(false)}

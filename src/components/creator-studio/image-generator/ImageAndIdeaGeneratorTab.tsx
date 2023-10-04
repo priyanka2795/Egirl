@@ -62,10 +62,8 @@ const ImageAndIdeaGeneratorTab = () => {
   };
   const DeleteGeneration = (ind: number) => {
     setDeleteImageGeneration(false);
-    setImageGenerationAgain((oldValue: any[]) => {
-      return oldValue.filter(
-        (item: any, index: number, array: any) => index !== ind
-      );
+    setImageGenerationAgain((oldValue: number[]) => {
+      return oldValue.filter((item: number, index: number) => index !== ind);
     });
     setImageGenerationToggle(null);
   };
@@ -102,7 +100,7 @@ const ImageAndIdeaGeneratorTab = () => {
     'Bald-headed',
     'Enigmatic gaze'
   ]);
-  const [colorChange, setColorChange] = useState();
+  const [colorChange, setColorChange] = useState('');
 
   const dragItem = useRef<number | null>();
   const dragOverItem = useRef<number | null>();
@@ -122,8 +120,8 @@ const ImageAndIdeaGeneratorTab = () => {
     dragOverItem.current = null;
     setPromptItems(copyListItems);
   };
-  const SubmitData = (e: any) => {
-    setColorChange(e);
+  const SubmitData = (item: string) => {
+    setColorChange(item);
   };
 
   return (

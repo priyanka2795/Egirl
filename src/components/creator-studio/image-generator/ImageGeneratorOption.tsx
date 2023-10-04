@@ -230,7 +230,7 @@ const ImageGeneratorOption = ({
                     <p className='text-[14px]'>Mika-chan</p>
                   </div>
                 )}
-                {promptTags.map((tag: any, index: number) => (
+                {promptTags.map((tag: null, index: number) => (
                   <div className='relative bg-transparent' key={index}>
                     <div
                       className={`flex items-center ${

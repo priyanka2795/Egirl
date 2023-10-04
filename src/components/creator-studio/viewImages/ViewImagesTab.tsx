@@ -145,7 +145,7 @@ const ViewImagesTab = ({
 
   const handleCountryChange = (
     e: React.ChangeEvent<HTMLInputElement>,
-    c: any
+    c: { id: string; modalName: string }
   ) => {
     setChecked((prevChecked: any) =>
       e.target.checked
@@ -155,7 +155,7 @@ const ViewImagesTab = ({
   };
   const handleStyleChange = (
     e: React.ChangeEvent<HTMLInputElement>,
-    c: any
+    c: { id: string; styleName: string }
   ) => {
     setStyleChecked((prevChecked: any) =>
       e.target.checked
@@ -434,7 +434,7 @@ const ViewImagesTab = ({
                             </label>
                           </div>
 
-                          {Modal.map((c) => (
+                          {Modal.map((c: { id: string; modalName: string }) => (
                             <div className='flex items-center gap-2' key={c.id}>
                               <input
                                 className='h-5 w-5 rounded border-[#FFFFFF3D] bg-transparent text-[#5848BC] focus:ring-0 dark:ring-offset-0  dark:focus:ring-0 '
@@ -480,7 +480,7 @@ const ViewImagesTab = ({
                             </label>
                           </div>
 
-                          {Style.map((c) => (
+                          {Style.map((c: { id: string; styleName: string }) => (
                             <div className='flex items-center gap-2' key={c.id}>
                               <input
                                 className='h-5 w-5 rounded border-[#FFFFFF3D] bg-transparent text-[#5848BC] focus:ring-0 dark:ring-offset-0  dark:focus:ring-0 '

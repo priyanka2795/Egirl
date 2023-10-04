@@ -5,12 +5,12 @@ import SelectImage from './selectImage';
 import CreateCategory from './createCategory';
 
 interface giftCreateModalProp {
-  closeModal: (value: boolean) => void;
+  closeModal: React.Dispatch<React.SetStateAction<boolean>>;
   GiftsView: any;
-  GiftName: any;
-  SetGiftName: any;
-  AddCategory: any;
-  SetCategory: any;
+  GiftName: string[];
+  SetGiftName: React.Dispatch<React.SetStateAction<string[]>>;
+  AddCategory: string[];
+  SetCategory: React.Dispatch<React.SetStateAction<string[]>>;
 }
 function giftCreateModal({
   closeModal,
@@ -20,7 +20,7 @@ function giftCreateModal({
   AddCategory,
   SetCategory
 }: giftCreateModalProp) {
-  const [steps, setSteps] = useState(1);
+  const [steps, setSteps] = useState<number>(1);
   return (
     <>
       <Modal
