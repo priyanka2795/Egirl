@@ -44,9 +44,9 @@ const CreatorStudioSidebar = ({
         >
           <div
             className='flex cursor-pointer items-center justify-between py-[14px] pl-3 pr-4'
-            onClick={() => setSidebarModal(!sidebarModal)}
+            onClick={() => setSidebarModal(true)}
           >
-            <div className='relative flex items-center w-full gap-2'>
+            <div className='relative flex w-full items-center gap-2'>
               <div className='h-[32px] w-[32px]'>
                 <Image
                   src={avtar}
@@ -65,7 +65,7 @@ const CreatorStudioSidebar = ({
                 <SidebarModal SetSidebarModal={setSidebarModal} />
               )}
             </div>
-            <div className='h-full mt-2'>
+            <div className='mt-2 h-full'>
               <Image src={arrowDown} alt='' />
             </div>
           </div>
@@ -164,12 +164,12 @@ const CreatorStudioSidebar = ({
             href='/voice'
             Icon={VoiceIcon}
             IconActive={HomeActiveIcon}
-            StyleClasses={`${
+            StyleClasses={`max-[1279px]:flex max-[1279px]:!justify-center max-[1279px]:max-w-[52px] max-[1279px]:mx-auto ${
               shrinkSideBar === true
                 ? 'flex !justify-center max-w-[52px] mx-auto'
                 : 'pl-3'
             }`}
-            sideBarMenuText={`${
+            sideBarMenuText={`max-[1279px]:!hidden ${
               shrinkSideBar === true ? '!hidden' : 'w-full flex justify-center'
             } `}
           />
@@ -178,24 +178,24 @@ const CreatorStudioSidebar = ({
             href='/gifts'
             Icon={GiftIcon}
             IconActive={HomeActiveIcon}
-            StyleClasses={`${
+            StyleClasses={`max-[1279px]:flex max-[1279px]:!justify-center max-[1279px]:max-w-[52px] max-[1279px]:mx-auto ${
               shrinkSideBar === true
                 ? 'flex !justify-center max-w-[52px] mx-auto'
                 : 'pl-3'
             }`}
-            sideBarMenuText={`${
+            sideBarMenuText={`max-[1279px]:!hidden ${
               shrinkSideBar === true ? '!hidden' : 'w-full flex justify-center'
             } `}
           />
           <div
-            className={`${
+            className={`max-[1279px]:mb-2 max-[1279px]:border-b-2 max-[1279px]:border-[#252525] ${
               shrinkSideBar === true
                 ? 'mb-2 border-b-2 border-[#252525]'
-                : 'inline-flex h-10 items-start justify-start gap-2.5 px-3 py-2.5 '
+                : 'min-[1280px]:inline-flex min-[1280px]:h-10 min-[1280px]:items-start min-[1280px]:justify-start min-[1280px]:gap-2.5 min-[1280px]:px-3 min-[1280px]:py-2.5 '
             }`}
           >
             <div
-              className={`${
+              className={`max-[1279px]:hidden ${
                 shrinkSideBar === true
                   ? 'hidden'
                   : 'text-[13px] font-semibold uppercase leading-tight tracking-tight text-neutral-600'
@@ -209,12 +209,12 @@ const CreatorStudioSidebar = ({
             href='/view-style'
             Icon={ViewStyleIcon}
             IconActive={HomeActiveIcon}
-            StyleClasses={`${
+            StyleClasses={`max-[1279px]:flex max-[1279px]:!justify-center max-[1279px]:max-w-[52px] max-[1279px]:mx-auto ${
               shrinkSideBar === true
                 ? 'flex !justify-center max-w-[52px] mx-auto'
                 : 'pl-3'
             }`}
-            sideBarMenuText={`${
+            sideBarMenuText={`max-[1279px]:!hidden ${
               shrinkSideBar === true ? '!hidden' : 'w-full'
             } `}
           />
@@ -223,12 +223,12 @@ const CreatorStudioSidebar = ({
             href='/marketplace'
             Icon={MarketplaceIcon}
             IconActive={HomeActiveIcon}
-            StyleClasses={`${
+            StyleClasses={`max-[1279px]:flex max-[1279px]:!justify-center max-[1279px]:max-w-[52px] max-[1279px]:mx-auto ${
               shrinkSideBar === true
                 ? 'flex !justify-center max-w-[52px] mx-auto'
                 : 'pl-3'
             }`}
-            sideBarMenuText={`${
+            sideBarMenuText={`max-[1279px]:!hidden ${
               shrinkSideBar === true ? '!hidden' : 'w-full'
             } `}
           />
@@ -237,19 +237,19 @@ const CreatorStudioSidebar = ({
             href='/style-generator'
             Icon={StyleGenerator}
             IconActive={HomeActiveIcon}
-            StyleClasses={`${
+            StyleClasses={`max-[1279px]:flex max-[1279px]:!justify-center max-[1279px]:max-w-[52px] max-[1279px]:mx-auto ${
               shrinkSideBar === true
                 ? 'flex !justify-center max-w-[52px] mx-auto'
                 : 'pl-3'
             }`}
-            sideBarMenuText={`${
+            sideBarMenuText={`max-[1279px]:!hidden ${
               shrinkSideBar === true ? '!hidden' : 'w-full'
             } `}
           />
         </div>
 
         <div
-          className={`${
+          className={`max-[1279px]:mx-2 ${
             shrinkSideBar !== true ? 'mx-3 max-w-[276px] ' : 'mx-2'
           }`}
         >
@@ -261,7 +261,7 @@ const CreatorStudioSidebar = ({
               <MoreIcon />
             </div>
             <p
-              className={`text-[15px] font-semibold leading-5 text-white ${
+              className={`text-[15px] font-semibold leading-5 text-white max-[1279px]:!hidden ${
                 shrinkSideBar === true ? '!hidden' : 'w-full'
               }`}
             >

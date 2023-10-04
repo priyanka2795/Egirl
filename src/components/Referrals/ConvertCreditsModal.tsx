@@ -115,7 +115,7 @@ const ConvertCreditsModal = ({
                     {available}
                   </div>
                   <div className='text-[15px] font-semibold leading-5 text-[#FFFFFF]'>
-                    ${amount}
+                    {amount}
                   </div>
                 </div>
                 <div

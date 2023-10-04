@@ -13,9 +13,9 @@ const AddCard = () => {
   const [showSuccessPage, setShowSuccessPage] = useState(false);
   const [showErrorPage, setShowErrorPage] = useState(false);
 
-  const handleExploreSelected = (e: any) => {
+  const handleExploreSelected = (items: string) => {
     //setExploreSelected(e.target.innerText);
-    setActiveListTab(e.target.innerText);
+    setActiveListTab(items);
   };
   return (
     <>
@@ -27,7 +27,7 @@ const AddCard = () => {
                 return (
                   <div
                     key={index}
-                    onClick={(e) => handleExploreSelected(e)} 
+                    onClick={(e) => handleExploreSelected(items)} 
                     className={`flex cursor-pointer gap-2.5 rounded-xl px-4 py-2 text-[15px] font-bold ${
                       activeListTab === items
                         ? ' bg-white bg-opacity-20 text-white  '

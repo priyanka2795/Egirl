@@ -77,8 +77,8 @@ const GalleryTabFilter = ({
   if (selectedFilter === undefined || selectedFilter.length < 1) {
     setSelectedFilter('All');
   }
-  const handleSelectedFilter = (e: any) => {
-    setSelectedFilter(e.target.innerText);
+  const handleSelectedFilter = (item: string) => {
+    setSelectedFilter(item);
   };
 
   const settings = {
@@ -95,7 +95,7 @@ const GalleryTabFilter = ({
     <>
       {singleProfileState === false ? (
         <>
-          <div className='mb-8 mt-8 flex '>
+          <div className='flex mt-8 mb-8 '>
             <Slider
               {...settings}
               className='explore-gallery-filter flex w-[907px]'
@@ -103,7 +103,7 @@ const GalleryTabFilter = ({
               {galleryArray.map((items) => {
                 return (
                   <div
-                    onClick={(e) => handleSelectedFilter(e)}
+                    onClick={(e) => handleSelectedFilter(items.filterText)}
                     // onWheel={(e) => sliderScroll(e)}
                     key={items.id}
                     className={`list-last-item relative z-10 mr-3 !flex h-[56px] w-max cursor-pointer items-center justify-start gap-2 rounded-full py-3 pl-3 
@@ -120,7 +120,7 @@ const GalleryTabFilter = ({
                         <UserProfile className='white-stroke' />
                       ) : (
                         <Image
-                          className='h-8 w-16 rounded-full'
+                          className='w-16 h-8 rounded-full'
                           src={items.filterImg}
                           alt=''
                         />
@@ -164,7 +164,7 @@ const GalleryTabFilter = ({
                   <GalleryFilterCheckbox filterCloseForm={setFilterForm} />
                 )}
               </div>
-              <div className='flex gap-2 border-l border-white/10 pl-2'>
+              <div className='flex gap-2 pl-2 border-l border-white/10'>
                 <p>Newest</p>
                 <Image src={arrowDown} alt='' className='object-cover' />
               </div>

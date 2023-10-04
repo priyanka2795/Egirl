@@ -116,9 +116,9 @@ const ViewImagesMainPage = () => {
             {Array(5)
               .fill('0')
               .map((_, index: number) => (
-                <div className='sub-banner group relative h-full w-full'>
+                <div className='relative w-full h-full sub-banner group rounded-[16px]'>
                   <Image
-                    className='w-full object-cover '
+                    className='w-full object-cover rounded-[16px]'
                     src={image6}
                     alt={''}
                   />
@@ -129,7 +129,7 @@ const ViewImagesMainPage = () => {
                     <Image className='' src={threeDots} alt={''} />
                   </div>
                   {allImage === index && (
-                    <div className='absolute right-3 top-12 z-50'>
+                    <div className='absolute z-50 right-3 top-12'>
                       <ViewImagesDropDown DeleteImage />
                     </div>
                   )}
