@@ -14,9 +14,9 @@ const ExploreTabs = ({ exploreTab, setExploreSelectedTab }: ExploreTabsProps) =>
   const [exploreSelectedTab, setExploreSelected] = useState(exploreTab);
   const [subLeftModal, setsubLeftModal] = useState(false);
   
-  const handleExploreSelected = (e: any) => {
-    setExploreSelected(e.target.innerText);
-    setExploreSelectedTab(e.target.innerText);
+  const handleExploreSelected = (item: string) => {
+    setExploreSelected(item);
+    setExploreSelectedTab(item);
   };
   console.log(exploreSelectedTab, 'test 1');
   return (
@@ -28,7 +28,7 @@ const ExploreTabs = ({ exploreTab, setExploreSelectedTab }: ExploreTabsProps) =>
               return (
                 <div
                   key={index}
-                  onClick={(e) => handleExploreSelected(e)}
+                  onClick={(e) => handleExploreSelected(items)}
                   className={`flex cursor-pointer gap-2.5 rounded-xl px-4 py-2 text-[15px] font-bold ${
                     exploreSelectedTab === items
                       ? ' bg-white bg-opacity-20 text-white  '

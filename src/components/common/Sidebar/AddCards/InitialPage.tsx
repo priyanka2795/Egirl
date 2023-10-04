@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import card from '../../../../../public/assets/credit-card-plus.png';
 
 interface InitialPageProps {
-    setAddedCard: any;
+    setAddedCard: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const InitialPage = ( {setAddedCard} : InitialPageProps ) => {

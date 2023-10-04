@@ -3,16 +3,17 @@ import LogOut from "./svg/log-out.svg"
 import SubscriptionModal from '../SubscriptionModal';
 
 interface UserDetailModalProps{
-  styleClasses: string,
-  setUserAccountMenu : any,
-  userAccountMenu: boolean
+  styleClasses: string;
+  setUserAccountMenu: any;
+  userAccountMenu: boolean;
 }
 const UserDetailModal = ({styleClasses, setUserAccountMenu, userAccountMenu} : UserDetailModalProps) => {
   const [showSubscription, setshowSubscription] = useState(false);
   const closeState = () => {
-    setUserAccountMenu(false)
-    setshowSubscription(false)
+    setUserAccountMenu(false);
+    setshowSubscription(false);
   }
+  
   return (
     <div className={`${showSubscription ? "hidden" : ""} bottom-[80px] w-[218px] text-white bg-[#1A1A1A] rounded-[14px] ${styleClasses}`}>
       <div className="px-4 pt-4 pb-3 border-b border-white border-opacity-10">

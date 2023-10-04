@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import useScroll from '../../../hooks/useScroll';
 import Post from './Post';
 

@@ -15,7 +15,7 @@ const RealisticPage = ({showProfile, setShowRealistic} : RealisticPageProps) => 
     <div className='flex flex-col gap-[14px] pb-4'>
         <div className='flex justify-between'>
                 <div className='flex items-center gap-2'>
-                    <Image className='object-contain' src={arrowLeft} alt={''} onClick={() => {setShowRealistic(false)}} />
+                    <Image className='object-contain cursor-pointer' src={arrowLeft} alt={''} onClick={() => {setShowRealistic(false)}} />
                     <div className='flex text-[22px] font-bold leading-8 gap-1'>
                         <p className='text-white'>Realistic</p>
                         <p className='text-[#979797]'>(8)</p>

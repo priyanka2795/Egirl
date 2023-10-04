@@ -56,7 +56,7 @@ const Card = () => {
     []
   );
 
-  const updateCurrentIndex = (val: any) => {
+  const updateCurrentIndex = (val: number) => {
     setCurrentIndex(val);
     currentIndexRef.current = val;
   };

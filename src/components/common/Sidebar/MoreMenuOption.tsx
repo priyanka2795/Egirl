@@ -10,7 +10,7 @@ const optionList = [
 
 interface MoreMenuProps{
     activeMoreOption:string | undefined,
-    moreOptionItem: any   
+    moreOptionItem: any;   
     classes:string
 }
 const MoreMenuOption = ({moreOptionItem , activeMoreOption , classes }: MoreMenuProps) => {

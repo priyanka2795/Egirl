@@ -3,11 +3,11 @@ import blueTick from '../../../public/assets/badge-check.png'
 import Image from 'next/image'
 
 interface CardProps{
-    cardMainImg: any,
-    verified?:boolean,
-    characterName:string
-    characterType?:string
-    availableCount?:string
+    cardMainImg: any;
+    verified?:boolean;
+    characterName:string;
+    characterType?:string;
+    availableCount?:string;
 }
 const Card = ({cardMainImg ,verified, characterName, characterType, availableCount }:CardProps) => {
   return (
