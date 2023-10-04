@@ -6,11 +6,12 @@ interface Props {
   toggleText: string;
   infoIcon?:string;
   toggleClasses?:string;
-  subHeading?: boolean
+  subHeading?: boolean;
+  component?: string;
 }
-const Toggle = ({ handleToggleState, toggleState, toggleText, infoIcon,toggleClasses, subHeading }: Props) => {
+const Toggle = ({ handleToggleState, toggleState, toggleText, infoIcon,toggleClasses, subHeading, component }: Props) => {
   return (
-    <div className='flex gap-[10px]'>
+    <div className={`flex ${component === 'ImageSetting' ? 'gap-0' : 'gap-[10px]'}`}>
       <div
         onClick={handleToggleState}
         className={`toggler h-6 w-10 cursor-pointer rounded-2xl pt-0.5 shadow ${toggleClasses} ${

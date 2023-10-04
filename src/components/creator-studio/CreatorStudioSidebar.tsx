@@ -17,6 +17,16 @@ import StyleGenerator from './svg/StyleGenerator';
 import MoreIcon from './svg/MoreIcon.svg';
 import SidebarModal from './SidebarModal';
 import MoreOptionsModal from './MoreOptionsModal';
+import layers from './svg/Layers.svg';
+import shop from './svg/shop.svg';
+import palette from './svg/palette.svg';
+import gift from './svg/gift.svg';
+import imageGeneratorActive from './svg/image-generator.svg';
+import viewImagesActive from './svg/view-images.svg';
+import personalityActive from './svg/user-alt-1.svg';
+import analyticsActive from './svg/Chart.svg';
+import voiceActive from './svg/microphone-alt.svg';
+import CharacterAdd from './NewCharacter/CharacterAdd';
 
 interface CreatorStudioNavbarPropProp {
   shrinkSideBar: boolean;
@@ -29,6 +39,7 @@ const CreatorStudioSidebar = ({
 }: CreatorStudioNavbarPropProp) => {
   const [sidebarModal, setSidebarModal] = useState(false);
   const [moreOptionsModal, setMoreOptionsModal] = useState(false);
+  const [newCharacter, setNewCharacter] = useState(false);
   // const [sideBarShrink, setSideBarShrink] = useState(false);
   console.log('sidebarModal---', sidebarModal);
   return (
@@ -47,7 +58,7 @@ const CreatorStudioSidebar = ({
             className='flex cursor-pointer items-center justify-between py-[14px] pl-3 pr-4'
             onClick={() => setSidebarModal(!sidebarModal)}
           >
-            <div className='relative flex w-full items-center gap-2'>
+            <div className='relative flex items-center w-full gap-2'>
               <div className='h-[32px] w-[32px]'>
                 <Image
                   src={avtar}
@@ -62,20 +73,20 @@ const CreatorStudioSidebar = ({
               >
                 Mika-chan
               </div>
-              {sidebarModal && (
-                <SidebarModal SetSidebarModal={setSidebarModal} />
-              )}
             </div>
-            <div className='mt-2 h-full'>
+            <div className='h-full mt-2'>
               <Image src={arrowDown} alt='' />
             </div>
+            {
+              sidebarModal && <SidebarModal setSidebarModal={setSidebarModal} setNewCharacter={setNewCharacter} />
+            }
           </div>
 
           <SidebarMenuItem
             text='Analytics'
             href='/analytics'
             Icon={AnalyticsIcon}
-            IconActive={HomeActiveIcon}
+            IconActive={analyticsActive}
             StyleClasses={`max-[1279px]:flex max-[1279px]:!justify-center max-[1279px]:max-w-[52px] max-[1279px]:mx-auto ${
               shrinkSideBar === true
                 ? 'flex !justify-center max-w-[52px] mx-auto'
@@ -83,7 +94,7 @@ const CreatorStudioSidebar = ({
             }`}
             sideBarMenuText={`max-[1279px]:!hidden ${
               shrinkSideBar === true ? '!hidden' : 'w-full flex justify-center'
-            } `}
+            }`}
           />
           <div
             className={`max-[1279px]:mb-2 max-[1279px]:border-b-2 max-[1279px]:border-[#252525] ${
@@ -106,7 +117,7 @@ const CreatorStudioSidebar = ({
             text='View Images'
             href='/view-images'
             Icon={ViewImg}
-            IconActive={HomeActiveIcon}
+            IconActive={viewImagesActive}
             StyleClasses={`max-[1279px]:flex max-[1279px]:!justify-center max-[1279px]:max-w-[52px] max-[1279px]:mx-auto ${
               shrinkSideBar === true
                 ? 'flex !justify-center max-w-[52px] mx-auto'
@@ -120,7 +131,7 @@ const CreatorStudioSidebar = ({
             text='Image Generator'
             href='/image-generator'
             Icon={ImageGeneratorIcon}
-            IconActive={HomeActiveIcon}
+            IconActive={imageGeneratorActive}
             StyleClasses={`max-[1279px]:flex max-[1279px]:!justify-center max-[1279px]:max-w-[52px] max-[1279px]:mx-auto ${
               shrinkSideBar === true
                 ? 'flex !justify-center max-w-[52px] mx-auto'
@@ -150,7 +161,7 @@ const CreatorStudioSidebar = ({
             text='Personality'
             href='/personality'
             Icon={PersonalityIcon}
-            IconActive={HomeActiveIcon}
+            IconActive={personalityActive}
             StyleClasses={`max-[1279px]:flex max-[1279px]:!justify-center max-[1279px]:max-w-[52px] max-[1279px]:mx-auto ${
               shrinkSideBar === true
                 ? 'flex !justify-center max-w-[52px] mx-auto'
@@ -164,7 +175,7 @@ const CreatorStudioSidebar = ({
             text='Voice'
             href='/voice'
             Icon={VoiceIcon}
-            IconActive={HomeActiveIcon}
+            IconActive={voiceActive}
             StyleClasses={`max-[1279px]:flex max-[1279px]:!justify-center max-[1279px]:max-w-[52px] max-[1279px]:mx-auto ${
               shrinkSideBar === true
                 ? 'flex !justify-center max-w-[52px] mx-auto'
@@ -178,7 +189,7 @@ const CreatorStudioSidebar = ({
             text='Gifts'
             href='/gifts'
             Icon={GiftIcon}
-            IconActive={HomeActiveIcon}
+            IconActive={gift}
             StyleClasses={`max-[1279px]:flex max-[1279px]:!justify-center max-[1279px]:max-w-[52px] max-[1279px]:mx-auto ${
               shrinkSideBar === true
                 ? 'flex !justify-center max-w-[52px] mx-auto'
@@ -209,7 +220,7 @@ const CreatorStudioSidebar = ({
             text='View Styles'
             href='/view-style'
             Icon={ViewStyleIcon}
-            IconActive={HomeActiveIcon}
+            IconActive={layers}
             StyleClasses={`max-[1279px]:flex max-[1279px]:!justify-center max-[1279px]:max-w-[52px] max-[1279px]:mx-auto ${
               shrinkSideBar === true
                 ? 'flex !justify-center max-w-[52px] mx-auto'
@@ -223,7 +234,7 @@ const CreatorStudioSidebar = ({
             text='Marketplace'
             href='/marketplace'
             Icon={MarketplaceIcon}
-            IconActive={HomeActiveIcon}
+            IconActive={shop}
             StyleClasses={`max-[1279px]:flex max-[1279px]:!justify-center max-[1279px]:max-w-[52px] max-[1279px]:mx-auto ${
               shrinkSideBar === true
                 ? 'flex !justify-center max-w-[52px] mx-auto'
@@ -237,7 +248,7 @@ const CreatorStudioSidebar = ({
             text='Style Generator'
             href='/style-generator'
             Icon={StyleGenerator}
-            IconActive={HomeActiveIcon}
+            IconActive={palette}
             StyleClasses={`max-[1279px]:flex max-[1279px]:!justify-center max-[1279px]:max-w-[52px] max-[1279px]:mx-auto ${
               shrinkSideBar === true
                 ? 'flex !justify-center max-w-[52px] mx-auto'
@@ -271,6 +282,9 @@ const CreatorStudioSidebar = ({
             {moreOptionsModal && <MoreOptionsModal />}
           </div>
         </div>
+        {
+          newCharacter && <CharacterAdd NewCharacterClose={setNewCharacter} />
+        }
       </div>
     </>
   );

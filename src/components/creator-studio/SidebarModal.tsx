@@ -15,7 +15,8 @@ import CharacterAdd from './NewCharacter/CharacterAdd';
 interface SidebarModals {
   // shrinkSideBar: boolean;
   // setShrinkSideBar: React.Dispatch<React.SetStateAction<boolean>>;
-  SetSidebarModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setSidebarModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setNewCharacter: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const sidebarModal = [
@@ -36,10 +37,11 @@ const sidebarModal = [
 const SidebarModal = ({
   // shrinkSideBar,
   // setShrinkSideBar,
-  SetSidebarModal
+  setSidebarModal,
+  setNewCharacter
 }: SidebarModals) => {
   const [activeProfile, setActiveProfile] = useState('Mika-chan');
-  const [newCharacter, setNewCharacter] = useState(false);
+  
 
   return (
     <div
@@ -82,9 +84,9 @@ const SidebarModal = ({
               <div className='flex px-4 py-[6px]'>
                 <div className='mt-[5px] flex w-full items-center justify-between rounded-full bg-white/[0.08] py-2 pl-2 pr-[14px]'>
                   <div className='flex gap-[10px]'>
-                    <div className='h-8 w-8'>
+                    <div className='w-8 h-8'>
                       <Image
-                        className='h-full w-full'
+                        className='w-full h-full'
                         src={avatart1}
                         alt={''}
                       />
@@ -93,15 +95,15 @@ const SidebarModal = ({
                       Mika-chan
                     </div>
                   </div>
-                  <div className='h-4 w-4'>
-                    <Image className='h-full w-full' src={check} alt={''} />
+                  <div className='w-4 h-4'>
+                    <Image className='w-full h-full' src={check} alt={''} />
                   </div>
                 </div>
               </div>
             ) : (
               <div className='flex gap-[10px] py-[14px] pl-6 pr-4'>
-                <div className='h-8 w-8 overflow-hidden rounded-full'>
-                  <Image className='h-full w-full' src={avatart2} alt={''} />
+                <div className='w-8 h-8 overflow-hidden rounded-full'>
+                  <Image className='w-full h-full' src={avatart2} alt={''} />
                 </div>
                 <div className='mt-[6px] text-[14px] font-normal leading-[18px] text-[#FFFFFF]'>
                   Character 2
@@ -136,20 +138,15 @@ const SidebarModal = ({
       <button className='flex w-full px-6 py-[10px] '>
         <div
           className='flex w-full items-center justify-center gap-[6px] rounded-[12px] bg-[#5848BC] px-4 py-[10px]'
-          onClick={() => {
-            setNewCharacter(true), SetSidebarModal(false);
-          }}
-        >
+          onClick={() => {setNewCharacter(true)}}>
           <div className='h-[18px] w-[18px]'>
-            <Image className='h-full w-full' src={plusIcon} alt={''} />
+            <Image className='w-full h-full' src={plusIcon} alt={''} />
           </div>
           <div className='text-[14px] font-bold leading-5 text-[#FFFFFF]'>
             New Character
           </div>
         </div>
       </button>
-
-      {newCharacter && <CharacterAdd NewCharacterClose={setNewCharacter} />}
     </div>
   );
 };
