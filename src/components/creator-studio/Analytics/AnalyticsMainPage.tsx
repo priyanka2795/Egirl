@@ -368,23 +368,26 @@ const AnalyticsMainPage = () => {
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
       return (
-        <div className='custom-tooltip w-max rounded-[14px] bg-[#1A1A1A] p-4'>
+        <div className='custom-tooltip w-max max-w-[254px] rounded-[14px] bg-[#1A1A1A] p-4'>
           {payload.map((pld: any, index: number) => (
-            <div key={index} className='hidden first:block'>
+            <div
+              key={index}
+              className='mb-3 hidden text-[18px] font-bold first:block'
+            >
               {pld?.payload.month}
             </div>
           ))}
-          <div className='grid grid-cols-2 gap-[24px] '>
+          <div className='grid grid-cols-2 gap-3'>
             {payload.map((pld: any, index: number) => (
               <React.Fragment key={index}>
                 <div className='flex flex-col gap-1'>
-                  <div className='flex font-[13px] font-normal leading-[13px] text-[#979797]'>
+                  <div className='flex text-[13px] font-normal leading-[13px] text-[#979797]'>
                     <div
                       className={`mr-1 mt-[3px] flex h-[8px] w-[8px] rounded-full bg-[${pld.fill}]`}
                     ></div>
                     {pld.dataKey}
                   </div>
-                  <div className='font-bold'>${pld.value}</div>
+                  <div className='text-[15px] font-bold'>${pld.value}</div>
                 </div>
               </React.Fragment>
             ))}
@@ -519,7 +522,7 @@ const AnalyticsMainPage = () => {
                   {/* available cash */}
                   <div className='flex items-center gap-[50px] self-stretch border-l border-white/[0.08] border-l-white/[0.08] pl-0'>
                     <div className='flex flex-col items-start gap-1 pl-10'>
-                      <label className='font-[13px] font-normal leading-[18px] text-[#979797]'>
+                      <label className='text-[13px] font-normal leading-[18px] text-[#979797]'>
                         Available to cashout
                       </label>
                       <div className='flex items-center gap-2'>
@@ -558,7 +561,7 @@ const AnalyticsMainPage = () => {
                   {/* dates graph */}
                   <div className='flex flex-col items-start gap-4 '>
                     {/* graph */}
-                    <div className='flex h-[174px] flex-col items-center justify-center self-stretch'>
+                    <div className='flex flex-col items-center justify-center self-stretch'>
                       {showChanges ? (
                         <div>
                           <div className='relative mt-9  flex w-[600px] flex-col items-start gap-10'>
