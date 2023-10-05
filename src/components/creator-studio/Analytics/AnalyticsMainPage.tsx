@@ -76,79 +76,100 @@ const types = [
 
 const data = [
   {
-    // name: 'JAN',
-
-    pv: 9000,
-    qv: 1000,
-    rv: 4000,
-    sv: 4000,
-    uv: 4000
+    month: 'Jan, 2023',
+    Subs: 9000,
+    Requests: 1000,
+    Gifts: 4000,
+    GeneralChatting: 4000,
+    StyleRoyalties: 4000
   },
   {
-    // name: 'FEB',
-    uv: 3000,
-    pv: 1398,
-    amt: 2210
+    month: 'Feb, 2023',
+    Subs: 3000,
+    Requests: 800,
+    Gifts: 1000,
+    GeneralChatting: 0,
+    StyleRoyalties: 4000
   },
   {
-    // name: 'MAR',
-    uv: 2000,
-    pv: 9800,
-    amt: 2290
+    month: 'Mar, 2023',
+    Subs: 1000,
+    Requests: 5000,
+    Gifts: 3000,
+    GeneralChatting: 1220,
+    StyleRoyalties: 4566
   },
   {
-    // name: 'APR',
-    uv: 2780,
-    pv: 3908,
-    amt: 2000
+    month: 'Apr, 2023',
+    Subs: 9000,
+    Requests: 1000,
+    Gifts: 4000,
+    GeneralChatting: 4000,
+    StyleRoyalties: 4000
   },
   {
-    // name: 'MAY',
-    uv: 1890,
-    pv: 4800,
-    amt: 2181
+    month: 'May, 2023',
+    Subs: 4000,
+    Requests: 6000,
+    Gifts: 0,
+    GeneralChatting: 3000,
+    StyleRoyalties: 7000
   },
   {
-    // name: 'JUN',
-    uv: 2390,
-    pv: 3800,
-    amt: 2500
+    month: 'Jun, 2023',
+    Subs: 1000,
+    Requests: 3000,
+    Gifts: 4000,
+    GeneralChatting: 700,
+    StyleRoyalties: 1000
   },
   {
-    // name: 'JUL',
-    uv: 3490,
-    pv: 4300,
-    amt: 2100
+    month: 'Jul, 2023',
+    Subs: 1000,
+    Requests: 3000,
+    Gifts: 4000,
+    GeneralChatting: 1000,
+    StyleRoyalties: 1000
   },
   {
-    // name: 'AUG',
-    uv: 3490,
-    pv: 4300,
-    amt: 2100
+    month: 'Aug, 2023',
+    Subs: 1000,
+    Requests: 3000,
+    Gifts: 4000,
+    GeneralChatting: 1000,
+    StyleRoyalties: 1000
   },
   {
-    // name: 'SEP',
-    uv: 3490,
-    pv: 4300,
-    amt: 2100
+    month: 'Sep, 2023',
+    Subs: 1000,
+    Requests: 1000,
+    Gifts: 400,
+    GeneralChatting: 700,
+    StyleRoyalties: 1000
   },
   {
-    // name: 'OCT',
-    uv: 3490,
-    pv: 4300,
-    amt: 2100
+    month: 'Oct, 2023',
+    Subs: 500,
+    Requests: 3000,
+    Gifts: 400,
+    GeneralChatting: 500,
+    StyleRoyalties: 2000
   },
   {
-    // name: 'NOV',
-    uv: 3490,
-    pv: 4300,
-    amt: 2100
+    month: 'Nov, 2023',
+    Subs: 1500,
+    Requests: 5000,
+    Gifts: 400,
+    GeneralChatting: 600,
+    StyleRoyalties: 100
   },
   {
-    // name: 'DEC',
-    uv: 3490,
-    pv: 4300,
-    amt: 2100
+    month: 'Dec, 2023',
+    Subs: 1000,
+    Requests: 3000,
+    Gifts: 4000,
+    GeneralChatting: 7000,
+    StyleRoyalties: 1000
   }
 ];
 
@@ -343,6 +364,37 @@ const AnalyticsMainPage = () => {
       setSelectAll(0);
     }
   };
+  let payload;
+  const CustomTooltip = ({ active, payload, label }: any) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className='custom-tooltip w-max rounded-[14px] bg-[#1A1A1A] p-4'>
+          {payload.map((pld: any, index: number) => (
+            <div key={index} className='hidden first:block'>
+              {pld?.payload.month}
+            </div>
+          ))}
+          <div className='grid grid-cols-2 gap-[24px] '>
+            {payload.map((pld: any, index: number) => (
+              <React.Fragment key={index}>
+                <div className='flex flex-col gap-1'>
+                  <div className='flex font-[13px] font-normal leading-[13px] text-[#979797]'>
+                    <div
+                      className={`mr-1 mt-[3px] flex h-[8px] w-[8px] rounded-full bg-[${pld.fill}]`}
+                    ></div>
+                    {pld.dataKey}
+                  </div>
+                  <div className='font-bold'>${pld.value}</div>
+                </div>
+              </React.Fragment>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    return null;
+  };
 
   return (
     <>
@@ -356,7 +408,7 @@ const AnalyticsMainPage = () => {
           Account Analytics
         </div>
 
-        <div className='grid grid-cols-3 gap-4 mt-6'>
+        <div className='mt-6 grid grid-cols-3 gap-4'>
           {accountAnalytics.map((item, index) => {
             return (
               <div
@@ -377,9 +429,9 @@ const AnalyticsMainPage = () => {
                   </div>
                   <div className='flex gap-3'>
                     <div className='flex gap-1'>
-                      <div className='w-5 h-5'>
+                      <div className='h-5 w-5'>
                         <Image
-                          className='w-full h-full'
+                          className='h-full w-full'
                           src={showChanges ? item.image : arrowRight}
                           alt={''}
                         />
@@ -404,8 +456,8 @@ const AnalyticsMainPage = () => {
           })}
         </div>
 
-        <div className='flex gap-4 mt-4'>
-          <div className='flex flex-col w-2/3 gap-4'>
+        <div className='mt-4 flex gap-4'>
+          <div className='flex w-2/3 flex-col gap-4'>
             <div className='flex  flex-col gap-2 rounded-[16px] bg-[#121212] p-5'>
               {/* top */}
               <div className='flex items-center justify-between'>
@@ -425,9 +477,9 @@ const AnalyticsMainPage = () => {
                 </div>
               </div>
               {/* bottom */}
-              <div className='flex flex-col items-start self-stretch gap-8'>
+              <div className='flex flex-col items-start gap-8 self-stretch'>
                 {/* values */}
-                <div className='flex items-start self-stretch justify-between'>
+                <div className='flex items-start justify-between self-stretch'>
                   {/* total revenue */}
                   <div className='flex flex-col items-start gap-1 '>
                     <div className='flex	 flex-col items-start gap-0.5'>
@@ -440,7 +492,7 @@ const AnalyticsMainPage = () => {
                     </div>
                     <div className='flex items-center gap-3'>
                       <div className='flex items-center gap-1'>
-                        <div className='w-5 h-5'>
+                        <div className='h-5 w-5'>
                           {showChanges ? (
                             <Image src={greenArrowUp} />
                           ) : (
@@ -489,7 +541,7 @@ const AnalyticsMainPage = () => {
                   </div>
                 </div>
                 {/* graph */}
-                <div className='flex items-start self-stretch gap-3'>
+                <div className='flex items-start gap-3 self-stretch'>
                   {/* amount */}
                   <div className='mt-4 flex h-[174px] flex-col items-end justify-between text-[#979797]'>
                     {amount.map((data, index) => {
@@ -532,35 +584,35 @@ const AnalyticsMainPage = () => {
                                   {/* <CartesianGrid /> */}
                                   <XAxis dataKey='name' />
                                   {/* <YAxis /> */}
-                                  {/* <Tooltip /> */}
+                                  <Tooltip content={<CustomTooltip />} />
                                   {/* <Legend /> */}
                                   <Bar
-                                    dataKey='pv'
+                                    dataKey='Subs'
                                     stackId='a'
                                     fill='#996BE0'
                                     radius={[0, 0, 5, 5]}
                                     className='cursor-pointer '
                                   />
                                   <Bar
-                                    dataKey='pv'
+                                    dataKey='Requests'
                                     stackId='a'
                                     fill='#996BE0'
                                     className='cursor-pointer '
                                   />
                                   <Bar
-                                    dataKey='pv'
+                                    dataKey='Gifts'
                                     stackId='a'
                                     fill='#996BE0'
                                     className='cursor-pointer '
                                   />
                                   <Bar
-                                    dataKey='uv'
+                                    dataKey='GeneralChatting'
                                     stackId='a'
                                     fill='#996BE0'
                                     className='cursor-pointer '
                                   />
                                   <Bar
-                                    dataKey='pv'
+                                    dataKey='StyleRoyalties'
                                     stackId='a'
                                     fill='#996BE0'
                                     radius={[5, 5, 0, 0]}
@@ -582,35 +634,35 @@ const AnalyticsMainPage = () => {
                                   {/* <CartesianGrid /> */}
                                   <XAxis dataKey='name' />
                                   {/* <YAxis /> */}
-                                  {/* <Tooltip /> */}
+                                  <Tooltip content={<CustomTooltip />} />
                                   {/* <Legend /> */}
                                   <Bar
-                                    dataKey='pv'
+                                    dataKey='Subs'
                                     stackId='a'
                                     fill='#996BE0'
                                     radius={[0, 0, 5, 5]}
                                     className='cursor-pointer '
                                   />
                                   <Bar
-                                    dataKey='pv'
+                                    dataKey='Requests'
                                     stackId='a'
                                     fill='#E295F9'
                                     className='cursor-pointer '
                                   />
                                   <Bar
-                                    dataKey='pv'
+                                    dataKey='Gifts'
                                     stackId='a'
                                     fill='#779DF8'
                                     className='cursor-pointer '
                                   />
                                   <Bar
-                                    dataKey='uv'
+                                    dataKey='GeneralChatting'
                                     stackId='a'
                                     fill='#EFAC6A'
                                     className='cursor-pointer '
                                   />
                                   <Bar
-                                    dataKey='pv'
+                                    dataKey='StyleRoyalties'
                                     stackId='a'
                                     fill='#E2F47A'
                                     radius={[5, 5, 0, 0]}
@@ -657,7 +709,7 @@ const AnalyticsMainPage = () => {
                 {/* here  */}
                 {showChanges ? (
                   <div className='flex flex-col'>
-                    <div className='flex items-center self-stretch justify-center gap-6 mt-2'>
+                    <div className='mt-2 flex items-center justify-center gap-6 self-stretch'>
                       {/* item */}
 
                       <div className='flex items-center gap-2'>
@@ -703,9 +755,10 @@ const AnalyticsMainPage = () => {
                     </div>
                     {/* types */}
 
-                    <div className='flex items-center self-stretch justify-center gap-6 mt-5 '>
+                    <div className='mt-5 flex items-center justify-center gap-6 self-stretch '>
                       {types.map((item, index: number) => (
                         <div
+                          key={index}
                           className='flex items-center gap-2'
                           onClick={() => SelectShort(index)}
                         >
@@ -766,7 +819,7 @@ const AnalyticsMainPage = () => {
                     </div>
                   </div>
                 </div>
-                <div className='flex flex-col w-1/2 gap-4'>
+                <div className='flex w-1/2 flex-col gap-4'>
                   <div className='text-[15px] font-normal leading-5 text-[#979797]'>
                     Image requests
                   </div>
@@ -799,7 +852,7 @@ const AnalyticsMainPage = () => {
               </div>
             </div>
           </div>
-          <div className='flex flex-col w-1/3 gap-4'>
+          <div className='flex w-1/3 flex-col gap-4'>
             <div className='flex flex-col gap-8 rounded-[16px] bg-[#121212] p-5'>
               <div className='flex items-center gap-3'>
                 <div className='flex rounded-[100px] bg-white/[0.08] p-2'>

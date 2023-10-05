@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import messageInfoIcon from '../../../public/assets/message-square-info.png';
 import blockIcon from '../../../public/assets/block-icon.png';
@@ -93,7 +93,7 @@ const cratorProfileActions = [
   {
     icon: trashBlank,
     name: 'Delete'
-  },
+  }
 ];
 
 const uploadPhoto = [
@@ -162,14 +162,47 @@ const Banner = ({
     }
   };
 
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+  const handleClickOutside = (e: MouseEvent) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(e.target as Node)
+    ) {
+      setActionDivShow(false);
+    }
+  };
+  const photoDropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    document.addEventListener('click', handleOutside);
+    return () => {
+      document.removeEventListener('click', handleOutside);
+    };
+  }, []);
+  const handleOutside = (e: MouseEvent) => {
+    if (
+      photoDropdownRef.current &&
+      !photoDropdownRef.current.contains(e.target as Node)
+    ) {
+      setUploadPhotoShow(false);
+    }
+  };
+
   return (
     <div className={`${styleProperty ? styleProperty : 'px-8'}`}>
-      {/* <button onClick={() => setviewModal(true)}>Add Character</button> */}
+      {/* <button onClick={() => setviewModal(true)}>Add Character</button>  */}
       {backFromProfile === undefined ? (
         ''
       ) : (
         <div
-          className='flex gap-2 my-4 text-lg font-bold cursor-pointer'
+          className='my-4 flex cursor-pointer gap-2 text-lg font-bold'
           onClick={() => {
             backFromProfile(false);
           }}
@@ -181,15 +214,18 @@ const Banner = ({
 
       <div>
         <div className='h-max w-full overflow-hidden rounded-[16px] bg-[#121212]'>
-          <div className='relative block w-full sub-banner'>
+          <div className='sub-banner relative block w-full'>
             {removeCover ? (
               <div className='h-[200px] w-[1092px] bg-[#121212]'></div>
             ) : updatedProfile ? (
               <img className='h-[200px] w-[1092px] ' src={cropData} alt='' />
             ) : (
-              <Image className='w-full h-full ' src={Cover} alt='' />
+              <Image className='h-full w-full ' src={Cover} alt='' />
             )}
-            <div className='absolute right-[20px] top-[20px] cursor-pointer'>
+            <div
+              className='absolute right-[20px] top-[20px] cursor-pointer'
+              ref={photoDropdownRef}
+            >
               <Image
                 className='relative'
                 src={cameraIcon}
@@ -231,7 +267,7 @@ const Banner = ({
               }`}
             >
               <div className='relative h-[120px] w-[120px] overflow-hidden rounded-full'>
-                <Image className='w-full h-full' src={avatar} alt='' />
+                <Image className='h-full w-full' src={avatar} alt='' />
               </div>
               <div className={'flex gap-3 self-end'}>
                 {/* <button
@@ -256,22 +292,28 @@ const Banner = ({
                 <button className='h-max rounded-[14px] border border-[#5848BC] bg-[#5848BC] px-[20px] py-[11px] text-base font-bold text-white'>
                   Subscribe
                 </button> */}
-                <button className='px-5 py-[13px] flex gap-2 justify-center items-center rounded-[14px] bg-white/[0.08]'>
+                <button className='flex items-center justify-center gap-2 rounded-[14px] bg-white/[0.08] px-5 py-[13px]'>
                   <Image src={pen} alt={''} />
-                  <div className='text-white text-[16px] font-bold leading-[22px]'>Edit profile</div>
+                  <div className='text-[16px] font-bold leading-[22px] text-white'>
+                    Edit profile
+                  </div>
                 </button>
-                <div className='group relative flex px-5 py-[13px] justify-center items-center rounded-[14px] bg-white/[0.08]'>
+                <div className='group relative flex items-center justify-center rounded-[14px] bg-white/[0.08] px-5 py-[13px]'>
                   <Image src={eye} alt={''} />
                   <div className='invisible group-hover:visible group-hover:opacity-100'>
                     <div className='absolute -left-[16px] bottom-[64px] flex items-center justify-center rounded-[6px] bg-[#303030] px-3 py-[6px] text-[12px] font-normal leading-4 text-white'>
                       User view
                     </div>
-                    <div className='absolute -top-[20px] -right-[2px] h-[24px] w-10'>
-                      <Image className='w-full h-full' src={downArrow} alt={''} />
+                    <div className='absolute -right-[2px] -top-[20px] h-[24px] w-10'>
+                      <Image
+                        className='h-full w-full'
+                        src={downArrow}
+                        alt={''}
+                      />
                     </div>
                   </div>
                 </div>
-                <div className='relative'>
+                <div className='relative' ref={dropdownRef}>
                   <Image
                     className='relative cursor-pointer'
                     onClick={handleActionDivShow}
@@ -281,56 +323,57 @@ const Banner = ({
                   {actionDivShow ? (
                     <>
                       <div className='absolute right-0 top-[65px] z-0 flex h-max w-[218px] flex-col items-start rounded-[14px] bg-[#1A1A1A] py-2'>
-                        {component === 'CreatorStudioProfile' ?
-                        <div className='w-full'>
-                          {cratorProfileActions.map((item, index) => {
-                          return (
-                            <div
-                              key={index}
-                              onClick={(e) => handleExploreSelected(e)}
-                              className={`flex items-center w-full cursor-pointer gap-2 px-[16px] py-[10px] ${
-                                exploreSelectedTab === item.name
-                                  ? 'rounded-[8px] bg-white/[0.12] w-full'
-                                  : ''
-                              }`}
-                            >
-                              <Image
-                                className='object-contain'
-                                src={item.icon}
-                                alt={''}
-                              />
-                              <div className='text-[14px] font-normal text-[#FFFFFF]'>
-                                {item.name}
-                              </div>
-                            </div>
-                          );
-                        })} 
-                        </div> : 
-                        <div className='w-full'>
-                        {actions.map((item, index) => {
-                          return (
-                            <div
-                              key={index}
-                              onClick={(e) => handleExploreSelected(e)}
-                              className={`flex w-full cursor-pointer gap-2 px-[16px] py-[10px] ${
-                                exploreSelectedTab === item.name
-                                  ? ' rounded-[8px] bg-white/[0.12]'
-                                  : ''
-                              }`}
-                            >
-                              <Image
-                                className='object-contain'
-                                src={item.icon}
-                                alt={''}
-                              />
-                              <div className='text-[14px] font-normal text-[#FFFFFF]'>
-                                {item.name}
-                              </div>
-                            </div>
-                          );
-                        })}
-                        </div>
-                        }
+                        {component === 'CreatorStudioProfile' ? (
+                          <div className='w-full'>
+                            {cratorProfileActions.map((item, index) => {
+                              return (
+                                <div
+                                  key={index}
+                                  onClick={(e) => handleExploreSelected(e)}
+                                  className={`flex w-full cursor-pointer items-center gap-2 px-[16px] py-[10px] ${
+                                    exploreSelectedTab === item.name
+                                      ? 'w-full rounded-[8px] bg-white/[0.12]'
+                                      : ''
+                                  }`}
+                                >
+                                  <Image
+                                    className='object-contain'
+                                    src={item.icon}
+                                    alt={''}
+                                  />
+                                  <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                                    {item.name}
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        ) : (
+                          <div className='w-full'>
+                            {actions.map((item, index) => {
+                              return (
+                                <div
+                                  key={index}
+                                  onClick={(e) => handleExploreSelected(e)}
+                                  className={`flex w-full cursor-pointer gap-2 px-[16px] py-[10px] ${
+                                    exploreSelectedTab === item.name
+                                      ? ' rounded-[8px] bg-white/[0.12]'
+                                      : ''
+                                  }`}
+                                >
+                                  <Image
+                                    className='object-contain'
+                                    src={item.icon}
+                                    alt={''}
+                                  />
+                                  <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                                    {item.name}
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        )}
                       </div>
                     </>
                   ) : (
@@ -349,7 +392,7 @@ const Banner = ({
                 </div>
                 <div className='h-[24px] w-[24px]'>
                   <VerifiedIcon />
-                  {/* <Image className='w-full h-full' src={blueTickIcon} alt='' /> */}
+                  {/* <Image className='w-full h-full' src={blueTickIcon} alt='' />  */}
                 </div>
               </div>
 
@@ -406,8 +449,6 @@ const Banner = ({
                     </div>
                   );
                 })}
-
-                {/*  */}
               </div>
             </div>
           </div>
