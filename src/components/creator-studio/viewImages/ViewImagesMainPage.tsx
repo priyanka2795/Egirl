@@ -99,10 +99,7 @@ const ViewImagesMainPage = () => {
     }
   };
   return (
-    <div
-      className='mt-6 flex flex-col gap-5 rounded-[14px] bg-[#121212] p-6'
-      ref={dropdownRef}
-    >
+    <div className='mt-6 flex flex-col gap-5 rounded-[14px] bg-[#121212] p-6'>
       {albumImages ? (
         <>
           <div className='flex justify-between border-b border-white/[0.08] pb-5'>
@@ -129,7 +126,7 @@ const ViewImagesMainPage = () => {
               </div>
             </div>
           </div>
-          <div className='grid grid-cols-3 gap-3'>
+          <div className='grid grid-cols-3 gap-3' ref={dropdownRef}>
             {Array(5)
               .fill('0')
               .map((_, index: number) => (
