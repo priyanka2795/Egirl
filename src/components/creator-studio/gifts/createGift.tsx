@@ -11,13 +11,13 @@ import CreateCategory from './createCategory';
 import Tooltip from './tooltip';
 
 interface CreateGiftPopup {
-  createGiftClose: any;
-  GiftsView: any;
-  Previous: any;
-  AddCategory: any;
-  SetCategory: any;
-  GiftName: any;
-  SetGiftName: any;
+  createGiftClose: React.Dispatch<React.SetStateAction<boolean>>;
+  GiftsView: React.Dispatch<React.SetStateAction<boolean>>;
+  Previous: React.Dispatch<React.SetStateAction<boolean>>;
+  AddCategory: string[];
+  SetCategory: React.Dispatch<React.SetStateAction<string[]>>;
+  GiftName: string[];
+  SetGiftName: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 function CreateGift({

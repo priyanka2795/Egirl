@@ -6,12 +6,12 @@ import crossIcon from '../../../../public/assets/xmark (1).png';
 import GiftCardDelete from './giftCardDelete';
 
 interface EditCategoryPopup {
-  closeModal: (value: boolean) => void;
+  closeModal: React.Dispatch<React.SetStateAction<boolean>>;
   EditCategoryActionModal: any;
-  EditName: any;
-  SetEditName: any;
-  UpdateCategoryName: any;
-  DeleteActionCategory: any;
+  EditName: string;
+  SetEditName: React.Dispatch<React.SetStateAction<string>>;
+  UpdateCategoryName: () => void;
+  DeleteActionCategory: (value: number) => void;
   CategoryActionIndex: any;
 }
 

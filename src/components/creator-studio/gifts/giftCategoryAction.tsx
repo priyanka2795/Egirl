@@ -11,30 +11,29 @@ import crossIcon from '../../../../public/assets/xmark (1).png';
 import Tooltip from './tooltip';
 
 interface GiftCategoryAction {
-  AddCategory: any;
-  SetCategory: any;
-  // DeleteActionCategoryModal: any;
-  // DeleteActionCategory: any;
+  AddCategory: string[];
+  SetCategory: React.Dispatch<React.SetStateAction<string[]>>;
 }
 function GiftCategoryAction({ AddCategory, SetCategory }: GiftCategoryAction) {
   const [toggle, setToggle] = useState(false);
   const [closeState, setCloseState] = useState(false);
-  const [editCategoryActionModal, setEditCategoryActionModal] = useState('');
+  const [editCategoryActionModal, setEditCategoryActionModal] =
+    useState<number>();
   const [createCategory, setCreateCategory] = useState(false);
   const [isActive, setActive] = useState(false);
   const [tabs, setTabs] = useState(1);
-  const [editName, setEditName] = useState();
-  const [categoryActionIndex, setCategoryActionIndex] = useState();
+  const [editName, setEditName] = useState<string>('');
+  const [categoryActionIndex, setCategoryActionIndex] = useState<number>();
 
-  const CategoryAction = (e: any) => {
-    setEditCategoryActionModal(e);
+  const CategoryAction = (val: number) => {
+    setEditCategoryActionModal(val);
     setCloseState(true);
   };
   const ActiveTab = (items: number) => {
     setTabs(items);
   };
 
-  const EditCategoryName = (name: any, step: any) => {
+  const EditCategoryName = (name: string, step: number) => {
     setEditCategoryActionModal(step);
     setCloseState(true);
     setEditName(name);
@@ -47,17 +46,15 @@ function GiftCategoryAction({ AddCategory, SetCategory }: GiftCategoryAction) {
     }
   };
 
-  const DeleteActionCategoryModal = (ind: any, Step: any) => {
+  const DeleteActionCategoryModal = (index: number, Step: number) => {
     setEditCategoryActionModal(Step);
     setCloseState(true);
-    setCategoryActionIndex(ind);
+    setCategoryActionIndex(index);
   };
 
-  const DeleteActionCategory = (ind: any) => {
-    SetCategory((oldValue: any[]) => {
-      return oldValue.filter(
-        (item: string, index: number, array: any) => index !== ind
-      );
+  const DeleteActionCategory = (i: number) => {
+    SetCategory((oldValue: string[]) => {
+      return oldValue.filter((item: string, index: number) => index !== i);
     });
   };
 
@@ -65,7 +62,7 @@ function GiftCategoryAction({ AddCategory, SetCategory }: GiftCategoryAction) {
     <>
       <div className='mt-4 flex items-center justify-between'>
         <div className='flex items-center justify-center gap-3 '>
-          {AddCategory.map((items: any, index: any) => (
+          {AddCategory.map((items: any, index: number) => (
             <div
               className={`relative flex cursor-pointer items-center justify-center gap-2 rounded-xl px-3 py-1.5 font-bold ${
                 tabs === items ? 'bg-[#FFFFFF29]' : 'bg-transparent'

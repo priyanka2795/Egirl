@@ -5,7 +5,7 @@ import AlbumFirst from '../../../../public/assets/gallery-tab-img.png';
 import { Modal } from '@components/modal/modal';
 
 interface DeletePopup {
-  DeleteModal: (value: boolean) => void;
+  DeleteModal: React.Dispatch<React.SetStateAction<boolean>>;
   Heading: string;
   Content: string;
   Img: boolean;
@@ -14,7 +14,7 @@ interface DeletePopup {
   DeleteAllGift: any;
   DeleteBtnStep: number;
   DeleteActionCategory: any;
-  CategoryActionIndex: any;
+  CategoryActionIndex: number;
 }
 function GiftCardDelete({
   DeleteModal,

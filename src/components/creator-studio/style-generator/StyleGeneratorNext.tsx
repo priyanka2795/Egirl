@@ -41,9 +41,10 @@ const StyleGeneratorNext = ({
   setStyleGeneratorNext
 }: StyleGeneratorNextProps) => {
   const [styleGenHoverModal, setStyleGenHoverModal] = useState(false);
-  const [deleteStyleGenModal, setDeleteStyleGenModal] = useState(false);
+  const [deleteStyleGenModal, setDeleteStyleGenModal] =
+    useState<boolean>(false);
   const [showCards, setShowCards] = useState<boolean>(true);
-  const [showAddImagesModal, setShowAddImagesModal] = useState(false);
+  const [showAddImagesModal, setShowAddImagesModal] = useState<boolean>(false);
 
   return (
     <>

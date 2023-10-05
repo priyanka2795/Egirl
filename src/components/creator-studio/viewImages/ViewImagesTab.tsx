@@ -131,6 +131,7 @@ const ViewImagesTab = ({
       // setFilterToggle(false);
       setShortSelect(false);
       setAlbumShortSelect(false);
+      setFilterToggle(false);
     }
   };
 
@@ -145,7 +146,7 @@ const ViewImagesTab = ({
 
   const handleCountryChange = (
     e: React.ChangeEvent<HTMLInputElement>,
-    c: any
+    c: { id: string; modalName: string }
   ) => {
     setChecked((prevChecked: any) =>
       e.target.checked
@@ -155,7 +156,7 @@ const ViewImagesTab = ({
   };
   const handleStyleChange = (
     e: React.ChangeEvent<HTMLInputElement>,
-    c: any
+    c: { id: string; styleName: string }
   ) => {
     setStyleChecked((prevChecked: any) =>
       e.target.checked
@@ -269,18 +270,16 @@ const ViewImagesTab = ({
               </div>
               {shortSelect && (
                 <div className='shadow-[0px 8px 12px 0px #0000001F] absolute right-0 top-12 z-50 flex w-[170px] flex-col gap-2 rounded-[14px] bg-[#1A1A1A] px-3 py-4'>
-                  <>
-                    {short.map((item, index) => (
-                      <div
-                        className='flex cursor-pointer items-center gap-2'
-                        onClick={() => SelectShort(index)}
-                        key={index}
-                      >
-                        {shortTab == index ? <SelectIcon /> : <UnSelectIcon />}
-                        <p>{item}</p>
-                      </div>
-                    ))}
-                  </>
+                  {short.map((item, index) => (
+                    <div
+                      className='flex cursor-pointer items-center gap-2'
+                      onClick={() => SelectShort(index)}
+                      key={index}
+                    >
+                      {shortTab == index ? <SelectIcon /> : <UnSelectIcon />}
+                      <p>{item}</p>
+                    </div>
+                  ))}
                 </div>
               )}
             </div>
@@ -434,7 +433,7 @@ const ViewImagesTab = ({
                             </label>
                           </div>
 
-                          {Modal.map((c) => (
+                          {Modal.map((c: { id: string; modalName: string }) => (
                             <div className='flex items-center gap-2' key={c.id}>
                               <input
                                 className='h-5 w-5 rounded border-[#FFFFFF3D] bg-transparent text-[#5848BC] focus:ring-0 dark:ring-offset-0  dark:focus:ring-0 '
@@ -480,7 +479,7 @@ const ViewImagesTab = ({
                             </label>
                           </div>
 
-                          {Style.map((c) => (
+                          {Style.map((c: { id: string; styleName: string }) => (
                             <div className='flex items-center gap-2' key={c.id}>
                               <input
                                 className='h-5 w-5 rounded border-[#FFFFFF3D] bg-transparent text-[#5848BC] focus:ring-0 dark:ring-offset-0  dark:focus:ring-0 '

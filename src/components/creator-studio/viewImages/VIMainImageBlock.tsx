@@ -57,11 +57,11 @@ const VIMainImageBlock = ({
   const [allImages, setAllImages] = useState(images);
   const [showDropDown, setShowDropDown] = useState<number | null>(null);
   const [allImage, setAllImage] = useState<number | null>(null);
-  const [deleteModal, setDeleteModal] = useState(false);
+  const [deleteModal, setDeleteModal] = useState<boolean>(false);
   const [editAlbum, setEditAlbum] = useState<boolean>(false);
-  const [albumDetails, setAlbumDetails] = useState(false);
-  const [deleteImageModal, setDeleteImageModal] = useState(false);
-  const [moveAlbumModal, setMoveAlbumModal] = useState(false);
+  const [albumDetails, setAlbumDetails] = useState<boolean>(false);
+  const [deleteImageModal, setDeleteImageModal] = useState<boolean>(false);
+  const [moveAlbumModal, setMoveAlbumModal] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const AlbumImageToggle = (index: number) => {
@@ -187,33 +187,31 @@ const VIMainImageBlock = ({
           </div>
         </>
       ) : (
-        <>
-          <div className='grid grid-cols-3 gap-3' ref={dropdownRef}>
-            {allImages.map((item, index: number) => (
+        <div className='grid grid-cols-3 gap-3' ref={dropdownRef}>
+          {allImages.map((item, index: number) => (
+            <div
+              className='sub-banner group relative h-full w-full rounded-[16px] bg-red-100'
+              key={index}
+            >
+              <Image
+                className=' h-full !w-full rounded-[16px] object-cover'
+                src={item.image}
+                alt={''}
+              />
               <div
-                className='sub-banner group relative h-full w-full rounded-[16px] bg-red-100'
-                key={index}
+                className='invisible absolute right-[7px] top-[7px] flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full bg-black/[0.48] group-hover:visible group-hover:opacity-100'
+                onClick={() => AllImageToggle(index)}
               >
-                <Image
-                  className=' h-full !w-full rounded-[16px] object-cover'
-                  src={item.image}
-                  alt={''}
-                />
-                <div
-                  className='invisible absolute right-[7px] top-[7px] flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full bg-black/[0.48] group-hover:visible group-hover:opacity-100'
-                  onClick={() => AllImageToggle(index)}
-                >
-                  <Image className='h-full w-full' src={threeDots} alt={''} />
-                </div>
-                {allImage === index && (
-                  <div className='absolute right-3 top-12 z-50'>
-                    <ViewImagesDropDown DeleteImage={DeleteImage} />
-                  </div>
-                )}
+                <Image className='h-full w-full' src={threeDots} alt={''} />
               </div>
-            ))}
-          </div>
-        </>
+              {allImage === index && (
+                <div className='absolute right-3 top-12 z-50'>
+                  <ViewImagesDropDown DeleteImage={DeleteImage} />
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
       )}
 
       {deleteModal && (

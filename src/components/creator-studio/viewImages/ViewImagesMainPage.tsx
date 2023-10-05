@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ViewImagesTab from './ViewImagesTab';
 import VIMainImageBlock from './VIMainImageBlock';
 import Image from 'next/image';
@@ -83,7 +83,21 @@ const ViewImagesMainPage = () => {
     });
     setAlbumData(filteredItems);
   };
-
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    window.addEventListener('click', handleClickOutside);
+    return () => {
+      window.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+  const handleClickOutside = (e: MouseEvent) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(e.target as Node)
+    ) {
+      setAllImage(undefined);
+    }
+  };
   return (
     <div className='mt-6 flex flex-col gap-5 rounded-[14px] bg-[#121212] p-6'>
       {albumImages ? (
@@ -107,18 +121,18 @@ const ViewImagesMainPage = () => {
                 <div
                   className={`flex h-9 w-9 cursor-pointer items-center justify-center rounded-full `}
                 >
-                  <Image src={filter} alt={''} />
+                  <Image src={filter} alt='' />
                 </div>
               </div>
             </div>
           </div>
-          <div className='grid grid-cols-3 gap-3'>
+          <div className='grid grid-cols-3 gap-3' ref={dropdownRef}>
             {Array(5)
               .fill('0')
               .map((_, index: number) => (
-                <div className='sub-banner group relative h-full w-full'>
+                <div className='relative w-full h-full sub-banner group rounded-[16px]'>
                   <Image
-                    className='w-full object-cover '
+                    className='w-full object-cover rounded-[16px]'
                     src={image6}
                     alt={''}
                   />
@@ -129,7 +143,7 @@ const ViewImagesMainPage = () => {
                     <Image className='' src={threeDots} alt={''} />
                   </div>
                   {allImage === index && (
-                    <div className='absolute right-3 top-12 z-50'>
+                    <div className='absolute z-50 right-3 top-12'>
                       <ViewImagesDropDown DeleteImage />
                     </div>
                   )}

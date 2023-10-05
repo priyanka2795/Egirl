@@ -6,11 +6,11 @@ import SelectImage from './selectImage';
 import NotFound from 'pages/404';
 
 interface CreateCategory {
-  CategoryClose: any;
+  CategoryClose: React.Dispatch<React.SetStateAction<boolean>>;
   Steps: any;
   Previous: any;
-  AddCategory: any;
-  SetCategory: any;
+  AddCategory: string[];
+  SetCategory: React.Dispatch<React.SetStateAction<string[]>>;
 }
 const CreateCategory = ({
   CategoryClose,

@@ -11,6 +11,7 @@ const CreatorStudio = () => {
         styleProperty={'px-0 pt-2'}
         followBtnStyle={'border border-[#7362C6] bg-transparent text-[#7362C6]'}
         followText={'Follow'}
+        component={'CreatorStudioProfile'}
       />
 
       <div className='flex max-w-[1196px] justify-between gap-5'>

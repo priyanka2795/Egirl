@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import grid2 from '../../../../public/assets/grid-horizontal.png';
 import arrowUpArrowDown from '../../../../public/assets/arrow-down-arrow-up2.png';
 import filter from '../../../../public/assets/filter.png';
@@ -53,7 +53,7 @@ const ViewStylesTab = ({
   const [isActive, setActive] = useState(false);
   const [viewStyleFilter, setViewStyleFilter] = useState(false);
 
-  const handleActionButtons = (index: any) => {
+  const handleActionButtons = (index: number) => {
     setActiveIndex(index);
     if (index === 0) {
       setActive(!isActive);
@@ -72,9 +72,27 @@ const ViewStylesTab = ({
     }
   };
 
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+  const handleClickOutside = (e: MouseEvent) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(e.target as Node)
+    ) {
+      setShowSort(false);
+      setViewStyleFilter(false);
+    }
+  };
+
   return (
     <>
-      <div className='mt-6 flex justify-between'>
+      <div className='mt-6 flex justify-between' ref={dropdownRef}>
         {component === 'GeneratedStyle' ? (
           <div className='flex items-center gap-2'>
             <Image
@@ -132,7 +150,7 @@ const ViewStylesTab = ({
           </div>
         ) : (
           <div className='flex items-start justify-start gap-3'>
-            {tabContent.map((items: any, index: any) => {
+            {tabContent.map((items: string, index: number) => {
               return (
                 <div
                   key={index}

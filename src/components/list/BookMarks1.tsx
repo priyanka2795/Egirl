@@ -13,7 +13,7 @@ import ClearBookMarkModal from './ClearBookMarkModal';
 
 const userFrame = [
     {
-        image: bookmarkImg1,
+        image: bookmarkImg3,
         reaction: bookmarkFilled,
         avatar: micaChanAvatar,
         name: 'Mica-chan',
@@ -62,7 +62,7 @@ const userFrame = [
         userName: '@mikachan • 6h'
     },
     {
-        image: bookmarkImg1,
+        image: bookmarkImg3,
         reaction: bookmarkFilled,
         avatar: micaChanAvatar,
         name: 'Mica-chan',

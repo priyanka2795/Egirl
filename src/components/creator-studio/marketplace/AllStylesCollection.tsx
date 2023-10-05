@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import arrowDown from '../../../../public/assets/arrow-down.png';
 import arrowUp from '../../../../public/assets/arrow-up.png';
@@ -31,9 +31,27 @@ const AllStylesCollection = () => {
     setSelectedDuration(ele);
   };
 
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+  const handleClickOutside = (e: MouseEvent) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(e.target as Node)
+    ) {
+      setShowDuration(false);
+      setShowNewest(false);
+    }
+  };
+
   return (
     <>
-      <div className='mb-4 mt-8 flex justify-between'>
+      <div className='mb-4 mt-8 flex justify-between' ref={dropdownRef}>
         <div className='text-[18px] font-bold leading-6 text-[#FFF]'>
           All Styles
         </div>
