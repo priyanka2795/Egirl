@@ -3,8 +3,11 @@ import HeartIcon from './svg/heart-icon.svg';
 import StarIcon from './svg/star-icon.svg';
 import PointedStarIcon from './svg/pointed-star-icon.svg';
 import { Modal } from '@components/modal/modal';
-import CloseIcon from '../../../public/assets/svgImages/close-icon.svg'
-
+import CloseIcon from '../../../public/assets/svgImages/close-icon.svg';
+import Token from './svg/token2.svg';
+import TokenPrimary from './svg/tokenprimary.svg';
+import Image from 'next/image';
+import downArrow from '../../../public/assets/down-arrow-img.png';
 const featureOpt = [
   '2000 tokens per month',
   '2 free subs per month ',
@@ -18,26 +21,53 @@ const currentPlan = [
   'If you use up all your tokens, you can purchase more or upgrade to Egirls+'
 ];
 
-interface CurrentPlaneProp{
-    closeState:React.Dispatch<React.SetStateAction<boolean>>,
+const tokenData = [
+  {
+    title: 'Text messages',
+    count: 1,
+    text: 'Enjoy 5% earnings based on user spending, no referrals required'
+  },
+  {
+    title: 'Voice messages',
+    count: 5,
+    text: 'Enjoy 5% earnings based on user spending, no referrals required'
+  },
+  {
+    title: 'Gifts',
+    count: 10,
+    text: 'Level up to 10% earnings by referring 100 people'
+  },
+  {
+    title: 'Image requests',
+    count: 10,
+    text: 'Rich the pinnacle of 15% earnings by referring 1000 people'
+  }
+];
+
+interface CurrentPlaneProp {
+  closeState: React.Dispatch<React.SetStateAction<boolean>>;
 }
-const CurrentPlaneModal = ({closeState}:CurrentPlaneProp) => {
+const CurrentPlaneModal = ({ closeState }: CurrentPlaneProp) => {
   return (
     <>
       <Modal
         open={true}
-        modalClassName='flex flex-col gap-6 w-full pt-10 pb-8 px-8 rounded-2xl h-max bg-[#121212] max-w-[550px] relative'
+        modalClassName='flex flex-col gap-6 w-full  rounded-2xl h-max bg-[#121212] max-w-[430px] relative'
         closeModal={() => closeState(false)}
-        
         modalOverlayStyle='!bg-black/80'
       >
-         <div className='absolute cursor-pointer right-6 top-6' onClick={() => closeState(false)}><CloseIcon/></div>
-        
-        <div>
+        {/* <div
+          className='absolute cursor-pointer right-6 top-6'
+          onClick={() => closeState(false)}
+        >
+          <CloseIcon />
+        </div> */}
+
+        {/* <div>
           <h3 className='text-[22px] font-bold leading-loose text-white '>
             You are currently on a free plan
           </h3>
-          <ul className="ml-[14px] list-disc max-w-[80%]">
+          <ul className='ml-[14px] max-w-[80%] list-disc'>
             {currentPlan.map((items) => {
               return <li className='text-[15px] text-[#979797]'>{items}</li>;
             })}
@@ -64,9 +94,76 @@ const CurrentPlaneModal = ({closeState}:CurrentPlaneProp) => {
             );
           })}
         </div>
-        <button className='mt-4 w-full rounded-[14px] bg-[#5848BC] py-5 py-[13px] font-bold' onClick={() => closeState(false)}>
+        <button
+          className='mt-4 w-full rounded-[14px] bg-[#5848BC] py-5 py-[13px] font-bold'
+          onClick={() => closeState(false)}
+        >
           $14.99 per month
-        </button>
+        </button> */}
+        <div className='pb-8 pt-6 '>
+          <div className='flex justify-between border-b-[1px] border-zinc-800 px-7 pb-4'>
+            <h3 className='text-[18px] font-bold leading-loose text-white '>
+              Token uses
+            </h3>
+            <div className='flex items-center gap-5 '>
+              <div className='invisible'>
+                <div className='absolute right-[80px] top-[0px] w-[60px] items-center justify-center rounded-[6px] bg-[#303030] px-3 py-[6px]'>
+                  <div className='text-center text-[12px] font-bold leading-4 text-[#FFFFFF]'>
+                    Token
+                  </div>
+                </div>
+                <div className='absolute right-[100px] top-[17px] h-[6px] w-3'>
+                  <Image className='h-full w-full' src={downArrow} alt={''} />
+                </div>
+              </div>
+              <div className='flex items-center gap-1 '>
+                <Token className='cursor-pointer' />
+
+                <div className='text-[15px] font-semibold text-[#979797]'>
+                  50
+                </div>
+              </div>
+              <div
+                className='cursor-pointer '
+                onClick={() => closeState(false)}
+              >
+                <CloseIcon />
+              </div>
+            </div>
+          </div>
+
+          <div className='px-8 pb-2 pt-5'>
+            {tokenData.map((items, index) => {
+              return (
+                <div
+                  className='mb-3 border-b-[1px] border-zinc-800 py-1 pb-5 last:mb-0 last:border-b-0'
+                  key={index}
+                >
+                  <div className='flex gap-4'>
+                    <h5 className=' text-[22px] font-bold text-white'>
+                      {items.title}
+                    </h5>
+                    <div className='flex h-[30px] w-[50px] items-center justify-center gap-1 rounded-[8px] bg-[#26233f]'>
+                      <TokenPrimary />
+                      <div className='text-[13px]'>{items.count}</div>
+                    </div>
+                  </div>
+                  <p className='pt-1 text-[14px] text-[#979797]'>
+                    {items.text}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+          <div className='px-8'>
+            <button
+              className=' w-full rounded-[14px] bg-[#5848BC]  py-5 py-[13px] font-bold'
+              onClick={() => closeState(false)}
+            >
+              Get more tokens
+            </button>
+          </div>
+        </div>
       </Modal>
     </>
   );
