@@ -7,7 +7,7 @@ import deleteIcon from '../../../../../public/assets/trash-blank.png';
 import Image from 'next/image';
 
 interface AddedCardProps {
-    setAddedCard: any;
+    setAddedCard: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const AddedCard = ( {setAddedCard} : AddedCardProps ) => {
@@ -47,7 +47,6 @@ const AddedCard = ( {setAddedCard} : AddedCardProps ) => {
             </div>
             </div>
         }
-            
         </div>
     </div>
   )

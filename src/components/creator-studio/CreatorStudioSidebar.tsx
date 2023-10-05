@@ -17,6 +17,16 @@ import StyleGenerator from './svg/StyleGenerator';
 import MoreIcon from './svg/MoreIcon.svg';
 import SidebarModal from './SidebarModal';
 import MoreOptionsModal from './MoreOptionsModal';
+import layers from './svg/Layers.svg';
+import shop from './svg/shop.svg';
+import palette from './svg/palette.svg';
+import gift from './svg/gift.svg';
+import imageGeneratorActive from './svg/image-generator.svg';
+import viewImagesActive from './svg/view-images.svg';
+import personalityActive from './svg/user-alt-1.svg';
+import analyticsActive from './svg/Chart.svg';
+import voiceActive from './svg/microphone-alt.svg';
+import CharacterAdd from './NewCharacter/CharacterAdd';
 
 interface CreatorStudioNavbarPropProp {
   shrinkSideBar: boolean;
@@ -29,7 +39,9 @@ const CreatorStudioSidebar = ({
 }: CreatorStudioNavbarPropProp) => {
   const [sidebarModal, setSidebarModal] = useState(false);
   const [moreOptionsModal, setMoreOptionsModal] = useState(false);
+  const [newCharacter, setNewCharacter] = useState(false);
   // const [sideBarShrink, setSideBarShrink] = useState(false);
+  console.log('sidebarModal---', sidebarModal);
   return (
     <>
       <div
@@ -61,20 +73,20 @@ const CreatorStudioSidebar = ({
               >
                 Mika-chan
               </div>
-              {sidebarModal && (
-                <SidebarModal SetSidebarModal={setSidebarModal} />
-              )}
             </div>
             <div className='h-full mt-2'>
               <Image src={arrowDown} alt='' />
             </div>
+            {
+              sidebarModal && <SidebarModal setSidebarModal={setSidebarModal} setNewCharacter={setNewCharacter} />
+            }
           </div>
 
           <SidebarMenuItem
             text='Analytics'
             href='/analytics'
             Icon={AnalyticsIcon}
-            IconActive={HomeActiveIcon}
+            IconActive={analyticsActive}
             StyleClasses={`max-[1279px]:flex max-[1279px]:!justify-center max-[1279px]:max-w-[52px] max-[1279px]:mx-auto ${
               shrinkSideBar === true
                 ? 'flex !justify-center max-w-[52px] mx-auto'
@@ -82,7 +94,7 @@ const CreatorStudioSidebar = ({
             }`}
             sideBarMenuText={`max-[1279px]:!hidden ${
               shrinkSideBar === true ? '!hidden' : 'w-full flex justify-center'
-            } `}
+            }`}
           />
           <div
             className={`max-[1279px]:mb-2 max-[1279px]:border-b-2 max-[1279px]:border-[#252525] ${
@@ -105,7 +117,7 @@ const CreatorStudioSidebar = ({
             text='View Images'
             href='/view-images'
             Icon={ViewImg}
-            IconActive={HomeActiveIcon}
+            IconActive={viewImagesActive}
             StyleClasses={`max-[1279px]:flex max-[1279px]:!justify-center max-[1279px]:max-w-[52px] max-[1279px]:mx-auto ${
               shrinkSideBar === true
                 ? 'flex !justify-center max-w-[52px] mx-auto'
@@ -119,7 +131,7 @@ const CreatorStudioSidebar = ({
             text='Image Generator'
             href='/image-generator'
             Icon={ImageGeneratorIcon}
-            IconActive={HomeActiveIcon}
+            IconActive={imageGeneratorActive}
             StyleClasses={`max-[1279px]:flex max-[1279px]:!justify-center max-[1279px]:max-w-[52px] max-[1279px]:mx-auto ${
               shrinkSideBar === true
                 ? 'flex !justify-center max-w-[52px] mx-auto'
@@ -149,7 +161,7 @@ const CreatorStudioSidebar = ({
             text='Personality'
             href='/personality'
             Icon={PersonalityIcon}
-            IconActive={HomeActiveIcon}
+            IconActive={personalityActive}
             StyleClasses={`max-[1279px]:flex max-[1279px]:!justify-center max-[1279px]:max-w-[52px] max-[1279px]:mx-auto ${
               shrinkSideBar === true
                 ? 'flex !justify-center max-w-[52px] mx-auto'
@@ -163,13 +175,13 @@ const CreatorStudioSidebar = ({
             text='Voice'
             href='/voice'
             Icon={VoiceIcon}
-            IconActive={HomeActiveIcon}
-            StyleClasses={`${
+            IconActive={voiceActive}
+            StyleClasses={`max-[1279px]:flex max-[1279px]:!justify-center max-[1279px]:max-w-[52px] max-[1279px]:mx-auto ${
               shrinkSideBar === true
                 ? 'flex !justify-center max-w-[52px] mx-auto'
                 : 'pl-3'
             }`}
-            sideBarMenuText={`${
+            sideBarMenuText={`max-[1279px]:!hidden ${
               shrinkSideBar === true ? '!hidden' : 'w-full flex justify-center'
             } `}
           />
@@ -177,25 +189,25 @@ const CreatorStudioSidebar = ({
             text='Gifts'
             href='/gifts'
             Icon={GiftIcon}
-            IconActive={HomeActiveIcon}
-            StyleClasses={`${
+            IconActive={gift}
+            StyleClasses={`max-[1279px]:flex max-[1279px]:!justify-center max-[1279px]:max-w-[52px] max-[1279px]:mx-auto ${
               shrinkSideBar === true
                 ? 'flex !justify-center max-w-[52px] mx-auto'
                 : 'pl-3'
             }`}
-            sideBarMenuText={`${
+            sideBarMenuText={`max-[1279px]:!hidden ${
               shrinkSideBar === true ? '!hidden' : 'w-full flex justify-center'
             } `}
           />
           <div
-            className={`${
+            className={`max-[1279px]:mb-2 max-[1279px]:border-b-2 max-[1279px]:border-[#252525] ${
               shrinkSideBar === true
                 ? 'mb-2 border-b-2 border-[#252525]'
-                : 'inline-flex h-10 items-start justify-start gap-2.5 px-3 py-2.5 '
+                : 'min-[1280px]:inline-flex min-[1280px]:h-10 min-[1280px]:items-start min-[1280px]:justify-start min-[1280px]:gap-2.5 min-[1280px]:px-3 min-[1280px]:py-2.5 '
             }`}
           >
             <div
-              className={`${
+              className={`max-[1279px]:hidden ${
                 shrinkSideBar === true
                   ? 'hidden'
                   : 'text-[13px] font-semibold uppercase leading-tight tracking-tight text-neutral-600'
@@ -208,13 +220,13 @@ const CreatorStudioSidebar = ({
             text='View Styles'
             href='/view-style'
             Icon={ViewStyleIcon}
-            IconActive={HomeActiveIcon}
-            StyleClasses={`${
+            IconActive={layers}
+            StyleClasses={`max-[1279px]:flex max-[1279px]:!justify-center max-[1279px]:max-w-[52px] max-[1279px]:mx-auto ${
               shrinkSideBar === true
                 ? 'flex !justify-center max-w-[52px] mx-auto'
                 : 'pl-3'
             }`}
-            sideBarMenuText={`${
+            sideBarMenuText={`max-[1279px]:!hidden ${
               shrinkSideBar === true ? '!hidden' : 'w-full'
             } `}
           />
@@ -222,13 +234,13 @@ const CreatorStudioSidebar = ({
             text='Marketplace'
             href='/marketplace'
             Icon={MarketplaceIcon}
-            IconActive={HomeActiveIcon}
-            StyleClasses={`${
+            IconActive={shop}
+            StyleClasses={`max-[1279px]:flex max-[1279px]:!justify-center max-[1279px]:max-w-[52px] max-[1279px]:mx-auto ${
               shrinkSideBar === true
                 ? 'flex !justify-center max-w-[52px] mx-auto'
                 : 'pl-3'
             }`}
-            sideBarMenuText={`${
+            sideBarMenuText={`max-[1279px]:!hidden ${
               shrinkSideBar === true ? '!hidden' : 'w-full'
             } `}
           />
@@ -236,20 +248,20 @@ const CreatorStudioSidebar = ({
             text='Style Generator'
             href='/style-generator'
             Icon={StyleGenerator}
-            IconActive={HomeActiveIcon}
-            StyleClasses={`${
+            IconActive={palette}
+            StyleClasses={`max-[1279px]:flex max-[1279px]:!justify-center max-[1279px]:max-w-[52px] max-[1279px]:mx-auto ${
               shrinkSideBar === true
                 ? 'flex !justify-center max-w-[52px] mx-auto'
                 : 'pl-3'
             }`}
-            sideBarMenuText={`${
+            sideBarMenuText={`max-[1279px]:!hidden ${
               shrinkSideBar === true ? '!hidden' : 'w-full'
             } `}
           />
         </div>
 
         <div
-          className={`${
+          className={`max-[1279px]:mx-2 ${
             shrinkSideBar !== true ? 'mx-3 max-w-[276px] ' : 'mx-2'
           }`}
         >
@@ -261,7 +273,7 @@ const CreatorStudioSidebar = ({
               <MoreIcon />
             </div>
             <p
-              className={`text-[15px] font-semibold leading-5 text-white ${
+              className={`text-[15px] font-semibold leading-5 text-white max-[1279px]:!hidden ${
                 shrinkSideBar === true ? '!hidden' : 'w-full'
               }`}
             >
@@ -270,6 +282,9 @@ const CreatorStudioSidebar = ({
             {moreOptionsModal && <MoreOptionsModal />}
           </div>
         </div>
+        {
+          newCharacter && <CharacterAdd NewCharacterClose={setNewCharacter} />
+        }
       </div>
     </>
   );

@@ -2,7 +2,6 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 // import TinderCard from 'react-tinder-card';
 import cardImg from '../../../public/assets/explore/explore-img.png';
 import Image from 'next/image';
-
 import RedCloseIcon from './svg/red-cross-icon.svg';
 import UserIcon from './svg/user-icon.svg';
 import GreenHeartIcon from './svg/green-heart-icon.svg';
@@ -57,7 +56,7 @@ const Card = () => {
     []
   );
 
-  const updateCurrentIndex = (val: any) => {
+  const updateCurrentIndex = (val: number) => {
     setCurrentIndex(val);
     currentIndexRef.current = val;
   };

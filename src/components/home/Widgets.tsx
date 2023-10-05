@@ -32,7 +32,7 @@ export default function Widgets() {
   return (
     <div className='hidden bg-main-background lg:inline xl:w-[376px]'>
       <div
-        className={`sticky z-50  ${
+        className={`sticky z-50 ${
           sticky && animate ? 'top-0' : '-top-[108px]'
         } h-[108px] max-w-[376px] bg-main-background transition-all duration-[300ms] ease-in lg:min-w-[376px]`}
       >

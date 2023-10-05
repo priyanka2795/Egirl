@@ -1,34 +1,62 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
-import deleteIcon from '../../../public/assets/delete-icon.png';
 import ClearBookMarkModal from '@components/list/ClearBookMarkModal';
 
 interface DefaultTabProp {
   activeListTab: string;
   setActiveTab: any;
   tabContentArray: string[];
+  component?:any;
+  setShowSubscriptionOption?: any;
+  setShowFollowing?: any;
+  setShowBookmark?: any;
+  setShowCollections?: any;
+  setShowRealistic?: any;
 }
 const DefaultTab = ({
   activeListTab,
   setActiveTab,
-  tabContentArray
+  tabContentArray,
+  component,
+  setShowSubscriptionOption,
+  setShowFollowing,
+  setShowBookmark,
+  setShowCollections,
+  setShowRealistic
 }: DefaultTabProp) => {
   const [exploreSelectedTab, setExploreSelected] = useState(activeListTab);
-  const [deleteBookmarkState , setDeleteBookmarkState] = useState(false)
 
-  const handleExploreSelected = (e: any) => {
-    setExploreSelected(e.target.innerText);
-    setActiveTab(e.target.innerText);
+  const handleExploreSelected = (item:string) => {
+    setShowRealistic(false);
+    setExploreSelected(item);
+    setActiveTab(item);
+    if(item === 'Subscriptions') {
+      setShowFollowing(false);
+      setShowBookmark(false);
+      setShowCollections(false);
+    } else if(item === 'Following') {
+      setShowSubscriptionOption(false);
+      setShowBookmark(false);
+      setShowCollections(false);
+    } else if(item === 'Bookmarks') {
+      setShowSubscriptionOption(false);
+      setShowFollowing(false);
+      setShowCollections(false);
+    } else {
+      setShowSubscriptionOption(false);
+      setShowFollowing(false);
+      setShowBookmark(false);
+    }
   };
   return (
     <div className='flex items-center justify-between border-b border-white border-opacity-10'>
-      <div className='flex justify-between px-8 py-4'>
+      <div className={`flex justify-between w-full ${component === 'ListIndex' ? 'px-8 pt-4 pb-3' : ' px-8 py-4'}`}>
         <div className='flex items-start justify-start gap-3'>
           {tabContentArray.map((items: string, index: number) => {
             return (
               <div
                 key={index}
-                onClick={(e) => handleExploreSelected(e)}
+                onClick={(e) => handleExploreSelected(items)}
                 className={`flex cursor-pointer gap-2.5 rounded-xl px-4 py-2 text-[15px] font-bold ${
                   exploreSelectedTab === items
                     ? ' bg-white bg-opacity-20 text-white  '
@@ -41,15 +69,6 @@ const DefaultTab = ({
           })}
         </div>
       </div>
-      {activeListTab === 'Bookmarks' && 
-       <button className='flex gap-[6px] rounded-[10px] bg-white/[0.08] px-3 py-[7px] h-max' onClick={() => {setDeleteBookmarkState(true)}}>
-       <Image className='h-[16px] w-[16px]' src={deleteIcon} alt={''} />
-       <div className='text-xs font-bold text-[#979797]'>Clear All</div>
-     </button>
-      }
-     {
-      deleteBookmarkState && <ClearBookMarkModal heading={'Do you want to clear all your bookmarks?'} paragraph={'When confirming, note that the bookmark list cannot be restored'} closeModalItem={setDeleteBookmarkState}/> 
-     }
     </div>
   );
 };

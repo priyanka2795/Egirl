@@ -38,7 +38,7 @@ const ImageSetting = ({
         <ImageNumber />
         <ImageDimension />
         <div className='px-5'>
-          <div className='mt-6 flex justify-between'>
+          <div className='flex justify-between mt-6'>
             <h6 className='text-[14px] font-semibold leading-[18px] text-white'>
               Inpainting
             </h6>
@@ -48,34 +48,37 @@ const ImageSetting = ({
               toggleText={``}
               infoIcon={'hidden'}
               toggleClasses={'bg-[#383838]'}
+              component={'ImageSetting'}
             />
           </div>
 
-          <div className='mt-6 flex justify-between'>
-            <h6 className='text-sm font-semibold'>Posing</h6>
+          <div className='flex justify-between mt-6'>
+            <h6 className='text-[14px] font-semibold leading-[18px] text-white'>Posing</h6>
             <Toggle
               handleToggleState={() => SetPosingToggle(!PosingToggle)}
               toggleState={PosingToggle}
               toggleText={``}
               infoIcon={'hidden'}
               toggleClasses={'bg-[#383838]'}
+              component={'ImageSetting'}
             />
           </div>
 
           <div className='mt-6 flex justify-between border-b border-white/[0.08] pb-5'>
-            <h6 className='text-sm font-semibold'>My character</h6>
+            <h6 className='text-[14px] font-semibold leading-[18px] text-white'>My character</h6>
             <Toggle
               handleToggleState={() => SetMyCharacterToggle(!MyCharacterToggle)}
               toggleState={MyCharacterToggle}
               toggleText={``}
               infoIcon={'hidden'}
               toggleClasses={'bg-[#383838]'}
+              component={'ImageSetting'}
             />
           </div>
         </div>
-        <div className='mt-6 px-5 pb-5'>
+        <div className='px-5 pb-5 mt-6'>
           <button
-            className='flex w-full items-center justify-between'
+            className='flex items-center justify-between w-full'
             onClick={() => setAdvancedSettings(!advancedSettings)}
           >
             <h6 className='text-sm font-semibold'>Advanced settings</h6>
@@ -90,7 +93,7 @@ const ImageSetting = ({
                   <p className='text-[#979797]'>Guidance Scale</p>
                   <Image src={Information} />
                 </div>
-                <div className='flex w-full items-center justify-between gap-2'>
+                <div className='flex items-center justify-between w-full gap-2'>
                   <RangePicker
                     values={guidanceScale}
                     setValues={setGuidanceScale}
@@ -105,7 +108,7 @@ const ImageSetting = ({
                   <p className='text-[#979797]'>Step Scale</p>
                   <Image src={Information} />
                 </div>
-                <div className='flex w-full items-center justify-between gap-2'>
+                <div className='flex items-center justify-between w-full gap-2'>
                   <RangePicker values={stepScale} setValues={setStepScale} />
                   <div className='flex h-[36px] w-[47px] items-center justify-center rounded-[10px] bg-[#FFFFFF0D]'>
                     {stepScale}
