@@ -157,17 +157,28 @@ const Banner = ({
       dropdownRef.current &&
       !dropdownRef.current.contains(e.target as Node)
     ) {
-      // setFilterToggle(false);
-      setUploadPhotoShow(false);
       setActionDivShow(false);
+    }
+  };
+  const photoDropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    document.addEventListener('click', handleOutside);
+    return () => {
+      document.removeEventListener('click', handleOutside);
+    };
+  }, []);
+  const handleOutside = (e: MouseEvent) => {
+    if (
+      photoDropdownRef.current &&
+      !photoDropdownRef.current.contains(e.target as Node)
+    ) {
+      setUploadPhotoShow(false);
     }
   };
 
   return (
-    <div
-      className={`${styleProperty ? styleProperty : 'px-8'}`}
-      ref={dropdownRef}
-    >
+    <div className={`${styleProperty ? styleProperty : 'px-8'}`}>
       {/* <button onClick={() => setviewModal(true)}>Add Character</button> */}
       {backFromProfile === undefined ? (
         ''
@@ -192,7 +203,10 @@ const Banner = ({
           ) : (
             <Image className='h-full w-full ' src={Cover} alt='' />
           )}
-          <div className='absolute right-[20px] top-[20px] cursor-pointer'>
+          <div
+            className='absolute right-[20px] top-[20px] cursor-pointer'
+            ref={photoDropdownRef}
+          >
             <Image
               className='relative'
               src={cameraIcon}
@@ -257,7 +271,7 @@ const Banner = ({
               <button className='h-max rounded-[14px] border border-[#5848BC] bg-[#5848BC] px-[20px] py-[11px] text-base font-bold text-white'>
                 Subscribe
               </button>
-              <div className='relative'>
+              <div className='relative' ref={dropdownRef}>
                 <Image
                   className='relative cursor-pointer'
                   onClick={handleActionDivShow}
