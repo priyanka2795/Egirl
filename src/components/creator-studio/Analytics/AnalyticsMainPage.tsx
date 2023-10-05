@@ -45,12 +45,10 @@ const month = [
   { name: 'FEB' },
   { name: 'MAR' },
   { name: 'APR' },
-
   { name: 'MAY' },
   { name: 'JUN' },
   { name: 'JUL' },
   { name: 'AUG' },
-
   { name: 'SEP' },
   { name: 'OCT' },
   { name: 'NOV' },
@@ -546,7 +544,7 @@ const AnalyticsMainPage = () => {
                 {/* graph */}
                 <div className='flex items-start gap-3 self-stretch'>
                   {/* amount */}
-                  <div className='mt-4 flex h-[174px] flex-col items-end justify-between text-[#979797]'>
+                  <div className='flex h-[174px] flex-col items-end justify-between text-[#979797]'>
                     {amount.map((data, index) => {
                       return (
                         <div
@@ -564,18 +562,18 @@ const AnalyticsMainPage = () => {
                     <div className='flex flex-col items-center justify-center self-stretch'>
                       {showChanges ? (
                         <div>
-                          <div className='relative mt-9  flex w-[600px] flex-col items-start gap-10'>
+                          <div className='relative flex h-[174px] w-[600px] flex-col items-start gap-10'>
                             <div className='h-px w-[100%] shrink-0 self-stretch bg-white/[0.08]'></div>
                             <div className='h-px w-[100%] shrink-0 self-stretch bg-white/[0.08]'></div>
                             <div className='h-px w-[100%] shrink-0 self-stretch bg-white/[0.08]'></div>
                             <div className='h-px w-[100%] shrink-0 self-stretch bg-white/[0.08]'></div>
                             <div className='h-px w-[100%] shrink-0 self-stretch bg-white/[0.08]'></div>
 
-                            <div className='absolute mt-[-82px]'>
+                            <div className='absolute mt-[14px]'>
                               {selectSub ? (
                                 <BarChart
                                   width={620}
-                                  height={300}
+                                  height={188}
                                   data={data}
                                   margin={{
                                     top: 20,
@@ -625,7 +623,7 @@ const AnalyticsMainPage = () => {
                               ) : (
                                 <BarChart
                                   width={620}
-                                  height={300}
+                                  height={188}
                                   data={data}
                                   margin={{
                                     top: 20,
@@ -635,7 +633,7 @@ const AnalyticsMainPage = () => {
                                   }}
                                 >
                                   {/* <CartesianGrid /> */}
-                                  <XAxis dataKey='name' />
+                                  {/* <XAxis dataKey='name' /> */}
                                   {/* <YAxis /> */}
                                   <Tooltip content={<CustomTooltip />} />
                                   {/* <Legend /> */}
@@ -689,9 +687,9 @@ const AnalyticsMainPage = () => {
                       )}
                     </div>
                     {showChanges ? (
-                      <div>
+                      <div className='w-full'>
                         {/* bottom line */}
-                        <div className='ml-5 mt-4 flex items-center gap-[26px] self-stretch'>
+                        <div className='flex w-full items-center justify-center gap-[26px] self-stretch'>
                           {month.map((data, index) => {
                             return (
                               <div
