@@ -86,7 +86,7 @@ const AddedStyleModal = ({ setAddedStyleModal }: AddedStyleModalProp) => {
           open={true}
           modalClassName='flex overflow-hidden w-full rounded-[20px] bg-[#1A1A1A] max-w-[1376px] overflow-y-hidden'
           closeModal={() => setAddedStyleModal(false)}
-          modalOverlayStyle='!bg-black/80'
+          modalOverlayStyle='!bg-black/80' 
         >
           <div className='relative flex w-[67%] items-center justify-center bg-[#121212]'>
             <Image className='object-contain' src={modalImg} alt='' />
@@ -99,7 +99,7 @@ const AddedStyleModal = ({ setAddedStyleModal }: AddedStyleModalProp) => {
           </div>
           <div className='flex h-[inherit] w-[33%] flex-col'>
             <div className='h-[calc(86vh-100px)] overflow-y-auto'>
-              <div className='flex flex-col gap-4 px-6 pb-5 pt-6'>
+              <div className='flex flex-col gap-4 px-6 pt-6 pb-5'>
                 <div className='flex flex-col gap-[2px]'>
                   <div className='text-[22px] font-bold leading-8 text-white'>
                     Any Lee

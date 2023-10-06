@@ -37,7 +37,7 @@ const CharacterAdd = ({ NewCharacterClose }: CharacterAdd) => {
         <div className='w-full gap-1 text-lg font-bold leading-6'>
           Add New Character
         </div>
-        <div className='h-6 w-6'>
+        <div className='w-6 h-6'>
           <Cross onClick={() => NewCharacterClose(false)} />
         </div>
       </div>
@@ -111,7 +111,7 @@ const CharacterAdd = ({ NewCharacterClose }: CharacterAdd) => {
             </div>
 
             {/* buttons */}
-            <div className='flex items-start gap-3 self-stretch '>
+            <div className='flex items-start self-stretch gap-3 '>
               <button
                 onClick={() => NewCharacterClose(false)}
                 className='h-12 w-[50%] items-center gap-2 rounded-[14px] border border-white/[0.32] px-5 py-[13px] text-base font-bold leading-[22px]'
