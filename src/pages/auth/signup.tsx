@@ -108,13 +108,13 @@ export default function SignIn() {
       onSubmit={onSubmit}
     >
       <Form>
-    <div className={`px-8 py-[35px] bg-[grey] flex justify-between`}>
+    <div className={`px-8 py-[35px] bg-[${bgImage}] flex justify-between`}>
       <div className='pt-6 pl-[38px]'>
         <Image className='' src={logo} alt={''} />
       </div>
     
       <div className='flex flex-col rounded-[40px] bg-[#070707] w-[500px] m-[54px] h-[inherit]'>
-          <div className='flex flex-col gap-8 px-10 pt-10 h-[calc(86vh-100px)] overflow-y-auto'>
+          <div className='flex flex-col gap-8 px-10 pt-10 h-[calc(115vh-100px)] overflow-y-auto'>
             <div className='text-white text-[32px] font-bold leading-10'>Sign up</div>
              
             <div className='flex flex-col gap-3'>
@@ -172,7 +172,6 @@ export default function SignIn() {
           <div className='w-full px-10 pt-5 pb-10'>
             <button type="submit" className='w-full flex items-center justify-center px-6 py-4 rounded-[16px] bg-[#5848BC] text-white text-[18px] font-bold leading-6'>Continue</button>
           </div>
-          
       </div>
     </div>
   </Form>
