@@ -202,7 +202,7 @@ const Banner = ({
         ''
       ) : (
         <div
-          className='my-4 flex cursor-pointer gap-2 text-lg font-bold'
+          className='font-bold my-4 flex cursor-pointer gap-2 text-lg'
           onClick={() => {
             backFromProfile(false);
           }}
@@ -250,7 +250,7 @@ const Banner = ({
                           src={item.icon}
                           alt={''}
                         />
-                        <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                        <div className='font-normal text-[14px] text-[#FFFFFF]'>
                           {item.name}
                         </div>
                       </div>
@@ -294,14 +294,14 @@ const Banner = ({
                 </button> */}
                 <button className='flex items-center justify-center gap-2 rounded-[14px] bg-white/[0.08] px-5 py-[13px]'>
                   <Image src={pen} alt={''} />
-                  <div className='text-[16px] font-bold leading-[22px] text-white'>
+                  <div className='font-bold text-[16px] leading-[22px] text-white'>
                     Edit profile
                   </div>
                 </button>
                 <div className='group relative flex items-center justify-center rounded-[14px] bg-white/[0.08] px-5 py-[13px]'>
                   <Image src={eye} alt={''} />
                   <div className='invisible group-hover:visible group-hover:opacity-100'>
-                    <div className='absolute -left-[16px] bottom-[64px] flex items-center justify-center rounded-[6px] bg-[#303030] px-3 py-[6px] text-[12px] font-normal leading-4 text-white'>
+                    <div className='font-normal absolute -left-[16px] bottom-[64px] flex items-center justify-center rounded-[6px] bg-[#303030] px-3 py-[6px] text-[12px] leading-4 text-white'>
                       User view
                     </div>
                     <div className='absolute -right-[2px] -top-[20px] h-[24px] w-10'>
@@ -341,7 +341,7 @@ const Banner = ({
                                     src={item.icon}
                                     alt={''}
                                   />
-                                  <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                                  <div className='font-normal text-[14px] text-[#FFFFFF]'>
                                     {item.name}
                                   </div>
                                 </div>
@@ -366,7 +366,7 @@ const Banner = ({
                                     src={item.icon}
                                     alt={''}
                                   />
-                                  <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                                  <div className='font-normal text-[14px] text-[#FFFFFF]'>
                                     {item.name}
                                   </div>
                                 </div>
@@ -387,7 +387,7 @@ const Banner = ({
           <div className='flex px-6 pb-[24px]'>
             <div className=''>
               <div className='flex items-center gap-[2px]'>
-                <div className='text-[22px] font-bold text-[#FFFFFF]'>
+                <div className='font-bold text-[22px] text-[#FFFFFF]'>
                   Mika-chan
                 </div>
                 <div className='h-[24px] w-[24px]'>
@@ -396,10 +396,10 @@ const Banner = ({
                 </div>
               </div>
 
-              <div className='text-[15px] font-normal text-[#979797]'>
+              <div className='font-normal text-[15px] text-[#979797]'>
                 @mikachan
               </div>
-              <div className='mt-3 w-full max-w-[73%] text-[15px] font-normal leading-[20px] text-[#FFFFFF]'>
+              <div className='font-normal mt-3 w-full max-w-[73%] text-[15px] leading-[20px] text-white/[0.8]'>
                 Shy fox girl looking for adventure
                 ·冒険を探している恥ずかしがり屋のキツ I have a personality and
                 emotions. I can experience joy, sadness, anger, and everything
@@ -411,10 +411,10 @@ const Banner = ({
                 {posts.map((item, index) => {
                   return (
                     <div key={index} className='flex gap-1'>
-                      <div className='text-[13px] font-bold text-[#FFFFFF]'>
+                      <div className='font-bold text-[13px] text-[#FFFFFF]'>
                         {item.number}
                       </div>
-                      <div className='text-[13px] font-normal text-[#979797]'>
+                      <div className='font-normal text-[13px] text-[#979797]'>
                         {item.name}
                       </div>
                     </div>
@@ -431,7 +431,7 @@ const Banner = ({
                         src={item.icon}
                         alt=''
                       />
-                      <div className='text-[13px] font-normal text-[#FFFFFF]'>
+                      <div className='font-normal text-[13px] text-[#FFFFFF]'>
                         {item.name}
                       </div>
                     </div>
@@ -443,7 +443,7 @@ const Banner = ({
                 {bottomButtons.map((item, index) => {
                   return (
                     <div key={index} className='mr-2'>
-                      <button className='rounded-[6px] bg-white/[0.08] px-[8px] py-[3px] text-[12px] font-normal text-[#FFFFFF]'>
+                      <button className='font-normal rounded-[6px] bg-white/[0.08] px-[8px] py-[3px] text-[12px] text-[#FFFFFF]'>
                         {item.name}
                       </button>
                     </div>
