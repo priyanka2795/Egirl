@@ -10,6 +10,7 @@ import discordIcon from '../../../public/assets/discord-icon.png';
 import facebookIcon from '../../../public/assets/facebook-icon.png';
 import vector1 from '../../../public/assets/Vector 1.png';
 import vector2 from '../../../public/assets/Vector 2.png';
+import Link from 'next/link';
 
 const login = [
   {
@@ -68,7 +69,7 @@ export default function SignIn() {
   };
 
   return (
-    <div className='mx-auto mx-auto max-w-[1440px]'>
+    <div className='mx-auto mx-auto flex  min-h-screen w-full max-w-[1440px] flex-col justify-center'>
       <div className={`signin-page mx-8 my-[35px] flex justify-between`}>
         <div className='pl-[38px] pt-6'>
           <Image className='' src={logo} alt={''} />
@@ -97,9 +98,11 @@ export default function SignIn() {
                 <div className='font-normal text-[15px] leading-5 text-white'>
                   New user?
                 </div>
-                <div className='font-normal text-[15px] leading-5 text-[#5848BC]'>
-                  Sign up
-                </div>
+                <Link href='/auth/signup'>
+                  <a className='font-normal text-[15px] leading-5 text-[#5848BC]'>
+                    Sign up
+                  </a>
+                </Link>
               </div>
             </div>
             <div className='flex flex-col gap-4'>
@@ -136,9 +139,16 @@ export default function SignIn() {
                 </div>
               </div>
             </div>
-            <button className='font-bold flex items-center justify-center rounded-[16px] bg-[#5848BC] px-6 py-4 text-[18px] leading-6 text-white'>
+            <button
+              onClick={loginHandler}
+              className='font-bold flex items-center justify-center rounded-[16px] bg-[#5848BC] px-6 py-4 text-[18px] leading-6 text-white'
+            >
               Continue
             </button>
+            {/* <button onClick={loginGoogleHandler} className='p-4 border-2'>
+              Google Login
+            </button> */}
+            <p className='text-red-400'>{errorMsg}</p>
           </div>
         </div>
       </div>
