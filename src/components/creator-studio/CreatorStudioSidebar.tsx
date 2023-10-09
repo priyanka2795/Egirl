@@ -29,6 +29,7 @@ import voiceActive from './svg/microphone-alt.svg';
 import CharacterAdd from './NewCharacter/CharacterAdd';
 import arrowLeft from '../../../public/assets/arrow-left.png';
 import CloseIcon from '../../../public/assets/svgImages/close-icon.svg';
+import arrowLeftTooltip from '../../../public/assets/arrow-left-tooltip.png';
 
 interface CreatorStudioNavbarPropProp {
   shrinkSideBar: boolean;
@@ -60,7 +61,7 @@ const CreatorStudioSidebar = ({
             className='flex cursor-pointer items-center justify-between py-[14px] pl-3 pr-4'
             onClick={() => setSidebarModal(!sidebarModal)}
           >
-            <div className='relative flex w-full items-center gap-2'>
+            <div className='relative flex items-center w-full gap-2'>
               <div className='h-[32px] w-[32px]'>
                 <Image
                   src={avtar}
@@ -76,7 +77,7 @@ const CreatorStudioSidebar = ({
                 Mika-chan
               </div>
             </div>
-            <div className='mt-2 h-full'>
+            <div className='h-full mt-2'>
               <Image src={arrowDown} alt='' />
             </div>
             {sidebarModal && (
@@ -176,7 +177,7 @@ const CreatorStudioSidebar = ({
               shrinkSideBar === true ? '!hidden' : 'w-full flex justify-center'
             } `}
           /> */}
-          <div className='group relative flex cursor-pointer items-center justify-center rounded-[14px]  text-[16px] font-bold leading-[22px] text-white'>
+          <div className='group relative flex cursor-pointer items-center justify-center rounded-[14px] text-[16px] font-bold leading-[22px] text-white'>
             <SidebarMenuItem
               text='Personality'
               href='/personality'
@@ -190,12 +191,12 @@ const CreatorStudioSidebar = ({
               sideBarMenuText={`max-[1279px]:!hidden ${
                 shrinkSideBar === true
                   ? '!hidden'
-                  : 'w-full flex justify-center'
+                  : 'w-full flex justify-center' 
               } `}
             />
-            <div className='invisible z-50 group-hover:visible group-hover:opacity-100'>
-              <div className='absolute bottom-[75px] left-[80px]  w-[169px] w-[330px] scale-0  rounded-[14px] bg-[#2b2a2a] p-4 text-xs text-white transition-all group-hover:scale-100'>
-                <div className='flex justify-between border-b-[1px] border-zinc-700 pb-3'>
+            <div className='fixed z-50 invisible group-hover:visible group-hover:opacity-100'>
+              <div className='absolute bottom-[101px] left-[164px] w-[330px] scale-0 rounded-[14px] bg-[#1A1A1A] p-4 text-xs text-white transition-all group-hover:scale-100'>
+                <div className='flex justify-between pb-3 border-b border-zinc-700'>
                   <h4 className=' text-[18px] font-bold'>Personality</h4>
                   <div>
                     <CloseIcon />
@@ -205,7 +206,7 @@ const CreatorStudioSidebar = ({
                   Edit your character's profile and personalize to find more
                   followers.
                 </p>
-                <div className='mt-3 flex items-center justify-between'>
+                <div className='flex items-center justify-between mt-3'>
                   <p className='text-[14px] font-normal text-[#979797]'>
                     Step 2/5
                   </p>
@@ -220,8 +221,8 @@ const CreatorStudioSidebar = ({
                 </div>
               </div>
 
-              <div className='absolute -top-[30px] right-[20px] h-[24px] w-[20px] '>
-                {/* <Image className='w-full h-full' src={downArrow} alt={''} /> */}
+              <div className='absolute -top-[258px] -right-[164px]'>
+                <Image className='w-full h-full' src={arrowLeftTooltip} alt={''} />
               </div>
             </div>
           </div>
