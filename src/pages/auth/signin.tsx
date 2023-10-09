@@ -68,8 +68,8 @@ export default function SignIn() {
   };
 
   return (
-    <>
-      <div className={`signin-page flex justify-between px-8 py-[35px]`}>
+    <div className='mx-auto mx-auto max-w-[1440px]'>
+      <div className={`signin-page mx-8 my-[35px] flex justify-between`}>
         <div className='pl-[38px] pt-6'>
           <Image className='' src={logo} alt={''} />
         </div>
@@ -142,7 +142,7 @@ export default function SignIn() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
