@@ -21,7 +21,7 @@ function SetUpYourCharacter() {
             <Image src={bookUser} alt={''} />
             Guided Character Creator
           </button>
-          <HoverModal />
+          <HoverModal name={'Set up profile'} text={"Edit your character's profile and personalize to find more followers."} step={'Step 1/5'} />
         </div>
       </div>
 
