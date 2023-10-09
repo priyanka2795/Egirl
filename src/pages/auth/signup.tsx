@@ -65,6 +65,7 @@ export default function SignIn() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [passwordAgain, setPasswordAgain] = useState('');
 
   const [errorMsg, setErrorMsg] = useState('');
 
@@ -116,8 +117,8 @@ export default function SignIn() {
               <Image className='' src={logo} alt={''} />
             </div>
 
-            <div className='m-[54px] flex h-[inherit] max-h-[692px] w-[500px] flex-col overflow-y-auto rounded-[40px] bg-[#070707] '>
-              <div className='flex flex-col gap-8 px-10 pt-10'>
+            <div className='m-[54px] flex h-[inherit] max-h-[692px] w-[500px] flex-col rounded-[40px] bg-[#070707] '>
+              <div className='flex max-h-[600px] flex-col gap-8 overflow-y-auto px-10 pt-10'>
                 <div className='font-bold text-[32px] leading-10 text-white'>
                   Sign up
                 </div>
