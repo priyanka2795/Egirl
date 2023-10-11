@@ -5,11 +5,14 @@ import UserSection from '@components/list/UserSection';
 import PostInput from '@components/list/PostInput';
 import CreateCharacter from '@components/list/CreateCharacter';
 import SetUpYourCharacter from '@components/list/SetUpYourCharacter';
+import AllCharactersCards from '@components/list/AllCharactersCards';
 
 const CreatorStudio = () => {
   return (
+  <>
     <div className='mb-5'>
-      <CreateCharacter />
+      {/* <CreateCharacter /> */}
+      <AllCharactersCards />
       <Banner
         styleProperty={'px-0 pt-2'}
         followBtnStyle={'border border-[#7362C6] bg-transparent text-[#7362C6]'}
@@ -29,6 +32,7 @@ const CreatorStudio = () => {
         </div>
       </div>
     </div>
+  </>
   );
 };
 

@@ -5,10 +5,10 @@ import arrowUp from '../../../../public/assets/arrow-up.png';
 import MarketPlaceCards from './MarketPlaceCards';
 import checkIcon from '../../../../public/assets/check-cs.png';
 const AllStylesCollection = () => {
-  const [showNewest, setShowNewest] = useState(false);
-  const [showDuration, setShowDuration] = useState(false);
-  const [selectedNewest, setSelectedNewest] = useState('');
-  const [selectedDuration, setSelectedDuration] = useState('');
+  const [showNewest, setShowNewest] = useState<boolean>(false);
+  const [showDuration, setShowDuration] = useState<boolean>(false);
+  const [selectedNewest, setSelectedNewest] = useState<string>('');
+  const [selectedDuration, setSelectedDuration] = useState<string>('');
   const newestArr = [
     'Highest rated',
     'Most downloaded',
@@ -51,7 +51,7 @@ const AllStylesCollection = () => {
 
   return (
     <>
-      <div className='mb-4 mt-8 flex justify-between' ref={dropdownRef}>
+      <div className='flex justify-between mt-8 mb-4' ref={dropdownRef}>
         <div className='text-[18px] font-bold leading-6 text-[#FFF]'>
           All Styles
         </div>
@@ -89,7 +89,7 @@ const AllStylesCollection = () => {
             )}
           </div>
           <div className='relative'>
-            <div className='flex cursor-pointer gap-2' onClick={handleDuration}>
+            <div className='flex gap-2 cursor-pointer' onClick={handleDuration}>
               <p>Month</p>
               <Image
                 src={showDuration ? arrowUp : arrowDown}

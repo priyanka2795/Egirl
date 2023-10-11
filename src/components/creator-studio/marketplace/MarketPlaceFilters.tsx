@@ -3,11 +3,11 @@ import arrowDown from '../../../../public/assets/arrow-down.png';
 import arrowUp from '../../../../public/assets/arrow-up.png';
 import Image from 'next/image';
 const MarketPlaceFilters = () => {
-  const [accessories, setAccessories] = useState(false);
-  const [style, setStyle] = useState(false);
-  const [subCategory, setSubCategory] = useState(false);
-  const [price, setPrice] = useState(false);
-  const [selectedFilter, setSelectedFilter] = useState('');
+  const [accessories, setAccessories] = useState<boolean>(false);
+  const [style, setStyle] = useState<boolean>(false);
+  const [subCategory, setSubCategory] = useState<boolean>(false);
+  const [price, setPrice] = useState<boolean>(false);
+  const [selectedFilter, setSelectedFilter] = useState<string>('');
 
   const accessoriesArr = ['Dress', 'Gold Chain', 'Jacket', 'Jeans', 'Sneakers'];
 
@@ -49,7 +49,7 @@ const MarketPlaceFilters = () => {
   };
   return (
     <div className='mt-8'>
-      <div className='grid grid-cols-4 gap-3 self-stretch' ref={dropdownRef}>
+      <div className='grid self-stretch grid-cols-4 gap-3' ref={dropdownRef}>
         <div>
           <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
             Style

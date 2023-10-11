@@ -15,13 +15,12 @@ interface GiftCategoryAction {
   SetCategory: React.Dispatch<React.SetStateAction<string[]>>;
 }
 function GiftCategoryAction({ AddCategory, SetCategory }: GiftCategoryAction) {
-  const [toggle, setToggle] = useState(false);
-  const [closeState, setCloseState] = useState(false);
-  const [editCategoryActionModal, setEditCategoryActionModal] =
-    useState<number>();
-  const [createCategory, setCreateCategory] = useState(false);
-  const [isActive, setActive] = useState(false);
-  const [tabs, setTabs] = useState(1);
+  const [toggle, setToggle] = useState<boolean>(false);
+  const [closeState, setCloseState] = useState<boolean>(false);
+  const [editCategoryActionModal, setEditCategoryActionModal] = useState<number>();
+  const [createCategory, setCreateCategory] = useState<boolean>(false);
+  const [isActive, setActive] = useState<boolean>(false);
+  const [tabs, setTabs] = useState<number>(1);
   const [editName, setEditName] = useState<string>('');
   const [categoryActionIndex, setCategoryActionIndex] = useState<number>();
 
@@ -60,7 +59,7 @@ function GiftCategoryAction({ AddCategory, SetCategory }: GiftCategoryAction) {
 
   return (
     <>
-      <div className='mt-4 flex items-center justify-between'>
+      <div className='flex items-center justify-between mt-4'>
         <div className='flex items-center justify-center gap-3 '>
           {AddCategory.map((items: any, index: number) => (
             <div
@@ -85,7 +84,7 @@ function GiftCategoryAction({ AddCategory, SetCategory }: GiftCategoryAction) {
                         className='flex items-center gap-2'
                         onClick={() => EditCategoryName(items, 1)}
                       >
-                        <Image src={Pencil} className='h-full w-full' alt='' />
+                        <Image src={Pencil} className='w-full h-full' alt='' />
                         <p>Edit name</p>
                       </button>
 
@@ -95,7 +94,7 @@ function GiftCategoryAction({ AddCategory, SetCategory }: GiftCategoryAction) {
                       >
                         <Image
                           src={Delete}
-                          className='h-full w-full'
+                          className='w-full h-full'
                           alt={''}
                         />
                         <p>Delete</p>
@@ -110,7 +109,7 @@ function GiftCategoryAction({ AddCategory, SetCategory }: GiftCategoryAction) {
           ))}
 
           <button
-            className='group relative pt-1 '
+            className='relative pt-1 group '
             onClick={() => setCreateCategory(true)}
           >
             <Image src={plusIcon} alt='' className='h-[18px] w-[18px]' />
@@ -139,7 +138,7 @@ function GiftCategoryAction({ AddCategory, SetCategory }: GiftCategoryAction) {
                 className='absolute right-2 top-2'
                 onClick={() => setActive(!isActive)}
               >
-                <Image className='h-full w-full' src={crossIcon} alt={''} />
+                <Image className='w-full h-full' src={crossIcon} alt={''} />
               </span>
             ) : (
               ''

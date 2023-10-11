@@ -71,8 +71,8 @@ const Generatedstyle = ({
   setViewStyleGenerated,
   ViewStyle
 }: GeneratedstyleProp) => {
-  const [viewStyleModal, setViewStyleModal] = useState(false);
-  const [postStyleModal, setPostStyleModal] = useState(false);
+  const [viewStyleModal, setViewStyleModal] = useState<boolean>(false);
+  const [postStyleModal, setPostStyleModal] = useState<boolean>(false);
   return (
     <>
       <ViewStylesTab
@@ -81,7 +81,7 @@ const Generatedstyle = ({
         setViewStyleGenerated={setViewStyleGenerated}
         ViewStyle={ViewStyle}
       />
-      <div className='mb-14 mt-5 grid grid-cols-3 gap-3'>
+      <div className='grid grid-cols-3 gap-3 mt-5 mb-14'>
         {generatedStyle.map((item, index) => {
           return (
             <div

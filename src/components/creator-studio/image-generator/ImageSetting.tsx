@@ -24,10 +24,10 @@ const ImageSetting = ({
   MyCharacterToggle,
   SetMyCharacterToggle
 }: ImageSetting) => {
-  const [guidanceScale, setGuidanceScale] = useState([19]);
-  const [stepScale, setStepScale] = useState([83]);
-  const [tiling, setTiling] = useState(false);
-  const [advancedSettings, setAdvancedSettings] = useState(false);
+  const [guidanceScale, setGuidanceScale] = useState<number[]>([19]);
+  const [stepScale, setStepScale] = useState<number[]>([83]);
+  const [tiling, setTiling] = useState<boolean>(false);
+  const [advancedSettings, setAdvancedSettings] = useState<boolean>(false);
 
   return (
     <div className='flex h-full flex-col justify-between bg-[#121212]'>

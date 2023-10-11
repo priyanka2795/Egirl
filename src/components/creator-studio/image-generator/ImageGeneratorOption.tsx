@@ -58,19 +58,19 @@ const ImageGeneratorOption = ({
   EditGeneration,
   EditTooltip
 }: ImageGeneratorOption) => {
-  const [prompt, setPrompt] = useState(false);
-  const [tagState, setTagState] = useState(false);
-  const [openGenre, setOpenGenre] = React.useState(false);
-  const [openStyle, setOpenStyle] = React.useState(false);
+  const [prompt, setPrompt] = useState<boolean>(false);
+  const [tagState, setTagState] = useState<boolean>(false);
+  const [openGenre, setOpenGenre] = React.useState<boolean>(false);
+  const [openStyle, setOpenStyle] = React.useState<boolean>(false);
   // Inpainting Modal
-  const [inpaintingExample, setInpaintingExample] = useState(false);
-  const [selectImageModal, setSelectImageModal] = useState(false);
+  const [inpaintingExample, setInpaintingExample] = useState<boolean>(false);
+  const [selectImageModal, setSelectImageModal] = useState<boolean>(false);
   const [inpaintingModal, setInpaintingModal] = useState<boolean>(false);
   const [inpaintingCreated, setInpaintingCreated] = useState<boolean>(false);
   const [editInpainting, setEditInpainting] = useState<boolean>(false);
   // Posing Modal
   const [posing, setPosing] = useState<boolean>(false);
-  const [poseExample, setPoseExample] = useState(false);
+  const [poseExample, setPoseExample] = useState<boolean>(false);
   const [posingCreated, setPosingCreated] = useState<boolean>(false);
   const [editPosing, setEditPosing] = useState<boolean>(false);
 
@@ -81,10 +81,9 @@ const ImageGeneratorOption = ({
   const [promptTags, setPromptTags] = useState([] as any);
   const [editPrompt, setEditPrompt] = useState(null);
   const [editPromptMenu, setEditPromptMenu] = useState(EditPromptName);
-  const [editPromptMenuIndex, setEditPromptMenuIndex] =
-    useState<string>('Blue Jeans');
+  const [editPromptMenuIndex, setEditPromptMenuIndex] = useState<string>('Blue Jeans');
   const [promptTagsHint, setPromptTagsHint] = useState(PromptTagsSearch);
-  const [promptHint, setPromptHint] = useState('');
+  const [promptHint, setPromptHint] = useState<string>('');
 
   const DeletePromptMenu = (item: string) => {
     setEditPromptMenu(

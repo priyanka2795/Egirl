@@ -40,7 +40,7 @@ const SidebarModal = ({
   setSidebarModal,
   setNewCharacter
 }: SidebarModals) => {
-  const [activeProfile, setActiveProfile] = useState('Mika-chan');
+  const [activeProfile, setActiveProfile] = useState<string>('Mika-chan');
   
 
   return (

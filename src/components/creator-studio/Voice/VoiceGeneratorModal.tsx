@@ -11,12 +11,12 @@ interface VoiceGeneratorModalProp {
 }
 
 const VoiceGeneratorModal = ({ closeModal }: VoiceGeneratorModalProp) => {
-  const [state1, setState1] = useState([50]);
-  const [state2, setState2] = useState([50]);
-  const [state3, setState3] = useState([50]);
-  const [accentState, setAccentState] = useState([0]);
-  const [voiceStabilityState, setVoiceStabilityState] = useState([0]);
-  const [voiceClarityState, setVoiceClarityState] = useState([0]);
+  const [state1, setState1] = useState<number[]>([50]);
+  const [state2, setState2] = useState<number[]>([50]);
+  const [state3, setState3] = useState<number[]>([50]);
+  const [accentState, setAccentState] = useState<number[]>([0]);
+  const [voiceStabilityState, setVoiceStabilityState] = useState<number[]>([0]);
+  const [voiceClarityState, setVoiceClarityState] = useState<number[]>([0]);
   return (
     <Modal
       open={true}
@@ -29,16 +29,16 @@ const VoiceGeneratorModal = ({ closeModal }: VoiceGeneratorModalProp) => {
           Voice generator
         </div>
         <div
-          className='h-6 w-6 cursor-pointer'
+          className='w-6 h-6 cursor-pointer'
           onClick={() => closeModal(false)}
         >
-          <Image className='h-full w-full' src={crossIcon} alt={''} />
+          <Image className='w-full h-full' src={crossIcon} alt={''} />
         </div>
       </div>
 
       <form>
         <div className='flex gap-6 p-6'>
-          <div className='flex w-1/2 flex-col gap-4'>
+          <div className='flex flex-col w-1/2 gap-4'>
             <div className='text-[15px] font-semibold leading-5 text-[#FFFFFF]'>
               General settings
             </div>
@@ -132,7 +132,7 @@ const VoiceGeneratorModal = ({ closeModal }: VoiceGeneratorModalProp) => {
             </div>
           </div>
 
-          <div className='flex w-1/2 flex-col gap-4'>
+          <div className='flex flex-col w-1/2 gap-4'>
             <div className='flex justify-between'>
               <div className='text-[15px] font-semibold leading-5 text-[#FFFFFF]'>
                 Voice settings
@@ -153,7 +153,7 @@ const VoiceGeneratorModal = ({ closeModal }: VoiceGeneratorModalProp) => {
                     alt={''}
                   />
                 </div>
-                <div className='mt-3 flex flex-col'>
+                <div className='flex flex-col mt-3'>
                   {/* <Range
                     step={0.1}
                     min={0}
@@ -193,7 +193,7 @@ const VoiceGeneratorModal = ({ closeModal }: VoiceGeneratorModalProp) => {
                     values={accentState}
                     setValues={setAccentState}
                   />
-                  <div className='mt-3 flex justify-between'>
+                  <div className='flex justify-between mt-3'>
                     <div className='text-[14px] font-normal leading-[18px] text-[#515151]'>
                       Low
                     </div>
@@ -215,7 +215,7 @@ const VoiceGeneratorModal = ({ closeModal }: VoiceGeneratorModalProp) => {
                     alt={''}
                   />
                 </div>
-                <div className='mt-3 flex flex-col'>
+                <div className='flex flex-col mt-3'>
                   {/* <Range
                     step={0.1}
                     min={0}
@@ -255,7 +255,7 @@ const VoiceGeneratorModal = ({ closeModal }: VoiceGeneratorModalProp) => {
                     values={voiceStabilityState}
                     setValues={setVoiceStabilityState}
                   />
-                  <div className='mt-3 flex justify-between'>
+                  <div className='flex justify-between mt-3'>
                     <div className='text-[14px] font-normal leading-[18px] text-[#515151]'>
                       Low
                     </div>
@@ -277,7 +277,7 @@ const VoiceGeneratorModal = ({ closeModal }: VoiceGeneratorModalProp) => {
                     alt={''}
                   />
                 </div>
-                <div className='mt-3 flex flex-col'>
+                <div className='flex flex-col mt-3'>
                   {/* <Range
                     step={0.1}
                     min={0}
@@ -317,7 +317,7 @@ const VoiceGeneratorModal = ({ closeModal }: VoiceGeneratorModalProp) => {
                     values={voiceClarityState}
                     setValues={setVoiceClarityState}
                   />
-                  <div className='mt-3 flex justify-between'>
+                  <div className='flex justify-between mt-3'>
                     <div className='text-[14px] font-normal leading-[18px] text-[#515151]'>
                       Low
                     </div>

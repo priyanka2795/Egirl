@@ -106,8 +106,8 @@ const FavoriteStyleModal = ({
   component
 }: FavoriteStyleModalProps) => {
   const generationDataTab = ['Prompt', 'Negative prompt'];
-  const [generationData, setGenerationData] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [generationData, setGenerationData] = useState<boolean>(false);
+  const [activeIndex, setActiveIndex] = useState<number>(0);
   return (
     <>
       <div>
@@ -122,7 +122,7 @@ const FavoriteStyleModal = ({
           </div>
           <div className='flex h-[inherit] w-[33%] flex-col'>
             <div className='h-[calc(86vh-100px)] overflow-y-auto'>
-              <div className='flex flex-col gap-4 px-6 pb-5 pt-6'>
+              <div className='flex flex-col gap-4 px-6 pt-6 pb-5'>
                 <div className='flex flex-col gap-[2px]'>
                   <div className='text-[22px] font-bold leading-8 text-white'>
                     Any Lee
@@ -225,9 +225,9 @@ const FavoriteStyleModal = ({
                               );
                             })}
                           </div>
-                          <div className='group relative'>
+                          <div className='relative group'>
                             <Image
-                              className='cursor-pointer object-contain'
+                              className='object-contain cursor-pointer'
                               src={copy}
                               alt=''
                             />
@@ -237,7 +237,7 @@ const FavoriteStyleModal = ({
                               </div>
                               <div className='absolute -right-[26px] -top-[22px] h-[24px] w-10'>
                                 <Image
-                                  className='h-full w-full'
+                                  className='w-full h-full'
                                   src={downArrow}
                                   alt=''
                                 />
