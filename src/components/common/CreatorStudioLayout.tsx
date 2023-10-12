@@ -1,3 +1,4 @@
+import CreatorStudio from '@components/creator-studio';
 import CreatorStudioNavbar from '@components/creator-studio/CreatorStudioNavbar';
 import CreatorStudioSidebar from '@components/creator-studio/CreatorStudioSidebar';
 import StyleBeingGenerated from '@components/creator-studio/style-generator/StyleBeingGenerated';
@@ -7,6 +8,53 @@ import React, { useState } from 'react';
 const CreatorStudioLayout = ({ children }: any) => {
   const [shrinkSideBar, setShrinkSideBar] = useState(false);
   const [styleGenNext, setStyleGenNext] = useState(false);
+
+  // guided tour
+  const [isTourOpen, setIsTourOpen] = useState(false);
+
+  const startTour = () => {
+    setIsTourOpen(true);
+  };
+
+  const closeTour = () => {
+    setIsTourOpen(false);
+  };
+
+  const tourSteps = [
+    {
+      id: 0,
+      title: 'Set up profile',
+      content:
+        "Edit your character's profile and personalize to find more followers."
+    },
+    {
+      id: 1,
+      title: 'Personality',
+      content:
+        "Edit your character's profile and personalize to find more followers."
+    },
+    {
+      id: 2,
+      title: 'Generate images',
+      content:
+        "Edit your character's profile and personalize to find more followers."
+    },
+    {
+      id: 3,
+      title: 'Create style',
+      content:
+        'Select character from style dropdown, upload your characters images, and generate character style!'
+    },
+    {
+      id: 4,
+      title: 'Create own gifts',
+      content:
+        "Edit your character's profile and personalize to find more followers."
+    }
+    // Add more steps as needed
+  ];
+  // guided tour End
+
   return (
     <React.Fragment>
       <main className='mx-auto h-screen min-h-screen max-w-[1440px] overflow-hidden'>
@@ -20,6 +68,9 @@ const CreatorStudioLayout = ({ children }: any) => {
           <CreatorStudioSidebar
             shrinkSideBar={shrinkSideBar}
             setShrinkSideBar={setShrinkSideBar}
+            IsOpen={isTourOpen}
+            OnClose={closeTour}
+            TourSteps={tourSteps}
           />
           <div className='creator-studio-components main-content-scroller relative mt-8 h-[calc(100vh-104px)] flex-grow overflow-y-auto overflow-x-hidden bg-main-background pb-5 pr-4 lg:min-w-[600px]'>
             {styleGenNext ? (
@@ -28,7 +79,18 @@ const CreatorStudioLayout = ({ children }: any) => {
                 <StyleGeneratorNext />
               </div>
             ) : (
-              <>{children}</>
+              <>
+                {children ? (
+                  <>{children}</>
+                ) : (
+                  <CreatorStudio
+                    IsOpen={isTourOpen}
+                    OnClose={closeTour}
+                    TourSteps={tourSteps}
+                    SetIsTourOpen={setIsTourOpen}
+                  />
+                )}
+              </>
             )}
           </div>
         </div>

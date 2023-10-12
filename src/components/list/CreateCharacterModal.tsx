@@ -5,9 +5,15 @@ import CharacterAdd from '@components/creator-studio/NewCharacter/CharacterAdd';
 
 interface createCharacterProps {
   closeState: React.Dispatch<React.SetStateAction<boolean>>;
+  SetUserGuide: any;
+  SetIsTourOpen: any;
 }
 
-function CreateCharacterModal({ closeState }: createCharacterProps) {
+function CreateCharacterModal({
+  closeState,
+  SetUserGuide,
+  SetIsTourOpen
+}: createCharacterProps) {
   const [showVoiceRequest, setShowVoiceRequest] = useState(false);
   const [showNewCharacter, setShowNewCharacter] = useState(false);
   const [createCharacter, setCreateCharacter] = useState(false);
@@ -30,7 +36,7 @@ function CreateCharacterModal({ closeState }: createCharacterProps) {
         modalOverlayStyle='!bg-black/80'
       >
         <div className='flex justify-between border-b-[1px] border-zinc-800 px-6 py-4 '>
-          <h3 className='text-[18px] font-bold leading-loose text-white '>
+          <h3 className='font-bold text-[18px] leading-loose text-white '>
             {showNewCharacter
               ? 'New character'
               : showVoiceRequest
@@ -46,7 +52,7 @@ function CreateCharacterModal({ closeState }: createCharacterProps) {
         <div className='px-6 pb-6'>
           {showNewCharacter ? (
             <>
-              <p className='text-[15px] font-normal leading-5'>
+              <p className='font-normal text-[15px] leading-5'>
                 Add a character to learn more about the Creator Studio's
                 features and capabilities.
               </p>
@@ -58,21 +64,21 @@ function CreateCharacterModal({ closeState }: createCharacterProps) {
                   here will be illustration
                 </p>
               </div>
-              <p className='mt-7 text-[15px] font-normal leading-5'>
+              <p className='font-normal mt-7 text-[15px] leading-5'>
                 With Creator Studio, your characters can respond and engage in
                 dynamic conversations through voice requests.
               </p>
-              <p className='mt-4 text-[15px] font-normal leading-5'>
+              <p className='font-normal mt-4 text-[15px] leading-5'>
                 Simply activate the voice interaction option, and witness your
                 characters coming to life wit their own unique voices.
               </p>
             </>
           ) : (
             <>
-              <h6 className='mb-4 text-[15px] font-bold leading-5'>
+              <h6 className='font-bold mb-4 text-[15px] leading-5'>
                 Welcome to Creator Studio!
               </h6>
-              <p className='text-[15px] font-normal leading-5'>
+              <p className='font-normal text-[15px] leading-5'>
                 We stand apart from conventional character creation platforms in
                 some truly unique ways, and we're excited to introduce them to
                 you.
@@ -83,7 +89,7 @@ function CreateCharacterModal({ closeState }: createCharacterProps) {
           <div className='flex justify-end '>
             {showNewCharacter ? (
               <button
-                className=' mt-6 rounded-xl bg-[#5848BC] px-5 py-2.5 text-lg font-bold leading-[22px]'
+                className=' font-bold mt-6 rounded-xl bg-[#5848BC] px-5 py-2.5 text-lg leading-[22px]'
                 onClick={() => {
                   setCreateCharacter(true);
                 }}
@@ -92,14 +98,14 @@ function CreateCharacterModal({ closeState }: createCharacterProps) {
               </button>
             ) : showVoiceRequest ? (
               <button
-                className=' mt-6 rounded-xl bg-[#5848BC] px-5 py-2.5 text-lg font-bold leading-[22px]'
+                className=' font-bold mt-6 rounded-xl bg-[#5848BC] px-5 py-2.5 text-lg leading-[22px]'
                 onClick={handleNewCharacter}
               >
                 Next
               </button>
             ) : (
               <button
-                className=' mt-6 rounded-xl bg-[#5848BC] px-5 py-2.5 text-lg font-bold leading-[22px]'
+                className=' font-bold mt-6 rounded-xl bg-[#5848BC] px-5 py-2.5 text-lg leading-[22px]'
                 onClick={handleVoiceRequest}
               >
                 Next
@@ -109,7 +115,11 @@ function CreateCharacterModal({ closeState }: createCharacterProps) {
         </div>
       </Modal>
       {createCharacter && (
-        <CharacterAdd NewCharacterClose={setCreateCharacter} />
+        <CharacterAdd
+          NewCharacterClose={setCreateCharacter}
+          SetUserGuide={SetUserGuide}
+          SetIsTourOpen={SetIsTourOpen}
+        />
       )}
     </>
   );

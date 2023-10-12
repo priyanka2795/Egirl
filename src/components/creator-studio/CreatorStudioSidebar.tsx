@@ -35,16 +35,26 @@ import HoverModal from '@components/list/HoverModal';
 interface CreatorStudioNavbarPropProp {
   shrinkSideBar: boolean;
   setShrinkSideBar: React.Dispatch<React.SetStateAction<boolean>>;
+  IsOpen: any;
+  OnClose: any;
+  TourSteps: any;
 }
 
 const CreatorStudioSidebar = ({
   shrinkSideBar,
-  setShrinkSideBar
+  setShrinkSideBar,
+  IsOpen,
+  OnClose,
+  TourSteps
 }: CreatorStudioNavbarPropProp) => {
   const [sidebarModal, setSidebarModal] = useState<boolean>(false);
   const [moreOptionsModal, setMoreOptionsModal] = useState<boolean>(false);
   const [newCharacter, setNewCharacter] = useState<boolean>(false);
   // const [sideBarShrink, setSideBarShrink] = useState(false);
+  const GuideStep1 = TourSteps[1].id;
+  const GuideStep2 = TourSteps[2].id;
+  const GuideStep3 = TourSteps[3].id;
+  const GuideStep4 = TourSteps[4].id;
 
   return (
     <>
@@ -120,7 +130,7 @@ const CreatorStudioSidebar = ({
               Images
             </div>
           </div>
-          
+
           <SidebarMenuItem
             text='View Images'
             href='/view-images'
@@ -136,23 +146,36 @@ const CreatorStudioSidebar = ({
             } `}
           />
 
-        <div className='group relative flex cursor-pointer items-center justify-center rounded-[14px] text-[16px] font-bold leading-[22px] text-white'>
-          <SidebarMenuItem
-            text='Image Generator'
-            href='/image-generator'
-            Icon={ImageGeneratorIcon}
-            IconActive={imageGeneratorActive}
-            StyleClasses={`max-[1279px]:flex max-[1279px]:!justify-center max-[1279px]:max-w-[52px] max-[1279px]:mx-auto ${
-              shrinkSideBar === true
-                ? 'flex !justify-center max-w-[52px] mx-auto'
-                : 'pl-3'
-            }`}
-            sideBarMenuText={`max-[1279px]:!hidden ${
-              shrinkSideBar === true ? '!hidden' : 'w-full flex justify-center'
-            } `}
-          />
-          <HoverModal name={'Generate images'} text={"Edit your character's profile and personalize to find more followers."} step={'Step 3/5'} />
-          {/* <div
+          <div className='font-bold group relative flex cursor-pointer items-center justify-center rounded-[14px] text-[16px] leading-[22px] text-white'>
+            <SidebarMenuItem
+              text='Image Generator'
+              href='/image-generator'
+              Icon={ImageGeneratorIcon}
+              IconActive={imageGeneratorActive}
+              StyleClasses={`max-[1279px]:flex max-[1279px]:!justify-center max-[1279px]:max-w-[52px] max-[1279px]:mx-auto ${
+                shrinkSideBar === true
+                  ? 'flex !justify-center max-w-[52px] mx-auto'
+                  : 'pl-3'
+              }`}
+              sideBarMenuText={`max-[1279px]:!hidden ${
+                shrinkSideBar === true
+                  ? '!hidden'
+                  : 'w-full flex justify-center'
+              } `}
+            />
+            {GuideStep1 === 2 && (
+              <HoverModal
+                // name={'Generate images'}
+                // text={
+                //   "Edit your character's profile and personalize to find more followers."
+                // }
+                // step={'Step 3/5'}
+                isOpen={IsOpen}
+                onClose={OnClose}
+                tourSteps={TourSteps}
+              />
+            )}
+            {/* <div
             className={`max-[1279px]:mb-2 max-[1279px]:border-b-2 max-[1279px]:border-[#252525] ${
               shrinkSideBar === true
                 ? 'mb-2 border-b-2 border-[#252525]'
@@ -167,9 +190,9 @@ const CreatorStudioSidebar = ({
               Chatbot
             </div>
           </div> */}
-        </div>
-          
-          <div className='group relative flex cursor-pointer items-center justify-center rounded-[14px] text-[16px] font-bold leading-[22px] text-white'>
+          </div>
+
+          <div className='font-bold group relative flex cursor-pointer items-center justify-center rounded-[14px] text-[16px] leading-[22px] text-white'>
             <SidebarMenuItem
               text='Personality'
               href='/personality'
@@ -183,10 +206,21 @@ const CreatorStudioSidebar = ({
               sideBarMenuText={`max-[1279px]:!hidden ${
                 shrinkSideBar === true
                   ? '!hidden'
-                  : 'w-full flex justify-center' 
+                  : 'w-full flex justify-center'
               } `}
             />
-            <HoverModal name={'Personality'} text={"Edit your character's profile and personalize to find more followers."} step={'Step 2/5'} />
+            {GuideStep1 === 1 && (
+              <HoverModal
+                // name={'Personality'}
+                // text={
+                //   "Edit your character's profile and personalize to find more followers."
+                // }
+                // step={'Step 2/5'}
+                isOpen={IsOpen}
+                onClose={OnClose}
+                tourSteps={TourSteps}
+              />
+            )}
           </div>
 
           <SidebarMenuItem
@@ -204,23 +238,36 @@ const CreatorStudioSidebar = ({
             } `}
           />
 
-         <div className='group relative flex cursor-pointer items-center justify-center rounded-[14px] text-[16px] font-bold leading-[22px] text-white'>
-          <SidebarMenuItem
-            text='Gifts'
-            href='/gifts'
-            Icon={GiftIcon}
-            IconActive={gift}
-            StyleClasses={`max-[1279px]:flex max-[1279px]:!justify-center max-[1279px]:max-w-[52px] max-[1279px]:mx-auto ${
-              shrinkSideBar === true
-                ? 'flex !justify-center max-w-[52px] mx-auto'
-                : 'pl-3'
-            }`}
-            sideBarMenuText={`max-[1279px]:!hidden ${
-              shrinkSideBar === true ? '!hidden' : 'w-full flex justify-center'
-            } `}
-          />
-          <HoverModal name={'Create own gifts'} text={"Edit your character's profile and personalize to find more followers."} step={'Step 5/5'} />
-          {/* <div
+          <div className='font-bold group relative flex cursor-pointer items-center justify-center rounded-[14px] text-[16px] leading-[22px] text-white'>
+            <SidebarMenuItem
+              text='Gifts'
+              href='/gifts'
+              Icon={GiftIcon}
+              IconActive={gift}
+              StyleClasses={`max-[1279px]:flex max-[1279px]:!justify-center max-[1279px]:max-w-[52px] max-[1279px]:mx-auto ${
+                shrinkSideBar === true
+                  ? 'flex !justify-center max-w-[52px] mx-auto'
+                  : 'pl-3'
+              }`}
+              sideBarMenuText={`max-[1279px]:!hidden ${
+                shrinkSideBar === true
+                  ? '!hidden'
+                  : 'w-full flex justify-center'
+              } `}
+            />
+            {GuideStep1 === 4 && (
+              <HoverModal
+                // name={'Create own gifts'}
+                // text={
+                //   "Edit your character's profile and personalize to find more followers."
+                // }
+                // step={'Step 5/5'}
+                isOpen={IsOpen}
+                onClose={OnClose}
+                tourSteps={TourSteps}
+              />
+            )}
+            {/* <div
             className={`max-[1279px]:mb-2 max-[1279px]:border-b-2 max-[1279px]:border-[#252525] ${
               shrinkSideBar === true
                 ? 'mb-2 border-b-2 border-[#252525]'
@@ -268,23 +315,34 @@ const CreatorStudioSidebar = ({
               shrinkSideBar === true ? '!hidden' : 'w-full'
             } `}
           />
-          
-          <div className='group relative flex cursor-pointer items-center justify-center rounded-[14px] text-[16px] font-bold leading-[22px] text-white'>
-          <SidebarMenuItem
-            text='Style Generator'
-            href='/style-generator'
-            Icon={StyleGenerator}
-            IconActive={palette}
-            StyleClasses={`max-[1279px]:flex max-[1279px]:!justify-center max-[1279px]:max-w-[52px] max-[1279px]:mx-auto ${
-              shrinkSideBar === true
-                ? 'flex !justify-center max-w-[52px] mx-auto'
-                : 'pl-3'
-            }`}
-            sideBarMenuText={`max-[1279px]:!hidden ${
-              shrinkSideBar === true ? '!hidden' : 'w-full'
-            } `}
-          />
-          <HoverModal name={'Create style'} text={"Select character from style dropdown, upload your characters images, and generate character style!"} step={'Step 4/5'} />
+
+          <div className='font-bold group relative flex cursor-pointer items-center justify-center rounded-[14px] text-[16px] leading-[22px] text-white'>
+            <SidebarMenuItem
+              text='Style Generator'
+              href='/style-generator'
+              Icon={StyleGenerator}
+              IconActive={palette}
+              StyleClasses={`max-[1279px]:flex max-[1279px]:!justify-center max-[1279px]:max-w-[52px] max-[1279px]:mx-auto ${
+                shrinkSideBar === true
+                  ? 'flex !justify-center max-w-[52px] mx-auto'
+                  : 'pl-3'
+              }`}
+              sideBarMenuText={`max-[1279px]:!hidden ${
+                shrinkSideBar === true ? '!hidden' : 'w-full'
+              } `}
+            />
+            {GuideStep1 === 3 && (
+              <HoverModal
+                // name={'Create style'}
+                // text={
+                //   'Select character from style dropdown, upload your characters images, and generate character style!'
+                // }
+                // step={'Step 4/5'}
+                isOpen={IsOpen}
+                onClose={OnClose}
+                tourSteps={TourSteps}
+              />
+            )}
           </div>
         </div>
 

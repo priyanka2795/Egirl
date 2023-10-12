@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import bookUser from '../../../public/assets/book-user.png';
 import userPenIcon from '../../../public/assets/user-pen.png';
@@ -8,20 +8,76 @@ import palette from '../../../public/assets/palette.png';
 import flag from '../../../public/assets/flag.png';
 import HoverModal from './HoverModal';
 
-function SetUpYourCharacter() {
+interface SetUpYourCharacter {
+  IsOpen: any;
+  OnClose: any;
+  TourSteps: any;
+}
+function SetUpYourCharacter({
+  IsOpen,
+  OnClose,
+  TourSteps
+}: SetUpYourCharacter) {
+  {
+    /*
+  // guided tour
+  const [isTourOpen, setIsTourOpen] = useState(false);
+
+  const startTour = () => {
+    setIsTourOpen(true);
+  };
+
+  const closeTour = () => {
+    setIsTourOpen(false);
+  };
+
+  const tourSteps = [
+    {
+      title: 'Set up profile',
+      content:
+        'Edit your characters profile and personalize to find more followers.'
+    },
+    {
+      title: 'Personality',
+      content: 'Step 2: This is the second step.'
+    }
+    // Add more steps as needed
+  ];
+  // guided tour End
+*/
+  }
+
+  const GuideStep = TourSteps[0].id;
   return (
     <div className='mt-5 rounded-[14px] bg-[#121212] p-6'>
       <div className='flex items-center justify-between mb-6'>
-        <h3 className='text-[22px] font-bold leading-[22px]'>
+        <h3 className='font-bold text-[22px] leading-[22px]'>
           Setup your character
         </h3>
 
-        <div className='group relative flex cursor-pointer items-center justify-center rounded-[14px]  text-[16px] font-bold leading-[22px] text-white'>
+        <div className='font-bold group relative flex cursor-pointer items-center justify-center  rounded-[14px] text-[16px] leading-[22px] text-white'>
           <button className='flex items-center gap-2 rounded-xl bg-[#5848BC] px-4 py-2.5'>
             <Image src={bookUser} alt={''} />
             Guided Character Creator
           </button>
-          <HoverModal name={'Set up profile'} text={"Edit your character's profile and personalize to find more followers."} step={'Step 1/5'} />
+          {/* <button onClick={startTour}>Start Guided Tour</button> */}
+          {IsOpen && (
+            <>
+              {GuideStep === 0 && (
+                <HoverModal
+                  // name={'Set up profile'}
+                  // text={
+                  //   "Edit your character's profile and personalize to find more followers."
+                  // }
+                  // step={'Step 1/5'}
+
+                  isOpen={IsOpen}
+                  onClose={OnClose}
+                  tourSteps={TourSteps}
+                />
+              )}
+            </>
+          )}
         </div>
       </div>
 
