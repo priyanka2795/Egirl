@@ -44,6 +44,7 @@
     "react-dropzone": "^14.2.3",
     "react-hot-toast": "^2.3.0",
     "react-image-crop": "^10.1.8",
+    "react-password-checklist": "^1.4.3",
     "react-range": "^1.8.14",
     "react-resizable": "^3.0.5",
     "react-slick": "^0.29.0",

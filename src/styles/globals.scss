@@ -587,7 +587,10 @@ span.audio-recorder-timer {
 .marketplace-slider .slick-list::after {
   width: 20px;
 }
+
+.setup_character span{
+  width: 17px !important;
+}
 .signin-page{
-  background-image: url('../../public/assets/sign-in-bg-img.png');
-  background-repeat: no-repeat;
+  background: url('../../public/assets/sign-in-bg-img.png') 100% no-repeat;
 }

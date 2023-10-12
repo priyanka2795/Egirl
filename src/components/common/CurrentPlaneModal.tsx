@@ -106,18 +106,16 @@ const CurrentPlaneModal = ({ closeState }: CurrentPlaneProp) => {
               Token uses
             </h3>
             <div className='flex items-center gap-5 '>
-              <div className='invisible'>
-                <div className='absolute right-[80px] top-[0px] w-[60px] items-center justify-center rounded-[6px] bg-[#303030] px-3 py-[6px]'>
-                  <div className='text-center text-[12px] font-bold leading-4 text-[#FFFFFF]'>
-                    Token
+              <div className='flex items-center gap-1 '>
+                <div className='group relative flex flex-col items-center'>
+                  <Token className='cursor-pointer' />
+                  <div className='absolute bottom-0 mb-6 flex hidden flex-col items-center group-hover:flex'>
+                    <span className='whitespace-no-wrap relative z-10  rounded-sm bg-[#303030] p-2 text-xs font-normal leading-none text-white shadow-lg'>
+                      Token
+                    </span>
+                    <div className='-mt-2 h-3 w-3 rotate-45 bg-[#303030]'></div>
                   </div>
                 </div>
-                <div className='absolute right-[100px] top-[17px] h-[6px] w-3'>
-                  <Image className='h-full w-full' src={downArrow} alt={''} />
-                </div>
-              </div>
-              <div className='flex items-center gap-1 '>
-                <Token className='cursor-pointer' />
 
                 <div className='text-[15px] font-semibold text-[#979797]'>
                   50
@@ -144,7 +142,15 @@ const CurrentPlaneModal = ({ closeState }: CurrentPlaneProp) => {
                       {items.title}
                     </h5>
                     <div className='flex h-[30px] w-[50px] items-center justify-center gap-1 rounded-[8px] bg-[#26233f]'>
-                      <TokenPrimary />
+                      <div className='group relative flex flex-col items-center'>
+                        <TokenPrimary className='cursor-pointer' />
+                        <div className='absolute bottom-0 mb-6 flex hidden flex-col items-center group-hover:flex'>
+                          <span className='whitespace-no-wrap relative z-10 rounded-md bg-[#303030] p-2 text-xs font-normal leading-none text-white shadow-lg'>
+                            Token
+                          </span>
+                          <div className='-mt-2 h-3 w-3 rotate-45 bg-[#303030]'></div>
+                        </div>
+                      </div>
                       <div className='text-[13px]'>{items.count}</div>
                     </div>
                   </div>

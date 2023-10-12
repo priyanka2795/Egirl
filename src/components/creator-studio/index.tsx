@@ -3,17 +3,22 @@ import Banner from '@components/list/Banner';
 import PostCard from '@components/list/PostCard';
 import UserSection from '@components/list/UserSection';
 import PostInput from '@components/list/PostInput';
+import CreateCharacter from '@components/list/CreateCharacter';
+import SetUpYourCharacter from '@components/list/SetUpYourCharacter';
 
 const CreatorStudio = () => {
   return (
     <div className='mb-5'>
+      <CreateCharacter />
       <Banner
         styleProperty={'px-0 pt-2'}
         followBtnStyle={'border border-[#7362C6] bg-transparent text-[#7362C6]'}
         followText={'Follow'}
         component={'CreatorStudioProfile'}
       />
-
+      <div>
+        <SetUpYourCharacter />
+      </div>
       <div className='flex max-w-[1196px] justify-between gap-5'>
         <div className='flex w-full max-w-[59%] flex-col'>
           <PostInput />
