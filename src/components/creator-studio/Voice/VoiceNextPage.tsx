@@ -36,18 +36,18 @@ const voiceGenerations = [
 ];
 
 const VoiceNextPage = () => {
-  const [state1, setState1] = useState([50]);
-  const [state2, setState2] = useState([50]);
-  const [state3, setState3] = useState([50]);
-  const [inUse, setInUse] = useState(false);
+  const [state1, setState1] = useState<number[]>([50]);
+  const [state2, setState2] = useState<number[]>([50]);
+  const [state3, setState3] = useState<number[]>([50]);
+  const [inUse, setInUse] = useState<boolean>(false);
   const [textEdit, setTextEdit] = useState<boolean>(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [activeIndex, setActiveIndex] = useState<number>(0);
   // const [showEditedText, setShowEditedText] = useState(false);
   const [editedText, setEditedText] = useState<string>('');
-  const [accentState, setAccentState] = useState([0]);
-  const [voiceStabilityState, setVoiceStabilityState] = useState([0]);
-  const [voiceClarityState, setVoiceClarityState] = useState([0]);
+  const [accentState, setAccentState] = useState<number[]>([0]);
+  const [voiceStabilityState, setVoiceStabilityState] = useState<number[]>([0]);
+  const [voiceClarityState, setVoiceClarityState] = useState<number[]>([0]);
 
   return (
     <div className='flex flex-col gap-5'>
@@ -56,14 +56,14 @@ const VoiceNextPage = () => {
           <div className='text-[18px] font-bold leading-6 text-[#FFFFFF]'>
             Voice generator
           </div>
-          <div className='h-6 w-6 cursor-pointer'>
-            <Image className='h-full w-full' src={crossIcon} alt={''} />
+          <div className='w-6 h-6 cursor-pointer'>
+            <Image className='w-full h-full' src={crossIcon} alt={''} />
           </div>
         </div>
 
         <form>
           <div className='flex gap-6 p-6'>
-            <div className='flex w-1/2 flex-col gap-4'>
+            <div className='flex flex-col w-1/2 gap-4'>
               <div className='text-[15px] font-semibold leading-5 text-[#FFFFFF]'>
                 General settings
               </div>
@@ -157,7 +157,7 @@ const VoiceNextPage = () => {
               </div>
             </div>
 
-            <div className='flex w-1/2 flex-col gap-4'>
+            <div className='flex flex-col w-1/2 gap-4'>
               <div className='flex justify-between'>
                 <div className='text-[15px] font-semibold leading-5 text-[#FFFFFF]'>
                   Voice settings
@@ -178,7 +178,7 @@ const VoiceNextPage = () => {
                       alt={''}
                     />
                   </div>
-                  <div className='mt-3 flex flex-col'>
+                  <div className='flex flex-col mt-3'>
                     {/* <Range
                       step={0.1}
                       min={0}
@@ -217,7 +217,7 @@ const VoiceNextPage = () => {
                       values={accentState}
                       setValues={setAccentState}
                     />
-                    <div className='mt-3 flex justify-between'>
+                    <div className='flex justify-between mt-3'>
                       <div className='text-[14px] font-normal leading-[18px] text-[#515151]'>
                         Low
                       </div>
@@ -239,7 +239,7 @@ const VoiceNextPage = () => {
                       alt={''}
                     />
                   </div>
-                  <div className='mt-3 flex flex-col'>
+                  <div className='flex flex-col mt-3'>
                     {/* <Range
                       step={0.1}
                       min={0}
@@ -279,7 +279,7 @@ const VoiceNextPage = () => {
                       values={voiceStabilityState}
                       setValues={setVoiceStabilityState}
                     />
-                    <div className='mt-3 flex justify-between'>
+                    <div className='flex justify-between mt-3'>
                       <div className='text-[14px] font-normal leading-[18px] text-[#515151]'>
                         Low
                       </div>
@@ -301,7 +301,7 @@ const VoiceNextPage = () => {
                       alt={''}
                     />
                   </div>
-                  <div className='mt-3 flex flex-col'>
+                  <div className='flex flex-col mt-3'>
                     {/* <Range
                       step={0.1}
                       min={0}
@@ -341,7 +341,7 @@ const VoiceNextPage = () => {
                       values={voiceClarityState}
                       setValues={setVoiceClarityState}
                     />
-                    <div className='mt-3 flex justify-between'>
+                    <div className='flex justify-between mt-3'>
                       <div className='text-[14px] font-normal leading-[18px] text-[#515151]'>
                         Low
                       </div>
@@ -372,8 +372,8 @@ const VoiceNextPage = () => {
             <div className='text-[18px] font-bold leading-6 text-[#FFFFFF]'>
               All voice generations
             </div>
-            <div className='h-5 w-5'>
-              <Image className='h-full w-full' src={searchIcon} alt={''} />
+            <div className='w-5 h-5'>
+              <Image className='w-full h-full' src={searchIcon} alt={''} />
             </div>
           </div>
 
@@ -391,7 +391,7 @@ const VoiceNextPage = () => {
                     <div className='flex gap-4'>
                       <div className='mt-[10px] h-5 w-5'>
                         <Image
-                          className='h-full w-full'
+                          className='w-full h-full'
                           src={threeDots}
                           alt={''}
                         />
@@ -413,8 +413,8 @@ const VoiceNextPage = () => {
                     </div>
                   </div>
                   <div className='flex items-center gap-2'>
-                    <div className='h-5 w-5'>
-                      <Image className='h-full w-full' src={volume} alt={''} />
+                    <div className='w-5 h-5'>
+                      <Image className='w-full h-full' src={volume} alt={''} />
                     </div>
                     {textEdit && activeIndex === index ? (
                       <TextEdit
@@ -436,7 +436,7 @@ const VoiceNextPage = () => {
                           }}
                         >
                           <Image
-                            className='h-full w-full'
+                            className='w-full h-full'
                             src={pencil}
                             alt={''}
                           />

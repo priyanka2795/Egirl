@@ -58,7 +58,7 @@ const allImages = [
 ];
 
 const FavoriteStyles = () => {
-    const [favoriteStyleModal, setFavoriteStyleModal] = useState(false);
+    const [favoriteStyleModal, setFavoriteStyleModal] = useState<boolean>(false);
   return (
     <>
     <div className='flex flex-col gap-4 mt-5'>

@@ -29,9 +29,9 @@ function CreateGift({
   GiftName,
   SetGiftName
 }: CreateGiftPopup) {
-  const [createCategory, setCreateCategory] = useState(false);
-  const [tabSelectedOpt, setTabSelectedOpt] = useState('');
-  const [giftName, setGiftName] = useState('');
+  const [createCategory, setCreateCategory] = useState<boolean>(false);
+  const [tabSelectedOpt, setTabSelectedOpt] = useState<string>('');
+  const [giftName, setGiftName] = useState<string>('');
 
   const handleActiveTab = (items: string) => {
     setTabSelectedOpt(items);
@@ -73,10 +73,10 @@ function CreateGift({
           <div className='flex items-center justify-between border-b border-[#FFFFFF14] p-6'>
             <h5 className='text-lg font-semibold'>Create gift</h5>
             <div
-              className='h-6 w-6 cursor-pointer'
+              className='w-6 h-6 cursor-pointer'
               onClick={() => createGiftClose(false)}
             >
-              <Image className='h-full w-full' src={crossIcon} alt={''} />
+              <Image className='w-full h-full' src={crossIcon} alt={''} />
             </div>
           </div>
           <div className='flex flex-col gap-4 p-6'>
@@ -88,9 +88,9 @@ function CreateGift({
               />
               <div className='group absolute right-2 top-2 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-[#0000007A]'>
                 <div>
-                  <Edit className='h-full w-full' alt={''} />
+                  <Edit className='w-full h-full' alt={''} />
                 </div>
-                <div className='absolute -left-12 -top-2 w-max -translate-x-0 -translate-y-2/4 transform transition-all'>
+                <div className='absolute transition-all transform -left-12 -top-2 w-max -translate-x-0 -translate-y-2/4'>
                   <Tooltip Text={'Edit'} />
                 </div>
               </div>
@@ -157,7 +157,7 @@ function CreateGift({
               className='flex items-center gap-2 font-semibold '
               onClick={() => setCreateCategory(true)}
             >
-              <Image className='h-full w-full' src={plusIcon} alt={''} />
+              <Image className='w-full h-full' src={plusIcon} alt={''} />
               <p>New Category</p>
             </button>
 

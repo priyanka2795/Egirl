@@ -6,14 +6,14 @@ import searchIcon from '../../../../public/assets/search-alt.png';
 import Image from 'next/image';
 import PersonalityHoverModal from './PersonalityHoverModal';
 const PersonalityLikeSection = () => {
-  const [open, setOpen] = React.useState(false);
-  const [seletedTab, setSelectedTab] = useState(false);
+  const [open, setOpen] = React.useState<boolean>(false);
+  const [seletedTab, setSelectedTab] = useState<boolean>(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false), setSelectedTab(true);
   };
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
-  const [showHoverModal, setShowHoverModal] = useState(false);
+  const [showHoverModal, setShowHoverModal] = useState<boolean>(false);
 
   const handleOptionChange = (option: string) => {
     if (selectedOptions.includes(option)) {
@@ -113,7 +113,7 @@ const PersonalityLikeSection = () => {
   return (
     <>
       <div className='flex h-auto w-full max-w-full flex-col rounded-lg bg-[#121212]'>
-        <div className='flex max-w-full items-center justify-between p-6'>
+        <div className='flex items-center justify-between max-w-full p-6'>
           <div className='flex flex-col gap-[2px]'>
             {showHoverModal && <PersonalityHoverModal />}
             <h2 className='flex items-center gap-[6px] text-lg font-bold'>
@@ -146,7 +146,7 @@ const PersonalityLikeSection = () => {
               {selectedOptions.map((option) => (
                 <div
                   key={option}
-                  className='flex gap-2 rounded-xl bg-neutral-800 pb-3 pl-5 pr-5 pt-3 text-sm'
+                  className='flex gap-2 pt-3 pb-3 pl-5 pr-5 text-sm rounded-xl bg-neutral-800'
                 >
                   {option}{' '}
                   <span
@@ -190,8 +190,8 @@ const PersonalityLikeSection = () => {
 
         <div className='border-b border-white/[0.08] px-8 py-4'>
           <div className='flex w-full gap-[10px] rounded-[14px] bg-white/[0.05] px-4 py-3'>
-            <div className='h-6 w-6'>
-              <Image className='h-full w-full' src={searchIcon} alt={''} />
+            <div className='w-6 h-6'>
+              <Image className='w-full h-full' src={searchIcon} alt={''} />
             </div>
             <input
               type='text'
@@ -635,7 +635,7 @@ const PersonalityLikeSection = () => {
           <label className="pl-8 h-10 inline-block px-3 py-2 mb-4 ml-3 text-base transition cursor-pointer rounded-3xl bg-[#c6c6c6] text-[#525252] w-max peer-checked:bg-fuchsia-700 peer-checked:text-[#f4f4f4]" id='a2' for="Services/ Software">Anime</label>
           </div> */}
         </div>
-        <div className='flex flex-row gap-3 self-stretch px-8 pb-8 pt-4'>
+        <div className='flex flex-row self-stretch gap-3 px-8 pt-4 pb-8'>
           <button
             onClick={clearSelection}
             className='flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-white/[0.32] px-5 py-[13px] font-bold'

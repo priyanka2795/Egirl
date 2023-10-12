@@ -14,8 +14,8 @@ const ViewStyleMainPage = () => {
   const [addedStyle, setAddedStyle] = useState<boolean>(false);
   const [postedStyle, setPostedStyle] = useState<boolean>(false);
   const tabContent = ['Your Styles', 'Favorite Styles', 'Platform Styles'];
-  const [exploreSelectedTab, setExploreSelected] = useState('Your Styles');
-  const [mainPageOption, setMainPageOption] = useState(false);
+  const [exploreSelectedTab, setExploreSelected] = useState<string>('Your Styles');
+  const [mainPageOption, setMainPageOption] = useState<boolean>(false);
   return (
     <>
       {mainPageOption ? (

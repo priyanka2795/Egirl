@@ -28,11 +28,11 @@ interface AddStyleModal {
 const StyleTab = ['Your Styles', 'Popular'];
 
 const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
-  const [styleTabs, setStyleTabs] = useState('Your Styles');
-  const [tooltip, setTooltip] = useState(false);
-  const [selfModeImages, setSelfModeImages] = useState(SelfMode);
-  const [selfImageSearch, setSelfImageSearch] = useState(false);
-  const [searchStyle, setSearchStyle] = useState('');
+  const [styleTabs, setStyleTabs] = useState<string>('Your Styles');
+  const [tooltip, setTooltip] = useState<boolean>(false);
+  const [selfModeImages, setSelfModeImages] = useState<any[]>(SelfMode);
+  const [selfImageSearch, setSelfImageSearch] = useState<boolean>(false);
+  const [searchStyle, setSearchStyle] = useState<string>('');
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
 
   const SelectImage = (name: string) => {
@@ -96,9 +96,9 @@ const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
         {/* search bar */}
         <div className='border-b border-[#FFFFFF14] px-8 pb-6'>
           <div className='flex w-full gap-[10px] rounded-[10px] bg-white/[0.05] p-3'>
-            <div className='h-6 w-6'>
+            <div className='w-6 h-6'>
               <Image
-                className='h-full w-full'
+                className='w-full h-full'
                 src={searchIcon}
                 alt={''}
                 id='myinput'
@@ -115,7 +115,7 @@ const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
         </div>
         {/* Imges  */}
         <div className=''>
-          <div className='mt-4 flex flex-col gap-4 px-8 '>
+          <div className='flex flex-col gap-4 px-8 mt-4 '>
             {/* self made */}
             <h6 className='font-bold text-lg leading-6 text-white'>
               Self Made
@@ -148,7 +148,7 @@ const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
                     >
                       <p className='text-[13px] font-semibold'>{items.name}</p>
                       {selectedItems.length > 3 && (
-                        <div className='left-30 absolute -top-14 text-center text-xs'>
+                        <div className='absolute text-xs text-center left-30 -top-14'>
                           <Tooltip Text='You can select maximum of 4 styles' />
                         </div>
                       )}
@@ -177,7 +177,7 @@ const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
           </div>
         </div>
 
-        <div className='flex flex-row gap-3 self-stretch px-8 pb-8 pt-4'>
+        <div className='flex flex-row self-stretch gap-3 px-8 pt-4 pb-8'>
           <button
             onClick={() => SetOpenStyle(false)}
             className='font-bold flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-white/[0.32] px-5 py-[13px]'

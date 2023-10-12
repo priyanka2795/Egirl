@@ -9,6 +9,8 @@ import palette from '../../../../public/assets/palette.png';
 import dotsHorizontal from '../../../../public/assets/dots-horizontal.png';
 import userpic from '../../../components/creator-studio/svg/user-alt-1.png';
 import CharacterAdd from '../NewCharacter/CharacterAdd';
+
+
 const data = [
   {
     name: 'Mika-chan',
@@ -41,7 +43,7 @@ const data = [
 ];
 
 const Create = () => {
-  const [newCharacter, setNewCharacter] = useState(false);
+  const [newCharacter, setNewCharacter] = useState<boolean>(false);
 
   return (
     <div>
@@ -58,7 +60,7 @@ const Create = () => {
           }}
           className='mr-4 flex items-center justify-center gap-1.5 self-stretch rounded-xl bg-[#5848BC] px-4 py-2.5 text-sm font-bold leading-5 '
         >
-          <Image className='h-full w-full' src={plusIcon} alt={''} />
+          <Image className='w-full h-full' src={plusIcon} alt={''} />
           New Character
         </button>
         {newCharacter && <CharacterAdd NewCharacterClose={setNewCharacter} />}
@@ -86,11 +88,11 @@ const Create = () => {
                     {datas.username}
                   </div>
                 </div>
-                <div className='flex items-center justify-between self-stretch '>
+                <div className='flex items-center self-stretch justify-between '>
                   <div className='flex items-start gap-4 pr-[0px]'>
                     {/* left */}
                     <div className='flex items-center gap-1'>
-                      <div className='h-4 w-4'>
+                      <div className='w-4 h-4'>
                         <Image src={datas.pic} />
                       </div>
                       <div className='text-[13px] font-normal leading-[18px]'>
@@ -99,7 +101,7 @@ const Create = () => {
                     </div>
                     {/* center */}
                     <div className='flex items-center gap-1'>
-                      <div className='h-4 w-4'>
+                      <div className='w-4 h-4'>
                         <Image src={palette} />
                       </div>
                       <div className='text-[13px] font-normal leading-[18px]'>
@@ -107,7 +109,7 @@ const Create = () => {
                       </div>
                     </div>
                   </div>
-                  <div className='h-6 w-6 '>
+                  <div className='w-6 h-6 '>
                     <Image src={dotsHorizontal} />
                   </div>
                 </div>

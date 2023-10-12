@@ -41,9 +41,9 @@ const CreatorStudioSidebar = ({
   shrinkSideBar,
   setShrinkSideBar
 }: CreatorStudioNavbarPropProp) => {
-  const [sidebarModal, setSidebarModal] = useState(false);
-  const [moreOptionsModal, setMoreOptionsModal] = useState(false);
-  const [newCharacter, setNewCharacter] = useState(false);
+  const [sidebarModal, setSidebarModal] = useState<boolean>(false);
+  const [moreOptionsModal, setMoreOptionsModal] = useState<boolean>(false);
+  const [newCharacter, setNewCharacter] = useState<boolean>(false);
   // const [sideBarShrink, setSideBarShrink] = useState(false);
 
   return (

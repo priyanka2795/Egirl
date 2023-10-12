@@ -118,13 +118,11 @@ const PosingModal = ({
   SetPosingCreated,
   EditPosing
 }: PosingModal) => {
-  const [posePresetsActive, setPosePresetsActive] = useState<number | null>(
-    null
-  );
+  const [posePresetsActive, setPosePresetsActive] = useState<number | null>(null);
   const [posePresets, setPosePresets] = useState<number | null>(null);
-  const [selectPose, setSelectPose] = useState(false);
-  const [previewPose, setPreviewPose] = useState(false);
-  const [searchPresets, setSearchPresets] = useState(false);
+  const [selectPose, setSelectPose] = useState<boolean>(false);
+  const [previewPose, setPreviewPose] = useState<boolean>(false);
+  const [searchPresets, setSearchPresets] = useState<boolean>(false);
 
   const AllPosePresets = (index: number) => {
     setPosePresets((prev) => (prev === index ? null : index));
@@ -173,28 +171,28 @@ const PosingModal = ({
           </div>
 
           <div className='flex '>
-            <div className='sub-banner relative flex-1 '>
+            <div className='relative flex-1 sub-banner '>
               {selectPose ? (
                 <Image
                   src={PoseImageSelect}
-                  className='max-h-full w-full object-cover'
+                  className='object-cover w-full max-h-full'
                 />
               ) : (
                 ''
               )}
-              <div className='absolute right-3 top-3 flex items-center gap-2'>
+              <div className='absolute flex items-center gap-2 right-3 top-3'>
                 <div className='flex cursor-pointer items-center gap-1 rounded-full bg-[#000000CC] p-3'>
                   {selectPose ? (
-                    <Image src={RotateWhite} className='h-full w-full ' />
+                    <Image src={RotateWhite} className='w-full h-full ' />
                   ) : (
-                    <Image src={Rotate} className='h-full w-full ' />
+                    <Image src={Rotate} className='w-full h-full ' />
                   )}
                 </div>
                 <div className='flex  cursor-pointer items-center gap-1 rounded-[100px] bg-[#000000CC] p-3'>
                   {selectPose ? (
-                    <Image src={RestWhite} className='h-full w-full' />
+                    <Image src={RestWhite} className='w-full h-full' />
                   ) : (
-                    <Image src={Rest} className='h-full w-full' />
+                    <Image src={Rest} className='w-full h-full' />
                   )}
                   <p
                     className={`${
@@ -209,31 +207,31 @@ const PosingModal = ({
                 {selectPose ? (
                   <Image
                     src={BackwardWhite}
-                    className='h-full w-full cursor-pointer object-cover'
+                    className='object-cover w-full h-full cursor-pointer'
                   />
                 ) : (
                   <Image
                     src={Backward}
-                    className='h-full w-full cursor-pointer object-cover'
+                    className='object-cover w-full h-full cursor-pointer'
                   />
                 )}
                 <p className='h-[16px] w-[10px] border-r border-[#FFFFFF3D]'></p>
                 <Image
                   src={Forward}
-                  className='h-full w-full cursor-pointer object-cover'
+                  className='object-cover w-full h-full cursor-pointer'
                 />
               </div>
             </div>
 
             <div className='w-[324px] border-l border-[#FFFFFF0D] pb-3'>
-              <div className='px-5 pb-3 pt-5'>
+              <div className='px-5 pt-5 pb-3'>
                 <div className='flex items-center justify-between'>
                   <h6 className='text-[15px] font-semibold'>Pose presets </h6>
                   {searchPresets ? (
                     ''
                   ) : (
                     <button onClick={() => setSearchPresets(!searchPresets)}>
-                      <Image src={SearchIcon} className='h-full w-full' />
+                      <Image src={SearchIcon} className='w-full h-full' />
                     </button>
                   )}
                 </div>
@@ -241,7 +239,7 @@ const PosingModal = ({
                   <div className='mt-4 flex h-[40px] items-center justify-between gap-[6px] rounded-[10px] bg-[#FFFFFF0D] px-3'>
                     <Image
                       src={SearchIcon}
-                      className='h-full w-full object-cover'
+                      className='object-cover w-full h-full'
                     />
                     <input
                       type='text'
@@ -252,7 +250,7 @@ const PosingModal = ({
                     />
                     <Image
                       src={CloseIcon}
-                      className='h-full w-full cursor-pointer object-cover'
+                      className='object-cover w-full h-full cursor-pointer'
                       onClick={() => setSearchPresets(!searchPresets)}
                     />
                   </div>
@@ -274,16 +272,16 @@ const PosingModal = ({
                       <div className='sub-banner h-12 !w-12 overflow-hidden rounded-lg'>
                         <Image
                           src={PoseImage}
-                          className='h-full w-full object-cover'
+                          className='object-cover w-full h-full'
                         />
                       </div>
                       <div className='flex-1 '>
                         <div className='flex items-center justify-between'>
                           <p>{items.pose}</p>
                           {posePresets === index ? (
-                            <Image src={ArrowUp} className='h-full w-full' />
+                            <Image src={ArrowUp} className='w-full h-full' />
                           ) : (
-                            <Image src={ArrowDown} className='h-full w-full' />
+                            <Image src={ArrowDown} className='w-full h-full' />
                           )}
                         </div>
                       </div>
@@ -302,7 +300,7 @@ const PosingModal = ({
                             )}
                             <Image
                               src={item.img}
-                              className='h-full w-full object-cover'
+                              className='object-cover w-full h-full'
                             />
                             <div
                               className={`${

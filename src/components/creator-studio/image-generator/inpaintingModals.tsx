@@ -23,8 +23,8 @@ const InpaintingModals = ({
   SetInpaintingCreated,
   EditInpainting
 }: InpaintingModals) => {
-  const [brushSize, setBrushSize] = useState([20]);
-  const [brushSizeToggle, setBrushSizeToggle] = useState(false);
+  const [brushSize, setBrushSize] = useState<number[]>([20]);
+  const [brushSizeToggle, setBrushSizeToggle] = useState<boolean>(false);
 
   return (
     <Modal
@@ -50,22 +50,22 @@ const InpaintingModals = ({
         <div className='sub-banner relative m-auto  h-[640px] w-[640px] '>
           <Image
             src={Image1}
-            className='h-full w-full rounded-lg object-cover'
+            className='object-cover w-full h-full rounded-lg'
           />
-          <div className='absolute right-3 top-3 flex items-center gap-2'>
+          <div className='absolute flex items-center gap-2 right-3 top-3'>
             <div className='relative flex items-center justify-center gap-3 rounded-[100px] bg-[#000000CC] p-3'>
               <div className='group relative h-5 cursor-pointer border-r border-[#FFFFFF3D] pr-3'>
-                <Image src={ImageSquare} className='h-full w-full' />
+                <Image src={ImageSquare} className='w-full h-full' />
                 <div className='absolute -left-14 -top-12 w-max'>
                   <Tooltip Text={'Replace image'} />
                 </div>
               </div>
               <div
-                className='flex cursor-pointer items-center gap-2'
+                className='flex items-center gap-2 cursor-pointer'
                 onClick={() => setBrushSizeToggle(!brushSizeToggle)}
               >
-                <Image src={BrushWhite} className='h-full w-full' />
-                <Image src={ArrowDown} className='h-full w-full' />
+                <Image src={BrushWhite} className='w-full h-full' />
+                <Image src={ArrowDown} className='w-full h-full' />
               </div>
               {brushSizeToggle && (
                 <div className='absolute right-0 top-12 flex h-[68px] w-[211px] items-center justify-center rounded-[14px] bg-[#121212] px-5 '>
@@ -75,9 +75,9 @@ const InpaintingModals = ({
             </div>
             <div className='flex  cursor-pointer items-center gap-1 rounded-[100px] bg-[#000000CC] p-3'>
               {EditInpainting ? (
-                <Image src={RestWhite} className='h-full w-full' />
+                <Image src={RestWhite} className='w-full h-full' />
               ) : (
-                <Image src={Rest} className='h-full w-full' />
+                <Image src={Rest} className='w-full h-full' />
               )}
               <p
                 className={`${
@@ -91,17 +91,17 @@ const InpaintingModals = ({
           <div className='absolute bottom-3 left-3 flex items-center justify-center gap-3 rounded-[100px] bg-[#000000CC] px-5 py-3'>
             <Image
               src={Backward}
-              className='h-full w-full cursor-pointer object-cover'
+              className='object-cover w-full h-full cursor-pointer'
             />
             <p className='h-[16px] w-[10px] border-r border-[#FFFFFF3D]'></p>
             <Image
               src={Forward}
-              className='h-full w-full cursor-pointer object-cover'
+              className='object-cover w-full h-full cursor-pointer'
             />
           </div>
         </div>
       </div>
-      <div className='mx-6 mt-6 flex items-center justify-end gap-3 font-semibold text-white'>
+      <div className='flex items-center justify-end gap-3 mx-6 mt-6 font-semibold text-white'>
         <button
           className='rounded-[14px] border border-[#FFFFFF52] px-5 py-3'
           onClick={() => CloseInpaintingModal(false)}
