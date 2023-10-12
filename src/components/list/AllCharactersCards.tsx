@@ -43,8 +43,8 @@ const AllCharactersCards = () => {
                     <div className='flex gap-[30px]'>
                         {card.map((item, index) => {
                             return(
-                                <div className='flex gap-1'>
-                                    <Image src={item.icon} alt={''} />
+                                <div className='flex items-center gap-1'>
+                                    <Image className='object-contain' src={item.icon} alt={''} />
                                     <div className='text-white text-[13px] font-normal leading-[18px]'>{item.text}</div>
                                 </div>
                             );
