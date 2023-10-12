@@ -70,7 +70,7 @@ const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
       <div className='rounded-[20px] bg-[#121212] '>
         {/* Header */}
         <div className='flex items-center justify-between border-b border-white/[0.08] border-b-white/[0.08] p-8'>
-          <h5 className='text-lg font-bold'>Style</h5>
+          <h5 className='font-bold text-lg'>Style</h5>
           <button
             className='h-[24px] w-[24px]'
             onClick={() => SetOpenStyle(false)}
@@ -89,7 +89,7 @@ const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
               }`}
               onClick={(e) => setStyleTabs((e.target as HTMLElement).innerText)}
             >
-              <p className={`text-[15px] font-bold`}>{items}</p>
+              <p className={`font-bold text-[15px]`}>{items}</p>
             </div>
           ))}
         </div>
@@ -107,7 +107,7 @@ const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
             <input
               placeholder='Search'
               type='text'
-              className='flex-1 border-none bg-transparent p-0 text-[15px] font-light leading-6 placeholder:text-[#979797] focus:ring-0'
+              className='font-light flex-1 border-none bg-transparent p-0 text-[15px] leading-6 placeholder:text-[#979797] focus:ring-0'
               value={searchStyle}
               onChange={handleInputChange}
             />
@@ -117,11 +117,11 @@ const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
         <div className=''>
           <div className='mt-4 flex flex-col gap-4 px-8 '>
             {/* self made */}
-            <h6 className='text-lg font-bold leading-6 text-white'>
+            <h6 className='font-bold text-lg leading-6 text-white'>
               Self Made
             </h6>
             {selfImageSearch ? (
-              <p className='text-center font-bold text-[#979797]'>
+              <p className='font-bold text-center text-[#979797]'>
                 Image Not Found
               </p>
             ) : (
@@ -180,13 +180,13 @@ const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
         <div className='flex flex-row gap-3 self-stretch px-8 pb-8 pt-4'>
           <button
             onClick={() => SetOpenStyle(false)}
-            className='flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-white/[0.32] px-5 py-[13px] font-bold'
+            className='font-bold flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-white/[0.32] px-5 py-[13px]'
           >
             Cancel
           </button>
           <button
             onClick={() => SetOpenStyle(false)}
-            className='flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-[#5848BC] bg-[#5848BC] px-5 py-[13px] font-bold'
+            className='font-bold flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-[#5848BC] bg-[#5848BC] px-5 py-[13px]'
           >
             Save
           </button>
