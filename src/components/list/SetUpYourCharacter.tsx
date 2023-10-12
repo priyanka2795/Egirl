@@ -6,13 +6,12 @@ import personalityIcon from '../../../public/assets/user.png';
 import imagePlusIcon from '../../../public/assets/image-plus.png';
 import palette from '../../../public/assets/palette.png';
 import flag from '../../../public/assets/flag.png';
-import CloseIcon from '../../../public/assets/svgImages/close-icon.svg';
-import arrowLeft from '../../../public/assets/arrow-left.png';
-import downArrow from '../../../public/assets/down-arrow-img.png';
+import HoverModal from './HoverModal';
+
 function SetUpYourCharacter() {
   return (
     <div className='mt-5 rounded-[14px] bg-[#121212] p-6'>
-      <div className='mb-6 flex items-center justify-between'>
+      <div className='flex items-center justify-between mb-6'>
         <h3 className='text-[22px] font-bold leading-[22px]'>
           Setup your character
         </h3>
@@ -22,37 +21,7 @@ function SetUpYourCharacter() {
             <Image src={bookUser} alt={''} />
             Guided Character Creator
           </button>
-          <div className='invisible group-hover:visible group-hover:opacity-100'>
-            <div className='absolute -left-[80px] bottom-[62px]  w-[169px] w-[330px] scale-0  rounded-[14px] bg-[#2b2a2a] p-4 text-xs text-white transition-all group-hover:scale-100'>
-              <div className='flex justify-between border-b-[1px] border-zinc-700 pb-3'>
-                <h4 className=' text-[18px] font-bold'>Set up profile</h4>
-                <div>
-                  <CloseIcon />
-                </div>
-              </div>
-              <p className='mt-3 text-[14px] font-normal leading-5'>
-                Edit your character's profile and personalize to find more
-                followers.
-              </p>
-              <div className='mt-3 flex items-center justify-between'>
-                <p className='text-[14px] font-normal text-[#979797]'>
-                  Step 1/5
-                </p>
-                <div className='flex items-center gap-4'>
-                  <div className='flex h-9 w-9 items-center justify-center rounded-full border-[1px] border-white/[0.32]'>
-                    <Image src={arrowLeft} alt='' />
-                  </div>
-                  <button className=' rounded-xl bg-[#5848BC] px-4 py-2 text-[14px] font-bold leading-[22px]'>
-                    Next
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <div className='absolute -top-[30px] right-[20px] h-[24px] w-[20px] '>
-              <Image className='h-full w-full' src={downArrow} alt={''} />
-            </div>
-          </div>
+          <HoverModal name={'Set up profile'} text={"Edit your character's profile and personalize to find more followers."} step={'Step 1/5'} />
         </div>
       </div>
 
