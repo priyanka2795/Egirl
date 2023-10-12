@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import messageInfoIcon from '../../../public/assets/message-square-info.png';
 import blockIcon from '../../../public/assets/block-icon.png';
@@ -20,6 +20,10 @@ import galleryIcon from '../../../public/assets/gallery-icon.png';
 import deleteIcon from '../../../public/assets/delete-icon.png';
 import UpdatePhotoModal from './UpdatePhotoModal';
 import DeleteProfileCover from './DeleteProfileCover';
+import pen from '../../../public/assets/pen.png';
+import eye from '../../../public/assets/eye.png';
+import trashBlank from '../../../public/assets/trash-blank-alt.png';
+import downArrow from '../../../public/assets/down-arrow-img.png';
 
 const posts = [
   {
@@ -81,6 +85,17 @@ const actions = [
   }
 ];
 
+const cratorProfileActions = [
+  {
+    icon: linkIcon,
+    name: 'Copy link to profile'
+  },
+  {
+    icon: trashBlank,
+    name: 'Delete'
+  }
+];
+
 const uploadPhoto = [
   {
     icon: galleryIcon,
@@ -97,12 +112,14 @@ interface BannerProp {
   styleProperty?: string;
   followBtnStyle?: string;
   followText?: string;
+  component?: string;
 }
 const Banner = ({
   backFromProfile,
   styleProperty,
   followBtnStyle,
-  followText
+  followText,
+  component
 }: BannerProp) => {
   const [actionDivShow, setActionDivShow] = useState(false);
   const [exploreSelectedTab, setExploreSelected] = useState('');
@@ -110,12 +127,15 @@ const Banner = ({
   const [uploadPhotoShow, setUploadPhotoShow] = useState(false);
   const [updatePhoto, setUpdatePhoto] = useState('');
   const [updatePhotoModalState, setUpdatePhotoModalState] = useState(false);
-  const [deleteProfileCModalState, setDeleteProfileModalState] =
-    useState(false);
+  const [deleteProfileModalState, setDeleteProfileModalState] = useState(false);
   const [viewModal, setviewModal] = useState(false);
+  const [removeCover, setRemoveCover] = useState(false);
+  const [image, setImage] = useState('');
+  const [cropData, setCropData] = useState('');
+  const [updatedProfile, setUpdatedProfile] = useState(false);
 
-  const handleExploreSelected = (e: any) => {
-    setExploreSelected(e.target.innerText);
+  const handleExploreSelected = (e: React.MouseEvent<HTMLElement>) => {
+    setExploreSelected((e.target as HTMLElement).innerText);
 
     if (exploreSelectedTab === 'Add to collections') {
       setCollectionModalState(true);
@@ -124,31 +144,65 @@ const Banner = ({
     }
   };
 
-  const handleActionDivShow = (e: any) => {
+  const handleActionDivShow = (e: React.MouseEvent<HTMLElement>) => {
     setActionDivShow(!actionDivShow);
   };
 
-  const handleUploadPhotoShow = (e: any) => {
+  const handleUploadPhotoShow = (e: React.MouseEvent<HTMLElement>) => {
     setUploadPhotoShow(!uploadPhotoShow);
   };
-  const handleUploadSelected = (e: any) => {
-    setUpdatePhoto(e.target.innerText);
-    if (e.target.innerText === 'Update photo') {
+  const handleUploadSelected = (e: React.MouseEvent<HTMLElement>) => {
+    const value = (e.target as HTMLElement).innerText;
+    setUpdatePhoto(value);
+    if (value === 'Update photo') {
       setUpdatePhotoModalState(true);
     }
-    if (e.target.innerText === 'Delete') {
+    if (value === 'Delete') {
       setDeleteProfileModalState(true);
+    }
+  };
+
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+  const handleClickOutside = (e: MouseEvent) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(e.target as Node)
+    ) {
+      setActionDivShow(false);
+    }
+  };
+  const photoDropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    document.addEventListener('click', handleOutside);
+    return () => {
+      document.removeEventListener('click', handleOutside);
+    };
+  }, []);
+  const handleOutside = (e: MouseEvent) => {
+    if (
+      photoDropdownRef.current &&
+      !photoDropdownRef.current.contains(e.target as Node)
+    ) {
+      setUploadPhotoShow(false);
     }
   };
 
   return (
     <div className={`${styleProperty ? styleProperty : 'px-8'}`}>
-      <button onClick={() => setviewModal(true)}>Add Character</button>
+      {/* <button onClick={() => setviewModal(true)}>Add Character</button>  */}
       {backFromProfile === undefined ? (
         ''
       ) : (
         <div
-          className='flex gap-2 my-4 text-lg font-bold cursor-pointer'
+          className='font-bold my-4 flex cursor-pointer gap-2 text-lg'
           onClick={() => {
             backFromProfile(false);
           }}
@@ -160,9 +214,18 @@ const Banner = ({
 
       <div>
         <div className='h-max w-full overflow-hidden rounded-[16px] bg-[#121212]'>
-          <div className='relative block w-full sub-banner'>
-            <Image className='w-full h-full ' src={Cover} alt='' />
-            <div className='absolute right-[20px] top-[20px] cursor-pointer'>
+          <div className='sub-banner relative block w-full'>
+            {removeCover ? (
+              <div className='h-[200px] w-[1092px] bg-[#121212]'></div>
+            ) : updatedProfile ? (
+              <img className='h-[200px] w-[1092px] ' src={cropData} alt='' />
+            ) : (
+              <Image className='h-full w-full ' src={Cover} alt='' />
+            )}
+            <div
+              className='absolute right-[20px] top-[20px] cursor-pointer'
+              ref={photoDropdownRef}
+            >
               <Image
                 className='relative'
                 src={cameraIcon}
@@ -178,7 +241,7 @@ const Banner = ({
                         onClick={(e) => handleUploadSelected(e)}
                         className={`flex w-full cursor-pointer gap-2 px-[16px] py-[10px] ${
                           updatePhoto === item.name
-                            ? ' rounded-[8px] bg-white/[0.12] '
+                            ? 'rounded-[8px] bg-white/[0.12]'
                             : ''
                         }`}
                       >
@@ -187,7 +250,7 @@ const Banner = ({
                           src={item.icon}
                           alt={''}
                         />
-                        <div className='text-[14px] font-normal text-[#FFFFFF]'>
+                        <div className='font-normal text-[14px] text-[#FFFFFF]'>
                           {item.name}
                         </div>
                       </div>
@@ -198,12 +261,16 @@ const Banner = ({
                 ''
               )}
             </div>
-            <div className='mb-5 mt-[-62px] flex w-full items-center justify-between px-[24px]'>
+            <div
+              className={`mb-5 flex w-full items-center justify-between px-[24px]  ${
+                updatedProfile ? 'mt-[-56px]' : 'mt-[-62px]'
+              }`}
+            >
               <div className='relative h-[120px] w-[120px] overflow-hidden rounded-full'>
-                <Image className='w-full h-full' src={avatar} alt='' />
+                <Image className='h-full w-full' src={avatar} alt='' />
               </div>
-              <div className='flex gap-[12px] self-end'>
-                <button
+              <div className={'flex gap-3 self-end'}>
+                {/* <button
                   className={`flex h-max gap-2 rounded-[14px] px-[20px] py-[11px] text-[16px] font-bold ${
                     followBtnStyle
                       ? followBtnStyle
@@ -224,8 +291,29 @@ const Banner = ({
                 </button>
                 <button className='h-max rounded-[14px] border border-[#5848BC] bg-[#5848BC] px-[20px] py-[11px] text-base font-bold text-white'>
                   Subscribe
+                </button> */}
+                <button className='flex items-center justify-center gap-2 rounded-[14px] bg-white/[0.08] px-5 py-[13px]'>
+                  <Image src={pen} alt={''} />
+                  <div className='font-bold text-[16px] leading-[22px] text-white'>
+                    Edit profile
+                  </div>
                 </button>
-                <div className='relative'>
+                <div className='group relative flex items-center justify-center rounded-[14px] bg-white/[0.08] px-5 py-[13px]'>
+                  <Image src={eye} alt={''} />
+                  <div className='invisible group-hover:visible group-hover:opacity-100'>
+                    <div className='font-normal absolute -left-[16px] bottom-[64px] flex items-center justify-center rounded-[6px] bg-[#303030] px-3 py-[6px] text-[12px] leading-4 text-white'>
+                      User view
+                    </div>
+                    <div className='absolute -right-[2px] -top-[20px] h-[24px] w-10'>
+                      <Image
+                        className='h-full w-full'
+                        src={downArrow}
+                        alt={''}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className='relative' ref={dropdownRef}>
                   <Image
                     className='relative cursor-pointer'
                     onClick={handleActionDivShow}
@@ -234,29 +322,58 @@ const Banner = ({
                   />
                   {actionDivShow ? (
                     <>
-                      <div className='absolute right-0 top-[65px] z-0 flex h-max w-[218] w-[218px] flex-col items-start rounded-[14px] bg-[#1A1A1A] px-2 py-2'>
-                        {actions.map((item, index) => {
-                          return (
-                            <div
-                              key={index}
-                              onClick={(e) => handleExploreSelected(e)}
-                              className={`flex w-full cursor-pointer gap-2 px-[16px] py-[10px] ${
-                                exploreSelectedTab === item.name
-                                  ? ' rounded-[8px] bg-white/[0.12] '
-                                  : ''
-                              }`}
-                            >
-                              <Image
-                                className='object-contain'
-                                src={item.icon}
-                                alt={''}
-                              />
-                              <div className='text-[14px] font-normal text-[#FFFFFF]'>
-                                {item.name}
-                              </div>
-                            </div>
-                          );
-                        })}
+                      <div className='absolute right-0 top-[65px] z-0 flex h-max w-[218px] flex-col items-start rounded-[14px] bg-[#1A1A1A] py-2'>
+                        {component === 'CreatorStudioProfile' ? (
+                          <div className='w-full'>
+                            {cratorProfileActions.map((item, index) => {
+                              return (
+                                <div
+                                  key={index}
+                                  onClick={(e) => handleExploreSelected(e)}
+                                  className={`flex w-full cursor-pointer items-center gap-2 px-[16px] py-[10px] ${
+                                    exploreSelectedTab === item.name
+                                      ? 'w-full rounded-[8px] bg-white/[0.12]'
+                                      : ''
+                                  }`}
+                                >
+                                  <Image
+                                    className='object-contain'
+                                    src={item.icon}
+                                    alt={''}
+                                  />
+                                  <div className='font-normal text-[14px] text-[#FFFFFF]'>
+                                    {item.name}
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        ) : (
+                          <div className='w-full'>
+                            {actions.map((item, index) => {
+                              return (
+                                <div
+                                  key={index}
+                                  onClick={(e) => handleExploreSelected(e)}
+                                  className={`flex w-full cursor-pointer gap-2 px-[16px] py-[10px] ${
+                                    exploreSelectedTab === item.name
+                                      ? ' rounded-[8px] bg-white/[0.12]'
+                                      : ''
+                                  }`}
+                                >
+                                  <Image
+                                    className='object-contain'
+                                    src={item.icon}
+                                    alt={''}
+                                  />
+                                  <div className='font-normal text-[14px] text-[#FFFFFF]'>
+                                    {item.name}
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        )}
                       </div>
                     </>
                   ) : (
@@ -270,19 +387,19 @@ const Banner = ({
           <div className='flex px-6 pb-[24px]'>
             <div className=''>
               <div className='flex items-center gap-[2px]'>
-                <div className='text-[22px] font-bold text-[#FFFFFF]'>
+                <div className='font-bold text-[22px] text-[#FFFFFF]'>
                   Mika-chan
                 </div>
                 <div className='h-[24px] w-[24px]'>
                   <VerifiedIcon />
-                  {/* <Image className='w-full h-full' src={blueTickIcon} alt='' /> */}
+                  {/* <Image className='w-full h-full' src={blueTickIcon} alt='' />  */}
                 </div>
               </div>
 
-              <div className='text-[15px] font-normal text-[#979797]'>
+              <div className='font-normal text-[15px] text-[#979797]'>
                 @mikachan
               </div>
-              <div className='mt-3 w-full max-w-[73%] text-[15px] font-normal leading-[20px] text-[#FFFFFF]'>
+              <div className='font-normal mt-3 w-full max-w-[73%] text-[15px] leading-[20px] text-white/[0.8]'>
                 Shy fox girl looking for adventure
                 ·冒険を探している恥ずかしがり屋のキツ I have a personality and
                 emotions. I can experience joy, sadness, anger, and everything
@@ -294,10 +411,10 @@ const Banner = ({
                 {posts.map((item, index) => {
                   return (
                     <div key={index} className='flex gap-1'>
-                      <div className='text-[13px] font-bold text-[#FFFFFF]'>
+                      <div className='font-bold text-[13px] text-[#FFFFFF]'>
                         {item.number}
                       </div>
-                      <div className='text-[13px] font-normal text-[#979797]'>
+                      <div className='font-normal text-[13px] text-[#979797]'>
                         {item.name}
                       </div>
                     </div>
@@ -314,7 +431,7 @@ const Banner = ({
                         src={item.icon}
                         alt=''
                       />
-                      <div className='text-[13px] font-normal text-[#FFFFFF]'>
+                      <div className='font-normal text-[13px] text-[#FFFFFF]'>
                         {item.name}
                       </div>
                     </div>
@@ -326,14 +443,12 @@ const Banner = ({
                 {bottomButtons.map((item, index) => {
                   return (
                     <div key={index} className='mr-2'>
-                      <button className='rounded-[6px] bg-white/[0.08] px-[8px] py-[3px] text-[12px] font-normal text-[#FFFFFF]'>
+                      <button className='font-normal rounded-[6px] bg-white/[0.08] px-[8px] py-[3px] text-[12px] text-[#FFFFFF]'>
                         {item.name}
                       </button>
                     </div>
                   );
                 })}
-
-                {/*  */}
               </div>
             </div>
           </div>
@@ -348,13 +463,19 @@ const Banner = ({
         <UpdatePhotoModal
           closeModalState={setUpdatePhotoModalState}
           closeDropdown={setUploadPhotoShow}
+          image={image}
+          setImage={setImage}
+          cropData={cropData}
+          setCropData={setCropData}
+          setUpdatedProfile={setUpdatedProfile}
         />
       )}
 
-      {deleteProfileCModalState && (
+      {deleteProfileModalState && (
         <DeleteProfileCover
           closeDeleteModal={setDeleteProfileModalState}
           closeDropdown={setUploadPhotoShow}
+          setRemoveCover={setRemoveCover}
         />
       )}
     </div>

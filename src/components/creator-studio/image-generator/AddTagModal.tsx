@@ -54,9 +54,9 @@ const FilterData = [
 
 const AddTagModal = ({ closeDeleteModal }: AddTagModalProp) => {
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
-  const [searchTags, setSearchTags] = useState('')
-  const [addTags, setAddTags] = useState(FilterData)
-  const [tagsSearch, setTagsSearch] = useState(false)
+  const [searchTags, setSearchTags] = useState<string>('');
+  const [addTags, setAddTags] = useState(FilterData);
+  const [tagsSearch, setTagsSearch] = useState<boolean>(false);
 
   const handleOptionChange = (option: string) => {
     console.log(option, 'resr');
@@ -73,22 +73,22 @@ const AddTagModal = ({ closeDeleteModal }: AddTagModalProp) => {
     setSelectedOptions(selectedOptions.filter((o) => o !== option));
   };
 
-
-  const handleInputChange = (e: any) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const searchTerm = e.target.value;
     setSearchTags(searchTerm);
     const filteredItems = FilterData.filter((user) => {
-      const tagsLowerCase = user.tags.some((tag) => (
+      const tagsLowerCase = user.tags.some((tag) =>
         tag.toLowerCase().includes(searchTerm.toLowerCase())
-      ));
+      );
       return tagsLowerCase;
     });
-    setAddTags(filteredItems)
+    setAddTags(filteredItems);
     if (filteredItems.length === 0) {
-      setTagsSearch(true)
-    } else { setTagsSearch(false) }
-
-  }
+      setTagsSearch(true);
+    } else {
+      setTagsSearch(false);
+    }
+  };
 
   return (
     <Modal
@@ -97,7 +97,7 @@ const AddTagModal = ({ closeDeleteModal }: AddTagModalProp) => {
       closeModal={() => closeDeleteModal(false)}
       modalOverlayStyle='!bg-black/80'
     >
-      <div className='CloseIcon flex justify-between border-b border-white border-opacity-10 px-8 pb-6'>
+      <div className='flex justify-between px-8 pb-6 border-b border-white CloseIcon border-opacity-10'>
         <h6 className='text-lg font-bold leading-normal text-white'> Tags</h6>
         <div className='cursor-pointer' onClick={() => closeDeleteModal(false)}>
           <Image src={CloseIcon} />
@@ -106,12 +106,12 @@ const AddTagModal = ({ closeDeleteModal }: AddTagModalProp) => {
 
       <div className='px-8 py-4'>
         <div className='flex w-full gap-[10px] rounded-[14px] bg-white/[0.05] px-4 py-3'>
-          <div className='h-6 w-6'>
-            <Image className='h-full w-full' src={searchIcon} alt={''} />
+          <div className='w-6 h-6'>
+            <Image className='w-full h-full' src={searchIcon} alt={''} />
           </div>
           <input
             type='text'
-            className='border-none w-full bg-transparent p-0 text-[15px] font-light focus:ring-0 placeholder:text-[#979797]'
+            className='w-full border-none bg-transparent p-0 text-[15px] font-light placeholder:text-[#979797] focus:ring-0'
             placeholder='Search'
             value={searchTags}
             onChange={handleInputChange}
@@ -121,14 +121,15 @@ const AddTagModal = ({ closeDeleteModal }: AddTagModalProp) => {
 
       {selectedOptions.length > 0 && (
         <div
-          className={`flex flex-wrap gap-2  border-b border-[#FFFFFF14] ${selectedOptions.length > 0 ? 'p-6 pt-0' : ''
-            }`}
+          className={`flex flex-wrap gap-2  border-b border-[#FFFFFF14] ${
+            selectedOptions.length > 0 ? 'p-6 pt-0' : ''
+          }`}
         >
           <div className='flex flex-wrap gap-5 '>
             {selectedOptions.map((option) => (
               <div
                 key={option}
-                className='flex gap-1 items-center rounded-xl bg-neutral-800 p-2 text-xs text-[#979797]'
+                className='flex items-center gap-1 rounded-xl bg-neutral-800 p-2 text-xs text-[#979797]'
               >
                 {option}{' '}
                 <span
@@ -146,9 +147,9 @@ const AddTagModal = ({ closeDeleteModal }: AddTagModalProp) => {
                     <path
                       d='M4.5 4.5L13.5 13.5M13.5 4.5L4.5 13.5'
                       stroke='#979797'
-                      stroke-width='1.35'
-                      stroke-linecap='round'
-                      stroke-linejoin='round'
+                      strokeWidth='1.35'
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
                     />
                   </svg>
                 </span>
@@ -158,7 +159,9 @@ const AddTagModal = ({ closeDeleteModal }: AddTagModalProp) => {
         </div>
       )}
 
-      {tagsSearch ? <p className='text-[#979797] font-bold text-center'>Image Not Found</p> :
+      {tagsSearch ? (
+        <p className='text-center font-bold text-[#979797]'>Image Not Found</p>
+      ) : (
         <div className='mb-4 px-7'>
           {addTags.map((data) => {
             return (
@@ -198,8 +201,7 @@ const AddTagModal = ({ closeDeleteModal }: AddTagModalProp) => {
             );
           })}
         </div>
-      }
-
+      )}
 
       <div className='flex w-full gap-3 px-6 py-4'>
         <button

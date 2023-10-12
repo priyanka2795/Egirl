@@ -20,7 +20,7 @@ const collectionFrame = [
       date: '05/23/23',
       status: 'Failed'
     }
-  ];
+];
 
 const LatestTransaction = () => {
   return (

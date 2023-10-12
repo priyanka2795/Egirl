@@ -22,11 +22,10 @@ const moreDropdown = [
 const MoreOptionsModal = () => {
   return (
     <>
-      <div className='flex h-max w-[260px] flex-col rounded-[14px] bg-[#1A1A1A] px-0 py-2 bottom-[45px] fixed z-10 -ml-1'>
-      {moreDropdown.map((item) => {
-        return (
-          
-            <div className='flex w-full gap-2 px-4 py-[10px]'>
+      <div className='fixed bottom-[45px] z-10 -ml-1 flex h-max w-[260px] flex-col rounded-[14px] bg-[#1A1A1A] px-0 py-2'>
+        {moreDropdown.map((item, index) => {
+          return (
+            <div className='flex w-full gap-2 px-4 py-[10px]' key={index}>
               <div className='h-[18px] w-[18px]'>
                 <Image src={item.icon} alt={''} />
               </div>
@@ -34,8 +33,8 @@ const MoreOptionsModal = () => {
                 {item.name}
               </div>
             </div>
-        );
-      })}
+          );
+        })}
       </div>
     </>
   );

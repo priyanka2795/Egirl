@@ -3,13 +3,13 @@ import Image from 'next/image';
 import SearchIcon from '../svg/search.svg';
 import crossIcon from '../../../../public/assets/xmark (1).png';
 const SearchBox = () => {
-  const [showSearchBar, setShowSearchBar] = useState(false);
-  const [showSearchBox, setShowSearchBox] = useState(false);
+  const [showSearchBar, setShowSearchBar] = useState<boolean>(false);
+  const [showSearchBox, setShowSearchBox] = useState<boolean>(false);
 
   const handleShowSearchBar = () => {
     setShowSearchBar(true);
   };
-  const handleSearchInput = (e: any) => {
+  const handleSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setShowSearchBox(true);
     if (!e.target.value) {
       setShowSearchBox(false);

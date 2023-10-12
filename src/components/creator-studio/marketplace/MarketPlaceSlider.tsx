@@ -56,10 +56,10 @@ const galleryArray = [
 ];
 
 const MarketPlaceSlider = () => {
-  const [selectedFilter, setSelectedFilter] = useState('');
+  const [selectedFilter, setSelectedFilter] = useState<string>('');
 
-  const handleSelectedFilter = (e: any) => {
-    setSelectedFilter(e.target.innerText);
+  const handleSelectedFilter = (e: React.MouseEvent<HTMLElement>) => {
+    setSelectedFilter((e.target as HTMLElement).innerText);
   };
 
   const settings = {

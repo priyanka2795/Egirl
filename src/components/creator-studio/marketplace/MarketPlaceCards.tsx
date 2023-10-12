@@ -61,16 +61,19 @@ const exploreGallery = [
 ];
 
 const MarketPlaceCards = () => {
-  const [showStyleModal, setShowStyleModal] = useState(false);
+  const [showStyleModal, setShowStyleModal] = useState<boolean>(false);
   const handleStyleModal = () => {
     setShowStyleModal(true);
   };
   return (
     <>
       <div className='grid grid-cols-3 gap-3'>
-        {exploreGallery.map((items) => {
+        {exploreGallery.map((items, index) => {
           return (
-            <div className='relative cursor-pointer gallery-card-collection sub-banner group'>
+            <div
+              key={index}
+              className='gallery-card-collection sub-banner group relative max-h-[346px] cursor-pointer'
+            >
               <Image
                 src={items.mainImg}
                 alt=''
@@ -86,7 +89,7 @@ const MarketPlaceCards = () => {
                       alt=''
                     />
                   </div>
-                  <div className='text-[15px] font-semibold text-white'>
+                  <div className='text-[15px] font-semibold leading-5 text-white'>
                     {items.userName}
                   </div>
                 </div>
@@ -102,9 +105,10 @@ const MarketPlaceCards = () => {
                   </div>
                 </div>
                 <div className='flex items-start justify-start gap-1.5'>
-                  {items.categoryList.map((data) => {
+                  {items.categoryList.map((data, index) => {
                     return (
                       <div
+                        key={index}
                         className={`show-card"} flex items-center justify-start gap-1 rounded-md bg-white bg-opacity-10 px-2 py-[3px] text-center text-sm font-normal leading-[18px] text-white`}
                       >
                         {data}
@@ -117,9 +121,7 @@ const MarketPlaceCards = () => {
           );
         })}
       </div>
-      {showStyleModal && (
-        <FavoriteStyleModal closeModal={setShowStyleModal} />
-      )}
+      {showStyleModal && <FavoriteStyleModal closeModal={setShowStyleModal} />}
     </>
   );
 };

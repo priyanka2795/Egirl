@@ -8,17 +8,25 @@ import PreviewProfile from './PreviewProfile';
 interface UpdatePhotoProps {
   closeModalState: any;
   closeDropdown: any;
+  image: any;
+  setImage: any;
+  cropData: any;
+  setCropData: any;
+  setUpdatedProfile: any;
 }
 
 const defaultSrc =
   'https://raw.githubusercontent.com/roadmanfong/react-cropper/master/example/img/child.jpg';
 const UpdatePhotoModal = ({
   closeModalState,
-  closeDropdown
+  closeDropdown,
+  image,
+  setImage,
+  cropData,
+  setCropData,
+  setUpdatedProfile
 }: UpdatePhotoProps) => {
   const [isPreview, setIsPreview] = useState(false);
-  const [image, setImage] = useState('');
-  const [cropData, setCropData] = useState('');
   const cropperRef = createRef<ReactCropperElement>();
 
   const handleShowPreview = () => {
@@ -27,6 +35,25 @@ const UpdatePhotoModal = ({
         setCropData(cropperRef.current?.cropper.getCroppedCanvas().toDataURL());
       }
       setIsPreview(true);
+    }
+  };
+
+  const handleSaveButton = () => {
+    if(isPreview) {
+      closeModalState(false);
+      closeDropdown(false);
+      setUpdatedProfile(true);
+    } else {
+      closeModalState(false);
+      closeDropdown(false);
+      setUpdatedProfile(true);
+
+      if (image) {
+        if (typeof cropperRef.current?.cropper !== 'undefined') {
+          setCropData(cropperRef.current?.cropper.getCroppedCanvas().toDataURL());
+        }
+      // setIsPreview(true);
+      }
     }
   };
 
@@ -89,7 +116,7 @@ const UpdatePhotoModal = ({
               autoCropArea={1}
               checkOrientation={false}
               guides={true}
-              className='h-full w-full'
+              className='w-full h-full'
             />
           </div>
         )}
@@ -132,9 +159,7 @@ const UpdatePhotoModal = ({
 
           <button
             className='flex items-center justify-center rounded-xl bg-[#5848BC] px-4 py-[10px] text-[14px] font-bold text-[#FFFFFF]'
-            onClick={() => {
-              closeModalState(false), closeDropdown(false);
-            }}
+            onClick={handleSaveButton}
           >
             Save
           </button>

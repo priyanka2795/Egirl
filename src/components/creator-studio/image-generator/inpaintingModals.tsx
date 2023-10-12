@@ -1,6 +1,6 @@
-import { Modal } from '@components/modal/modal'
-import Image from 'next/image'
-import React, { useState } from 'react'
+import { Modal } from '@components/modal/modal';
+import Image from 'next/image';
+import React, { useState } from 'react';
 import CloseIcon from '../../../../public/assets/xmark (1).png';
 import Image1 from '../../../../public/assets/inpaint-Image.png';
 import Rest from '../../../../public/assets/rotate-cw.png';
@@ -14,14 +14,17 @@ import Tooltip from '@components/common/tooltip';
 import RestWhite from '../../../../public/assets/rotate-cw-white.png';
 
 interface InpaintingModals {
-  CloseInpaintingModal: any;
-  SetInpaintingCreated: any;
-  EditInpainting: any;
+  CloseInpaintingModal: React.Dispatch<React.SetStateAction<boolean>>;
+  SetInpaintingCreated: React.Dispatch<React.SetStateAction<boolean>>;
+  EditInpainting: boolean;
 }
-const InpaintingModals = ({ CloseInpaintingModal, SetInpaintingCreated, EditInpainting }: InpaintingModals) => {
-
-  const [brushSize, setBrushSize] = useState([20]);
-  const [brushSizeToggle, setBrushSizeToggle] = useState(false);
+const InpaintingModals = ({
+  CloseInpaintingModal,
+  SetInpaintingCreated,
+  EditInpainting
+}: InpaintingModals) => {
+  const [brushSize, setBrushSize] = useState<number[]>([20]);
+  const [brushSizeToggle, setBrushSizeToggle] = useState<boolean>(false);
 
   return (
     <Modal
@@ -31,60 +34,102 @@ const InpaintingModals = ({ CloseInpaintingModal, SetInpaintingCreated, EditInpa
       modalOverlayStyle='!bg-black/80'
     >
       {/* Header */}
-      <div className='flex justify-between items-center border-b-white/[0.08] border-white/[0.08] border-b px-6 pb-6'>
-        <h5 className='text-lg font-bold'>{EditInpainting ? 'Edit' : ''} Inpainting </h5>
-        <button className='w-[24px] h-[24px]' onClick={() => CloseInpaintingModal(false)}>
+      <div className='flex items-center justify-between border-b border-white/[0.08] border-b-white/[0.08] px-6 pb-6'>
+        <h5 className='text-lg font-bold'>
+          {EditInpainting ? 'Edit' : ''} Inpainting{' '}
+        </h5>
+        <button
+          className='h-[24px] w-[24px]'
+          onClick={() => CloseInpaintingModal(false)}
+        >
           <Image src={CloseIcon} className='' />
         </button>
       </div>
 
       <div className='px-6 pt-6'>
-        <div className='relative w-[640px] h-[640px]  m-auto sub-banner '>
-          <Image src={Image1} className='w-full h-full object-cover rounded-lg' />
-          <div className='absolute top-3 right-3 flex items-center gap-2'>
-            <div className='bg-[#000000CC] rounded-[100px] flex items-center justify-center gap-3 p-3 relative'>
-              <div className='border-r border-[#FFFFFF3D] pr-3 h-5 cursor-pointer group relative'>
+        <div className='sub-banner relative m-auto  h-[640px] w-[640px] '>
+          <Image
+            src={Image1}
+            className='object-cover w-full h-full rounded-lg'
+          />
+          <div className='absolute flex items-center gap-2 right-3 top-3'>
+            <div className='relative flex items-center justify-center gap-3 rounded-[100px] bg-[#000000CC] p-3'>
+              <div className='group relative h-5 cursor-pointer border-r border-[#FFFFFF3D] pr-3'>
                 <Image src={ImageSquare} className='w-full h-full' />
-                <div className='absolute -top-12 -left-14 w-max'>
+                <div className='absolute -left-14 -top-12 w-max'>
                   <Tooltip Text={'Replace image'} />
                 </div>
               </div>
-              <div className='flex items-center gap-2 cursor-pointer' onClick={() => setBrushSizeToggle(!brushSizeToggle)}>
+              <div
+                className='flex items-center gap-2 cursor-pointer'
+                onClick={() => setBrushSizeToggle(!brushSizeToggle)}
+              >
                 <Image src={BrushWhite} className='w-full h-full' />
                 <Image src={ArrowDown} className='w-full h-full' />
               </div>
-              {brushSizeToggle &&
-                <div className='absolute top-12 right-0 bg-[#121212] px-5 flex justify-center items-center w-[211px] h-[68px] rounded-[14px] '>
+              {brushSizeToggle && (
+                <div className='absolute right-0 top-12 flex h-[68px] w-[211px] items-center justify-center rounded-[14px] bg-[#121212] px-5 '>
                   <RangePicker values={brushSize} setValues={setBrushSize} />
                 </div>
-              }
-
+              )}
             </div>
-            <div className='bg-[#000000CC]  rounded-[100px] flex items-center gap-1 p-3 cursor-pointer'>
-              {EditInpainting ? <Image src={RestWhite} className='w-full h-full' />  :
+            <div className='flex  cursor-pointer items-center gap-1 rounded-[100px] bg-[#000000CC] p-3'>
+              {EditInpainting ? (
+                <Image src={RestWhite} className='w-full h-full' />
+              ) : (
                 <Image src={Rest} className='w-full h-full' />
-              }
-              <p className={`${EditInpainting?'text-white':'text-[#FFFFFF7A]'}`}>Reset</p>
+              )}
+              <p
+                className={`${
+                  EditInpainting ? 'text-white' : 'text-[#FFFFFF7A]'
+                }`}
+              >
+                Reset
+              </p>
             </div>
           </div>
-          <div className='bg-[#000000CC] rounded-[100px] flex items-center justify-center gap-3 py-3 px-5 absolute bottom-3 left-3'>
-            <Image src={Backward} className='w-full h-full object-cover cursor-pointer' />
-            <p className='border-r border-[#FFFFFF3D] w-[10px] h-[16px]'></p>
-            <Image src={Forward} className='w-full h-full object-cover cursor-pointer' />
+          <div className='absolute bottom-3 left-3 flex items-center justify-center gap-3 rounded-[100px] bg-[#000000CC] px-5 py-3'>
+            <Image
+              src={Backward}
+              className='object-cover w-full h-full cursor-pointer'
+            />
+            <p className='h-[16px] w-[10px] border-r border-[#FFFFFF3D]'></p>
+            <Image
+              src={Forward}
+              className='object-cover w-full h-full cursor-pointer'
+            />
           </div>
         </div>
       </div>
-      <div className='font-semibold text-white flex justify-end items-center gap-3 mx-6 mt-6'>
-        <button className='rounded-[14px] px-5 py-3 border border-[#FFFFFF52]' onClick={() => CloseInpaintingModal(false)}>Cancel</button>
-        {EditInpainting ?
-          <button className='bg-[#5848BC] rounded-[14px] px-5 py-3' onClick={() => { CloseInpaintingModal(false) }}>Save</button>
-          :
-          <button className='bg-[#5848BC] rounded-[14px] px-5 py-3' onClick={() => { SetInpaintingCreated(true), CloseInpaintingModal(false) }}>Create</button>
-        }
+      <div className='flex items-center justify-end gap-3 mx-6 mt-6 font-semibold text-white'>
+        <button
+          className='rounded-[14px] border border-[#FFFFFF52] px-5 py-3'
+          onClick={() => CloseInpaintingModal(false)}
+        >
+          Cancel
+        </button>
+        {EditInpainting ? (
+          <button
+            className='rounded-[14px] bg-[#5848BC] px-5 py-3'
+            onClick={() => {
+              CloseInpaintingModal(false);
+            }}
+          >
+            Save
+          </button>
+        ) : (
+          <button
+            className='rounded-[14px] bg-[#5848BC] px-5 py-3'
+            onClick={() => {
+              SetInpaintingCreated(true), CloseInpaintingModal(false);
+            }}
+          >
+            Create
+          </button>
+        )}
       </div>
+    </Modal>
+  );
+};
 
-    </Modal >
-  )
-}
-
-export default InpaintingModals
+export default InpaintingModals;

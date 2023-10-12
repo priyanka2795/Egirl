@@ -5,20 +5,18 @@ import ConversationalIcon from '../svg/ConversationalIcon';
 import InfoIcon from '../../../../public/assets/svgImages/info-icon.svg';
 import { Range } from 'react-range';
 import RangePicker from '../common/RangePicker';
-import UnSelectIcon from "../svg/short_border.svg";
-import SelectIcon from "../svg/short_select.svg";
-
+import UnSelectIcon from '../svg/short_border.svg';
+import SelectIcon from '../svg/short_select.svg';
 
 const PersonalityS1 = () => {
-  const [values, setValues] = useState([0]);
+  const [values, setValues] = useState<number[]>([0]);
   const short = ['Roleplay', 'Conversational'];
 
-  const [shortTab, setShortTab] = useState(1);
+  const [shortTab, setShortTab] = useState<number>(1);
 
-  const SelectShort = (index: any) => {
-    setShortTab(index)
-  }
-
+  const SelectShort = (index: number) => {
+    setShortTab(index);
+  };
 
   return (
     <div className='flex items-start w-full gap-4 '>
@@ -47,18 +45,19 @@ const PersonalityS1 = () => {
         </div> */}
 
         <div className='flex items-center self-stretch gap-2'>
-       <div className='flex flex-col gap-1'>
-       {short.map((item, index) => (
-                      <div className='flex items-center gap-2 cursor-pointer' onClick={() => SelectShort(index)}>
-                        {shortTab == index ? <SelectIcon />
-                          : <UnSelectIcon />
-                        }
-                        <p>{item}</p>
-                      </div>
-                    ))}
-       </div>
+          <div className='flex flex-col gap-1'>
+            {short.map((item, index) => (
+              <div
+                key={index}
+                className='flex items-center gap-2 cursor-pointer'
+                onClick={() => SelectShort(index)}
+              >
+                {shortTab == index ? <SelectIcon /> : <UnSelectIcon />}
+                <p>{item}</p>
+              </div>
+            ))}
+          </div>
         </div>
-        
       </div>
 
       <div className='flex w-1/2 flex-col items-start gap-4 self-stretch rounded-[14px] bg-[#121212] p-[24px] pb-4'>

@@ -7,7 +7,7 @@ import { Modal } from '@components/modal/modal';
 import girlPic from '../../../../public/assets/girl.png';
 import Cross from '../../../../public/assets/svgImages/close-icon.svg';
 import Correct from '../svg/correct.svg';
-// import Heart from '../svg/heart.svg';
+import Heart from '../svg/heart-white.svg';
 import Info from '../svg/info.svg';
 import Copy from '../svg/Copy.svg';
 import avtar from '../../../../public/assets/avatar-cs-1.png';
@@ -15,7 +15,7 @@ import ExpandIcon from '../../../../public/assets/expand-alt.png';
 import AdvanceArrow from '../svg/AdvanceArrow';
 
 const ImageGallery = () => {
-  const [viewModal, setviewModal] = React.useState(false);
+  const [viewModal, setviewModal] = React.useState<boolean>(false);
   const handleviewModal = () => setviewModal(true);
   const handlecloseModal = () => setviewModal(false);
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
@@ -37,16 +37,17 @@ const ImageGallery = () => {
     { name: 'Fantasy', img: pic }
   ];
   const tabContent = ['Prompt', 'Negative prompt'];
-  const [exploreSelectedTab, setExploreSelected] = useState('Prompt');
+  const [exploreSelectedTab, setExploreSelected] = useState<string>('Prompt');
+  const [selectImage, setSelectImage] = useState<string>('');
 
-  const handleExploreSelected = (e: any) => {
-    setExploreSelected(e.target.innerText);
+  const handleExploreSelected = (e: React.MouseEvent<HTMLElement>) => {
+    setExploreSelected((e.target as HTMLElement).innerText);
   };
 
   const [isHovered, setIsHovered] = useState(false);
 
   const [searchTerm, setSearchTerm] = useState('');
-  const handleSearch = (e: any) => {
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
 
@@ -131,11 +132,16 @@ const ImageGallery = () => {
             }
             return (
               <div
-                
-                className='group relative flex h-[174px] w-[175px] cursor-pointer justify-center overflow-hidden  rounded-xl bg-white/[0.05]  hover:bg-[#5848BC] '
+                key={index}
+                onClick={() => setSelectImage(index)}
+                className={`group relative flex h-[174px] w-[175px] cursor-pointer justify-center overflow-hidden  rounded-xl bg-white/[0.05] ${
+                  selectImage === index ? 'bg-[#5848BC]' : ''
+                }  `}
               >
                 <div
-                  className={`flex  items-center rounded-t-sm p-0.5 group-hover:bg-[#5848BC] ${
+                  className={`flex  items-center rounded-t-sm p-0.5 ${
+                    selectImage === index ? 'bg-[#5848BC]' : ''
+                  }  ${
                     item.name === 'None'
                       ? 'h-[calc(100%-43.5px)] w-full justify-center'
                       : ''
@@ -143,12 +149,23 @@ const ImageGallery = () => {
                 >
                   <Image src={item.img} className='shrink-0 rounded-xl' />
                 </div>
-                <div className='w-[30px] h-[30px] bg-[#0000007A]  justify-center items-center rounded-full absolute top-2 right-2 hidden group-hover:flex' onClick={handleviewModal}>
-                    <Image src={ExpandIcon} className='w-full h-full' />
+                <div
+                  className='absolute right-2 top-2  hidden h-[30px] w-[30px] items-center justify-center rounded-full bg-[#0000007A] group-hover:flex'
+                  onClick={handleviewModal}
+                >
+                  <Image src={ExpandIcon} className='w-full h-full' />
                 </div>
 
-                <div className='focus:ring-violet-[#5848BC] absolute bottom-0 top-3/4 flex w-full items-center justify-center gap-2.5 bg-black/[0.80] p-2  focus:outline-none focus:ring active:bg-[#5848BC] group-hover:bg-[#5848BC]'>
-                  <div className='overflow-hidden text-ellipsis whitespace-nowrap text-center text-[13px] font-semibold leading-[18px] group-hover:bg-[#5848BC]'>
+                <div
+                  className={`absolute bottom-0 top-3/4 flex w-full items-center justify-center gap-2.5  p-2  focus:outline-none focus:ring  ${
+                    selectImage === index ? 'bg-[#5848BC]' : 'bg-black/[0.80]'
+                  } `}
+                >
+                  <div
+                    className={`overflow-hidden text-ellipsis whitespace-nowrap text-center text-[13px] font-semibold leading-[18px] ${
+                      selectImage === index ? 'bg-[#5848BC]' : ''
+                    } `}
+                  >
                     {item.name}
                   </div>
                 </div>
@@ -200,7 +217,7 @@ const ImageGallery = () => {
                 {/*  */}
                 <button className='flex items-start '>
                   <button className='flex items-center justify-center gap-2.5 rounded-[14px] bg-white/[0.08] p-3.5'>
-                    {/* <Heart /> */}
+                    <Heart />
                   </button>
                 </button>
               </div>
@@ -299,7 +316,7 @@ const ImageGallery = () => {
                     <div className='flex flex-col gap-3'>
                       <div className='flex items-center justify-between'>
                         <div className='flex items-center gap-2 '>
-                          {tabContent.map((items: any, index: any) => {
+                          {tabContent.map((items: string, index: number) => {
                             return (
                               <div
                                 key={index}

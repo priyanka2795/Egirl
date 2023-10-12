@@ -41,7 +41,7 @@ type sideBarProp = {
   sideBarMenuArrowClasses?: string;
   moreOptionItem?: React.Dispatch<React.SetStateAction<string>>;
   activeMoreOption?: string;
-  activeItem?:any
+  activeItem?:any;
   // shrinkSidebar?: boolean;
   // sideBarWidth?: () => void;
 };

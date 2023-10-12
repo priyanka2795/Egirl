@@ -86,12 +86,12 @@ const SvgComponent = (props: Props) => (
       <g
         clipPath='url(#clip1_1215_17729)'
         stroke='#949698'
-        stroke-linejoin='round'
+        strokeLinejoin='round'
       >
         <path d='M259.2 430a1.9 1.9 0 10-3.8 0v3.6a1.9 1.9 0 003.8 0V430z' />
         <path
           d='M253.3 433.3a4 4 0 004 4m0 0a4 4 0 004-4m-4 4v1.7'
-          stroke-linecap='round'
+          strokeLinecap='round'
         />
       </g>
       <rect
@@ -211,8 +211,8 @@ const SvgComponent = (props: Props) => (
           fillOpacity='.2'
         />
         <path
-          fill-rule='evenodd'
-          clip-rule='evenodd'
+          fillRule='evenodd'
+          clipRule='evenodd'
           d='M343 250.8a5 5 0 119.9 0h-10z'
           fillOpacity='.5'
         />

@@ -1,18 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { Modal } from '@components/modal/modal';
-import InfoIcon from "../../../../public/assets/svgImages/info-icon.svg"
-import CloseIcon from "../../../../public/assets/svgImages/close-icon.svg"
-import searchIcon from "../../../../public/assets/search-alt.png"
+import InfoIcon from '../../../../public/assets/svgImages/info-icon.svg';
+import CloseIcon from '../../../../public/assets/svgImages/close-icon.svg';
+import searchIcon from '../../../../public/assets/search-alt.png';
 import Image from 'next/image';
 import PersonalityHoverModal from './PersonalityHoverModal';
 const PersonalityLikeSection = () => {
-
-  const [open, setOpen] = React.useState(false);
-  const [seletedTab , setSelectedTab] = useState(false);
+  const [open, setOpen] = React.useState<boolean>(false);
+  const [seletedTab, setSelectedTab] = useState<boolean>(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => {setOpen(false) , setSelectedTab(true)};
+  const handleClose = () => {
+    setOpen(false), setSelectedTab(true);
+  };
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
-  const [showHoverModal , setShowHoverModal] = useState(false);
+  const [showHoverModal, setShowHoverModal] = useState<boolean>(false);
 
   const handleOptionChange = (option: string) => {
     if (selectedOptions.includes(option)) {
@@ -20,10 +21,10 @@ const PersonalityLikeSection = () => {
     } else {
       if (selectedOptions.length < 10) {
         setSelectedOptions([...selectedOptions, option]);
-      } 
+      }
     }
   };
-  
+
   const handleRemoveOption = (option: string) => {
     setSelectedOptions(selectedOptions.filter((o) => o !== option));
   };
@@ -32,9 +33,9 @@ const PersonalityLikeSection = () => {
     setSelectedOptions([]);
   };
   const clearSelection = () => {
-    handleClose()
-    handleClearSelection()
-  }
+    handleClose();
+    handleClearSelection();
+  };
 
   const data = [
     {
@@ -56,7 +57,7 @@ const PersonalityLikeSection = () => {
       name: 'Astrology'
     }
   ];
-  
+
   const dataB = [
     {
       name: 'Body Modification',
@@ -67,7 +68,7 @@ const PersonalityLikeSection = () => {
       id: 'b2'
     }
   ];
-  
+
   const dataC = [
     {
       name: 'Camping'
@@ -88,7 +89,7 @@ const PersonalityLikeSection = () => {
       name: 'Cute pots and plants'
     }
   ];
-  
+
   const dataD = [
     {
       name: 'Dream'
@@ -106,32 +107,41 @@ const PersonalityLikeSection = () => {
       name: 'Dancing'
     },
     {
-      name: 'Dling' 
+      name: 'Dling'
     }
   ];
-  return ( 
+  return (
     <>
-      <div className='w-full flex flex-col h-auto max-w-full rounded-lg bg-[#121212]'>
-          <div className='flex items-center justify-between max-w-full p-6'>
-            <div className="flex flex-col gap-[2px]">  
-              {showHoverModal && <PersonalityHoverModal />} 
-              <h2 className='text-lg font-bold flex gap-[6px] items-center'>
-                Likes 
-                <div onClick={() => {setShowHoverModal(!showHoverModal)}}><InfoIcon /></div>
-              </h2>
-              <p className='text-stone-700'>{selectedOptions.length}/10</p>
-            </div>
-
-            <button
-              className='flex items-center justify-center px-4 py-[10px] rounded-[12px] border border-white/[0.32] text-white text-[14px] font-bold leading-5'
-              onClick={handleOpen}
-            >
-             + Add
-            </button>
+      <div className='flex h-auto w-full max-w-full flex-col rounded-lg bg-[#121212]'>
+        <div className='flex items-center justify-between max-w-full p-6'>
+          <div className='flex flex-col gap-[2px]'>
+            {showHoverModal && <PersonalityHoverModal />}
+            <h2 className='flex items-center gap-[6px] text-lg font-bold'>
+              Likes
+              <div
+                onClick={() => {
+                  setShowHoverModal(!showHoverModal);
+                }}
+              >
+                <InfoIcon />
+              </div>
+            </h2>
+            <p className='text-stone-700'>{selectedOptions.length}/10</p>
           </div>
-          {
-            seletedTab &&
-          <div className={`flex flex-wrap gap-2 ${selectedOptions.length > 0 ? "p-6 pt-0":""}`}>
+
+          <button
+            className='flex items-center justify-center rounded-[12px] border border-white/[0.32] px-4 py-[10px] text-[14px] font-bold leading-5 text-white'
+            onClick={handleOpen}
+          >
+            + Add
+          </button>
+        </div>
+        {seletedTab && (
+          <div
+            className={`flex flex-wrap gap-2 ${
+              selectedOptions.length > 0 ? 'p-6 pt-0' : ''
+            }`}
+          >
             <div className='flex flex-wrap gap-5 '>
               {selectedOptions.map((option) => (
                 <div
@@ -154,9 +164,9 @@ const PersonalityLikeSection = () => {
                       <path
                         d='M4.5 4.5L13.5 13.5M13.5 4.5L4.5 13.5'
                         stroke='#979797'
-                        stroke-width='1.35'
-                        stroke-linecap='round'
-                        stroke-linejoin='round'
+                        strokeWidth='1.35'
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
                       />
                     </svg>
                   </span>
@@ -164,69 +174,74 @@ const PersonalityLikeSection = () => {
               ))}
             </div>
           </div>
-          }
-        </div>
+        )}
+      </div>
 
-        <Modal
+      <Modal
         open={open}
         closeModal={handleClose}
         modalOverlayStyle='!bg-black/80 '
         modalClassName={`bg-[#121212] flex shrink-0 flex-col w-[506px] rounded-2xl h-max max-w-[550px] relative rounded`}
       >
-        <div className="border-b border-white/[0.08] p-8 pb-6 flex justify-between items-center">
-        <b className='text-2xl'>Likes</b>
-        <CloseIcon className="text-white" onClick={handleClose}/>
-        </div>    
-      
-      <div className="px-8 py-4 border-b border-white/[0.08]">
-        <div className='flex px-4 py-3 gap-[10px] bg-white/[0.05] w-full rounded-[14px]'>
-          <div className='w-6 h-6'>
-            <Image className='w-full h-full' src={searchIcon} alt={''} />
-          </div>
-          <input type='text' className='p-0 focus:ring-0 bg-transparent border-none text-[15px] font-light leading-6 text-[#979797] ' />
+        <div className='flex items-center justify-between border-b border-white/[0.08] p-8 pb-6'>
+          <b className='text-2xl'>Likes</b>
+          <CloseIcon className='text-white' onClick={handleClose} />
         </div>
-          <div className={`flex-wrap gap-2 ${selectedOptions.length > 0 ? "flex pt-4": "hidden"}`}>
-          <div className='flex flex-wrap gap-2'>
-            {selectedOptions.map((option) => (
-              <div
-                key={option}
-                className='flex gap-2 p-1 py-[3px] px-2 text-sm rounded-lg bg-neutral-800'
-              >
-                {option}{' '}
-                <span
-                  className='cursor-pointer'
-                  onClick={() => handleRemoveOption(option)}
-                >
-                  {/* &#10006; */}
-                  <svg
-                    xmlns='http://www.w3.org/2000/svg'
-                    width='18'
-                    height='18'
-                    viewBox='0 0 18 18'
-                    fill='none'
-                  >
-                    <path
-                      d='M4.5 4.5L13.5 13.5M13.5 4.5L4.5 13.5'
-                      stroke='#979797'
-                      strokeWidth='1.35'
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                    />
-                  </svg>
-             
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
 
-      
+        <div className='border-b border-white/[0.08] px-8 py-4'>
+          <div className='flex w-full gap-[10px] rounded-[14px] bg-white/[0.05] px-4 py-3'>
+            <div className='w-6 h-6'>
+              <Image className='w-full h-full' src={searchIcon} alt={''} />
+            </div>
+            <input
+              type='text'
+              className='border-none bg-transparent p-0 text-[15px] font-light leading-6 text-[#979797] focus:ring-0 '
+            />
+          </div>
+          <div
+            className={`flex-wrap gap-2 ${
+              selectedOptions.length > 0 ? 'flex pt-4' : 'hidden'
+            }`}
+          >
+            <div className='flex flex-wrap gap-2'>
+              {selectedOptions.map((option) => (
+                <div
+                  key={option}
+                  className='flex gap-2 rounded-lg bg-neutral-800 p-1 px-2 py-[3px] text-sm'
+                >
+                  {option}{' '}
+                  <span
+                    className='cursor-pointer'
+                    onClick={() => handleRemoveOption(option)}
+                  >
+                    {/* &#10006; */}
+                    <svg
+                      xmlns='http://www.w3.org/2000/svg'
+                      width='18'
+                      height='18'
+                      viewBox='0 0 18 18'
+                      fill='none'
+                    >
+                      <path
+                        d='M4.5 4.5L13.5 13.5M13.5 4.5L4.5 13.5'
+                        stroke='#979797'
+                        strokeWidth='1.35'
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                      />
+                    </svg>
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
         {/* <hr className='mb-5 bg-zinc-900' /> */}
         <div className='px-6 pt-4'>
           <div className=''>
-            <div className="font-bold text-[#979797] pb-3">A</div>
-            
+            <div className='pb-3 font-bold text-[#979797]'>A</div>
+
             {/* <div className='flex flex-wrap gap-2 mt-1'>
             {data.map((datas) => {
               return (
@@ -362,9 +377,9 @@ const PersonalityLikeSection = () => {
               </div>
             </div>
           </div>
-        
+
           <div className=''>
-          <div className="font-bold text-[#979797] pb-3">B</div>
+            <div className='pb-3 font-bold text-[#979797]'>B</div>
             <div className='flex flex-wrap gap-2'>
               <div className='relative'>
                 <input
@@ -407,7 +422,7 @@ const PersonalityLikeSection = () => {
           </div>
 
           <div className=''>
-          <div className="font-bold text-[#979797] pb-3">C</div>
+            <div className='pb-3 font-bold text-[#979797]'>C</div>
             <div className='flex flex-wrap gap-2'>
               <div className='relative'>
                 <input
@@ -622,7 +637,6 @@ const PersonalityLikeSection = () => {
         </div>
         <div className='flex flex-row self-stretch gap-3 px-8 pt-4 pb-8'>
           <button
-            
             onClick={clearSelection}
             className='flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-white/[0.32] px-5 py-[13px] font-bold'
           >
@@ -630,14 +644,14 @@ const PersonalityLikeSection = () => {
           </button>
           <button
             onClick={handleClose}
-            className='flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-[#5848BC] px-5 py-[13px] font-bold bg-[#5848BC]'
+            className='flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-[#5848BC] bg-[#5848BC] px-5 py-[13px] font-bold'
           >
             Save
           </button>
         </div>
       </Modal>
     </>
-  )
-}
+  );
+};
 
-export default PersonalityLikeSection
+export default PersonalityLikeSection;

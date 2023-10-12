@@ -15,7 +15,8 @@ import CharacterAdd from './NewCharacter/CharacterAdd';
 interface SidebarModals {
   // shrinkSideBar: boolean;
   // setShrinkSideBar: React.Dispatch<React.SetStateAction<boolean>>;
-  SetSidebarModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setSidebarModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setNewCharacter: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const sidebarModal = [
@@ -36,14 +37,16 @@ const sidebarModal = [
 const SidebarModal = ({
   // shrinkSideBar,
   // setShrinkSideBar,
-  SetSidebarModal
+  setSidebarModal,
+  setNewCharacter
 }: SidebarModals) => {
-
-  const [activeProfile, setActiveProfile] = useState('Mika-chan');
-  const [newCharacter, setNewCharacter] = useState(false);
+  const [activeProfile, setActiveProfile] = useState<string>('Mika-chan');
+  
 
   return (
-    <div className={`top-[131px] mt-2 flex h-max w-[260px] flex-col rounded-[14px] bg-[#1A1A1A] px-0 pb-3 pt-2 fixed z-10 -ml-1`}>
+    <div
+      className={`fixed top-[131px] z-10 -ml-1 mt-2 flex h-max w-[260px] flex-col rounded-[14px] bg-[#1A1A1A] px-0 pb-3 pt-2`}
+    >
       {/* <div className='px-6 py-[14px]'>
         <div className='flex gap-[10px] '>
           <div className='h-8 h-max w-8 items-center justify-center rounded-full bg-white/[0.08] p-2'>
@@ -69,30 +72,44 @@ const SidebarModal = ({
         </div>
       </div> */}
 
-      {sidebarModal.map((item) => {
+      {sidebarModal.map((item, index) => {
         return (
-          <div onClick={() => { setActiveProfile(item.name) }}>
-            {activeProfile === item.name ?
+          <div
+            onClick={() => {
+              setActiveProfile(item.name);
+            }}
+            key={index}
+          >
+            {activeProfile === item.name ? (
               <div className='flex px-4 py-[6px]'>
-                <div className='flex justify-between w-full mt-[5px] pl-2 pr-[14px] py-2 rounded-full bg-white/[0.08] items-center'>
+                <div className='mt-[5px] flex w-full items-center justify-between rounded-full bg-white/[0.08] py-2 pl-2 pr-[14px]'>
                   <div className='flex gap-[10px]'>
                     <div className='w-8 h-8'>
-                      <Image className='w-full h-full' src={avatart1} alt={''} />
+                      <Image
+                        className='w-full h-full'
+                        src={avatart1}
+                        alt={''}
+                      />
                     </div>
-                    <div className='flex items-center text-[14px] font-normal leading-[18px] text-[#FFFFFF] '>Mika-chan</div>
+                    <div className='flex items-center text-[14px] font-normal leading-[18px] text-[#FFFFFF] '>
+                      Mika-chan
+                    </div>
                   </div>
                   <div className='w-4 h-4'>
                     <Image className='w-full h-full' src={check} alt={''} />
                   </div>
                 </div>
-              </div> :
-              <div className='flex pl-6 pr-4 py-[14px] gap-[10px]'>
+              </div>
+            ) : (
+              <div className='flex gap-[10px] py-[14px] pl-6 pr-4'>
                 <div className='w-8 h-8 overflow-hidden rounded-full'>
                   <Image className='w-full h-full' src={avatart2} alt={''} />
                 </div>
-                <div className='text-[#FFFFFF] text-[14px] font-normal leading-[18px] mt-[6px]'>Character 2</div>
+                <div className='mt-[6px] text-[14px] font-normal leading-[18px] text-[#FFFFFF]'>
+                  Character 2
+                </div>
               </div>
-            }
+            )}
           </div>
         );
       })}
@@ -119,7 +136,9 @@ const SidebarModal = ({
       </div> */}
 
       <button className='flex w-full px-6 py-[10px] '>
-        <div className='flex w-full items-center justify-center gap-[6px] rounded-[12px] bg-[#5848BC] px-4 py-[10px]' onClick={() => { setNewCharacter(true), SetSidebarModal(false) }}>
+        <div
+          className='flex w-full items-center justify-center gap-[6px] rounded-[12px] bg-[#5848BC] px-4 py-[10px]'
+          onClick={() => {setNewCharacter(true)}}>
           <div className='h-[18px] w-[18px]'>
             <Image className='w-full h-full' src={plusIcon} alt={''} />
           </div>
@@ -128,8 +147,6 @@ const SidebarModal = ({
           </div>
         </div>
       </button>
-
-      {newCharacter && <CharacterAdd NewCharacterClose={setNewCharacter} />}
     </div>
   );
 };

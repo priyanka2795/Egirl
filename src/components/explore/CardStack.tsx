@@ -62,15 +62,14 @@ const Card = ({ data, onLike, onHate , zIndex , isActive ,showSingleProfile}: an
     }
     setMoveX(0);
     setMoveY(0);
-
   };
 
-  const handleLikeBtn =() =>{
+  const handleLikeBtn =() => {
     setIsSwiping(true);
     setAnimation('animation-added-right');
   }
 
-  const handleHateBtn = () =>{
+  const handleHateBtn = () => {
     setIsSwiping(true);
     setAnimation('animation-added-left');
   }

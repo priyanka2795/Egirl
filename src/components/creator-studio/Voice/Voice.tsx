@@ -34,26 +34,31 @@ const voiceGenerations = [
 ];
 
 const Voice = () => {
-  const [inUse, setInUse] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [voiceModal, setVoiceModal] = useState(false);
-  
+  const [inUse, setInUse] = useState<boolean>(false);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [voiceModal, setVoiceModal] = useState<boolean>(false);
+
   return (
     <>
-    <div className='flex flex-col gap-6'>
-      <div className='flex justify-between'>
-        <div className='text-[22px] font-bold leading-8 text-[#FFFFFF]'>
-          Voice
-        </div>
-        <button className='cursor-pointer flex items-center justify-center gap-[6px] rounded-[12px] bg-[#5848BC] px-4 py-[10px]' onClick={() => {setVoiceModal(true)}}>
-          <Image className='h-[18px] w-[18px]' src={plusIcon} alt={''} />
-          <div className='text-[14px] font-bold leading-5 text-[#FFFFFF]'>
-            New
+      <div className='flex flex-col gap-6'>
+        <div className='flex justify-between'>
+          <div className='text-[22px] font-bold leading-8 text-[#FFFFFF]'>
+            Voice
           </div>
-        </button>
-      </div>
+          <button
+            className='flex cursor-pointer items-center justify-center gap-[6px] rounded-[12px] bg-[#5848BC] px-4 py-[10px]'
+            onClick={() => {
+              setVoiceModal(true);
+            }}
+          >
+            <Image className='h-[18px] w-[18px]' src={plusIcon} alt={''} />
+            <div className='text-[14px] font-bold leading-5 text-[#FFFFFF]'>
+              New
+            </div>
+          </button>
+        </div>
 
-      {/* <div className='flex max-h-[892px] flex-col gap-4 rounded-[14px] bg-[#121212] p-6'>
+        {/* <div className='flex max-h-[892px] flex-col gap-4 rounded-[14px] bg-[#121212] p-6'>
         <div className='flex justify-between'>
           <div className='text-[18px] font-bold leading-6 text-[#FFFFFF]'>
             All voice generations
@@ -108,10 +113,8 @@ const Voice = () => {
           );
         })}
       </div> */}
-    </div>
-    {
-      voiceModal && <VoiceGeneratorModal closeModal={setVoiceModal} />
-    }
+      </div>
+      {voiceModal && <VoiceGeneratorModal closeModal={setVoiceModal} />}
     </>
   );
 };

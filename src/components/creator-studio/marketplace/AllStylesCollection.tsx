@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import arrowDown from '../../../../public/assets/arrow-down.png';
 import arrowUp from '../../../../public/assets/arrow-up.png';
 import MarketPlaceCards from './MarketPlaceCards';
 import checkIcon from '../../../../public/assets/check-cs.png';
 const AllStylesCollection = () => {
-  const [showNewest, setShowNewest] = useState(false);
-  const [showDuration, setShowDuration] = useState(false);
-  const [selectedNewest, setSelectedNewest] = useState('');
-  const [selectedDuration, setSelectedDuration] = useState('');
+  const [showNewest, setShowNewest] = useState<boolean>(false);
+  const [showDuration, setShowDuration] = useState<boolean>(false);
+  const [selectedNewest, setSelectedNewest] = useState<string>('');
+  const [selectedDuration, setSelectedDuration] = useState<string>('');
   const newestArr = [
     'Highest rated',
     'Most downloaded',
@@ -24,21 +24,41 @@ const AllStylesCollection = () => {
   const handleDuration = () => {
     setShowDuration(!showDuration);
   };
-  const handleSelectedNewest = (ele: any) => {
+  const handleSelectedNewest = (ele: string) => {
     setSelectedNewest(ele);
   };
-  const handleSelectedDuration = (ele: any) => {
+  const handleSelectedDuration = (ele: string) => {
     setSelectedDuration(ele);
+  };
+
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+  const handleClickOutside = (e: MouseEvent) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(e.target as Node)
+    ) {
+      setShowDuration(false);
+      setShowNewest(false);
+    }
   };
 
   return (
     <>
-      <div className='flex justify-between mt-8 mb-4'>
-        <div className='text-[18px] font-bold leading-6 text-[#FFF]'>All Styles</div>
+      <div className='flex justify-between mt-8 mb-4' ref={dropdownRef}>
+        <div className='text-[18px] font-bold leading-6 text-[#FFF]'>
+          All Styles
+        </div>
         <div className='flex gap-4'>
           <div className='relative'>
             <div
-              className='flex gap-2 pr-2 border-r border-white/[0.08] cursor-pointer'
+              className='flex cursor-pointer gap-2 border-r border-white/[0.08] pr-2'
               onClick={handleNewest}
             >
               <p>Newest</p>
@@ -69,10 +89,7 @@ const AllStylesCollection = () => {
             )}
           </div>
           <div className='relative'>
-            <div
-              className='flex gap-2 cursor-pointer'
-              onClick={handleDuration}
-            >
+            <div className='flex gap-2 cursor-pointer' onClick={handleDuration}>
               <p>Month</p>
               <Image
                 src={showDuration ? arrowUp : arrowDown}

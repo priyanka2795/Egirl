@@ -17,6 +17,9 @@ module.exports = {
       '3xl': '1582px',
       ...defaultTheme.screens
     },
+    fontWeight: {
+      semibold: '500'
+    },
     extend: {
       screens: {
         xs: '279px' // Mobile (iPhone 3 - iPhone XS Max).

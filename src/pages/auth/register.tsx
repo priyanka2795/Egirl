@@ -48,26 +48,26 @@ export default function Login() {
   return (
     <>
       <div className='grid h-screen place-items-center'>
-        <div className='flex flex-col gap-4 border-2 p-4 py-4'>
+        <div className='flex flex-col gap-4 p-4 py-4 border-2'>
           <h1 className='text-3xl font-bold underline'>Register Form</h1>
           <input
             type='email'
             value={email}
             onChange={onEmailChange}
             placeholder='email'
-            className='border-2 p-4'
+            className='p-4 border-2'
           />
           <input
             type='password'
             value={password}
             onChange={onPasswordChange}
             placeholder='password'
-            className='border-2 p-4'
+            className='p-4 border-2'
           />
-          <button onClick={signupHandler} className='border-2 p-4'>
+          <button onClick={signupHandler} className='p-4 border-2'>
             Sign up
           </button>
-          <button onClick={signupWithGoogleHandler} className='border-2 p-4'>
+          <button onClick={signupWithGoogleHandler} className='p-4 border-2'>
             Sign up with Google
           </button>
           <p className='text-red-400'>{errorMsg}</p>

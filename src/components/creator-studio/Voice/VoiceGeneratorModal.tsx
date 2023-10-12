@@ -7,16 +7,16 @@ import { Range } from 'react-range';
 import RangePicker from '../common/RangePicker';
 
 interface VoiceGeneratorModalProp {
-  closeModal: any;
+  closeModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const VoiceGeneratorModal = ({ closeModal }: VoiceGeneratorModalProp) => {
-  const [state1, setState1] = useState([50]);
-  const [state2, setState2] = useState([50]);
-  const [state3, setState3] = useState([50]);
-  const [accentState ,setAccentState] = useState([0])
-  const [voiceStabilityState ,setVoiceStabilityState] = useState([0])
-  const [voiceClarityState ,setVoiceClarityState] = useState([0])
+  const [state1, setState1] = useState<number[]>([50]);
+  const [state2, setState2] = useState<number[]>([50]);
+  const [state3, setState3] = useState<number[]>([50]);
+  const [accentState, setAccentState] = useState<number[]>([0]);
+  const [voiceStabilityState, setVoiceStabilityState] = useState<number[]>([0]);
+  const [voiceClarityState, setVoiceClarityState] = useState<number[]>([0]);
   return (
     <Modal
       open={true}
@@ -28,7 +28,10 @@ const VoiceGeneratorModal = ({ closeModal }: VoiceGeneratorModalProp) => {
         <div className='text-[18px] font-bold leading-6 text-[#FFFFFF]'>
           Voice generator
         </div>
-        <div className='w-6 h-6 cursor-pointer' onClick={() => closeModal(false)}>
+        <div
+          className='w-6 h-6 cursor-pointer'
+          onClick={() => closeModal(false)}
+        >
           <Image className='w-full h-full' src={crossIcon} alt={''} />
         </div>
       </div>
@@ -124,7 +127,7 @@ const VoiceGeneratorModal = ({ closeModal }: VoiceGeneratorModalProp) => {
               </div>
               <textarea
                 placeholder='Type something'
-                className='h-[105px] w-full rounded-[14px] border-none bg-white/[0.05] py-3 pl-4 pr-3 text-[15px] font-normal leading-6 text-[#979797] placeholder:text-[#979797] resize-none focus:ring-0'
+                className='h-[105px] w-full resize-none rounded-[14px] border-none bg-white/[0.05] py-3 pl-4 pr-3 text-[15px] font-normal leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
               />
             </div>
           </div>
@@ -186,7 +189,10 @@ const VoiceGeneratorModal = ({ closeModal }: VoiceGeneratorModalProp) => {
                       />
                     )}
                   /> */}
-                  <RangePicker values={accentState} setValues={setAccentState}/>
+                  <RangePicker
+                    values={accentState}
+                    setValues={setAccentState}
+                  />
                   <div className='flex justify-between mt-3'>
                     <div className='text-[14px] font-normal leading-[18px] text-[#515151]'>
                       Low
@@ -245,7 +251,10 @@ const VoiceGeneratorModal = ({ closeModal }: VoiceGeneratorModalProp) => {
                       />
                     )}
                   /> */}
-                    <RangePicker values={voiceStabilityState} setValues={setVoiceStabilityState}/>
+                  <RangePicker
+                    values={voiceStabilityState}
+                    setValues={setVoiceStabilityState}
+                  />
                   <div className='flex justify-between mt-3'>
                     <div className='text-[14px] font-normal leading-[18px] text-[#515151]'>
                       Low
@@ -304,7 +313,10 @@ const VoiceGeneratorModal = ({ closeModal }: VoiceGeneratorModalProp) => {
                       />
                     )}
                   /> */}
-                   <RangePicker values={voiceClarityState} setValues={setVoiceClarityState}/>
+                  <RangePicker
+                    values={voiceClarityState}
+                    setValues={setVoiceClarityState}
+                  />
                   <div className='flex justify-between mt-3'>
                     <div className='text-[14px] font-normal leading-[18px] text-[#515151]'>
                       Low
@@ -321,8 +333,18 @@ const VoiceGeneratorModal = ({ closeModal }: VoiceGeneratorModalProp) => {
       </form>
 
       <div className='flex items-end justify-end gap-3 p-6'>
-        <button className='cursor-pointer px-5 py-[13px] justify-center items-center rounded-[14px] border border-white/[0.32] text-[#FFFFFF] text-[16px] font-bold leading-[22px]' onClick={() => closeModal(false)}>Cancel</button>
-        <button className='cursor-pointer px-5 py-[13px] justify-center items-center rounded-[14px] border border-transparent bg-[#5848BC] text-[#FFFFFF] text-[16px] font-bold leading-[22px]' onClick={() => closeModal(false)}>Generate</button>
+        <button
+          className='cursor-pointer items-center justify-center rounded-[14px] border border-white/[0.32] px-5 py-[13px] text-[16px] font-bold leading-[22px] text-[#FFFFFF]'
+          onClick={() => closeModal(false)}
+        >
+          Cancel
+        </button>
+        <button
+          className='cursor-pointer items-center justify-center rounded-[14px] border border-transparent bg-[#5848BC] px-5 py-[13px] text-[16px] font-bold leading-[22px] text-[#FFFFFF]'
+          onClick={() => closeModal(false)}
+        >
+          Generate
+        </button>
       </div>
     </Modal>
   );

@@ -5,9 +5,9 @@ import avatar from '../../../public/assets/mika-chan-sub-banner.png';
 function PreviewProfile({ cropData }: any) {
   return (
     <div className='h-max w-full overflow-hidden rounded-[16px] bg-[#1c1c1c]'>
-      <div className='sub-banner block w-full'>
+      <div className='block w-full sub-banner'>
         <img
-          className='h-full w-full '
+          className='w-full h-full '
           src={cropData}
           alt=''
           style={{ height: '170px', objectFit: 'fill' }}
@@ -15,7 +15,7 @@ function PreviewProfile({ cropData }: any) {
 
         <div className='mb-5 mt-[-62px] flex w-full items-center justify-between px-[24px]'>
           <div className='relative h-[120px] w-[120px] overflow-hidden rounded-full'>
-            <Image className='h-full w-full' src={avatar} alt='' />
+            <Image className='w-full h-full' src={avatar} alt='' />
           </div>
         </div>
         <div className='mb-3 ml-[30px] mt-[-10px]'>
