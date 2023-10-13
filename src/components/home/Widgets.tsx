@@ -5,13 +5,12 @@ import { useState } from 'react';
 import UserSection from '@components/list/UserSection';
 import Slider from 'react-slick';
 import UserFrame from '@components/list/UserFrame';
-import arrowLeft from '../../../public/assets/arrow-narrow-left.png'
-import arrowRight from '../../../public/assets/arrow-narrow-right.png'
+import arrowLeft from '../../../public/assets/arrow-narrow-left.png';
+import arrowRight from '../../../public/assets/arrow-narrow-right.png';
 import Image from 'next/image';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import HomePageSlider from './HomePageSlider';
-
 
 const settings = {
   dots: true,
@@ -38,7 +37,7 @@ export default function Widgets() {
       >
         <div className='mr-2 w-full max-w-[376px] pb-5 pt-6'>
           <div className='flex h-[64px] items-center justify-between rounded-r-[14px] bg-main-bar'>
-            <div className='relative w-full mr-2 group'>
+            <div className='group relative mr-2 w-full'>
               <div className='absolute left-4 top-3'>
                 <SearchIcon
                   strokeClasses={`${
@@ -49,26 +48,28 @@ export default function Widgets() {
               <input
                 onFocus={handleInputFocus}
                 onBlur={handleInputBlur}
-                className='py-auto mr-2 h-[48px] w-full rounded-[14px] border-none bg-[#1E1E1E] pl-[50px] text-[15px] font-light leading-6 text-[#979797] transition duration-100 focus:ring-1 focus:ring-[#5848BC]'
+                className='py-auto font-light mr-2 h-[48px] w-full rounded-[14px] border-none bg-[#1E1E1E] pl-[50px] text-[15px] leading-6 text-[#979797] transition duration-100 focus:ring-1 focus:ring-[#5848BC]'
                 type='text'
                 placeholder='Search'
               />
             </div>
           </div>
-        </div> 
+        </div>
       </div>
 
-      <div className={`sticky top-0 max-w-[376px] max-h-[426px]`}>
-        <div className='bg-[#121212] rounded-[14px] w-full h-full'>
-          <div className='flex justify-between p-6 border-b border-white/[0.08]'>
-            <div className='text-[#FFFFFF] text-[18px] font-bold'>You might like</div>
+      <div className={`sticky top-0 max-h-[426px] max-w-[376px]`}>
+        <div className='h-full w-full rounded-[14px] bg-[#121212]'>
+          <div className='flex justify-between border-b border-white/[0.08] p-6'>
+            <div className='font-bold text-[18px] text-[#FFFFFF]'>
+              You might like
+            </div>
             <div className='flex gap-3'>
               <Image src={arrowLeft} alt={''} />
               <Image src={arrowRight} alt={''} />
             </div>
           </div>
-          <div className='h-full p-6 bookmark-img-text'>
-            <div className='relative h-full profile-like-slider home-page-slider'>
+          <div className='bookmark-img-text h-full p-6'>
+            <div className='profile-like-slider home-page-slider relative h-full'>
               <Slider {...settings}>
                 <HomePageSlider />
                 <HomePageSlider />

@@ -594,3 +594,10 @@ span.audio-recorder-timer {
 .signin-page{
   background: url('../../public/assets/sign-in-bg-img.png') 100% no-repeat;
 }
+
+.input-username-error:has(.Input-error) .input-error-border,
+.input-email-error:has(.Input-error) .input-error-border,
+.input-verifyemail-error:has(.Input-error) .input-error-border{
+
+  border: 1px solid #FF5336;
+}

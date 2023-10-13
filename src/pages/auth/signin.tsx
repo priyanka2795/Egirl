@@ -10,6 +10,7 @@ import discordIcon from '../../../public/assets/discord-icon.png';
 import facebookIcon from '../../../public/assets/facebook-icon.png';
 import vector1 from '../../../public/assets/Vector 1.png';
 import vector2 from '../../../public/assets/Vector 2.png';
+import RotateIcon from '../../../public/assets/rotate-cw.png';
 import Link from 'next/link';
 import SigninTemplate from './signinTemplate';
 import SigninLoginOpt from './SigninLoginOpt';
@@ -28,12 +29,19 @@ const login = [
     text: 'Login with Facebook'
   }
 ];
-export default function SignIn() {
+interface SignIn {
+  SetFormStep: boolean;
+}
+export default function SignIn({ SetFormStep }: SignIn) {
   const router = useRouter();
   const supabase = useSupabaseClient<Database>();
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [errorMsg, setErrorMsg] = useState<string>('');
+
+  const [signInSteps, setSignInSteps] = useState<number>();
+  const [verifyCode, setVerifyCode] = useState<boolean>(false);
+
   const onEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
@@ -54,6 +62,7 @@ export default function SignIn() {
     } else {
       setErrorMsg(error.message);
     }
+    setSignInSteps(1);
   };
 
   const loginGoogleHandler = async () => {
@@ -70,83 +79,106 @@ export default function SignIn() {
   return (
     <>
       <SigninTemplate>
-        <div className='p-[54px]'>
-          <div className='flex w-[500px] flex-col gap-8 rounded-[40px] bg-[#070707] p-10'>
-            {/* <div className='font-bold text-[32px] leading-10 text-white'>
-              Login
+        <div className='w-[500px] rounded-[40px] bg-[#070707] px-10 pt-10'>
+          {signInSteps === 1 ? (
+            <div className='flex h-[400px] flex-col justify-between'>
+              <div>
+                <h2 className='font-bold text-[32px]'>Verify your identity</h2>
+                <p className='mt-4 text-[15px]'>
+                  {verifyCode
+                    ? "Enter the code we've sent to"
+                    : "To confirm your identity we'll send you a verification code to"}
+                  <span className='font-bold' style={{ fontWeight: 700 }}>
+                    {' '}
+                    example@gmail.com
+                  </span>
+                </p>
+              </div>
+              {verifyCode && (
+                <div className='flex items-center justify-between'>
+                  {Array(6)
+                    .fill('2')
+                    .map(() => (
+                      <input
+                        type='text'
+                        className='h-[80px] w-[64px] rounded-lg bg-[#FFFFFF0D] text-center text-[36px]'
+                        maxLength={1}
+                        minLength={1}
+                      />
+                    ))}
+                </div>
+              )}
+              <div>
+                {verifyCode ? (
+                  <button className='font-bold flex w-full items-center justify-center gap-2 rounded-2xl bg-[#FFFFFF14] px-5 py-4 text-center text-lg'>
+                    <Image src={RotateIcon} /> Resend code
+                  </button>
+                ) : (
+                  <button
+                    className='font-bold flex w-full items-center justify-center gap-2 rounded-2xl bg-[#5848BC] px-5 py-4 text-center text-lg'
+                    onClick={() => setVerifyCode(true)}
+                  >
+                    Continue
+                  </button>
+                )}
+
+                <p className='mb-5 mt-4 text-[15px] '>
+                  Sign in to a different account
+                </p>
+              </div>
             </div>
-            <div className='flex flex-col gap-3'>
-              <div className='flex flex-col gap-2'>
-                {login.map((item, index) => {
-                  return (
-                    <div key={index}>
-                      <button className='flex w-full items-center justify-center gap-[10px] rounded-[16px] border border-white/[0.16] px-3 pb-[13px] pt-[11px]'>
-                        <Image src={item.icon} alt={''} />
-                        <div className='font-normal text-[15px] leading-5'>
-                          {item.text}
-                        </div>
-                      </button>
+          ) : (
+            <>
+              <div className='flex flex-col gap-8'>
+                <SigninLoginOpt />
+
+                <div className='flex flex-col gap-4'>
+                  <div className='flex gap-4'>
+                    <Image className='object-contain' src={vector1} alt={''} />
+                    <div className='font-normal text-[15px] leading-5 text-[#979797]'>
+                      Or
                     </div>
-                  );
-                })}
-              </div>
-              <div className='flex gap-[6px]'>
-                <div className='font-normal text-[15px] leading-5 text-white'>
-                  New user?
-                </div>
-                <Link href='/auth/signup'>
-                  <a className='font-normal text-[15px] leading-5 text-[#5848BC]'>
-                    Sign up
-                  </a>
-                </Link>
-              </div>
-            </div> */}
-            <SigninLoginOpt />
-            <div className='flex flex-col gap-4'>
-              <div className='flex gap-4'>
-                <Image className='object-contain' src={vector1} alt={''} />
-                <div className='font-normal text-[15px] leading-5 text-[#979797]'>
-                  Or
-                </div>
-                <Image className='object-contain' src={vector2} alt={''} />
-              </div>
-              <div className='flex flex-col gap-[6px]'>
-                <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
-                  Email address
-                </div>
-                <input
-                  type='email'
-                  placeholder='example@gmail.com'
-                  className='font-normal flex rounded-[14px] border-none bg-transparent bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
-                />
-              </div>
-              <div className='flex flex-col gap-3'>
-                <div className='flex flex-col gap-[6px]'>
-                  <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
-                    Password
+                    <Image className='object-contain' src={vector2} alt={''} />
                   </div>
-                  <input
-                    type='password'
-                    placeholder='Password'
-                    className='font-normal flex rounded-[14px] border-none bg-transparent bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
-                  />
+                  <div className='flex flex-col gap-[6px]'>
+                    <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
+                      Email address
+                    </div>
+                    <input
+                      type='email'
+                      placeholder='example@gmail.com'
+                      className='font-normal flex rounded-[14px] border-none bg-transparent bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
+                    />
+                  </div>
+                  <div className='flex flex-col gap-3'>
+                    <div className='flex flex-col gap-[6px]'>
+                      <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
+                        Password
+                      </div>
+                      <input
+                        type='password'
+                        placeholder='Password'
+                        className='font-normal flex rounded-[14px] border-none bg-transparent bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
+                      />
+                    </div>
+                    <div className='font-normal text-[15px] leading-5 text-white'>
+                      Forgot your password?
+                    </div>
+                  </div>
                 </div>
-                <div className='font-normal text-[15px] leading-5 text-white'>
-                  Forgot your password?
-                </div>
-              </div>
-            </div>
-            <button
-              onClick={loginHandler}
-              className='font-bold flex items-center justify-center rounded-[16px] bg-[#5848BC] px-6 py-4 text-[18px] leading-6 text-white'
-            >
-              Continue
-            </button>
-            {/* <button onClick={loginGoogleHandler} className='p-4 border-2'>
+                <button
+                  onClick={loginHandler}
+                  className='font-bold flex items-center justify-center rounded-[16px] bg-[#5848BC] px-6 py-4 text-[18px] leading-6 text-white'
+                >
+                  Continue
+                </button>
+                {/* <button onClick={loginGoogleHandler} className='p-4 border-2'>
               Google Login
             </button> */}
-            <p className='text-red-400'>{errorMsg}</p>
-          </div>
+              </div>
+              <p className='py-5 text-red-400'>{errorMsg}</p>
+            </>
+          )}
         </div>
       </SigninTemplate>
     </>
