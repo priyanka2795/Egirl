@@ -54,9 +54,9 @@ const FilterData = [
 
 const AddTagModal = ({ closeDeleteModal }: AddTagModalProp) => {
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
-  const [searchTags, setSearchTags] = useState('');
+  const [searchTags, setSearchTags] = useState<string>('');
   const [addTags, setAddTags] = useState(FilterData);
-  const [tagsSearch, setTagsSearch] = useState(false);
+  const [tagsSearch, setTagsSearch] = useState<boolean>(false);
 
   const handleOptionChange = (option: string) => {
     console.log(option, 'resr');
@@ -97,7 +97,7 @@ const AddTagModal = ({ closeDeleteModal }: AddTagModalProp) => {
       closeModal={() => closeDeleteModal(false)}
       modalOverlayStyle='!bg-black/80'
     >
-      <div className='CloseIcon flex justify-between border-b border-white border-opacity-10 px-8 pb-6'>
+      <div className='flex justify-between px-8 pb-6 border-b border-white CloseIcon border-opacity-10'>
         <h6 className='text-lg font-bold leading-normal text-white'> Tags</h6>
         <div className='cursor-pointer' onClick={() => closeDeleteModal(false)}>
           <Image src={CloseIcon} />
@@ -106,8 +106,8 @@ const AddTagModal = ({ closeDeleteModal }: AddTagModalProp) => {
 
       <div className='px-8 py-4'>
         <div className='flex w-full gap-[10px] rounded-[14px] bg-white/[0.05] px-4 py-3'>
-          <div className='h-6 w-6'>
-            <Image className='h-full w-full' src={searchIcon} alt={''} />
+          <div className='w-6 h-6'>
+            <Image className='w-full h-full' src={searchIcon} alt={''} />
           </div>
           <input
             type='text'

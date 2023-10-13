@@ -44,7 +44,7 @@ const AddImagesModal = ({
   setAddImagesModal,
   setStyleGeneratorNext
 }: AddImagesModalProps) => {
-  const [toggle, setToggle] = useState(false);
+  const [toggle, setToggle] = useState<boolean>(false);
   //   const [styleGenHoverModal, setStyleGenHoverModal] = useState(false);
 
   return (
@@ -82,7 +82,7 @@ const AddImagesModal = ({
                 return (
                   <div key={index} className='relative'>
                     <Image src={item.image} alt={''} />
-                    <div className='absolute bottom-5 right-0 flex w-full justify-between px-4'>
+                    <div className='absolute right-0 flex justify-between w-full px-4 bottom-5'>
                       <div className='text-[15px] font-semibold leading-5 text-white'>
                         {item.text}
                       </div>
@@ -116,8 +116,8 @@ const AddImagesModal = ({
                       className='add-to-collection relative h-[256px]'
                     >
                       <Image src={item.image} alt={''} />
-                      <div className='custom-checkbox absolute right-0 top-0 h-full w-full'>
-                        <div className='pr-4 pt-4 text-right'>
+                      <div className='absolute top-0 right-0 w-full h-full custom-checkbox'>
+                        <div className='pt-4 pr-4 text-right'>
                           <input type='checkbox' id={`checked-${index}`} />
                           <label htmlFor={`checked-${index}`}></label>
                         </div>

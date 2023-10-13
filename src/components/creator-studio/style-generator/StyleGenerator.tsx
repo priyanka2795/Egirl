@@ -22,12 +22,12 @@ const StyleGenerator = ({ setStyleGeneratorNext }: StyleGeneratorProps) => {
     'Locations',
     'Object'
   ];
-  const [styleGenHoverModal, setStyleGenHoverModal] = useState(false);
-  const [goToModal, setGoToModal] = useState(false);
-  const [showDropDown, setShowDropDown] = useState(false);
-  const [inputText, setInputText] = useState('Choose category');
+  const [styleGenHoverModal, setStyleGenHoverModal] = useState<boolean>(false);
+  const [goToModal, setGoToModal] = useState<boolean>(false);
+  const [showDropDown, setShowDropDown] = useState<boolean>(false);
+  const [inputText, setInputText] = useState<string>('Choose category');
   const [addImagesModal, setAddImagesModal] = useState<boolean>(false);
-  const [completeGeneration, setCompleteGeneration] = useState(false);
+  const [completeGeneration, setCompleteGeneration] = useState<boolean>(false);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -153,7 +153,7 @@ const StyleGenerator = ({ setStyleGeneratorNext }: StyleGeneratorProps) => {
                 Add images for style generation
               </div>
               <div className='absolute -top-[25px] right-[20px] h-[24px] w-10'>
-                <Image className='h-full w-full' src={downArrow} alt={''} />
+                <Image className='w-full h-full' src={downArrow} alt={''} />
               </div>
             </div>
             {completeGeneration && (

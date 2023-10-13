@@ -27,18 +27,14 @@ const tabContent = ['Image Generation', 'Idea Generation'];
 
 const ImageAndIdeaGeneratorTab = () => {
   let SessionData = sessionStorage.getItem('sideBarCollapseCS');
-  const [activeTab, setActiveTab] = useState('Image Generation');
+  const [activeTab, setActiveTab] = useState<string>('Image Generation');
   const [imageGeneration, setImageGeneration] = useState<number | null>(null);
-  const [imageGenerationToggle, setImageGenerationToggle] = useState<
-    number | null
-  >(null);
-  const [editImageGeneration, setEditImageGeneration] =
-    useState<boolean>(false);
-  const [deleteImageGeneration, setDeleteImageGeneration] = useState(false);
-  const [imageGenerationAgain, setImageGenerationAgain] = useState([1]);
-  const [deleteImageGenerationIndex, setDeleteImageGenerationIndex] =
-    useState<number>();
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [imageGenerationToggle, setImageGenerationToggle] = useState<number | null>(null);
+  const [editImageGeneration, setEditImageGeneration] = useState<boolean>(false);
+  const [deleteImageGeneration, setDeleteImageGeneration] = useState<boolean>(false);
+  const [imageGenerationAgain, setImageGenerationAgain] = useState<number[]>([1]);
+  const [deleteImageGenerationIndex, setDeleteImageGenerationIndex] = useState<number>();
+  const [activeIndex, setActiveIndex] = useState<number>(0);
 
   // Idea Generation
   const [ideaGenerationInput, setIdeaGenerationInput] = useState('');
@@ -161,7 +157,7 @@ const ImageAndIdeaGeneratorTab = () => {
                 className='rounded-[20px] border border-[#FFFFFF29]'
                 key={index}
               >
-                <div className='flex cursor-pointer items-center justify-between p-6'>
+                <div className='flex items-center justify-between p-6 cursor-pointer'>
                   <div
                     className='w-full'
                     onClick={() => imageGenerationAccordion(index)}
@@ -244,7 +240,7 @@ const ImageAndIdeaGeneratorTab = () => {
             ))}
           </div>
         ) : activeTab === 'Idea Generation' ? (
-          <div className='mt-6 flex flex-col gap-4'>
+          <div className='flex flex-col gap-4 mt-6'>
             <div className='rounded-[14px] bg-[#FFFFFF0D] p-5'>
               <label
                 htmlFor='prompt'
@@ -268,7 +264,7 @@ const ImageAndIdeaGeneratorTab = () => {
                   Generate Ideas
                 </button>
               </div>
-              <div className='mt-3 flex items-center gap-2'>
+              <div className='flex items-center gap-2 mt-3'>
                 <Image src={Information} />
                 <p className='text-[13px] text-[#979797]'>
                   Idea generation helps you come up with prompt ideas
@@ -283,7 +279,7 @@ const ImageAndIdeaGeneratorTab = () => {
                 key={index}
                 className='rounded-[20px] border border-[#FFFFFF29]'
               >
-                <div className='group relative flex cursor-pointer items-center justify-between gap-2 p-6 '>
+                <div className='relative flex items-center justify-between gap-2 p-6 cursor-pointer group '>
                   <div
                     className={` truncate text-ellipsis break-all ${
                       SessionData ? 'w-[761px]' : 'w-[570px]'

@@ -28,11 +28,11 @@ interface AddStyleModal {
 const StyleTab = ['Your Styles', 'Popular'];
 
 const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
-  const [styleTabs, setStyleTabs] = useState('Your Styles');
-  const [tooltip, setTooltip] = useState(false);
-  const [selfModeImages, setSelfModeImages] = useState(SelfMode);
-  const [selfImageSearch, setSelfImageSearch] = useState(false);
-  const [searchStyle, setSearchStyle] = useState('');
+  const [styleTabs, setStyleTabs] = useState<string>('Your Styles');
+  const [tooltip, setTooltip] = useState<boolean>(false);
+  const [selfModeImages, setSelfModeImages] = useState<any[]>(SelfMode);
+  const [selfImageSearch, setSelfImageSearch] = useState<boolean>(false);
+  const [searchStyle, setSearchStyle] = useState<string>('');
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
 
   const SelectImage = (name: string) => {
@@ -70,7 +70,7 @@ const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
       <div className='rounded-[20px] bg-[#121212] '>
         {/* Header */}
         <div className='flex items-center justify-between border-b border-white/[0.08] border-b-white/[0.08] p-8'>
-          <h5 className='text-lg font-bold'>Style</h5>
+          <h5 className='font-bold text-lg'>Style</h5>
           <button
             className='h-[24px] w-[24px]'
             onClick={() => SetOpenStyle(false)}
@@ -89,16 +89,16 @@ const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
               }`}
               onClick={(e) => setStyleTabs((e.target as HTMLElement).innerText)}
             >
-              <p className={`text-[15px] font-bold`}>{items}</p>
+              <p className={`font-bold text-[15px]`}>{items}</p>
             </div>
           ))}
         </div>
         {/* search bar */}
         <div className='border-b border-[#FFFFFF14] px-8 pb-6'>
           <div className='flex w-full gap-[10px] rounded-[10px] bg-white/[0.05] p-3'>
-            <div className='h-6 w-6'>
+            <div className='w-6 h-6'>
               <Image
-                className='h-full w-full'
+                className='w-full h-full'
                 src={searchIcon}
                 alt={''}
                 id='myinput'
@@ -107,7 +107,7 @@ const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
             <input
               placeholder='Search'
               type='text'
-              className='flex-1 border-none bg-transparent p-0 text-[15px] font-light leading-6 placeholder:text-[#979797] focus:ring-0'
+              className='font-light flex-1 border-none bg-transparent p-0 text-[15px] leading-6 placeholder:text-[#979797] focus:ring-0'
               value={searchStyle}
               onChange={handleInputChange}
             />
@@ -115,13 +115,13 @@ const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
         </div>
         {/* Imges  */}
         <div className=''>
-          <div className='mt-4 flex flex-col gap-4 px-8 '>
+          <div className='flex flex-col gap-4 px-8 mt-4 '>
             {/* self made */}
-            <h6 className='text-lg font-bold leading-6 text-white'>
+            <h6 className='font-bold text-lg leading-6 text-white'>
               Self Made
             </h6>
             {selfImageSearch ? (
-              <p className='text-center font-bold text-[#979797]'>
+              <p className='font-bold text-center text-[#979797]'>
                 Image Not Found
               </p>
             ) : (
@@ -148,7 +148,7 @@ const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
                     >
                       <p className='text-[13px] font-semibold'>{items.name}</p>
                       {selectedItems.length > 3 && (
-                        <div className='left-30 absolute -top-14 text-center text-xs'>
+                        <div className='absolute text-xs text-center left-30 -top-14'>
                           <Tooltip Text='You can select maximum of 4 styles' />
                         </div>
                       )}
@@ -177,16 +177,16 @@ const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
           </div>
         </div>
 
-        <div className='flex flex-row gap-3 self-stretch px-8 pb-8 pt-4'>
+        <div className='flex flex-row self-stretch gap-3 px-8 pt-4 pb-8'>
           <button
             onClick={() => SetOpenStyle(false)}
-            className='flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-white/[0.32] px-5 py-[13px] font-bold'
+            className='font-bold flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-white/[0.32] px-5 py-[13px]'
           >
             Cancel
           </button>
           <button
             onClick={() => SetOpenStyle(false)}
-            className='flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-[#5848BC] bg-[#5848BC] px-5 py-[13px] font-bold'
+            className='font-bold flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-[#5848BC] bg-[#5848BC] px-5 py-[13px]'
           >
             Save
           </button>

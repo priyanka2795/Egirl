@@ -14,7 +14,7 @@ interface EditImageGeneration {
 }
 
 const EditImageGeneration = ({ ImageGenerationClose }: EditImageGeneration) => {
-  const [prompt, setPrompt] = useState(false);
+  const [prompt, setPrompt] = useState<boolean>(false);
 
   return (
     <Modal
@@ -26,10 +26,10 @@ const EditImageGeneration = ({ ImageGenerationClose }: EditImageGeneration) => {
       <div className='flex items-center justify-between border-b border-[#FFFFFF14] p-6'>
         <h5 className='text-lg font-semibold'>Edit Image generation</h5>
         <div
-          className='h-6 w-6 cursor-pointer'
+          className='w-6 h-6 cursor-pointer'
           onClick={() => ImageGenerationClose(false)}
         >
-          <Image className='h-full w-full' src={crossIcon} alt={''} />
+          <Image className='w-full h-full' src={crossIcon} alt={''} />
         </div>
       </div>
       {/* 

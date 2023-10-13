@@ -64,17 +64,17 @@ const ViewImagesTab = ({
   HandleSearch,
   SearchTerm
 }: ViewImagesTab) => {
-  const [shortSelect, setShortSelect] = useState(false);
-  const [shortTab, setShortTab] = useState(1);
-  const [isActive, setActive] = useState(false);
-  const [albumShortSelect, setAlbumShortSelect] = useState(false);
-  const [albumShortTab, setAlbumShortTab] = useState(1);
-  const [filterToggle, setFilterToggle] = useState(false);
-  const [viewAll, setViewAll] = useState(false);
-  const [viewAllStyle, setViewAllStyle] = useState(false);
-  const [selectTag, setSelectTag] = useState(false);
+  const [shortSelect, setShortSelect] = useState<boolean>(false);
+  const [shortTab, setShortTab] = useState<number>(1);
+  const [isActive, setActive] = useState<boolean>(false);
+  const [albumShortSelect, setAlbumShortSelect] = useState<boolean>(false);
+  const [albumShortTab, setAlbumShortTab] = useState<number>(1);
+  const [filterToggle, setFilterToggle] = useState<boolean>(false);
+  const [viewAll, setViewAll] = useState<boolean>(false);
+  const [viewAllStyle, setViewAllStyle] = useState<boolean>(false);
+  const [selectTag, setSelectTag] = useState<boolean>(false);
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
-  const [filterActive, setFilterActive] = useState(false);
+  const [filterActive, setFilterActive] = useState<boolean>(false);
   const [checked, setChecked] = useState([] as any);
   const [styleChecked, setStyleChecked] = useState([] as any);
 
@@ -217,7 +217,7 @@ const ViewImagesTab = ({
                   className='absolute right-2 top-2'
                   onClick={() => setActive(!isActive)}
                 >
-                  <Image className='h-full w-full' src={crossIcon} alt={''} />
+                  <Image className='w-full h-full' src={crossIcon} alt={''} />
                 </span>
               ) : (
                 ''
@@ -238,7 +238,7 @@ const ViewImagesTab = ({
                   <>
                     {Albumshort.map((item, index) => (
                       <div
-                        className='flex cursor-pointer items-center gap-2'
+                        className='flex items-center gap-2 cursor-pointer'
                         onClick={() => AlbumSelectShort(index)}
                         key={index}
                       >
@@ -272,7 +272,7 @@ const ViewImagesTab = ({
                 <div className='shadow-[0px 8px 12px 0px #0000001F] absolute right-0 top-12 z-50 flex w-[170px] flex-col gap-2 rounded-[14px] bg-[#1A1A1A] px-3 py-4'>
                   {short.map((item, index) => (
                     <div
-                      className='flex cursor-pointer items-center gap-2'
+                      className='flex items-center gap-2 cursor-pointer'
                       onClick={() => SelectShort(index)}
                       key={index}
                     >
@@ -394,7 +394,7 @@ const ViewImagesTab = ({
                             );
                           })}
                         </div>
-                        <div className='absolute right-1 top-6 flex w-4 flex-col gap-1'>
+                        <div className='absolute flex flex-col w-4 gap-1 right-1 top-6'>
                           {alphabetArray.map((letter, index) => (
                             <span
                               key={index}

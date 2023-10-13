@@ -10,11 +10,11 @@ import MultiStepRangeSlider from '../common/MultiStepRangeSlider';
 // const router = useRouter();
 
 const PersonalityTraitsSection = () => {
-  const [openT, setOpenT] = React.useState(false);
+  const [openT, setOpenT] = React.useState<boolean>(false);
   const [selectedOptionsT, setSelectedOptionsT] = useState<string[]>([]);
-  const [advance, setAdvance] = useState(0);
-  const [advanceModal, setAdvanceModal] = React.useState(false);
-  const [seletedTab, setSelectedTab] = useState(false);
+  const [advance, setAdvance] = useState<number>(0);
+  const [advanceModal, setAdvanceModal] = React.useState<boolean>(false);
+  const [seletedTab, setSelectedTab] = useState<boolean>(false);
 
   const handleOpenTraits = () => setOpenT(true);
   const handleCloseTraits = () => {
@@ -85,7 +85,7 @@ const PersonalityTraitsSection = () => {
   return (
     <>
       <div className='flex h-auto w-full max-w-full flex-col rounded-lg bg-[#121212]'>
-        <div className='flex max-w-full items-center justify-between p-6'>
+        <div className='flex items-center justify-between max-w-full p-6'>
           <div className='flex flex-col gap-[2px]'>
             <h2 className='flex items-center gap-[6px] text-lg font-bold'>
               Traits
@@ -111,7 +111,7 @@ const PersonalityTraitsSection = () => {
               {selectedOptionsT.map((optionT) => (
                 <div
                   key={optionT}
-                  className='flex gap-2 rounded-xl bg-neutral-800 pb-3 pl-5 pr-5 pt-3 text-sm'
+                  className='flex gap-2 pt-3 pb-3 pl-5 pr-5 text-sm rounded-xl bg-neutral-800'
                 >
                   {optionT}{' '}
                   <span
@@ -154,7 +154,7 @@ const PersonalityTraitsSection = () => {
                 <h6 className='text-lg font-bold leading-6 '>
                   Advance Settings
                 </h6>
-                <div className='h-4 w-4'>
+                <div className='w-4 h-4'>
                   <Isymbol />
                 </div>
               </div>
@@ -176,9 +176,9 @@ const PersonalityTraitsSection = () => {
             {advanceModal ? (
               <div className='mb-6 flex flex-col items-start gap-6 self-stretch border-b border-white/[0.16] pb-6'>
                 {/* SECTION1 */}
-                <div className='flex items-start gap-6 self-stretch'>
-                  <div className='flex w-1/2 flex-col items-start gap-1 '>
-                    <div className='flex items-center gap-1 self-stretch'>
+                <div className='flex items-start self-stretch gap-6'>
+                  <div className='flex flex-col items-start w-1/2 gap-1 '>
+                    <div className='flex items-center self-stretch gap-1'>
                       <b className='text-base font-bold leading-5'>Horny</b>
                       <div className='h-[14px] w-[14px]'>
                         <Isymbol />
@@ -189,8 +189,8 @@ const PersonalityTraitsSection = () => {
                     </div>
                   </div>
 
-                  <div className='flex w-1/2 flex-col items-start gap-1 '>
-                    <div className='flex items-center gap-1 self-stretch'>
+                  <div className='flex flex-col items-start w-1/2 gap-1 '>
+                    <div className='flex items-center self-stretch gap-1'>
                       <b className='text-base font-bold leading-5'>Angry</b>
                       <div className='h-[14px] w-[14px]'>
                         <Isymbol />
@@ -204,9 +204,9 @@ const PersonalityTraitsSection = () => {
 
                 {/* SECTION2 */}
 
-                <div className='flex items-start gap-6 self-stretch'>
-                  <div className='flex w-1/2 flex-col items-start gap-1 '>
-                    <div className='flex items-center gap-1 self-stretch'>
+                <div className='flex items-start self-stretch gap-6'>
+                  <div className='flex flex-col items-start w-1/2 gap-1 '>
+                    <div className='flex items-center self-stretch gap-1'>
                       <b className='text-base font-bold leading-5'>
                         Aggressive
                       </b>
@@ -219,8 +219,8 @@ const PersonalityTraitsSection = () => {
                     </div>
                   </div>
 
-                  <div className='flex w-1/2 flex-col items-start gap-1 '>
-                    <div className='flex items-center gap-1 self-stretch'>
+                  <div className='flex flex-col items-start w-1/2 gap-1 '>
+                    <div className='flex items-center self-stretch gap-1'>
                       <b className='text-base font-bold leading-5'>Polite</b>
                       <div className='h-[14px] w-[14px]'>
                         <Isymbol />
@@ -234,9 +234,9 @@ const PersonalityTraitsSection = () => {
 
                 {/* SECTION3 */}
 
-                <div className='flex items-start gap-6 self-stretch'>
-                  <div className='flex w-1/2 flex-col items-start gap-1 '>
-                    <div className='flex items-center gap-1 self-stretch'>
+                <div className='flex items-start self-stretch gap-6'>
+                  <div className='flex flex-col items-start w-1/2 gap-1 '>
+                    <div className='flex items-center self-stretch gap-1'>
                       <b className='text-base font-bold leading-5'>Wild</b>
                       <div className='h-[14px] w-[14px]'>
                         <Isymbol />
@@ -247,8 +247,8 @@ const PersonalityTraitsSection = () => {
                     </div>
                   </div>
 
-                  <div className='flex w-1/2 flex-col items-start gap-1 '>
-                    <div className='flex items-center gap-1 self-stretch'>
+                  <div className='flex flex-col items-start w-1/2 gap-1 '>
+                    <div className='flex items-center self-stretch gap-1'>
                       <b className='text-base font-bold leading-5'>Horny</b>
                       <div className='h-[14px] w-[14px]'>
                         <Isymbol />
@@ -262,9 +262,9 @@ const PersonalityTraitsSection = () => {
 
                 {/* SECTION4 */}
 
-                <div className='flex items-start gap-6 self-stretch'>
-                  <div className='flex w-1/2 flex-col items-start gap-1 '>
-                    <div className='flex items-center gap-1 self-stretch'>
+                <div className='flex items-start self-stretch gap-6'>
+                  <div className='flex flex-col items-start w-1/2 gap-1 '>
+                    <div className='flex items-center self-stretch gap-1'>
                       <b className='text-base font-bold leading-5'>Horny</b>
                       <div className='h-[14px] w-[14px]'>
                         <Isymbol />
@@ -275,8 +275,8 @@ const PersonalityTraitsSection = () => {
                     </div>
                   </div>
 
-                  <div className='flex w-1/2 flex-col items-start gap-1 '>
-                    <div className='flex items-center gap-1 self-stretch'>
+                  <div className='flex flex-col items-start w-1/2 gap-1 '>
+                    <div className='flex items-center self-stretch gap-1'>
                       <b className='text-base font-bold leading-5'>Angry</b>
                       <div className='h-[14px] w-[14px]'>
                         <Isymbol />
@@ -290,9 +290,9 @@ const PersonalityTraitsSection = () => {
 
                 {/* SECTION5 */}
 
-                <div className='flex items-start gap-6 self-stretch'>
-                  <div className='flex w-1/2 flex-col items-start gap-1 '>
-                    <div className='flex items-center gap-1 self-stretch'>
+                <div className='flex items-start self-stretch gap-6'>
+                  <div className='flex flex-col items-start w-1/2 gap-1 '>
+                    <div className='flex items-center self-stretch gap-1'>
                       <b className='text-base font-bold leading-5'>
                         Aggressive
                       </b>
@@ -305,8 +305,8 @@ const PersonalityTraitsSection = () => {
                     </div>
                   </div>
 
-                  <div className='flex w-1/2 flex-col items-start gap-1 '>
-                    <div className='flex items-center gap-1 self-stretch'>
+                  <div className='flex flex-col items-start w-1/2 gap-1 '>
+                    <div className='flex items-center self-stretch gap-1'>
                       <b className='text-base font-bold leading-5'>Polite</b>
                       <div className='h-[14px] w-[14px]'>
                         <Isymbol />
@@ -663,7 +663,7 @@ const PersonalityTraitsSection = () => {
 
         <div className='relative mt-2'></div>
 
-        <div className='flex flex-row gap-3 self-stretch px-8 pb-8 pt-4'>
+        <div className='flex flex-row self-stretch gap-3 px-8 pt-4 pb-8'>
           <button
             onClick={clearSelection}
             className='flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-white/[0.32] px-5 py-[13px] font-bold'

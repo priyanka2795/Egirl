@@ -40,7 +40,7 @@ const allImages = [
   }
 ];
 function SelectImage({ CloseModal, SetInpaintingModal }: SelectImage) {
-  const [toggle, setToggle] = useState(true);
+  const [toggle, setToggle] = useState<boolean>(true);
 
   const SelectImg = () => {
     SetInpaintingModal(true);
@@ -58,13 +58,13 @@ function SelectImage({ CloseModal, SetInpaintingModal }: SelectImage) {
         <div className='flex items-center justify-between border-b border-[#FFFFFF14] p-6'>
           <h5 className='text-lg font-semibold'>Select image</h5>
           <div
-            className='h-6 w-6 cursor-pointer'
+            className='w-6 h-6 cursor-pointer'
             onClick={() => CloseModal(false)}
           >
-            <Image className='h-full w-full' src={crossIcon} alt={''} />
+            <Image className='w-full h-full' src={crossIcon} alt={''} />
           </div>
         </div>
-        <div className='flex flex-col gap-3 overflow-y-auto p-6 '>
+        <div className='flex flex-col gap-3 p-6 overflow-y-auto '>
           <p className='font-semibold'>Albums</p>
           <div className='grid grid-cols-2 gap-2 '>
             {albumdata.map((item) => (
@@ -73,7 +73,7 @@ function SelectImage({ CloseModal, SetInpaintingModal }: SelectImage) {
                 onClick={() => SelectImg()}
               >
                 <Image
-                  className='h-full w-full object-cover'
+                  className='object-cover w-full h-full'
                   src={item.imgPath}
                   alt={''}
                 />
@@ -100,9 +100,9 @@ function SelectImage({ CloseModal, SetInpaintingModal }: SelectImage) {
                 onClick={() => SelectImg()}
               >
                 {allImages.map((item) => (
-                  <div className='relative cursor-pointer overflow-hidden rounded-xl'>
+                  <div className='relative overflow-hidden cursor-pointer rounded-xl'>
                     <Image
-                      className='h-full w-full object-cover'
+                      className='object-cover w-full h-full'
                       src={item.img}
                       alt={''}
                     />

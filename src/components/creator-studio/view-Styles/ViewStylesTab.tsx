@@ -48,10 +48,10 @@ const ViewStylesTab = ({
   setViewStyleGenerated,
   ViewStyle
 }: ViewStylesTabProps) => {
-  const [activeIndex, setActiveIndex] = useState(-1);
-  const [showSort, setShowSort] = useState(false);
-  const [isActive, setActive] = useState(false);
-  const [viewStyleFilter, setViewStyleFilter] = useState(false);
+  const [activeIndex, setActiveIndex] = useState<number>(-1);
+  const [showSort, setShowSort] = useState<boolean>(false);
+  const [isActive, setActive] = useState<boolean>(false);
+  const [viewStyleFilter, setViewStyleFilter] = useState<boolean>(false);
 
   const handleActionButtons = (index: number) => {
     setActiveIndex(index);
@@ -92,7 +92,7 @@ const ViewStylesTab = ({
 
   return (
     <>
-      <div className='mt-6 flex justify-between' ref={dropdownRef}>
+      <div className='flex justify-between mt-6' ref={dropdownRef}>
         {component === 'GeneratedStyle' ? (
           <div className='flex items-center gap-2'>
             <Image
@@ -199,7 +199,7 @@ const ViewStylesTab = ({
                       />
                     </div>
                     <Image
-                      className='h-full w-full'
+                      className='w-full h-full'
                       onClick={() => setActive(!isActive)}
                       src={crossIcon}
                       alt={''}

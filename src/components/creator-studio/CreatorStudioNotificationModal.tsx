@@ -32,13 +32,13 @@ const CreatorStudioNotificationModal = ({
   setStyleGenNext,
   styleGenNext
 }: NotificationModalProp) => {
-  const [activeNotification, setActiveNotification] = useState('Any Lee');
-  const [viewStyleModal, setViewStyleModal] = useState(false);
+  const [activeNotification, setActiveNotification] = useState<string>('Any Lee');
+  const [viewStyleModal, setViewStyleModal] = useState<boolean>(false);
   // const [styleGenNext, setStyleGenNext] = useState(false);
   return (
     <>
       <div className='absolute right-0 top-[31px] z-[1] flex w-[484px] flex-col overflow-hidden rounded-[14px] bg-[#1A1A1A]'>
-        <div className='flex justify-between px-6 pb-5 pt-6'>
+        <div className='flex justify-between px-6 pt-6 pb-5'>
           <div className='text-[18px] font-bold leading-6 text-[#FFFFFF]'>
             Notifications
           </div>
