@@ -12,6 +12,8 @@ import discordIcon from '../../../public/assets/discord-icon.png';
 import facebookIcon from '../../../public/assets/facebook-icon.png';
 import vector1 from '../../../public/assets/Vector 1.png';
 import vector2 from '../../../public/assets/Vector 2.png';
+import CheckedIcon from './svg/checkedIcon.svg';
+import CrossIcon from './svg/xMark.svg';
 import Link from 'next/link';
 
 const login = [
@@ -59,13 +61,15 @@ const validationSchema = Yup.object({
       "That's an invalid password"
     )
 });
+
 export default function SignIn() {
   const router = useRouter();
   const supabase = useSupabaseClient<Database>();
-
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState('');
-  const [passwordAgain, setPasswordAgain] = useState('');
+  const [isMinLength, setIsMinLength] = useState<boolean>(false);
+  const [hasNumberOrSpecialChar, setHasNumberOrSpecialChar] =
+    useState<boolean>(false);
 
   const [errorMsg, setErrorMsg] = useState('');
 
@@ -89,6 +93,19 @@ export default function SignIn() {
     } else {
       setErrorMsg(error.message);
     }
+  };
+
+  const handlePasswordChange = (e: any) => {
+    const newPassword = e.target.value;
+    setPassword(newPassword);
+
+    // Check if the password meets the minimum length requirement (8 characters)
+    setIsMinLength(newPassword.length >= 8);
+
+    // Check if the password contains at least one number or special character
+    setHasNumberOrSpecialChar(
+      /[0-9!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(newPassword)
+    );
   };
 
   const loginGoogleHandler = async () => {
@@ -222,13 +239,60 @@ export default function SignIn() {
                       id='password'
                       name='password'
                       placeholder='password'
-                      className='font-normal flex rounded-[14px] border-none bg-transparent bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
+                      value={password}
+                      onChange={(e: any) => {
+                        // setPassword(e.target.value),
+                        //   console.log(password, 'dfdgdg');
+                        handlePasswordChange(e);
+                      }}
+                      className='font-normal flex rounded-[14px] border-none bg-transparent bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] 
+                      placeholder:text-[#979797] focus:ring-0'
                     />
-                    <ErrorMessage
+                    {/* <input
+                      type='password'
+                      onChange={(e) => setPasswordAgain(e.target.value)}
+                    /> */}
+
+                    {/* <PasswordChecklist
+                      rules={[
+                        'minLength',
+                        'specialChar',
+                        'number'
+
+                        // 'match'
+                      ]}
+                      minLength={8}
+                      value={password}
+                      valueAgain={passwordAgain}
+                      messages={{
+                        minLength: 'contains at least 8 characters',
+                        specialChar: 'The password has special characters.',
+                        number: 'The password has a number.'
+                      }}
+                    /> */}
+
+                    {/* <ErrorMessage
                       className='font-normal text-[14px] leading-[18px] text-[#FF5336]'
                       name='password'
                       component='div'
-                    />
+                    /> */}
+                    <div>
+                      <ul>
+                        <li className='mb-3'>Create a password that:</li>
+                        <li className='mb-2 flex items-center'>
+                          {isMinLength ? <CheckedIcon /> : <CrossIcon />}{' '}
+                          contains at least 8 characters
+                        </li>
+                        <li className='flex items-center'>
+                          {hasNumberOrSpecialChar ? (
+                            <CheckedIcon />
+                          ) : (
+                            <CrossIcon />
+                          )}{' '}
+                          contains at least one number (0-9) or a symbol
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
