@@ -113,10 +113,10 @@ const PersonalityLikeSection = () => {
   return (
     <>
       <div className='flex h-auto w-full max-w-full flex-col rounded-lg bg-[#121212]'>
-        <div className='flex items-center justify-between max-w-full p-6'>
+        <div className='flex max-w-full items-center justify-between p-6'>
           <div className='flex flex-col gap-[2px]'>
             {showHoverModal && <PersonalityHoverModal />}
-            <h2 className='flex items-center gap-[6px] text-lg font-bold'>
+            <h2 className='font-bold flex items-center gap-[6px] text-lg'>
               Likes
               <div
                 onClick={() => {
@@ -130,10 +130,10 @@ const PersonalityLikeSection = () => {
           </div>
 
           <button
-            className='flex items-center justify-center rounded-[12px] border border-white/[0.32] px-4 py-[10px] text-[14px] font-bold leading-5 text-white'
+            className='font-bold flex items-center justify-center rounded-[12px] border border-white/[0.32] px-4 py-[10px] text-[14px] leading-5 text-white'
             onClick={handleOpen}
           >
-            + Add
+            <span className='pr-1 text-[18px]'>+</span> Add
           </button>
         </div>
         {seletedTab && (
@@ -146,7 +146,7 @@ const PersonalityLikeSection = () => {
               {selectedOptions.map((option) => (
                 <div
                   key={option}
-                  className='flex gap-2 pt-3 pb-3 pl-5 pr-5 text-sm rounded-xl bg-neutral-800'
+                  className='flex gap-2 rounded-xl bg-neutral-800 pb-2 pl-3 pr-3 pt-2 text-sm'
                 >
                   {option}{' '}
                   <span
@@ -190,12 +190,12 @@ const PersonalityLikeSection = () => {
 
         <div className='border-b border-white/[0.08] px-8 py-4'>
           <div className='flex w-full gap-[10px] rounded-[14px] bg-white/[0.05] px-4 py-3'>
-            <div className='w-6 h-6'>
-              <Image className='w-full h-full' src={searchIcon} alt={''} />
+            <div className='h-6 w-6'>
+              <Image className='h-full w-full' src={searchIcon} alt={''} />
             </div>
             <input
               type='text'
-              className='border-none bg-transparent p-0 text-[15px] font-light leading-6 text-[#979797] focus:ring-0 '
+              className='font-light border-none bg-transparent p-0 text-[15px] leading-6 text-[#979797] focus:ring-0 '
             />
           </div>
           <div
@@ -240,7 +240,7 @@ const PersonalityLikeSection = () => {
         {/* <hr className='mb-5 bg-zinc-900' /> */}
         <div className='px-6 pt-4'>
           <div className=''>
-            <div className='pb-3 font-bold text-[#979797]'>A</div>
+            <div className='font-bold pb-3 text-[#979797]'>A</div>
 
             {/* <div className='flex flex-wrap gap-2 mt-1'>
             {data.map((datas) => {
@@ -274,7 +274,7 @@ const PersonalityLikeSection = () => {
                 />
                 <label
                   htmlFor='a1'
-                  className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[white] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
+                  className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[#fff] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
                   id='a1'
                 >
                   Anime
@@ -292,7 +292,7 @@ const PersonalityLikeSection = () => {
                   value='a3'
                 />
                 <label
-                  className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[white] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
+                  className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[#fff] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
                   id='a3'
                   htmlFor='a3'
                 >
@@ -311,7 +311,7 @@ const PersonalityLikeSection = () => {
                   value='Services/ Software'
                 />
                 <label
-                  className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[white] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
+                  className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[#fff] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
                   id='a4'
                   htmlFor='a4'
                 >
@@ -330,7 +330,7 @@ const PersonalityLikeSection = () => {
                   value='Services/ Software'
                 />
                 <label
-                  className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[white] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
+                  className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[#fff] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
                   id='a5'
                   htmlFor='a5'
                 >
@@ -349,7 +349,7 @@ const PersonalityLikeSection = () => {
                   value='Services/ Software'
                 />
                 <label
-                  className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[white] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
+                  className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[#fff] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
                   id='a6'
                   htmlFor='a6'
                 >
@@ -368,7 +368,7 @@ const PersonalityLikeSection = () => {
                   value='Services/ Software'
                 />
                 <label
-                  className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[white] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
+                  className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[#fff] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
                   id='a7'
                   htmlFor='a7'
                 >
@@ -379,7 +379,7 @@ const PersonalityLikeSection = () => {
           </div>
 
           <div className=''>
-            <div className='pb-3 font-bold text-[#979797]'>B</div>
+            <div className='font-bold pb-3 text-[#979797]'>B</div>
             <div className='flex flex-wrap gap-2'>
               <div className='relative'>
                 <input
@@ -392,7 +392,7 @@ const PersonalityLikeSection = () => {
                   value='Services/ Software'
                 />
                 <label
-                  className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[white] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
+                  className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[#fff] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
                   id='b1'
                   htmlFor='b1'
                 >
@@ -411,7 +411,7 @@ const PersonalityLikeSection = () => {
                   value='Services/ Software'
                 />
                 <label
-                  className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[white] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
+                  className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[#fff] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
                   id='b2'
                   htmlFor='b2'
                 >
@@ -422,7 +422,7 @@ const PersonalityLikeSection = () => {
           </div>
 
           <div className=''>
-            <div className='pb-3 font-bold text-[#979797]'>C</div>
+            <div className='font-bold pb-3 text-[#979797]'>C</div>
             <div className='flex flex-wrap gap-2'>
               <div className='relative'>
                 <input
@@ -435,7 +435,7 @@ const PersonalityLikeSection = () => {
                   value='Services/ Software'
                 />
                 <label
-                  className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[white] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
+                  className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[#fff] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
                   id='c1'
                   htmlFor='c1'
                 >
@@ -454,7 +454,7 @@ const PersonalityLikeSection = () => {
                   value='Services/ Software'
                 />
                 <label
-                  className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[white] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
+                  className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[#fff] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
                   id='c2'
                   htmlFor='c2'
                 >
@@ -473,7 +473,7 @@ const PersonalityLikeSection = () => {
                   value='Services/ Software'
                 />
                 <label
-                  className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[white] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
+                  className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[#fff] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
                   id='c3'
                   htmlFor='c3'
                 >
@@ -492,7 +492,7 @@ const PersonalityLikeSection = () => {
                   value='Services/ Software'
                 />
                 <label
-                  className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[white] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
+                  className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[#fff] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
                   id='c4'
                   htmlFor='c4'
                 >
@@ -511,7 +511,7 @@ const PersonalityLikeSection = () => {
                   value='Services/ Software'
                 />
                 <label
-                  className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[white] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
+                  className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[#fff] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
                   id='c5'
                   htmlFor='c5'
                 >
@@ -530,7 +530,7 @@ const PersonalityLikeSection = () => {
                   value='c6'
                 />
                 <label
-                  className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[white] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
+                  className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[#fff] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
                   id='c6'
                   htmlFor='c6'
                 >
@@ -635,16 +635,16 @@ const PersonalityLikeSection = () => {
           <label className="pl-8 h-10 inline-block px-3 py-2 mb-4 ml-3 text-base transition cursor-pointer rounded-3xl bg-[#c6c6c6] text-[#525252] w-max peer-checked:bg-fuchsia-700 peer-checked:text-[#f4f4f4]" id='a2' for="Services/ Software">Anime</label>
           </div> */}
         </div>
-        <div className='flex flex-row self-stretch gap-3 px-8 pt-4 pb-8'>
+        <div className='flex flex-row gap-3 self-stretch px-8 pb-8 pt-4'>
           <button
             onClick={clearSelection}
-            className='flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-white/[0.32] px-5 py-[13px] font-bold'
+            className='font-bold flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-white/[0.32] px-5 py-[13px]'
           >
             Cancel
           </button>
           <button
             onClick={handleClose}
-            className='flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-[#5848BC] bg-[#5848BC] px-5 py-[13px] font-bold'
+            className='font-bold flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-[#5848BC] bg-[#5848BC] px-5 py-[13px]'
           >
             Save
           </button>
