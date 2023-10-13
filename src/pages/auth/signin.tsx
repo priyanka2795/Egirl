@@ -11,6 +11,8 @@ import facebookIcon from '../../../public/assets/facebook-icon.png';
 import vector1 from '../../../public/assets/Vector 1.png';
 import vector2 from '../../../public/assets/Vector 2.png';
 import Link from 'next/link';
+import SigninTemplate from './signinTemplate';
+import SigninLoginOpt from './SigninLoginOpt';
 
 const login = [
   {
@@ -29,12 +31,9 @@ const login = [
 export default function SignIn() {
   const router = useRouter();
   const supabase = useSupabaseClient<Database>();
-
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const [errorMsg, setErrorMsg] = useState('');
-
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [errorMsg, setErrorMsg] = useState<string>('');
   const onEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
@@ -69,14 +68,11 @@ export default function SignIn() {
   };
 
   return (
-    <div className='mx-auto mx-auto flex  min-h-screen w-full max-w-[1440px] flex-col justify-center'>
-      <div className={`signin-page mx-8 my-[35px] flex justify-between`}>
-        <div className='pl-[38px] pt-6'>
-          <Image className='' src={logo} alt={''} />
-        </div>
+    <>
+      <SigninTemplate>
         <div className='p-[54px]'>
           <div className='flex w-[500px] flex-col gap-8 rounded-[40px] bg-[#070707] p-10'>
-            <div className='font-bold text-[32px] leading-10 text-white'>
+            {/* <div className='font-bold text-[32px] leading-10 text-white'>
               Login
             </div>
             <div className='flex flex-col gap-3'>
@@ -104,7 +100,8 @@ export default function SignIn() {
                   </a>
                 </Link>
               </div>
-            </div>
+            </div> */}
+            <SigninLoginOpt />
             <div className='flex flex-col gap-4'>
               <div className='flex gap-4'>
                 <Image className='object-contain' src={vector1} alt={''} />
@@ -151,8 +148,8 @@ export default function SignIn() {
             <p className='text-red-400'>{errorMsg}</p>
           </div>
         </div>
-      </div>
-    </div>
+      </SigninTemplate>
+    </>
   );
 }
 
