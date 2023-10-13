@@ -50,12 +50,28 @@ function SetUpYourCharacter({
   const GuideStep = TourSteps[0].id;
   return (
     <div className='mt-5 rounded-[14px] bg-[#121212] p-6'>
-      <div className='flex items-center justify-between mb-6'>
+      <div className='mb-6 flex items-center justify-between'>
         <h3 className='font-bold text-[22px] leading-[22px]'>
           Setup your character
         </h3>
 
         <div className='font-bold group relative flex cursor-pointer items-center justify-center  rounded-[14px] text-[16px] leading-[22px] text-white'>
+          {/* <div
+            style={{
+              borderRadius: '4px',
+              position: 'absolute',
+              backgroundColor: 'transparent',
+              height: '115px',
+              left: '830px',
+              opacity: 1,
+              pointerEvents: 'auto',
+              top: '48px',
+              transition: 'opacity 0.2s ease 0s',
+              width: '115px',
+              zIndex: 9999,
+              border: '1px solid red'
+            }}
+          ></div> */}
           <button className='flex items-center gap-2 rounded-xl bg-[#5848BC] px-4 py-2.5'>
             <Image src={bookUser} alt={''} />
             Guided Character Creator
@@ -63,7 +79,7 @@ function SetUpYourCharacter({
           {/* <button onClick={startTour}>Start Guided Tour</button> */}
           {IsOpen && (
             <>
-              {GuideStep === 0 && (
+              {GuideStep === 0 ? (
                 <HoverModal
                   // name={'Set up profile'}
                   // text={
@@ -75,6 +91,8 @@ function SetUpYourCharacter({
                   onClose={OnClose}
                   tourSteps={TourSteps}
                 />
+              ) : (
+                ''
               )}
             </>
           )}

@@ -72,7 +72,7 @@ const CreatorStudioSidebar = ({
             className='flex cursor-pointer items-center justify-between py-[14px] pl-3 pr-4'
             onClick={() => setSidebarModal(!sidebarModal)}
           >
-            <div className='relative flex items-center w-full gap-2'>
+            <div className='relative flex w-full items-center gap-2'>
               <div className='h-[32px] w-[32px]'>
                 <Image
                   src={avtar}
@@ -88,7 +88,7 @@ const CreatorStudioSidebar = ({
                 Mika-chan
               </div>
             </div>
-            <div className='h-full mt-2'>
+            <div className='mt-2 h-full'>
               <Image src={arrowDown} alt='' />
             </div>
             {sidebarModal && (
@@ -163,7 +163,7 @@ const CreatorStudioSidebar = ({
                   : 'w-full flex justify-center'
               } `}
             />
-            {GuideStep1 === 2 && (
+            {GuideStep2 === 2 && (
               <HoverModal
                 // name={'Generate images'}
                 // text={
@@ -255,7 +255,7 @@ const CreatorStudioSidebar = ({
                   : 'w-full flex justify-center'
               } `}
             />
-            {GuideStep1 === 4 && (
+            {GuideStep4 === 4 && (
               <HoverModal
                 // name={'Create own gifts'}
                 // text={
@@ -267,6 +267,7 @@ const CreatorStudioSidebar = ({
                 tourSteps={TourSteps}
               />
             )}
+
             {/* <div
             className={`max-[1279px]:mb-2 max-[1279px]:border-b-2 max-[1279px]:border-[#252525] ${
               shrinkSideBar === true
@@ -331,7 +332,7 @@ const CreatorStudioSidebar = ({
                 shrinkSideBar === true ? '!hidden' : 'w-full'
               } `}
             />
-            {GuideStep1 === 3 && (
+            {GuideStep3 === 3 && (
               <HoverModal
                 // name={'Create style'}
                 // text={

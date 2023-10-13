@@ -3,6 +3,7 @@ import CreatorStudioNavbar from '@components/creator-studio/CreatorStudioNavbar'
 import CreatorStudioSidebar from '@components/creator-studio/CreatorStudioSidebar';
 import StyleBeingGenerated from '@components/creator-studio/style-generator/StyleBeingGenerated';
 import StyleGeneratorNext from '@components/creator-studio/style-generator/StyleGeneratorNext';
+import HoverModal from '@components/list/HoverModal';
 import React, { useState } from 'react';
 
 const CreatorStudioLayout = ({ children }: any) => {
@@ -64,7 +65,8 @@ const CreatorStudioLayout = ({ children }: any) => {
           styleGenNext={styleGenNext}
           setStyleGenNext={setStyleGenNext}
         />
-        <div className='flex gap-8 '>
+
+        <div className='relative flex gap-8 '>
           <CreatorStudioSidebar
             shrinkSideBar={shrinkSideBar}
             setShrinkSideBar={setShrinkSideBar}
@@ -93,6 +95,31 @@ const CreatorStudioLayout = ({ children }: any) => {
               </>
             )}
           </div>
+          {/* Guide  */}
+          {/* <div>
+            <HoverModal
+              isOpen={isTourOpen}
+              onClose={closeTour}
+              tourSteps={tourSteps}
+            />
+          </div> */}
+          {/* Guide End  */}
+          {/* <div
+            style={{
+              borderRadius: '4px',
+              position: 'absolute',
+              backgroundColor: 'transparent',
+              height: '115px',
+              left: '830px',
+              opacity: 1,
+              pointerEvents: 'auto',
+              top: '48px',
+              transition: 'opacity 0.2s ease 0s',
+              width: '115px',
+              zIndex: 9999,
+              border: '1px solid red'
+            }}
+          ></div> */}
         </div>
       </main>
     </React.Fragment>

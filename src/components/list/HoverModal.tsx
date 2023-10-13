@@ -43,11 +43,10 @@ const HoverModal = ({ isOpen, onClose, tourSteps }: HoverModalProp) => {
     //     ? '-left-[80px] bottom-[62px]'
     //     : '-bottom-[138px] left-[162px]'
     // }
+    // hover-animation fixed inset-0 bg-[#000000A3]
     <>
       <div
-        className={`visible ${currentStep === 0 ? '' : 'fixed z-50'} ${
-          isOpen ? 'open' : ''
-        }  
+        className={` ${isOpen ? ' ' : ''}  
         `}
       >
         {isOpen && (
@@ -58,10 +57,10 @@ const HoverModal = ({ isOpen, onClose, tourSteps }: HoverModalProp) => {
                   className={`absolute         
             ${
               currentStep === 0
-                ? '-left-[80px] bottom-[62px]'
-                : '-bottom-[138px] left-[162px]'
+                ? 'bottom-[62px] right-[70px]'
+                : 'bottom-[62px] left-[308px]'
             }
-           bottom-[62px] w-[330px] rounded-[14px] bg-[#1A1A1A] p-4 text-xs text-white transition-all `}
+            w-[330px] rounded-[14px] bg-[#1A1A1A] p-4 text-xs text-white transition-all `}
                 >
                   <div className='flex justify-between border-b-[1px] border-zinc-700 pb-3'>
                     <h4 className=' font-bold text-[18px]'>
@@ -75,7 +74,7 @@ const HoverModal = ({ isOpen, onClose, tourSteps }: HoverModalProp) => {
                   <p className='font-normal mt-3 text-[14px] leading-5'>
                     {tourSteps[currentStep].content}
                   </p>
-                  <div className='flex items-center justify-between mt-3'>
+                  <div className='mt-3 flex items-center justify-between'>
                     {/* <p className='font-normal text-[14px] text-[#979797]'>{step}</p> */}
                     <p className='font-normal text-[14px] text-[#979797]'>
                       Step {currentStep}/5
@@ -100,7 +99,7 @@ const HoverModal = ({ isOpen, onClose, tourSteps }: HoverModalProp) => {
                 <div
                   className={`absolute -top-[30px] right-[20px] h-[24px] w-[20px]`}
                 >
-                  <Image className='w-full h-full' src={downArrow} alt={''} />
+                  <Image className='h-full w-full' src={downArrow} alt={''} />
                 </div>
               </>
             ) : (
