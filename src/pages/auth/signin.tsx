@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { Database } from '../../../types/database';
 import { useRouter } from 'next/router';
@@ -14,6 +14,8 @@ import RotateIcon from '../../../public/assets/rotate-cw.png';
 import Link from 'next/link';
 import SigninTemplate from './signinTemplate';
 import SigninLoginOpt from './SigninLoginOpt';
+import OtpInput from './OtpInput';
+import { CustomIcon } from '@components/ui/custom-icon';
 
 const login = [
   {
@@ -29,6 +31,26 @@ const login = [
     text: 'Login with Facebook'
   }
 ];
+
+const styless = {
+  width: ' 48px',
+  height: '48px',
+  border: '5px solid #FFF',
+  borderBottomColor: '#FF3D00',
+  borderRadius: '50%',
+  display: 'inline-block',
+  boxSizing: 'border-box',
+  animation: 'rotation 1s linear infinite'
+
+  // @keyframes rotation {
+  // 0% {
+  //     transform: rotate(0deg);
+  // }
+  // 100% {
+  //     transform: rotate(360deg);
+  // }
+  // }
+};
 interface SignIn {
   SetFormStep: boolean;
 }
@@ -45,6 +67,7 @@ export default function SignIn({ SetFormStep }: SignIn) {
   const onEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
+  console.log(email, 'email');
 
   const onPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
@@ -76,6 +99,16 @@ export default function SignIn({ SetFormStep }: SignIn) {
     console.log('results of logging in: ', data, error);
   };
 
+  // Otp
+  const [otp, setOtp] = useState('');
+  const [valid, setValid] = useState(false);
+
+  const onChange = (value: string) => {
+    setOtp(value);
+    console.log(value.length, 'value ');
+  };
+  console.log(otp.length, 'otp otp');
+
   return (
     <>
       <SigninTemplate>
@@ -86,33 +119,31 @@ export default function SignIn({ SetFormStep }: SignIn) {
                 <h2 className='font-bold text-[32px]'>Verify your identity</h2>
                 <p className='mt-4 text-[15px]'>
                   {verifyCode
-                    ? "Enter the code we've sent to"
-                    : "To confirm your identity we'll send you a verification code to"}
+                    ? "Enter the code we've sent to "
+                    : "To confirm your identity we'll send you a verification code to "}
                   <span className='font-bold' style={{ fontWeight: 700 }}>
-                    {' '}
-                    example@gmail.com
+                    {email}
                   </span>
                 </p>
               </div>
               {verifyCode && (
-                <div className='flex items-center justify-between'>
-                  {Array(6)
-                    .fill('2')
-                    .map(() => (
-                      <input
-                        type='text'
-                        className='h-[80px] w-[64px] rounded-lg bg-[#FFFFFF0D] text-center text-[36px]'
-                        maxLength={1}
-                        minLength={1}
-                      />
-                    ))}
+                <div className='flex items-center justify-between '>
+                  <OtpInput value={otp} valueLength={6} onChange={onChange} />
                 </div>
               )}
               <div>
                 {verifyCode ? (
-                  <button className='font-bold flex w-full items-center justify-center gap-2 rounded-2xl bg-[#FFFFFF14] px-5 py-4 text-center text-lg'>
-                    <Image src={RotateIcon} /> Resend code
-                  </button>
+                  <>
+                    {otp.length < 6 ? (
+                      <button className='font-bold flex w-full items-center justify-center gap-2 rounded-2xl bg-[#FFFFFF14] px-5 py-4 text-center text-lg'>
+                        <Image src={RotateIcon} /> Resend code
+                      </button>
+                    ) : (
+                      <button className='font-bold flex w-full items-center justify-center gap-2 rounded-2xl bg-[#5848BC] px-5 py-4 text-center text-lg'>
+                        <CustomIcon iconName={'SpinnerIcon'} />
+                      </button>
+                    )}
+                  </>
                 ) : (
                   <button
                     className='font-bold flex w-full items-center justify-center gap-2 rounded-2xl bg-[#5848BC] px-5 py-4 text-center text-lg'
@@ -122,7 +153,7 @@ export default function SignIn({ SetFormStep }: SignIn) {
                   </button>
                 )}
 
-                <p className='mb-5 mt-4 text-[15px] '>
+                <p className='mb-8 mt-4 text-[15px] '>
                   Sign in to a different account
                 </p>
               </div>
@@ -148,6 +179,7 @@ export default function SignIn({ SetFormStep }: SignIn) {
                       type='email'
                       placeholder='example@gmail.com'
                       className='font-normal flex rounded-[14px] border-none bg-transparent bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
+                      onChange={onEmailChange}
                     />
                   </div>
                   <div className='flex flex-col gap-3'>
