@@ -38,6 +38,8 @@ interface CreatorStudioNavbarPropProp {
   IsOpen: any;
   OnClose: any;
   TourSteps: any;
+  tourCount: number;
+  setTourCount: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const CreatorStudioSidebar = ({
@@ -45,7 +47,9 @@ const CreatorStudioSidebar = ({
   setShrinkSideBar,
   IsOpen,
   OnClose,
-  TourSteps
+  TourSteps,
+  tourCount,
+  setTourCount
 }: CreatorStudioNavbarPropProp) => {
   const [sidebarModal, setSidebarModal] = useState<boolean>(false);
   const [moreOptionsModal, setMoreOptionsModal] = useState<boolean>(false);
@@ -156,24 +160,31 @@ const CreatorStudioSidebar = ({
                 shrinkSideBar === true
                   ? 'flex !justify-center max-w-[52px] mx-auto'
                   : 'pl-3'
-              }`}
+              }
+              ${GuideStep2 === tourCount ? 'bg-[#252525]' : ''}
+              `}
               sideBarMenuText={`max-[1279px]:!hidden ${
                 shrinkSideBar === true
                   ? '!hidden'
                   : 'w-full flex justify-center'
               } `}
             />
-            {GuideStep2 === 2 && (
-              <HoverModal
-                // name={'Generate images'}
-                // text={
-                //   "Edit your character's profile and personalize to find more followers."
-                // }
-                // step={'Step 3/5'}
-                isOpen={IsOpen}
-                onClose={OnClose}
-                tourSteps={TourSteps}
-              />
+            {GuideStep2 === tourCount && (
+              <>
+                {console.log('hererwr')}
+                <HoverModal
+                  // name={'Generate images'}
+                  // text={
+                  //   "Edit your character's profile and personalize to find more followers."
+                  // }
+                  // step={'Step 3/5'}
+                  isOpen={IsOpen}
+                  onClose={OnClose}
+                  tourSteps={TourSteps}
+                  tourCount={tourCount}
+                  setTourCount={setTourCount}
+                />
+              </>
             )}
             {/* <div
             className={`max-[1279px]:mb-2 max-[1279px]:border-b-2 max-[1279px]:border-[#252525] ${
@@ -202,24 +213,31 @@ const CreatorStudioSidebar = ({
                 shrinkSideBar === true
                   ? 'flex !justify-center max-w-[52px] mx-auto'
                   : 'pl-3'
-              }`}
+              }
+              ${GuideStep1 === tourCount ? 'bg-[#252525]' : ''}
+              `}
               sideBarMenuText={`max-[1279px]:!hidden ${
                 shrinkSideBar === true
                   ? '!hidden'
                   : 'w-full flex justify-center'
               } `}
             />
-            {GuideStep1 === 1 && (
-              <HoverModal
-                // name={'Personality'}
-                // text={
-                //   "Edit your character's profile and personalize to find more followers."
-                // }
-                // step={'Step 2/5'}
-                isOpen={IsOpen}
-                onClose={OnClose}
-                tourSteps={TourSteps}
-              />
+            {GuideStep1 === tourCount && (
+              <>
+                {console.log('hello 1')}
+                <HoverModal
+                  // name={'Personality'}
+                  // text={
+                  //   "Edit your character's profile and personalize to find more followers."
+                  // }
+                  // step={'Step 2/5'}
+                  isOpen={IsOpen}
+                  onClose={OnClose}
+                  tourSteps={TourSteps}
+                  tourCount={tourCount}
+                  setTourCount={setTourCount}
+                />
+              </>
             )}
           </div>
 
@@ -248,14 +266,16 @@ const CreatorStudioSidebar = ({
                 shrinkSideBar === true
                   ? 'flex !justify-center max-w-[52px] mx-auto'
                   : 'pl-3'
-              }`}
+              }
+              ${GuideStep4 === tourCount ? 'bg-[#252525]' : ''}
+              `}
               sideBarMenuText={`max-[1279px]:!hidden ${
                 shrinkSideBar === true
                   ? '!hidden'
                   : 'w-full flex justify-center'
               } `}
             />
-            {GuideStep4 === 4 && (
+            {GuideStep4 === tourCount && (
               <HoverModal
                 // name={'Create own gifts'}
                 // text={
@@ -265,6 +285,8 @@ const CreatorStudioSidebar = ({
                 isOpen={IsOpen}
                 onClose={OnClose}
                 tourSteps={TourSteps}
+                tourCount={tourCount}
+                setTourCount={setTourCount}
               />
             )}
 
@@ -327,12 +349,14 @@ const CreatorStudioSidebar = ({
                 shrinkSideBar === true
                   ? 'flex !justify-center max-w-[52px] mx-auto'
                   : 'pl-3'
-              }`}
+              }
+              ${GuideStep3 === tourCount ? 'bg-[#252525]' : ''}
+              `}
               sideBarMenuText={`max-[1279px]:!hidden ${
                 shrinkSideBar === true ? '!hidden' : 'w-full'
               } `}
             />
-            {GuideStep3 === 3 && (
+            {GuideStep3 === tourCount && (
               <HoverModal
                 // name={'Create style'}
                 // text={
@@ -342,6 +366,8 @@ const CreatorStudioSidebar = ({
                 isOpen={IsOpen}
                 onClose={OnClose}
                 tourSteps={TourSteps}
+                tourCount={tourCount}
+                setTourCount={setTourCount}
               />
             )}
           </div>

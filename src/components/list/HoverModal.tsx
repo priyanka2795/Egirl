@@ -1,147 +1,104 @@
 import React, { useState } from 'react';
 import CloseIcon from '../../../public/assets/svgImages/close-icon.svg';
 import arrowLeft from '../../../public/assets/arrow-left.png';
-import downArrow from '../../../public/assets/down-arrow-img.png';
+import downArrow from '../../../public/assets/arrow-down-grey.png';
+// import downArrow from '../../../public/assets/down-arrow-img.png';
 import Image from 'next/image';
 
 interface HoverModalProp {
-  // name: string;
-  // step: string;
-  // text: string;
   isOpen: any;
   onClose: any;
   tourSteps: any;
+  tourCount: number;
+  SetIsTourOpen?: any;
+  setTourCount: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const HoverModal = ({ isOpen, onClose, tourSteps }: HoverModalProp) => {
-  // Guide
-  const [currentStep, setCurrentStep] = useState(0);
-
+const HoverModal = ({
+  isOpen,
+  onClose,
+  tourSteps,
+  tourCount,
+  SetIsTourOpen,
+  setTourCount
+}: HoverModalProp) => {
   const handleNextStep = () => {
-    // setCurrentStep(currentStep + 1);
-    if (currentStep < tourSteps.length - 1) {
-      setCurrentStep(currentStep + 1);
-    } else {
-      onClose();
-    }
+    setTourCount(tourCount + 1);
   };
+  console.log(tourCount, 'tourCount added');
 
   const handlePrevStep = () => {
-    setCurrentStep(currentStep - 1);
+    console.log(tourCount, 'test count');
+    setTourCount(tourCount - 1);
   };
 
   const handleClose = () => {
-    setCurrentStep(0);
+    setTourCount(0);
     onClose();
   };
   // Guide  End
-  const GuideStep = tourSteps[currentStep].id;
   return (
-    // ${step === 'Step 1/5' ? '' : 'fixed z-50'}
-    // ${
-    //   step === 'Step 1/5'
-    //     ? '-left-[80px] bottom-[62px]'
-    //     : '-bottom-[138px] left-[162px]'
-    // }
-    // hover-animation fixed inset-0 bg-[#000000A3]
-    <>
-      <div
-        className={` ${isOpen ? ' ' : ''}  
+    <div
+      className={` ${isOpen ? ' ' : ''}  
         `}
-      >
-        {isOpen && (
-          <>
-            {GuideStep === currentStep ? (
-              <>
-                <div
-                  className={`absolute         
+    >
+      {isOpen && (
+        <div>
+          <div
+            className={`      
             ${
-              currentStep === 0
-                ? 'bottom-[62px] right-[70px]'
-                : 'bottom-[62px] left-[308px]'
+              tourCount === 0
+                ? 'absolute bottom-[19px] right-[0px]'
+                : 'fixed ml-[20px]'
             }
-            w-[330px] rounded-[14px] bg-[#1A1A1A] p-4 text-xs text-white transition-all `}
+            z-[4] w-[330px] rounded-[14px] bg-[#1A1A1A] p-4 text-xs text-white transition-all `}
+          >
+            <div className='flex justify-between border-b-[1px] border-zinc-700 pb-3'>
+              <h4 className=' font-bold text-[18px]'>
+                {tourSteps[tourCount].title}
+              </h4>
+              <div onClick={handleClose}>
+                <CloseIcon />
+              </div>
+            </div>
+            {/* <p className='font-normal mt-3 text-[14px] leading-5'>{text}</p> */}
+            <p className='font-normal mt-3 text-[14px] leading-5'>
+              {tourSteps[tourCount].content}
+            </p>
+            <div className='mt-3 flex items-center justify-between'>
+              {/* <p className='font-normal text-[14px] text-[#979797]'>{step}</p> */}
+              <p className='font-normal text-[14px] text-[#979797]'>
+                Step {tourCount + 1}/5
+              </p>
+              <div className='flex items-center gap-4'>
+                <button
+                  className={`flex h-9 w-9 items-center justify-center rounded-full border-[1px] border-white/[0.32] ${tourCount}`}
+                  onClick={handlePrevStep}
+                  disabled={tourCount === 0}
                 >
-                  <div className='flex justify-between border-b-[1px] border-zinc-700 pb-3'>
-                    <h4 className=' font-bold text-[18px]'>
-                      {tourSteps[currentStep].title}
-                    </h4>
-                    <div onClick={handleClose}>
-                      <CloseIcon />
-                    </div>
-                  </div>
-                  {/* <p className='font-normal mt-3 text-[14px] leading-5'>{text}</p> */}
-                  <p className='font-normal mt-3 text-[14px] leading-5'>
-                    {tourSteps[currentStep].content}
-                  </p>
-                  <div className='mt-3 flex items-center justify-between'>
-                    {/* <p className='font-normal text-[14px] text-[#979797]'>{step}</p> */}
-                    <p className='font-normal text-[14px] text-[#979797]'>
-                      Step {currentStep}/5
-                    </p>
-                    <div className='flex items-center gap-4'>
-                      <button
-                        className='flex h-9 w-9 items-center justify-center rounded-full border-[1px] border-white/[0.32]'
-                        onClick={handlePrevStep}
-                        disabled={currentStep === 0}
-                      >
-                        <Image src={arrowLeft} alt='' />
-                      </button>
-                      <button
-                        className=' font-bold rounded-xl bg-[#5848BC] px-4 py-2 text-[14px] leading-[22px]'
-                        onClick={handleNextStep}
-                      >
-                        Next
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className={`absolute -top-[30px] right-[20px] h-[24px] w-[20px]`}
+                  <Image src={arrowLeft} alt='' />
+                </button>
+                <button
+                  className=' font-bold rounded-xl bg-[#5848BC] px-4 py-2 text-[14px] leading-[22px]'
+                  onClick={handleNextStep}
                 >
-                  <Image className='h-full w-full' src={downArrow} alt={''} />
-                </div>
-              </>
-            ) : (
-              ''
-            )}
-          </>
-        )}
-      </div>
-
-      {/* <div className={`visible  ${step === 'Step 1/5' ? '' : 'fixed z-50'}`}>
-<div
-  className={`absolute ${
-    step === 'Step 1/5'
-      ? '-left-[80px] bottom-[62px]'
-      : '-bottom-[138px] left-[162px]'
-  } bottom-[62px] w-[330px] rounded-[14px] bg-[#2b2a2a] p-4 text-xs text-white transition-all `}
->
-  <div className='flex justify-between border-b-[1px] border-zinc-700 pb-3'>
-    <h4 className=' font-bold text-[18px]'>{name}</h4>
-    <div>
-      <CloseIcon />
+                  Next
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            className={`h-[24px] w-[20px] ${
+              tourCount === 0
+                ? 'absolute -top-[29px] right-[12px]'
+                : 'fixed ml-[7px] rotate-90'
+            }`}
+          >
+            <Image className='h-full w-full' src={downArrow} alt={''} />
+          </div>
+        </div>
+      )}
     </div>
-  </div>
-  <p className='font-normal mt-3 text-[14px] leading-5'>{text}</p>
-  <div className='flex items-center justify-between mt-3'>
-    <p className='font-normal text-[14px] text-[#979797]'>{step}</p>
-    <div className='flex items-center gap-4'>
-      <div className='flex h-9 w-9 items-center justify-center rounded-full border-[1px] border-white/[0.32]'>
-        <Image src={arrowLeft} alt='' />
-      </div>
-      <button className=' font-bold rounded-xl bg-[#5848BC] px-4 py-2 text-[14px] leading-[22px]'>
-        Next
-      </button>
-    </div>
-  </div>
-</div>
-
-<div className={`absolute -top-[30px] right-[20px] h-[24px] w-[20px]`}>
-  <Image className='w-full h-full' src={downArrow} alt={''} />
-</div>
-</div> */}
-    </>
   );
 };
 

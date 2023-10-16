@@ -117,6 +117,7 @@ export default function SignIn() {
                 <input
                   type='email'
                   placeholder='example@gmail.com'
+                  onChange={onEmailChange}
                   className='font-normal flex rounded-[14px] border-none bg-transparent bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
                 />
               </div>
@@ -128,6 +129,7 @@ export default function SignIn() {
                   <input
                     type='password'
                     placeholder='Password'
+                    onChange={onPasswordChange}
                     className='font-normal flex rounded-[14px] border-none bg-transparent bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
                   />
                 </div>

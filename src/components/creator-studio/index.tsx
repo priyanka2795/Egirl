@@ -12,12 +12,16 @@ interface CreatorStudio {
   OnClose: any;
   TourSteps: any;
   SetIsTourOpen: any;
+  tourCount: number;
+  setTourCount: React.Dispatch<React.SetStateAction<number>>;
 }
 const CreatorStudio = ({
   IsOpen,
   OnClose,
   TourSteps,
-  SetIsTourOpen
+  tourCount,
+  SetIsTourOpen,
+  setTourCount
 }: CreatorStudio) => {
   const [UserGuide, setUserGuide] = useState(true);
   return (
@@ -26,6 +30,7 @@ const CreatorStudio = ({
         <CreateCharacter
           SetUserGuide={setUserGuide}
           SetIsTourOpen={SetIsTourOpen}
+          setTourCount={setTourCount}
         />
       ) : (
         <div className='mb-5'>
@@ -43,6 +48,9 @@ const CreatorStudio = ({
               IsOpen={IsOpen}
               OnClose={OnClose}
               TourSteps={TourSteps}
+              tourCount={tourCount}
+              SetIsTourOpen={SetIsTourOpen}
+              setTourCount={setTourCount}
             />
           </div>
           <div className='flex max-w-[1196px] justify-between gap-5'>
