@@ -65,12 +65,12 @@ const addedStyle = [
 ];
 
 const Addedstyle = ({ setAddedStyle }: AddedstyleProps) => {
-  const [addedStyleModal, setAddedStyleModal] = useState(false);
+  const [addedStyleModal, setAddedStyleModal] = useState<boolean>(false);
 
   return (
     <>
       <ViewStylesTab component={'AddedStyle'} setAddedStyle={setAddedStyle} />
-      <div className='mt-5 grid grid-cols-3 gap-3'>
+      <div className='grid grid-cols-3 gap-3 mt-5'>
         {addedStyle.map((item, index) => {
           return (
             <div

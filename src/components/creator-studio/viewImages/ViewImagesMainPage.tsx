@@ -55,7 +55,7 @@ const album = [
   }
 ];
 const ViewImagesMainPage = () => {
-  const [exploreSelectedTab, setExploreSelected] = useState('All images');
+  const [exploreSelectedTab, setExploreSelected] = useState<string>('All images');
   const [allImage, setAllImage] = useState<number>();
   const [albumData, setAlbumData] = useState(album);
 
@@ -65,7 +65,7 @@ const ViewImagesMainPage = () => {
   //   setToaster(false);
   // }, 5000);
 
-  const [albumImages, setAlbumImages] = useState(false);
+  const [albumImages, setAlbumImages] = useState<boolean>(false);
 
   const AllImageToggle = (index: number) => {
     setAllImage((prev) => (prev === index ? undefined : index));

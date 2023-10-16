@@ -28,7 +28,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SelectIcon from '../svg/short_select.svg';
 import UnSelectIcon from '../svg/short_border.svg';
-
 import {
   BarChart,
   Bar,
@@ -45,12 +44,10 @@ const month = [
   { name: 'FEB' },
   { name: 'MAR' },
   { name: 'APR' },
-
   { name: 'MAY' },
   { name: 'JUN' },
   { name: 'JUL' },
   { name: 'AUG' },
-
   { name: 'SEP' },
   { name: 'OCT' },
   { name: 'NOV' },
@@ -322,6 +319,7 @@ const progressBarData = [
     width: '9%'
   }
 ];
+
 const colors = [
   '#272727',
   '#232323',
@@ -335,12 +333,12 @@ const colors = [
 ];
 
 const AnalyticsMainPage = () => {
-  const [showChanges, setShowChanges] = useState(false);
-  const [showCashoutModal, setShowCashoutModal] = useState(false);
-  const [analyticsPage, setAnalyticsPage] = useState(false);
-  const [showConfirmModal, setShowConfirmModal] = useState(false);
-  const [showErrormModal, setShowErrormModal] = useState(false);
-  const [showUpdatedFilterInBar, setShowUpdatedFilterInBar] = useState('');
+  const [showChanges, setShowChanges] = useState<boolean>(false);
+  const [showCashoutModal, setShowCashoutModal] = useState<boolean>(false);
+  const [analyticsPage, setAnalyticsPage] = useState<boolean>(false);
+  const [showConfirmModal, setShowConfirmModal] = useState<boolean>(false);
+  const [showErrormModal, setShowErrormModal] = useState<boolean>(false);
+  const [showUpdatedFilterInBar, setShowUpdatedFilterInBar] = useState<string>('');
 
   const notify = (): void => {
     setShowConfirmModal(false), toast.success('Cashout successful');
@@ -368,23 +366,26 @@ const AnalyticsMainPage = () => {
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
       return (
-        <div className='custom-tooltip w-max rounded-[14px] bg-[#1A1A1A] p-4'>
+        <div className='custom-tooltip w-max max-w-[254px] rounded-[14px] bg-[#1A1A1A] p-4'>
           {payload.map((pld: any, index: number) => (
-            <div key={index} className='hidden first:block'>
+            <div
+              key={index}
+              className='mb-3 hidden text-[18px] font-bold first:block'
+            >
               {pld?.payload.month}
             </div>
           ))}
-          <div className='grid grid-cols-2 gap-[24px] '>
+          <div className='grid grid-cols-2 gap-3'>
             {payload.map((pld: any, index: number) => (
               <React.Fragment key={index}>
                 <div className='flex flex-col gap-1'>
-                  <div className='flex font-[13px] font-normal leading-[13px] text-[#979797]'>
+                  <div className='flex text-[13px] font-normal leading-[13px] text-[#979797]'>
                     <div
                       className={`mr-1 mt-[3px] flex h-[8px] w-[8px] rounded-full bg-[${pld.fill}]`}
                     ></div>
                     {pld.dataKey}
                   </div>
-                  <div className='font-bold'>${pld.value}</div>
+                  <div className='text-[15px] font-bold'>${pld.value}</div>
                 </div>
               </React.Fragment>
             ))}
@@ -408,7 +409,7 @@ const AnalyticsMainPage = () => {
           Account Analytics
         </div>
 
-        <div className='mt-6 grid grid-cols-3 gap-4'>
+        <div className='grid grid-cols-3 gap-4 mt-6'>
           {accountAnalytics.map((item, index) => {
             return (
               <div
@@ -429,9 +430,9 @@ const AnalyticsMainPage = () => {
                   </div>
                   <div className='flex gap-3'>
                     <div className='flex gap-1'>
-                      <div className='h-5 w-5'>
+                      <div className='w-5 h-5'>
                         <Image
-                          className='h-full w-full'
+                          className='w-full h-full'
                           src={showChanges ? item.image : arrowRight}
                           alt={''}
                         />
@@ -456,8 +457,8 @@ const AnalyticsMainPage = () => {
           })}
         </div>
 
-        <div className='mt-4 flex gap-4'>
-          <div className='flex w-2/3 flex-col gap-4'>
+        <div className='flex gap-4 mt-4'>
+          <div className='flex flex-col w-2/3 gap-4'>
             <div className='flex  flex-col gap-2 rounded-[16px] bg-[#121212] p-5'>
               {/* top */}
               <div className='flex items-center justify-between'>
@@ -477,9 +478,9 @@ const AnalyticsMainPage = () => {
                 </div>
               </div>
               {/* bottom */}
-              <div className='flex flex-col items-start gap-8 self-stretch'>
+              <div className='flex flex-col items-start self-stretch gap-8'>
                 {/* values */}
-                <div className='flex items-start justify-between self-stretch'>
+                <div className='flex items-start self-stretch justify-between'>
                   {/* total revenue */}
                   <div className='flex flex-col items-start gap-1 '>
                     <div className='flex	 flex-col items-start gap-0.5'>
@@ -492,7 +493,7 @@ const AnalyticsMainPage = () => {
                     </div>
                     <div className='flex items-center gap-3'>
                       <div className='flex items-center gap-1'>
-                        <div className='h-5 w-5'>
+                        <div className='w-5 h-5'>
                           {showChanges ? (
                             <Image src={greenArrowUp} />
                           ) : (
@@ -519,7 +520,7 @@ const AnalyticsMainPage = () => {
                   {/* available cash */}
                   <div className='flex items-center gap-[50px] self-stretch border-l border-white/[0.08] border-l-white/[0.08] pl-0'>
                     <div className='flex flex-col items-start gap-1 pl-10'>
-                      <label className='font-[13px] font-normal leading-[18px] text-[#979797]'>
+                      <label className='text-[13px] font-normal leading-[18px] text-[#979797]'>
                         Available to cashout
                       </label>
                       <div className='flex items-center gap-2'>
@@ -541,9 +542,9 @@ const AnalyticsMainPage = () => {
                   </div>
                 </div>
                 {/* graph */}
-                <div className='flex items-start gap-3 self-stretch'>
+                <div className='flex items-start self-stretch gap-3'>
                   {/* amount */}
-                  <div className='mt-4 flex h-[174px] flex-col items-end justify-between text-[#979797]'>
+                  <div className='flex h-[174px] flex-col items-end justify-between text-[#979797]'>
                     {amount.map((data, index) => {
                       return (
                         <div
@@ -558,21 +559,21 @@ const AnalyticsMainPage = () => {
                   {/* dates graph */}
                   <div className='flex flex-col items-start gap-4 '>
                     {/* graph */}
-                    <div className='flex h-[174px] flex-col items-center justify-center self-stretch'>
+                    <div className='flex flex-col items-center self-stretch justify-center'>
                       {showChanges ? (
                         <div>
-                          <div className='relative mt-9  flex w-[600px] flex-col items-start gap-10'>
+                          <div className='relative flex h-[174px] w-[600px] flex-col items-start gap-10'>
                             <div className='h-px w-[100%] shrink-0 self-stretch bg-white/[0.08]'></div>
                             <div className='h-px w-[100%] shrink-0 self-stretch bg-white/[0.08]'></div>
                             <div className='h-px w-[100%] shrink-0 self-stretch bg-white/[0.08]'></div>
                             <div className='h-px w-[100%] shrink-0 self-stretch bg-white/[0.08]'></div>
                             <div className='h-px w-[100%] shrink-0 self-stretch bg-white/[0.08]'></div>
 
-                            <div className='absolute mt-[-82px]'>
+                            <div className='absolute mt-[14px]'>
                               {selectSub ? (
                                 <BarChart
                                   width={620}
-                                  height={300}
+                                  height={188}
                                   data={data}
                                   margin={{
                                     top: 20,
@@ -622,7 +623,7 @@ const AnalyticsMainPage = () => {
                               ) : (
                                 <BarChart
                                   width={620}
-                                  height={300}
+                                  height={188}
                                   data={data}
                                   margin={{
                                     top: 20,
@@ -632,7 +633,7 @@ const AnalyticsMainPage = () => {
                                   }}
                                 >
                                   {/* <CartesianGrid /> */}
-                                  <XAxis dataKey='name' />
+                                  {/* <XAxis dataKey='name' /> */}
                                   {/* <YAxis /> */}
                                   <Tooltip content={<CustomTooltip />} />
                                   {/* <Legend /> */}
@@ -686,9 +687,9 @@ const AnalyticsMainPage = () => {
                       )}
                     </div>
                     {showChanges ? (
-                      <div>
+                      <div className='w-full'>
                         {/* bottom line */}
-                        <div className='ml-5 mt-4 flex items-center gap-[26px] self-stretch'>
+                        <div className='flex w-full items-center justify-center gap-[26px] self-stretch'>
                           {month.map((data, index) => {
                             return (
                               <div
@@ -709,7 +710,7 @@ const AnalyticsMainPage = () => {
                 {/* here  */}
                 {showChanges ? (
                   <div className='flex flex-col'>
-                    <div className='mt-2 flex items-center justify-center gap-6 self-stretch'>
+                    <div className='flex items-center self-stretch justify-center gap-6 mt-2'>
                       {/* item */}
 
                       <div className='flex items-center gap-2'>
@@ -755,7 +756,7 @@ const AnalyticsMainPage = () => {
                     </div>
                     {/* types */}
 
-                    <div className='mt-5 flex items-center justify-center gap-6 self-stretch '>
+                    <div className='flex items-center self-stretch justify-center gap-6 mt-5 '>
                       {types.map((item, index: number) => (
                         <div
                           key={index}
@@ -819,7 +820,7 @@ const AnalyticsMainPage = () => {
                     </div>
                   </div>
                 </div>
-                <div className='flex w-1/2 flex-col gap-4'>
+                <div className='flex flex-col w-1/2 gap-4'>
                   <div className='text-[15px] font-normal leading-5 text-[#979797]'>
                     Image requests
                   </div>
@@ -852,7 +853,7 @@ const AnalyticsMainPage = () => {
               </div>
             </div>
           </div>
-          <div className='flex w-1/3 flex-col gap-4'>
+          <div className='flex flex-col w-1/3 gap-4'>
             <div className='flex flex-col gap-8 rounded-[16px] bg-[#121212] p-5'>
               <div className='flex items-center gap-3'>
                 <div className='flex rounded-[100px] bg-white/[0.08] p-2'>

@@ -58,19 +58,19 @@ const ImageGeneratorOption = ({
   EditGeneration,
   EditTooltip
 }: ImageGeneratorOption) => {
-  const [prompt, setPrompt] = useState(false);
-  const [tagState, setTagState] = useState(false);
-  const [openGenre, setOpenGenre] = React.useState(false);
-  const [openStyle, setOpenStyle] = React.useState(false);
+  const [prompt, setPrompt] = useState<boolean>(false);
+  const [tagState, setTagState] = useState<boolean>(false);
+  const [openGenre, setOpenGenre] = React.useState<boolean>(false);
+  const [openStyle, setOpenStyle] = React.useState<boolean>(false);
   // Inpainting Modal
-  const [inpaintingExample, setInpaintingExample] = useState(false);
-  const [selectImageModal, setSelectImageModal] = useState(false);
+  const [inpaintingExample, setInpaintingExample] = useState<boolean>(false);
+  const [selectImageModal, setSelectImageModal] = useState<boolean>(false);
   const [inpaintingModal, setInpaintingModal] = useState<boolean>(false);
   const [inpaintingCreated, setInpaintingCreated] = useState<boolean>(false);
   const [editInpainting, setEditInpainting] = useState<boolean>(false);
   // Posing Modal
   const [posing, setPosing] = useState<boolean>(false);
-  const [poseExample, setPoseExample] = useState(false);
+  const [poseExample, setPoseExample] = useState<boolean>(false);
   const [posingCreated, setPosingCreated] = useState<boolean>(false);
   const [editPosing, setEditPosing] = useState<boolean>(false);
 
@@ -84,7 +84,7 @@ const ImageGeneratorOption = ({
   const [editPromptMenuIndex, setEditPromptMenuIndex] =
     useState<string>('Blue Jeans');
   const [promptTagsHint, setPromptTagsHint] = useState(PromptTagsSearch);
-  const [promptHint, setPromptHint] = useState('');
+  const [promptHint, setPromptHint] = useState<string>('');
 
   const DeletePromptMenu = (item: string) => {
     setEditPromptMenu(
@@ -155,11 +155,16 @@ const ImageGeneratorOption = ({
   const handleChangePromptHint = (e: React.ChangeEvent<HTMLInputElement>) => {
     const searchPrompt = e.target.value;
     setPromptHint(searchPrompt);
-    const filteredItems = PromptTagsSearch.filter((Prompt) =>
-      Prompt.toLowerCase().includes(searchPrompt.toLowerCase())
-    );
-    setPromptTagsHint(filteredItems);
 
+    const filteredItems = PromptTagsSearch.filter((user) => {
+      const tagsLowerCase = user.tags.some((tag) =>
+        tag.toLowerCase().includes(searchPrompt.toLowerCase())
+      );
+      return tagsLowerCase;
+    });
+
+    console.log(filteredItems, 'filteredItems');
+    setPromptTagsHint(filteredItems);
     if (filteredItems.length === 0) {
       setShowPromptMenu(true);
     } else {
@@ -178,7 +183,7 @@ const ImageGeneratorOption = ({
     <>
       <div className='flex flex-col rounded-[14px] bg-[#121212]'>
         <div className='flex flex-col gap-6 p-6'>
-          <div className='text-[22px] font-bold leading-8 text-white'>
+          <div className='font-bold text-[22px] leading-8 text-white'>
             Image generator
           </div>
           <div className='flex flex-col gap-4'>
@@ -188,7 +193,7 @@ const ImageGeneratorOption = ({
                   onClick={handleOpenGenre}
                   className='flex w-[300px] items-center justify-between rounded-[14px] bg-white/[0.08] px-4 py-3'
                 >
-                  <p className='text-[15px] font-normal leading-6 text-[#979797]'>
+                  <p className='font-normal text-[15px] leading-6 text-[#979797]'>
                     Genre
                   </p>
                   <Image src={ArrowRight} className='w-full h-full' />
@@ -196,14 +201,14 @@ const ImageGeneratorOption = ({
 
                 <div
                   onClick={() => setOpenStyle(true)}
-                  className='flex cursor-pointer items-center justify-center gap-2 rounded-[14px] bg-white/[0.08] px-5 py-[13px] text-[16px] font-bold leading-[22px] text-white'
+                  className='font-bold flex cursor-pointer items-center justify-center gap-2 rounded-[14px] bg-white/[0.08] px-5 py-[13px] text-[16px] leading-[22px] text-white'
                 >
                   Add style
                   <PlusIconSvg />
                 </div>
 
                 <div
-                  className='flex cursor-pointer items-center justify-center gap-2 rounded-[14px] bg-white/[0.08] px-5 py-[13px] text-[16px] font-bold leading-[22px] text-white'
+                  className='font-bold flex cursor-pointer items-center justify-center gap-2 rounded-[14px] bg-white/[0.08] px-5 py-[13px] text-[16px] leading-[22px] text-white'
                   onClick={() => setTagState(!tagState)}
                 >
                   Add tag
@@ -288,7 +293,7 @@ const ImageGeneratorOption = ({
                           ))}
                           <div className='px-4 py-[10px]'>
                             <button
-                              className='flex w-full items-center justify-center gap-[6px] rounded-[10px] bg-[#FFFFFF14] py-[7px] font-bold text-[#979797]'
+                              className='font-bold flex w-full items-center justify-center gap-[6px] rounded-[10px] bg-[#FFFFFF14] py-[7px] text-[#979797]'
                               onClick={() =>
                                 DeletePromptMenu(editPromptMenuIndex)
                               }
@@ -365,7 +370,7 @@ const ImageGeneratorOption = ({
             {InpaintingToggle && (
               <div className='py-6'>
                 <div className='flex items-center gap-1 pb-3'>
-                  <p className='text-[15px] font-bold'>Inpainting</p>
+                  <p className='font-bold text-[15px]'>Inpainting</p>
                   <div
                     className='cursor-pointer pt-1.5'
                     onClick={() => setInpaintingExample(true)}
@@ -406,7 +411,7 @@ const ImageGeneratorOption = ({
                         Choose an image you want to inpaint on
                       </p>
                       <button
-                        className='rounded-xl bg-[#FFFFFF14] px-4 py-[10px] font-bold'
+                        className='font-bold rounded-xl bg-[#FFFFFF14] px-4 py-[10px]'
                         onClick={() => setSelectImageModal(true)}
                       >
                         Select image
@@ -420,7 +425,7 @@ const ImageGeneratorOption = ({
             {PosingToggle && (
               <div className='py-6'>
                 <div className='flex items-center gap-1 pb-3'>
-                  <p className='text-[15px] font-bold'>Posing</p>
+                  <p className='font-bold text-[15px]'>Posing</p>
                   <div
                     className='cursor-pointer pt-1.5'
                     onClick={() => setPoseExample(true)}
@@ -468,7 +473,7 @@ const ImageGeneratorOption = ({
                         choosing.
                       </p>
                       <button
-                        className='rounded-xl bg-[#FFFFFF14] px-4 py-[10px] font-bold'
+                        className='font-bold rounded-xl bg-[#FFFFFF14] px-4 py-[10px]'
                         onClick={() => setPosing(true)}
                       >
                         Add pose
@@ -483,7 +488,7 @@ const ImageGeneratorOption = ({
         <div>
           {EditGeneration ? (
             <div className='border-t border-white/[0.08] p-6'>
-              <div className='ml-auto w-max items-center justify-center rounded-[14px] bg-[#5848BC] px-5 py-[13px] text-[16px] font-bold leading-[22px] text-white'>
+              <div className='font-bold ml-auto w-max items-center justify-center rounded-[14px] bg-[#5848BC] px-5 py-[13px] text-[16px] leading-[22px] text-white'>
                 Generate
               </div>
             </div>
@@ -512,13 +517,13 @@ const ImageGeneratorOption = ({
           <div className='flex flex-row self-stretch gap-3 px-8 pt-4 pb-8'>
             <button
               onClick={handleCloseGenre}
-              className='flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-white/[0.32] px-5 py-[13px] font-bold'
+              className='font-bold flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-white/[0.32] px-5 py-[13px]'
             >
               Cancel
             </button>
             <button
               onClick={handleCloseGenre}
-              className='flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-[#5848BC] bg-[#5848BC] px-5 py-[13px] font-bold'
+              className='font-bold flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-[#5848BC] bg-[#5848BC] px-5 py-[13px]'
             >
               Save
             </button>
@@ -561,5 +566,3 @@ const ImageGeneratorOption = ({
 };
 
 export default ImageGeneratorOption;
-
-

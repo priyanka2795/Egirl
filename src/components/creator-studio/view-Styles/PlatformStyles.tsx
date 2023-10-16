@@ -58,10 +58,10 @@ const allImages = [
 ];
 
 const PlatformStyles = () => {
-  const [platformStyleModal, setPlatformStyleModal] = useState(false);
+  const [platformStyleModal, setPlatformStyleModal] = useState<boolean>(false);
   return (
     <>
-      <div className='mt-5 flex flex-col gap-4'>
+      <div className='flex flex-col gap-4 mt-5'>
         <div className='flex flex-col gap-3'>
           <div className='grid grid-cols-3 gap-3'>
             {allImages.map((item, index) => {

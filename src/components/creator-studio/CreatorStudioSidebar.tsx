@@ -27,21 +27,39 @@ import personalityActive from './svg/user-alt-1.svg';
 import analyticsActive from './svg/Chart.svg';
 import voiceActive from './svg/microphone-alt.svg';
 import CharacterAdd from './NewCharacter/CharacterAdd';
+import arrowLeft from '../../../public/assets/arrow-left.png';
+import CloseIcon from '../../../public/assets/svgImages/close-icon.svg';
+import arrowLeftTooltip from '../../../public/assets/arrow-left-tooltip.png';
+import HoverModal from '@components/list/HoverModal';
 
 interface CreatorStudioNavbarPropProp {
   shrinkSideBar: boolean;
   setShrinkSideBar: React.Dispatch<React.SetStateAction<boolean>>;
+  IsOpen: any;
+  OnClose: any;
+  TourSteps: any;
+  tourCount: number;
+  setTourCount: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const CreatorStudioSidebar = ({
   shrinkSideBar,
-  setShrinkSideBar
+  setShrinkSideBar,
+  IsOpen,
+  OnClose,
+  TourSteps,
+  tourCount,
+  setTourCount
 }: CreatorStudioNavbarPropProp) => {
-  const [sidebarModal, setSidebarModal] = useState(false);
-  const [moreOptionsModal, setMoreOptionsModal] = useState(false);
-  const [newCharacter, setNewCharacter] = useState(false);
+  const [sidebarModal, setSidebarModal] = useState<boolean>(false);
+  const [moreOptionsModal, setMoreOptionsModal] = useState<boolean>(false);
+  const [newCharacter, setNewCharacter] = useState<boolean>(false);
   // const [sideBarShrink, setSideBarShrink] = useState(false);
-  console.log('sidebarModal---', sidebarModal);
+  const GuideStep1 = TourSteps[1].id;
+  const GuideStep2 = TourSteps[2].id;
+  const GuideStep3 = TourSteps[3].id;
+  const GuideStep4 = TourSteps[4].id;
+
   return (
     <>
       <div
@@ -58,7 +76,7 @@ const CreatorStudioSidebar = ({
             className='flex cursor-pointer items-center justify-between py-[14px] pl-3 pr-4'
             onClick={() => setSidebarModal(!sidebarModal)}
           >
-            <div className='relative flex items-center w-full gap-2'>
+            <div className='relative flex w-full items-center gap-2'>
               <div className='h-[32px] w-[32px]'>
                 <Image
                   src={avtar}
@@ -74,12 +92,15 @@ const CreatorStudioSidebar = ({
                 Mika-chan
               </div>
             </div>
-            <div className='h-full mt-2'>
+            <div className='mt-2 h-full'>
               <Image src={arrowDown} alt='' />
             </div>
-            {
-              sidebarModal && <SidebarModal setSidebarModal={setSidebarModal} setNewCharacter={setNewCharacter} />
-            }
+            {sidebarModal && (
+              <SidebarModal
+                setSidebarModal={setSidebarModal}
+                setNewCharacter={setNewCharacter}
+              />
+            )}
           </div>
 
           <SidebarMenuItem
@@ -113,6 +134,7 @@ const CreatorStudioSidebar = ({
               Images
             </div>
           </div>
+
           <SidebarMenuItem
             text='View Images'
             href='/view-images'
@@ -127,22 +149,44 @@ const CreatorStudioSidebar = ({
               shrinkSideBar === true ? '!hidden' : 'w-full flex justify-center'
             } `}
           />
-          <SidebarMenuItem
-            text='Image Generator'
-            href='/image-generator'
-            Icon={ImageGeneratorIcon}
-            IconActive={imageGeneratorActive}
-            StyleClasses={`max-[1279px]:flex max-[1279px]:!justify-center max-[1279px]:max-w-[52px] max-[1279px]:mx-auto ${
-              shrinkSideBar === true
-                ? 'flex !justify-center max-w-[52px] mx-auto'
-                : 'pl-3'
-            }`}
-            sideBarMenuText={`max-[1279px]:!hidden ${
-              shrinkSideBar === true ? '!hidden' : 'w-full flex justify-center'
-            } `}
-          />
 
-          <div
+          <div className='font-bold group relative flex cursor-pointer items-center justify-center rounded-[14px] text-[16px] leading-[22px] text-white'>
+            <SidebarMenuItem
+              text='Image Generator'
+              href='/image-generator'
+              Icon={ImageGeneratorIcon}
+              IconActive={imageGeneratorActive}
+              StyleClasses={`max-[1279px]:flex max-[1279px]:!justify-center max-[1279px]:max-w-[52px] max-[1279px]:mx-auto ${
+                shrinkSideBar === true
+                  ? 'flex !justify-center max-w-[52px] mx-auto'
+                  : 'pl-3'
+              }
+              ${GuideStep2 === tourCount ? 'bg-[#252525] z-[2]' : ''}
+              `}
+              sideBarMenuText={`max-[1279px]:!hidden ${
+                shrinkSideBar === true
+                  ? '!hidden'
+                  : 'w-full flex justify-center'
+              } `}
+            />
+            {GuideStep2 === tourCount && (
+              <>
+                {console.log('hererwr')}
+                <HoverModal
+                  // name={'Generate images'}
+                  // text={
+                  //   "Edit your character's profile and personalize to find more followers."
+                  // }
+                  // step={'Step 3/5'}
+                  isOpen={IsOpen}
+                  onClose={OnClose}
+                  tourSteps={TourSteps}
+                  tourCount={tourCount}
+                  setTourCount={setTourCount}
+                />
+              </>
+            )}
+            {/* <div
             className={`max-[1279px]:mb-2 max-[1279px]:border-b-2 max-[1279px]:border-[#252525] ${
               shrinkSideBar === true
                 ? 'mb-2 border-b-2 border-[#252525]'
@@ -156,21 +200,47 @@ const CreatorStudioSidebar = ({
             >
               Chatbot
             </div>
+          </div> */}
           </div>
-          <SidebarMenuItem
-            text='Personality'
-            href='/personality'
-            Icon={PersonalityIcon}
-            IconActive={personalityActive}
-            StyleClasses={`max-[1279px]:flex max-[1279px]:!justify-center max-[1279px]:max-w-[52px] max-[1279px]:mx-auto ${
-              shrinkSideBar === true
-                ? 'flex !justify-center max-w-[52px] mx-auto'
-                : 'pl-3'
-            }`}
-            sideBarMenuText={`max-[1279px]:!hidden ${
-              shrinkSideBar === true ? '!hidden' : 'w-full flex justify-center'
-            } `}
-          />
+
+          <div className='font-bold group relative flex cursor-pointer items-center justify-center rounded-[14px] text-[16px] leading-[22px] text-white'>
+            <SidebarMenuItem
+              text='Personality'
+              href='/personality'
+              Icon={PersonalityIcon}
+              IconActive={personalityActive}
+              StyleClasses={`max-[1279px]:flex max-[1279px]:!justify-center max-[1279px]:max-w-[52px] max-[1279px]:mx-auto ${
+                shrinkSideBar === true
+                  ? 'flex !justify-center max-w-[52px] mx-auto'
+                  : 'pl-3'
+              }
+              ${GuideStep1 === tourCount ? 'bg-[#252525] z-[2]' : ''}
+              `}
+              sideBarMenuText={`max-[1279px]:!hidden ${
+                shrinkSideBar === true
+                  ? '!hidden'
+                  : 'w-full flex justify-center'
+              } `}
+            />
+            {GuideStep1 === tourCount && (
+              <>
+                {console.log('hello 1')}
+                <HoverModal
+                  // name={'Personality'}
+                  // text={
+                  //   "Edit your character's profile and personalize to find more followers."
+                  // }
+                  // step={'Step 2/5'}
+                  isOpen={IsOpen}
+                  onClose={OnClose}
+                  tourSteps={TourSteps}
+                  tourCount={tourCount}
+                  setTourCount={setTourCount}
+                />
+              </>
+            )}
+          </div>
+
           <SidebarMenuItem
             text='Voice'
             href='/voice'
@@ -185,21 +255,42 @@ const CreatorStudioSidebar = ({
               shrinkSideBar === true ? '!hidden' : 'w-full flex justify-center'
             } `}
           />
-          <SidebarMenuItem
-            text='Gifts'
-            href='/gifts'
-            Icon={GiftIcon}
-            IconActive={gift}
-            StyleClasses={`max-[1279px]:flex max-[1279px]:!justify-center max-[1279px]:max-w-[52px] max-[1279px]:mx-auto ${
-              shrinkSideBar === true
-                ? 'flex !justify-center max-w-[52px] mx-auto'
-                : 'pl-3'
-            }`}
-            sideBarMenuText={`max-[1279px]:!hidden ${
-              shrinkSideBar === true ? '!hidden' : 'w-full flex justify-center'
-            } `}
-          />
-          <div
+
+          <div className='font-bold group relative flex cursor-pointer items-center justify-center rounded-[14px] text-[16px] leading-[22px] text-white'>
+            <SidebarMenuItem
+              text='Gifts'
+              href='/gifts'
+              Icon={GiftIcon}
+              IconActive={gift}
+              StyleClasses={`max-[1279px]:flex max-[1279px]:!justify-center max-[1279px]:max-w-[52px] max-[1279px]:mx-auto ${
+                shrinkSideBar === true
+                  ? 'flex !justify-center max-w-[52px] mx-auto'
+                  : 'pl-3'
+              }
+              ${GuideStep4 === tourCount ? 'bg-[#252525] z-[2]' : ''}
+              `}
+              sideBarMenuText={`max-[1279px]:!hidden ${
+                shrinkSideBar === true
+                  ? '!hidden'
+                  : 'w-full flex justify-center'
+              } `}
+            />
+            {GuideStep4 === tourCount && (
+              <HoverModal
+                // name={'Create own gifts'}
+                // text={
+                //   "Edit your character's profile and personalize to find more followers."
+                // }
+                // step={'Step 5/5'}
+                isOpen={IsOpen}
+                onClose={OnClose}
+                tourSteps={TourSteps}
+                tourCount={tourCount}
+                setTourCount={setTourCount}
+              />
+            )}
+
+            {/* <div
             className={`max-[1279px]:mb-2 max-[1279px]:border-b-2 max-[1279px]:border-[#252525] ${
               shrinkSideBar === true
                 ? 'mb-2 border-b-2 border-[#252525]'
@@ -215,7 +306,9 @@ const CreatorStudioSidebar = ({
             >
               Styles
             </div>
+          </div> */}
           </div>
+
           <SidebarMenuItem
             text='View Styles'
             href='/view-style'
@@ -230,6 +323,7 @@ const CreatorStudioSidebar = ({
               shrinkSideBar === true ? '!hidden' : 'w-full'
             } `}
           />
+
           <SidebarMenuItem
             text='Marketplace'
             href='/marketplace'
@@ -244,20 +338,39 @@ const CreatorStudioSidebar = ({
               shrinkSideBar === true ? '!hidden' : 'w-full'
             } `}
           />
-          <SidebarMenuItem
-            text='Style Generator'
-            href='/style-generator'
-            Icon={StyleGenerator}
-            IconActive={palette}
-            StyleClasses={`max-[1279px]:flex max-[1279px]:!justify-center max-[1279px]:max-w-[52px] max-[1279px]:mx-auto ${
-              shrinkSideBar === true
-                ? 'flex !justify-center max-w-[52px] mx-auto'
-                : 'pl-3'
-            }`}
-            sideBarMenuText={`max-[1279px]:!hidden ${
-              shrinkSideBar === true ? '!hidden' : 'w-full'
-            } `}
-          />
+
+          <div className='font-bold group relative flex cursor-pointer items-center justify-center rounded-[14px] text-[16px] leading-[22px] text-white'>
+            <SidebarMenuItem
+              text='Style Generator'
+              href='/style-generator'
+              Icon={StyleGenerator}
+              IconActive={palette}
+              StyleClasses={`max-[1279px]:flex max-[1279px]:!justify-center max-[1279px]:max-w-[52px] max-[1279px]:mx-auto ${
+                shrinkSideBar === true
+                  ? 'flex !justify-center max-w-[52px] mx-auto'
+                  : 'pl-3'
+              }
+              ${GuideStep3 === tourCount ? 'bg-[#252525] z-[2]' : ''}
+              `}
+              sideBarMenuText={`max-[1279px]:!hidden ${
+                shrinkSideBar === true ? '!hidden' : 'w-full'
+              } `}
+            />
+            {GuideStep3 === tourCount && (
+              <HoverModal
+                // name={'Create style'}
+                // text={
+                //   'Select character from style dropdown, upload your characters images, and generate character style!'
+                // }
+                // step={'Step 4/5'}
+                isOpen={IsOpen}
+                onClose={OnClose}
+                tourSteps={TourSteps}
+                tourCount={tourCount}
+                setTourCount={setTourCount}
+              />
+            )}
+          </div>
         </div>
 
         <div
@@ -282,9 +395,7 @@ const CreatorStudioSidebar = ({
             {moreOptionsModal && <MoreOptionsModal />}
           </div>
         </div>
-        {
-          newCharacter && <CharacterAdd NewCharacterClose={setNewCharacter} />
-        }
+        {newCharacter && <CharacterAdd NewCharacterClose={setNewCharacter} />}
       </div>
     </>
   );

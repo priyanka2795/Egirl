@@ -12,8 +12,16 @@ const initialValues = {
 };
 interface CharacterAdd {
   NewCharacterClose: any;
+  SetUserGuide: any;
+  SetIsTourOpen: any;
+  setTourCount: React.Dispatch<React.SetStateAction<number>>;
 }
-const CharacterAdd = ({ NewCharacterClose }: CharacterAdd) => {
+const CharacterAdd = ({
+  NewCharacterClose,
+  SetUserGuide,
+  SetIsTourOpen,
+  setTourCount
+}: CharacterAdd) => {
   const { values, errors, handleBlur, touched, handleChange, handleSubmit } =
     useFormik({
       // validationSchema: signUpSchema,
@@ -37,7 +45,7 @@ const CharacterAdd = ({ NewCharacterClose }: CharacterAdd) => {
         <div className='w-full gap-1 text-lg font-bold leading-6'>
           Add New Character
         </div>
-        <div className='h-6 w-6'>
+        <div className='w-6 h-6'>
           <Cross onClick={() => NewCharacterClose(false)} />
         </div>
       </div>
@@ -71,7 +79,7 @@ const CharacterAdd = ({ NewCharacterClose }: CharacterAdd) => {
                   value={values.name}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className='border-none bg-transparent p-0 text-[15px] font-normal leading-6 text-[#979797] focus:ring-0 '
+                  className='font-normal border-none bg-transparent p-0 text-[15px] leading-6 text-[#979797] focus:ring-0 '
                 />
               </div>
               {nameLength == 0 && touched.name ? (
@@ -100,27 +108,30 @@ const CharacterAdd = ({ NewCharacterClose }: CharacterAdd) => {
                   onBlur={handleBlur}
                   placeholder='ex. Mika-chan'
                   type='text'
-                  className='border-none bg-transparent p-0 text-[15px] font-normal leading-6 text-[#979797] focus:ring-0 '
+                  className='font-normal border-none bg-transparent p-0 text-[15px] leading-6 text-[#979797] focus:ring-0 '
                 />
               </div>
               {usernameLength == 0 && touched.username ? (
-                <p className='text-sm font-normal leading-[18px] text-[#FF5336]'>
+                <p className='font-normal text-sm leading-[18px] text-[#FF5336]'>
                   {errors.username}
                 </p>
               ) : null}
             </div>
 
             {/* buttons */}
-            <div className='flex items-start gap-3 self-stretch '>
+            <div className='flex items-start self-stretch gap-3 '>
               <button
                 onClick={() => NewCharacterClose(false)}
-                className='h-12 w-[50%] items-center gap-2 rounded-[14px] border border-white/[0.32] px-5 py-[13px] text-base font-bold leading-[22px]'
+                className='font-bold h-12 w-[50%] items-center gap-2 rounded-[14px] border border-white/[0.32] px-5 py-[13px] text-base leading-[22px]'
               >
                 Cancel
               </button>
               <button
                 type='submit'
-                className='h-12 w-[50%] items-center gap-2 rounded-[14px] bg-[#5848BC]  px-5 py-[13px] text-base font-bold leading-[22px]'
+                className='font-bold h-12 w-[50%] items-center gap-2 rounded-[14px]  bg-[#5848BC] px-5 py-[13px] text-base leading-[22px]'
+                onClick={() => (
+                  SetUserGuide(false), SetIsTourOpen(true), setTourCount(0)
+                )}
               >
                 Create
               </button>

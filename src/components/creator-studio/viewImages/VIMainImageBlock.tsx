@@ -6,7 +6,6 @@ import image4 from '../../../../public/assets/vi-image-4.png';
 import image5 from '../../../../public/assets/vi-image-5.png';
 import image6 from '../../../../public/assets/vi-image-6.png';
 import image7 from '../../../../public/assets/vi-image-7.png';
-
 import threeDots from '../../../../public/assets/dots-horizontal3.png';
 import Image from 'next/image';
 import Delete from '../../../../public/assets/delete-icon.png';
@@ -108,15 +107,15 @@ const VIMainImageBlock = ({
             {AlbumData.map((item: any) => (
               <div
                 key={item.id}
-                className='sub-banner group relative h-full w-full'
+                className='relative w-full h-full sub-banner group'
               >
                 <Image
-                  className='w-full object-cover '
+                  className='object-cover w-full '
                   src={item.image}
                   alt={''}
                 />
                 <div className=' absolute bottom-0 flex h-[150px] w-full bg-gradient-to-t from-[#000000CC] to-[#00000000] px-5 pb-3 font-semibold'>
-                  <div className='flex w-full items-end justify-between '>
+                  <div className='flex items-end justify-between w-full '>
                     <p
                       className='cursor-pointer '
                       onClick={() => SetAlbumImages(true)}
@@ -202,10 +201,10 @@ const VIMainImageBlock = ({
                 className='invisible absolute right-[7px] top-[7px] flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full bg-black/[0.48] group-hover:visible group-hover:opacity-100'
                 onClick={() => AllImageToggle(index)}
               >
-                <Image className='h-full w-full' src={threeDots} alt={''} />
+                <Image className='w-full h-full' src={threeDots} alt={''} />
               </div>
               {allImage === index && (
-                <div className='absolute right-3 top-12 z-50'>
+                <div className='absolute z-50 right-3 top-12'>
                   <ViewImagesDropDown DeleteImage={DeleteImage} />
                 </div>
               )}

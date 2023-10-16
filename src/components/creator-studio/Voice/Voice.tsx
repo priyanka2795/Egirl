@@ -34,9 +34,9 @@ const voiceGenerations = [
 ];
 
 const Voice = () => {
-  const [inUse, setInUse] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [voiceModal, setVoiceModal] = useState(false);
+  const [inUse, setInUse] = useState<boolean>(false);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [voiceModal, setVoiceModal] = useState<boolean>(false);
 
   return (
     <>

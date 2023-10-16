@@ -24,10 +24,10 @@ const ViewStyleFilter = () => {
     'style2',
     'style3'
   ];
-  const [activeIndex, setActiveIndex] = useState(-1);
-  const [clothingAll, setClothingAll] = useState(false);
-  const [accessoriesAll, setAccessoriesAll] = useState(false);
-  const [filterValues, setFilterValues] = useState({});
+  const [activeIndex, setActiveIndex] = useState<number>(-1);
+  const [clothingAll, setClothingAll] = useState<boolean>(false);
+  const [accessoriesAll, setAccessoriesAll] = useState<boolean>(false);
+  const [filterValues, setFilterValues] = useState<object>({});
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = e.target;

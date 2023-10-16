@@ -40,9 +40,8 @@ const images = [
 const StyleGeneratorNext = ({
   setStyleGeneratorNext
 }: StyleGeneratorNextProps) => {
-  const [styleGenHoverModal, setStyleGenHoverModal] = useState(false);
-  const [deleteStyleGenModal, setDeleteStyleGenModal] =
-    useState<boolean>(false);
+  const [styleGenHoverModal, setStyleGenHoverModal] = useState<boolean>(false);
+  const [deleteStyleGenModal, setDeleteStyleGenModal] = useState<boolean>(false);
   const [showCards, setShowCards] = useState<boolean>(true);
   const [showAddImagesModal, setShowAddImagesModal] = useState<boolean>(false);
 
@@ -52,7 +51,7 @@ const StyleGeneratorNext = ({
         <div className='p-6'>
           <h3 className='text-bold mb-[6] text-[22px]'>Style Generator</h3>
 
-          <div className='mb-6 grid grid-cols-2 gap-4'>
+          <div className='grid grid-cols-2 gap-4 mb-6'>
             <div className='flex flex-col'>
               <h6 className='text-[13px] text-[#979797]'>Name</h6>
               <input
@@ -71,7 +70,7 @@ const StyleGeneratorNext = ({
             </div>
           </div>
 
-          <div className='mb-6 flex justify-between'>
+          <div className='flex justify-between mb-6'>
             <div className='flex flex-col gap-2'>
               <div className='flex gap-1'>
                 <div className='text-[18px] font-bold leading-6 text-white'>
@@ -99,7 +98,7 @@ const StyleGeneratorNext = ({
                     Delete all images
                   </div>
                   <div className='absolute -right-[15px] -top-[25px] h-[24px] w-10'>
-                    <Image className='h-full w-full' src={downArrow} alt={''} />
+                    <Image className='w-full h-full' src={downArrow} alt={''} />
                   </div>
                 </div>
               </div>
@@ -167,7 +166,7 @@ const StyleGeneratorNext = ({
                 Please fill in labels
               </div>
               <div className='absolute -top-[25px] right-[20px] h-[24px] w-10'>
-                <Image className='h-full w-full' src={downArrow} alt={''} />
+                <Image className='w-full h-full' src={downArrow} alt={''} />
               </div>
             </div>
           </div>

@@ -10,7 +10,7 @@ const ImageGeneratorIndex = () => {
 
   return (
     <div className='flex gap-8'>
-      <div className='flex w-full flex-col gap-5'>
+      <div className='flex flex-col w-full gap-5'>
         <ImageGeneratorOption
           InpaintingToggle={inpaintingToggle}
           PosingToggle={posingToggle}
