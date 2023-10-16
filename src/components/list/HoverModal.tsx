@@ -98,6 +98,8 @@ const HoverModal = ({
           </div>
         </div>
       )}
+
+      <div className='fixed left-0 top-0 z-[1] h-screen w-[1920px] overflow-hidden bg-black/70 backdrop-sepia-0'></div>
     </div>
   );
 };

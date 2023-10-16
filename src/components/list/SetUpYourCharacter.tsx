@@ -64,7 +64,11 @@ function SetUpYourCharacter({
 
         <div className='font-bold group relative flex cursor-pointer items-center justify-center  rounded-[14px] text-[16px] leading-[22px] text-white'>
           <div className='relative'>
-            <button className='flex items-center gap-2 rounded-xl bg-[#5848BC] px-4 py-2.5'>
+            <button
+              className={`flex items-center gap-2 rounded-xl bg-[#5848BC] px-4 py-2.5 ${
+                GuideStep === tourCount ? 'relative z-[2]' : ''
+              }`}
+            >
               <Image src={bookUser} alt={''} />
               Guided Character Creator
             </button>

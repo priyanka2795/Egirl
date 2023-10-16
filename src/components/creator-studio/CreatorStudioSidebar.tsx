@@ -161,7 +161,7 @@ const CreatorStudioSidebar = ({
                   ? 'flex !justify-center max-w-[52px] mx-auto'
                   : 'pl-3'
               }
-              ${GuideStep2 === tourCount ? 'bg-[#252525]' : ''}
+              ${GuideStep2 === tourCount ? 'bg-[#252525] z-[2]' : ''}
               `}
               sideBarMenuText={`max-[1279px]:!hidden ${
                 shrinkSideBar === true
@@ -214,7 +214,7 @@ const CreatorStudioSidebar = ({
                   ? 'flex !justify-center max-w-[52px] mx-auto'
                   : 'pl-3'
               }
-              ${GuideStep1 === tourCount ? 'bg-[#252525]' : ''}
+              ${GuideStep1 === tourCount ? 'bg-[#252525] z-[2]' : ''}
               `}
               sideBarMenuText={`max-[1279px]:!hidden ${
                 shrinkSideBar === true
@@ -267,7 +267,7 @@ const CreatorStudioSidebar = ({
                   ? 'flex !justify-center max-w-[52px] mx-auto'
                   : 'pl-3'
               }
-              ${GuideStep4 === tourCount ? 'bg-[#252525]' : ''}
+              ${GuideStep4 === tourCount ? 'bg-[#252525] z-[2]' : ''}
               `}
               sideBarMenuText={`max-[1279px]:!hidden ${
                 shrinkSideBar === true
@@ -350,7 +350,7 @@ const CreatorStudioSidebar = ({
                   ? 'flex !justify-center max-w-[52px] mx-auto'
                   : 'pl-3'
               }
-              ${GuideStep3 === tourCount ? 'bg-[#252525]' : ''}
+              ${GuideStep3 === tourCount ? 'bg-[#252525] z-[2]' : ''}
               `}
               sideBarMenuText={`max-[1279px]:!hidden ${
                 shrinkSideBar === true ? '!hidden' : 'w-full'
