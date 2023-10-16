@@ -18,21 +18,22 @@ import Link from 'next/link';
 import SignIn from './signin';
 import SigninTemplate from './signinTemplate';
 import WelcomeStepsModal from './welcomeSteps';
+import SigninLoginOpt from './SigninLoginOpt';
 
-const login = [
-  {
-    icon: googleIcon,
-    text: 'Login with Google'
-  },
-  {
-    icon: discordIcon,
-    text: 'Login with Discord'
-  },
-  {
-    icon: facebookIcon,
-    text: 'Login with Facebook'
-  }
-];
+// const login = [
+//   {
+//     icon: googleIcon,
+//     text: 'Login with Google'
+//   },
+//   {
+//     icon: discordIcon,
+//     text: 'Login with Discord'
+//   },
+//   {
+//     icon: facebookIcon,
+//     text: 'Login with Facebook'
+//   }
+// ];
 
 const initialValues = {
   username: '',
@@ -136,11 +137,12 @@ export default function SignUp() {
           <Form>
             <div className='flex h-[inherit] max-h-[692px] w-[500px] flex-col rounded-[40px] bg-[#070707] '>
               <div className='flex max-h-[600px] flex-col gap-8 overflow-y-auto px-10 pt-10'>
-                <div className='font-bold text-[32px] leading-10 text-white'>
-                  Sign up
-                </div>
+                {/* <div className='font-bold text-[32px] leading-10 text-white'>
+                  Sign in
+                </div> */}
+                <SigninLoginOpt heading={'Sign up'} pageName={'signin'} />
 
-                <div className='flex flex-col gap-3'>
+                {/* <div className='flex flex-col gap-3'>
                   <div className='flex flex-col gap-2'>
                     {login.map((item, index) => {
                       return (
@@ -165,7 +167,7 @@ export default function SignUp() {
                       </a>
                     </Link>
                   </div>
-                </div>
+                </div> */}
 
                 <div className='flex flex-col gap-4'>
                   <div className='flex gap-4'>

@@ -15,20 +15,6 @@ import Link from 'next/link';
 import SigninTemplate from './signinTemplate';
 import SigninLoginOpt from './SigninLoginOpt';
 
-const login = [
-  {
-    icon: googleIcon,
-    text: 'Login with Google'
-  },
-  {
-    icon: discordIcon,
-    text: 'Login with Discord'
-  },
-  {
-    icon: facebookIcon,
-    text: 'Login with Facebook'
-  }
-];
 interface SignIn {
   SetFormStep: boolean;
 }
@@ -130,7 +116,7 @@ export default function SignIn({ SetFormStep }: SignIn) {
           ) : (
             <>
               <div className='flex flex-col gap-8'>
-                <SigninLoginOpt />
+                <SigninLoginOpt heading={'Login'} pageName={'signup'} />
 
                 <div className='flex flex-col gap-4'>
                   <div className='flex gap-4'>

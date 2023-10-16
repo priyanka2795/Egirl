@@ -56,7 +56,7 @@ const userFrame = [
 
 interface WelcomeStepsModal {
   welcomeStepsModal: boolean;
-  setWelcomeStepsModal: boolean;
+  setWelcomeStepsModal: React.di;
 }
 const WelcomeStepsModal = ({
   welcomeStepsModal,
