@@ -19,6 +19,7 @@ const login = [
     text: 'Login with Facebook'
   }
 ];
+
 const SigninLoginOpt = () => {
   return (
     <>
@@ -43,7 +44,7 @@ const SigninLoginOpt = () => {
             New user?
           </div>
           <Link href='/auth/signup'>
-            <a className='font-normal text-[15px] leading-5 text-[#5848BC]'>
+            <a className='font-normal cursor-pointer text-[15px] leading-5 text-[#5848BC]'>
               Sign up
             </a>
           </Link>
