@@ -15,6 +15,7 @@ const PersonalityTraitsSection = () => {
   const [advance, setAdvance] = useState<number>(0);
   const [advanceModal, setAdvanceModal] = React.useState<boolean>(false);
   const [seletedTab, setSelectedTab] = useState<boolean>(false);
+  const [selectChar, setSelectChar] = useState<string>('A');
 
   const handleOpenTraits = () => setOpenT(true);
   const handleCloseTraits = () => {
@@ -81,6 +82,22 @@ const PersonalityTraitsSection = () => {
     { name: 'Y' },
     { name: 'Z' }
   ];
+
+  //========== alphabetic scroll functionality =========
+  const handleClick = (id: string) => {
+    setSelectChar(id);
+    const element: any = document.querySelector(id);
+    if (element) {
+      const offset = element.offsetTop - 40;
+      const contentHolder = document.querySelector(
+        '.content-holder'
+      ) as HTMLElement;
+      contentHolder.style.overflow = 'visible';
+      contentHolder.style.overflow = 'hidden';
+      contentHolder.scrollTo({ top: offset, behavior: 'smooth' });
+    }
+  };
+  //========== alphabetic scroll functionality =========
 
   return (
     <>
@@ -331,7 +348,7 @@ const PersonalityTraitsSection = () => {
         open={openT}
         closeModal={handleCloseTraits}
         modalOverlayStyle='!bg-black/80 '
-        modalClassName={`bg-[#121212] flex shrink-0 flex-col w-[506px] rounded-2xl h-max max-w-[550px] relative rounded`}
+        modalClassName={`bg-[#121212] flex shrink-0 !overflow-hidden flex-col w-[506px] rounded-2xl h-max max-w-[550px] relative rounded`}
       >
         <div className='flex items-center justify-between border-b border-white/[0.08] p-8 pb-6'>
           <b className='text-2xl'>Traits</b>
@@ -382,275 +399,298 @@ const PersonalityTraitsSection = () => {
             </div>
           </div>
         </div>
-
-        {/* <hr className='mb-5 bg-zinc-900' /> */}
-        <div className='px-6 pt-4'>
-          <div className=''>
-            <div className='font-bold pb-3 text-[#979797]'>A</div>
-
-            <div className='flex flex-wrap gap-2'>
-              <div className='relative'>
-                <input
-                  id='ta1'
-                  name='option'
-                  checked={selectedOptionsT.includes('Adaptable')}
-                  onChange={() => handleOptionChangeT('Adaptable')}
-                  className='styled-checkbox checkbox peer absolute left-[23px] top-[13px] hidden bg-zinc-800'
-                  type='checkbox'
-                  value='ta1'
-                />
-                <label
-                  htmlFor='ta1'
-                  className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[#fff] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
-                  id='ta1'
-                >
-                  Adaptable
-                </label>
+        <div className='content-holder ' id='content-holder'>
+          {/* <hr className='mb-5 bg-zinc-900' /> */}
+          <div className='scrollbar-hide relative h-[270px] overflow-auto px-6 pt-4'>
+            <ul className='alpha-nav scrollbar-hide fixed  z-[30] h-[270px] -translate-y-3 translate-x-[460px] transform overflow-auto leading-none'>
+              {Array.from(Array(26), (e, i) => String.fromCharCode(65 + i)).map(
+                (char) => (
+                  <li key={char}>
+                    <a
+                      href={`#${char}`}
+                      className={`text-[11px] font-semibold  text-[#515151] ${
+                        char === selectChar ? 'text-[#979797]' : ''
+                      }`}
+                      onClick={() => handleClick(char)}
+                    >
+                      {char}
+                    </a>
+                  </li>
+                )
+              )}
+            </ul>
+            <div className=''>
+              <div className='font-bold pb-3 text-[#979797]' id='A'>
+                A
               </div>
 
-              <div className='relative'>
-                <input
-                  name='option'
-                  checked={selectedOptionsT.includes('Animal Crossing')}
-                  onChange={() => handleOptionChangeT('Animal Crossing')}
-                  className='styled-checkbox checkbox peer absolute left-[23px] top-[13px] hidden bg-zinc-800'
-                  type='checkbox'
-                  id='a3'
-                  value='a3'
-                />
-                <label
-                  className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[#fff] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
-                  id='a3'
-                  htmlFor='a3'
-                >
-                  Adventurous
-                </label>
-              </div>
+              <div className='flex flex-wrap gap-2'>
+                <div className='relative'>
+                  <input
+                    id='ta1'
+                    name='option'
+                    checked={selectedOptionsT.includes('Adaptable')}
+                    onChange={() => handleOptionChangeT('Adaptable')}
+                    className='styled-checkbox checkbox peer absolute left-[23px] top-[13px] hidden bg-zinc-800'
+                    type='checkbox'
+                    value='ta1'
+                  />
+                  <label
+                    htmlFor='ta1'
+                    className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[#fff] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
+                    id='ta1'
+                  >
+                    Adaptable
+                  </label>
+                </div>
 
-              <div className='relative'>
-                <input
-                  name='option'
-                  checked={selectedOptionsT.includes('Artistic Photography')}
-                  onChange={() => handleOptionChangeT('Artistic Photography')}
-                  className='styled-checkbox checkbox peer absolute left-[23px] top-[13px] hidden bg-zinc-800'
-                  type='checkbox'
-                  id='a4'
-                  value='Services/ Software'
-                />
-                <label
-                  className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[#fff] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
-                  id='a4'
-                  htmlFor='a4'
-                >
-                  Aggressive
-                </label>
-              </div>
+                <div className='relative'>
+                  <input
+                    name='option'
+                    checked={selectedOptionsT.includes('Animal Crossing')}
+                    onChange={() => handleOptionChangeT('Animal Crossing')}
+                    className='styled-checkbox checkbox peer absolute left-[23px] top-[13px] hidden bg-zinc-800'
+                    type='checkbox'
+                    id='a3'
+                    value='a3'
+                  />
+                  <label
+                    className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[#fff] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
+                    id='a3'
+                    htmlFor='a3'
+                  >
+                    Adventurous
+                  </label>
+                </div>
 
-              <div className='relative'>
-                <input
-                  name='option'
-                  checked={selectedOptionsT.includes('ASMR Content')}
-                  onChange={() => handleOptionChangeT('ASMR Content')}
-                  className='styled-checkbox checkbox peer absolute left-[23px] top-[13px] hidden bg-zinc-800'
-                  type='checkbox'
-                  id='a5'
-                  value='Services/ Software'
-                />
-                <label
-                  className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[#fff] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
-                  id='a5'
-                  htmlFor='a5'
-                >
-                  Ambitious
-                </label>
-              </div>
+                <div className='relative'>
+                  <input
+                    name='option'
+                    checked={selectedOptionsT.includes('Artistic Photography')}
+                    onChange={() => handleOptionChangeT('Artistic Photography')}
+                    className='styled-checkbox checkbox peer absolute left-[23px] top-[13px] hidden bg-zinc-800'
+                    type='checkbox'
+                    id='a4'
+                    value='Services/ Software'
+                  />
+                  <label
+                    className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[#fff] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
+                    id='a4'
+                    htmlFor='a4'
+                  >
+                    Aggressive
+                  </label>
+                </div>
 
-              <div className='relative'>
-                <input
-                  name='option'
-                  checked={selectedOptionsT.includes('Aesthetically')}
-                  onChange={() => handleOptionChangeT('Aesthetically')}
-                  className='styled-checkbox checkbox peer absolute left-[23px] top-[13px] hidden bg-zinc-800'
-                  type='checkbox'
-                  id='a6'
-                  value='Services/ Software'
-                />
-                <label
-                  className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[#fff] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
-                  id='a6'
-                  htmlFor='a6'
-                >
-                  Angry
-                </label>
-              </div>
-            </div>
-          </div>
+                <div className='relative'>
+                  <input
+                    name='option'
+                    checked={selectedOptionsT.includes('ASMR Content')}
+                    onChange={() => handleOptionChangeT('ASMR Content')}
+                    className='styled-checkbox checkbox peer absolute left-[23px] top-[13px] hidden bg-zinc-800'
+                    type='checkbox'
+                    id='a5'
+                    value='Services/ Software'
+                  />
+                  <label
+                    className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[#fff] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
+                    id='a5'
+                    htmlFor='a5'
+                  >
+                    Ambitious
+                  </label>
+                </div>
 
-          <div className=''>
-            <div className='font-bold pb-3 text-[#979797]'>B</div>
-
-            <div className='flex flex-wrap gap-2'>
-              <div className='relative'>
-                <input
-                  name='option'
-                  checked={selectedOptionsT.includes('Body Modification')}
-                  onChange={() => handleOptionChangeT('Body Modification')}
-                  className='styled-checkbox checkbox peer absolute left-[23px] top-[13px] hidden bg-zinc-800'
-                  type='checkbox'
-                  id='b1'
-                  value='Services/ Software'
-                />
-                <label
-                  className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[#fff] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
-                  id='b1'
-                  htmlFor='b1'
-                >
-                  Boring
-                </label>
-              </div>
-
-              <div className='relative'>
-                <input
-                  name='option'
-                  checked={selectedOptionsT.includes('Book Clubs')}
-                  onChange={() => handleOptionChangeT('Book Clubs')}
-                  className='styled-checkbox checkbox peer absolute left-[23px] top-[13px] hidden bg-zinc-800'
-                  type='checkbox'
-                  id='b2'
-                  value='Services/ Software'
-                />
-                <label
-                  className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[#fff] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
-                  id='b2'
-                  htmlFor='b2'
-                >
-                  Brave
-                </label>
+                <div className='relative'>
+                  <input
+                    name='option'
+                    checked={selectedOptionsT.includes('Aesthetically')}
+                    onChange={() => handleOptionChangeT('Aesthetically')}
+                    className='styled-checkbox checkbox peer absolute left-[23px] top-[13px] hidden bg-zinc-800'
+                    type='checkbox'
+                    id='a6'
+                    value='Services/ Software'
+                  />
+                  <label
+                    className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[#fff] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
+                    id='a6'
+                    htmlFor='a6'
+                  >
+                    Angry
+                  </label>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className=''>
-            <div className='font-bold pb-3 text-[#979797]'>C</div>
-
-            <div className='flex flex-wrap gap-2'>
-              <div className='relative'>
-                <input
-                  name='option'
-                  checked={selectedOptionsT.includes('Camping')}
-                  onChange={() => handleOptionChangeT('Camping')}
-                  className='styled-checkbox checkbox peer absolute left-[23px] top-[13px] hidden bg-zinc-800'
-                  type='checkbox'
-                  id='c1'
-                  value='Services/ Software'
-                />
-                <label
-                  className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[#fff] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
-                  id='c1'
-                  htmlFor='c1'
-                >
-                  Caring
-                </label>
+            <div className=''>
+              <div className='font-bold pb-3 text-[#979797]' id='B'>
+                B
               </div>
 
-              <div className='relative'>
-                <input
-                  name='option'
-                  checked={selectedOptionsT.includes('Cat Videos')}
-                  onChange={() => handleOptionChangeT('Cat Videos')}
-                  className='styled-checkbox checkbox peer absolute left-[23px] top-[13px] hidden bg-zinc-800'
-                  type='checkbox'
-                  id='c2'
-                  value='Services/ Software'
-                />
-                <label
-                  className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[#fff] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
-                  id='c2'
-                  htmlFor='c2'
-                >
-                  Carefree
-                </label>
-              </div>
+              <div className='flex flex-wrap gap-2'>
+                <div className='relative'>
+                  <input
+                    name='option'
+                    checked={selectedOptionsT.includes('Body Modification')}
+                    onChange={() => handleOptionChangeT('Body Modification')}
+                    className='styled-checkbox checkbox peer absolute left-[23px] top-[13px] hidden bg-zinc-800'
+                    type='checkbox'
+                    id='b1'
+                    value='Services/ Software'
+                  />
+                  <label
+                    className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[#fff] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
+                    id='b1'
+                    htmlFor='b1'
+                  >
+                    Boring
+                  </label>
+                </div>
 
-              <div className='relative'>
-                <input
-                  name='option'
-                  checked={selectedOptionsT.includes('Collectables')}
-                  onChange={() => handleOptionChangeT('Collectables')}
-                  className='styled-checkbox checkbox peer absolute left-[23px] top-[13px] hidden bg-zinc-800'
-                  type='checkbox'
-                  id='c3'
-                  value='Services/ Software'
-                />
-                <label
-                  className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[#fff] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
-                  id='c3'
-                  htmlFor='c3'
-                >
-                  Compassionate
-                </label>
-              </div>
-
-              <div className='relative'>
-                <input
-                  name='option'
-                  checked={selectedOptionsT.includes('Cosplaying')}
-                  onChange={() => handleOptionChangeT('Cosplaying')}
-                  className='styled-checkbox checkbox peer absolute left-[23px] top-[13px] hidden bg-zinc-800'
-                  type='checkbox'
-                  id='c4'
-                  value='Services/ Software'
-                />
-                <label
-                  className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[#fff] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
-                  id='c4'
-                  htmlFor='c4'
-                >
-                  Confident
-                </label>
-              </div>
-
-              <div className='relative'>
-                <input
-                  name='option'
-                  checked={selectedOptionsT.includes('Cute Plushies')}
-                  onChange={() => handleOptionChangeT('Cute Plushies')}
-                  className='styled-checkbox checkbox peer absolute left-[23px] top-[13px] hidden bg-zinc-800'
-                  type='checkbox'
-                  id='c5'
-                  value='Services/ Software'
-                />
-                <label
-                  className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[#fff] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
-                  id='c5'
-                  htmlFor='c5'
-                >
-                  Creative
-                </label>
-              </div>
-
-              <div className='relative'>
-                <input
-                  name='option'
-                  checked={selectedOptionsT.includes('Cute pots and plants')}
-                  onChange={() => handleOptionChangeT('Cute pots and plants')}
-                  className='styled-checkbox checkbox peer absolute left-[23px] top-[13px] hidden bg-zinc-800'
-                  type='checkbox'
-                  id='c6'
-                  value='c6'
-                />
-                <label
-                  className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[#fff] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
-                  id='c6'
-                  htmlFor='c6'
-                >
-                  Curious
-                </label>
+                <div className='relative'>
+                  <input
+                    name='option'
+                    checked={selectedOptionsT.includes('Book Clubs')}
+                    onChange={() => handleOptionChangeT('Book Clubs')}
+                    className='styled-checkbox checkbox peer absolute left-[23px] top-[13px] hidden bg-zinc-800'
+                    type='checkbox'
+                    id='b2'
+                    value='Services/ Software'
+                  />
+                  <label
+                    className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[#fff] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
+                    id='b2'
+                    htmlFor='b2'
+                  >
+                    Brave
+                  </label>
+                </div>
               </div>
             </div>
-          </div>
-          {/* SCROLL BAR */}
-          {/* <div className='absolute flex flex-col items-start justify-between w-3 h-auto inset-2 '>
+
+            <div className=''>
+              <div className='font-bold pb-3 text-[#979797]' id='C'>
+                C
+              </div>
+
+              <div className='flex flex-wrap gap-2'>
+                <div className='relative'>
+                  <input
+                    name='option'
+                    checked={selectedOptionsT.includes('Camping')}
+                    onChange={() => handleOptionChangeT('Camping')}
+                    className='styled-checkbox checkbox peer absolute left-[23px] top-[13px] hidden bg-zinc-800'
+                    type='checkbox'
+                    id='c1'
+                    value='Services/ Software'
+                  />
+                  <label
+                    className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[#fff] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
+                    id='c1'
+                    htmlFor='c1'
+                  >
+                    Caring
+                  </label>
+                </div>
+
+                <div className='relative'>
+                  <input
+                    name='option'
+                    checked={selectedOptionsT.includes('Cat Videos')}
+                    onChange={() => handleOptionChangeT('Cat Videos')}
+                    className='styled-checkbox checkbox peer absolute left-[23px] top-[13px] hidden bg-zinc-800'
+                    type='checkbox'
+                    id='c2'
+                    value='Services/ Software'
+                  />
+                  <label
+                    className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[#fff] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
+                    id='c2'
+                    htmlFor='c2'
+                  >
+                    Carefree
+                  </label>
+                </div>
+
+                <div className='relative'>
+                  <input
+                    name='option'
+                    checked={selectedOptionsT.includes('Collectables')}
+                    onChange={() => handleOptionChangeT('Collectables')}
+                    className='styled-checkbox checkbox peer absolute left-[23px] top-[13px] hidden bg-zinc-800'
+                    type='checkbox'
+                    id='c3'
+                    value='Services/ Software'
+                  />
+                  <label
+                    className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[#fff] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
+                    id='c3'
+                    htmlFor='c3'
+                  >
+                    Compassionate
+                  </label>
+                </div>
+
+                <div className='relative'>
+                  <input
+                    name='option'
+                    checked={selectedOptionsT.includes('Cosplaying')}
+                    onChange={() => handleOptionChangeT('Cosplaying')}
+                    className='styled-checkbox checkbox peer absolute left-[23px] top-[13px] hidden bg-zinc-800'
+                    type='checkbox'
+                    id='c4'
+                    value='Services/ Software'
+                  />
+                  <label
+                    className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[#fff] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
+                    id='c4'
+                    htmlFor='c4'
+                  >
+                    Confident
+                  </label>
+                </div>
+
+                <div className='relative'>
+                  <input
+                    name='option'
+                    checked={selectedOptionsT.includes('Cute Plushies')}
+                    onChange={() => handleOptionChangeT('Cute Plushies')}
+                    className='styled-checkbox checkbox peer absolute left-[23px] top-[13px] hidden bg-zinc-800'
+                    type='checkbox'
+                    id='c5'
+                    value='Services/ Software'
+                  />
+                  <label
+                    className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[#fff] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
+                    id='c5'
+                    htmlFor='c5'
+                  >
+                    Creative
+                  </label>
+                </div>
+
+                <div className='relative'>
+                  <input
+                    name='option'
+                    checked={selectedOptionsT.includes('Cute pots and plants')}
+                    onChange={() => handleOptionChangeT('Cute pots and plants')}
+                    className='styled-checkbox checkbox peer absolute left-[23px] top-[13px] hidden bg-zinc-800'
+                    type='checkbox'
+                    id='c6'
+                    value='c6'
+                  />
+                  <label
+                    className='mb-4 ml-3 inline-block h-10 w-max cursor-pointer rounded-3xl bg-zinc-800 px-3 py-2 pl-3 text-base text-[#fff] transition peer-checked:bg-[#5848BC] peer-checked:text-[#f4f4f4]'
+                    id='c6'
+                    htmlFor='c6'
+                  >
+                    Curious
+                  </label>
+                </div>
+              </div>
+            </div>
+            {/* SCROLL BAR */}
+            {/* <div className='absolute flex flex-col items-start justify-between w-3 h-auto inset-2 '>
         {alphabet.map((alphabets)=>{
           return(
             <div className='self-stretch text-[#979797] align-center font-[11px] font-semibold leading-4 tracking-wide uppercase'>{alphabets.name}</div>
@@ -659,23 +699,24 @@ const PersonalityTraitsSection = () => {
           
           
         </div>  */}
-        </div>
+          </div>
 
-        <div className='relative mt-2'></div>
+          <div className='relative mt-2'></div>
 
-        <div className='flex flex-row gap-3 self-stretch px-8 pb-8 pt-4'>
-          <button
-            onClick={clearSelection}
-            className='font-bold flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-white/[0.32] px-5 py-[13px]'
-          >
-            Cancel
-          </button>
-          <button
-            onClick={handleCloseTraits}
-            className='font-bold flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-[#5848BC] bg-[#5848BC] px-5 py-[13px]'
-          >
-            Save
-          </button>
+          <div className='flex flex-row gap-3 self-stretch px-8 pb-8 pt-4'>
+            <button
+              onClick={clearSelection}
+              className='font-bold flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-white/[0.32] px-5 py-[13px]'
+            >
+              Cancel
+            </button>
+            <button
+              onClick={handleCloseTraits}
+              className='font-bold flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-[#5848BC] bg-[#5848BC] px-5 py-[13px]'
+            >
+              Save
+            </button>
+          </div>
         </div>
       </Modal>
     </>

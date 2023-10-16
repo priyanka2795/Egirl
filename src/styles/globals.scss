@@ -594,3 +594,12 @@ span.audio-recorder-timer {
 .signin-page{
   background: url('../../public/assets/sign-in-bg-img.png') 100% no-repeat;
 }
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;  
+  scrollbar-width: none;  
+}

@@ -18,7 +18,8 @@ module.exports = {
       ...defaultTheme.screens
     },
     fontWeight: {
-      semibold: '500'
+      semibold: '500',
+      black: '700'
     },
     extend: {
       screens: {
