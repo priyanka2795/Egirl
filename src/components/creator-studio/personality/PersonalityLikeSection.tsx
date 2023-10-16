@@ -11,7 +11,7 @@ const PersonalityLikeSection = () => {
   const [selectChar, setSelectChar] = useState<string>('A');
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
-    setOpen(false), setSelectedTab(true);
+    setOpen(false), setSelectedTab(true), setSelectChar('A');
   };
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
   const [showHoverModal, setShowHoverModal] = useState<boolean>(false);

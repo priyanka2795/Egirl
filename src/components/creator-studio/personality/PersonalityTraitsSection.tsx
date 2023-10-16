@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Modal } from '@components/modal/modal';
+import { Modal, modal } from '@components/modal/modal';
 import { useRouter } from 'next/router';
 import Isymbol from '../svg/Isymbol';
 import AdvanceArrow from '../svg/AdvanceArrow';
@@ -19,7 +19,7 @@ const PersonalityTraitsSection = () => {
 
   const handleOpenTraits = () => setOpenT(true);
   const handleCloseTraits = () => {
-    setOpenT(false), setSelectedTab(true);
+    setOpenT(false), setSelectedTab(true), setSelectChar('A');
   };
 
   const handleOptionChangeT = (optionT: string) => {
