@@ -33,7 +33,6 @@ export default function SignIn({ SetFormStep }: SignIn) {
   const onEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
-  console.log(email, 'email');
 
   const onPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
@@ -71,9 +70,7 @@ export default function SignIn({ SetFormStep }: SignIn) {
 
   const onChange = (value: string) => {
     setOtp(value);
-    console.log(value.length, 'value ');
   };
-  console.log(otp.length, 'otp otp');
 
   return (
     <>
