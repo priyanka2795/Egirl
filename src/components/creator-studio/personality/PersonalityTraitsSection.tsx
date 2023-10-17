@@ -190,7 +190,7 @@ const PersonalityTraitsSection = () => {
                   </div>
 
                   <div className='flex flex-col items-start w-1/2 gap-1 '>
-                    <div className='flex items-center self-stretch gap-1'>
+                    <div className='flex items-center self-stretch gap-1'> 
                       <b className='text-base font-bold leading-5'>Angry</b>
                       <div className='h-[14px] w-[14px]'>
                         <Isymbol />

@@ -57,7 +57,7 @@ function SetUpYourCharacter({
   console.log(TourSteps[0].id, 'TourSteps');
   return (
     <div className='mt-5 rounded-[14px] bg-[#121212] p-6'>
-      <div className='mb-6 flex items-center justify-between'>
+      <div className='flex items-center justify-between mb-6'>
         <h3 className='font-bold text-[22px] leading-[22px]'>
           Setup your character
         </h3>
@@ -72,8 +72,8 @@ function SetUpYourCharacter({
               <Image src={bookUser} alt={''} />
               Guided Character Creator
             </button>
-            {/* <button onClick={startTour}>Start Guided Tour</button> */}
-            <div className='absolute right-0 top-0'>
+            {/* {/ <button onClick={startTour}>Start Guided Tour</button> /} */}
+            <div className='absolute top-0 right-0'>
               {IsOpen && (
                 <>
                   {GuideStep === tourCount ? (

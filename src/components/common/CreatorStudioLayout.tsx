@@ -100,15 +100,15 @@ const CreatorStudioLayout = ({ children }: any) => {
               </>
             )}
           </div>
-          {/* Guide  */}
-          {/* <div>
+          {/* Guide 
+           <div>
             <HoverModal
               isOpen={isTourOpen}
               onClose={closeTour}
               tourSteps={tourSteps}
             />
-          </div> */}
-          {/* Guide End  */}
+          </div> 
+          Guide End */}
           {/* <div
             style={{
               borderRadius: '4px',
