@@ -126,6 +126,7 @@ const PersonalityLikeSection = () => {
     }
   };
   //========== alphabetic scroll functionality =========
+
   return (
     <>
       <div className='flex h-auto w-full max-w-full flex-col rounded-lg bg-[#121212]'>
@@ -254,7 +255,7 @@ const PersonalityLikeSection = () => {
         </div>
         <div className='content-holder ' id='content-holder'>
           <div className='scrollbar-hide relative h-[270px] overflow-auto px-6 pt-4'>
-            <ul className='alpha-nav scrollbar-hide fixed  z-[30] h-[270px] -translate-y-3 translate-x-[460px] transform overflow-auto leading-none'>
+            <ul className='alpha-nav scrollbar-hide fixed  z-[30] h-[270px] -translate-y-3 translate-x-[460px] transform overflow-auto leading-4'>
               {Array.from(Array(26), (e, i) => String.fromCharCode(65 + i)).map(
                 (char) => (
                   <li key={char}>
