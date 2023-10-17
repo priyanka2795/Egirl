@@ -15,6 +15,7 @@ interface SetUpYourCharacter {
   tourCount: number;
   setTourCount: React.Dispatch<React.SetStateAction<number>>;
   SetIsTourOpen: React.Dispatch<React.SetStateAction<number>>;
+  setProfileInfoPage: any;
 }
 function SetUpYourCharacter({
   IsOpen,
@@ -22,7 +23,8 @@ function SetUpYourCharacter({
   TourSteps,
   tourCount,
   SetIsTourOpen,
-  setTourCount
+  setTourCount,
+  setProfileInfoPage
 }: SetUpYourCharacter) {
   {
     /*
@@ -68,6 +70,7 @@ function SetUpYourCharacter({
               className={`flex items-center gap-2 rounded-xl bg-[#5848BC] px-4 py-2.5 ${
                 GuideStep === tourCount ? 'relative z-[2]' : ''
               }`}
+              onClick={() => {setProfileInfoPage(true)}}
             >
               <Image src={bookUser} alt={''} />
               Guided Character Creator

@@ -21,8 +21,11 @@ const CreatorStudioNavbar = ({
 }: CreatorStudioNavbarProp) => {
   const [notificationModal, setNotificationModal] = useState<boolean>(false);
   const [balanceModal, setBalanceModal] = useState<boolean>(false);
-  const sidebarVariableCreatorStudio = sessionStorage.getItem('sideBarCollapseCS');
-  const [sideBarCS, setSidebarCS] = useState(sidebarVariableCreatorStudio ? sidebarVariableCreatorStudio : '');
+  const sidebarVariableCreatorStudio =
+    sessionStorage.getItem('sideBarCollapseCS');
+  const [sideBarCS, setSidebarCS] = useState(
+    sidebarVariableCreatorStudio ? sidebarVariableCreatorStudio : ''
+  );
 
   const handleSidebarWidth = () => {
     if (sideBarCS) {

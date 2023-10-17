@@ -6,7 +6,11 @@ import StyleGeneratorNext from '@components/creator-studio/style-generator/Style
 import HoverModal from '@components/list/HoverModal';
 import React, { useState } from 'react';
 
-const CreatorStudioLayout = ({ children }: any) => {
+interface CreatorStudioLayoutProps {
+  setProfileInfoPage: any;
+}
+
+const CreatorStudioLayout = ({ children, setProfileInfoPage }: any) => {
   const [shrinkSideBar, setShrinkSideBar] = useState<boolean>(false);
   const [styleGenNext, setStyleGenNext] = useState<boolean>(false);
 
@@ -95,6 +99,7 @@ const CreatorStudioLayout = ({ children }: any) => {
                     SetIsTourOpen={setIsTourOpen}
                     tourCount={tourCount}
                     setTourCount={setTourCount}
+                    setProfileInfoPage={setProfileInfoPage}
                   />
                 )}
               </>
