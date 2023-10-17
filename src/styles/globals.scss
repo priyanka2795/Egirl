@@ -665,3 +665,13 @@ margin-top: 20px;
 .user-follow-slider .slick-slider .slick-dots .slick-active{
 background-color: #FFFFFF7A;
 }
+
+// book-mark-modal Css
+
+.book-mark-modal .slick-prev{
+left: 14px;
+z-index: 9999;
+}
+.book-mark-modal  .slick-next{
+right: 10px;
+}

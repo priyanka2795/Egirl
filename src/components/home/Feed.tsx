@@ -17,7 +17,7 @@ export default function Feed() {
   return (
     <div className='max-w-[600px] flex-grow bg-main-background lg:min-w-[600px]'>
       {/* 108px topbar with margins */}
-      <div
+      {/* <div
         className={`sticky z-50  ${
           sticky && animate ? 'top-0' : '-top-[108px]'
         } h-[108px] max-w-[600px] bg-main-background transition-all duration-[300ms] ease-in lg:min-w-[600px]`}
@@ -30,7 +30,7 @@ export default function Feed() {
                 showForYou
                   ? 'border-b-[#8C7DD0] text-[#8C7DD0]'
                   : 'border-main-bar text-[#979797]'
-              } flex h-full w-1/2 cursor-pointer items-center justify-center rounded-l-[14px] border-b text-[15px] font-light leading-5 transition duration-100`}
+              } font-light flex h-full w-1/2 cursor-pointer items-center justify-center rounded-l-[14px] border-b text-[15px] leading-5 transition duration-100`}
             >
               For you
             </div>
@@ -40,13 +40,13 @@ export default function Feed() {
                 !showForYou
                   ? 'border-b-[#8C7DD0] text-[#8C7DD0]'
                   : 'border-main-bar text-[#979797]'
-              } flex h-full w-1/2 cursor-pointer items-center justify-center border-b text-[15px] font-light leading-5 transition duration-100`}
+              } font-light flex h-full w-1/2 cursor-pointer items-center justify-center border-b text-[15px] leading-5 transition duration-100`}
             >
               Subscriptions
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
       <div className='px-[20px]'>
         {/* {Array(100)
           .fill(0)
@@ -66,21 +66,21 @@ export default function Feed() {
           location='Warsaw, Old Town'
           hours='6h'
         />
-        
-        <div className="mt-5">
-        <Post
-          imageUrl='https://media.istockphoto.com/id/638756792/photo/beautiful-woman-posing-against-dark-background.jpg?s=612x612&w=0&k=20&c=AanwEr0pmrS-zhkVJEgAwxHKwnx14ywNh5dmzwbpyLk='
-          altText='Character Profile Picture'
-          name='Mika-chan'
-          username='@mikachan'
-          postText='Hello dears, my mood today is 🤗'
-          commentsNumber='98'
-          heartsNumber='6.2k'
-          viewsNumber='1.8k'
-          tags={['#girl', '#mood', '#relaxtime']}
-          location='Warsaw, Old Town'
-          hours='6h'
-        />
+
+        <div className='mt-5'>
+          <Post
+            imageUrl='https://media.istockphoto.com/id/638756792/photo/beautiful-woman-posing-against-dark-background.jpg?s=612x612&w=0&k=20&c=AanwEr0pmrS-zhkVJEgAwxHKwnx14ywNh5dmzwbpyLk='
+            altText='Character Profile Picture'
+            name='Mika-chan'
+            username='@mikachan'
+            postText='Hello dears, my mood today is 🤗'
+            commentsNumber='98'
+            heartsNumber='6.2k'
+            viewsNumber='1.8k'
+            tags={['#girl', '#mood', '#relaxtime']}
+            location='Warsaw, Old Town'
+            hours='6h'
+          />
         </div>
       </div>
     </div>
