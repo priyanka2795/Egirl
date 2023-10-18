@@ -1,17 +1,18 @@
-import LearningCenterMain from '@components/learning-center/LearningCenterMain';
+import React from 'react';
 import LearningCenterNavbar from '@components/learning-center/LearningCenterNavbar';
 import LearningCenterSidebar from '@components/learning-center/LearningCenterSidebar';
-import React from 'react';
-
-const LearningCenterLayout = () => {
+import LearningCenter from '@components/learning-center';
+import LearningCenterFooter from '@components/learning-center/LearningCenterFooter';
+const LearningCenterLayout = ({ children }: any) => {
   return (
     <>
-      <main className='mx-auto h-screen min-h-screen max-w-[1440px] overflow-hidden px-20'>
+      <main className='mx-auto h-screen min-h-screen max-w-[1440px] overflow-hidden '>
         <LearningCenterNavbar />
-        <div className='flex gap-10'>
+        <div className='flex '>
           <LearningCenterSidebar />
-          <div className='main-content-scroller h-[calc(100vh-100px)] overflow-y-auto overflow-x-hidden'>
-            <LearningCenterMain />
+          <div className='creator-studio-components main-content-scroller relative  mt-6 h-[calc(100vh-104px)] flex-grow overflow-y-auto overflow-x-hidden bg-main-background lg:min-w-[600px]'>
+            <>{children ? { children } : <LearningCenter />}</>
+            <LearningCenterFooter />
           </div>
         </div>
       </main>

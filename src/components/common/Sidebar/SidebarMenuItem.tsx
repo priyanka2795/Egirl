@@ -8,6 +8,7 @@ type SidebarMenuItemProps = {
   href?: string;
   sideBarMenuText?: string;
   StyleClasses?: string;
+
   Icon: (props: { svgClasses?: string; strokeClasses?: string }) => JSX.Element;
   IconActive: (props: {
     svgClasses?: string;
