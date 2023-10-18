@@ -6,6 +6,7 @@ import PostInput from '@components/list/PostInput';
 import CreateCharacter from '@components/list/CreateCharacter';
 import SetUpYourCharacter from '@components/list/SetUpYourCharacter';
 import AllCharactersCards from '@components/list/AllCharactersCards';
+import EditProfileModal from '@components/list/EditProfileModal';
 
 interface CreatorStudio {
   IsOpen: any;
@@ -25,7 +26,10 @@ const CreatorStudio = ({
   setTourCount,
   setProfileInfoPage
 }: CreatorStudio) => {
+
   const [UserGuide, setUserGuide] = useState(true);
+  const [editProfileModal, setEditProfileModal] = useState(false);
+
   return (
     <>
       {UserGuide ? (
@@ -44,6 +48,7 @@ const CreatorStudio = ({
             }
             followText={'Follow'}
             component={'CreatorStudioProfile'}
+            setEditProfileModal={setEditProfileModal}
           />
           <div>
             <SetUpYourCharacter
@@ -67,6 +72,9 @@ const CreatorStudio = ({
           </div>
         </div>
       )}
+      {
+        editProfileModal && <EditProfileModal closeState={setEditProfileModal} />
+      }
     </>
   );
 };
