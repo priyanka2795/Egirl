@@ -12,11 +12,19 @@ interface SetUpYourCharacter {
   IsOpen: any;
   OnClose: any;
   TourSteps: any;
+  tourCount: number;
+  setTourCount: React.Dispatch<React.SetStateAction<number>>;
+  SetIsTourOpen: React.Dispatch<React.SetStateAction<number>>;
+  setProfileInfoPage: any;
 }
 function SetUpYourCharacter({
   IsOpen,
   OnClose,
-  TourSteps
+  TourSteps,
+  tourCount,
+  SetIsTourOpen,
+  setTourCount,
+  setProfileInfoPage
 }: SetUpYourCharacter) {
   {
     /*
@@ -48,54 +56,45 @@ function SetUpYourCharacter({
   }
 
   const GuideStep = TourSteps[0].id;
+  console.log(TourSteps[0].id, 'TourSteps');
   return (
     <div className='mt-5 rounded-[14px] bg-[#121212] p-6'>
-      <div className='mb-6 flex items-center justify-between'>
+      <div className='flex items-center justify-between mb-6'>
         <h3 className='font-bold text-[22px] leading-[22px]'>
           Setup your character
         </h3>
 
         <div className='font-bold group relative flex cursor-pointer items-center justify-center  rounded-[14px] text-[16px] leading-[22px] text-white'>
-          {/* <div
-            style={{
-              borderRadius: '4px',
-              position: 'absolute',
-              backgroundColor: 'transparent',
-              height: '115px',
-              left: '830px',
-              opacity: 1,
-              pointerEvents: 'auto',
-              top: '48px',
-              transition: 'opacity 0.2s ease 0s',
-              width: '115px',
-              zIndex: 9999,
-              border: '1px solid red'
-            }}
-          ></div> */}
-          <button className='flex items-center gap-2 rounded-xl bg-[#5848BC] px-4 py-2.5'>
-            <Image src={bookUser} alt={''} />
-            Guided Character Creator
-          </button>
-          {/* <button onClick={startTour}>Start Guided Tour</button> */}
-          {IsOpen && (
-            <>
-              {GuideStep === 0 ? (
-                <HoverModal
-                  // name={'Set up profile'}
-                  // text={
-                  //   "Edit your character's profile and personalize to find more followers."
-                  // }
-                  // step={'Step 1/5'}
-
-                  isOpen={IsOpen}
-                  onClose={OnClose}
-                  tourSteps={TourSteps}
-                />
-              ) : (
-                ''
+          <div className='relative'>
+            <button
+              className={`flex items-center gap-2 rounded-xl bg-[#5848BC] px-4 py-2.5 ${
+                GuideStep === tourCount ? 'relative z-[2]' : ''
+              }`}
+              onClick={() => {setProfileInfoPage(true)}}
+            >
+              <Image src={bookUser} alt={''} />
+              Guided Character Creator
+            </button>
+            {/* {/ <button onClick={startTour}>Start Guided Tour</button> /} */}
+            <div className='absolute top-0 right-0'>
+              {IsOpen && (
+                <>
+                  {GuideStep === tourCount ? (
+                    <HoverModal
+                      isOpen={IsOpen}
+                      onClose={OnClose}
+                      tourSteps={TourSteps}
+                      tourCount={tourCount}
+                      SetIsTourOpen={SetIsTourOpen}
+                      setTourCount={setTourCount}
+                    />
+                  ) : (
+                    ''
+                  )}
+                </>
               )}
-            </>
-          )}
+            </div>
+          </div>
         </div>
       </div>
 

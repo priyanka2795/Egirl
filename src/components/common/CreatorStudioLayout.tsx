@@ -6,12 +6,17 @@ import StyleGeneratorNext from '@components/creator-studio/style-generator/Style
 import HoverModal from '@components/list/HoverModal';
 import React, { useState } from 'react';
 
-const CreatorStudioLayout = ({ children }: any) => {
-  const [shrinkSideBar, setShrinkSideBar] = useState(false);
-  const [styleGenNext, setStyleGenNext] = useState(false);
+interface CreatorStudioLayoutProps {
+  setProfileInfoPage: any;
+}
+
+const CreatorStudioLayout = ({ children, setProfileInfoPage }: any) => {
+  const [shrinkSideBar, setShrinkSideBar] = useState<boolean>(false);
+  const [styleGenNext, setStyleGenNext] = useState<boolean>(false);
 
   // guided tour
-  const [isTourOpen, setIsTourOpen] = useState(false);
+  const [isTourOpen, setIsTourOpen] = useState<boolean>(false);
+  const [tourCount, setTourCount] = useState<number>(-1);
 
   const startTour = () => {
     setIsTourOpen(true);
@@ -73,6 +78,8 @@ const CreatorStudioLayout = ({ children }: any) => {
             IsOpen={isTourOpen}
             OnClose={closeTour}
             TourSteps={tourSteps}
+            tourCount={tourCount}
+            setTourCount={setTourCount}
           />
           <div className='creator-studio-components main-content-scroller relative mt-8 h-[calc(100vh-104px)] flex-grow overflow-y-auto overflow-x-hidden bg-main-background pb-5 pr-4 lg:min-w-[600px]'>
             {styleGenNext ? (
@@ -90,20 +97,23 @@ const CreatorStudioLayout = ({ children }: any) => {
                     OnClose={closeTour}
                     TourSteps={tourSteps}
                     SetIsTourOpen={setIsTourOpen}
+                    tourCount={tourCount}
+                    setTourCount={setTourCount}
+                    setProfileInfoPage={setProfileInfoPage}
                   />
                 )}
               </>
             )}
           </div>
-          {/* Guide  */}
-          {/* <div>
+          {/* Guide 
+           <div>
             <HoverModal
               isOpen={isTourOpen}
               onClose={closeTour}
               tourSteps={tourSteps}
             />
-          </div> */}
-          {/* Guide End  */}
+          </div> 
+          Guide End */}
           {/* <div
             style={{
               borderRadius: '4px',

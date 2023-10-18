@@ -15,21 +15,25 @@ import vector2 from '../../../public/assets/Vector 2.png';
 import CheckedIcon from './svg/checkedIcon.svg';
 import CrossIcon from './svg/xMark.svg';
 import Link from 'next/link';
+import SignIn from './signin';
+import SigninTemplate from './signinTemplate';
+import WelcomeStepsModal from './welcomeSteps';
+import SigninLoginOpt from './SigninLoginOpt';
 
-const login = [
-  {
-    icon: googleIcon,
-    text: 'Login with Google'
-  },
-  {
-    icon: discordIcon,
-    text: 'Login with Discord'
-  },
-  {
-    icon: facebookIcon,
-    text: 'Login with Facebook'
-  }
-];
+// const login = [
+//   {
+//     icon: googleIcon,
+//     text: 'Login with Google'
+//   },
+//   {
+//     icon: discordIcon,
+//     text: 'Login with Discord'
+//   },
+//   {
+//     icon: facebookIcon,
+//     text: 'Login with Facebook'
+//   }
+// ];
 
 const initialValues = {
   username: '',
@@ -38,12 +42,6 @@ const initialValues = {
   confirmpassword: '',
   phone: '',
   address: ''
-};
-
-const onSubmit = (values: any, onSubmitProps: any) => {
-  console.log('Form data', values);
-  onSubmitProps.setSubmitting(false);
-  onSubmitProps.resetForm();
 };
 
 const validationSchema = Yup.object({
@@ -62,7 +60,7 @@ const validationSchema = Yup.object({
     )
 });
 
-export default function SignIn() {
+export default function SignUp() {
   const router = useRouter();
   const supabase = useSupabaseClient<Database>();
   const [email, setEmail] = useState<string>('');
@@ -70,6 +68,8 @@ export default function SignIn() {
   const [isMinLength, setIsMinLength] = useState<boolean>(false);
   const [hasNumberOrSpecialChar, setHasNumberOrSpecialChar] =
     useState<boolean>(false);
+
+  const [welcomeStepsModal, setWelcomeStepsModal] = useState<boolean>(false);
 
   const [errorMsg, setErrorMsg] = useState('');
 
@@ -119,28 +119,30 @@ export default function SignIn() {
     console.log('results of logging in: ', data, error);
   };
 
+  const onSubmit = (values: any, onSubmitProps: any) => {
+    console.log('Form data', values);
+    onSubmitProps.setSubmitting(false);
+    onSubmitProps.resetForm();
+    setWelcomeStepsModal(true);
+  };
+
   return (
-    <div className='mx-auto mx-auto flex  min-h-screen w-full max-w-[1440px] flex-col justify-center'>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={onSubmit}
-      >
-        <Form>
-          <div
-            className={`signin-page mx-8 my-[35px] flex justify-between !bg-top`}
-          >
-            <div className='pl-[38px] pt-6'>
-              <Image className='' src={logo} alt={''} />
-            </div>
-
-            <div className='m-[54px] flex h-[inherit] max-h-[692px] w-[500px] flex-col rounded-[40px] bg-[#070707] '>
+    <>
+      <SigninTemplate>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={onSubmit}
+        >
+          <Form>
+            <div className='flex h-[inherit] max-h-[692px] w-[500px] flex-col rounded-[40px] bg-[#070707] '>
               <div className='flex max-h-[600px] flex-col gap-8 overflow-y-auto px-10 pt-10'>
-                <div className='font-bold text-[32px] leading-10 text-white'>
-                  Sign up
-                </div>
+                {/* <div className='font-bold text-[32px] leading-10 text-white'>
+                  Sign in
+                </div> */}
+                <SigninLoginOpt heading={'Sign up'} pageName={'signin'} />
 
-                <div className='flex flex-col gap-3'>
+                {/* <div className='flex flex-col gap-3'>
                   <div className='flex flex-col gap-2'>
                     {login.map((item, index) => {
                       return (
@@ -160,12 +162,12 @@ export default function SignIn() {
                       New user?
                     </div>
                     <Link href='/auth/signin'>
-                      <a className='font-normal text-[15px] leading-5 text-[#5848BC]'>
+                      <a className='font-normal cursor-pointer text-[15px] leading-5 text-[#5848BC]'>
                         Sign up
                       </a>
                     </Link>
                   </div>
-                </div>
+                </div> */}
 
                 <div className='flex flex-col gap-4'>
                   <div className='flex gap-4'>
@@ -175,8 +177,7 @@ export default function SignIn() {
                     </div>
                     <Image className='object-contain' src={vector2} alt={''} />
                   </div>
-
-                  <div className='flex flex-col gap-[6px]'>
+                  <div className='input-username-error flex flex-col gap-[6px]'>
                     <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
                       Username
                     </div>
@@ -184,17 +185,17 @@ export default function SignIn() {
                       type='text'
                       id='username'
                       name='username'
-                      className='font-normal flex rounded-[14px] border-none bg-transparent bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
+                      className='font-normal input-error-border flex rounded-[14px] border-none bg-transparent bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
                       placeholder='@Adamjohns'
                     />
                     <ErrorMessage
-                      className='font-normal text-[14px] leading-[18px] text-[#FF5336]'
+                      className='font-normal Input-error text-[14px] leading-[18px] text-[#FF5336]'
                       name='username'
                       component='div'
                     />
                   </div>
 
-                  <div className='flex flex-col gap-[6px]'>
+                  <div className='input-email-error flex flex-col gap-[6px]'>
                     <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
                       Email address
                     </div>
@@ -202,17 +203,17 @@ export default function SignIn() {
                       type='email'
                       id='email'
                       name='email'
-                      className='font-normal flex rounded-[14px] border-none bg-transparent bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
+                      className='font-normal input-error-border flex rounded-[14px] border-none bg-transparent bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
                       placeholder='example@gmail.com'
                     />
                     <ErrorMessage
-                      className='font-normal text-[14px] leading-[18px] text-[#FF5336]'
+                      className='font-normal Input-error text-[14px] leading-[18px] text-[#FF5336] '
                       name='email'
                       component='div'
                     />
                   </div>
 
-                  <div className='flex flex-col gap-[6px]'>
+                  <div className='input-verifyemail-error flex flex-col gap-[6px]'>
                     <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
                       Verify Email address
                     </div>
@@ -220,11 +221,11 @@ export default function SignIn() {
                       type='email'
                       id='verifyemail'
                       name='verifyemail'
-                      className='font-normal flex rounded-[14px] border-none bg-transparent bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
+                      className='font-normal input-error-border flex rounded-[14px] border-none bg-transparent bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
                       placeholder='example@gmail.com'
                     />
                     <ErrorMessage
-                      className='font-normal text-[14px] leading-[18px] text-[#FF5336]'
+                      className='font-normal Input-error text-[14px] leading-[18px] text-[#FF5336]'
                       name='verifyemail'
                       component='div'
                     />
@@ -245,8 +246,12 @@ export default function SignIn() {
                         //   console.log(password, 'dfdgdg');
                         handlePasswordChange(e);
                       }}
-                      className='font-normal flex rounded-[14px] border-none bg-transparent bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] 
-                      placeholder:text-[#979797] focus:ring-0'
+                      className={`font-normal flex rounded-[14px] bg-transparent bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] 
+                      placeholder:text-[#979797]  focus:ring-0 ${
+                        isMinLength && hasNumberOrSpecialChar
+                          ? 'focus:border-transparent'
+                          : 'border border-[#FF5336] focus:border-[#FF5336]'
+                      }`}
                     />
                     {/* <input
                       type='password'
@@ -301,14 +306,21 @@ export default function SignIn() {
                 <button
                   type='submit'
                   className='font-bold flex w-full items-center justify-center rounded-[16px] bg-[#5848BC] px-6 py-4 text-[18px] leading-6 text-white'
+                  onClick={() => setWelcomeStepsModal(true)}
                 >
                   Continue
                 </button>
               </div>
             </div>
-          </div>
-        </Form>
-      </Formik>
-    </div>
+          </Form>
+        </Formik>
+      </SigninTemplate>
+      {welcomeStepsModal && (
+        <WelcomeStepsModal
+          welcomeStepsModal={welcomeStepsModal}
+          setWelcomeStepsModal={setWelcomeStepsModal}
+        />
+      )}
+    </>
   );
 }

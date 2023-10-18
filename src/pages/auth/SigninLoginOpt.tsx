@@ -19,10 +19,17 @@ const login = [
     text: 'Login with Facebook'
   }
 ];
-const SigninLoginOpt = () => {
+
+interface SignInLoginOptProp {
+  heading: string;
+  pageName: string;
+}
+const SigninLoginOpt = ({ heading, pageName }: SignInLoginOptProp) => {
   return (
     <>
-      <div className='font-bold text-[32px] leading-10 text-white'>Login</div>
+      <div className='font-bold text-[32px] leading-10 text-white'>
+        {heading}
+      </div>
       <div className='flex flex-col gap-3'>
         <div className='flex flex-col gap-2'>
           {login.map((item, index) => {
@@ -42,9 +49,9 @@ const SigninLoginOpt = () => {
           <div className='font-normal text-[15px] leading-5 text-white'>
             New user?
           </div>
-          <Link href='/auth/signup'>
-            <a className='font-normal text-[15px] leading-5 text-[#5848BC]'>
-              Sign up
+          <Link href={`/auth/${pageName}`}>
+            <a className='font-normal cursor-pointer text-[15px] leading-5 text-[#5848BC]'>
+              {pageName === 'signin' ? 'Sign in' : 'Sign up'}
             </a>
           </Link>
         </div>

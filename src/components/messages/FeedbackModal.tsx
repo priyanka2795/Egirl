@@ -39,7 +39,7 @@ const FeedbackModal = ( {showFeedText, setShowFeedText, closeModal, setFeedbackS
     <div className='flex flex-col gap-6 px-8 py-6'>
         <div className='flex flex-col gap-3'>
             <div className='text-[#979797] text-[15px] font-normal leading-5'>Share your thoughts to help us improve:</div>
-            <textarea className='flex h-[100px] pl-4 pr-3 py-3 rounded-[14px] bg-white/[0.05] text-[#FFFFFF] text-[15px] font-normal leading-6 border-none focus:ring focus:ring-transparent'>The response seemed broken to me, it didn’t make sense</textarea>
+            <textarea className='flex h-[100px] pl-4 pr-3 py-3 rounded-[14px] bg-white/[0.05] text-[#FFFFFF] text-[15px] font-normal leading-6 border-none focus:ring focus:ring-transparent resize-none placeholder:text-white' placeholder="The response seemed broken to me, it didn’t make sense"></textarea>
         </div>
         <button className='flex px-5 py-[13px] justify-center items-center rounded-[14px] bg-[#5848BC] text-[#FFFFFF] text-[16px] font-bold leading-[22px]' onClick={handleSendButton}>Send</button>
     </div>

@@ -1,177 +1,329 @@
-import { Modal } from '@components/modal/modal'
-import React from 'react'
+import { Modal } from '@components/modal/modal';
+import React, { useState } from 'react';
 import CloseIcon from '../../../public/assets/svgImages/close-icon.svg';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Image from 'next/image';
-import micaChanFullImg from '../../../public/assets/mica-chan-img-bookmark.png'
-import avatar from '../../../public/assets/avatar.png'
-import threeDotsIcon from '../../../public/assets/three-dots-icon.png'
-import crossIcon from '../../../public/assets/xmark.png'
-import orangeHeart from '../../../public/assets/orange-heart.png'
-import messageIcon from '../../../public/assets/message-square.png'
-import bookmark from '../../../public/assets/bookmark-filled.png'
-import shareIcon from '../../../public/assets/share-icon.png'
+import micaChanFullImg from '../../../public/assets/mica-chan-img-bookmark.png';
+import avatar from '../../../public/assets/avatar.png';
+import threeDotsIcon from '../../../public/assets/three-dots-icon.png';
+import horizontalDotsIcon from '../../../public/assets/dots-horizontal.png';
+import crossIcon from '../../../public/assets/xmark.png';
+import orangeHeart from '../../../public/assets/orange-heart.png';
+import messageIcon from '../../../public/assets/message-square.png';
+import bookmark from '../../../public/assets/bookmark-filled.png';
+import shareIcon from '../../../public/assets/share-icon.png';
 import Slider from 'react-slick';
-import goldenShoulderGirlAvatar from '../../../public/assets/golden-shoulder-girl-avatar.png'
-import threeDotsWhite from '../../../public/assets/three-dots-white.png'
-import pinkPhnGirlAvatar from '../../../public/assets/pink-phn-girl-avatar.png'
-import heartIcon from '../../../public/assets/unfilled-heart.png'
+import goldenShoulderGirlAvatar from '../../../public/assets/golden-shoulder-girl-avatar.png';
+import threeDotsWhite from '../../../public/assets/three-dots-white.png';
+import pinkPhnGirlAvatar from '../../../public/assets/pink-phn-girl-avatar.png';
+import heartIcon from '../../../public/assets/unfilled-heart.png';
 import smileyIcon from '../../../public/assets/face-smile-icon.png';
 import CloseIconSvg from '../../../public/assets/svgImages/close-icon.svg';
+import FlagRed from '../../../public/assets/flag.svg';
+import Pen from '../../../public/assets/pen.png';
+import DeleteIcon from '../../../public/assets/trash-blank-alt3.png';
 
-const settings = { 
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1
+const settings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1
 };
 
-interface BookMarkModalProp{
-    closeModalState: any
+interface BookMarkModalProp {
+  closeModalState: any;
 }
-const BookMarkModal = ({closeModalState}:BookMarkModalProp) => {
+const BookMarkModal = ({ closeModalState }: BookMarkModalProp) => {
+  const [reportToggle, setReportToggle] = useState(false);
+  const [editToggle, setEditToggle] = useState(false);
+  const [textAreaCount, setTextAreaTotal] = useState('');
+  const [textArea, setTextArea] = useState(true);
   return (
     <Modal
-    open={true}
-    modalClassName='flex flex-col h-max  w-[1248px] rounded-[20px] bg-[#121212] overflow-hidden mt-10 mb-10 ml-5 bookmark-img-text'
-    closeModal={() => closeModalState(false)}
-    modalOverlayStyle='!bg-black/80'
-  >    
-    <div className='flex '>
-        <div className='w-[800px] h-full relative '>
-            <Slider {...settings}>
-                <Image className='' src={micaChanFullImg} alt={''} />
-                <Image className='' src={micaChanFullImg} alt={''} />
-                <Image className='' src={micaChanFullImg} alt={''} />
-                <Image className='' src={micaChanFullImg} alt={''} />
-            </Slider>
+      open={true}
+      modalClassName='flex flex-col h-max  w-[1248px] rounded-[20px] bg-[#121212] overflow-hidden mt-10 mb-10 ml-5 bookmark-img-text'
+      closeModal={() => closeModalState(false)}
+      modalOverlayStyle='!bg-black/80'
+    >
+      <div className='flex '>
+        <div className='book-mark-modal relative h-full w-[800px]'>
+          <Slider {...settings}>
+            <Image className='' src={micaChanFullImg} alt={''} />
+            <Image className='' src={micaChanFullImg} alt={''} />
+            <Image className='' src={micaChanFullImg} alt={''} />
+            <Image className='' src={micaChanFullImg} alt={''} />
+          </Slider>
         </div>
 
         <div className='w-full'>
-            <div className='w-full flex flex-col gap-4 px-4 py-6 border-b border-white/[0.12]'>
-                <div className='flex justify-between w-full'>
-                    <div className='flex items-center gap-4'>
-                        <div className='w-[48px] h-[48px]'>
-                            <Image className='w-full h-full' src={avatar} alt={''} />
-                        </div>
-                        <div className='flex flex-col gap-1'>
-                            <div className='text-[#FFFFFF] text-[18px] leading-6 font-bold'>Mika-chan</div>
-                            <div className='text-[#979797] text-[15px] leading-5 font-normal'>@mikachan · 32m</div>
-                        </div>
-                    </div>
-                    <div className='flex gap-3'>
-                        <div className='w-[24px] h-[24px]'>
-                            <Image className='object-contain' src={threeDotsIcon} alt={''} />
-                        </div>
-                        <div className='w-[24px] h-[24px]' onClick={() => closeModalState(false)}>
-                            <CloseIconSvg/>
-                            {/* <Image className='object-contain' src={crossIcon} alt={''} /> */}
-                        </div>
-                    </div>
+          <div className='flex w-full flex-col gap-4 border-b border-white/[0.12] px-4 py-6'>
+            <div className='flex w-full justify-between'>
+              <div className='flex items-center gap-4'>
+                <div className='h-[48px] w-[48px]'>
+                  <Image className='h-full w-full' src={avatar} alt={''} />
                 </div>
-                <div className='flex flex-col gap-1 p-2 rounded-[12px]'>
-                    <div className='text-[#FFFFFF] text-[14px] leading-[18px] font-normal'>Hello dears, my mood today is 🤗</div>
-                    <div className='flex gap-[6px]'>
-                        <div className='text-[#8C7DD0] text-[14px] leading-[18px] font-normal'>#girl</div>
-                        <div className='text-[#8C7DD0] text-[14px] leading-[18px] font-normal'>#mood</div>
-                        <div className='text-[#8C7DD0] text-[14px] leading-[18px] font-normal'>#relaxtime</div>
-                    </div>
+                <div className='flex flex-col gap-1'>
+                  <div className='font-bold text-[18px] leading-6 text-[#FFFFFF]'>
+                    Mika-chan
+                  </div>
+                  <div className='font-normal text-[15px] leading-5 text-[#979797]'>
+                    @mikachan · 32m
+                  </div>
                 </div>
-                <div className='flex gap-3 p-2'>
-                    <div className='flex gap-[6px] px-3 py-2 rounded-[100px] bg-[#FF5336]/[0.16]'>
-                        <Image className='w-[20px] h-[20px] object-contain' src={orangeHeart} alt={''} />
-                        <div className='text-[#F44E32] text-[15px] font-normal'>2</div>
-                    </div>
-                    <div className='flex gap-[6px] px-3 py-2 rounded-[100px] bg-white/[0.08]'>
-                        <Image className='w-[20px] h-[20px] object-contain' src={messageIcon} alt={''} />
-                        <div className='text-[#FFFFFF] text-[15px] font-normal'>1</div>
-                    </div>
-                    <div className='flex gap-[6px] px-3 py-2 rounded-[100px] bg-white/[0.08]'>
-                        <Image className='w-[20px] h-[20px] object-contain' src={bookmark} alt={''} />
-                    </div>
-                    <div className='flex gap-[6px] px-3 py-2 rounded-[100px] bg-white/[0.08]'>
-                        <Image className='w-[20px] h-[20px] object-contain' src={shareIcon} alt={''} />
-                    </div>
+              </div>
+              <div className='flex gap-3'>
+                <div className='h-[24px] w-[24px]'>
+                  <Image
+                    className='object-contain'
+                    src={horizontalDotsIcon}
+                    alt={''}
+                  />
                 </div>
+                <div
+                  className='h-[24px] w-[24px]'
+                  onClick={() => closeModalState(false)}
+                >
+                  <CloseIconSvg />
+                  {/* <Image className='object-contain' src={crossIcon} alt={''} /> */}
+                </div>
+              </div>
             </div>
+            <div className='flex flex-col gap-1 rounded-[12px] p-2'>
+              <div className='font-normal text-[14px] leading-[18px] text-[#FFFFFF]'>
+                Hello dears, my mood today is 🤗
+              </div>
+              <div className='flex gap-[6px]'>
+                <div className='font-normal text-[14px] leading-[18px] text-[#8C7DD0]'>
+                  #girl
+                </div>
+                <div className='font-normal text-[14px] leading-[18px] text-[#8C7DD0]'>
+                  #mood
+                </div>
+                <div className='font-normal text-[14px] leading-[18px] text-[#8C7DD0]'>
+                  #relaxtime
+                </div>
+              </div>
+            </div>
+            <div className='flex gap-3 p-2'>
+              <div className='flex gap-[6px] rounded-[100px] bg-[#FF5336]/[0.16] px-3 py-2'>
+                <Image
+                  className='h-[20px] w-[20px] object-contain'
+                  src={orangeHeart}
+                  alt={''}
+                />
+                <div className='font-normal text-[15px] text-[#F44E32]'>2</div>
+              </div>
+              <div className='flex gap-[6px] rounded-[100px] bg-white/[0.08] px-3 py-2'>
+                <Image
+                  className='h-[20px] w-[20px] object-contain'
+                  src={messageIcon}
+                  alt={''}
+                />
+                <div className='font-normal text-[15px] text-[#FFFFFF]'>1</div>
+              </div>
+              <div className='flex gap-[6px] rounded-[100px] bg-white/[0.08] px-3 py-2'>
+                <Image
+                  className='h-[20px] w-[20px] object-contain'
+                  src={bookmark}
+                  alt={''}
+                />
+              </div>
+              <div className='flex gap-[6px] rounded-[100px] bg-white/[0.08] px-3 py-2'>
+                <Image
+                  className='h-[20px] w-[20px] object-contain'
+                  src={shareIcon}
+                  alt={''}
+                />
+              </div>
+            </div>
+          </div>
 
-            <div className='flex flex-col gap-3 p-6'>
-                <div className='flex flex-col gap-3'>
-                    <div className='flex flex-col gap-2 px-5 py-4 bg-[#1A1A1A] rounded-[14px]'>
-                        <div className='flex justify-between'>
-                            <div className='flex gap-3'>
-                                <div className='w-[40px] h-[40px]'>
-                                    <Image className='w-full h-full rounded-[100px]' src={goldenShoulderGirlAvatar} alt={''} />
-                                </div>
-                                <div className='flex flex-col gap-[2px]'>
-                                    <div className='flex gap-2'>
-                                        <div className='text-[#FFFFFF] text-[15px] font-bold leading-5'>Alina Anila</div>
-                                        <div className='text-[#979797] text-[15px] font-normal leading-5'>@alinaanila</div>
-                                    </div>
-                                    <div className='text-[#979797] text-[13px] font-normal leading-[18px]'>5h</div>
-                                </div>
-                            </div>
-                            <div className='w-[24px] h-[24px]'>
-                                <Image className='w-full h-full text-[#FFFFFF]' src={threeDotsWhite} alt={'' } />
-                            </div>
-                        </div>
-                        <div className='flex flex-col gap-[10px]'>
-                            <div className='text-[#FFFFFF] text-[13px] font-normal leading-[18px]'>What do you guys think of my goth cosplay? uwu - 私のゴスコスプレについてどう思いますか？uwuWhat do you guys think of my goth cosplay? uwu - 私のゴスコスプレについてどう思いますか？uwuWhat do you guys think of my goth cosplay? uwu - 私のゴスコスプレについてどう思いますか？uwu</div>
-                            <div className='w-max flex gap-1 px-2 py-[6px] bg-[#FF5336]/[0.16] rounded-[100px]'>
-                                <Image className='w-[16px] h-[16px] object-contain' src={orangeHeart} alt={''} />
-                                <div className='text-[#F44E32] text-[13px] font-semibold'>27</div>
-                            </div>
-                        </div>
+          <div className='flex flex-col gap-3 p-6'>
+            <div className='flex flex-col gap-3'>
+              <div className='flex flex-col gap-2 rounded-[14px] bg-[#1A1A1A] px-5 py-4'>
+                <div className='flex justify-between'>
+                  <div className='flex gap-3'>
+                    <div className='h-[40px] w-[40px]'>
+                      <Image
+                        className='h-full w-full rounded-[100px]'
+                        src={goldenShoulderGirlAvatar}
+                        alt={''}
+                      />
                     </div>
-                    <div className='flex flex-col gap-2 px-5 py-4 bg-[#1A1A1A] rounded-[14px]'>
-                        <div className='flex justify-between'>
-                            <div className='flex gap-3'>
-                                <div className='w-[40px] h-[40px]'>
-                                    <Image className='w-full h-full' src={pinkPhnGirlAvatar} alt={''} />
-                                </div>
-                                <div className='flex flex-col gap-[2px]'>
-                                    <div className='flex gap-2'>
-                                        <div className='text-[#FFFFFF] text-[15px] font-bold'>My Comment</div>
-                                        <div className='text-[#979797] text-[15px] font-normal'>@mycomment</div>
-                                    </div>
-                                    <div className='text-[#979797] text-[13px] font-normal'>5h</div>
-                                </div>
-                            </div>
-                            <div className='w-[24px] h-[24px]'>
-                                <Image className='w-full h-full' src={threeDotsWhite} alt={''} />
-                            </div>
+                    <div className='flex flex-col gap-[2px]'>
+                      <div className='flex gap-2'>
+                        <div className='font-bold text-[15px] leading-5 text-[#FFFFFF]'>
+                          Alina Anila
                         </div>
-                        <div className='flex flex-col gap-[10px]'>
-                            <div className='text-[#FFFFFF] text-[13px] font-normal leading-[18px]'>I like it!!!</div>
-                            <div className='flex gap-[10px]'>
-                                <div className='flex px-2 py-[6px] gap-1 rounded-[100px] bg-white/[0.08]'>
-                                    <div className='w-[16px] h-[16px]'>
-                                        <Image className='w-full h-full' src={heartIcon} alt={''} />
-                                    </div>
-                                    <div className='text-[#FFFFFF] text-[13px] font-semibold'>2</div>
-                                </div>
-                            </div>
+                        <div className='font-normal text-[15px] leading-5 text-[#979797]'>
+                          @alinaanila
                         </div>
+                      </div>
+                      <div className='font-normal text-[13px] leading-[18px] text-[#979797]'>
+                        5h
+                      </div>
                     </div>
+                  </div>
+                  <div className='relative h-[24px] w-[24px]'>
+                    <button onClick={() => setReportToggle(!reportToggle)}>
+                      <Image
+                        className='h-full w-full text-[#FFFFFF]'
+                        src={threeDotsWhite}
+                        alt={''}
+                      />
+                    </button>
+                    {reportToggle && (
+                      <div className='shadow-[0px 8px 12px 0px #0000001F] absolute right-0 w-[218px] rounded-[14px] bg-[#272727] py-2'>
+                        <div className='flex items-center gap-2 px-4 py-[10px]'>
+                          <FlagRed />
+                          <p className='text-[#FF5336]'>Report</p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
-                <button className='px-4 py-[10px] rounded-[12px] bg-white/[0.08] text-[#979797] text-[14px] font-bold'>Show more comments</button>
+                <div className='flex flex-col gap-[10px]'>
+                  <div className='font-normal text-[13px] leading-[18px] text-[#FFFFFF]'>
+                    What do you guys think of my goth cosplay? uwu -
+                    私のゴスコスプレについてどう思いますか？uwuWhat do you guys
+                    think of my goth cosplay? uwu -
+                    私のゴスコスプレについてどう思いますか？uwuWhat do you guys
+                    think of my goth cosplay? uwu -
+                    私のゴスコスプレについてどう思いますか？uwu
+                  </div>
+                  <div className='flex w-max gap-1 rounded-[100px] bg-[#FF5336]/[0.16] px-2 py-[6px]'>
+                    <Image
+                      className='h-[16px] w-[16px] object-contain'
+                      src={orangeHeart}
+                      alt={''}
+                    />
+                    <div className='text-[13px] font-semibold text-[#F44E32]'>
+                      27
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className='flex flex-col gap-2 rounded-[14px] bg-[#1A1A1A] px-5 py-4'>
+                <div className='flex justify-between'>
+                  <div className='flex gap-3'>
+                    <div className='h-[40px] w-[40px]'>
+                      <Image
+                        className='h-full w-full'
+                        src={pinkPhnGirlAvatar}
+                        alt={''}
+                      />
+                    </div>
+                    <div className='flex flex-col gap-[2px]'>
+                      <div className='flex gap-2'>
+                        <div className='font-bold text-[15px] text-[#FFFFFF]'>
+                          My Comment
+                        </div>
+                        <div className='font-normal text-[15px] text-[#979797]'>
+                          @mycomment
+                        </div>
+                      </div>
+                      <div className='font-normal text-[13px] text-[#979797]'>
+                        5h
+                      </div>
+                    </div>
+                  </div>
+                  <div className='relative h-[24px] w-[24px]'>
+                    <button onClick={() => setEditToggle(!editToggle)}>
+                      <Image
+                        className='h-full w-full'
+                        src={threeDotsWhite}
+                        alt={''}
+                      />
+                    </button>
+                    {editToggle && (
+                      <div className='shadow-[0px 8px 12px 0px #0000001F] absolute right-0 w-[218px] rounded-[14px] bg-[#272727] py-2'>
+                        <div className='flex items-center gap-2 px-4 py-[10px]'>
+                          <Image src={Pen} />
+                          <p className=''>Edit</p>
+                        </div>
+                        <div className='flex items-center gap-2 px-4 py-[10px]'>
+                          <Image
+                            src={DeleteIcon}
+                            className='!h-[18px] !w-[18px] object-cover'
+                          />
+                          <p className='text-[#FF5336]'>Delete</p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+                <div className='flex flex-col gap-[10px]'>
+                  <div className='font-normal text-[13px] leading-[18px] text-[#FFFFFF]'>
+                    I like it!!!
+                  </div>
+                  <div className='flex gap-[10px]'>
+                    <div className='flex gap-1 rounded-[100px] bg-white/[0.08] px-2 py-[6px]'>
+                      <div className='h-[16px] w-[16px]'>
+                        <Image
+                          className='h-full w-full'
+                          src={heartIcon}
+                          alt={''}
+                        />
+                      </div>
+                      <div className='text-[13px] font-semibold text-[#FFFFFF]'>
+                        2
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+            <button className='rounded-[12px] bg-white/[0.08] px-4 py-[10px] text-[14px] font-[700] text-[#979797]'>
+              Show more comments
+            </button>
+          </div>
 
-            <div className='flex p-6 border-t border-white/[0.12] w-full'>
-                <div className='w-full flex px-5 py-4 rounded-[14px] bg-white/[0.05]'>
-                    <div className='text-[#979797] text-[15px] font-normal'>Your reply ...</div>
-                    <div className='ml-[203px] w-[24px] h-[24px]'>
-                        <Image src={smileyIcon} alt={''} />
-                    </div>
-                </div>
+          <div className='flex w-full flex-col border-t border-white/[0.12] p-6'>
+            <div
+              className={`relative rounded-[14px] pb-3 pl-6  ${
+                textArea
+                  ? 'h-[56px] overflow-hidden bg-[#FFFFFF0D] p-[16px] py-2'
+                  : ' bg-[#0000007A] pr-3 pt-6'
+              }`}
+            >
+              <textarea
+                name=''
+                id=''
+                cols='36'
+                rows='2'
+                value={textAreaCount}
+                maxLength={160}
+                onChange={(e) => setTextAreaTotal(e.target.value)}
+                onFocus={() => setTextArea(false)}
+                placeholder='Your reply ...'
+                className='resize-none border-none bg-transparent placeholder:text-[#979797] focus:ring-0'
+              ></textarea>
+              <div
+                className={`absolute right-3  ml-[203px] h-[24px] w-[24px] ${
+                  textArea ? 'top-4' : 'top-7'
+                }`}
+              >
+                <Image src={smileyIcon} alt={''} />
+              </div>
+              <div className='flex items-center justify-end gap-4'>
+                <p className='text-[#979797]'>{textAreaCount.length}/160</p>
+                <button
+                  className='font-bold flex items-center justify-center rounded-[16px] bg-[#5848BC] px-6 py-4 text-[18px] leading-6 text-white'
+                  onClick={() => {
+                    setTextArea(true), setTextAreaTotal('');
+                  }}
+                >
+                  Send
+                </button>
+              </div>
             </div>
+          </div>
         </div>
       </div>
-  
-  </Modal>
-  )
-}
+    </Modal>
+  );
+};
 
-export default BookMarkModal
+export default BookMarkModal;
