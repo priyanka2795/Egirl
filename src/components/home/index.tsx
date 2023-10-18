@@ -31,6 +31,8 @@ const Home = () => {
   const [showForYou, setShowForYou] = useState(true);
   const [sticky, animate] = useScroll();
   const [bookmarksActive, setBookmarksActive] = useState<boolean>(false);
+  const [toasts, setToasts] = useState(false);
+  const [copyLink, setCopyLink] = useState(false);
   const handleFeedSwitch = (feedType: string) => {
     if (feedType === 'forYou' && !showForYou) {
       setShowForYou(true);
@@ -38,13 +40,30 @@ const Home = () => {
       setShowForYou(false);
     }
   };
+  const BookmarksActive = () => {
+    setCopyLink(false);
+    if (!bookmarksActive) {
+      setToasts(!toasts);
+      setTimeout(() => {
+        setToasts(false);
+      }, 1500);
+    }
+    setBookmarksActive(!bookmarksActive);
+  };
+  const handleShare = () => {
+    if (!copyLink) {
+      setToasts(!toasts);
+      setTimeout(() => {
+        setToasts(false);
+        setCopyLink(false);
+      }, 1500);
+    }
+    setCopyLink(true);
+  };
 
-  setTimeout(() => {
-    setBookmarksActive(false);
-  }, 2000);
   // searchPromptMenu
   const [searchInput, setSearchInput] = useState('');
-  const [showPromptMenu, setShowPromptMenu] = useState(SearchData);
+  const [showUser, setShowUser] = useState(SearchData);
   const [username, setUserName] = useState('');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,7 +76,7 @@ const Home = () => {
         )
       : SearchData;
 
-    setShowPromptMenu(filteredItems);
+    setShowUser(filteredItems);
   };
 
   return (
@@ -113,7 +132,7 @@ const Home = () => {
                 ''
               ) : (
                 <div className='shadow-[0px 32px 96px 0px #00000066] absolute z-50 w-full rounded-[14px] border border-[#FFFFFF1C] bg-[#1A1A1A] pb-4 pt-2'>
-                  {showPromptMenu.length === 0 ? (
+                  {showUser.length === 0 ? (
                     <div className='flex flex-col items-center justify-center gap-2 px-6 py-[64px] text-center'>
                       <h2 className='text-lg font-[700]'>No Results Found</h2>
                       <p className='text-[15px]'>
@@ -122,13 +141,15 @@ const Home = () => {
                       </p>
                     </div>
                   ) : null}
-                  {showPromptMenu.map((items, index) => (
+                  {showUser.map((items, index) => (
                     <div
                       className={`flex cursor-pointer items-center gap-4 px-6 py-3 ${
                         searchInput === items.name ? 'bg-[#272727]' : ''
                       }`}
                       key={index}
-                      onClick={() => setSearchInput(items.name)}
+                      onClick={() => {
+                        setSearchInput(items.name);
+                      }}
                     >
                       <div className='h-[68px] w-[68px]'>
                         <Image
@@ -154,14 +175,21 @@ const Home = () => {
         <div className='relative flex'>
           <Feed
             bookmarksActive={bookmarksActive}
-            setBookmarksActive={setBookmarksActive}
+            BookmarksActive={BookmarksActive}
+            handleShare={handleShare}
           />
           <Widgets />
-          {bookmarksActive && (
-            <div className='fixed bottom-3 left-1/2 w-[290px] -translate-x-1/2 rounded-[14px] bg-[#1591F1] px-5 py-4'>
+          {toasts && (
+            <div className='fixed bottom-3 left-1/2  -translate-x-1/2 rounded-[14px] bg-[#1591F1] px-5 py-4 text-center transition-all'>
               <p className='text-[14px]'>
-                Post added to your bookmarks{' '}
-                <span className='ml-2 cursor-pointer font-[700]'>View</span>
+                {copyLink
+                  ? 'Copied to clipboard'
+                  : 'Post added to your bookmarks'}
+                {copyLink ? (
+                  ''
+                ) : (
+                  <span className='ml-2 cursor-pointer font-[700]'>View</span>
+                )}
               </p>
             </div>
           )}

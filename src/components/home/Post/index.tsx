@@ -26,7 +26,8 @@ interface PostProps {
   location: string;
   hours: string;
   bookmarksActive: boolean;
-  setBookmarksActive: (active: boolean) => void;
+  BookmarksActive: () => void;
+  handleShare: () => void;
 }
 
 const Post: React.FC<PostProps> = ({
@@ -42,7 +43,8 @@ const Post: React.FC<PostProps> = ({
   location,
   hours,
   bookmarksActive,
-  setBookmarksActive
+  BookmarksActive,
+  handleShare
 }) => {
   const [likeActive, setLikeActive] = useState(false);
   const [commentsModal, setCommentsModal] = useState(false);
@@ -101,7 +103,7 @@ const Post: React.FC<PostProps> = ({
               className={`transition-duration-100 group relative flex items-center rounded-full px-3 py-2  ${
                 likeActive
                   ? 'bg-[#FF533629] '
-                  : 'bg-[#282828] hover:bg-[#252525]'
+                  : 'bg-[#FFFFFF14] hover:bg-[#FFFFFF1F]'
               }`}
               onClick={() => setLikeActive(!likeActive)}
             >
@@ -120,7 +122,7 @@ const Post: React.FC<PostProps> = ({
               </div>
             </button>
             <button
-              className='transition-duration-100 group relative flex items-center rounded-full bg-[#282828] px-3 py-2 hover:bg-[#252525]'
+              className='transition-duration-100 group relative flex items-center rounded-full bg-[#FFFFFF14] px-3 py-2 hover:bg-[#FFFFFF1F]'
               onClick={() => setCommentsModal(!commentsModal)}
             >
               <CommentIcon className='text-[#979797]' />
@@ -130,8 +132,8 @@ const Post: React.FC<PostProps> = ({
               </div>
             </button>
             <button
-              className='transition-duration-100 group relative flex items-center rounded-full bg-[#282828] px-3 py-2 hover:bg-[#252525]'
-              onClick={() => setBookmarksActive(!bookmarksActive)}
+              className='transition-duration-100 group relative flex items-center rounded-full bg-[#FFFFFF14] px-3 py-2 hover:bg-[#FFFFFF1F]'
+              onClick={() => BookmarksActive()}
             >
               {bookmarksActive ? (
                 <BookmarkFillIcon className='text-[#979797]' />
@@ -143,10 +145,16 @@ const Post: React.FC<PostProps> = ({
                 <Tooltip Text={'Bookmark'} />
               </div>
             </button>
-            <button className='transition-duration-100 flex items-center rounded-full bg-[#282828] px-3 py-2 hover:bg-[#252525]'>
+            <button
+              className='transition-duration-100 group relative flex items-center rounded-full bg-[#FFFFFF14] px-3 py-2 hover:bg-[#FFFFFF1F]'
+              onClick={() => handleShare()}
+            >
               <ReturnIcon className='text-[#979797]' />
+              <div className='absolute -left-3 -top-7 z-50 w-max -translate-x-0 -translate-y-2/4 transform transition-all'>
+                <Tooltip Text={'Share'} />
+              </div>
             </button>
-            <button className='transition-duration-100 ml-auto flex items-center rounded-full bg-[#282828] px-3 py-2 hover:bg-[#252525]'>
+            <button className='transition-duration-100 ml-auto flex items-center rounded-full bg-[#FFFFFF14] px-3 py-2 hover:bg-[#FFFFFF1F]'>
               <EyeIcon className='text-[#979797]' />
               <span className='ml-[6px]'>{viewsNumber}</span>
             </button>

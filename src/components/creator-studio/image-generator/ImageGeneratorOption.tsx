@@ -157,13 +157,12 @@ const ImageGeneratorOption = ({
     setPromptHint(searchPrompt);
 
     const filteredItems = PromptTagsSearch.filter((user) => {
-      const tagsLowerCase = user.tags.some((tag) =>
+      const tagsLowerCase = user.tags.some((tag: string) =>
         tag.toLowerCase().includes(searchPrompt.toLowerCase())
       );
       return tagsLowerCase;
     });
 
-    console.log(filteredItems, 'filteredItems');
     setPromptTagsHint(filteredItems);
     if (filteredItems.length === 0) {
       setShowPromptMenu(true);
@@ -196,7 +195,7 @@ const ImageGeneratorOption = ({
                   <p className='font-normal text-[15px] leading-6 text-[#979797]'>
                     Genre
                   </p>
-                  <Image src={ArrowRight} className='w-full h-full' />
+                  <Image src={ArrowRight} className='h-full w-full' />
                 </div>
 
                 <div
@@ -219,7 +218,7 @@ const ImageGeneratorOption = ({
               <div className='group relative flex w-12 cursor-pointer items-center justify-center gap-2 rounded-[14px] bg-white bg-opacity-10 py-3'>
                 <ShuffleSvg />
                 {EditTooltip ? (
-                  <div className='absolute z-50 -left-16 -top-12 w-max'>
+                  <div className='absolute -left-16 -top-12 z-50 w-max'>
                     <Tooltip Text={'Add a random prompt'} />
                   </div>
                 ) : (
@@ -231,7 +230,7 @@ const ImageGeneratorOption = ({
               <div className='flex flex-wrap items-center gap-2'>
                 {MyCharacterToggle && (
                   <div className='flex cursor-pointer items-center gap-1 rounded-xl bg-[#403BAC] px-[10px] py-2'>
-                    <Image src={UserWhite} className='w-full h-full' />
+                    <Image src={UserWhite} className='h-full w-full' />
                     <p className='text-[14px]'>Mika-chan</p>
                   </div>
                 )}
@@ -248,7 +247,7 @@ const ImageGeneratorOption = ({
                       onDragEnd={drop}
                       draggable
                     >
-                      <Image src={Grid} className='w-full h-full' />
+                      <Image src={Grid} className='h-full w-full' />
                       <span className='text'>{tag}</span>
                       {/* <span className="cursor-pointer" onClick={() => removeTag(index)}>&times;</span> */}
                     </div>
@@ -257,7 +256,7 @@ const ImageGeneratorOption = ({
                         <div className='m-4 flex items-center justify-between gap-[6px] rounded-[10px] bg-[#FFFFFF0D] px-3'>
                           <Image
                             src={SearchIcon}
-                            className='object-cover w-full h-full '
+                            className='h-full w-full object-cover '
                           />
                           <input
                             type='text'
@@ -284,7 +283,7 @@ const ImageGeneratorOption = ({
                               {editPromptMenuIndex === items ? (
                                 <Image
                                   src={RightIcon}
-                                  className='w-full h-full'
+                                  className='h-full w-full'
                                 />
                               ) : (
                                 ''
@@ -300,7 +299,7 @@ const ImageGeneratorOption = ({
                             >
                               <Image
                                 src={DeleteIcon}
-                                className='w-full h-full'
+                                className='h-full w-full'
                               />{' '}
                               Delete
                             </button>
@@ -375,7 +374,7 @@ const ImageGeneratorOption = ({
                     className='cursor-pointer pt-1.5'
                     onClick={() => setInpaintingExample(true)}
                   >
-                    <Image src={Question} className='w-full h-full' />
+                    <Image src={Question} className='h-full w-full' />
                   </div>
                 </div>
                 {inpaintingCreated ? (
@@ -404,7 +403,7 @@ const ImageGeneratorOption = ({
                       <div className='flex h-[56px] w-[56px] items-center justify-center rounded-full bg-[#FFFFFF0D]'>
                         <Image
                           src={ImageSquare}
-                          className='object-cover w-full h-full'
+                          className='h-full w-full object-cover'
                         />{' '}
                       </div>
                       <p className='text-[13px] text-[#979797]'>
@@ -430,7 +429,7 @@ const ImageGeneratorOption = ({
                     className='cursor-pointer pt-1.5'
                     onClick={() => setPoseExample(true)}
                   >
-                    <Image src={Question} className='w-full h-full' />
+                    <Image src={Question} className='h-full w-full' />
                   </div>
                 </div>
 
@@ -465,7 +464,7 @@ const ImageGeneratorOption = ({
                       <div className='flex h-[56px] w-[56px] items-center justify-center rounded-full bg-[#FFFFFF0D]'>
                         <Image
                           src={People}
-                          className='object-cover w-full h-full'
+                          className='h-full w-full object-cover'
                         />
                       </div>
                       <p className='text-[13px] text-[#979797]'>
@@ -505,7 +504,7 @@ const ImageGeneratorOption = ({
       >
         <div className='flex flex-col items-start rounded-[20px] bg-[#121212] '>
           <div className='flex items-start gap-2.5 self-stretch border-b border-white/[0.08] border-b-white/[0.08] px-8 pb-6 pt-8'>
-            <div className='flex w-full text-lg font-bold leading-6 decoration-white'>
+            <div className='font-bold flex w-full text-lg leading-6 decoration-white'>
               Genre
             </div>
             <div className='cursor-pointer' onClick={handleCloseGenre}>
@@ -514,7 +513,7 @@ const ImageGeneratorOption = ({
           </div>
 
           <ImageGallery />
-          <div className='flex flex-row self-stretch gap-3 px-8 pt-4 pb-8'>
+          <div className='flex flex-row gap-3 self-stretch px-8 pb-8 pt-4'>
             <button
               onClick={handleCloseGenre}
               className='font-bold flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-white/[0.32] px-5 py-[13px]'
