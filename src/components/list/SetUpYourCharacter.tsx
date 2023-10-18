@@ -15,6 +15,7 @@ interface SetUpYourCharacter {
   tourCount: number;
   setTourCount: React.Dispatch<React.SetStateAction<number>>;
   SetIsTourOpen: React.Dispatch<React.SetStateAction<number>>;
+  setProfileInfoPage: any;
 }
 function SetUpYourCharacter({
   IsOpen,
@@ -22,7 +23,8 @@ function SetUpYourCharacter({
   TourSteps,
   tourCount,
   SetIsTourOpen,
-  setTourCount
+  setTourCount,
+  setProfileInfoPage
 }: SetUpYourCharacter) {
   {
     /*
@@ -57,7 +59,7 @@ function SetUpYourCharacter({
   console.log(TourSteps[0].id, 'TourSteps');
   return (
     <div className='mt-5 rounded-[14px] bg-[#121212] p-6'>
-      <div className='mb-6 flex items-center justify-between'>
+      <div className='flex items-center justify-between mb-6'>
         <h3 className='font-bold text-[22px] leading-[22px]'>
           Setup your character
         </h3>
@@ -68,12 +70,13 @@ function SetUpYourCharacter({
               className={`flex items-center gap-2 rounded-xl bg-[#5848BC] px-4 py-2.5 ${
                 GuideStep === tourCount ? 'relative z-[2]' : ''
               }`}
+              onClick={() => {setProfileInfoPage(true)}}
             >
               <Image src={bookUser} alt={''} />
               Guided Character Creator
             </button>
-            {/* <button onClick={startTour}>Start Guided Tour</button> */}
-            <div className='absolute right-0 top-0'>
+            {/* {/ <button onClick={startTour}>Start Guided Tour</button> /} */}
+            <div className='absolute top-0 right-0'>
               {IsOpen && (
                 <>
                   {GuideStep === tourCount ? (

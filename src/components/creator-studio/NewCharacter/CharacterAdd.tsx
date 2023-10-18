@@ -62,8 +62,8 @@ const CharacterAdd = ({
                            <input className='text-[#979797] bg-white/[0.05] text-[15px] font-normal leading-6' type='text'>
                       
                            </input>
-                       </div> */}
-              {/* errors.name && touched.name  */}
+                       </div>
+              errors.name && touched.name   */}
               <div
                 className={
                   nameLength == 0 && touched.name

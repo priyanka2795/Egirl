@@ -595,37 +595,13 @@ span.audio-recorder-timer {
   background: url('../../public/assets/sign-in-bg-img.png') 100% no-repeat;
 }
 
-.input-username-error:has(.Input-error) .input-error-border,
-.input-email-error:has(.Input-error) .input-error-border,
-.input-verifyemail-error:has(.Input-error) .input-error-border{
-
-  border: 1px solid #FF5336;
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
 
-// user-follow-slider
-
-.user-follow-slider .slick-slider .slick-track {
-  display: flex;
-
-}
-.user-follow-slider .slick-slider .slick-prev{
-position: absolute;
-right: 29px;
-top: -20px;
-width: 20px;
-height: 20px;
-visibility: hidden;
-display: inline-grid !important;
-}
-
-.user-follow-slider .slick-slider .slick-prev::after{
-content: '';
-background-image: url(../../public/assets/arrow-narrow-left.png);
-background-position: center;
-background-repeat: no-repeat;
-width: 20px !important;
-height: 20px;
-visibility: visible;
+.scrollbar-hide {
+  -ms-overflow-style: none;  
+  scrollbar-width: none;  
 }
 .user-follow-slider .slick-slider .slick-next{
   position: absolute;
