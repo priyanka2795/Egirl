@@ -25,6 +25,8 @@ interface PostProps {
   tags: string[];
   location: string;
   hours: string;
+  bookmarksActive: boolean;
+  setBookmarksActive: (active: boolean) => void;
 }
 
 const Post: React.FC<PostProps> = ({
@@ -38,11 +40,13 @@ const Post: React.FC<PostProps> = ({
   viewsNumber,
   tags,
   location,
-  hours
+  hours,
+  bookmarksActive,
+  setBookmarksActive
 }) => {
   const [likeActive, setLikeActive] = useState(false);
   const [commentsModal, setCommentsModal] = useState(false);
-  const [bookmarksActive, setBookmarksActive] = useState(false);
+  // const [bookmarksActive, setBookmarksActive] = useState(false);
 
   return (
     <>

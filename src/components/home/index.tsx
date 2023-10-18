@@ -30,8 +30,7 @@ const SearchData = [
 const Home = () => {
   const [showForYou, setShowForYou] = useState(true);
   const [sticky, animate] = useScroll();
-  const [isInputActive, setInputActive] = useState(false);
-
+  const [bookmarksActive, setBookmarksActive] = useState<boolean>(false);
   const handleFeedSwitch = (feedType: string) => {
     if (feedType === 'forYou' && !showForYou) {
       setShowForYou(true);
@@ -40,24 +39,18 @@ const Home = () => {
     }
   };
 
+  setTimeout(() => {
+    setBookmarksActive(false);
+  }, 2000);
   // searchPromptMenu
   const [searchInput, setSearchInput] = useState('');
   const [showPromptMenu, setShowPromptMenu] = useState(SearchData);
   const [username, setUserName] = useState('');
-  // const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const searchTerm = e.target.value;
-  //   setSearchPromptMenu(searchTerm);
-  //   const filteredItems = SearchData.filter((user) =>
-  //     user.name.toLowerCase().includes(searchTerm.toLowerCase())
-  //   );
-  //   setShowPromptMenu(filteredItems);
-  // };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const searchTerm = e.target.value;
     setSearchInput(searchTerm);
 
-    // Filter the results based on the user's input
     const filteredItems = searchTerm
       ? SearchData.filter((user) =>
           user.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -159,15 +152,19 @@ const Home = () => {
           </div>
         </div>
         <div className='relative flex'>
-          <Feed />
+          <Feed
+            bookmarksActive={bookmarksActive}
+            setBookmarksActive={setBookmarksActive}
+          />
           <Widgets />
-
-          {/* <div className='fixed bottom-3 left-1/2 w-[290px] -translate-x-1/2 rounded-[14px] bg-[#1591F1] px-5 py-4'>
-            <p className='text-[14px]'>
-              Post added to your bookmarks{' '}
-              <span className='ml-2 font-[700]'>View</span>
-            </p>
-          </div> */}
+          {bookmarksActive && (
+            <div className='fixed bottom-3 left-1/2 w-[290px] -translate-x-1/2 rounded-[14px] bg-[#1591F1] px-5 py-4'>
+              <p className='text-[14px]'>
+                Post added to your bookmarks{' '}
+                <span className='ml-2 cursor-pointer font-[700]'>View</span>
+              </p>
+            </div>
+          )}
         </div>
       </Layout>
     </>
