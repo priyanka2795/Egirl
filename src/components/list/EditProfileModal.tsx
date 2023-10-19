@@ -5,6 +5,7 @@ import xMark from '../../../public/assets/xmark (1).png';
 import avatar from '../../../public/assets/image 69.png';
 import cameraOverlay from '../../../public/assets/white-camera.png';
 import InputFieldDesign from '@components/common/InputFieldDesign';
+import ProfileDropdown from '@components/common/ProfileDropdown';
 interface EditProfileModalProps {
   closeState: any;
 }
@@ -12,6 +13,7 @@ interface EditProfileModalProps {
 const EditProfileModal = ({ closeState }: EditProfileModalProps) => {
   const tabs = ['Profile view', 'Explore view'];
   const [activeTab, setActiveTab] = useState(0);
+  const [profileEdit, setProfileEdit] = useState(false);
   return (
     <Modal
       open={true}
@@ -26,7 +28,13 @@ const EditProfileModal = ({ closeState }: EditProfileModalProps) => {
         <Image src={xMark} alt={''} />
       </div>
       <div className='flex items-center gap-4 px-6 pb-3 pt-6'>
-        <div className='relative'>
+        <div
+          className='relative cursor-pointer'
+          onClick={() => {
+            setProfileEdit(!profileEdit),
+              console.log(profileEdit, 'profileEdit');
+          }}
+        >
           <Image className='rounded-[100px]' src={avatar} alt={''} />
           <div className='absolute left-0 top-0 flex h-full w-full items-center justify-center'>
             <div className='flex h-[32px] w-[32px] items-center justify-center rounded-[100px] bg-black bg-opacity-60'>
@@ -37,7 +45,17 @@ const EditProfileModal = ({ closeState }: EditProfileModalProps) => {
               />
             </div>
           </div>
+
+          <div className='absolute'>
+            {profileEdit && (
+              <ProfileDropdown
+                profileEdit={profileEdit}
+                setProfileEdit={setProfileEdit}
+              />
+            )}
+          </div>
         </div>
+
         <div className='flex flex-col gap-[2px]'>
           <div className='font-bold text-[15px] leading-5 text-white'>
             Profile photo
