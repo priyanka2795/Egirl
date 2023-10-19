@@ -3,9 +3,9 @@ import React from 'react';
 
 const learningCenter = () => {
   return (
-    <div className=''>
-      <LearningCenterLayout />
-    </div>
+    <>
+      <LearningCenterLayout></LearningCenterLayout>
+    </>
   );
 };
 
