@@ -2,7 +2,16 @@ import React, { useState } from 'react';
 import useScroll from '../../../hooks/useScroll';
 import Post from './Post';
 
-export default function Feed() {
+interface Feed {
+  bookmarksActive: boolean;
+  BookmarksActive: () => void;
+  handleShare: () => void;
+}
+export default function Feed({
+  bookmarksActive,
+  BookmarksActive,
+  handleShare
+}: Feed) {
   const [showForYou, setShowForYou] = useState(true);
   const [sticky, animate] = useScroll();
 
@@ -65,6 +74,9 @@ export default function Feed() {
           tags={['#girl', '#mood', '#relaxtime']}
           location='Warsaw, Old Town'
           hours='6h'
+          bookmarksActive={bookmarksActive}
+          BookmarksActive={BookmarksActive}
+          handleShare={handleShare}
         />
 
         <div className='mt-5'>
@@ -80,6 +92,9 @@ export default function Feed() {
             tags={['#girl', '#mood', '#relaxtime']}
             location='Warsaw, Old Town'
             hours='6h'
+            bookmarksActive={bookmarksActive}
+            BookmarksActive={BookmarksActive}
+            handleShare={handleShare}
           />
         </div>
       </div>

@@ -25,10 +25,10 @@ const userFrame = [
 const UserFrame = () => {
   return (
     <div>
-      <div>
+      <div className='flex flex-col justify-between gap-8'>
         {userFrame.map((item, index) => {
           return (
-            <div className='mt-6 flex w-[328px] gap-4' key={index}>
+            <div className=' flex w-[328px] gap-4' key={index}>
               <div className='h-[50px] w-[50px]'>
                 <Image
                   className='h-full w-full rounded-[100px]'
@@ -40,7 +40,7 @@ const UserFrame = () => {
                 <div className='text-[15px] font-semibold leading-5 text-[#FFFFFF]'>
                   {item.name}
                 </div>
-                <div className='text-sm font-normal leading-[18px] text-[#979797]'>
+                <div className='font-normal text-sm leading-[18px] text-[#979797]'>
                   {item.userName}
                 </div>
               </div>

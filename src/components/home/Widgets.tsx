@@ -71,9 +71,9 @@ export default function Widgets() {
           <div className='bookmark-img-text h-full p-6'>
             <div className='profile-like-slider home-page-slider relative h-full'>
               <Slider {...settings}>
-                <HomePageSlider />
-                <HomePageSlider />
-                <HomePageSlider />
+                <UserFrame />
+                <UserFrame />
+                <UserFrame />
                 <HomePageSlider />
               </Slider>
             </div>
