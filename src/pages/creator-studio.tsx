@@ -4,13 +4,14 @@ import ProfileInfoModal from '@components/list/ProfileInfoModal';
 import React, { useState } from 'react';
 
 const creatorStudio = () => {
-  const [profileInfoPage, setProfileInfoPage] = useState(false);
-  return(
+  const [profileInfoPage, setProfileInfoPage] = useState(true);
+  return (
     <div>
-      {profileInfoPage ? 
-      <ProfileInfoModal /> : 
-      <CreatorStudioLayout setProfileInfoPage={setProfileInfoPage} />
-      }
+      {profileInfoPage ? (
+        <ProfileInfoModal />
+      ) : (
+        <CreatorStudioLayout setProfileInfoPage={setProfileInfoPage} />
+      )}
     </div>
   );
 };
