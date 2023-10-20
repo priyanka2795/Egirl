@@ -4,6 +4,7 @@ import LearningCenterSidebar from '@components/learning-center/LearningCenterSid
 import LearningCenter from '@components/learning-center';
 import LearningCenterFooter from '@components/learning-center/LearningCenterFooter';
 import SearchResults from '@components/learning-center/SearchResults';
+import ScrollToTopButton from '@components/learning-center/ScrollToTopButton';
 const LearningCenterLayout = ({ children }: any) => {
   const [showSearchResult, setShowSearchResult] = useState(false);
   return (
@@ -23,6 +24,7 @@ const LearningCenterLayout = ({ children }: any) => {
               )}
             </>
             <LearningCenterFooter />
+            {/* <ScrollToTopButton /> */}
           </div>
         </div>
       </main>
