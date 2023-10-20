@@ -1,19 +1,59 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import PersonalityS1 from './PersonalityS1';
 import PersonalityLikeSection from './PersonalityLikeSection';
 import PersonalityTraitsSection from './PersonalityTraitsSection';
 import Image from 'next/image';
 import circleInformation from '../../../../public/assets/circle-information5.png';
 
-const PersonalityContent = () => {
+const initialValue = {
+  baseType: '',
+  Creativity: '',
+  description: '',
+  worldDescription: ''
+};
+interface PersonalityContent {
+  SetBtnSteps: any;
+  personalityData: any;
+  setPersonalityData: any;
+}
+const PersonalityContent = ({
+  SetBtnSteps,
+  personalityData,
+  setPersonalityData
+}: PersonalityContent) => {
+  // const [personalityData, setPersonalityData] = useState(initialValue);
+  const HandleChange = (e: any) => {
+    const { name, value } = e.target;
+    setPersonalityData({
+      ...personalityData,
+      [name]: value
+    });
+  };
+  useEffect(() => {
+    if (
+      personalityData.baseType != '' &&
+      personalityData.Creativity != '' &&
+      personalityData.description != '' &&
+      personalityData.worldDescription != ''
+    ) {
+      SetBtnSteps(true);
+    } else {
+      SetBtnSteps(false);
+    }
+  }, [personalityData]);
+  console.log(personalityData, 'personalityData');
+
   return (
     <>
       <div className='flex flex-col items-start self-stretch gap-4'>
-        <PersonalityS1 />
+        <PersonalityS1
+          personalityData={personalityData}
+          setPersonalityData={setPersonalityData}
+        />
 
         <PersonalityLikeSection />
 
-        <PersonalityTraitsSection />
+        {/* <PersonalityTraitsSection /> */}
 
         <div className='flex w-full flex-col gap-4 rounded-[14px] bg-[#121212] p-6'>
           <div className='flex gap-[6px]'>
@@ -35,12 +75,16 @@ const PersonalityContent = () => {
                   Description
                 </div>
                 <div className='font-normal text-[14px] leading-[18px] text-[#515151]'>
-                  0/2000
+                  {personalityData.description.length}/2000
                 </div>
               </div>
               <textarea
-                className='font-normal h-[135px] resize-none rounded-[14px] border-none bg-white/[0.05] py-3 pl-4 pr-3 text-[15px] leading-6 text-[#979797] placeholder-[#979797] focus:ring-0'
+                className='font-normal h-[135px] resize-none rounded-[14px] border-none bg-white/[0.05] py-3 pl-4 pr-3 text-[15px] leading-6 text-white placeholder-[#979797] focus:ring-0'
                 placeholder='Enter a description here...'
+                name='description'
+                value={personalityData.description}
+                onChange={HandleChange}
+                maxLength={10}
               ></textarea>
             </div>
 
@@ -50,12 +94,16 @@ const PersonalityContent = () => {
                   World Description
                 </div>
                 <div className='font-normal text-[14px] leading-[18px] text-[#515151]'>
-                  0/2000
+                  {personalityData.worldDescription.length}/2000
                 </div>
               </div>
               <textarea
-                className='font-normal h-[135px] resize-none rounded-[14px] border-none bg-white/[0.05] py-3 pl-4 pr-3 text-[15px] leading-6 text-[#979797] placeholder-[#979797] focus:ring-0'
+                className='font-normal h-[135px] resize-none rounded-[14px] border-none bg-white/[0.05] py-3 pl-4 pr-3 text-[15px] leading-6 text-white placeholder-[#979797] focus:ring-0'
                 placeholder='Enter a world description here...'
+                name='worldDescription'
+                value={personalityData.worldDescription}
+                onChange={HandleChange}
+                maxLength={12}
               ></textarea>
             </div>
           </div>

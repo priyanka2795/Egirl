@@ -12,6 +12,7 @@ import flag from '../../../public/assets/flag.png';
 import flagWhite from '../../../public/assets/flag-white.png';
 import circleInformation from '../../../public/assets/circle-information-blue.png';
 import RightIcon from '../../../public/assets/check-cs.png';
+import leftArrowIcon from '../../../public/assets/left-arrow-grey.png';
 import Stepper from './Stepper';
 import ImageGeneratorIndex from '@components/creator-studio/image-generator';
 import StyleGeneratorIndex from '@components/creator-studio/style-generator';
@@ -120,21 +121,22 @@ const ProfileInfoModal = () => {
   // Stepper Code End
 
   return (
-    <div className='flex h-[900px] flex-col bg-[#070707]'>
+    <>
+      <Stepper />
+      {/* <div className='flex h-[900px] flex-col bg-[#070707]'>
       <div className='flex border-b border-white/[0.08] px-6 py-4'>
         <button className='font-bold flex items-center justify-center rounded-[12px] border border-white/[0.32] px-4 py-[10px] text-[14px] leading-5 text-white'>
           Save & Close
         </button>
       </div>
-      {/* <Stepper /> */}
-      <div className='flex h-full flex-col justify-between'>
+       <div className='flex flex-col justify-between h-full'>
         <div className='flex flex-col gap-6 rounded-[16px] px-[200px] pt-[48px]'>
           <div className='flex gap-4'>
             <div className='flex items-center gap-4'>
               <div
                 className={`flex h-10 w-10 items-center justify-center rounded-full  text-white ${
                   activeStep === 0 ? 'bg-[#5848BC] ' : 'bg-[#FFFFFF14] '
-                } ${selectedTags.length === 4 ? 'bg-[#2EAA1B]' : ''}`}
+                } ${selectedTags.length === 4 ? '!bg-[#2EAA1B]' : ''}`}
               >
                 <Image
                   src={selectedTags.length === 4 ? RightIcon : userPenIcon}
@@ -162,7 +164,7 @@ const ProfileInfoModal = () => {
                         : selectedTags.length == 3
                         ? 'w-[75%]'
                         : selectedTags.length == 4
-                        ? 'w-[100%] bg-[#2EAA1B]'
+                        ? 'w-[100%] !bg-[#2EAA1B]'
                         : ''
                     } w-0 rounded-xl bg-[#5848BC] `}
                   ></div>
@@ -345,12 +347,12 @@ const ProfileInfoModal = () => {
                         {selectedTags.map((tag, index) => (
                           <div key={index} className='text-[15px]'>
                             {tag},
-                            {/* <button
+                            // <button
                             className='ml-2 cursor-pointer text-[12px] text-white'
                             onClick={() => handleRemoveTag(tag)}
                           >
                             x
-                          </button> */}
+                          </button> //
                           </div>
                         ))}
 
@@ -525,34 +527,46 @@ const ProfileInfoModal = () => {
           </div>
         </div>
 
-        <div className='flex items-end justify-end px-6 pb-8'>
+        <div className='flex items-end justify-between px-6 pb-8'>
           <button
-            className='cursor-pointer rounded-[5px] border-none bg-[#0074d9] px-[20px] py-[10px] text-white '
+            className='flex cursor-pointer items-center justify-center rounded-[14px] border-none  bg-[#FFFFFF14] p-[13px] text-white'
             onClick={handleBack}
             disabled={activeStep === 0}
           >
-            Back
+            <Image src={leftArrowIcon} />
           </button>
-          {btnSteps ? (
+          {activeStep === 4 ? (
             <button
-              className={`font-bold flex items-center justify-center rounded-[14px] bg-[#5848BC] px-5
-               py-[13px] text-[16px] leading-[22px] text-white `}
-              onClick={handleNext}
-              disabled={activeStep === 4}
+              className={`font-bold flex items-center justify-center gap-2 rounded-[14px] bg-[#5848BC]
+         px-5 py-[13px] text-[16px] leading-[22px] text-white`}
             >
-              Next
+              <span>Finish</span> <Image src={RightIcon} />
             </button>
           ) : (
-            <button
-              className={`font-bold flex items-center justify-center rounded-[14px] bg-[#5848BC52] px-5
+            <>
+              {btnSteps ? (
+                <button
+                  className={`font-bold flex items-center justify-center rounded-[14px] bg-[#5848BC] px-5
+               py-[13px] text-[16px] leading-[22px] text-white `}
+                  onClick={handleNext}
+                  disabled={activeStep === 4}
+                >
+                  Next
+                </button>
+              ) : (
+                <button
+                  className={`font-bold flex items-center justify-center rounded-[14px] bg-[#5848BC52] px-5
                py-[13px] text-[16px] leading-[22px] text-[#FFFFFF52] `}
-            >
-              Next
-            </button>
+                >
+                  Next
+                </button>
+              )}
+            </>
           )}
         </div>
-      </div>
-    </div>
+      </div> 
+    </div> */}
+    </>
   );
 };
 
