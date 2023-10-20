@@ -121,21 +121,22 @@ const ProfileInfoModal = () => {
   // Stepper Code End
 
   return (
-    <div className='flex h-[900px] flex-col bg-[#070707]'>
+    <>
+      <Stepper />
+      {/* <div className='flex h-[900px] flex-col bg-[#070707]'>
       <div className='flex border-b border-white/[0.08] px-6 py-4'>
         <button className='font-bold flex items-center justify-center rounded-[12px] border border-white/[0.32] px-4 py-[10px] text-[14px] leading-5 text-white'>
           Save & Close
         </button>
       </div>
-      {/* <Stepper /> */}
-      <div className='flex h-full flex-col justify-between'>
+       <div className='flex flex-col justify-between h-full'>
         <div className='flex flex-col gap-6 rounded-[16px] px-[200px] pt-[48px]'>
           <div className='flex gap-4'>
             <div className='flex items-center gap-4'>
               <div
                 className={`flex h-10 w-10 items-center justify-center rounded-full  text-white ${
                   activeStep === 0 ? 'bg-[#5848BC] ' : 'bg-[#FFFFFF14] '
-                } ${selectedTags.length === 4 ? 'bg-[#2EAA1B]' : ''}`}
+                } ${selectedTags.length === 4 ? '!bg-[#2EAA1B]' : ''}`}
               >
                 <Image
                   src={selectedTags.length === 4 ? RightIcon : userPenIcon}
@@ -163,7 +164,7 @@ const ProfileInfoModal = () => {
                         : selectedTags.length == 3
                         ? 'w-[75%]'
                         : selectedTags.length == 4
-                        ? 'w-[100%] bg-[#2EAA1B]'
+                        ? 'w-[100%] !bg-[#2EAA1B]'
                         : ''
                     } w-0 rounded-xl bg-[#5848BC] `}
                   ></div>
@@ -346,12 +347,12 @@ const ProfileInfoModal = () => {
                         {selectedTags.map((tag, index) => (
                           <div key={index} className='text-[15px]'>
                             {tag},
-                            {/* <button
+                            // <button
                             className='ml-2 cursor-pointer text-[12px] text-white'
                             onClick={() => handleRemoveTag(tag)}
                           >
                             x
-                          </button> */}
+                          </button> //
                           </div>
                         ))}
 
@@ -563,8 +564,9 @@ const ProfileInfoModal = () => {
             </>
           )}
         </div>
-      </div>
-    </div>
+      </div> 
+    </div> */}
+    </>
   );
 };
 
