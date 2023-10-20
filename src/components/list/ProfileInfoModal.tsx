@@ -12,6 +12,7 @@ import flag from '../../../public/assets/flag.png';
 import flagWhite from '../../../public/assets/flag-white.png';
 import circleInformation from '../../../public/assets/circle-information-blue.png';
 import RightIcon from '../../../public/assets/check-cs.png';
+import leftArrowIcon from '../../../public/assets/left-arrow-grey.png';
 import Stepper from './Stepper';
 import ImageGeneratorIndex from '@components/creator-studio/image-generator';
 import StyleGeneratorIndex from '@components/creator-studio/style-generator';
@@ -525,30 +526,41 @@ const ProfileInfoModal = () => {
           </div>
         </div>
 
-        <div className='flex items-end justify-end px-6 pb-8'>
+        <div className='flex items-end justify-between px-6 pb-8'>
           <button
-            className='cursor-pointer rounded-[5px] border-none bg-[#0074d9] px-[20px] py-[10px] text-white '
+            className='flex cursor-pointer items-center justify-center rounded-[14px] border-none  bg-[#FFFFFF14] p-[13px] text-white'
             onClick={handleBack}
             disabled={activeStep === 0}
           >
-            Back
+            <Image src={leftArrowIcon} />
           </button>
-          {btnSteps ? (
+          {activeStep === 4 ? (
             <button
-              className={`font-bold flex items-center justify-center rounded-[14px] bg-[#5848BC] px-5
-               py-[13px] text-[16px] leading-[22px] text-white `}
-              onClick={handleNext}
-              disabled={activeStep === 4}
+              className={`font-bold flex items-center justify-center gap-2 rounded-[14px] bg-[#5848BC]
+         px-5 py-[13px] text-[16px] leading-[22px] text-white`}
             >
-              Next
+              <span>Finish</span> <Image src={RightIcon} />
             </button>
           ) : (
-            <button
-              className={`font-bold flex items-center justify-center rounded-[14px] bg-[#5848BC52] px-5
+            <>
+              {btnSteps ? (
+                <button
+                  className={`font-bold flex items-center justify-center rounded-[14px] bg-[#5848BC] px-5
+               py-[13px] text-[16px] leading-[22px] text-white `}
+                  onClick={handleNext}
+                  disabled={activeStep === 4}
+                >
+                  Next
+                </button>
+              ) : (
+                <button
+                  className={`font-bold flex items-center justify-center rounded-[14px] bg-[#5848BC52] px-5
                py-[13px] text-[16px] leading-[22px] text-[#FFFFFF52] `}
-            >
-              Next
-            </button>
+                >
+                  Next
+                </button>
+              )}
+            </>
           )}
         </div>
       </div>
