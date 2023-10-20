@@ -8,7 +8,7 @@ import circleInformation from '../../../../public/assets/circle-information5.png
 const PersonalityContent = () => {
   return (
     <>
-      <div className='flex flex-col items-start gap-4 self-stretch'>
+      <div className='flex flex-col items-start self-stretch gap-4'>
         <PersonalityS1 />
 
         <PersonalityLikeSection />
@@ -20,9 +20,9 @@ const PersonalityContent = () => {
             <div className='font-bold text-[18px] leading-6 text-[#FFFFFF]'>
               Descriptions
             </div>
-            <div className='h-4 w-4'>
+            <div className='w-4 h-4'>
               <Image
-                className='h-full w-full'
+                className='w-full h-full'
                 src={circleInformation}
                 alt={''}
               />

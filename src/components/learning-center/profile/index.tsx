@@ -3,9 +3,8 @@ import BreadCrumbs from '../BreadCrumbs';
 import Image from 'next/image';
 import editDemoImg from '../../../../public/assets/learning-center/learning_profile_img.png';
 import profileBanner from '../../../../public/assets/learning-center/profileBanner.png';
-import arrowLeft from '../../../../public/assets/arrow-left-lightGrey.png';
-import arrowRight from '../../../../public/assets/arrow-right-lightGrey.png';
-import ContentSection from './ContentSection';
+import ProfileContentSec from './ProfileContentSec';
+import PrevNextStep from '../PrevNextStep';
 
 function ProfileIndex() {
   return (
@@ -19,7 +18,10 @@ function ProfileIndex() {
             </div>
             {/* SECTION ONE */}
             <div>
-              <div className='pb-1 text-[27px] font-black text-white'>
+              <div
+                className='pb-1 text-[27px] font-black text-white'
+                id='character_profile'
+              >
                 What is a character Profile?
               </div>
               <p className='text-[16px] text-[#979797]'>
@@ -68,7 +70,10 @@ function ProfileIndex() {
             </div>
             {/* SECTION THREE */}
             <div>
-              <div className='text-[27px] font-black text-white'>
+              <div
+                className='text-[27px] font-black text-white'
+                id='unique_username'
+              >
                 Unique username
               </div>
               <p className='text-[16px] text-[#979797]'>
@@ -106,7 +111,10 @@ function ProfileIndex() {
             </div>
             {/* SECTION FOUR */}
             <div className='pt-10'>
-              <div className='text-[27px] font-black text-white'>
+              <div
+                className='text-[27px] font-black text-white'
+                id='general_benefits'
+              >
                 General benefits
               </div>
               <p className='text-[16px] text-[#979797]'>
@@ -169,31 +177,11 @@ function ProfileIndex() {
               </ul>
             </div>
             {/* SECTION SEVEN */}
-            <div className='grid grid-cols-2 gap-4 pt-8'>
-              <div className='cursor-pointer rounded-[20px] border border-white/[0.08] bg-white/[0.08] p-5 hover:border-none hover:bg-white/[0.05]'>
-                <div className='flex items-center gap-2'>
-                  <Image src={arrowLeft} alt='' />
-                  <span className='text-[12px] text-[#979797]'>
-                    Previous step
-                  </span>
-                </div>
-                <div className='pt-1 text-[18px] font-black text-white'>
-                  Profile
-                </div>
-              </div>
-              <div className='flex cursor-pointer flex-col items-end rounded-[20px] border border-white/[0.08] bg-white/[0.08] p-5 hover:border-none hover:bg-white/[0.05]'>
-                <div className='flex items-center gap-2'>
-                  <span className='text-[12px] text-[#979797]'>Next step</span>
-                  <Image src={arrowRight} alt='' />
-                </div>
-                <div className='pt-1 text-[18px] font-black text-white'>
-                  Partner Program
-                </div>
-              </div>
-            </div>
+            <PrevNextStep />
           </div>
         </div>
-        <ContentSection />
+
+        <ProfileContentSec />
       </div>
     </div>
   );
