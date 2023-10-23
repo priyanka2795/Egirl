@@ -6,11 +6,7 @@ interface OTPInputProps {
   onChange: (value: string) => void;
 }
 
-const OTPInput: React.FC<OTPInputProps> = ({
-  value,
-  valueLength,
-  onChange
-}) => {
+const OTPInput = ({ value, valueLength, onChange }: OTPInputProps) => {
   const RE_DIGIT = new RegExp(/^\d+$/);
 
   const valueItems = useMemo(() => {
@@ -68,25 +64,10 @@ const OTPInput: React.FC<OTPInputProps> = ({
     }
   };
 
-  // const inputOnKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-  //   const target = e.target as HTMLInputElement;
-  //   const targetValue = target.value;
-
-  //   if (e.key !== 'Backspace' || target.value !== '') {
-  //     return;
-  //   }
-
-  //   target.setSelectionRange(0, targetValue.length);
-
-  //   const previousElementSibling =
-  //     target.previousElementSibling as HTMLInputElement | null;
-
-  //   if (previousElementSibling) {
-  //     previousElementSibling.focus();
-  //   }
-  // };
-
-  const inputOnKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const inputOnKeyDown = (
+    e: React.KeyboardEvent<HTMLInputElement>,
+    idx: number
+  ) => {
     const target = e.target as HTMLInputElement;
     const targetValue = target.value;
 
@@ -101,6 +82,7 @@ const OTPInput: React.FC<OTPInputProps> = ({
       }
     }
   };
+
   const inputOnFocus = (e: React.FocusEvent<HTMLInputElement>) => {
     const { target } = e;
 

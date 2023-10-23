@@ -30,14 +30,14 @@ export default function Widgets() {
 
   return (
     <div className='hidden bg-main-background lg:inline xl:w-[376px]'>
-      <div
+      {/* <div
         className={`sticky z-50 ${
           sticky && animate ? 'top-0' : '-top-[108px]'
         } h-[108px] max-w-[376px] bg-main-background transition-all duration-[300ms] ease-in lg:min-w-[376px]`}
       >
         <div className='mr-2 w-full max-w-[376px] pb-5 pt-6'>
           <div className='flex h-[64px] items-center justify-between rounded-r-[14px] bg-main-bar'>
-            <div className='group relative mr-2 w-full'>
+            <div className='relative w-full mr-2 group'>
               <div className='absolute left-4 top-3'>
                 <SearchIcon
                   strokeClasses={`${
@@ -55,7 +55,7 @@ export default function Widgets() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className={`sticky top-0 max-h-[426px] max-w-[376px]`}>
         <div className='h-full w-full rounded-[14px] bg-[#121212]'>
@@ -71,9 +71,9 @@ export default function Widgets() {
           <div className='bookmark-img-text h-full p-6'>
             <div className='profile-like-slider home-page-slider relative h-full'>
               <Slider {...settings}>
-                <HomePageSlider />
-                <HomePageSlider />
-                <HomePageSlider />
+                <UserFrame />
+                <UserFrame />
+                <UserFrame />
                 <HomePageSlider />
               </Slider>
             </div>

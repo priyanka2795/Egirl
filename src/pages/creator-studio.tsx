@@ -1,9 +1,19 @@
 import CreatorStudioLayout from '@components/common/CreatorStudioLayout';
 import CreatorStudio from '@components/creator-studio';
-import React from 'react';
+import ProfileInfoModal from '@components/list/ProfileInfoModal';
+import React, { useState } from 'react';
 
 const creatorStudio = () => {
-  return <CreatorStudioLayout>{/* <CreatorStudio /> */}</CreatorStudioLayout>;
+  const [profileInfoPage, setProfileInfoPage] = useState(false);
+  return (
+    <div>
+      {profileInfoPage ? (
+        <ProfileInfoModal />
+      ) : (
+        <CreatorStudioLayout setProfileInfoPage={setProfileInfoPage} />
+      )}
+    </div>
+  );
 };
 
 export default creatorStudio;

@@ -6,6 +6,7 @@ import PostInput from '@components/list/PostInput';
 import CreateCharacter from '@components/list/CreateCharacter';
 import SetUpYourCharacter from '@components/list/SetUpYourCharacter';
 import AllCharactersCards from '@components/list/AllCharactersCards';
+import EditProfileModal from '@components/list/EditProfileModal';
 
 interface CreatorStudio {
   IsOpen: any;
@@ -14,6 +15,7 @@ interface CreatorStudio {
   SetIsTourOpen: any;
   tourCount: number;
   setTourCount: React.Dispatch<React.SetStateAction<number>>;
+  setProfileInfoPage: any;
 }
 const CreatorStudio = ({
   IsOpen,
@@ -21,9 +23,13 @@ const CreatorStudio = ({
   TourSteps,
   tourCount,
   SetIsTourOpen,
-  setTourCount
+  setTourCount,
+  setProfileInfoPage
 }: CreatorStudio) => {
+
   const [UserGuide, setUserGuide] = useState(true);
+  const [editProfileModal, setEditProfileModal] = useState(false);
+
   return (
     <>
       {UserGuide ? (
@@ -42,6 +48,7 @@ const CreatorStudio = ({
             }
             followText={'Follow'}
             component={'CreatorStudioProfile'}
+            setEditProfileModal={setEditProfileModal}
           />
           <div>
             <SetUpYourCharacter
@@ -51,6 +58,7 @@ const CreatorStudio = ({
               tourCount={tourCount}
               SetIsTourOpen={SetIsTourOpen}
               setTourCount={setTourCount}
+              setProfileInfoPage={setProfileInfoPage}
             />
           </div>
           <div className='flex max-w-[1196px] justify-between gap-5'>
@@ -64,6 +72,9 @@ const CreatorStudio = ({
           </div>
         </div>
       )}
+      {
+        editProfileModal && <EditProfileModal closeState={setEditProfileModal} />
+      }
     </>
   );
 };

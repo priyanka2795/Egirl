@@ -7,7 +7,8 @@ type SidebarMenuItemProps = {
   text: string;
   href?: string;
   sideBarMenuText?: string;
-  StyleClasses?:string;
+  StyleClasses?: string;
+
   Icon: (props: { svgClasses?: string; strokeClasses?: string }) => JSX.Element;
   IconActive: (props: {
     svgClasses?: string;
@@ -33,7 +34,7 @@ export default function SidebarMenuItem({
       {href ? (
         <Link href={href} className='w-full'>
           <a
-            className={`${StyleClasses} mb-2 flex cursor-pointer items-center justify-center space-x-3 rounded-[14px] py-3 pl-3 text-lg text-white transition-all duration-100 hover:bg-[#252525] ${
+            className={`${StyleClasses} mb-2 flex cursor-pointer items-center justify-center space-x-3 rounded-[14px] py-2 pl-2.5 text-lg text-white transition-all duration-100 hover:bg-[#252525] ${
               sideBarMenuText ? 'w-full' : 'xl:w-[256px] '
             } xl:justify-start ${active && 'bg-[#252525]'}`}
           >
@@ -48,7 +49,7 @@ export default function SidebarMenuItem({
             <div className='flex flex-col'>
               <span
                 className={`${
-                  active ? 'font-bold' : 'font-semibold'
+                  active ? 'font-black' : 'font-semibold'
                 } ${sideBarMenuText} hidden text-[15px] leading-8 xl:inline`}
               >
                 {text}
@@ -59,7 +60,7 @@ export default function SidebarMenuItem({
       ) : (
         <span>
           <a
-            className={`mb-2 flex cursor-pointer items-center justify-center space-x-3 rounded-[14px] py-3 pl-3 text-lg text-white transition-all duration-100 hover:bg-[#252525] ${
+            className={`mb-2 flex cursor-pointer items-center justify-center space-x-3 rounded-[14px] py-2 pl-2.5 text-lg text-white transition-all duration-100 hover:bg-[#252525] ${
               sideBarMenuText ? 'w-full' : 'xl:w-[256px] '
             } xl:justify-start ${active && 'bg-[#252525]'}`}
           >
@@ -72,7 +73,7 @@ export default function SidebarMenuItem({
               <span
                 className={`${
                   active ? 'font-bold' : 'font-medium'
-                } ${sideBarMenuText} hidden text-[18px] leading-8 xl:inline`}
+                } ${sideBarMenuText} hidden text-[15px] leading-8 xl:inline`}
               >
                 {text}
               </span>
