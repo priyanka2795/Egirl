@@ -5,23 +5,17 @@ import PersonalityTraitsSection from './PersonalityTraitsSection';
 import Image from 'next/image';
 import circleInformation from '../../../../public/assets/circle-information5.png';
 
-const initialValue = {
-  baseType: '',
-  Creativity: '',
-  description: '',
-  worldDescription: ''
-};
+
 interface PersonalityContent {
-  SetBtnSteps: any;
-  personalityData: any;
-  setPersonalityData: any;
+  SetBtnSteps?: any;
+  personalityData?: any;
+  setPersonalityData?: any;
 }
 const PersonalityContent = ({
   SetBtnSteps,
   personalityData,
   setPersonalityData
 }: PersonalityContent) => {
-  // const [personalityData, setPersonalityData] = useState(initialValue);
   const HandleChange = (e: any) => {
     const { name, value } = e.target;
     setPersonalityData({
@@ -29,23 +23,22 @@ const PersonalityContent = ({
       [name]: value
     });
   };
-  useEffect(() => {
-    if (
-      personalityData.baseType != '' &&
-      personalityData.Creativity != '' &&
-      personalityData.description != '' &&
-      personalityData.worldDescription != ''
-    ) {
-      SetBtnSteps(true);
-    } else {
-      SetBtnSteps(false);
-    }
-  }, [personalityData]);
-  console.log(personalityData, 'personalityData');
+  // useEffect(() => {
+  //   if (
+  //     personalityData.baseType != '' &&
+  //     personalityData.Creativity != '' &&
+  //     personalityData.description != '' &&
+  //     personalityData.worldDescription != ''
+  //   ) {
+  //     SetBtnSteps(true);
+  //   } else {
+  //     SetBtnSteps(false);
+  //   }
+  // }, [personalityData]);
 
   return (
     <>
-      <div className='flex flex-col items-start self-stretch gap-4'>
+      <div className='flex flex-col items-start gap-4 self-stretch'>
         <PersonalityS1
           personalityData={personalityData}
           setPersonalityData={setPersonalityData}
@@ -53,16 +46,16 @@ const PersonalityContent = ({
 
         <PersonalityLikeSection />
 
-        {/* <PersonalityTraitsSection /> */}
+        <PersonalityTraitsSection />
 
         <div className='flex w-full flex-col gap-4 rounded-[14px] bg-[#121212] p-6'>
           <div className='flex gap-[6px]'>
             <div className='font-bold text-[18px] leading-6 text-[#FFFFFF]'>
               Descriptions
             </div>
-            <div className='w-4 h-4'>
+            <div className='h-4 w-4'>
               <Image
-                className='w-full h-full'
+                className='h-full w-full'
                 src={circleInformation}
                 alt={''}
               />
@@ -75,7 +68,7 @@ const PersonalityContent = ({
                   Description
                 </div>
                 <div className='font-normal text-[14px] leading-[18px] text-[#515151]'>
-                  {personalityData.description.length}/2000
+                  {/* {personalityData.description.length}/2000 */}
                 </div>
               </div>
               <textarea
@@ -94,7 +87,7 @@ const PersonalityContent = ({
                   World Description
                 </div>
                 <div className='font-normal text-[14px] leading-[18px] text-[#515151]'>
-                  {personalityData.worldDescription.length}/2000
+                  {/* {personalityData.worldDescription.length}/2000   */}
                 </div>
               </div>
               <textarea

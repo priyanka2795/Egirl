@@ -347,7 +347,7 @@ const PersonalityTraitsSection = () => {
         open={openT}
         closeModal={handleCloseTraits}
         modalOverlayStyle='!bg-black/80 '
-        modalClassName={`bg-[#121212] flex shrink-0 !overflow-hidden flex-col w-[506px] rounded-2xl h-max max-w-[550px] relative rounded`}
+        modalClassName={`bg-[#121212] flex shrink-0 flex-col w-[506px] rounded-2xl h-max max-w-[550px] relative rounded`}
       >
         <div className='flex items-center justify-between border-b border-white/[0.08] p-8 pb-6'>
           <b className='text-2xl'>Traits</b>
@@ -398,10 +398,9 @@ const PersonalityTraitsSection = () => {
             </div>
           </div>
         </div>
-        <div className='content-holder ' id='content-holder'>
+        <div className='content-holder relative' id='content-holder'>
           {/* <hr className='mb-5 bg-zinc-900' /> */}
-          <div className='scrollbar-hide relative h-[270px] overflow-auto px-6 pt-4'>
-            <ul className='alpha-nav scrollbar-hide fixed z-[30] h-[270px] -translate-y-3 translate-x-[460px] transform overflow-auto leading-4'>
+          <ul className='alpha-nav scrollbar-hide absolute left-5 top-4 z-[30] h-[270px] -translate-y-3 translate-x-[460px] transform overflow-auto leading-4'>
               {Array.from(Array(26), (e, i) => String.fromCharCode(65 + i)).map(
                 (char) => (
                   <li key={char}>
@@ -418,6 +417,8 @@ const PersonalityTraitsSection = () => {
                 )
               )}
             </ul>
+          <div className='scrollbar-hide relative h-[270px] overflow-auto px-6 pt-4'>
+          
             <div className=''>
               <div className='font-bold pb-3 text-[#979797]' id='A'>
                 A
