@@ -254,7 +254,7 @@ const PersonalityLikeSection = () => {
           </div>
         </div>
         <div className='content-holder relative ' id='content-holder'>
-          <ul className='alpha-nav scrollbar-hide absolute left-6 top-4 z-[30] h-[270px] -translate-y-3 translate-x-[460px] transform overflow-auto leading-4'>
+          <ul className='alpha-nav scrollbar-hide absolute left-5 top-4 z-[30] h-[270px] -translate-y-3 translate-x-[460px] transform overflow-auto leading-4'>
             {Array.from(Array(26), (e, i) => String.fromCharCode(65 + i)).map(
               (char) => (
                 <li key={char}>

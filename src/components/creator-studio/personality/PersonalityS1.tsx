@@ -24,13 +24,13 @@ const PersonalityS1 = ({
   const SelectShort = (name: string) => {
     setShortTab(name);
   };
-  useEffect(() => {
-    setPersonalityData({
-      ...personalityData,
-      ['baseType']: shortTab,
-      ['Creativity']: values
-    });
-  }, [shortTab, values]);
+  // useEffect(() => {
+  //   setPersonalityData({
+  //     ...personalityData,
+  //     ['baseType']: shortTab,
+  //     ['Creativity']: values
+  //   });
+  // }, [shortTab, values]);
 
   return (
     <div className='flex w-full items-start gap-4 '>

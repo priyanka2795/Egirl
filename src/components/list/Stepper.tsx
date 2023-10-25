@@ -16,6 +16,9 @@ import leftArrowIcon from '../../../public/assets/left-arrow-grey.png';
 import PersonalityContent from '@components/creator-studio/personality/PersonalityContent';
 import ImageGeneratorIndex from '@components/creator-studio/image-generator';
 import StyleGeneratorIndex from '@components/creator-studio/style-generator';
+import EditProfileModal from './EditProfileModal';
+import UpdatePhotoModal from './UpdatePhotoModal';
+import ViewProfile from './finishStep/viewProfile';
 const SearchData = [
   {
     name: 'Semi-Realistic 1'
@@ -243,20 +246,10 @@ function CustomStepper() {
                 >
                   <div
                     className={`h-1 w-0 ${
-                      personalityData.baseType.length == 1
-                        ? 'w-[25%]'
-                        : personalityData.Creativity.length === 1
-                        ? 'w-[100%]'
-                        : personalityData.description.length === 10
-                        ? 'w-[75%]'
-                        : personalityData.worldDescription.length === 12
-                        ? 'w-[100%]'
-                        : 'w-0'
-                    } ${
                       activeStep === 1
                         ? 'bg-[#5848BC]'
                         : activeStep >= 1
-                        ? '!bg-[#2EAA1B]'
+                        ? '!bg-[#2EAA1B] w-full'
                         : 'bg-[#5848BC]'
                     } rounded-xl`}
                   ></div>
@@ -390,8 +383,17 @@ function CustomStepper() {
           <div className='flex items-center gap-2 rounded-[12px] bg-[#5848BC1F]/[0.12] px-4 py-3'>
             <Image src={circleInformation} alt={''} />
             <div className='font-normal text-[13px] leading-[18px] text-[#7362C6]'>
-              Set up a character profile. Explore view tab is a way that other
-              users can find you in Egirls.
+              {activeStep === 0
+                ? 'Set up a character profile. Explore view tab is a way that other users can find you in Egirls.'
+                : activeStep === 1
+                ? 'Add creativity, likes and traits to your character. You can also add some description.'
+                : activeStep === 2
+                ? 'Create images for what your Egirl will look like. We will use this as a reference for what your character will  look like in the future.'
+                : activeStep === 3
+                ? 'Add images you created from the image generator here to create a character style. This style will be used to generate future images of your character.'
+                : activeStep === 4
+                ? 'Select a profile picture and explore view images'
+                : ''}
             </div>
           </div>
           {activeStep === 0 && (
@@ -591,8 +593,11 @@ function CustomStepper() {
               <StyleGeneratorIndex />
             )}
             {activeStep === 4 && (
-              <div className='step-content mt-10 w-[500px] border-2 border-[#ccc] p-3 text-center'>
-                Step 5 Content
+              // <div className='step-content mt-10 w-[500px] border-2 border-[#ccc] p-3 text-center'>
+              //   Step 5 Content
+              // </div>
+              <div className='flex items-center justify-center'>
+                <ViewProfile />
               </div>
             )}
           </div>
