@@ -17,7 +17,7 @@ function PrevNextStep() {
           <span className='text-[12px] text-[#979797]'>Next step</span>
           <Image src={arrowRight} alt='' />
         </div>
-        <div className='pt-1 text-[18px] font-black text-white'>
+        <div className='pt-1 text-[18px] font-black text-white' >
           Partner Program
         </div>
       </div>
