@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Discord from '../../../../public/assets/learning-center/discord.svg';
-import Twitter from '../../../../public/assets/learning-center/twitter.svg';
-import Instagram from '../../../../public/assets/learning-center/instagram.svg';
-import Reddit from '../../../../public/assets/learning-center/reddit.svg';
-
+import SocialMediaContent from '../SocialMediaContent';
 const PersonalityContentSec = () => {
   const [getLocation, setGetLocation] = useState('');
   useEffect(() => {
@@ -124,12 +120,7 @@ const PersonalityContentSec = () => {
             <a href='#why_is_so_important'>Why is this so important?</a>
           </div>
         </div>
-        <div className='flex gap-4 px-4 mt-5'>
-          <Discord />
-          <Twitter />
-          <Instagram />
-          <Reddit />
-        </div>
+        <SocialMediaContent/>
       </div>
     </div>
   );

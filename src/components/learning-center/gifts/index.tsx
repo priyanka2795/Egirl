@@ -1,19 +1,21 @@
 import React from 'react'
 import BreadCrumbs from '../BreadCrumbs';
 import Image from 'next/image';
-import styleGeneratorBanner from '../../../../public/assets/learning-center/styleGeneratorBanner.png'
+import giftBanner from '../../../../public/assets/learning-center/giftBanner.png'
 import PrevNextStep from '../PrevNextStep';
 import DemoImg from '../../../../public/assets/learning-center/blank_img.png';
-import StyleGeneratorContent from './StyleGeneratorContent';
-function StyleGeneratorIndex() {
+import GiftContent from './GiftContent';
+
+
+function GiftIndex() {
   return (
     <div className='px-6 pb-6 '>
     <div className='flex gap-4'>
       <div>
-        <BreadCrumbs title='Style generator' />
+        <BreadCrumbs title='Gifts' />
         <div className=''>
           <div className='pt-2 pb-10'>
-            <Image src={styleGeneratorBanner} alt='' />
+            <Image src={giftBanner} alt='' />
           </div>
           {/* SECTION ONE */}
           <div>
@@ -21,7 +23,7 @@ function StyleGeneratorIndex() {
               className='pb-1 text-[27px] font-black text-white'
               id='character_profile'
             >
-              What is the Style Generator?
+              What are Gifts?
             </div>
             <p className='text-[16px] text-[#979797]'>
               Your character's name is their identity in this virtual world.
@@ -322,10 +324,10 @@ function StyleGeneratorIndex() {
           <PrevNextStep />
         </div>
       </div>
-      <StyleGeneratorContent/>
+      <GiftContent/>
     </div>
   </div>
   )
 }
 
-export default StyleGeneratorIndex
+export default GiftIndex
