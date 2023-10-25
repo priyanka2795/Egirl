@@ -39,6 +39,7 @@ const DefaultChatViewDropdown = ({
 
     setChatView("chatView");  
   };
+  
   return (
     <div className='relative'>
       <div

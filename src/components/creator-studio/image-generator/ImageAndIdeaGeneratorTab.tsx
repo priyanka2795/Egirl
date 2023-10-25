@@ -11,6 +11,9 @@ import Image2 from '../../../../public/assets/vi-image-2.png';
 import Image3 from '../../../../public/assets/vi-image-3.png';
 import Image4 from '../../../../public/assets/vi-image-4.png';
 import Image5 from '../../../../public/assets/vi-image-5.png';
+import Pencil from '../../../../public/assets/pen.png';
+import Refresh from '../../../../public/assets/refresh.png';
+import Delete from '../../../../public/assets/delete-icon.png';
 import EditImageGeneration from './editImagegeneration';
 import Tooltip from '@components/common/tooltip';
 import AlbumDelete from '../viewImages/albumDelete';
@@ -304,7 +307,7 @@ const ImageAndIdeaGeneratorTab = () => {
                       )}
                     </div>
                   </div>
-                  <div className='bottom- [85px]  absolute left-[27%] z-50 max-w-[280px]  break-words text-center text-[12px]'>
+                  <div className='bottom-[90px]  absolute left-[27%] z-50 max-w-[280px]  break-words text-center text-[12px]'>
                     <Tooltip Text={item.name} />
                   </div>
                 </div>

@@ -12,6 +12,8 @@ import TierModal from './TierModal';
 import ConvertCreditsModal from './ConvertCreditsModal';
 import ConfirmConversionModal from './ConfirmConversionModal';
 import Chart from './Chart';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const programSteps = [
   {
@@ -57,7 +59,11 @@ const array2 = [
 const ReferralsIndex = () => {
   const [showModal, setShowModal] = useState(false);
   const [showConvertCredits, setshowConvertCredits] = useState(false);
-  const [confirmModal, setconfirmModal] = useState(false);
+  const [confirmModal, setConfirmModal] = useState(false);
+
+  const notify = (): void => {
+    setConfirmModal(false), toast.success('Cashout successful');
+  };
   return (
     <>
       <div className='flex w-[1020px] flex-col items-center gap-20 px-40 py-20'>
@@ -211,7 +217,7 @@ const ReferralsIndex = () => {
       {showConvertCredits && (
         <ConvertCreditsModal
           closeConvertCredits={setshowConvertCredits}
-          confirmModal={setconfirmModal}
+          confirmModal={setConfirmModal}
           heading={'Convert to tokens'}
           available={'Available to convert'}
           amount={'$1,000'}
@@ -220,8 +226,10 @@ const ReferralsIndex = () => {
       )}
       {confirmModal && (
         <ConfirmConversionModal
-          closeConfirmModal={setconfirmModal}
+          closeConfirmModal={setConfirmModal}
           convertCredits={setshowConvertCredits}
+          setShowErrorModal={()=>false}
+          notify={notify}
           converting={`You're converting`}
           credits={'$250 into 1000 credits'}
           text={
@@ -229,6 +237,13 @@ const ReferralsIndex = () => {
           }
         />
       )}
+       <ToastContainer
+        position='bottom-center'
+        pauseOnHover
+        theme='colored'
+        hideProgressBar={true}
+        autoClose={5000}
+      />
     </>
   );
 };

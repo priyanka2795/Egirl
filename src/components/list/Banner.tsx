@@ -24,6 +24,7 @@ import pen from '../../../public/assets/pen.png';
 import eye from '../../../public/assets/eye.png';
 import trashBlank from '../../../public/assets/trash-blank-alt.png';
 import downArrow from '../../../public/assets/down-arrow-img.png';
+import EditProfileModal from '@components/list/EditProfileModal';
 
 const posts = [
   {
@@ -113,15 +114,15 @@ interface BannerProp {
   followBtnStyle?: string;
   followText?: string;
   component?: string;
-  setEditProfileModal?: any;
+  // setEditProfileModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
-const Banner = ({
+const Banner: React.FC<BannerProp> = ({
   backFromProfile,
   styleProperty,
   followBtnStyle,
   followText,
   component,
-  setEditProfileModal
+  // setEditProfileModal
 }: BannerProp) => {
   const [actionDivShow, setActionDivShow] = useState(false);
   const [exploreSelectedTab, setExploreSelected] = useState('');
@@ -135,6 +136,10 @@ const Banner = ({
   const [image, setImage] = useState('');
   const [cropData, setCropData] = useState('');
   const [updatedProfile, setUpdatedProfile] = useState(false);
+  const [editProfileModal, setEditProfileModal] = useState(false);
+
+  console.log(editProfileModal,'editProfileModal');
+  
 
   const handleExploreSelected = (e: React.MouseEvent<HTMLElement>) => {
     setExploreSelected((e.target as HTMLElement).innerText);
@@ -294,7 +299,7 @@ const Banner = ({
                 <button className='h-max rounded-[14px] border border-[#5848BC] bg-[#5848BC] px-[20px] py-[11px] text-base font-bold text-white'>
                   Subscribe
                 </button> */}
-                <button className='flex items-center justify-center gap-2 rounded-[14px] bg-white/[0.08] px-5 py-[13px]' onClick={() => {setEditProfileModal(true)}}>
+                <button className='flex items-center justify-center gap-2 rounded-[14px] bg-white/[0.08] px-5 py-[13px]' onClick={()=>setEditProfileModal(true)}>
                   <Image src={pen} alt={''} />
                   <div className='font-bold text-[16px] leading-[22px] text-white'>
                     Edit profile
@@ -480,7 +485,12 @@ const Banner = ({
           setRemoveCover={setRemoveCover}
         />
       )}
+
+{
+        editProfileModal && <EditProfileModal closeState={setEditProfileModal} />
+      } 
     </div>
+
   );
 };
 

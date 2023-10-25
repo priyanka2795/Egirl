@@ -34,7 +34,7 @@ const images = [
   }
 ];
 interface ViewImagesDropDown {
-  DeleteImage: any;
+  DeleteImage?: any;
 }
 const ViewImagesDropDown = ({ DeleteImage }: ViewImagesDropDown) => {
   return (

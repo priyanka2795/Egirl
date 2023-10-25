@@ -6,7 +6,7 @@ import greenArrows from '../../../public/assets/arrows-horizontal-green.png';
 interface ConfirmConversionProp {
   closeConfirmModal: React.Dispatch<React.SetStateAction<boolean>>;
   convertCredits: React.Dispatch<React.SetStateAction<boolean>>;
-  setShowErrormModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowErrorModal?: React.Dispatch<React.SetStateAction<boolean>>;
   converting: string;
   credits: string;
   text: string;
@@ -15,7 +15,7 @@ interface ConfirmConversionProp {
 const ConfirmConversionModal = ({
   closeConfirmModal,
   convertCredits,
-  setShowErrormModal,
+  setShowErrorModal,
   converting,
   credits,
   text,
@@ -31,7 +31,7 @@ const ConfirmConversionModal = ({
       >
         <div className='flex flex-col items-center gap-4 px-10 py-16'>
           <div className='flex items-center justify-center rounded-[100px] bg-[#5AD02E]/[0.16] px-6 pb-6 pt-[26px]'>
-            <Image className='h-8 w-8' src={greenArrows} alt={''} />
+            <Image className='w-8 h-8' src={greenArrows} alt={''} />
           </div>
           <div className='flex flex-col gap-2'>
             <div className='text-center text-[22px] font-bold leading-8 text-[#FFFFFF]'>
@@ -53,7 +53,7 @@ const ConfirmConversionModal = ({
             onClick={() => {
               closeConfirmModal(false),
                 convertCredits(true),
-                setShowErrormModal(true);
+                setShowErrorModal?.(true);
             }}
           >
             Cancel

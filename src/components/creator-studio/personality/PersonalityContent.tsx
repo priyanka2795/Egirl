@@ -18,10 +18,10 @@ const PersonalityContent = ({
 }: PersonalityContent) => {
   const HandleChange = (e: any) => {
     const { name, value } = e.target;
-    setPersonalityData({
-      ...personalityData,
-      [name]: value
-    });
+    // setPersonalityData({
+    //   ...personalityData,
+    //   [name]: value
+    // });
   };
   // useEffect(() => {
   //   if (
@@ -38,7 +38,7 @@ const PersonalityContent = ({
 
   return (
     <>
-      <div className='flex flex-col items-start gap-4 self-stretch'>
+      <div className='flex flex-col items-start self-stretch gap-4'>
         <PersonalityS1
           personalityData={personalityData}
           setPersonalityData={setPersonalityData}
@@ -53,9 +53,9 @@ const PersonalityContent = ({
             <div className='font-bold text-[18px] leading-6 text-[#FFFFFF]'>
               Descriptions
             </div>
-            <div className='h-4 w-4'>
+            <div className='w-4 h-4'>
               <Image
-                className='h-full w-full'
+                className='w-full h-full'
                 src={circleInformation}
                 alt={''}
               />
@@ -69,6 +69,7 @@ const PersonalityContent = ({
                 </div>
                 <div className='font-normal text-[14px] leading-[18px] text-[#515151]'>
                   {/* {personalityData.description.length}/2000 */}
+                  0/2000
                 </div>
               </div>
               <textarea
@@ -88,6 +89,7 @@ const PersonalityContent = ({
                 </div>
                 <div className='font-normal text-[14px] leading-[18px] text-[#515151]'>
                   {/* {personalityData.worldDescription.length}/2000   */}
+                  0/2000  
                 </div>
               </div>
               <textarea
