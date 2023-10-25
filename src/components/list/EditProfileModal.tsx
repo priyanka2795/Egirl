@@ -6,15 +6,17 @@ import avatar from '../../../public/assets/image 69.png';
 import cameraOverlay from '../../../public/assets/white-camera.png';
 import InputFieldDesign from '@components/common/InputFieldDesign';
 import ProfileDropdown from '@components/common/ProfileDropdown';
+import DeleteProfileModal from '@components/common/DeleteProfileModal';
 interface EditProfileModalProps {
   closeState: any;
 }
 
 const EditProfileModal = ({ closeState }: EditProfileModalProps) => {
   const tabs = ['Profile view', 'Explore view'];
-  const [activeTab, setActiveTab] = useState(0);
-  const [profileEdit, setProfileEdit] = useState(false);
-  return (
+  const [activeTab, setActiveTab] = useState<number>(0);
+  const [profileEdit, setProfileEdit] = useState<boolean>(false);
+  const [deleteProfileState , setDeleteProfileState] = useState<boolean>(false)
+  return (<>
     <Modal
       open={true}
       modalClassName='flex flex-col w-full rounded-[20px] h-max bg-[#1A1A1A] max-w-[468px] relative'
@@ -25,7 +27,7 @@ const EditProfileModal = ({ closeState }: EditProfileModalProps) => {
         <div className='font-bold text-[18px] leading-6 text-white'>
           Edit profile
         </div>
-        <Image src={xMark} alt={''} />
+        <Image src={xMark} alt={''} className="w-[24px] h-[24px]"/>
       </div>
       <div className='flex items-center gap-4 px-6 pb-3 pt-6'>
         <div
@@ -51,8 +53,10 @@ const EditProfileModal = ({ closeState }: EditProfileModalProps) => {
               <ProfileDropdown
                 profileEdit={profileEdit}
                 setProfileEdit={setProfileEdit}
+                deleteProfileState={deleteProfileState}
+                setDeleteProfileState={setDeleteProfileState}
               />
-            )}
+             )}
           </div>
         </div>
 
@@ -138,6 +142,18 @@ const EditProfileModal = ({ closeState }: EditProfileModalProps) => {
         </div>
       </div>
     </Modal>
+    {deleteProfileState &&
+     <Modal
+     open={true}
+     modalClassName='flex flex-col w-full rounded-[14px] items-start h-max bg-[#1A1A1A] max-w-[468px] relative'
+     closeModal={() => closeState(false)}
+     modalOverlayStyle='!bg-black/80'
+   >
+    <DeleteProfileModal />
+   </Modal>
+    } 
+
+    </>
   );
 };
 
