@@ -19,7 +19,7 @@ const ImageRequestModal = ({ closeModal, setImageRequestMsg }: ImageRequestModal
   };
 
   return (
-    <div className='flex h-max w-[570px] flex-col items-center justify-start overflow-hidden rounded-2xl bg-zinc-900'>
+    <div className='flex flex-col items-center justify-start h-max rounded-2xl bg-zinc-900'>
       <div className='inline-flex items-start self-stretch justify-start gap-2 p-6 border-b border-white border-opacity-10'>
         <div className='inline-flex flex-col items-start justify-start gap-1 shrink grow basis-0'>
           <div className='w-[286px] text-[18px] font-bold leading-normal text-white'>

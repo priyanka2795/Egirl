@@ -27,7 +27,7 @@ const DefaultTab = ({
   const [exploreSelectedTab, setExploreSelected] = useState(activeListTab);
 
   const handleExploreSelected = (item:string) => {
-    setShowRealistic(false);
+    // setShowRealistic(false);
     setExploreSelected(item);
     setActiveTab(item);
     if(item === 'Subscriptions') {
@@ -43,9 +43,9 @@ const DefaultTab = ({
       setShowFollowing(false);
       setShowCollections(false);
     } else {
-      setShowSubscriptionOption(false);
-      setShowFollowing(false);
-      setShowBookmark(false);
+      // setShowSubscriptionOption(false);
+      // setShowFollowing(false);
+      // setShowBookmark(false);
     }
   };
   return (

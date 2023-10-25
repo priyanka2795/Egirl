@@ -24,6 +24,7 @@ const ListIndex = () => {
   const [showRealistic, setShowRealistic] = useState(false);
   return (
     <div>
+      
       {profileSectionState === true ? (
         <RemoveProfile backFromProfile={setProfileSectionState} />
       ) : (

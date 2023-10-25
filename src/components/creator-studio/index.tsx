@@ -28,7 +28,7 @@ const CreatorStudio = ({
 }: CreatorStudio) => {
 
   const [UserGuide, setUserGuide] = useState(true);
-  const [editProfileModal, setEditProfileModal] = useState(false);
+
 
   return (
     <>
@@ -48,7 +48,7 @@ const CreatorStudio = ({
             }
             followText={'Follow'}
             component={'CreatorStudioProfile'}
-            setEditProfileModal={setEditProfileModal}
+            // setEditProfileModal={setEditProfileModal}
           />
           <div>
             <SetUpYourCharacter
@@ -72,9 +72,9 @@ const CreatorStudio = ({
           </div>
         </div>
       )}
-      {
+       {/* {
         editProfileModal && <EditProfileModal closeState={setEditProfileModal} />
-      }
+      }  */}
     </>
   );
 };

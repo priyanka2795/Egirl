@@ -6,6 +6,7 @@ import heart from '../../../../public/assets/heart-alt.png';
 import circleInformation from '../../../../public/assets/circle-information8.png';
 import arrowDown from '../../../../public/assets/chevron-down2.png';
 import shop from '../../../../public/assets/shop.png';
+import Delete from '../../../../public/assets/delete-icon.png';
 import modalImg from '../../../../public/assets/view-style-modal-img.png';
 import star from '../../../../public/assets/star.png';
 import avatar2 from '../../../../public/assets/viewStyle-modal-2.png';
@@ -87,7 +88,7 @@ const PostedStyleModal = ({ setPostedStyleModal }: PostedStyleModalprops) => {
           </div>
           <div className='flex h-[inherit] w-[33%] flex-col justify-between px-6 pb-[13px]'>
             <div>
-              <div className='flex flex-col gap-4 pb-5 pt-6'>
+              <div className='flex flex-col gap-4 pt-6 pb-5'>
                 <div className='flex flex-col gap-[2px]'>
                   <div className='text-[22px] font-bold leading-8 text-white'>
                     A-Zovya Photoreal
@@ -204,10 +205,10 @@ const PostedStyleModal = ({ setPostedStyleModal }: PostedStyleModalprops) => {
                 </div>
               </div>
             </div>
-            <div className='flex h-max cursor-pointer items-center justify-center gap-2 rounded-[14px] bg-[#5848BC] px-6 py-[13px]'>
-              <Image className='object-contain' src={shop} alt={''} />
+            <div className='flex h-max cursor-pointer items-center justify-center gap-2 rounded-[14px] bg-[#FFFFFF14] px-6 py-[13px]'>
+              <Image className='object-contain' src={Delete} alt={''} />
               <div className='text-[16px] font-bold leading-[22px] text-white'>
-                Post Style
+              Delete
               </div>
             </div>
           </div>

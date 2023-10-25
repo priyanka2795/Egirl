@@ -8,7 +8,7 @@ import avtarImg5 from '../../../../public/assets/bookmark-img1.png';
 import likeIcon from '../../../../public/assets/like-icon.png';
 import Image from 'next/image';
 
-const tabContent = ['All', 'Likes', 'Comments', 'Following'];
+const tabContent = ['All', 'Likes', 'Comments', 'Followings'];
 const notificationMessage = [
   {
     id: 1,
@@ -86,6 +86,7 @@ const NotificationModal = ({ selectedMoreOption }: NotificationModal) => {
           activeListTab={activeListTab}
           setActiveTab={setActiveListTab}
           tabContentArray={tabContent}
+
         />
         <div className='flex flex-col gap-6 px-6 pt-4'>
           {notificationMessage.map((items) => {

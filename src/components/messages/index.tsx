@@ -53,8 +53,8 @@ const Messages = () => {
         selectUserState={selectUserState}
         chatViewStyle={chatViewStyle}
         setChatViewStyle={setChatViewStyle}
-                // chartScreenView={chartScreenView}
-                // setChartScreenView={setChartScreenView}
+                chartScreenView={chartScreenView}
+                setChartScreenView={setChartScreenView}
               />
         </>
         :
