@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import plusIcon from '../../../public/assets/plus-large.png';
+import plusIcon from '../../../public/assets/plus-white.png';
 import userAddIcon from '../../../public/assets/user-add-icon.png';
 import CreateCharacterModal from './CreateCharacterModal';
 

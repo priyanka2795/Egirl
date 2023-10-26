@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
 import avtar from '../../../public/assets/mica-chan-avatar-image.png';
-import arrowDown from '../../../public/assets/arrow-down.png';
+import arrowDown from '../../../public/assets/chevron-down24.png';
 // import ChartIcon from '../../../public/assets/Chart.svg';
 import SidebarMenuItem from '@components/common/Sidebar/SidebarMenuItem';
 import AnalyticsIcon from './svg/AnalyticsIcon';
@@ -76,7 +76,7 @@ const CreatorStudioSidebar = ({
             className='flex cursor-pointer items-center justify-between py-[14px] pl-3 pr-4'
             onClick={() => setSidebarModal(!sidebarModal)}
           >
-            <div className='relative flex w-full items-center gap-2'>
+            <div className='relative flex items-center w-full gap-2'>
               <div className='h-[32px] w-[32px]'>
                 <Image
                   src={avtar}
@@ -92,7 +92,7 @@ const CreatorStudioSidebar = ({
                 Mika-chan
               </div>
             </div>
-            <div className='mt-2 h-full'>
+            <div className='h-full mt-2'>
               <Image src={arrowDown} alt='' />
             </div>
             {sidebarModal && (
@@ -202,7 +202,23 @@ const CreatorStudioSidebar = ({
             </div>
           </div> */}
           </div>
-
+          <div
+            className={`max-[1279px]:mb-2 max-[1279px]:border-b-2 max-[1279px]:border-[#252525] ${
+              shrinkSideBar === true
+                ? 'mb-2 border-b-2 border-[#252525]'
+                : 'min-[1280px]:inline-flex min-[1280px]:h-10 min-[1280px]:items-start min-[1280px]:justify-start min-[1280px]:gap-2.5 min-[1280px]:px-3 min-[1280px]:py-2.5'
+            }`}
+          >
+            <div
+              className={`max-[1279px]:hidden ${
+                shrinkSideBar === true
+                  ? 'hidden'
+                  : 'text-[13px] font-[600] uppercase leading-5 tracking-tight text-neutral-600 '
+              }`}
+            >
+              Chatbot
+            </div>
+          </div>
           <div className='font-bold group relative flex cursor-pointer items-center justify-center rounded-[14px] text-[16px] leading-[22px] text-white'>
             <SidebarMenuItem
               text='Personality'
@@ -309,6 +325,23 @@ const CreatorStudioSidebar = ({
           </div> */}
           </div>
 
+          <div
+            className={`max-[1279px]:mb-2 max-[1279px]:border-b-2 max-[1279px]:border-[#252525] ${
+              shrinkSideBar === true
+                ? 'mb-2 border-b-2 border-[#252525]'
+                : 'min-[1280px]:inline-flex min-[1280px]:h-10 min-[1280px]:items-start min-[1280px]:justify-start min-[1280px]:gap-2.5 min-[1280px]:px-3 min-[1280px]:py-2.5'
+            }`}
+          >
+            <div
+              className={`max-[1279px]:hidden ${
+                shrinkSideBar === true
+                  ? 'hidden'
+                  : 'text-[13px] font-[600] uppercase leading-5 tracking-tight text-neutral-600 '
+              }`}
+            >
+              Styles
+            </div>
+          </div>
           <SidebarMenuItem
             text='View Styles'
             href='/view-style'
@@ -322,22 +355,7 @@ const CreatorStudioSidebar = ({
             sideBarMenuText={`max-[1279px]:!hidden ${
               shrinkSideBar === true ? '!hidden' : 'w-full'
             } `}
-          />
-
-          <SidebarMenuItem
-            text='Marketplace'
-            href='/marketplace'
-            Icon={MarketplaceIcon}
-            IconActive={shop}
-            StyleClasses={`max-[1279px]:flex max-[1279px]:!justify-center max-[1279px]:max-w-[52px] max-[1279px]:mx-auto ${
-              shrinkSideBar === true
-                ? 'flex !justify-center max-w-[52px] mx-auto'
-                : 'pl-3'
-            }`}
-            sideBarMenuText={`max-[1279px]:!hidden ${
-              shrinkSideBar === true ? '!hidden' : 'w-full'
-            } `}
-          />
+          />        
 
           <div className='font-bold group relative flex cursor-pointer items-center justify-center rounded-[14px] text-[16px] leading-[22px] text-white'>
             <SidebarMenuItem
@@ -371,6 +389,20 @@ const CreatorStudioSidebar = ({
               />
             )}
           </div>
+          <SidebarMenuItem
+            text='Marketplace'
+            href='/marketplace'
+            Icon={MarketplaceIcon}
+            IconActive={shop}
+            StyleClasses={`max-[1279px]:flex max-[1279px]:!justify-center max-[1279px]:max-w-[52px] max-[1279px]:mx-auto ${
+              shrinkSideBar === true
+                ? 'flex !justify-center max-w-[52px] mx-auto'
+                : 'pl-3'
+            }`}
+            sideBarMenuText={`max-[1279px]:!hidden ${
+              shrinkSideBar === true ? '!hidden' : 'w-full'
+            } `}
+          />
         </div>
 
         <div
@@ -379,7 +411,7 @@ const CreatorStudioSidebar = ({
           }`}
         >
           <div
-            className='relative mt-[50px] flex cursor-pointer items-center gap-2 py-3 pl-3'
+            className='relative mt-[50px] flex cursor-pointer items-center gap-2 py-3 pl-3 border-[#FFFFFF14] border-t'
             onClick={() => setMoreOptionsModal(!moreOptionsModal)}
           >
             <div>
