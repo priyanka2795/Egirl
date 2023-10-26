@@ -1,9 +1,9 @@
 type SvgIconProps = {
   svgClasses?: string;
-  strokeClasses?: string;
+  strokeclasses?: string;
 };
 
-export default function HomeIcon({ svgClasses, strokeClasses }: SvgIconProps) {
+export default function HomeIcon({ svgClasses, strokeclasses }: SvgIconProps) {
   return (
     <svg
       className={svgClasses}
@@ -14,7 +14,7 @@ export default function HomeIcon({ svgClasses, strokeClasses }: SvgIconProps) {
       xmlns='http://www.w3.org/2000/svg'
     >
       <path
-        className={strokeClasses}
+        className={strokeclasses}
         d='M12 2L2 7L12 12L22 7L12 2Z'
         stroke='#515151'
         strokeWidth='2'
@@ -22,7 +22,7 @@ export default function HomeIcon({ svgClasses, strokeClasses }: SvgIconProps) {
         strokeLinejoin='round'
       />
       <path
-        className={strokeClasses}
+        className={strokeclasses}
         d='M2 17L12 22L22 17'
         stroke='#515151'
         strokeWidth='2'
@@ -30,7 +30,7 @@ export default function HomeIcon({ svgClasses, strokeClasses }: SvgIconProps) {
         strokeLinejoin='round'
       />
       <path
-        className={strokeClasses}
+        className={strokeclasses}
         d='M2 12L12 17L22 12'
         stroke='#515151'
         strokeWidth='2'
