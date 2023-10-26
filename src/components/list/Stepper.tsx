@@ -109,7 +109,7 @@ function CustomStepper() {
   const [threadStep, setThreadStep] = useState('');
   const [fourthStep, setFourthStep] = useState('');
 
-  const [activeStep, setActiveStep] = useState(4);
+  const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
