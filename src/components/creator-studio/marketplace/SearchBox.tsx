@@ -27,7 +27,7 @@ const SearchBox = () => {
               <div className='relative flex w-full'>
                 <div className='absolute left-4 top-2'>
                   <SearchIcon
-                    strokeClasses={`stroke-[#515151] transition duration-100`}
+                    strokeclasses={`stroke-[#515151] transition duration-100`}
                   />
                 </div>
                 <input

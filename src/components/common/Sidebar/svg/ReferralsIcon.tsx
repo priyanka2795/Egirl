@@ -1,9 +1,9 @@
 type SvgIconProps = {
   svgClasses?: string;
-  strokeClasses?: string;
+  strokeclasses?: string;
 };
 
-export default function ReferralsIcon({ svgClasses, strokeClasses }: SvgIconProps) {
+export default function ReferralsIcon({ svgClasses, strokeclasses }: SvgIconProps) {
   return (
     <svg
       className={svgClasses}
@@ -14,7 +14,7 @@ export default function ReferralsIcon({ svgClasses, strokeClasses }: SvgIconProp
       xmlns='http://www.w3.org/2000/svg'
     >
       <path
-        className={strokeClasses}
+        className={strokeclasses}
         d='M20 18L14 18M17 15V21M4 21C4 17.134 7.13401 14 11 14C11.695 14 12.3663 14.1013 13 14.2899M15 7C15 9.20914 13.2091 11 11 11C8.79086 11 7 9.20914 7 7C7 4.79086 8.79086 3 11 3C13.2091 3 15 4.79086 15 7Z'
         strokeWidth='1.8'
         strokeLinecap='round'

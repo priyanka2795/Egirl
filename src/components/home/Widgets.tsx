@@ -40,7 +40,7 @@ export default function Widgets() {
             <div className='relative w-full mr-2 group'>
               <div className='absolute left-4 top-3'>
                 <SearchIcon
-                  strokeClasses={`${
+                  strokeclasses={`${
                     isInputActive ? 'stroke-[#5848BC]' : 'stroke-[#515151]'
                   } transition duration-100`}
                 />

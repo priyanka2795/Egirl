@@ -6,13 +6,13 @@ function ImageGeneratorContent() {
       <div className='text-[13px] uppercase text-[#515151]'>Contents</div>
       <div className='mt-2 leading-8'>
         <div className='border-l-[1px] border-white/[0.12] pl-3 text-[15px] text-[#979797] '>
-          <a href='#character_profile'>What is the Image Generator?</a>
+          <a href='#'>What is the Image Generator?</a>
         </div>
         <div className='border-l-[1px] border-white/[0.12] pl-3 text-[15px] text-[#979797] '>
-          <a href='#unique_username'>How it works?</a>
+          <a href='#'>How it works?</a>
         </div>
         <div className='border-l-[1px] border-white/[0.12] pl-3 text-[15px] text-[#979797] '>
-          <a href='#general_benefits'>Prompt</a>
+          <a href='#'>Prompt</a>
         </div>
       </div>
       <SocialMediaContent/>

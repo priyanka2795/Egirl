@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import voiceImgIcon from '../../../../public/assets/learning-center/voiceImgIcon.png';
 import wallet from '../../../../public/assets/learning-center/wallet.png';
@@ -6,7 +6,7 @@ import messageCircle from '../../../../public/assets/learning-center/message-cir
 import chart from '../../../../public/assets/learning-center/Chart.png';
 import globe from '../../../../public/assets/learning-center/globe.png';
 import minus from '../../../../public/assets/minus.png';
-import plus from '../../../../public/assets/plus-large4.png'
+import plus from '../../../../public/assets/plus-large4.png';
 
 const data = [
   {
@@ -36,15 +36,30 @@ const data = [
   }
 ];
 function PartnerProgramAccordion() {
+  const [show, setShow] = useState<number | null>(0);
+  const handleToggle = (index: number) => {
+    setShow((prev: number | null) => {
+      return prev === index ? null : index;
+    });
+  };
   return (
-    <div className=''>
+    <>
+      <div
+        className='pb-2 text-[27px] font-black text-white'
+        id='character_profile'
+      >
+        Benefits of Joining the Partner Program
+      </div>
       {data.map((e, index) => {
         return (
           <div
-            className='my-4 rounded-[20px] border border-white/[0.08] bg-white/[0.07] p-5'
+            className='my-4 min-w-[671px] rounded-[20px] border border-white/[0.08] bg-white/[0.07] p-5'
             key={index}
           >
-            <div className='flex items-center justify-between'>
+            <div
+              className='flex items-center justify-between cursor-pointer'
+              onClick={() => handleToggle(index)}
+            >
               <div className='flex items-center gap-3'>
                 <div className='flex h-[50px] w-[50px] items-center justify-center rounded-full bg-white/[0.05]'>
                   <Image src={e.icon} alt='' />
@@ -53,13 +68,17 @@ function PartnerProgramAccordion() {
                   {e.title}
                 </span>
               </div>
-              <Image src={minus} alt='' />
+              <Image src={show === index ? minus : plus} alt='' />
             </div>
-            <div className='pt-3 text-[15px] text-[#979797]'>{e.text}</div>
+            {show === index ? (
+              <div className='pt-3 text-[15px] text-[#979797]'>{e.text}</div>
+            ) : (
+              ''
+            )}
           </div>
         );
       })}
-    </div>
+    </>
   );
 }
 
