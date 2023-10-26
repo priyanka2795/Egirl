@@ -71,7 +71,6 @@ sideBarProp) {
     setShrinkSidebar(sidebarVariable ? sidebarVariable : '');
   }, [sidebarVariable]);
 
-  console.log(sidebarVariable, 'shrinkSidebar sidebarVariable');
   const handleSidebarWidth = () => {
     if (shrinkSidebar) {
       setShrinkSidebar('');
@@ -156,7 +155,7 @@ sideBarProp) {
             shrinkSidebar === 'true' ? '!hidden' : 'w-full'
           }`}
         />
-        <div onClick={() => activeItem('Add Card')}>
+        <div onClick={() => {activeItem('Add Card'), moreOptionItem('')}}>
           <SidebarMenuItem
             text='Add Card'
             // href='/add-card'
@@ -194,7 +193,9 @@ sideBarProp) {
           sideBarMenuText={`${sideBarMenuText} ${
             shrinkSidebar === 'true' ? '!hidden' : 'w-full'
           }`}
+          changeTab={"CreatorStudioActive"}
         />
+
         <div className='relative'>
           <div onClick={() => setMoreOption(!moreOption)}>
             <SidebarMenuItem
@@ -216,6 +217,7 @@ sideBarProp) {
               }`}
               activeMoreOption={activeMoreOption}
               moreOptionItem={moreOptionItem}
+              activeItem={activeItem}
             />
           )}
         </div>

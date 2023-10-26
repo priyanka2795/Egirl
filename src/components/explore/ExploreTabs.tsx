@@ -29,7 +29,7 @@ const ExploreTabs = ({ exploreTab, setExploreSelectedTab }: ExploreTabsProps) =>
                 <div
                   key={index}
                   onClick={(e) => handleExploreSelected(items)}
-                  className={`flex cursor-pointer gap-2.5 rounded-xl px-4 py-2 text-[15px] font-bold ${
+                  className={`flex cursor-pointer gap-2.5 rounded-xl px-4 py-2 text-[15px] font-[700] ${
                     exploreSelectedTab === items
                       ? ' bg-white bg-opacity-20 text-white  '
                       : 'text-neutral-400'

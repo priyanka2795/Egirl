@@ -43,6 +43,27 @@ const PromptTagsSearch = [
   'Green top with white lines and hearts',
   'Green top with white, red and yellow spots'
 ];
+const PromptTagsSearchAll = [
+  {
+    title: 'Suggestions',
+    hint: ['Green top with white', 'Green top with white collar']
+  },
+  {
+    title: 'Tags',
+    hint: [
+      'Green top with white sleeve',
+      'Green top with white flower and big cloud',
+      'Green top with white belt'
+    ]
+  },
+  {
+    title: 'Styles',
+    hint: [
+      'Green top with white lines and hearts',
+      'Green top with white, red and yellow spots'
+    ]
+  }
+];
 
 interface ImageGeneratorOption {
   InpaintingToggle: boolean;
@@ -83,7 +104,8 @@ const ImageGeneratorOption = ({
   const [editPromptMenu, setEditPromptMenu] = useState(EditPromptName);
   const [editPromptMenuIndex, setEditPromptMenuIndex] =
     useState<string>('Blue Jeans');
-  const [promptTagsHint, setPromptTagsHint] = useState(PromptTagsSearch);
+  const [promptTagsHint, setPromptTagsHint] = useState(PromptTagsSearchAll);
+  // const [promptTagsHint, setPromptTagsHint] = useState(PromptTagsSearch);
   const [promptHint, setPromptHint] = useState<string>('');
 
   const DeletePromptMenu = (item: string) => {
@@ -153,25 +175,38 @@ const ImageGeneratorOption = ({
     setEditPromptMenu(filteredItems);
   };
 
-  const handleChangePromptHint = (e:any) => {
+  const handleChangePromptHint = (e: any) => {
     const searchPrompt = e.target.value;
     setPromptHint(searchPrompt);
 
-    const filteredItems = PromptTagsSearch.filter((item) =>
-      item.toLowerCase().includes(searchPrompt.toLowerCase())
-    );
+    const filteredItems = PromptTagsSearchAll.filter((item) => {
+      return item.hint.some((hint) =>
+        hint.toLowerCase().includes(searchPrompt.toLowerCase())
+      );
+    });
 
     setPromptTagsHint(filteredItems);
-    setShowPromptMenu(filteredItems.length === 0 ? true : false);
+    setShowPromptMenu(filteredItems.length === 0);
   };
 
+
+  
   const HandleTypeHint = (e: React.MouseEvent<HTMLElement>) => {
-    const PromptHint = (e.target as HTMLElement).innerText;
-    setPromptHint(PromptHint);
-    setPromptTags([...promptTags, PromptHint]);
+    const PromptHintText = (e.target as HTMLElement).innerText;
+    const found = promptTags.find((Tags: string) => Tags===PromptHintText );
+    setPromptHint(PromptHintText);  
+   
+    if (PromptHintText === found) {
+      setPromptHint('');
+      alert('this value is already in adjust');
+    }else{
+    setPromptTags([...promptTags, PromptHintText]);
     setShowPromptMenu(true);
     setPromptHint('');
+    }
+   
   };
+
   return (
     <>
       <div className='flex flex-col rounded-[14px] bg-[#121212]'>
@@ -320,8 +355,31 @@ const ImageGeneratorOption = ({
                     {promptHint === '' ? (
                       ''
                     ) : (
-                      <div className='rounded-[14px] bg-[#1A1A1A] p-2 shadow-md '>
+                      <div className='rounded-[14px] bg-[#1A1A1A]  shadow-md absolute w-max overflow-hidden'>
+                        
                         {promptTagsHint.map((items, index) => (
+                          <div
+                            key={index}
+                            className=''
+                           
+                          >
+                            <div className='border-b border-[#FFFFFF14] px-3 '>
+                              <h5 className='p-2 text-[13px] font-[700] text-[#979797] '>
+                                {items.title}
+                              </h5>
+                              <div className=''>
+
+                              {items.hint.map((hints, index) => (
+                                <p className='mb-1 cursor-pointer rounded-lg px-2 py-1.5 hover:bg-[#FFFFFF29] [&>*:last-child]:border-b-0'  onClick={(e) => HandleTypeHint(e)}>
+                                  {hints}
+                                </p>
+                              ))}
+                              </div>
+
+                            </div>
+                          </div>
+                        ))}
+                        {/* {promptTagsHint.map((items, index) => (
                           <div
                             key={index}
                             className='cursor-pointer rounded-lg p-2 hover:bg-[#FFFFFF0D]'
@@ -329,7 +387,7 @@ const ImageGeneratorOption = ({
                           >
                             {items}
                           </div>
-                        ))}
+                        ))} */}
                       </div>
                     )}
                   </>

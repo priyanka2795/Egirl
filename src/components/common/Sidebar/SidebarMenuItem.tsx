@@ -8,7 +8,7 @@ type SidebarMenuItemProps = {
   href?: string;
   sideBarMenuText?: string;
   StyleClasses?: string;
-
+  changeTab?:string;
   Icon: (props: { svgClasses?: string; strokeClasses?: string }) => JSX.Element;
   IconActive: (props: {
     svgClasses?: string;
@@ -22,12 +22,17 @@ export default function SidebarMenuItem({
   sideBarMenuText,
   StyleClasses,
   Icon,
-  IconActive
+  IconActive,
+  changeTab
 }: SidebarMenuItemProps) {
   const router = useRouter();
 
   // This will be true if the current path is equal to this item's href
   const active = router.pathname === href;
+  const getpathname = router.route;
+
+
+  // const changeTab: string = 'CreatorStudioActive';
 
   return (
     <>
@@ -37,6 +42,7 @@ export default function SidebarMenuItem({
             className={`${StyleClasses} mb-2 flex cursor-pointer items-center justify-center space-x-3 rounded-[14px] py-2 pl-2.5 text-lg text-white transition-all duration-100 hover:bg-[#252525] ${
               sideBarMenuText ? 'w-full' : 'xl:w-[256px] '
             } xl:justify-start ${active && 'bg-[#252525]'}`}
+            target={changeTab === 'CreatorStudioActive' ? '_blank' : '_self'}
           >
             {active ? (
               <IconActive />
@@ -50,7 +56,7 @@ export default function SidebarMenuItem({
               <span
                 className={`${
                   active ? 'font-black' : 'font-semibold'
-                } ${sideBarMenuText} hidden text-[15px] leading-8 xl:inline`}
+                } ${sideBarMenuText} hidden text-[18px] leading-8 xl:inline`}
               >
                 {text}
               </span>

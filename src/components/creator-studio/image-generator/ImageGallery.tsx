@@ -13,10 +13,26 @@ import Copy from '../svg/Copy.svg';
 import avtar from '../../../../public/assets/avatar-cs-1.png';
 import ExpandIcon from '../../../../public/assets/expand-alt.png';
 import AdvanceArrow from '../svg/AdvanceArrow';
+import Grid from '../../../../public/assets/dots-vertical.png';
 
+const PromptTags = [
+  'Silver hair',
+  'Almond-shaped eyes',
+  'Lean and agile',
+  'Scarred cheek',
+  'Elegantly poised',
+  'Broad shoulders',
+  'Bald-headed',
+  'Enigmatic gaze'
+];
 const ImageGallery = () => {
   const [viewModal, setviewModal] = React.useState<boolean>(false);
-  const handleviewModal = () => setviewModal(true);
+  const handleviewModal = (name: string) => {
+    setviewModal(true);
+    if (name === 'None') {
+      setDefaultModal(true);
+    }
+  };
   const handlecloseModal = () => setviewModal(false);
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 
@@ -91,6 +107,8 @@ const ImageGallery = () => {
   function AdvanceModal() {
     setAdvanceModal(!advanceModal);
   }
+  const [defaultModal, setDefaultModal] = useState(false);
+  const [showMorePrompt, setShowMorePrompt] = useState(false);
 
   return (
     <div>
@@ -115,7 +133,7 @@ const ImageGallery = () => {
                 onChange={handleSearch}
                 placeholder='Search'
                 type='text'
-                className='border-none bg-transparent p-0 text-[15px] font-light leading-6 text-[#979797] focus:ring-0 '
+                className='font-light border-none bg-transparent p-0 text-[15px] leading-6 text-[#979797] focus:ring-0 '
               />
             </div>
           </div>
@@ -147,11 +165,17 @@ const ImageGallery = () => {
                       : ''
                   }`}
                 >
-                  <Image src={item.img} className='shrink-0 rounded-xl' />
+                  <div
+                    className={`bg-[#FFFFFF0D] ${
+                      item.name === 'None' ? 'h-[64px] w-[64px]' : ''
+                    }  flex items-center justify-center rounded-full`}
+                  >
+                    <Image src={item.img} className='shrink-0 rounded-xl' />
+                  </div>
                 </div>
                 <div
                   className='absolute right-2 top-2  hidden h-[30px] w-[30px] items-center justify-center rounded-full bg-[#0000007A] group-hover:flex'
-                  onClick={handleviewModal}
+                  onClick={() => handleviewModal(item.name)}
                 >
                   <Image src={ExpandIcon} className='w-full h-full' />
                 </div>
@@ -178,7 +202,7 @@ const ImageGallery = () => {
       {/*                     modal                */}
       <Modal
         open={viewModal}
-        closeModal={handleviewModal}
+        closeModal={() => handleviewModal}
         modalOverlayStyle='!bg-black/10  '
         modalClassName={`bg-[#121212] flex flex-col flex-start relative rounded-[20px]`}
       >
@@ -190,252 +214,379 @@ const ImageGallery = () => {
             </div>
           </div>
           {/* box 2 */}
-
-          <div className='flex w-[445px] flex-col items-start self-stretch'>
-            {/* Top Block */}
-            <div className='flex flex-col items-start self-stretch gap-4 p-6 pt-5'>
-              <div className='flex flex-col items-start gap-0.5 self-stretch'>
+          {defaultModal ? (
+            <div className=' flex w-[445px] flex-col justify-between self-stretch p-6'>
+              <div className='flex flex-col items-start self-stretch gap-5 '>
                 <div className='flex items-center self-stretch gap-2'>
-                  <h5 className='w-full text-[22px] font-bold leading-8 text-white'>
-                    A-Zovya Photoreal
+                  <h5 className='w-full text-[22px] font-black leading-8 text-white'>
+                    Image info
                   </h5>
-                  <div onClick={handlecloseModal}>
+                  <div onClick={handlecloseModal} className='cursor-pointer'>
+                    
                     <Cross />
                   </div>
                 </div>
-                <div className='text-[18px] font-normal leading-6'>$4.99</div>
-              </div>
-              <div className='flex items-start self-stretch gap-3'>
-                <button className='flex items-start w-full'>
-                  <button className='flex w-full items-center justify-center gap-2 rounded-[14px] border border-white/[0.32] px-5 py-[13px]'>
-                    <Correct />
-                    <div className='text-base font-bold leading-[22px] '>
-                      Added
-                    </div>
-                  </button>
-                </button>
-                {/*  */}
-                <button className='flex items-start '>
-                  <button className='flex items-center justify-center gap-2.5 rounded-[14px] bg-white/[0.08] p-3.5'>
-                    <Heart />
-                  </button>
-                </button>
-              </div>
-            </div>
-            {/* Comments block */}
-            <div className='flex flex-col items-start gap-5 p-6 pt-0 '>
-              {/* List */}
-              <div className='flex flex-col items-start gap-3.5'>
-                <b className='text-[15px] font-semibold leading-5 text-white'>
-                  Model Details
-                </b>
-                {/* iteam 1 */}
-                <div className='flex items-start self-stretch gap-5'>
-                  <div className='flex w-[102px] items-center gap-1'>
-                    <b className='text-sm font-normal leading-[18px] text-[#979797]'>
-                      Model Type
-                    </b>
-                    <Info />
-                  </div>
-                  <div className='text-sm font-normal leading-[18px] '>
-                    General
-                  </div>
+
+                <div className='flex items-center gap-1 text-xs text-[#979797]'>
+                  <Info />
+                  <p>Click on the tag to get its details</p>
                 </div>
-                {/* iteam 2 */}
-                <div className='flex items-start self-stretch gap-5'>
-                  <div className='flex w-[102px] items-center gap-1'>
-                    <b className='text-sm font-normal leading-[18px] text-[#979797]'>
-                      Style
-                    </b>
-                    <Info />
+                <div className='flex w-full flex-col gap-4 rounded-[12px] bg-[#FFFFFF0D] px-4 py-[14px]'>
+                  <h2 className='text-[15px] font-[600]'>Prompt</h2>
+                  <div className={`flex flex-wrap gap-2 ${showMorePrompt?'h-auto':'h-[90px]'} overflow-hidden`}>
+                    {PromptTags.map((items, index) => (
+                      <div className='flex cursor-pointer items-center gap-2 rounded-xl bg-[#FFFFFF29] px-[10px] py-2'>
+                        <Image src={Grid} className='w-full h-full' />
+                        <span>{items}</span>
+                      </div>
+                    ))}
                   </div>
-                  <div className='text-sm font-normal leading-[18px] '>
-                    Anime
-                  </div>
+                  <p className='text-[14px] font-black text-[#979797] cursor-pointer' onClick={()=>setShowMorePrompt(!showMorePrompt)}>
+                    Show more
+                  </p>
                 </div>
-                {/* iteam 3 */}
-                <div className='flex items-start self-stretch gap-5'>
-                  <div className='flex w-[102px] items-center gap-1'>
-                    <b className='text-sm font-normal leading-[18px] text-[#979797]'>
-                      Category
-                    </b>
-                  </div>
-                  <div className='text-sm font-normal leading-[18px] '>
-                    Realistic Animation
-                  </div>
-                </div>
-                {/* iteam 4 */}
-                <div className='flex items-start self-stretch gap-5'>
-                  <div className='flex w-[102px] items-center gap-1'>
-                    <b className='text-sm font-normal leading-[18px] text-[#979797]'>
-                      Pricing
-                    </b>
-                  </div>
-                  <div className='text-sm font-normal leading-[18px] '>
-                    Buy once, use forever
-                  </div>
-                </div>
-                {/* description */}
-                <div className='flex flex-col items-start gap-2'>
-                  <div className='flex items-center pr-0 '>
-                    <b className='text-sm font-normal leading-[18px] text-[#979797]'>
-                      Description
-                    </b>
-                  </div>
-                  <div className='flex w-[397px] items-start gap-5'>
-                    <b className='text-sm font-normal leading-[18px] text-white'>
-                      After a lot of tests I'm finally releasing my mix. This
-                      started as a model to make After a lot of tests I'm
-                      finally releasing my mix. This started as a model to make.
-                    </b>
-                  </div>
-                </div>
-                {/* generation data block */}
+
                 <div className='flex flex-col	items-start gap-4 self-stretch rounded-xl bg-white/[0.05] px-4 py-3.5'>
-                  <div
-                    onClick={AdvanceModal}
-                    className='flex items-center self-stretch justify-between'
-                  >
+                  <div className='flex items-center self-stretch justify-between'>
                     <b className='text-[15px] font-semibold leading-5'>
                       Generation data
                     </b>
+                  </div>
+                  <div className='flex flex-col gap-3'>
+                    <div className='flex items-center justify-between'>
+                      <div className='flex items-center gap-2 '>
+                        {tabContent.map((items: string, index: number) => {
+                          return (
+                            <div
+                              key={index}
+                              onClick={(e) => handleExploreSelected(e)}
+                              className={`font-bold cursor-pointer gap-2.5 rounded-xl px-4 py-2 text-[15px] ${
+                                exploreSelectedTab === items
+                                  ? ' bg-white bg-opacity-20 text-white  '
+                                  : 'text-neutral-400'
+                              }`}
+                            >
+                              {items}
+                            </div>
+                          );
+                        })}
+                      </div>
+                      <div className='w-6 h-6 cursor-pointer '>
+                        <Copy />
+                      </div>
+                    </div>
 
-                    <div
-                      className={`h-6 w-6 ${advanceModal ? 'rotate-180' : ''}`}
-                      id='myDiv'
-                    >
-                      <button>
-                        <AdvanceArrow />
-                      </button>
+                    <div className='flex items-start gap-2.5 self-stretch'>
+                      <div className='font-normal text-sm leading-[18px]'>
+                        Best quality, masterpiece, ultra high res,
+                        (photorealistic), raw photo, 1girl, offshoulder, in the
+                        dark, deep shadow, low key,
+                      </div>
+                    </div>
+                    <div className='flex items-start gap-[51px] self-stretch'>
+                      <div className='flex w-[90px] flex-col items-start gap-1'>
+                        <div className='text-sm font-semibold leading-[18px]'>
+                          CFG scale
+                        </div>
+                        <div className='font-normal text-sm leading-[18px] text-[#979797]'>
+                          7
+                        </div>
+                      </div>
+                      <div className='flex flex-col items-start gap-1'>
+                        <div className='text-sm font-semibold leading-[18px]'>
+                          Steps
+                        </div>
+                        <div className='font-normal text-sm leading-[18px] text-[#979797]'>
+                          40
+                        </div>
+                      </div>
+                      <div className='flex flex-col items-start gap-1'>
+                        <div className='text-sm font-semibold leading-[18px]'>
+                          Sampler
+                        </div>
+                        <div className='font-normal text-sm leading-[18px] text-[#979797]'>
+                          Eular a
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className='flex items-start gap-[51px] self-stretch'>
+                      <div className='flex w-[90px] flex-col items-start gap-1'>
+                        <div className='text-sm font-semibold leading-[18px]'>
+                          Seed
+                        </div>
+                        <div className='font-normal text-sm leading-[18px] text-[#979797]'>
+                          13145374738
+                        </div>
+                      </div>
+                      <div className='flex flex-col items-start gap-1'>
+                        <div className='text-sm font-semibold leading-[18px]'>
+                          Clip Skip
+                        </div>
+                        <div className='font-normal text-sm leading-[18px] text-[#979797]'>
+                          2
+                        </div>
+                      </div>
                     </div>
                   </div>
-
+                </div>
+              </div>
+              <div>
+                <button className='font-bold flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-[#5848BC] bg-[#5848BC] px-5 py-[13px]'>
+                  Use again
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div className='flex w-[445px] flex-col items-start self-stretch'>
+              {/* Top Block */}
+              <div className='flex flex-col items-start self-stretch gap-4 p-6 pt-5'>
+                <div className='flex flex-col items-start gap-0.5 self-stretch'>
+                  <div className='flex items-center self-stretch gap-2'>
+                    <h5 className='font-bold w-full text-[22px] leading-8 text-white'>
+                      A-Zovya Photoreal
+                    </h5>
+                    <div onClick={handlecloseModal}>
+                      <Cross />
+                    </div>
+                  </div>
+                  <div className='font-normal text-[18px] leading-6'>$4.99</div>
+                </div>
+                <div className='flex items-start self-stretch gap-3'>
+                  <button className='flex items-start w-full'>
+                    <button className='flex w-full items-center justify-center gap-2 rounded-[14px] border border-white/[0.32] px-5 py-[13px]'>
+                      <Correct />
+                      <div className='font-bold text-base leading-[22px] '>
+                        Added
+                      </div>
+                    </button>
+                  </button>
                   {/*  */}
+                  <button className='flex items-start '>
+                    <button className='flex items-center justify-center gap-2.5 rounded-[14px] bg-white/[0.08] p-3.5'>
+                      <Heart />
+                    </button>
+                  </button>
+                </div>
+              </div>
+              {/* Comments block */}
+              <div className='flex flex-col items-start gap-5 p-6 pt-0 '>
+                {/* List */}
+                <div className='flex flex-col items-start gap-3.5'>
+                  <b className='text-[15px] font-semibold leading-5 text-white'>
+                    Model Details
+                  </b>
+                  {/* iteam 1 */}
+                  <div className='flex items-start self-stretch gap-5'>
+                    <div className='flex w-[102px] items-center gap-1'>
+                      <b className='font-normal text-sm leading-[18px] text-[#979797]'>
+                        Model Type
+                      </b>
+                      <Info />
+                    </div>
+                    <div className='font-normal text-sm leading-[18px] '>
+                      General
+                    </div>
+                  </div>
+                  {/* iteam 2 */}
+                  <div className='flex items-start self-stretch gap-5'>
+                    <div className='flex w-[102px] items-center gap-1'>
+                      <b className='font-normal text-sm leading-[18px] text-[#979797]'>
+                        Style
+                      </b>
+                      <Info />
+                    </div>
+                    <div className='font-normal text-sm leading-[18px] '>
+                      Anime
+                    </div>
+                  </div>
+                  {/* iteam 3 */}
+                  <div className='flex items-start self-stretch gap-5'>
+                    <div className='flex w-[102px] items-center gap-1'>
+                      <b className='font-normal text-sm leading-[18px] text-[#979797]'>
+                        Category
+                      </b>
+                    </div>
+                    <div className='font-normal text-sm leading-[18px] '>
+                      Realistic Animation
+                    </div>
+                  </div>
+                  {/* iteam 4 */}
+                  <div className='flex items-start self-stretch gap-5'>
+                    <div className='flex w-[102px] items-center gap-1'>
+                      <b className='font-normal text-sm leading-[18px] text-[#979797]'>
+                        Pricing
+                      </b>
+                    </div>
+                    <div className='font-normal text-sm leading-[18px] '>
+                      Buy once, use forever
+                    </div>
+                  </div>
+                  {/* description */}
+                  <div className='flex flex-col items-start gap-2'>
+                    <div className='flex items-center pr-0 '>
+                      <b className='font-normal text-sm leading-[18px] text-[#979797]'>
+                        Description
+                      </b>
+                    </div>
+                    <div className='flex w-[397px] items-start gap-5'>
+                      <b className='font-normal text-sm leading-[18px] text-white'>
+                        After a lot of tests I'm finally releasing my mix. This
+                        started as a model to make After a lot of tests I'm
+                        finally releasing my mix. This started as a model to
+                        make.
+                      </b>
+                    </div>
+                  </div>
+                  {/* generation data block */}
+                  <div className='flex flex-col	items-start gap-4 self-stretch rounded-xl bg-white/[0.05] px-4 py-3.5'>
+                    <div
+                      onClick={AdvanceModal}
+                      className='flex items-center self-stretch justify-between cursor-pointer'
+                    >
+                      <b className='text-[15px] font-semibold leading-5'>
+                        Generation data
+                      </b>
 
-                  {advanceModal ? (
-                    <div className='flex flex-col gap-3'>
-                      <div className='flex items-center justify-between'>
-                        <div className='flex items-center gap-2 '>
-                          {tabContent.map((items: string, index: number) => {
-                            return (
-                              <div
-                                key={index}
-                                onClick={(e) => handleExploreSelected(e)}
-                                className={`cursor-pointer gap-2.5 rounded-xl px-4 py-2 text-[15px] font-bold ${
-                                  exploreSelectedTab === items
-                                    ? ' bg-white bg-opacity-20 text-white  '
-                                    : 'text-neutral-400'
-                                }`}
-                              >
-                                {items}
-                              </div>
-                            );
-                          })}
-                        </div>
-                        <div className='w-6 h-6 cursor-pointer '>
-                          <Copy />
-                        </div>
-                      </div>
-
-                      <div className='flex items-start gap-2.5 self-stretch'>
-                        <div className='text-sm font-normal leading-[18px]'>
-                          Best quality, masterpiece, ultra high res,
-                          (photorealistic), raw photo, 1girl, offshoulder, in
-                          the dark, deep shadow, low key,
-                        </div>
-                      </div>
-                      {/* Row 1 */}
-                      <div className='flex items-start gap-[51px] self-stretch'>
-                        {/* Iteam1 */}
-                        <div className='flex w-[90px] flex-col items-start gap-1'>
-                          <div className='text-sm font-semibold leading-[18px]'>
-                            CFG scale
-                          </div>
-                          <div className='text-sm font-normal leading-[18px] text-[#979797]'>
-                            7
-                          </div>
-                        </div>
-                        {/* Iteam2 */}
-                        <div className='flex flex-col items-start gap-1'>
-                          <div className='text-sm font-semibold leading-[18px]'>
-                            Steps
-                          </div>
-                          <div className='text-sm font-normal leading-[18px] text-[#979797]'>
-                            40
-                          </div>
-                        </div>
-                        {/* Iteam3 */}
-                        <div className='flex flex-col items-start gap-1'>
-                          <div className='text-sm font-semibold leading-[18px]'>
-                            Sampler
-                          </div>
-                          <div className='text-sm font-normal leading-[18px] text-[#979797]'>
-                            Eular a
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Row 2 */}
-                      <div className='flex items-start gap-[51px] self-stretch'>
-                        {/* Iteam1 */}
-                        <div className='flex w-[90px] flex-col items-start gap-1'>
-                          <div className='text-sm font-semibold leading-[18px]'>
-                            Seed
-                          </div>
-                          <div className='text-sm font-normal leading-[18px] text-[#979797]'>
-                            13145374738
-                          </div>
-                        </div>
-                        {/* Iteam2 */}
-                        <div className='flex flex-col items-start gap-1'>
-                          <div className='text-sm font-semibold leading-[18px]'>
-                            Clip Skip
-                          </div>
-                          <div className='text-sm font-normal leading-[18px] text-[#979797]'>
-                            2
-                          </div>
-                        </div>
+                      <div
+                        className={`h-6 w-6 ${
+                          advanceModal ? 'rotate-180' : ''
+                        }`}
+                        id='myDiv'
+                      >
+                        <button>
+                          <AdvanceArrow />
+                        </button>
                       </div>
                     </div>
-                  ) : (
-                    <></>
-                  )}
-                </div>
 
-                {/* copy arrow  */}
-                {/* <div className='flex flex-col	items-start gap-4 self-stretch rounded-xl bg-white/[0.05] px-4 py-3.5'>
+                    {/*  */}
+
+                    {advanceModal ? (
+                      <div className='flex flex-col gap-3'>
+                        <div className='flex items-center justify-between'>
+                          <div className='flex items-center gap-2 '>
+                            {tabContent.map((items: string, index: number) => {
+                              return (
+                                <div
+                                  key={index}
+                                  onClick={(e) => handleExploreSelected(e)}
+                                  className={`font-bold cursor-pointer gap-2.5 rounded-xl px-4 py-2 text-[15px] ${
+                                    exploreSelectedTab === items
+                                      ? ' bg-white bg-opacity-20 text-white  '
+                                      : 'text-neutral-400'
+                                  }`}
+                                >
+                                  {items}
+                                </div>
+                              );
+                            })}
+                          </div>
+                          <div className='w-6 h-6 cursor-pointer '>
+                            <Copy />
+                          </div>
+                        </div>
+
+                        <div className='flex items-start gap-2.5 self-stretch'>
+                          <div className='font-normal text-sm leading-[18px]'>
+                            Best quality, masterpiece, ultra high res,
+                            (photorealistic), raw photo, 1girl, offshoulder, in
+                            the dark, deep shadow, low key,
+                          </div>
+                        </div>
+                        {/* Row 1 */}
+                        <div className='flex items-start gap-[51px] self-stretch'>
+                          {/* Iteam1 */}
+                          <div className='flex w-[90px] flex-col items-start gap-1'>
+                            <div className='text-sm font-semibold leading-[18px]'>
+                              CFG scale
+                            </div>
+                            <div className='font-normal text-sm leading-[18px] text-[#979797]'>
+                              7
+                            </div>
+                          </div>
+                          {/* Iteam2 */}
+                          <div className='flex flex-col items-start gap-1'>
+                            <div className='text-sm font-semibold leading-[18px]'>
+                              Steps
+                            </div>
+                            <div className='font-normal text-sm leading-[18px] text-[#979797]'>
+                              40
+                            </div>
+                          </div>
+                          {/* Iteam3 */}
+                          <div className='flex flex-col items-start gap-1'>
+                            <div className='text-sm font-semibold leading-[18px]'>
+                              Sampler
+                            </div>
+                            <div className='font-normal text-sm leading-[18px] text-[#979797]'>
+                              Eular a
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Row 2 */}
+                        <div className='flex items-start gap-[51px] self-stretch'>
+                          {/* Iteam1 */}
+                          <div className='flex w-[90px] flex-col items-start gap-1'>
+                            <div className='text-sm font-semibold leading-[18px]'>
+                              Seed
+                            </div>
+                            <div className='font-normal text-sm leading-[18px] text-[#979797]'>
+                              13145374738
+                            </div>
+                          </div>
+                          {/* Iteam2 */}
+                          <div className='flex flex-col items-start gap-1'>
+                            <div className='text-sm font-semibold leading-[18px]'>
+                              Clip Skip
+                            </div>
+                            <div className='font-normal text-sm leading-[18px] text-[#979797]'>
+                              2
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      <></>
+                    )}
+                  </div>
+
+                  {/* copy arrow  */}
+                  {/* <div className='flex flex-col	items-start gap-4 self-stretch rounded-xl bg-white/[0.05] px-4 py-3.5'>
                             
                             </div> */}
 
-                {/* creator information  */}
-                <div className='flex flex-col items-start gap-4 self-stretch border-b border-white/[0.08] pb-0'>
-                  <div className='mb-4 text-[15px] font-semibold leading-5'>
-                    Creator information
-                  </div>
-                  <div className='flex items-center self-stretch justify-between mb-4'>
-                    <div className='flex items-center gap-3'>
-                      <div className='w-10 h-10 rounded-full '>
-                        <Image src={avtar} />
-                      </div>
-                      <div className='flex flex-col items-start gap-0.5'>
-                        <div className='text-[15px] font-semibold leading-5 text-white'>
-                          Gayle Frami
-                        </div>
-                        <div className='text-[13px] font-normal leading-[18px] text-[#979797]'>
-                          @mikachan
-                        </div>
-                      </div>
+                  {/* creator information  */}
+                  <div className='flex flex-col items-start gap-4 self-stretch border-b border-white/[0.08] pb-0'>
+                    <div className='mb-4 text-[15px] font-semibold leading-5'>
+                      Creator information
                     </div>
-                    <div className='flex items-center justify-center gap-1.5 rounded-xl bg-white/[0.08] px-4 py-2.5'>
-                      <button className='text-sm font-bold leading-5'>
-                        Follow
-                      </button>
+                    <div className='flex items-center self-stretch justify-between mb-4'>
+                      <div className='flex items-center gap-3'>
+                        <div className='w-10 h-10 rounded-full '>
+                          <Image src={avtar} />
+                        </div>
+                        <div className='flex flex-col items-start gap-0.5'>
+                          <div className='text-[15px] font-semibold leading-5 text-white'>
+                            Gayle Frami
+                          </div>
+                          <div className='font-normal text-[13px] leading-[18px] text-[#979797]'>
+                            @mikachan
+                          </div>
+                        </div>
+                      </div>
+                      <div className='flex items-center justify-center gap-1.5 rounded-xl bg-white/[0.08] px-4 py-2.5'>
+                        <button className='text-sm font-bold leading-5'>
+                          Follow
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </Modal>
     </div>
