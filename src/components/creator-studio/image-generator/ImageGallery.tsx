@@ -31,6 +31,8 @@ const ImageGallery = () => {
     setviewModal(true);
     if (name === 'None') {
       setDefaultModal(true);
+    }else{
+      setDefaultModal(false);
     }
   };
   const handlecloseModal = () => setviewModal(false);
@@ -109,7 +111,21 @@ const ImageGallery = () => {
   }
   const [defaultModal, setDefaultModal] = useState(false);
   const [showMorePrompt, setShowMorePrompt] = useState(false);
+  const [selectPrompt, setSelectPrompt] = useState<string[]>([]);
 
+  const SelectPrompts =(name:string)=>{
+    if (selectPrompt.length > 2) {
+      setSelectPrompt(selectPrompt.filter((item) => item !== name));
+    } else {
+      if (selectPrompt.includes(name)) {
+        setSelectPrompt(selectPrompt.filter((item) => item !== name));
+      } else {
+        setSelectPrompt([...selectPrompt, name]);
+      }
+    }
+  }
+
+  
   return (
     <div>
       <div className='flex flex-col items-start self-stretch gap-4 pt-4 pb-8'>
@@ -235,13 +251,15 @@ const ImageGallery = () => {
                   <h2 className='text-[15px] font-[600]'>Prompt</h2>
                   <div className={`flex flex-wrap gap-2 ${showMorePrompt?'h-auto':'h-[90px]'} overflow-hidden`}>
                     {PromptTags.map((items, index) => (
-                      <div className='flex cursor-pointer items-center gap-2 rounded-xl bg-[#FFFFFF29] px-[10px] py-2'>
+                      <div className={`flex cursor-pointer items-center gap-2 rounded-xl  px-[10px] py-2 ${selectPrompt.includes(items)
+                      ? 'bg-[#5848BC]'
+                      : 'bg-[#FFFFFF29]'}`} onClick={()=>SelectPrompts(items)}>
                         <Image src={Grid} className='w-full h-full' />
                         <span>{items}</span>
                       </div>
                     ))}
                   </div>
-                  <p className='text-[14px] font-black text-[#979797] cursor-pointer' onClick={()=>setShowMorePrompt(!showMorePrompt)}>
+                  <p className='text-[14px] font-black text-[#979797] cursor-pointer w-[80px]' onClick={()=>setShowMorePrompt(!showMorePrompt)}>
                     Show more
                   </p>
                 </div>
