@@ -3,6 +3,7 @@ import Image from 'next/image';
 import arrowUp from '../../../public/assets/arrow-up-white.png';
 const ScrollToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
+  
   const toggleVisibility = () => {
     window.scrollY > 300 ? setIsVisible(true) : setIsVisible(false);
   };
@@ -19,7 +20,7 @@ const ScrollToTopButton = () => {
         top: 0,
         behavior: 'auto'
       });
-    console.log('hello');
+   
   };
 
   return (
@@ -31,6 +32,8 @@ const ScrollToTopButton = () => {
     >
       <Image src={arrowUp} alt='' />
     </button>
+  
+  
   );
 };
 
