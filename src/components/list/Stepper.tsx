@@ -109,7 +109,7 @@ function CustomStepper() {
   const [threadStep, setThreadStep] = useState('');
   const [fourthStep, setFourthStep] = useState('');
 
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState(4);
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -154,7 +154,7 @@ function CustomStepper() {
           Save & Close
         </button>
       </div>
-      <div className='flex h-full flex-col justify-between'>
+      <div className='flex flex-col justify-between h-full'>
         <div className='flex flex-col gap-6 rounded-[16px] px-[190px] pt-[48px]'>
           <div className='flex gap-4'>
             <div className='flex items-center gap-4'>

@@ -76,7 +76,7 @@ const PersonalityContent = ({
                 className='font-normal h-[135px] resize-none rounded-[14px] border-none bg-white/[0.05] py-3 pl-4 pr-3 text-[15px] leading-6 text-white placeholder-[#979797] focus:ring-0'
                 placeholder='Enter a description here...'
                 name='description'
-                value={personalityData.description}
+                // value={personalityData.description}
                 onChange={HandleChange}
                 maxLength={10}
               ></textarea>
@@ -96,7 +96,7 @@ const PersonalityContent = ({
                 className='font-normal h-[135px] resize-none rounded-[14px] border-none bg-white/[0.05] py-3 pl-4 pr-3 text-[15px] leading-6 text-white placeholder-[#979797] focus:ring-0'
                 placeholder='Enter a world description here...'
                 name='worldDescription'
-                value={personalityData.worldDescription}
+                // value={personalityData.worldDescription}
                 onChange={HandleChange}
                 maxLength={12}
               ></textarea>

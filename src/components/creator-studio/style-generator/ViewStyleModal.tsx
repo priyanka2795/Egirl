@@ -143,6 +143,8 @@ const ViewStyleModal = ({
               </div>
             </div>
           </div>
+
+          
         </Modal>
       </div>
     </>
