@@ -7,6 +7,8 @@ import cameraOverlay from '../../../public/assets/white-camera.png';
 import InputFieldDesign from '@components/common/InputFieldDesign';
 import ProfileDropdown from '@components/common/ProfileDropdown';
 import DeleteProfileModal from '@components/common/DeleteProfileModal';
+import AddImagesModal from '@components/creator-studio/style-generator/AddImagesModal';
+import ProfileCropper from '@components/common/ProfileCropper';
 interface EditProfileModalProps {
   closeState: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -16,6 +18,8 @@ const EditProfileModal = ({ closeState }: EditProfileModalProps) => {
   const [activeTab, setActiveTab] = useState<number>(0);
   const [profileEdit, setProfileEdit] = useState<boolean>(false);
   const [deleteProfileState , setDeleteProfileState] = useState<boolean>(false)
+  const [updateProfileState , setUpdateProfileState] = useState<boolean>(false)
+  const [updateProfileImg ,setUpdateProfileImg] = useState<boolean>(false)
   return (<>
     <Modal
       open={true}
@@ -55,6 +59,8 @@ const EditProfileModal = ({ closeState }: EditProfileModalProps) => {
                 setProfileEdit={setProfileEdit}
                 deleteProfileState={deleteProfileState}
                 setDeleteProfileState={setDeleteProfileState}
+                setUpdateProfileState={setUpdateProfileState}
+                setUpdateProfileImg={setUpdateProfileImg}
               />
              )}
           </div>
@@ -146,12 +152,33 @@ const EditProfileModal = ({ closeState }: EditProfileModalProps) => {
      <Modal
      open={true}
      modalClassName='flex flex-col w-full rounded-[14px] items-start h-max bg-[#1A1A1A] max-w-[468px] relative'
-     closeModal={() => closeState(false)}
+     closeModal={() => setDeleteProfileState(!deleteProfileState)}
      modalOverlayStyle='!bg-black/80'
    >
-    <DeleteProfileModal />
+    <DeleteProfileModal setDeleteProfileState={setDeleteProfileState} deleteProfileState={deleteProfileState}/>
    </Modal>
     } 
+    {
+      updateProfileState &&
+      <Modal
+      open={true}
+      modalClassName='flex flex-col w-full rounded-[14px] items-start h-max bg-[#1A1A1A] max-w-[468px] relative'
+      closeModal={() => setUpdateProfileState(!updateProfileState)}
+      modalOverlayStyle='!bg-black/80'
+    >
+     <AddImagesModal setAddImagesModal={setUpdateProfileState}/>
+     </Modal>
+    }
+    {updateProfileImg &&
+     <Modal
+     open={true}
+     modalClassName='flex flex-col w-full rounded-[14px] items-start h-max bg-[#1A1A1A] max-w-[468px] relative'
+     closeModal={() => setUpdateProfileImg(!updateProfileImg)}
+     modalOverlayStyle='!bg-black/80'
+   >
+    <ProfileCropper/>
+    </Modal>
+     } 
 
     </>
   );

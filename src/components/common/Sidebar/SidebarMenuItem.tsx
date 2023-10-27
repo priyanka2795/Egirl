@@ -12,7 +12,7 @@ type SidebarMenuItemProps = {
   Icon: (props: { svgClasses?: string; strokeClasses?: string }) => JSX.Element;
   IconActive: (props: {
     svgClasses?: string;
-    strokeClasses?: string;
+    strokeclasses?: string;
   }) => JSX.Element;
 };
 

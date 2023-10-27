@@ -1,9 +1,9 @@
 type SvgIconProps = {
   svgClasses?: string;
-  strokeClasses?: string;
+  strokeclasses?: string;
 };
 
-export default function HomeIcon({ svgClasses, strokeClasses }: SvgIconProps) {
+export default function HomeIcon({ svgClasses, strokeclasses }: SvgIconProps) {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'

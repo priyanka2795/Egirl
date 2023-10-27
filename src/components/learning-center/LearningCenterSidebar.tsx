@@ -67,7 +67,7 @@ const LearningCenterSidebar = ({ setShowSearchResult }: SidebarProps) => {
           onClick={handleDropDown}
         >
           <div className='flex gap-2'>
-            <Palette strokeClasses='stroke-[#515151]' />
+            <Palette strokeclasses='stroke-[#515151]' />
             <span className='text-[15px] font-semibold text-white'>
               Character Creation
             </span>

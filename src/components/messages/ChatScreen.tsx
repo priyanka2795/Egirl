@@ -250,7 +250,7 @@ export default function ChatScreen({
                 className='plus-icon mr-[10px] mt-[8px] grid h-[32px] w-[32px] min-w-[32px] cursor-pointer place-items-center rounded-full bg-[#5848BC] transition duration-100 hover:bg-[#4b3abd]'
                 onClick={() => setSendUploadImgState(!sendUploadImgState)}
               >
-                <PlusIcon strokeClasses='stroke-[#ffffff]' />
+                <PlusIcon strokeclasses='stroke-[#ffffff]' />
               </div>
               {sendUploadImgState && (
                 <div className='absolute -top-[152px] left-0 mt-2 inline-flex w-[218px] flex-col items-start justify-start rounded-2xl bg-zinc-900 py-2 shadow'>

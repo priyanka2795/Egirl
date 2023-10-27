@@ -1,11 +1,11 @@
 type SvgIconProps = {
   svgClasses?: string;
-  strokeClasses?: string;
+  strokeclasses?: string;
 };
 
 export default function ExploreIcon({
   svgClasses,
-  strokeClasses
+  strokeclasses
 }: SvgIconProps) {
   return (
     <svg
@@ -18,7 +18,7 @@ export default function ExploreIcon({
     >
       <path
         d='M2.66669 7.99984H13.3334M8.00002 2.6665V13.3332'
-        className={strokeClasses}
+        className={strokeclasses}
         strokeWidth='1.8'
         strokeLinecap='round'
         strokeLinejoin='round'

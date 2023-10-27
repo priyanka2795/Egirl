@@ -6,13 +6,13 @@ function VoiceContent() {
       <div className='text-[13px] uppercase text-[#515151]'>Contents</div>
       <div className='mt-2 leading-8'>
         <div className='border-l-[1px] border-white/[0.12] pl-3 text-[15px] text-[#979797] '>
-          <a href='#character_profile'>What is a Character Voice?</a>
+          <a href='#'>What is a Character Voice?</a>
         </div>
         <div className='border-l-[1px] border-white/[0.12] pl-3 text-[15px] text-[#979797] '>
-          <a href='#unique_username'>How it works?</a>
+          <a href='#'>How it works?</a>
         </div>
         <div className='border-l-[1px] border-white/[0.12] pl-3 text-[15px] text-[#979797] '>
-          <a href='#general_benefits'>Features</a>
+          <a href='#'>Features</a>
         </div>
       </div>
       <SocialMediaContent/>
