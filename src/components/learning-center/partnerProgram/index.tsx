@@ -1,8 +1,8 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import BreadCrumbs from '../BreadCrumbs';
 import Image from 'next/image';
 import partnerProgramBanner from '../../../../public/assets/learning-center/partnerProgramBanner.png';
-import partnerProgram from '../../../../public/assets/learning-center/Partner Program.png'
+import partnerProgram from '../../../../public/assets/learning-center/Partner Program.png';
 import PartnerProgramAccordion from './PartnerProgramAccordion';
 import PartnerProgramContent from './PartnerProgramContent';
 import HowItWorkSteps from './HowItWorkSteps';
@@ -15,21 +15,23 @@ function PartnerProgramIndex() {
         <div>
           <BreadCrumbs title='Partner Program' />
           <div className=''>
+            {/* banner section */}
             <div className='pt-2 pb-10'>
               <Image src={partnerProgramBanner} alt='' />
             </div>
             {/* benefit section */}
             <PartnerProgramAccordion />
-            
+
             {/* how it work section */}
-            <HowItWorkSteps/>
+            <HowItWorkSteps />
 
             {/* creators section */}
-            <CreatorAccordion/>
+            <CreatorAccordion />
 
             {/* eligible characters */}
-            <EligibleCharacters/>
-
+            <EligibleCharacters />
+            
+            {/* bottom banner section */}
             <div className='pt-4 '>
               <Image src={partnerProgram} alt='' />
             </div>

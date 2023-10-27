@@ -6,6 +6,10 @@ import Image from 'next/image';
 import circleInformation from '../../../../public/assets/circle-information5.png';
 
 const PersonalityContent = () => {
+  const handleTop = ()=>{
+    window.scrollTo(0, 0);
+    console.log("hello")
+  }
   return (
     <>
       <div className='flex flex-col items-start self-stretch gap-4'>

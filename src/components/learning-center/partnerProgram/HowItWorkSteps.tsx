@@ -26,7 +26,7 @@ const data = [
 function HowItWorkSteps() {
   return (
     <>
-      <div className='pt-3 text-[27px] font-black text-white' id='how_it_work'>
+      <div className='pt-3 text-[27px] font-black text-white' id='how_it_works'>
         How it works?
       </div>
       <p className='text-[16px] text-[#979797]'>

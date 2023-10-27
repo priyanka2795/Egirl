@@ -46,7 +46,7 @@ function PartnerProgramAccordion() {
     <>
       <div
         className='pb-2 text-[27px] font-black text-white'
-        id='character_profile'
+        id='benefits_of_partnerProgram'
       >
         Benefits of Joining the Partner Program
       </div>

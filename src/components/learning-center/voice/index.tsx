@@ -20,7 +20,7 @@ function VoiceIndex() {
           <div>
             <div
               className='pb-1 text-[27px] font-black text-white'
-              id='character_profile'
+              id='what_is_characterVoice'
             >
               What is a Character Voice?
             </div>
@@ -72,7 +72,7 @@ function VoiceIndex() {
           <div>
             <div
               className='text-[27px] font-black text-white'
-              id='how_it_work'
+              id='how_it_works'
             >
               How it works?
             </div>
