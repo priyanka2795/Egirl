@@ -156,7 +156,7 @@ function CustomStepper() {
       </div>
       <div className='flex flex-col justify-between h-full'>
         <div className='flex flex-col gap-6 rounded-[16px] px-[190px] pt-[48px]'>
-          <div className='flex gap-4'>
+          <div className='flex justify-center gap-4'>
             <div className='flex items-center gap-4'>
               <div
                 className={`flex h-10 w-10 items-center justify-center rounded-full text-white                  ${
@@ -380,7 +380,7 @@ function CustomStepper() {
               </div>
             </div>
           </div>
-          <div className='flex items-center gap-2 rounded-[12px] bg-[#5848BC1F]/[0.12] px-4 py-3'>
+          <div className='flex items-center m-auto w-full gap-2 rounded-[12px] bg-[#5848BC1F]/[0.12] px-4 py-3 max-w-[965px]'>
             <Image src={circleInformation} alt={''} />
             <div className='font-normal text-[13px] leading-[18px] text-[#7362C6]'>
               {activeStep === 0
