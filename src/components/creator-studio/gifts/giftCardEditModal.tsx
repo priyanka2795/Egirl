@@ -16,6 +16,8 @@ interface CardEditModal {
   DeleteGift: any;
   DeleteIndex: number | undefined;
   DeleteBtnStep: number;
+  giftImageSet: string;
+  giftName?:string
 }
 const moveData = [
   {
@@ -39,7 +41,9 @@ function GiftCardEditModal({
   GiftEditModal,
   DeleteGift,
   DeleteIndex,
-  DeleteBtnStep
+  DeleteBtnStep,
+  giftImageSet,
+  giftName,
 }: CardEditModal) {
   console.log(GiftEditModal, 'GiftEditModal');
 
@@ -56,17 +60,17 @@ function GiftCardEditModal({
             <div className='flex items-center justify-between border-b border-[#FFFFFF14] p-6'>
               <h5 className='text-lg font-semibold'>Edit name</h5>
               <div
-                className='h-6 w-6 cursor-pointer'
+                className='w-6 h-6 cursor-pointer'
                 onClick={() => closeModal(false)}
               >
-                <Image className='h-full w-full' src={crossIcon} alt={''} />
+                <Image className='w-full h-full' src={crossIcon} alt={''} />
               </div>
             </div>
             <div className='p-6'>
               <div className='m-auto mb-5 max-h-[156px] max-w-[156px] overflow-hidden rounded-xl'>
                 <Image
-                  className='h-full w-full object-cover'
-                  src={AlbumFirst}
+                  className='object-cover w-full h-full'
+                  src={giftImageSet}
                 />
               </div>
               <div className=' flex flex-col text-[#979797]'>
@@ -80,7 +84,7 @@ function GiftCardEditModal({
                   className='h-12 rounded-[14px] border-none bg-[#FFFFFF0D] px-4 focus:border-[#5848BC] focus:ring-[#5848BC] active:border-[#5848BC]'
                 />
               </div>
-              <div className='mt-6 grid grid-cols-2 gap-3 font-semibold text-white'>
+              <div className='grid grid-cols-2 gap-3 mt-6 font-semibold text-white'>
                 <button
                   className='rounded-[14px] border border-[#FFFFFF52] px-5 py-3'
                   onClick={() => closeModal(false)}
@@ -101,17 +105,17 @@ function GiftCardEditModal({
             <div className='flex items-center justify-between border-b border-[#FFFFFF14] p-6'>
               <h5 className='text-lg font-semibold'>Romantic dinner</h5>
               <div
-                className='h-6 w-6 cursor-pointer'
+                className='w-6 h-6 cursor-pointer'
                 onClick={() => closeModal(false)}
               >
-                <Image className='h-full w-full' src={crossIcon} alt={''} />
+                <Image className='w-full h-full' src={crossIcon} alt={''} />
               </div>
             </div>
             <div className='p-6'>
               <div className='m-auto mb-5 max-h-[156px] max-w-[156px] overflow-hidden rounded-xl'>
                 <Image
-                  className='h-full w-full object-cover'
-                  src={AlbumFirst}
+                  className='object-cover w-full h-full'
+                  src={giftImageSet}
                 />
               </div>
               <div className='flex flex-col gap-3 pb-4 '>
@@ -127,7 +131,7 @@ function GiftCardEditModal({
                         <div className='flex h-[40px] w-[40px] items-center justify-center rounded-lg bg-[#FFFFFF0D]'>
                           <Image
                             src={items.imgpath}
-                            className='m-auto h-full w-full'
+                            className='w-full h-full m-auto'
                           />
                         </div>
                         <div className=''>
@@ -143,11 +147,11 @@ function GiftCardEditModal({
                 ))}
               </div>
               <button className='flex items-center gap-2 pb-3 font-semibold'>
-                <Image className='h-full w-full' src={plusIcon} alt={''} />
+                <Image className='w-full h-full' src={plusIcon} alt={''} />
                 <p>New Category</p>
               </button>
 
-              <div className='mt-6 grid grid-cols-2 gap-3 font-semibold text-white'>
+              <div className='grid grid-cols-2 gap-3 mt-6 font-semibold text-white'>
                 <button
                   className='rounded-[14px] border border-[#FFFFFF52] px-5 py-3'
                   onClick={() => closeModal(false)}
@@ -171,14 +175,13 @@ function GiftCardEditModal({
         <GiftCardDelete
           DeleteModal={closeModal}
           Heading={'Delete gift'}
-          Content={'Are you sure you want to delete the Romantic dinner gift?'}
+          Content={'Are you sure you want to delete the'}
+          GiftName={giftName}
+          DeleteGiftImage={giftImageSet}
           Img={false}
           DeleteGift={DeleteGift}
           DeleteIndex={DeleteIndex}
-          DeleteAllGift
-          DeleteBtnStep={DeleteBtnStep}
-          DeleteActionCategory
-          CategoryActionIndex
+          DeleteBtnStep={DeleteBtnStep}          
         />
       ) : (
         ''

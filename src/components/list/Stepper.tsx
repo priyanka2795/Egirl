@@ -19,6 +19,7 @@ import StyleGeneratorIndex from '@components/creator-studio/style-generator';
 import EditProfileModal from './EditProfileModal';
 import UpdatePhotoModal from './UpdatePhotoModal';
 import ViewProfile from './finishStep/viewProfile';
+import Tooltip from '@components/common/tooltip';
 const SearchData = [
   {
     name: 'Semi-Realistic 1'
@@ -249,7 +250,7 @@ function CustomStepper() {
                       activeStep === 1
                         ? 'bg-[#5848BC]'
                         : activeStep >= 1
-                        ? '!bg-[#2EAA1B] w-full'
+                        ? 'w-full !bg-[#2EAA1B]'
                         : 'bg-[#5848BC]'
                     } rounded-xl`}
                   ></div>
@@ -380,7 +381,7 @@ function CustomStepper() {
               </div>
             </div>
           </div>
-          <div className='flex items-center m-auto w-full gap-2 rounded-[12px] bg-[#5848BC1F]/[0.12] px-4 py-3 max-w-[965px]'>
+          <div className='m-auto flex w-full max-w-[965px] items-center gap-2 rounded-[12px] bg-[#5848BC1F]/[0.12] px-4 py-3'>
             <Image src={circleInformation} alt={''} />
             <div className='font-normal text-[13px] leading-[18px] text-[#7362C6]'>
               {activeStep === 0
@@ -632,12 +633,23 @@ function CustomStepper() {
                   Next
                 </button>
               ) : (
-                <button
-                  className={`font-bold flex items-center justify-center rounded-[14px] bg-[#5848BC52] px-5
-               py-[13px] text-[16px] leading-[22px] text-[#FFFFFF52] `}
-                >
-                  Next
-                </button>
+                <div className='relative group'>
+                  <button
+                    className={`font-boldflex items-center justify-center rounded-[14px]
+               bg-[#5848BC52] px-5 py-[13px] text-[16px] leading-[22px] text-[#FFFFFF52] `}
+                  >
+                    {' '}
+                    Next
+                  </button>
+                  <div className='absolute right-0 z-50 transition-all transform -top-7 w-max -translate-x-0 -translate-y-2/4 '>
+                    <div
+                      className={` before:translate-[-50%,0] z-50 hidden rounded-lg bg-[#303030] px-3 py-1.5 group-hover:block `}
+                    >
+                      Please fill in the form to continue
+                    </div>
+                    {/* <Tooltip Text='Please fill in the form to continue' /> */}
+                  </div>
+                </div>
               )}
             </>
           )}

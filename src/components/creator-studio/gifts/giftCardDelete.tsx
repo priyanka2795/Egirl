@@ -11,10 +11,12 @@ interface DeletePopup {
   Img: boolean;
   DeleteGift: any;
   DeleteIndex: any;
-  DeleteAllGift: any;
+  DeleteAllGift?: any;
   DeleteBtnStep: number;
-  DeleteActionCategory: any;
+  DeleteActionCategory?: any;
   CategoryActionIndex?: number;
+  DeleteGiftImage?: string;
+  GiftName?: string;
 }
 function GiftCardDelete({
   DeleteModal,
@@ -26,7 +28,9 @@ function GiftCardDelete({
   DeleteAllGift,
   DeleteBtnStep,
   DeleteActionCategory,
-  CategoryActionIndex
+  CategoryActionIndex,
+  DeleteGiftImage,
+  GiftName
 }: DeletePopup) {
   return (
     <>
@@ -54,13 +58,14 @@ function GiftCardDelete({
                 <div className='m-auto mb-4 max-h-[100px] max-w-[100px] overflow-hidden rounded-xl'>
                   <Image
                     className='object-cover w-full h-full'
-                    src={AlbumFirst}
+                    src={DeleteGiftImage || ''}
                   />
                 </div>
               )}
               <p>
                 {Content}
-                <span className='font-semibold'></span>
+                <span className='font-semibold'> {GiftName} </span>
+                {GiftName ? 'gift?' : ''}
               </p>
             </div>
             <div className='grid grid-cols-2 gap-3 mt-6 font-semibold text-white'>

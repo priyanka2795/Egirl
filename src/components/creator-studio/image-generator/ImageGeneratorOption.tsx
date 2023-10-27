@@ -189,24 +189,27 @@ const ImageGeneratorOption = ({
     setShowPromptMenu(filteredItems.length === 0);
   };
 
-
-  
   const HandleTypeHint = (e: React.MouseEvent<HTMLElement>) => {
     const PromptHintText = (e.target as HTMLElement).innerText;
-    const found = promptTags.find((Tags: string) => Tags===PromptHintText );
-    setPromptHint(PromptHintText);  
-   
+    const found = promptTags.find((Tags: string) => Tags === PromptHintText);
+    setPromptHint(PromptHintText);
+
     if (PromptHintText === found) {
       setPromptHint('');
       alert('this value is already in adjust');
-    }else{
-    setPromptTags([...promptTags, PromptHintText]);
-    setShowPromptMenu(true);
-    setPromptHint('');
+    } else {
+      setPromptTags([...promptTags, PromptHintText]);
+      setShowPromptMenu(true);
+      setPromptHint('');
     }
-   
   };
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
+  const handleBoxClick = () => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  };
   return (
     <>
       <div className='flex flex-col rounded-[14px] bg-[#121212]'>
@@ -255,7 +258,8 @@ const ImageGeneratorOption = ({
                 )}
               </div>
             </div>
-            <div className='flex h-auto min-h-[124px] w-full flex-wrap content-start items-start rounded-[14px] bg-[#0000007A] px-4 py-3'>
+            <div className='flex h-auto min-h-[124px] w-full flex-wrap content-start items-start rounded-[14px] bg-[#0000007A] px-4 py-3'   onClick={handleBoxClick}
+            >
               <div className='flex flex-wrap items-center gap-2'>
                 {MyCharacterToggle && (
                   <div className='flex cursor-pointer items-center gap-1 rounded-xl bg-[#403BAC] px-[10px] py-2'>
@@ -339,7 +343,7 @@ const ImageGeneratorOption = ({
                   </div>
                 ))}
               </div>
-              <div className='relative z-10'>
+              <div className='relative z-10 '>
                 <input
                   onKeyDown={handleKeyDown}
                   type='text'
@@ -347,7 +351,17 @@ const ImageGeneratorOption = ({
                   placeholder='Type a prompt ...'
                   value={promptHint}
                   onChange={handleChangePromptHint}
+                  ref={inputRef}
                 />
+                {/* <textarea
+                  name=''
+                  id=''
+                  onKeyDown={handleKeyDown}
+                  placeholder='Type a prompt ...'
+                  value={promptHint}
+                  onChange={handleChangePromptHint}
+                  className='w-full h-full bg-transparent border-none resize-none focus:border-none focus:ring-0'
+                ></textarea> */}
                 {showPromptMenu ? (
                   ''
                 ) : (
@@ -355,27 +369,23 @@ const ImageGeneratorOption = ({
                     {promptHint === '' ? (
                       ''
                     ) : (
-                      <div className='rounded-[14px] bg-[#1A1A1A]  shadow-md absolute w-max overflow-hidden'>
-                        
+                      <div className='absolute w-max  overflow-hidden rounded-[14px] bg-[#1A1A1A] shadow-md'>
                         {promptTagsHint.map((items, index) => (
-                          <div
-                            key={index}
-                            className=''
-                           
-                          >
+                          <div key={index} className=''>
                             <div className='border-b border-[#FFFFFF14] px-3 '>
                               <h5 className='p-2 text-[13px] font-[700] text-[#979797] '>
                                 {items.title}
                               </h5>
                               <div className=''>
-
-                              {items.hint.map((hints, index) => (
-                                <p className='mb-1 cursor-pointer rounded-lg px-2 py-1.5 hover:bg-[#FFFFFF29] [&>*:last-child]:border-b-0'  onClick={(e) => HandleTypeHint(e)}>
-                                  {hints}
-                                </p>
-                              ))}
+                                {items.hint.map((hints, index) => (
+                                  <p
+                                    className='mb-1 cursor-pointer rounded-lg px-2 py-1.5 hover:bg-[#FFFFFF29] [&>*:last-child]:border-b-0'
+                                    onClick={(e) => HandleTypeHint(e)}
+                                  >
+                                    {hints}
+                                  </p>
+                                ))}
                               </div>
-
                             </div>
                           </div>
                         ))}

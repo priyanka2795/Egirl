@@ -48,7 +48,7 @@ export default function SidebarMenuItem({
               <IconActive />
             ) : (
               <Icon
-                strokeClasses={`stroke-[#515151] transition duration-100`}
+                strokeclasses={`stroke-[#515151] transition duration-100`}
               />
             )}
 
@@ -71,7 +71,7 @@ export default function SidebarMenuItem({
             } xl:justify-start ${active && 'bg-[#252525]'}`}
           >
             <Icon
-              strokeClasses={`${
+              strokeclasses={`${
                 active ? 'stroke-black fill-white' : 'stroke-[#515151]'
               } transition duration-100`}
             />

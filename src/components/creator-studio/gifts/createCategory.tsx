@@ -8,7 +8,7 @@ import NotFound from 'pages/404';
 interface CreateCategory {
   CategoryClose: React.Dispatch<React.SetStateAction<boolean>>;
   Steps: any;
-  Previous: any;
+  Previous?: any;
   AddCategory: string[];
   SetCategory: React.Dispatch<React.SetStateAction<string[]>>;
 }
@@ -24,20 +24,30 @@ const CreateCategory = ({
     const { name, value } = e.target;
     setInputValue(value);
   };
+  const FindData = AddCategory.find((items) => items === inputvalue);
+
   const onSubmit = () => {
     if (inputvalue === '') {
       alert('Please Enter Value');
     } else if (Steps === 3) {
-      SetCategory([...AddCategory, inputvalue]);
-      Previous(false);
+      if (inputvalue === FindData) {
+        alert('Category Name is already defend');
+      }else{
+        SetCategory([...AddCategory, inputvalue]);
+        Previous(false);
+      }
     } else if (Steps === 4) {
       SetCategory([...AddCategory, inputvalue]);
       CategoryClose(false);
     } else {
-      SetCategory([...AddCategory, inputvalue]);
-      // AddCategory.push(inputvalue);
-      Steps(2);
+      if (inputvalue === FindData) {
+        alert('Category Name is already defend');
+      } else {
+        SetCategory([...AddCategory, inputvalue]);
+        Steps(2);
+      }
     }
+    console.log(FindData, 'FindData');
   };
   return (
     <>

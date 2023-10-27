@@ -469,7 +469,7 @@ export default ImageAndIdeaGeneratorTab;
 //                       }
 //                     </div>
 //                   </div>
-//                   <div className='absolute bottom-  [85px] left-[27%] z-50 max-w-[280px]  text-center text-[12px] break-words'>
+//                   <div className='absolute bottom-[85px] left-[27%] z-50 max-w-[280px]  text-center text-[12px] break-words'>
 //                     <Tooltip Text={item.name} />
 //                   </div>
 //                 </div>

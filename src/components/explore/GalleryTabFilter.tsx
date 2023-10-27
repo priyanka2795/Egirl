@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { createRef, useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -91,15 +91,30 @@ const GalleryTabFilter = ({
     variableWidth: true
   };
 
+  const sliderRef = createRef<any>();
+  useEffect(() => {
+    let slickListDiv = document.getElementsByClassName('slick-list')[0];
+    slickListDiv.addEventListener('wheel', (event: any) => {
+      event.preventDefault();
+      event.deltaY > 0
+        ? sliderRef?.current?.slickNext()
+        : sliderRef?.current?.slickPrev();
+    });
+  }, []);
+
+
+
   return (
     <>
       {singleProfileState === false ? (
         <>
-          <div className='flex mt-8 mb-8 '>
+          <div className='flex mt-8 mb-8'>
             <Slider
               {...settings}
+        ref={sliderRef}
               className='explore-gallery-filter flex w-[907px]'
             >
+             
               {galleryArray.map((items) => {
                 return (
                   <div

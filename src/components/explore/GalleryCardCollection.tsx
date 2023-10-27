@@ -6,6 +6,7 @@ import galleryTabImg3 from '../../../public/assets/gallery-tab-img.png';
 import galleryTabImg4 from '../../../public/assets/mirandalImg.png';
 import galleryTabImg5 from '../../../public/assets/gallery-tab-img-2.png';
 import galleryTabImg6 from '../../../public/assets/gallery-tab-img-3.png';
+import UserPlusIcon from '../../../public/assets/user-plus-alt-1.png';
 import RemoveProfile from '@components/list/RemoveProfile';
 
 const exploreGallery = [
@@ -72,18 +73,20 @@ const GalleryCardCollection = ({
       {exploreGallery.map((items) => {
         return (
           <div
-            className='gallery-card-collection group relative cursor-pointer'
+            className='relative cursor-pointer gallery-card-collection group'
             onClick={() => setSingleProfileState(true)}
           >
             {/* <div className='relative group'> */}
             <Image
               src={items.mainImg}
               alt=''
-              className='rounded-[14px] object-cover hover:bg-[#000000A3]'
+              className='rounded-[14px] object-cover hover:bg-[#000000A3] w-full h-full'
             />
             {/* </div> */}
-            <div className='absolute inset-0 cursor-pointer transition duration-300 group-hover:bg-black/50'></div>
-
+            <div className='absolute inset-0 transition duration-300 cursor-pointer group-hover:bg-black/50'></div>
+            <div className='absolute hidden right-3 top-3 group-hover:block '>
+              <Image src={UserPlusIcon} />
+            </div>
             <div className='absolute bottom-0 right-0 w-full flex-col items-center justify-start bg-gradient-to-b from-transparent to-black px-6 pb-6 pt-[150px]'>
               <div className='inline-flex h-6 w-[276px] items-center justify-start gap-1.5'>
                 <div className='relative flex h-6 w-6 rounded-[100px]'>

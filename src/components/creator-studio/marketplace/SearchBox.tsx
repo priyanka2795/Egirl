@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import SearchIcon from '../svg/search.svg';
 import crossIcon from '../../../../public/assets/xmark (1).png';
@@ -15,7 +15,11 @@ const SearchBox = () => {
       setShowSearchBox(false);
     }
   };
+
+
+
   return (
+    <>
     <div className='flex items-center justify-between'>
       <div className='text-[22px] font-bold leading-8 text-[#FFFFFF]'>
         Marketplace
@@ -67,7 +71,11 @@ const SearchBox = () => {
           />
         )}
       </div>
+
     </div>
+   
+    </>
+
   );
 };
 

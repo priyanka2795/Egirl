@@ -14,7 +14,7 @@ import ViewStyleIcon from './svg/ViewStyleIcon';
 import ViewImg from './svg/ViewImg';
 import MarketplaceIcon from './svg/MarketplaceIcon';
 import StyleGenerator from './svg/StyleGenerator';
-import MoreIcon from './svg/MoreIcon.svg';
+import MoreIcon from './svg/circle-dots-horizontal.svg';
 import SidebarModal from './SidebarModal';
 import MoreOptionsModal from './MoreOptionsModal';
 import layers from './svg/Layers.svg';
