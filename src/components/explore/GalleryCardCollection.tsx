@@ -2,9 +2,9 @@ import Image from 'next/image';
 import React, { useState } from 'react';
 import mikaChanImg from '../../../public/assets/mikaChan.png';
 import sarahScarlet from '../../../public/assets/sarahScarlet.png';
-import galleryTabImg3 from '../../../public/assets/gallery-tab-img.png';
-import galleryTabImg4 from '../../../public/assets/mirandalImg.png';
-import galleryTabImg5 from '../../../public/assets/gallery-tab-img-2.png';
+import galleryTabImg3 from '../../../public/assets/explore-gallery-image2.png';
+import galleryTabImg4 from '../../../public/assets/explore-gallery-Image.png';
+import galleryTabImg5 from '../../../public/assets/explore-gallery-image3.png';
 import galleryTabImg6 from '../../../public/assets/gallery-tab-img-3.png';
 import UserPlusIcon from '../../../public/assets/user-plus-alt-1.png';
 import RemoveProfile from '@components/list/RemoveProfile';
@@ -14,21 +14,21 @@ const exploreGallery = [
     id: 1,
     userName: 'Leela',
     userProfile: mikaChanImg,
-    mainImg: sarahScarlet,
+    mainImg: galleryTabImg4,
     categoryList: ['Anime', 'Fashion Model', '+2']
   },
   {
     id: 2,
     userName: 'Leela',
     userProfile: mikaChanImg,
-    mainImg: mikaChanImg,
+    mainImg: galleryTabImg3,
     categoryList: ['Anime', 'Fashion Model', '+2']
   },
   {
     id: 3,
     userName: 'Leela',
     userProfile: mikaChanImg,
-    mainImg: galleryTabImg3,
+    mainImg: galleryTabImg5,
     // categoryList: ['Anime', 'Fashion Model', '+2']
     categoryList: ['list']
   },
@@ -36,21 +36,21 @@ const exploreGallery = [
     id: 4,
     userName: 'Leela',
     userProfile: mikaChanImg,
-    mainImg: galleryTabImg4,
+    mainImg: galleryTabImg3,
     categoryList: ['Anime', 'Fashion Model', '+2']
   },
   {
     id: 5,
     userName: 'Leela',
     userProfile: mikaChanImg,
-    mainImg: galleryTabImg5,
+    mainImg: galleryTabImg4,
     categoryList: ['Anime', 'Fashion Model', '+2']
   },
   {
     id: 6,
     userName: 'Leela',
     userProfile: mikaChanImg,
-    mainImg: galleryTabImg6,
+    mainImg: galleryTabImg5,
     categoryList: ['Anime', 'Fashion Model', '+2']
   }
 ];
@@ -69,18 +69,18 @@ const GalleryCardCollection = ({
   return singleProfileState ? (
     <RemoveProfile backFromProfile={setSingleProfileState} />
   ) : (
-    <div className='grid grid-cols-3 gap-4'>
+    <div className='grid grid-cols-2 gap-4'>
       {exploreGallery.map((items) => {
         return (
           <div
-            className='relative cursor-pointer gallery-card-collection group'
+            className='relative cursor-pointer gallery-card-collection group rounded-[14px] overflow-hidden h-[470px]'
             onClick={() => setSingleProfileState(true)}
           >
             {/* <div className='relative group'> */}
             <Image
               src={items.mainImg}
               alt=''
-              className='rounded-[14px] object-cover hover:bg-[#000000A3] w-full h-full'
+              className=' object-cover hover:bg-[#000000A3] w-full h-full'
             />
             {/* </div> */}
             <div className='absolute inset-0 transition duration-300 cursor-pointer group-hover:bg-black/50'></div>

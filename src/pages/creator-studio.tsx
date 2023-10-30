@@ -8,7 +8,7 @@ const creatorStudio = () => {
   return (
     <div>
       {profileInfoPage ? (
-        <ProfileInfoModal />
+        <ProfileInfoModal setProfileInfoPage={setProfileInfoPage}/>
       ) : (
         <CreatorStudioLayout setProfileInfoPage={setProfileInfoPage} />
       )}

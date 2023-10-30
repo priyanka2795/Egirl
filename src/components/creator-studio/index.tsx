@@ -7,6 +7,7 @@ import CreateCharacter from '@components/list/CreateCharacter';
 import SetUpYourCharacter from '@components/list/SetUpYourCharacter';
 import AllCharactersCards from '@components/list/AllCharactersCards';
 import EditProfileModal from '@components/list/EditProfileModal';
+import FinishStepModal from '@components/list/finishStep/finishStepModal';
 
 interface CreatorStudio {
   IsOpen: any;
@@ -70,6 +71,7 @@ const CreatorStudio = ({
               <UserSection userSectionStyle={'w-full'} />
             </div>
           </div>
+
         </div>
       )}
        {/* {

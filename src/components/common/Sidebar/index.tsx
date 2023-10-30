@@ -212,7 +212,7 @@ sideBarProp) {
             <MoreMenuOption
               classes={`${
                 shrinkSidebar === 'true'
-                  ? 'fixed '
+                  ? 'fixed bottom-5 left-[80px]'
                   : 'absolute left-[10px] top-[60px] '
               }`}
               activeMoreOption={activeMoreOption}
@@ -247,9 +247,9 @@ sideBarProp) {
       </div> */}
 
       <div
-        className='flex items-center justify-between w-full px-6 mt-auto mb-6 cursor-pointer'
+        className='flex items-center justify-between w-full px-[18px] mt-auto mb-6 cursor-pointer'
         onClick={() => {
-          setUserAccountMenu(true);
+          setUserAccountMenu(!userAccountMenu);
         }}
       >
         <div className='flex items-center gap-1'>
