@@ -8,6 +8,7 @@ import PartnerProgramContent from './PartnerProgramContent';
 import HowItWorkSteps from './HowItWorkSteps';
 import CreatorAccordion from './CreatorAccordion';
 import EligibleCharacters from './EligibleCharacters';
+import Link from 'next/link';
 function PartnerProgramIndex() {
   return (
     <div className='px-6 pb-6'>
@@ -17,7 +18,9 @@ function PartnerProgramIndex() {
           <div className=''>
             {/* banner section */}
             <div className='pt-2 pb-10'>
-              <Image src={partnerProgramBanner} alt='' />
+              <Link href='/partner-program-application'>
+                <Image src={partnerProgramBanner} alt='' />
+              </Link>
             </div>
             {/* benefit section */}
             <PartnerProgramAccordion />
@@ -30,10 +33,12 @@ function PartnerProgramIndex() {
 
             {/* eligible characters */}
             <EligibleCharacters />
-            
+
             {/* bottom banner section */}
             <div className='pt-4 '>
-              <Image src={partnerProgram} alt='' />
+              <Link href='/partner-program-application'>
+                <Image src={partnerProgram} alt='' />
+              </Link>
             </div>
           </div>
         </div>
