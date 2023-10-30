@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React from 'react';
 import BreadCrumbs from '../BreadCrumbs';
 import Image from 'next/image';
 import partnerProgramBanner from '../../../../public/assets/learning-center/partnerProgramBanner.png';
@@ -42,5 +42,4 @@ function PartnerProgramIndex() {
     </div>
   );
 }
-
 export default PartnerProgramIndex;
