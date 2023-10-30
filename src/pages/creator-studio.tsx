@@ -5,12 +5,13 @@ import React, { useState } from 'react';
 
 const creatorStudio = () => {
   const [profileInfoPage, setProfileInfoPage] = useState(false);
-  return(
+  return (
     <div>
-      {profileInfoPage ? 
-      <ProfileInfoModal /> : 
-      <CreatorStudioLayout setProfileInfoPage={setProfileInfoPage} />
-      }
+      {profileInfoPage ? (
+        <ProfileInfoModal />
+      ) : (
+        <CreatorStudioLayout setProfileInfoPage={setProfileInfoPage} />
+      )}
     </div>
   );
 };
