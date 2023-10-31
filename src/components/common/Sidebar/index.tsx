@@ -71,7 +71,6 @@ sideBarProp) {
     setShrinkSidebar(sidebarVariable ? sidebarVariable : '');
   }, [sidebarVariable]);
 
-  console.log(sidebarVariable, 'shrinkSidebar sidebarVariable');
   const handleSidebarWidth = () => {
     if (shrinkSidebar) {
       setShrinkSidebar('');
@@ -156,7 +155,7 @@ sideBarProp) {
             shrinkSidebar === 'true' ? '!hidden' : 'w-full'
           }`}
         />
-        <div onClick={() => activeItem('Add Card')}>
+        <div onClick={() => {activeItem('Add Card'), moreOptionItem('')}}>
           <SidebarMenuItem
             text='Add Card'
             // href='/add-card'
@@ -194,7 +193,9 @@ sideBarProp) {
           sideBarMenuText={`${sideBarMenuText} ${
             shrinkSidebar === 'true' ? '!hidden' : 'w-full'
           }`}
+          changeTab={"CreatorStudioActive"}
         />
+
         <div className='relative'>
           <div onClick={() => setMoreOption(!moreOption)}>
             <SidebarMenuItem
@@ -211,11 +212,12 @@ sideBarProp) {
             <MoreMenuOption
               classes={`${
                 shrinkSidebar === 'true'
-                  ? 'fixed '
+                  ? 'fixed bottom-5 left-[80px]'
                   : 'absolute left-[10px] top-[60px] '
               }`}
               activeMoreOption={activeMoreOption}
               moreOptionItem={moreOptionItem}
+              activeItem={activeItem}
             />
           )}
         </div>
@@ -245,9 +247,9 @@ sideBarProp) {
       </div> */}
 
       <div
-        className='flex items-center justify-between w-full px-6 mt-auto mb-6 cursor-pointer'
+        className='flex items-center justify-between w-full px-[18px] mt-auto mb-6 cursor-pointer'
         onClick={() => {
-          setUserAccountMenu(true);
+          setUserAccountMenu(!userAccountMenu);
         }}
       >
         <div className='flex items-center gap-1'>

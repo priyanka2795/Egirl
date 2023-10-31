@@ -25,17 +25,24 @@ function Gifts() {
   const [deleteIndex, setDeleteIndex] = useState<number | undefined>();
   const [deleteBtnStep, setDeleteBtnStep] = useState<number>(0);
   const [addCategory, setAddCategory] = useState<string[]>([]);
+  const [giftImageSet, setGiftImageSet] = useState('');
+  const [giftName, setGiftName] = useState('');
 
   const EditGift = (val: number) => {
     setGiftCard(true);
     setGiftEditPopup(val);
   };
 
-  const DeleteGiftCardModal = (index: number, num: number) => {
+  const DeleteGiftCardModal = (
+    index: number,
+    num: number,
+    giftName: string
+  ) => {
     setGiftCard(true);
     setGiftEditPopup(num);
     setDeleteIndex(index);
     setDeleteBtnStep(1);
+    setGiftName(giftName);
   };
 
   const DeleteGift = (ind: number) => {
@@ -58,7 +65,7 @@ function Gifts() {
   return (
     <>
       <div className='flex items-center justify-between'>
-        <h4 className='text-2xl font-bold'>Gifts</h4>
+        <h4 className='text-2xl font-black'>Gifts</h4>
         <button
           className='flex h-10 items-center justify-center gap-1.5 rounded-xl bg-[#5848BC] px-4 py-[10px]'
           onClick={() => setGiftModal(true)}
@@ -93,7 +100,7 @@ function Gifts() {
                 key={index}
               >
                 <Image
-                  src={AlbumFirst}
+                  src={giftImageSet}
                   className='object-cover w-full h-full'
                 />
                 <div className='absolute right-2 top-2'>
@@ -135,7 +142,7 @@ function Gifts() {
 
                           <button
                             className='flex items-center gap-2'
-                            onClick={() => DeleteGiftCardModal(index, 3)}
+                            onClick={() => DeleteGiftCardModal(index, 3, item)}
                           >
                             <Image
                               src={Delete}
@@ -165,6 +172,8 @@ function Gifts() {
               DeleteGift={DeleteGift}
               DeleteIndex={deleteIndex}
               DeleteBtnStep={deleteBtnStep}
+              giftImageSet={giftImageSet}
+              giftName={giftName}
             />
           )}
 
@@ -190,7 +199,7 @@ function Gifts() {
             <div className='flex items-center justify-center rounded-full bg-[#FFFFFF0D] p-4 '>
               <ImagePlusIcon />
             </div>
-            <p className='text-[13px] font-normal leading-[18px] text-[#979797]'>
+            <p className='font-normal text-[13px] leading-[18px] text-[#979797]'>
               You don’t have any categories and gifts. Click on the button to
               create it.
             </p>
@@ -206,6 +215,8 @@ function Gifts() {
           SetGiftName={setGiftCardName}
           AddCategory={addCategory}
           SetCategory={setAddCategory}
+          giftImageSet={giftImageSet}
+          setGiftImageSet={setGiftImageSet}
         />
       )}
     </>

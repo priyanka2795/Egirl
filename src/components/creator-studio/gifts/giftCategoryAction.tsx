@@ -20,7 +20,7 @@ function GiftCategoryAction({ AddCategory, SetCategory }: GiftCategoryAction) {
   const [editCategoryActionModal, setEditCategoryActionModal] = useState<number>();
   const [createCategory, setCreateCategory] = useState<boolean>(false);
   const [isActive, setActive] = useState<boolean>(false);
-  const [tabs, setTabs] = useState<number>(1);
+  const [tabs, setTabs] = useState<number>(0);
   const [editName, setEditName] = useState<string>('');
   const [categoryActionIndex, setCategoryActionIndex] = useState<number>();
 
@@ -28,8 +28,8 @@ function GiftCategoryAction({ AddCategory, SetCategory }: GiftCategoryAction) {
     setEditCategoryActionModal(val);
     setCloseState(true);
   };
-  const ActiveTab = (items: number) => {
-    setTabs(items);
+  const ActiveTab = (index: number) => {
+    setTabs(index);
   };
 
   const EditCategoryName = (name: string, step: number) => {
@@ -61,19 +61,19 @@ function GiftCategoryAction({ AddCategory, SetCategory }: GiftCategoryAction) {
     <>
       <div className='flex items-center justify-between mt-4'>
         <div className='flex items-center justify-center gap-3 '>
-          {AddCategory.map((items: any, index: number) => (
+          {AddCategory.map((items: string, index: number) => (
             <div
               className={`relative flex cursor-pointer items-center justify-center gap-2 rounded-xl px-3 py-1.5 font-bold ${
-                tabs === items ? 'bg-[#FFFFFF29]' : 'bg-transparent'
+                tabs === index ? 'bg-[#FFFFFF29]' : 'bg-transparent'
               }`}
-              onClick={(e) => ActiveTab(items)}
+              onClick={() => ActiveTab(index)}
               key={index}
             >
-              <span className={tabs == items ? 'text-white' : 'text-[#979797]'}>
+              <span className={tabs == index ? 'text-white' : 'text-[#979797]'}>
                 {items}
               </span>
               <button className='' onClick={() => setToggle(!toggle)}>
-                {tabs === items ? <VerticalDots /> : ''}
+                {tabs === index ? <VerticalDots /> : ''}
               </button>
 
               {toggle ? (

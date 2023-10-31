@@ -7,6 +7,7 @@ import CreateCharacter from '@components/list/CreateCharacter';
 import SetUpYourCharacter from '@components/list/SetUpYourCharacter';
 import AllCharactersCards from '@components/list/AllCharactersCards';
 import EditProfileModal from '@components/list/EditProfileModal';
+import FinishStepModal from '@components/list/finishStep/finishStepModal';
 
 interface CreatorStudio {
   IsOpen: any;
@@ -28,7 +29,7 @@ const CreatorStudio = ({
 }: CreatorStudio) => {
 
   const [UserGuide, setUserGuide] = useState(true);
-  const [editProfileModal, setEditProfileModal] = useState(false);
+
 
   return (
     <>
@@ -48,7 +49,7 @@ const CreatorStudio = ({
             }
             followText={'Follow'}
             component={'CreatorStudioProfile'}
-            setEditProfileModal={setEditProfileModal}
+            // setEditProfileModal={setEditProfileModal}
           />
           <div>
             <SetUpYourCharacter
@@ -70,11 +71,12 @@ const CreatorStudio = ({
               <UserSection userSectionStyle={'w-full'} />
             </div>
           </div>
+
         </div>
       )}
-      {
+       {/* {
         editProfileModal && <EditProfileModal closeState={setEditProfileModal} />
-      }
+      }  */}
     </>
   );
 };

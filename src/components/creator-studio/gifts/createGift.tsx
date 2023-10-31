@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
 import AlbumFirst from '../../../../public/assets/gallery-tab-img.png';
+import ImagePlus from '../../../../public/assets/image-plus2.png';
 import Edit from '../../../../public/assets/pen.svg';
 import ImageSquare from '../svg/image-square.svg';
 import ImageSquareGray from '../svg/image-square-gray.svg';
@@ -13,21 +14,23 @@ import Tooltip from './tooltip';
 interface CreateGiftPopup {
   createGiftClose: React.Dispatch<React.SetStateAction<boolean>>;
   GiftsView: React.Dispatch<React.SetStateAction<boolean>>;
-  Previous: React.Dispatch<React.SetStateAction<boolean>>;
+  Steps?: React.Dispatch<React.SetStateAction<number>>;
   AddCategory: string[];
   SetCategory: React.Dispatch<React.SetStateAction<string[]>>;
   GiftName: string[];
   SetGiftName: React.Dispatch<React.SetStateAction<string[]>>;
+  GiftImageSet: string;
 }
 
 function CreateGift({
   createGiftClose,
   GiftsView,
-  Previous,
+  Steps,
   AddCategory,
   SetCategory,
   GiftName,
-  SetGiftName
+  SetGiftName,
+  GiftImageSet
 }: CreateGiftPopup) {
   const [createCategory, setCreateCategory] = useState<boolean>(false);
   const [tabSelectedOpt, setTabSelectedOpt] = useState<string>('');
@@ -43,8 +46,11 @@ function CreateGift({
   };
 
   const GiftCreated = () => {
-    if (giftName === '') {
+    if (giftName === '' ) {
       alert('Please Enter Gift Name');
+    }else if (GiftImageSet === '') {
+      alert('Please Select Image');
+      
     } else {
       SetGiftName([...GiftName, giftName]);
       createGiftClose(false);
@@ -53,8 +59,10 @@ function CreateGift({
   };
   const closeGifts = () => {
     // createGiftClose(false)
-    Previous(false);
+    Steps(1);
   };
+  console.log(GiftImageSet, 'GiftImageSet');
+  // console.log(AlbumFirst,'AlbumFirst');
 
   return (
     <div className='w-[385px]'>
@@ -74,26 +82,39 @@ function CreateGift({
             <h5 className='text-lg font-semibold'>Create gift</h5>
             <div
               className='w-6 h-6 cursor-pointer'
-              onClick={() => createGiftClose(false)}
+              onClick={() => {
+                createGiftClose(false);
+                SetCategory([]);
+              }}
             >
               <Image className='w-full h-full' src={crossIcon} alt={''} />
             </div>
           </div>
           <div className='flex flex-col gap-4 p-6'>
-            <div className='relative m-auto h-[156px]  w-[156px]'>
-              <Image
-                className='h-full w-full rounded-[14px] object-cover'
-                src={AlbumFirst}
-                alt={''}
-              />
-              <div className='group absolute right-2 top-2 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-[#0000007A]'>
+            <div className='relative m-auto flex h-[156px] w-[156px] items-center justify-center rounded-xl bg-[#FFFFFF0D]'>
+              {GiftImageSet ? (
+                <Image
+                  className='h-full w-full rounded-[14px] object-cover'
+                  src={GiftImageSet}
+                  alt={''}
+                />
+              ) : (
+                <Image
+                  className='cursor-pointer'
+                  src={ImagePlus}
+                  alt={''}
+                  onClick={() => Steps(3)}
+                />
+              )}
+
+              {/* <div className='group absolute right-2 top-2 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-[#0000007A]'>
                 <div>
                   <Edit className='w-full h-full' alt={''} />
                 </div>
                 <div className='absolute transition-all transform -left-12 -top-2 w-max -translate-x-0 -translate-y-2/4'>
                   <Tooltip Text={'Edit'} />
                 </div>
-              </div>
+              </div> */}
             </div>
 
             <div className=' flex flex-col text-[#979797]'>
@@ -107,7 +128,7 @@ function CreateGift({
                 type='text'
                 id='category'
                 placeholder='Ex. Date on a roof'
-                className='h-12 rounded-[14px] border-none bg-[#FFFFFF0D] px-4 focus:border-[#5848BC] focus:ring-[#5848BC] active:border-[#5848BC]'
+                className='h-12 rounded-[14px] border-none bg-[#FFFFFF0D] px-4 text-white placeholder:text-[#979797] focus:border-[#5848BC] focus:ring-[#5848BC] active:border-[#5848BC]'
                 onChange={(e) => handleChange(e)}
               />
             </div>
@@ -116,9 +137,10 @@ function CreateGift({
               <p className='pb-1 text-[13px] font-semibold text-[#979797]'>
                 Category
               </p>
-              {AddCategory.map((items: string) => (
+              {AddCategory.map((items: string, index: number) => (
                 <div
-                  className={`rounded-[14px] border px-4 py-3 
+                  key={index}
+                  className={`cursor-pointer rounded-[14px] border px-4 py-3 
                                 ${
                                   tabSelectedOpt === items
                                     ? 'border-[#5848BC] bg-[#5848BC29]'

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import CameraIcon from '../../../../public/assets/camera.png';
 import ImagePlusIcon from '../../../../public/assets/image-plus2.png';
 import InformationIcon from '../../../../public/assets/circle-information24.png';
+import DeleteWhiteIcon from '../../../../public/assets/trash-blank-alt-white.png';
 import Image from 'next/image';
 import SelectProfilePhoto from './selectProfilePhoto';
 import EditProfilePhoto from './editProfilePhoto';
@@ -19,41 +20,36 @@ function ViewProfile() {
 
   //   upload image code
 
-  const [selectedImage, setSelectedImage] = useState(null);
-
-  const handleImageChange = (e: any) => {
-    const file = e.target.files[0];
-
-    if (file) {
-      // Check if the selected file is an image
-      if (file.type.startsWith('image/')) {
-        const reader = new FileReader();
-
-        reader.onload = (e) => {
-          setSelectedImage(e.target.result);
-        };
-
-        reader.readAsDataURL(file);
-      } else {
-        alert('Please select an image file.');
-      }
+  const [coverImage, setCoverImage] = useState<string>('');
+  const [exploreImages, setExploreImages] = useState([
+    {
+      image: '',
+      selected: true
     }
-  };
+  ]);
+
 
   return (
     <>
       <div className='flex w-full max-w-[468px] flex-col items-center justify-center gap-6'>
-        <div className='flex w-full flex-col gap-3'>
+        <div className='flex flex-col w-full gap-3'>
           <h2 className='text-[22px] font-black'>Profile view</h2>
           <div className='relative h-[172px] w-full overflow-hidden  rounded-[14px] bg-[#FFFFFF0D]'>
             <div
               className='absolute right-3 top-3 flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-[10px] bg-[#FFFFFF14]'
               onClick={() => setUploadCoverImg(true)}
             >
-              <Image src={CameraIcon} className='h-full w-full' />
+              <Image src={CameraIcon} className='w-full h-full' />
             </div>
-            
-            {/* {selectedImage && <img src={selectedImage} alt="Selected" className='h-full w-full object-center' style={{ maxWidth: '100%', maxHeight: '300px' }} />} */}
+            {coverImage ? (
+              <img
+                src={coverImage}
+                className='object-center w-full h-full'
+                alt='CoverImage'
+              />
+            ) : (
+              ''
+            )}
 
             <div className='absolute bottom-0 flex h-[84px] w-full items-center gap-4 bg-[#121212] pb-[16px] pl-[24px] pt-[24px]'>
               <div
@@ -69,7 +65,7 @@ function ViewProfile() {
             </div>
           </div>
         </div>
-        <div className='flex w-full flex-col gap-3'>
+        <div className='flex flex-col w-full gap-3'>
           <div className='flex items-center gap-2'>
             <h2 className='text-[22px] font-black'>Explore view</h2>
             <Image src={InformationIcon} />
@@ -77,31 +73,41 @@ function ViewProfile() {
           <div className='rounded-[14px] bg-[#121212] px-6 py-5'>
             <div className='flex flex-col gap-4 '>
               <div className='text-[15px] font-semibold'>
-                Images <span className='text-[#979797]'> 0/4</span>
+                Images <span className='text-[#979797]'>{exploreImages.length}/4</span>
               </div>
               <div className='grid grid-cols-2 gap-4'>
-                {Array(4)
-                  .fill('0')
-                  .map(() => (
-                    <div className='flex h-[204px] w-[204px] items-center justify-center rounded-xl bg-[#FFFFFF0D]'>
+                {exploreImages.map((items, index) => (
+                  <div className='group relative flex h-[204px] w-[204px] items-center justify-center overflow-hidden rounded-xl bg-[#FFFFFF0D]'>
+                    {items.image === '' ? (
+                      ''
+                    ) : (
+                      <div className='absolute right-[6px] top-3 hidden h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full bg-[#0000007A] group-hover:flex'>
+                        <Image src={DeleteWhiteIcon} />
+                      </div>
+                    )}
+                    {items.image === '' ? (
                       <div
                         className='flex h-[56px] w-[56px] cursor-pointer items-center justify-center rounded-full bg-[#FFFFFF0D]'
                         onClick={() => setAttachingImages(true)}
                       >
                         <Image src={ImagePlusIcon} />
                       </div>
-                    </div>
-                  ))}
+                    ) : (
+                      <div key={index} className='w-full h-full'>
+                        <img
+                          src={items.image.src}
+                          className='object-contain w-full h-full'
+                        />
+                      </div>
+                    )}
+                  </div>
+                ))}
+
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      {/* <div>
-      <input type="file" accept="image/*" onChange={handleImageChange} />
-      {selectedImage && <img src={selectedImage} alt="Selected" style={{ maxWidth: '100%', maxHeight: '300px' }} />}
-    </div> */}
 
       {selectProfilePhoto && (
         <SelectProfilePhoto
@@ -115,9 +121,18 @@ function ViewProfile() {
           SetSelectProfilePhoto={setSelectProfilePhoto}
         />
       )}
-      {uploadCoverImg && <CoverImageModel CloseModal={setUploadCoverImg} />}
+      {uploadCoverImg && (
+        <CoverImageModel
+          CloseModal={setUploadCoverImg}
+          coverImage={coverImage}
+          setCoverImage={setCoverImage}
+        />
+      )}
       {attachingImages && (
-        <SelectExploreImages setAttachingImages={setAttachingImages} />
+        <SelectExploreImages
+          setAttachingImages={setAttachingImages}
+          setExploreImages={setExploreImages}
+        />
       )}
     </>
   );

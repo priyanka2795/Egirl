@@ -1,4 +1,3 @@
-import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import userPenIcon from '../../../public/assets/user-pen.png';
@@ -16,8 +15,6 @@ import leftArrowIcon from '../../../public/assets/left-arrow-grey.png';
 import PersonalityContent from '@components/creator-studio/personality/PersonalityContent';
 import ImageGeneratorIndex from '@components/creator-studio/image-generator';
 import StyleGeneratorIndex from '@components/creator-studio/style-generator';
-import EditProfileModal from './EditProfileModal';
-import UpdatePhotoModal from './UpdatePhotoModal';
 import ViewProfile from './finishStep/viewProfile';
 const SearchData = [
   {
@@ -87,7 +84,7 @@ function CustomStepper() {
     }
   };
 
-  const handleRemoveTag = (tagName) => {
+  const handleRemoveTag = (tagName:any) => {
     const updatedTags = selectedTags.filter((tag) => tag !== tagName);
     setSelectedTags(updatedTags);
   };
@@ -154,9 +151,9 @@ function CustomStepper() {
           Save & Close
         </button>
       </div>
-      <div className='flex h-full flex-col justify-between'>
+      <div className='flex flex-col justify-between h-full'>
         <div className='flex flex-col gap-6 rounded-[16px] px-[190px] pt-[48px]'>
-          <div className='flex gap-4'>
+          <div className='flex justify-center gap-4'>
             <div className='flex items-center gap-4'>
               <div
                 className={`flex h-10 w-10 items-center justify-center rounded-full text-white                  ${
@@ -249,7 +246,7 @@ function CustomStepper() {
                       activeStep === 1
                         ? 'bg-[#5848BC]'
                         : activeStep >= 1
-                        ? '!bg-[#2EAA1B] w-full'
+                        ? 'w-full !bg-[#2EAA1B]'
                         : 'bg-[#5848BC]'
                     } rounded-xl`}
                   ></div>
@@ -380,7 +377,7 @@ function CustomStepper() {
               </div>
             </div>
           </div>
-          <div className='flex items-center gap-2 rounded-[12px] bg-[#5848BC1F]/[0.12] px-4 py-3'>
+          <div className='m-auto flex w-full max-w-[965px] items-center gap-2 rounded-[12px] bg-[#5848BC1F]/[0.12] px-4 py-3'>
             <Image src={circleInformation} alt={''} />
             <div className='font-normal text-[13px] leading-[18px] text-[#7362C6]'>
               {activeStep === 0
@@ -508,94 +505,15 @@ function CustomStepper() {
           )}
           <div>
             {activeStep === 1 && (
-              // <div className='step-content mt-10 w-[500px] border-2 border-[#ccc] p-3 text-center'>
-              //   Step 2 Content
-              //   <div className='mt-5 flex flex-col gap-[6px]'>
-              //     <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
-              //       Step 2 (Optional)
-              //     </div>
-              //     <input
-              //       type='text'
-              //       placeholder='Type location...'
-              //       value={secondStep}
-              //       maxLength={5}
-              //       className='font-normal rounded-[14px] border-none bg-white/[0.05] px-4 py-3 text-[18px] leading-6 text-white placeholder:text-[#979797] focus:ring-0'
-              //       onChange={(e) => {
-              //         setSecondStep(e.target.value);
-              //         if (e.target.value.length === 5) {
-              //           setBtnSteps(true);
-              //         } else {
-              //           setBtnSteps(false);
-              //         }
-              //       }}
-              //       name='location'
-              //     />
-              //   </div>
-              // </div>
               <PersonalityContent
                 SetBtnSteps={setBtnSteps}
                 personalityData={personalityData}
                 setPersonalityData={setPersonalityData}
               />
             )}
-            {activeStep === 2 && (
-              // <div className='step-content mt-10 w-[500px] border-2 border-[#ccc] p-3 text-center'>
-              //   Step 3 Content
-              //   <div className='mt-5 flex flex-col gap-[6px]'>
-              //     <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
-              //       Step 3 (Optional)
-              //     </div>
-              //     <input
-              //       type='text'
-              //       placeholder='Type location...'
-              //       value={threadStep}
-              //       maxLength={4}
-              //       className='font-normal rounded-[14px] border-none bg-white/[0.05] px-4 py-3 text-[18px] leading-6 text-white placeholder:text-[#979797] focus:ring-0'
-              //       onChange={(e) => {
-              //         setThreadStep(e.target.value);
-              //         if (e.target.value.length === 4) {
-              //           setBtnSteps(true);
-              //         } else {
-              //           setBtnSteps(false);
-              //         }
-              //       }}
-              //       name='location'
-              //     />
-              //   </div>
-              // </div>
-              <ImageGeneratorIndex />
-            )}
-            {activeStep === 3 && (
-              // <div className='step-content mt-10 w-[500px] border-2 border-[#ccc] p-3 text-center'>
-              //   Step 4 Content
-              //   <div className='mt-5 flex flex-col gap-[6px]'>
-              //     <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
-              //       Step 4 (Optional)
-              //     </div>
-              //     <input
-              //       type='text'
-              //       placeholder='Type location...'
-              //       value={fourthStep}
-              //       maxLength={1}
-              //       className='font-normal rounded-[14px] border-none bg-white/[0.05] px-4 py-3 text-[22px] leading-6 text-white placeholder:text-[#979797] focus:ring-0'
-              //       onChange={(e) => {
-              //         setFourthStep(e.target.value);
-              //         if (e.target.value.length === 1) {
-              //           setBtnSteps(true);
-              //         } else {
-              //           setBtnSteps(false);
-              //         }
-              //       }}
-              //       name='location'
-              //     />
-              //   </div>
-              // </div>
-              <StyleGeneratorIndex />
-            )}
+            {activeStep === 2 && <ImageGeneratorIndex />}
+            {activeStep === 3 && <StyleGeneratorIndex />}
             {activeStep === 4 && (
-              // <div className='step-content mt-10 w-[500px] border-2 border-[#ccc] p-3 text-center'>
-              //   Step 5 Content
-              // </div>
               <div className='flex items-center justify-center'>
                 <ViewProfile />
               </div>
@@ -632,12 +550,22 @@ function CustomStepper() {
                   Next
                 </button>
               ) : (
-                <button
-                  className={`font-bold flex items-center justify-center rounded-[14px] bg-[#5848BC52] px-5
-               py-[13px] text-[16px] leading-[22px] text-[#FFFFFF52] `}
-                >
-                  Next
-                </button>
+                <div className='relative group'>
+                  <button
+                    className={`font-boldflex items-center justify-center rounded-[14px]
+               bg-[#5848BC52] px-5 py-[13px] text-[16px] leading-[22px] text-[#FFFFFF52] `}
+                  >
+                    {' '}
+                    Next
+                  </button>
+                  <div className='absolute right-0 z-50 transition-all transform -top-7 w-max -translate-x-0 -translate-y-2/4 '>
+                    <div
+                      className={` before:translate-[-50%,0] z-50 hidden rounded-lg bg-[#303030] px-3 py-1.5 group-hover:block `}
+                    >
+                      Please fill in the form to continue
+                    </div>                
+                  </div>
+                </div>
               )}
             </>
           )}

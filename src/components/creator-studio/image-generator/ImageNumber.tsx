@@ -12,7 +12,7 @@ const ImageNumber = () => {
           return (
             <div
               key={index}
-              className='rounded-[16px] border border-white/[0.32] px-[18px] py-3 text-white text-[18px] font-bold leading-6'
+              className='rounded-[16px] border border-white/[0.32] w-12 h-12 flex justify-center items-center text-white text-[18px] font-bold leading-6 cursor-pointer'
             >
               {items}
             </div>

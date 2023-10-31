@@ -1,15 +1,49 @@
-import React, { useRef } from 'react';
+import React, { useState, createRef, useRef } from 'react';
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
 import crossIcon from '../../../../public/assets/xmark (1).png';
 import CoverImage1 from '../../../../public/assets/bg.png';
+import Cropper, { ReactCropperElement } from 'react-cropper';
+import 'cropperjs/dist/cropper.css';
 
 interface CoverImageModel {
   CloseModal: React.Dispatch<React.SetStateAction<boolean>>;
+  coverImage: any;
+  setCoverImage: React.Dispatch<React.SetStateAction<string>>;
 }
-const CoverImageModel = ({ CloseModal }: CoverImageModel) => {
-   
+const CoverImageModel = ({
+  CloseModal,
+  coverImage,
+  setCoverImage
+}: CoverImageModel) => {
+  const cropperRef = createRef<ReactCropperElement>();
+  const [image, setImage] = useState('');
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
+  const onChange = (e: any) => {
+    e.preventDefault();
+    let files;
+    if (e.dataTransfer) {
+      files = e.dataTransfer.files;
+    } else if (e.target) {
+      files = e.target.files;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      setImage(reader.result as any);
+    };
+    reader.readAsDataURL(files[0]);
+  };
+
+  const handleUploadButtonClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+  const handleCoverImage = () => {
+    setCoverImage(image);
+    CloseModal(false)
+  };
   return (
     <>
       <Modal
@@ -21,21 +55,49 @@ const CoverImageModel = ({ CloseModal }: CoverImageModel) => {
         <div className='flex items-center justify-between border-b border-[#FFFFFF14] p-6'>
           <h5 className='text-lg font-semibold'>Upload new photo</h5>
           <div
-            className='h-6 w-6 cursor-pointer'
+            className='w-6 h-6 cursor-pointer'
             onClick={() => CloseModal(false)}
           >
-            <Image className='h-full w-full' src={crossIcon} alt={''} />
+            <Image className='w-full h-full' src={crossIcon} alt={''} />
           </div>
         </div>
 
         <div className='p-8'>
-    
-
           <div>
-            <Image src={CoverImage1} className='h-full w-full object-cover' />
+            {/* <Image src={CoverImage1} className='object-cover w-full h-full' /> */}
+            <input
+              type='file'
+              onChange={onChange}
+              className='hidden mb-5'
+              accept='image/*'
+              ref={fileInputRef}
+            />
+            <button
+              // onClick={() => SetOpenStyle(false)}
+              className='font-bold mb-5 flex h-[48px] items-center justify-center rounded-[14px] bg-[#FFFFFF14] px-5 py-[13px]'
+              onClick={handleUploadButtonClick}
+            >
+              Upload Image
+            </button>
+            <Cropper
+              ref={cropperRef}
+              zoomTo={0.5}
+              initialAspectRatio={1}
+              preview='.img-preview'
+              src={image}
+              viewMode={1}
+              minCropBoxHeight={10}
+              minCropBoxWidth={10}
+              background={false}
+              responsive={true}
+              autoCropArea={1}
+              checkOrientation={false}
+              guides={true}
+              className='w-full h-full'
+            />
           </div>
 
-          <div className='mt-6 flex items-center justify-between'>
+          <div className='flex items-center justify-between mt-6'>
             <div>
               <button
                 // onClick={() => SetOpenStyle(false)}
@@ -52,7 +114,7 @@ const CoverImageModel = ({ CloseModal }: CoverImageModel) => {
                 Cancel
               </button>
               <button
-                onClick={() => CloseModal(false)}
+                onClick={() => handleCoverImage()}
                 className='font-bold flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-[#5848BC] bg-[#5848BC] px-5 py-[13px]'
               >
                 Save

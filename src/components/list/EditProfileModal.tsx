@@ -6,15 +6,21 @@ import avatar from '../../../public/assets/image 69.png';
 import cameraOverlay from '../../../public/assets/white-camera.png';
 import InputFieldDesign from '@components/common/InputFieldDesign';
 import ProfileDropdown from '@components/common/ProfileDropdown';
+import DeleteProfileModal from '@components/common/DeleteProfileModal';
+import AddImagesModal from '@components/creator-studio/style-generator/AddImagesModal';
+import ProfileCropper from '@components/common/ProfileCropper';
 interface EditProfileModalProps {
-  closeState: any;
+  closeState: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const EditProfileModal = ({ closeState }: EditProfileModalProps) => {
   const tabs = ['Profile view', 'Explore view'];
-  const [activeTab, setActiveTab] = useState(0);
-  const [profileEdit, setProfileEdit] = useState(false);
-  return (
+  const [activeTab, setActiveTab] = useState<number>(0);
+  const [profileEdit, setProfileEdit] = useState<boolean>(false);
+  const [deleteProfileState , setDeleteProfileState] = useState<boolean>(false)
+  const [updateProfileState , setUpdateProfileState] = useState<boolean>(false)
+  const [updateProfileImg ,setUpdateProfileImg] = useState<boolean>(false)
+  return (<>
     <Modal
       open={true}
       modalClassName='flex flex-col w-full rounded-[20px] h-max bg-[#1A1A1A] max-w-[468px] relative'
@@ -25,9 +31,9 @@ const EditProfileModal = ({ closeState }: EditProfileModalProps) => {
         <div className='font-bold text-[18px] leading-6 text-white'>
           Edit profile
         </div>
-        <Image src={xMark} alt={''} />
+        <Image src={xMark} alt={''} className="w-[24px] h-[24px]"/>
       </div>
-      <div className='flex items-center gap-4 px-6 pb-3 pt-6'>
+      <div className='flex items-center gap-4 px-6 pt-6 pb-3'>
         <div
           className='relative cursor-pointer'
           onClick={() => {
@@ -36,7 +42,7 @@ const EditProfileModal = ({ closeState }: EditProfileModalProps) => {
           }}
         >
           <Image className='rounded-[100px]' src={avatar} alt={''} />
-          <div className='absolute left-0 top-0 flex h-full w-full items-center justify-center'>
+          <div className='absolute top-0 left-0 flex items-center justify-center w-full h-full'>
             <div className='flex h-[32px] w-[32px] items-center justify-center rounded-[100px] bg-black bg-opacity-60'>
               <Image
                 src={cameraOverlay}
@@ -51,8 +57,12 @@ const EditProfileModal = ({ closeState }: EditProfileModalProps) => {
               <ProfileDropdown
                 profileEdit={profileEdit}
                 setProfileEdit={setProfileEdit}
+                deleteProfileState={deleteProfileState}
+                setDeleteProfileState={setDeleteProfileState}
+                setUpdateProfileState={setUpdateProfileState}
+                setUpdateProfileImg={setUpdateProfileImg}
               />
-            )}
+             )}
           </div>
         </div>
 
@@ -84,7 +94,7 @@ const EditProfileModal = ({ closeState }: EditProfileModalProps) => {
           );
         })}
       </div>
-      <div className='flex flex-col gap-6 px-6 pb-6 pt-3'>
+      <div className='flex flex-col gap-6 px-6 pt-3 pb-6'>
         <div className='flex flex-col gap-4'>
           <InputFieldDesign
             labelName='Name'
@@ -138,6 +148,39 @@ const EditProfileModal = ({ closeState }: EditProfileModalProps) => {
         </div>
       </div>
     </Modal>
+    {deleteProfileState &&
+     <Modal
+     open={true}
+     modalClassName='flex flex-col w-full rounded-[14px] items-start h-max bg-[#1A1A1A] max-w-[468px] relative'
+     closeModal={() => setDeleteProfileState(!deleteProfileState)}
+     modalOverlayStyle='!bg-black/80'
+   >
+    <DeleteProfileModal setDeleteProfileState={setDeleteProfileState} deleteProfileState={deleteProfileState}/>
+   </Modal>
+    } 
+    {
+      updateProfileState &&
+      <Modal
+      open={true}
+      modalClassName='flex flex-col w-full rounded-[14px] items-start h-max bg-[#1A1A1A] max-w-[468px] relative'
+      closeModal={() => setUpdateProfileState(!updateProfileState)}
+      modalOverlayStyle='!bg-black/80'
+    >
+     <AddImagesModal setAddImagesModal={setUpdateProfileState}/>
+     </Modal>
+    }
+    {updateProfileImg &&
+     <Modal
+     open={true}
+     modalClassName='flex flex-col w-full rounded-[14px] items-start h-max bg-[#1A1A1A] max-w-[468px] relative'
+     closeModal={() => setUpdateProfileImg(!updateProfileImg)}
+     modalOverlayStyle='!bg-black/80'
+   >
+    <ProfileCropper/>
+    </Modal>
+     } 
+
+    </>
   );
 };
 

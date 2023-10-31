@@ -248,7 +248,7 @@ const AddedStyleModal = ({ setAddedStyleModal }: AddedStyleModalProp) => {
               </div>
             </div>
             <div className='flex w-full border-t border-white/[0.08] bg-[#1A1A1A] p-6'>
-              <div className='flex justify-between rounded-[14px] bg-white/[0.05] px-5 py-4'>
+              <div className='flex justify-between rounded-[14px] bg-white/[0.05] px-5 py-4 w-full'>
                 <div className='text-[15px] font-normal leading-6 text-[#979797]'>
                   Type your comment ...
                 </div>
