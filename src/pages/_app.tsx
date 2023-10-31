@@ -1,8 +1,8 @@
 import '@styles/globals.scss';
 import '@styles/toaster.scss';
-import "../components/explore/CardStack.scss"
-import "../components/messages/TypingIndicator.scss"
-import "../components/creator-studio/common/MultiStepRangeSliderStyle.scss"
+import '../components/explore/CardStack.scss';
+import '../components/messages/TypingIndicator.scss';
+import '../components/creator-studio/common/MultiStepRangeSliderStyle.scss';
 
 import { AuthContextProvider } from '@lib/context/auth-context';
 import { ThemeContextProvider } from '@lib/context/theme-context';
@@ -16,7 +16,8 @@ import { useEffect, useState } from 'react';
 import SupabaseAuthContextProvider from '@lib/context/supabase-auth-context';
 import Script from 'next/script';
 import { Database } from '../../types/database';
-
+import { Provider } from 'react-redux';
+import store from 'store';
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -66,20 +67,21 @@ export default function App({
                 });
             `}
       </Script>
-
-      <AppHead />
-      <SessionContextProvider
-        supabaseClient={supabaseClient}
-        initialSession={pageProps.initialSession}
-      >
-        {/* <AuthContextProvider> */}
-        {/* <SupabaseAuthContextProvider> */}
-        <ThemeContextProvider>
-          {<Component {...pageProps} />}
-        </ThemeContextProvider>
-        {/* </SupabaseAuthContextProvider> */}
-        {/* </AuthContextProvider> */}
-      </SessionContextProvider>
+      <Provider store={store}>
+        <AppHead />
+        <SessionContextProvider
+          supabaseClient={supabaseClient}
+          initialSession={pageProps.initialSession}
+        >
+          {/* <AuthContextProvider> */}
+          {/* <SupabaseAuthContextProvider> */}
+          <ThemeContextProvider>
+            {<Component {...pageProps} />}
+          </ThemeContextProvider>
+          {/* </SupabaseAuthContextProvider> */}
+          {/* </AuthContextProvider> */}
+        </SessionContextProvider>
+      </Provider>
     </>
   );
 }

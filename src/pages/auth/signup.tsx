@@ -80,6 +80,7 @@ export default function SignUp() {
   const handleSubmit = (values: any) => {
     console.log('Form data', values);
     // You can handle the form data submission here
+    
   };
 
   return (
