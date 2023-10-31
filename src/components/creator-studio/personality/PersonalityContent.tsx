@@ -18,10 +18,10 @@ const PersonalityContent = ({
 }: PersonalityContent) => {
   const HandleChange = (e: any) => {
     const { name, value } = e.target;
-    setPersonalityData({
-      ...personalityData,
-      [name]: value
-    });
+    // setPersonalityData({
+    //   ...personalityData,
+    //   [name]: value
+    // });
   };
   // useEffect(() => {
   //   if (
@@ -38,7 +38,7 @@ const PersonalityContent = ({
 
   return (
     <>
-      <div className='flex flex-col items-start gap-4 self-stretch'>
+      <div className='flex flex-col items-start self-stretch gap-4'>
         <PersonalityS1
           personalityData={personalityData}
           setPersonalityData={setPersonalityData}
@@ -53,9 +53,9 @@ const PersonalityContent = ({
             <div className='font-bold text-[18px] leading-6 text-[#FFFFFF]'>
               Descriptions
             </div>
-            <div className='h-4 w-4'>
+            <div className='w-4 h-4'>
               <Image
-                className='h-full w-full'
+                className='w-full h-full'
                 src={circleInformation}
                 alt={''}
               />
@@ -64,18 +64,19 @@ const PersonalityContent = ({
           <div className='flex w-full gap-4'>
             <div className='flex w-1/2 flex-col gap-[6px]'>
               <div className='flex justify-between'>
-                <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
+                <div className='text-[13px] font-[500] leading-[18px] text-[#979797]'>
                   Description
                 </div>
                 <div className='font-normal text-[14px] leading-[18px] text-[#515151]'>
                   {/* {personalityData.description.length}/2000 */}
+                  0/2000
                 </div>
               </div>
               <textarea
                 className='font-normal h-[135px] resize-none rounded-[14px] border-none bg-white/[0.05] py-3 pl-4 pr-3 text-[15px] leading-6 text-white placeholder-[#979797] focus:ring-0'
                 placeholder='Enter a description here...'
                 name='description'
-                value={personalityData.description}
+                // value={personalityData.description}
                 onChange={HandleChange}
                 maxLength={10}
               ></textarea>
@@ -83,18 +84,19 @@ const PersonalityContent = ({
 
             <div className='flex w-1/2 flex-col gap-[6px]'>
               <div className='flex justify-between'>
-                <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
+                <div className='text-[13px] font-[500] leading-[18px] text-[#979797]'>
                   World Description
                 </div>
                 <div className='font-normal text-[14px] leading-[18px] text-[#515151]'>
                   {/* {personalityData.worldDescription.length}/2000   */}
+                  0/2000  
                 </div>
               </div>
               <textarea
                 className='font-normal h-[135px] resize-none rounded-[14px] border-none bg-white/[0.05] py-3 pl-4 pr-3 text-[15px] leading-6 text-white placeholder-[#979797] focus:ring-0'
                 placeholder='Enter a world description here...'
                 name='worldDescription'
-                value={personalityData.worldDescription}
+                // value={personalityData.worldDescription}
                 onChange={HandleChange}
                 maxLength={12}
               ></textarea>

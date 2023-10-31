@@ -12,8 +12,18 @@ import AlbumImg from '../../../../public/assets/album1.png';
 import AlbumImg1 from '../../../../public/assets/album2.png';
 import AlbumImg2 from '../../../../public/assets/album3.png';
 import AlbumImg3 from '../../../../public/assets/album4.png';
+import image1 from '../../../../public/assets/vi-image-1.png';
+import image2 from '../../../../public/assets/vi-image-2.png';
+import image3 from '../../../../public/assets/vi-image-3.png';
 import image4 from '../../../../public/assets/vi-image-4.png';
 import image5 from '../../../../public/assets/vi-image-5.png';
+import image7 from '../../../../public/assets/vi-image-7.png';
+import plusIcon from '../../../../public/assets/plus-gray.png';
+import user from '../../../../public/assets/circle-user.png';
+import imageSquare from '../../../../public/assets/image-square.png';
+import image from '../../../../public/assets/image.png';
+import undo from '../../../../public/assets/Undo.png';
+import deleteIcon from '../../../../public/assets/trash-blank-alt.png';
 const tabContent = ['All images', 'Posted', 'Not posted', 'Albums'];
 
 const album = [
@@ -54,8 +64,62 @@ const album = [
     albumImageCount: '4'
   }
 ];
+
+const images = [
+  {
+    image: image1
+  },
+  {
+    image: image2
+  },
+  {
+    image: image3
+  },
+  {
+    image: image4
+  },
+  {
+    image: image5
+  },
+  {
+    image: image6
+  },
+  {
+    image: image7
+  },
+  {
+    image: image6
+  }
+];
+const toggleImages = [
+  {
+    image: plusIcon,
+    text: 'Create new post'
+  },
+  {
+    image: image,
+    text: 'Make album cover'
+  },
+  {
+    image: user,
+    text: 'Make profile picture'
+  },
+  {
+    image: imageSquare,
+    text: 'Make profile cover'
+  },
+  {
+    image: undo,
+    text: 'Move to album'
+  },
+  {
+    image: deleteIcon,
+    text: 'Delete'
+  }
+];
 const ViewImagesMainPage = () => {
-  const [exploreSelectedTab, setExploreSelected] = useState<string>('All images');
+  const [exploreSelectedTab, setExploreSelected] =
+    useState<string>('All images');
   const [allImage, setAllImage] = useState<number>();
   const [albumData, setAlbumData] = useState(album);
 
@@ -127,28 +191,40 @@ const ViewImagesMainPage = () => {
             </div>
           </div>
           <div className='grid grid-cols-3 gap-3' ref={dropdownRef}>
-            {Array(5)
-              .fill('0')
-              .map((_, index: number) => (
-                <div className='relative w-full h-full sub-banner group rounded-[16px]'>
-                  <Image
-                    className='w-full object-cover rounded-[16px]'
-                    src={image6}
-                    alt={''}
-                  />
-                  <div
-                    className='invisible absolute right-[7px] top-[7px] flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full bg-black/[0.48] group-hover:visible group-hover:opacity-100'
-                    onClick={() => AllImageToggle(index)}
-                  >
-                    <Image className='' src={threeDots} alt={''} />
-                  </div>
-                  {allImage === index && (
-                    <div className='absolute z-50 right-3 top-12'>
-                      <ViewImagesDropDown DeleteImage />
-                    </div>
-                  )}
+            {images.map((items, index: number) => (
+              <div className='sub-banner group relative h-full w-full rounded-[16px]'>
+                <Image
+                  className='w-full rounded-[16px] object-cover'
+                  src={items.image}
+                  alt={''}
+                />
+                <div
+                  className='invisible absolute right-[7px] top-[7px] flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full bg-black/[0.48] group-hover:visible group-hover:opacity-100'
+                  onClick={() => AllImageToggle(index)}
+                >
+                  <Image className='' src={threeDots} alt={''} />
                 </div>
-              ))}
+                {allImage === index && (
+                  <div className='absolute z-50 right-3 top-12'>
+                    <div className='flex w-[218px] flex-col rounded-[14px] bg-[#1A1A1A]'>
+                      {toggleImages.map((item, index) => {
+                        return (
+                          <div
+                            key={index}
+                            className={`flex cursor-pointer gap-2 px-4 py-[10px]`}
+                          >
+                            <Image src={item.image} alt={''} />
+                            <div className='font-normal text-[14px] leading-[18px] text-[#FFFFFF]'>
+                              {item.text}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
         </>
       ) : (

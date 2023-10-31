@@ -8,11 +8,11 @@ type SidebarMenuItemProps = {
   href?: string;
   sideBarMenuText?: string;
   StyleClasses?: string;
-
+  changeTab?:string;
   Icon: (props: { svgClasses?: string; strokeClasses?: string }) => JSX.Element;
   IconActive: (props: {
     svgClasses?: string;
-    strokeClasses?: string;
+    strokeclasses?: string;
   }) => JSX.Element;
 };
 
@@ -22,12 +22,17 @@ export default function SidebarMenuItem({
   sideBarMenuText,
   StyleClasses,
   Icon,
-  IconActive
+  IconActive,
+  changeTab
 }: SidebarMenuItemProps) {
   const router = useRouter();
 
   // This will be true if the current path is equal to this item's href
   const active = router.pathname === href;
+  const getpathname = router.route;
+
+
+  // const changeTab: string = 'CreatorStudioActive';
 
   return (
     <>
@@ -37,12 +42,13 @@ export default function SidebarMenuItem({
             className={`${StyleClasses} mb-2 flex cursor-pointer items-center justify-center space-x-3 rounded-[14px] py-2 pl-2.5 text-lg text-white transition-all duration-100 hover:bg-[#252525] ${
               sideBarMenuText ? 'w-full' : 'xl:w-[256px] '
             } xl:justify-start ${active && 'bg-[#252525]'}`}
+            target={changeTab === 'CreatorStudioActive' ? '_blank' : '_self'}
           >
             {active ? (
               <IconActive />
             ) : (
               <Icon
-                strokeClasses={`stroke-[#515151] transition duration-100`}
+                strokeclasses={`stroke-[#515151] transition duration-100`}
               />
             )}
 
@@ -50,7 +56,7 @@ export default function SidebarMenuItem({
               <span
                 className={`${
                   active ? 'font-black' : 'font-semibold'
-                } ${sideBarMenuText} hidden text-[15px] leading-8 xl:inline`}
+                } ${sideBarMenuText} hidden text-[18px] leading-8 xl:inline`}
               >
                 {text}
               </span>
@@ -65,7 +71,7 @@ export default function SidebarMenuItem({
             } xl:justify-start ${active && 'bg-[#252525]'}`}
           >
             <Icon
-              strokeClasses={`${
+              strokeclasses={`${
                 active ? 'stroke-black fill-white' : 'stroke-[#515151]'
               } transition duration-100`}
             />

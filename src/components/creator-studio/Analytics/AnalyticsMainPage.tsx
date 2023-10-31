@@ -337,7 +337,7 @@ const AnalyticsMainPage = () => {
   const [showCashoutModal, setShowCashoutModal] = useState<boolean>(false);
   const [analyticsPage, setAnalyticsPage] = useState<boolean>(false);
   const [showConfirmModal, setShowConfirmModal] = useState<boolean>(false);
-  const [showErrormModal, setShowErrormModal] = useState<boolean>(false);
+  const [showErrorModal, setShowErrorModal] = useState<boolean>(false);
   const [showUpdatedFilterInBar, setShowUpdatedFilterInBar] = useState<string>('');
 
   const notify = (): void => {
@@ -963,7 +963,7 @@ const AnalyticsMainPage = () => {
         <ConfirmConversionModal
           closeConfirmModal={setShowConfirmModal}
           convertCredits={setShowCashoutModal}
-          setShowErrormModal={setShowErrormModal}
+          setShowErrorModal={setShowErrorModal}
           notify={notify}
           converting={`You’re about to cash out `}
           credits={'5,530'}
@@ -972,11 +972,11 @@ const AnalyticsMainPage = () => {
           }
         />
       )}
-      {showErrormModal && (
+      {showErrorModal && (
         <ErrorModal
           closeConfirmModal={setShowConfirmModal}
           convertCredits={setShowCashoutModal}
-          setShowErrormModal={setShowErrormModal}
+          setShowErrorModal={setShowErrorModal}
         />
       )}
 

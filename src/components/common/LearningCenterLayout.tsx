@@ -24,7 +24,7 @@ const LearningCenterLayout = ({ children }: any) => {
               )}
             </>
             <LearningCenterFooter />
-            {/* <ScrollToTopButton /> */}
+            <ScrollToTopButton />
           </div>
         </div>
       </main>

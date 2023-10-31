@@ -1,10 +1,10 @@
 import React from 'react'
 import BreadCrumbs from '../BreadCrumbs';
 import Image from 'next/image';
-import styleGeneratorBanner from '../../../../public/assets/learning-center/styleGeneratorBanner'
+import styleGeneratorBanner from '../../../../public/assets/learning-center/styleGeneratorBanner.png'
 import PrevNextStep from '../PrevNextStep';
 import DemoImg from '../../../../public/assets/learning-center/blank_img.png';
-import StyleGeneratorContent from './styleGeneratorContent';
+import StyleGeneratorContent from './StyleGeneratorContent';
 function StyleGeneratorIndex() {
   return (
     <div className='px-6 pb-6 '>
@@ -19,7 +19,7 @@ function StyleGeneratorIndex() {
           <div>
             <div
               className='pb-1 text-[27px] font-black text-white'
-              id='character_profile'
+              id='what_is_styleGenerator'
             >
               What is the Style Generator?
             </div>
@@ -71,7 +71,7 @@ function StyleGeneratorIndex() {
           <div>
             <div
               className='text-[27px] font-black text-white'
-              id='how_it_work'
+              id='how_it_works'
             >
               How it works?
             </div>
@@ -109,7 +109,7 @@ function StyleGeneratorIndex() {
             </p>
           </div>
           {/* SECTION FOUR */}
-          <div className='pt-10'>
+          {/* <div className='pt-10'>
             <div className='text-[27px] font-black text-white' id='base_type'>
               Base type
             </div>
@@ -158,23 +158,23 @@ function StyleGeneratorIndex() {
                 Keep the username distinct to avoid confusions with others
               </li>
             </ul>
-          </div>
+          </div> */}
           {/* SECTION FIVE */}
-          <div
+          {/* <div
             className='text-[27px] font-black text-white'
             id='conversational'
           >
             Conversational
-          </div>
+          </div> */}
 
-          <p className='text-[16px] text-[#979797]'>
+          {/* <p className='text-[16px] text-[#979797]'>
             Feel free to adapt and customize this text to match the style and
             tone of your social media app, and to provide any additional
             instructions or guidance that you think users might need during
             the character creation process.
-          </p>
+          </p> */}
           {/* SECTION SIX */}
-          <div className='pt-10'>
+          {/* <div className='pt-10'>
             <div className='text-[27px] font-black text-white' id='likes'>
               Likes
             </div>
@@ -203,9 +203,9 @@ function StyleGeneratorIndex() {
                 Keep the username distinct to avoid confusions with others
               </li>
             </ul>
-          </div>
+          </div> */}
           {/* SECTION SEVEN */}
-          <div className='pt-6'>
+          {/* <div className='pt-6'>
             <div className='text-[27px] font-black text-white' id='traits'>
               Traits
             </div>
@@ -235,13 +235,13 @@ function StyleGeneratorIndex() {
                 Keep the username distinct to avoid confusions with others
               </li>
             </ul>
-          </div>
+          </div> */}
           {/* SECTION EIGHT */}
-          <div className='pt-3 pb-10'>
+          {/* <div className='pt-3 pb-10'>
             <Image src={DemoImg} alt='' />
-          </div>
+          </div> */}
           {/* SECTION NINE */}
-          <div className='pt-4'>
+          {/* <div className='pt-4'>
             <div
               className='text-[27px] font-black text-white'
               id='description'
@@ -274,9 +274,9 @@ function StyleGeneratorIndex() {
                 Keep the username distinct to avoid confusions with others
               </li>
             </ul>
-          </div>
+          </div> */}
           {/* SECTION TEN */}
-          <div className=''>
+          {/* <div className=''>
             <div
               className='text-[27px] font-black text-white'
               id='general_desc'
@@ -288,9 +288,9 @@ function StyleGeneratorIndex() {
               identifies them to other users in the app. It's like their
               online nickname.
             </p>
-          </div>
+          </div> */}
           {/* SECTION ELEVEN */}
-          <div className='pt-4'>
+          {/* <div className='pt-4'>
             <div
               className='text-[27px] font-black text-white'
               id='world_desc'
@@ -303,9 +303,9 @@ function StyleGeneratorIndex() {
               instructions or guidance that you think users might need during
               the character creation process.
             </p>
-          </div>
+          </div> */}
           {/* SECTION TWELVE */}
-          <div className='pt-4'>
+          {/* <div className='pt-4'>
             <div
               className='text-[18px] font-black text-white'
               id='why_is_so_important'
@@ -317,7 +317,7 @@ function StyleGeneratorIndex() {
               identifies them to other users in the app. It's like their
               online nickname.
             </p>
-          </div>
+          </div> */}
           {/* SECTION THIRTEEN */}
           <PrevNextStep />
         </div>

@@ -51,8 +51,14 @@ const ViewStyleModal = ({
       setViewStyleModal(false);
     } else {
       setViewStyleModal(false);
+      setNotificationModal(false)
     }
   };
+  const handleEditStyle =()=>{
+      // setStyleGenNext(true),
+        // setViewStyleModal(false),
+        // setNotificationModal(false);
+  }
 
   return (
     <>
@@ -68,7 +74,7 @@ const ViewStyleModal = ({
           </div>
           <div className='flex h-[inherit] w-[33%] flex-col justify-between px-6 pb-[13px]'>
             <div>
-              <div className='flex flex-col gap-4 pb-5 pt-6'>
+              <div className='flex flex-col gap-4 pt-6 pb-5'>
                 <div className='flex flex-col gap-[2px]'>
                   <div className='text-[22px] font-bold leading-8 text-white'>
                     Any Lee
@@ -80,11 +86,7 @@ const ViewStyleModal = ({
                 <div className='flex gap-3'>
                   <button
                     className='flex w-full items-center justify-center gap-2 rounded-[14px] bg-white/[0.08] px-5 py-[13px]'
-                    onClick={() => {
-                      setStyleGenNext(true),
-                        setViewStyleModal(false),
-                        setNotificationModal(false);
-                    }}
+                    onClick={() =>  handleEditStyle ()}
                   >
                     <Image src={pen} alt={''} />
                     <div className='text-[16px] font-normal leading-[22px] text-white'>
@@ -132,7 +134,7 @@ const ViewStyleModal = ({
             <div
               className='flex h-max cursor-pointer items-center justify-center gap-2 rounded-[14px] bg-[#5848BC] px-6 py-[13px]'
               onClick={() => {
-                handlePostStyleButton(), setNotificationModal(false);
+                handlePostStyleButton()
               }}
             >
               <Image className='object-contain' src={shop} alt={''} />
@@ -141,6 +143,8 @@ const ViewStyleModal = ({
               </div>
             </div>
           </div>
+
+          
         </Modal>
       </div>
     </>

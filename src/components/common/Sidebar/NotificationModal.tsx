@@ -8,7 +8,7 @@ import avtarImg5 from '../../../../public/assets/bookmark-img1.png';
 import likeIcon from '../../../../public/assets/like-icon.png';
 import Image from 'next/image';
 
-const tabContent = ['All', 'Likes', 'Comments', 'Following'];
+const tabContent = ['All', 'Likes', 'Comments', 'Followings'];
 const notificationMessage = [
   {
     id: 1,
@@ -73,7 +73,7 @@ const NotificationModal = ({ selectedMoreOption }: NotificationModal) => {
   return (
     <div>
       {/* {selectedMoreOption === 'Notifications' ?  */}
-      <div className={`transitions z-[80] ${selectedMoreOption === 'Notifications' ? 'fixed w-full !bg-black/80  w-full h-full': 'absolute w-0'}`}>
+      <div className={`transitions z-[80] ${selectedMoreOption === 'Notifications' ? 'fixed !bg-black/80  w-full h-full': 'absolute w-0'}`}>
       <div
       className={`transitions mt-4 inline-flex h-[804px] w-[425px] flex-col items-start justify-start rounded-[14px] bg-zinc-900 pb-6 ${
         selectedMoreOption === 'Notifications' 
@@ -86,6 +86,7 @@ const NotificationModal = ({ selectedMoreOption }: NotificationModal) => {
           activeListTab={activeListTab}
           setActiveTab={setActiveListTab}
           tabContentArray={tabContent}
+
         />
         <div className='flex flex-col gap-6 px-6 pt-4'>
           {notificationMessage.map((items) => {

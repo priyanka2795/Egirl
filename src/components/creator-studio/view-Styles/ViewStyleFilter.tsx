@@ -88,7 +88,7 @@ const ViewStyleFilter = () => {
             <div className='text-[15px] font-semibold leading-5 text-white'>
               Style
             </div>
-            <div className='flex overflow-hidden rounded-[16px] border border-[#3A3A3A]'>
+            <div className='flex overflow-hidden rounded-[16px] border border-[#3A3A3A] items-center self-start'>
               {filterTabText.map((item, index) => {
                 return (
                   <div

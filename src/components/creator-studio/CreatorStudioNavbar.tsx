@@ -76,7 +76,7 @@ const CreatorStudioNavbar = ({
   return (
     <>
       <div
-        className='flex justify-between bg-[#121212] px-4 py-2 shadow-white/[0.07]'
+        className='flex justify-between bg-[#121212] px-4 py-2 shadow-white/[0.07] border-b border-[#FFFFFF12]'
         ref={dropdownRef}
       >
         <div className='flex items-center gap-5 p-2'>

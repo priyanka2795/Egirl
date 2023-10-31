@@ -1,6 +1,5 @@
-import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
+import React, { Dispatch, useEffect, useState } from 'react';
 import userPenIcon from '../../../public/assets/user-pen.png';
 import personalityIcon from '../../../public/assets/user.png';
 import personalityWhiteIcon from '../../../public/assets/user-white.png';
@@ -13,13 +12,14 @@ import flagWhite from '../../../public/assets/flag-white.png';
 import circleInformation from '../../../public/assets/circle-information-blue.png';
 import RightIcon from '../../../public/assets/check-cs.png';
 import leftArrowIcon from '../../../public/assets/left-arrow-grey.png';
-import Stepper from './Stepper';
+import PersonalityContent from '@components/creator-studio/personality/PersonalityContent';
 import ImageGeneratorIndex from '@components/creator-studio/image-generator';
 import StyleGeneratorIndex from '@components/creator-studio/style-generator';
+import ViewProfile from './finishStep/viewProfile';
+import FinishStepModal from './finishStep/finishStepModal';
+import CongratulationsImage from '../../../public/assets/confetti_PNG87045 1.png';
+import Confetti from '@components/common/Confetti';
 
-// interface ProfileInfoModalProps {
-//     closeModal: any;
-// }
 const SearchData = [
   {
     name: 'Semi-Realistic 1'
@@ -37,9 +37,18 @@ const initialValues = {
   location: '',
   bio: ''
 };
-const ProfileInfoModal = () => {
+const personalityValue = {
+  baseType: '',
+  Creativity: '',
+  description: '',
+  worldDescription: ''
+};
+interface ProfileInfoModal {
+  setProfileInfoPage: any;
+}
+const ProfileInfoModal = ({ setProfileInfoPage }: ProfileInfoModal) => {
   const [form, setForm] = useState(initialValues);
-  const [btnSteps, setBtnSteps] = useState(false);
+  const [btnSteps, setBtnSteps] = useState<boolean>(false);
   const [showProfileTagsHint, setShowProfileTagsHint] = useState(false);
   const [profileTagsMenu, setProfileTagsMenu] = useState(SearchData);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
@@ -82,7 +91,7 @@ const ProfileInfoModal = () => {
     }
   };
 
-  const handleRemoveTag = (tagName) => {
+  const handleRemoveTag = (tagName: any) => {
     const updatedTags = selectedTags.filter((tag) => tag !== tagName);
     setSelectedTags(updatedTags);
   };
@@ -96,6 +105,10 @@ const ProfileInfoModal = () => {
   };
 
   // Stepper Code
+  // Step 2
+  const [personalityData, setPersonalityData] = useState(personalityValue);
+  const personalityLength = Object.keys(personalityData).length;
+  const personalityLength2 = Object.keys(personalityData.description).length;
   const [secondStep, setSecondStep] = useState('');
   const [threadStep, setThreadStep] = useState('');
   const [fourthStep, setFourthStep] = useState('');
@@ -104,42 +117,80 @@ const ProfileInfoModal = () => {
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
-    if (
-      activeStep === 0 ||
-      activeStep === 1 ||
-      activeStep === 2 ||
-      activeStep === 3
-    ) {
-      setBtnSteps(false);
-    }
+
+    // if (activeStep >= 0 && activeStep <= 3) {
+    //   setBtnSteps(false);
+    // } else {
+    // }
+    // if (
+    //   selectedTags.length != 4 &&
+    //   secondStep.length != 5 &&
+    //   threadStep.length != 4 &&
+    //   fourthStep.length != 1
+    // ) {
+    //   setBtnSteps(true);
+    // } else {
+    //   setBtnSteps(false);
+    // }
   };
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
+    if (
+      selectedTags.length === 4 ||
+      secondStep.length === 5 ||
+      threadStep.length === 4 ||
+      fourthStep.length === 1
+    ) {
+      setBtnSteps(true);
+    } else {
+      setBtnSteps(false);
+    }
   };
 
-  // Stepper Code End
+  const [FinishStepCongrats, setFinishStepCongrats] = useState(false);
 
+  const FinishStepCongratsModal = () => {
+    setProfileInfoPage(false);
+    setFinishStepCongrats(false);
+  };
+  // Stepper Code End
   return (
-    <>
-      <Stepper />
-      {/* <div className='flex h-[900px] flex-col bg-[#070707]'>
+    <div className='relative flex h-screen flex-col bg-[#070707]'>
+      {FinishStepCongrats && (
+        <div className='absolute left-0 top-44 z-[9999999] h-screen'>
+          {/* <Image
+            src={CongratulationsImage}
+            className='!h-full !w-full object-cover'
+          /> */}
+           <Confetti/>
+        </div>
+      )}
+
       <div className='flex border-b border-white/[0.08] px-6 py-4'>
         <button className='font-bold flex items-center justify-center rounded-[12px] border border-white/[0.32] px-4 py-[10px] text-[14px] leading-5 text-white'>
           Save & Close
         </button>
       </div>
-       <div className='flex flex-col justify-between h-full'>
-        <div className='flex flex-col gap-6 rounded-[16px] px-[200px] pt-[48px]'>
-          <div className='flex gap-4'>
+      <div className='flex flex-col justify-between h-full'>
+        <div className='flex flex-col gap-6 rounded-[16px] px-[190px] pt-[48px]'>
+          <div className='flex justify-center gap-4'>
             <div className='flex items-center gap-4'>
               <div
-                className={`flex h-10 w-10 items-center justify-center rounded-full  text-white ${
-                  activeStep === 0 ? 'bg-[#5848BC] ' : 'bg-[#FFFFFF14] '
-                } ${selectedTags.length === 4 ? '!bg-[#2EAA1B]' : ''}`}
+                className={`flex h-10 w-10 items-center justify-center rounded-full text-white                  ${
+                  activeStep === 0
+                    ? 'bg-[#5848BC]'
+                    : activeStep >= 1
+                    ? 'bg-[#2EAA1B]'
+                    : 'bg-[#FFFFFF14]' // Set a default color for other steps
+                }                  
+                  `}
               >
+                {/* ${
+                    activeStep === 0 ? 'bg-[#5848BC]' : 'bg-[#2EAA1B]'
+                  } */}
                 <Image
-                  src={selectedTags.length === 4 ? RightIcon : userPenIcon}
+                  src={activeStep === 0 ? userPenIcon : RightIcon}
                   alt=''
                 />
               </div>
@@ -156,7 +207,7 @@ const ProfileInfoModal = () => {
                   } bg-opacity-[40%]`}
                 >
                   <div
-                    className={`h-1 ${
+                    className={`h-1  ${
                       selectedTags.length == 1
                         ? 'w-[25%]'
                         : selectedTags.length == 2
@@ -164,9 +215,11 @@ const ProfileInfoModal = () => {
                         : selectedTags.length == 3
                         ? 'w-[75%]'
                         : selectedTags.length == 4
-                        ? 'w-[100%] !bg-[#2EAA1B]'
-                        : ''
-                    } w-0 rounded-xl bg-[#5848BC] `}
+                        ? 'w-[100%] '
+                        : 'bg-[#5848BC]'
+                    } ${
+                      activeStep === 0 ? '' : '!bg-[#2EAA1B] '
+                    }w-0 rounded-xl bg-[#5848BC]  `}
                   ></div>
                 </div>
               </div>
@@ -174,29 +227,32 @@ const ProfileInfoModal = () => {
 
             <div className='flex items-center gap-4'>
               <div
-                className={`flex h-10 w-10 items-center justify-center rounded-full  text-white ${
-                  activeStep === 1 ? 'bg-[#5848BC] ' : 'bg-[#FFFFFF14] '
-                } ${
-                  secondStep.length === 5 ? 'bg-[#2EAA1B]' : 'bg-[#5848BC]'
-                } `}
+                className={`flex h-10 w-10 items-center justify-center rounded-full text-white ${
+                  activeStep === 1
+                    ? 'bg-[#5848BC]'
+                    : activeStep >= 1
+                    ? 'bg-[#2EAA1B]'
+                    : 'bg-[#FFFFFF14]' // Set a default color for other steps
+                }
+                  `}
               >
-                {secondStep.length === 5 ? (
-                  <Image src={RightIcon} alt='' className='text-white' />
-                ) : (
-                  <Image
-                    src={
-                      activeStep === 1 ? personalityWhiteIcon : personalityIcon
-                    }
-                    alt=''
-                    className='text-white'
-                  />
-                )}
+                <Image
+                  src={
+                    activeStep === 1
+                      ? personalityWhiteIcon
+                      : activeStep >= 1
+                      ? RightIcon
+                      : personalityIcon
+                  }
+                  alt=''
+                  className='text-white'
+                />
               </div>
               <div>
                 <p className='text-[15px]'>
                   Personality
                   <span className='pl-1 text-[#979797]'>
-                    {secondStep.length}/5
+                    {personalityLength}/5
                   </span>
                 </p>
                 <div
@@ -208,18 +264,12 @@ const ProfileInfoModal = () => {
                 >
                   <div
                     className={`h-1 w-0 ${
-                      secondStep.length == 1
-                        ? 'w-[20%]'
-                        : secondStep.length == 2
-                        ? 'w-[40%]'
-                        : secondStep.length == 3
-                        ? 'w-[60%]'
-                        : secondStep.length == 4
-                        ? 'w-[80%]'
-                        : secondStep.length == 5
-                        ? 'w-[100%] bg-[#2EAA1B]'
-                        : ''
-                    } rounded-xl bg-[#5848BC] `}
+                      activeStep === 1
+                        ? 'bg-[#5848BC]'
+                        : activeStep >= 1
+                        ? 'w-full !bg-[#2EAA1B]'
+                        : 'bg-[#5848BC]'
+                    } rounded-xl`}
                   ></div>
                 </div>
               </div>
@@ -227,19 +277,27 @@ const ProfileInfoModal = () => {
 
             <div className='flex items-center gap-4'>
               <div
-                className={`setup_character flex h-10 w-10 items-center justify-center rounded-full  text-white ${
-                  activeStep === 2 ? 'active bg-[#5848BC] ' : 'bg-[#FFFFFF14] '
-                }  ${threadStep.length === 4 ? 'bg-[#2EAA1B]' : ''}`}
+                className={`setup_character flex h-10 w-10 items-center justify-center rounded-full text-white 
+                  ${
+                    activeStep === 2
+                      ? 'bg-[#5848BC]'
+                      : activeStep >= 2
+                      ? 'bg-[#2EAA1B]'
+                      : 'bg-[#FFFFFF14]'
+                  }
+                  `}
               >
-                {threadStep.length === 4 ? (
-                  <Image src={RightIcon} alt='' className='text-white' />
-                ) : (
-                  <Image
-                    src={activeStep === 2 ? imagePlusWhiteIcon : imagePlusIcon}
-                    alt=''
-                    className='text-white'
-                  />
-                )}
+                <Image
+                  src={
+                    activeStep === 2
+                      ? imagePlusWhiteIcon
+                      : activeStep >= 2
+                      ? RightIcon
+                      : imagePlusIcon
+                  }
+                  alt=''
+                  className='text-white'
+                />
               </div>
               <div>
                 <p className='text-[15px]'>
@@ -264,9 +322,15 @@ const ProfileInfoModal = () => {
                         : threadStep.length == 3
                         ? 'w-[75%]'
                         : threadStep.length == 4
-                        ? 'w-[100%] bg-[#2EAA1B]'
-                        : ''
-                    } rounded-xl bg-[#5848BC] `}
+                        ? 'w-[100%]'
+                        : 'w-0'
+                    } ${
+                      activeStep === 2
+                        ? 'bg-[#5848BC]'
+                        : activeStep >= 2
+                        ? 'w-[100%] !bg-[#2EAA1B]'
+                        : 'bg-[#5848BC]'
+                    } rounded-xl `}
                   ></div>
                 </div>
               </div>
@@ -274,19 +338,26 @@ const ProfileInfoModal = () => {
 
             <div className='flex items-center gap-4'>
               <div
-                className={`flex h-10 w-10 items-center justify-center rounded-full  text-white ${
-                  activeStep === 3 ? 'active bg-[#5848BC] ' : 'bg-[#FFFFFF14] '
-                }  ${fourthStep.length === 1 ? 'bg-[#2EAA1B]' : ''}`}
+                className={`flex h-10 w-10 items-center justify-center rounded-full text-white
+                  ${
+                    activeStep === 3
+                      ? 'bg-[#5848BC]'
+                      : activeStep >= 3
+                      ? 'bg-[#2EAA1B]'
+                      : 'bg-[#FFFFFF14]'
+                  }`}
               >
-                {fourthStep.length === 1 ? (
-                  <Image src={RightIcon} alt='' className='text-white' />
-                ) : (
-                  <Image
-                    src={activeStep === 3 ? paletteWhiteIcon : palette}
-                    alt=''
-                    className='text-white'
-                  />
-                )}
+                <Image
+                  src={
+                    activeStep === 3
+                      ? paletteWhiteIcon
+                      : activeStep >= 3
+                      ? RightIcon
+                      : palette
+                  }
+                  alt=''
+                  className='text-white'
+                />
               </div>
               <div>
                 <p className='text-[15px]'>
@@ -304,8 +375,14 @@ const ProfileInfoModal = () => {
                 >
                   <div
                     className={`h-1 w-0 ${
-                      fourthStep.length == 1 ? 'w-[100%] bg-[#2EAA1B]' : ''
-                    } rounded-xl bg-[#5848BC] `}
+                      fourthStep.length == 1 ? 'w-[100%] ' : 'w-0'
+                    } ${
+                      activeStep === 3
+                        ? 'bg-[#5848BC]'
+                        : activeStep >= 3
+                        ? 'w-[100%] !bg-[#2EAA1B]'
+                        : 'bg-[#5848BC]'
+                    } rounded-xl `}
                   ></div>
                 </div>
               </div>
@@ -321,11 +398,20 @@ const ProfileInfoModal = () => {
               </div>
             </div>
           </div>
-          <div className='flex items-center gap-2 rounded-[12px] bg-[#5848BC1F]/[0.12] px-4 py-3'>
+          <div className='m-auto flex w-full max-w-[965px] items-center gap-2 rounded-[12px] bg-[#5848BC1F]/[0.12] px-4 py-3'>
             <Image src={circleInformation} alt={''} />
             <div className='font-normal text-[13px] leading-[18px] text-[#7362C6]'>
-              Set up a character profile. Explore view tab is a way that other
-              users can find you in Egirls.
+              {activeStep === 0
+                ? 'Set up a character profile. Explore view tab is a way that other users can find you in Egirls.'
+                : activeStep === 1
+                ? 'Add creativity, likes and traits to your character. You can also add some description.'
+                : activeStep === 2
+                ? 'Create images for what your Egirl will look like. We will use this as a reference for what your character will  look like in the future.'
+                : activeStep === 3
+                ? 'Add images you created from the image generator here to create a character style. This style will be used to generate future images of your character.'
+                : activeStep === 4
+                ? 'Select a profile picture and explore view images'
+                : ''}
             </div>
           </div>
           {activeStep === 0 && (
@@ -347,12 +433,12 @@ const ProfileInfoModal = () => {
                         {selectedTags.map((tag, index) => (
                           <div key={index} className='text-[15px]'>
                             {tag},
-                            // <button
+                            {/* <button
                             className='ml-2 cursor-pointer text-[12px] text-white'
                             onClick={() => handleRemoveTag(tag)}
                           >
                             x
-                          </button> //
+                          </button> */}
                           </div>
                         ))}
 
@@ -440,88 +526,17 @@ const ProfileInfoModal = () => {
           )}
           <div>
             {activeStep === 1 && (
-              <div className='step-content mt-10 w-[500px] border-2 border-[#ccc] p-3 text-center'>
-                Step 2 Content
-                <div className='mt-5 flex flex-col gap-[6px]'>
-                  <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
-                    Step 2 (Optional)
-                  </div>
-                  <input
-                    type='text'
-                    placeholder='Type location...'
-                    value={secondStep}
-                    maxLength={5}
-                    className='font-normal rounded-[14px] border-none bg-white/[0.05] px-4 py-3 text-[18px] leading-6 text-white placeholder:text-[#979797] focus:ring-0'
-                    onChange={(e) => {
-                      setSecondStep(e.target.value);
-                      if (e.target.value.length === 5) {
-                        setBtnSteps(true);
-                      } else {
-                        setBtnSteps(false);
-                      }
-                    }}
-                    name='location'
-                  />
-                </div>
-              </div>
+              <PersonalityContent
+                SetBtnSteps={setBtnSteps}
+                personalityData={personalityData}
+                setPersonalityData={setPersonalityData}
+              />
             )}
-            {activeStep === 2 && (
-              <div className='step-content mt-10 w-[500px] border-2 border-[#ccc] p-3 text-center'>
-                Step 3 Content
-                <div className='mt-5 flex flex-col gap-[6px]'>
-                  <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
-                    Step 3 (Optional)
-                  </div>
-                  <input
-                    type='text'
-                    placeholder='Type location...'
-                    value={threadStep}
-                    maxLength={4}
-                    className='font-normal rounded-[14px] border-none bg-white/[0.05] px-4 py-3 text-[18px] leading-6 text-white placeholder:text-[#979797] focus:ring-0'
-                    onChange={(e) => {
-                      setThreadStep(e.target.value);
-                      if (e.target.value.length === 4) {
-                        setBtnSteps(true);
-                      } else {
-                        setBtnSteps(false);
-                      }
-                    }}
-                    name='location'
-                  />
-                </div>
-              </div>
-              // <ImageGeneratorIndex />
-            )}
-            {activeStep === 3 && (
-              <div className='step-content mt-10 w-[500px] border-2 border-[#ccc] p-3 text-center'>
-                Step 4 Content
-                <div className='mt-5 flex flex-col gap-[6px]'>
-                  <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
-                    Step 4 (Optional)
-                  </div>
-                  <input
-                    type='text'
-                    placeholder='Type location...'
-                    value={fourthStep}
-                    maxLength={1}
-                    className='font-normal rounded-[14px] border-none bg-white/[0.05] px-4 py-3 text-[22px] leading-6 text-white placeholder:text-[#979797] focus:ring-0'
-                    onChange={(e) => {
-                      setFourthStep(e.target.value);
-                      if (e.target.value.length === 1) {
-                        setBtnSteps(true);
-                      } else {
-                        setBtnSteps(false);
-                      }
-                    }}
-                    name='location'
-                  />
-                </div>
-              </div>
-              // <StyleGeneratorIndex />
-            )}
+            {activeStep === 2 && <ImageGeneratorIndex />}
+            {activeStep === 3 && <StyleGeneratorIndex />}
             {activeStep === 4 && (
-              <div className='step-content mt-10 w-[500px] border-2 border-[#ccc] p-3 text-center'>
-                Step 4 Content
+              <div className='flex items-center justify-center'>
+                <ViewProfile />
               </div>
             )}
           </div>
@@ -529,7 +544,9 @@ const ProfileInfoModal = () => {
 
         <div className='flex items-end justify-between px-6 pb-8'>
           <button
-            className='flex cursor-pointer items-center justify-center rounded-[14px] border-none  bg-[#FFFFFF14] p-[13px] text-white'
+            className={`flex cursor-pointer items-center justify-center rounded-[14px] border-none bg-[#FFFFFF14] p-[13px] text-white ${
+              activeStep === 0 ? 'invisible' : 'visible'
+            }`}
             onClick={handleBack}
             disabled={activeStep === 0}
           >
@@ -539,6 +556,7 @@ const ProfileInfoModal = () => {
             <button
               className={`font-bold flex items-center justify-center gap-2 rounded-[14px] bg-[#5848BC]
          px-5 py-[13px] text-[16px] leading-[22px] text-white`}
+              onClick={() => (setFinishStepCongrats(true))}
             >
               <span>Finish</span> <Image src={RightIcon} />
             </button>
@@ -554,19 +572,32 @@ const ProfileInfoModal = () => {
                   Next
                 </button>
               ) : (
-                <button
-                  className={`font-bold flex items-center justify-center rounded-[14px] bg-[#5848BC52] px-5
-               py-[13px] text-[16px] leading-[22px] text-[#FFFFFF52] `}
-                >
-                  Next
-                </button>
+                <div className='relative group'>
+                  <button
+                    className={`font-boldflex items-center justify-center rounded-[14px]
+               bg-[#5848BC52] px-5 py-[13px] text-[16px] leading-[22px] text-[#FFFFFF52] `}
+                  >
+                    {' '}
+                    Next
+                  </button>
+                  <div className='absolute right-0 z-50 transition-all transform -top-7 w-max -translate-x-0 -translate-y-2/4 '>
+                    <div
+                      className={` before:translate-[-50%,0] z-50 hidden rounded-lg bg-[#303030] px-3 py-1.5 group-hover:block `}
+                    >
+                      Please fill in the form to continue
+                    </div>
+                  </div>
+                </div>
               )}
             </>
           )}
         </div>
-      </div> 
-    </div> */}
-    </>
+      </div>
+      {FinishStepCongrats && (
+        // <Confetti/>
+        <FinishStepModal FinishStepCongratsModal={FinishStepCongratsModal} />
+      )}
+    </div>
   );
 };
 

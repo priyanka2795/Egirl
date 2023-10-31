@@ -11,13 +11,14 @@ const optionList = [
 interface MoreMenuProps{
     activeMoreOption:string | undefined,
     moreOptionItem: any;   
-    classes:string
+    classes:string;
+    activeItem:any
 }
-const MoreMenuOption = ({moreOptionItem , activeMoreOption , classes }: MoreMenuProps) => {
+const MoreMenuOption = ({moreOptionItem , activeMoreOption , classes,activeItem }: MoreMenuProps) => {
 
   return (
     <>
-      <div className={` inline-flex w-[218px] flex-col items-start justify-start rounded-[14px] bg-[#1A1A1A] bg-zinc-900 py-2 shadow ${classes}`}>
+      <div className={` inline-flex w-[218px] flex-col items-start justify-start rounded-[14px] bg-[#1A1A1A]  py-2 shadow ${classes}`}>
         {optionList.map((items) => {
           return (
             <>
@@ -27,7 +28,7 @@ const MoreMenuOption = ({moreOptionItem , activeMoreOption , classes }: MoreMenu
                     ? 'justify-between bg-neutral-800'
                     : 'bg-zinc-900 '
                 }`}
-                onClick={() => moreOptionItem(items)}
+                onClick={() =>{ moreOptionItem(items),activeItem('') }}
               >
                 <div className='w-max text-sm font-normal leading-[18px] text-white'>
                   {items}

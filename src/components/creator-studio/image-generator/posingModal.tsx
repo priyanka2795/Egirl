@@ -118,18 +118,19 @@ const PosingModal = ({
   SetPosingCreated,
   EditPosing
 }: PosingModal) => {
-  const [posePresetsActive, setPosePresetsActive] = useState<number | null>(null);
+  const [posePresetsActive, setPosePresetsActive] = useState(null);
   const [posePresets, setPosePresets] = useState<number | null>(null);
   const [selectPose, setSelectPose] = useState<boolean>(false);
   const [previewPose, setPreviewPose] = useState<boolean>(false);
   const [searchPresets, setSearchPresets] = useState<boolean>(false);
-
+  const [poseImageSelect, setPoseImageSelect] = useState();
   const AllPosePresets = (index: number) => {
     setPosePresets((prev) => (prev === index ? null : index));
   };
-  const PosePresetsItem = (index: number) => {
-    setPosePresetsActive((prev) => (prev === index ? null : index));
+  const PosePresetsItem = (items: any) => {
+    setPosePresetsActive((prev) => (prev === items.name ? null : items.name));
     setSelectPose(true);
+    setPoseImageSelect(items.img);
   };
   const PoseCreated = (): void => {
     SetPosingCreated(true);
@@ -173,10 +174,19 @@ const PosingModal = ({
           <div className='flex '>
             <div className='relative flex-1 sub-banner '>
               {selectPose ? (
-                <Image
-                  src={PoseImageSelect}
-                  className='object-cover w-full max-h-full'
-                />
+                <>
+                  {EditPosing ? (
+                    <Image
+                      src={PoseImageSelect}
+                      className='object-cover w-full max-h-full'
+                    />
+                  ) : (
+                    <Image
+                      src={poseImageSelect}
+                      className='object-cover w-full max-h-full'
+                    />
+                  )}
+                </>
               ) : (
                 ''
               )}
@@ -291,9 +301,9 @@ const PosingModal = ({
                         {items.presetes.map((item, index) => (
                           <div
                             className='sub-banner relative h-[128px] cursor-pointer overflow-hidden rounded-lg'
-                            onClick={() => PosePresetsItem(index)}
+                            onClick={() => PosePresetsItem(item)}
                           >
-                            {posePresetsActive === index ? (
+                            {posePresetsActive === item.name ? (
                               <div className='absolute left-0 top-0 z-50 flex h-full w-full items-center justify-center bg-[#5848BC29]'></div>
                             ) : (
                               ''
@@ -304,7 +314,7 @@ const PosingModal = ({
                             />
                             <div
                               className={`${
-                                posePresetsActive == index
+                                posePresetsActive == item.name
                                   ? 'bg-[#5848BC]'
                                   : 'bg-[#0000007A]'
                               } absolute bottom-0 left-0 flex h-[34px] w-full items-center justify-center`}

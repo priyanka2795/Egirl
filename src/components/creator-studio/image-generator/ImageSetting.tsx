@@ -87,7 +87,7 @@ const ImageSetting = ({
             </div>
           </button>
           {advancedSettings && (
-            <div className='flex flex-col gap-6 pb-5'>
+            <div className='flex flex-col gap-6 pb-5 mt-6'>
               <div>
                 <div className='flex items-center gap-1'>
                   <p className='text-[#979797]'>Guidance Scale</p>

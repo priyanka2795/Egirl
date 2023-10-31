@@ -54,7 +54,7 @@ const LearningCenterSidebar = ({ setShowSearchResult }: SidebarProps) => {
           <a
             className={`${
               router.asPath === '/learning-center' ? 'bg-white/[0.08]' : ''
-            } flex w-full cursor-pointer items-center gap-2 rounded-[12px]  px-3 py-2.5`}
+            } flex w-full cursor-pointer items-center gap-2 rounded-[12px]  px-3 py-2.5 hover:bg-white/[0.08]`}
             onClick={() => setShowSearchResult(false)}
           >
             <Image src={homeIcon} alt='' />
@@ -67,7 +67,7 @@ const LearningCenterSidebar = ({ setShowSearchResult }: SidebarProps) => {
           onClick={handleDropDown}
         >
           <div className='flex gap-2'>
-            <Palette strokeClasses='stroke-[#515151]' />
+            <Palette strokeclasses='stroke-[#515151]' />
             <span className='text-[15px] font-semibold text-white'>
               Character Creation
             </span>
@@ -82,7 +82,7 @@ const LearningCenterSidebar = ({ setShowSearchResult }: SidebarProps) => {
                   <a
                     className={` ${
                       router.asPath === ele.pathname ? 'bg-white/[0.08]' : ''
-                    } ml-7 rounded-[12px]  py-2.5 pl-4 text-[15px] font-semibold text-white`}
+                    } ml-7 rounded-[12px] mt-2  py-2.5 pl-4 text-[15px] font-semibold text-white hover:bg-white/[0.08]`}
                   >
                     {ele.title}
                   </a>
@@ -91,7 +91,29 @@ const LearningCenterSidebar = ({ setShowSearchResult }: SidebarProps) => {
             })}
           </div>
         )}
-        <SidebarMenuItem
+         <Link href='/learning-center-monetization'>
+          <a
+            className={`${
+              router.asPath === '/learning-center-monetization' ? 'bg-white/[0.08]' : ''
+            } flex w-full cursor-pointer items-center gap-2 rounded-[12px] mt-2  px-3 py-2.5 hover:bg-white/[0.08]`}
+            onClick={() => setShowSearchResult(false)}
+          >
+            <Monetization />
+            <div className='text-[15px] text-white'>Monetization</div>
+          </a>
+        </Link>
+        <Link href='/learning-center-partnerProgram'>
+          <a
+            className={`${
+              router.asPath === '/learning-center-partnerProgram' ? 'bg-white/[0.08]' : ''
+            } flex w-full cursor-pointer items-center gap-2 rounded-[12px] mt-2  px-3 py-2.5 hover:bg-white/[0.08]`}
+            onClick={() => setShowSearchResult(false)}
+          >
+            <PartnerProgram />
+            <div className='text-[15px] text-white'>Partner Program</div>
+          </a>
+        </Link>
+        {/* <SidebarMenuItem
           text='Monetization'
           href='/monetization'
           Icon={Monetization}
@@ -106,7 +128,7 @@ const LearningCenterSidebar = ({ setShowSearchResult }: SidebarProps) => {
           IconActive={PartnerProgram}
           StyleClasses={`max-[1279px]:flex max-[1279px]:!justify-center max-[1279px]:max-w-[52px] max-[1279px]:mx-auto pl-3`}
           sideBarMenuText={`max-[1279px]:!hidden w-full flex justify-center `}
-        />
+        /> */}
       </div>
     </div>
   );
