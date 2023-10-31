@@ -17,7 +17,7 @@ import SupabaseAuthContextProvider from '@lib/context/supabase-auth-context';
 import Script from 'next/script';
 import { Database } from '../../types/database';
 import { Provider } from 'react-redux';
-import store from 'store';
+import store from '../store';
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
