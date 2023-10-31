@@ -158,7 +158,7 @@ const ProfileInfoModal = ({ setProfileInfoPage }: ProfileInfoModal) => {
   return (
     <div className='relative flex h-screen flex-col bg-[#070707]'>
       {FinishStepCongrats && (
-        <div className='absolute left-0 top-44 z-[9999999] h-screen'>
+        <div className='absolute left-0 top-0 z-[9999999] h-screen'>
           {/* <Image
             src={CongratulationsImage}
             className='!h-full !w-full object-cover'
