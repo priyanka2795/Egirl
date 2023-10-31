@@ -3,8 +3,6 @@ import Image from 'next/image';
 import rightArrow from '../../../../public/assets/right-arrow-grey.png';
 import downArrow from '../../../../public/assets/down-arrow-img.png';
 import rightArrowWhite from '../../../../public/assets/chevron-right-white.png';
-import leftArrow from '../../../../public/assets/left-arrow-grey.png';
-
 interface personalInfoProps {
   setSteps: any;
 }
