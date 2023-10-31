@@ -18,6 +18,7 @@ import StyleGeneratorIndex from '@components/creator-studio/style-generator';
 import ViewProfile from './finishStep/viewProfile';
 import FinishStepModal from './finishStep/finishStepModal';
 import CongratulationsImage from '../../../public/assets/confetti_PNG87045 1.png';
+import Confetti from '@components/common/Confetti';
 
 const SearchData = [
   {
@@ -155,13 +156,14 @@ const ProfileInfoModal = ({ setProfileInfoPage }: ProfileInfoModal) => {
   };
   // Stepper Code End
   return (
-    <div className='relative flex h-[900px] flex-col bg-[#070707]'>
+    <div className='relative flex h-screen flex-col bg-[#070707]'>
       {FinishStepCongrats && (
-        <div className='absolute left-0 top-44 z-[9999999]'>
-          <Image
+        <div className='absolute left-0 top-44 z-[9999999] h-screen'>
+          {/* <Image
             src={CongratulationsImage}
             className='!h-full !w-full object-cover'
-          />
+          /> */}
+           <Confetti/>
         </div>
       )}
 
@@ -592,6 +594,7 @@ const ProfileInfoModal = ({ setProfileInfoPage }: ProfileInfoModal) => {
         </div>
       </div>
       {FinishStepCongrats && (
+        // <Confetti/>
         <FinishStepModal FinishStepCongratsModal={FinishStepCongratsModal} />
       )}
     </div>
