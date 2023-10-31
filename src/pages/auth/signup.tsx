@@ -13,6 +13,7 @@ import WelcomeStepsModal from './welcomeSteps';
 import SigninLoginOpt from './SigninLoginOpt';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 
+
 // const validationSchema = Yup.object({
 //   username: Yup.string().required('Please Enter a username'),
 //   email: Yup.string()
@@ -49,6 +50,7 @@ const initialValues = {
   password: ''
 };
 export default function SignUp() {
+ 
   const router = useRouter();
   const supabase = useSupabaseClient<Database>();
   const [password, setPassword] = useState('');
@@ -85,6 +87,7 @@ export default function SignUp() {
 
   return (
     <>
+   
       <SigninTemplate>
         <Formik
           initialValues={initialValues}
