@@ -21,7 +21,7 @@ function MonetizationIndex() {
           <div>
             <div
               className='pb-1 text-[27px] font-black text-white'
-              id='character_profile'
+              id='what_is_monetization'
             >
               What is Monetization?
             </div>
@@ -73,7 +73,7 @@ function MonetizationIndex() {
           <div>
             <div
               className='text-[27px] font-black text-white'
-              id='how_it_work'
+              id='how_it_works'
             >
               How it works?
             </div>

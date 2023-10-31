@@ -1,21 +1,24 @@
 import React from 'react'
-import SocialMediaContent from '../SocialMediaContent'
+import Content from '../Content'
+
+const styleGeneratorContentData = [
+  {
+    title:"What is the Style Generator?",
+    id:"#what_is_styleGenerator"
+  },
+  {
+    title:"How it works?",
+    id:"#how_it_works"
+  },
+  {
+    title:"Prompt",
+    id:"#prompt"
+  }
+]
 function StyleGeneratorContent() {
   return (
-    <div className='w-[990px] py-2'>
-      <div className='text-[13px] uppercase text-[#515151]'>Contents</div>
-      <div className='mt-2 leading-8'>
-        <div className='border-l-[1px] border-white/[0.12] pl-3 text-[15px] text-[#979797] '>
-          <a href='#'>What is the Style Generator?</a>
-        </div>
-        <div className='border-l-[1px] border-white/[0.12] pl-3 text-[15px] text-[#979797] '>
-          <a href='#'>How it works?</a>
-        </div>
-        <div className='border-l-[1px] border-white/[0.12] pl-3 text-[15px] text-[#979797] '>
-          <a href='#'>Prompt</a>
-        </div>
-      </div>
-     <SocialMediaContent/>
+    <div className='w-[990px] py-2 relative z-[60]'>
+     <Content contentData={styleGeneratorContentData} />
     </div>
   )
 }

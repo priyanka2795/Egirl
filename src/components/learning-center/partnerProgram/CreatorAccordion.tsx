@@ -28,7 +28,7 @@ function CreatorAccordion() {
   };
   return (
     <>
-      <div className='pt-8 text-[27px] font-black text-white' id='how_it_work'>
+      <div className='pt-8 text-[27px] font-black text-white' id='for_creators'>
         For Creators
       </div>
       <p className='text-[16px] text-[#979797]'>

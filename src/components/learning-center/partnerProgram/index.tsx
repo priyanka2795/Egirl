@@ -2,12 +2,13 @@ import React from 'react';
 import BreadCrumbs from '../BreadCrumbs';
 import Image from 'next/image';
 import partnerProgramBanner from '../../../../public/assets/learning-center/partnerProgramBanner.png';
-import partnerProgram from '../../../../public/assets/learning-center/Partner Program.png'
+import partnerProgram from '../../../../public/assets/learning-center/Partner Program.png';
 import PartnerProgramAccordion from './PartnerProgramAccordion';
 import PartnerProgramContent from './PartnerProgramContent';
 import HowItWorkSteps from './HowItWorkSteps';
 import CreatorAccordion from './CreatorAccordion';
 import EligibleCharacters from './EligibleCharacters';
+import Link from 'next/link';
 function PartnerProgramIndex() {
   return (
     <div className='px-6 pb-6'>
@@ -15,23 +16,29 @@ function PartnerProgramIndex() {
         <div>
           <BreadCrumbs title='Partner Program' />
           <div className=''>
+            {/* banner section */}
             <div className='pt-2 pb-10'>
-              <Image src={partnerProgramBanner} alt='' />
+              <Link href='/partner-program-application'>
+                <Image src={partnerProgramBanner} alt='' />
+              </Link>
             </div>
             {/* benefit section */}
             <PartnerProgramAccordion />
-            
+
             {/* how it work section */}
-            <HowItWorkSteps/>
+            <HowItWorkSteps />
 
             {/* creators section */}
-            <CreatorAccordion/>
+            <CreatorAccordion />
 
             {/* eligible characters */}
-            <EligibleCharacters/>
+            <EligibleCharacters />
 
+            {/* bottom banner section */}
             <div className='pt-4 '>
-              <Image src={partnerProgram} alt='' />
+              <Link href='/partner-program-application'>
+                <Image src={partnerProgram} alt='' />
+              </Link>
             </div>
           </div>
         </div>
@@ -40,5 +47,4 @@ function PartnerProgramIndex() {
     </div>
   );
 }
-
 export default PartnerProgramIndex;
