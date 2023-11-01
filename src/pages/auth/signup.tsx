@@ -12,7 +12,8 @@ import SigninTemplate from './signinTemplate';
 import WelcomeStepsModal from './welcomeSteps';
 import SigninLoginOpt from './SigninLoginOpt';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-
+import { userSignUp } from 'services/services';
+import Cookies from 'js-cookie';
 
 // const validationSchema = Yup.object({
 //   username: Yup.string().required('Please Enter a username'),
@@ -50,7 +51,6 @@ const initialValues = {
   password: ''
 };
 export default function SignUp() {
- 
   const router = useRouter();
   const supabase = useSupabaseClient<Database>();
   const [password, setPassword] = useState('');
@@ -82,12 +82,24 @@ export default function SignUp() {
   const handleSubmit = (values: any) => {
     console.log('Form data', values);
     // You can handle the form data submission here
-    
+    let data = { 
+      username:values.username, 
+      email:values.email, 
+      password:values.password, 
+      phone:"1234567890"
+    }
+    userSignUp(data).then((res:any)=>{
+      console.log("sign up res---", res)
+      Cookies.set('accessToken', res.data.access_token)
+      Cookies.set('refreshToken', res.data.refresh_token)
+    })
+    .catch((err)=>{
+      console.log("sign up err---", err)
+    })
   };
 
   return (
     <>
-   
       <SigninTemplate>
         <Formik
           initialValues={initialValues}
@@ -206,7 +218,7 @@ export default function SignUp() {
                           <li className='mb-3'>Create a password that:</li>
                           <li className='flex items-center mb-2'>
                             {errors.password ? <CrossIcon /> : <CheckedIcon />}
-                             contains at least 8 characters
+                            contains at least 8 characters
                           </li>
                           <li className='flex items-center'>
                             {/* {hasNumberOrSpecialChar ? (
@@ -215,7 +227,7 @@ export default function SignUp() {
                             <CrossIcon />
                           )}{' '} */}
                             {errors.password ? <CrossIcon /> : <CheckedIcon />}
-                             contains at least one number (0-9) or a symbol
+                            contains at least one number (0-9) or a symbol
                           </li>
                         </ul>
                       </div>
@@ -246,3 +258,4 @@ export default function SignUp() {
     </>
   );
 }
+
