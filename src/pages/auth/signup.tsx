@@ -86,7 +86,6 @@ export default function SignUp() {
   };
 
   const handleSubmit = (values: any) => {
-    console.log('Form data', values);
     // You can handle the form data submission here
     let data = { 
       username:values.username, 
@@ -102,7 +101,6 @@ export default function SignUp() {
     .catch((err)=>{
       console.log("sign up err---", err)
     })
-    console.log("valuesssssssss",values)
   };
 
   return (
