@@ -13,7 +13,6 @@ import WelcomeStepsModal from './welcomeSteps';
 import SigninLoginOpt from './SigninLoginOpt';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 
-
 // const validationSchema = Yup.object({
 //   username: Yup.string().required('Please Enter a username'),
 //   email: Yup.string()
@@ -50,7 +49,6 @@ const initialValues = {
   password: ''
 };
 export default function SignUp() {
- 
   const router = useRouter();
   const supabase = useSupabaseClient<Database>();
   const [password, setPassword] = useState('');
@@ -82,12 +80,10 @@ export default function SignUp() {
   const handleSubmit = (values: any) => {
     console.log('Form data', values);
     // You can handle the form data submission here
-    
   };
 
   return (
     <>
-   
       <SigninTemplate>
         <Formik
           initialValues={initialValues}
@@ -206,7 +202,7 @@ export default function SignUp() {
                           <li className='mb-3'>Create a password that:</li>
                           <li className='flex items-center mb-2'>
                             {errors.password ? <CrossIcon /> : <CheckedIcon />}
-                             contains at least 8 characters
+                            contains at least 8 characters
                           </li>
                           <li className='flex items-center'>
                             {/* {hasNumberOrSpecialChar ? (
@@ -215,7 +211,7 @@ export default function SignUp() {
                             <CrossIcon />
                           )}{' '} */}
                             {errors.password ? <CrossIcon /> : <CheckedIcon />}
-                             contains at least one number (0-9) or a symbol
+                            contains at least one number (0-9) or a symbol
                           </li>
                         </ul>
                       </div>
@@ -246,3 +242,4 @@ export default function SignUp() {
     </>
   );
 }
+
