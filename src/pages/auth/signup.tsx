@@ -12,7 +12,8 @@ import SigninTemplate from './signinTemplate';
 import WelcomeStepsModal from './welcomeSteps';
 import SigninLoginOpt from './SigninLoginOpt';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-
+import { userSignUp } from 'services/services';
+import Cookies from 'js-cookie';
 
 // const validationSchema = Yup.object({
 //   username: Yup.string().required('Please Enter a username'),
@@ -41,16 +42,21 @@ const validationSchema = Yup.object().shape({
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
       'Password must meet criteria'
+    ),
+    phoneNumber: Yup.number().required('Phone number is required').test(
+      'is-ten-digits',
+      'Phone number must be exactly 10 digits',
+      (value) => String(value).length === 10
     )
 });
 const initialValues = {
   username: '',
   email: '',
   verifyemail: '',
-  password: ''
+  password: '',
+  phoneNumber: ''
 };
 export default function SignUp() {
- 
   const router = useRouter();
   const supabase = useSupabaseClient<Database>();
   const [password, setPassword] = useState('');
@@ -82,12 +88,25 @@ export default function SignUp() {
   const handleSubmit = (values: any) => {
     console.log('Form data', values);
     // You can handle the form data submission here
-    
+    let data = { 
+      username:values.username, 
+      email:values.email, 
+      password:values.password, 
+      phone:values.phoneNumber
+    }
+    userSignUp(data).then((res:any)=>{
+      console.log("sign up res---", res)
+      Cookies.set('accessToken', res.data.access_token)
+      Cookies.set('refreshToken', res.data.refresh_token)
+    })
+    .catch((err)=>{
+      console.log("sign up err---", err)
+    })
+    console.log("valuesssssssss",values)
   };
 
   return (
     <>
-   
       <SigninTemplate>
         <Formik
           initialValues={initialValues}
@@ -174,6 +193,27 @@ export default function SignUp() {
                       />
                     </div>
 
+                    <div className='input-username-error flex flex-col gap-[6px]'>
+                      <label
+                        htmlFor='phoneNumber'
+                        className='text-[13px] font-semibold leading-[18px] text-[#979797]'
+                      >
+                        Phone Number
+                      </label>
+                      <Field
+                        type='text'
+                        id='phoneNumber'
+                        name='phoneNumber'
+                        className='font-normal input-error-border flex rounded-[14px] border-none bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-white placeholder:text-[#979797] focus:ring-0'
+                        placeholder='enter phone number'
+                      />
+                      <ErrorMessage
+                        className='font-normal Input-error text-[14px] leading-[18px] text-[#FF5336]'
+                        name='phoneNumber'
+                        component='div'
+                      />
+                    </div>
+
                     <div className='flex flex-col gap-[6px]'>
                       <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
                         Password
@@ -206,7 +246,7 @@ export default function SignUp() {
                           <li className='mb-3'>Create a password that:</li>
                           <li className='flex items-center mb-2'>
                             {errors.password ? <CrossIcon /> : <CheckedIcon />}
-                             contains at least 8 characters
+                            contains at least 8 characters
                           </li>
                           <li className='flex items-center'>
                             {/* {hasNumberOrSpecialChar ? (
@@ -215,11 +255,13 @@ export default function SignUp() {
                             <CrossIcon />
                           )}{' '} */}
                             {errors.password ? <CrossIcon /> : <CheckedIcon />}
-                             contains at least one number (0-9) or a symbol
+                            contains at least one number (0-9) or a symbol
                           </li>
                         </ul>
                       </div>
                     </div>
+
+                    
                   </div>
                 </div>
 
@@ -246,3 +288,4 @@ export default function SignUp() {
     </>
   );
 }
+
