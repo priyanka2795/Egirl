@@ -89,7 +89,7 @@ export default function SignIn({ SetFormStep }: SignIn) {
   };
 
   const handleSubmit = (values: any) => {
-    // console.log('login form data---', values);
+    console.log('login form data---', values);
     // setSignInSteps(1);
     // let notify = {type:"ERROR", message:"response error"}
     // dispatch(setToastVisible())
