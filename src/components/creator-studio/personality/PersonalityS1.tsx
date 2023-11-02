@@ -71,10 +71,6 @@ const PersonalityS1 = ({
           <div>
             <div className='flex items-center gap-5 pt-[11px]'>
               <RangePicker values={values} setValues={setValues} />
-
-              <div className='flex w-[50px] items-center justify-center rounded-[10px] bg-white/[0.05] py-[8px]'>
-                {values}
-              </div>
             </div>
           </div>
         </div>
