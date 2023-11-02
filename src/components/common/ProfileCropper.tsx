@@ -1,10 +1,11 @@
 import RangePicker from '@components/creator-studio/common/RangePicker';
 import React, { useState } from 'react';
 import AvatarEditor from 'react-avatar-editor';
-import PlusIcon from '../../../public/assets/plus-large.png';
-import MinusIcon from '../../../public/assets/minus.png';
+import PlusIcon from '../../../public/assets/svgImages/plus-large-icon.svg';
+import MinusIcon from '../../../public/assets/svgImages/minus-icon.svg';
 import RotateLeftIcon from '../../../public/assets/image-rotate-left.png';
 import RotateRightIcon from '../../../public/assets/image-rotate-right.png';
+import TooltipArrow from '../../../public/assets/svgImages/tooltiparrow.svg';
 import { Header } from './SmallCompoents/Header';
 import { Tooltip } from './SmallCompoents/Tooltip';
 import { Button } from './SmallCompoents/Button';
@@ -12,12 +13,14 @@ import Image from 'next/image';
 
 const ProfileCropper = () => {
   const [values, setValues] = useState<number[]>([1]);
+  const [rotate , setRotate] = useState<number>(0);
   if (values < [1.0]) {
     setValues([1.0]);
   }
+
   return (
     <>
-      <div className='relative flex w-[484px] flex-col items-start rounded-[20px] bg-backgroundsdark-100 shadow-4-0dp'>
+      <div className='relative flex w-full flex-col items-start rounded-[20px] bg-backgroundsdark-100 shadow-4-0dp'>
         <Header
           className='!w-full !flex-[0_0_auto] !self-stretch !bg-transparent ![border-left-style:none] ![border-right-style:none] ![border-top-style:none]'
           text='Upload new photo'
@@ -29,7 +32,7 @@ const ProfileCropper = () => {
             If the image is oriented incorrectly, the photo can be rotated.
           </p>
           <div className='relative h-[240px] w-full self-stretch bg-backgroundsdark-200'>
-            <div className='absolute left-[0px] top-0 flex w-full flex-col items-center justify-center bg-cover bg-[50%_50%]'>
+            <div className={`rotate-[${rotate}deg] absolute left-[0px] top-0 flex w-full flex-col items-center justify-center bg-cover bg-[50%_50%]`}>
               <AvatarEditor
                 image='https://img.youtube.com/vi/IUN664s7N-c/maxresdefault.jpg'
                 width={242}
@@ -42,38 +45,41 @@ const ProfileCropper = () => {
               />
              </div>
             <div className='absolute left-[360px] top-[192px] inline-flex items-start gap-[4px] rounded-[8px] bg-black-alfa48 px-[12px] py-[10px]'>
+              <div onClick={() => {setRotate(rotate - 90), console.log(rotate ,'test minus')}} className="h-[20px] cursor-pointer">
               <Image
-                className='absolute left-[11px] top-[23px] h-[20px] w-[19px]'
+                className="absolute left-[11px] top-[23px] h-[20px] w-[19px]"              
                 alt='Hand pointing'
                 src={RotateLeftIcon}
               />
-
-              <Image
+              </div>
+            
+            <div className="cursor-pointer h-[20px]" onClick={() => {setRotate(rotate + 90)}}>
+            <Image
                 className='absolute left-[11px] top-[23px] h-[20px] w-[19px]'
-                alt='Hand pointing'
+                alt=''
                 src={RotateRightIcon}
               />
             </div>
+            </div>
+            <div className="cursor-pointer" onClick={() => setValues([1.0]) }>
             <Button
               class1='soft'
               className='!absolute !left-[366px] !top-[12px]'
               size='x-small'
               state='default'
               text1='Reset'
-              type='secondary'
+              type='secondary'             
             />
+            </div>
+           
           </div>
           <div className='relative flex w-[436px] flex-[0_0_auto] flex-col items-start'>
             <div className='relative mb-[10px] mt-[-1.00px] self-stretch font-overline-overline-2-medium text-[length:var(--overline-overline-2-medium-font-size)] font-[number:var(--overline-overline-2-medium-font-weight)] leading-[var(--overline-overline-2-medium-line-height)] tracking-[var(--overline-overline-2-medium-letter-spacing)] text-text-icon-colorslight-grey [font-style:var(--overline-overline-2-medium-font-style)]'>
               ZOOM
             </div>
 
-            <div className='relative flex w-full flex-[0_0_auto] items-center gap-[16px] self-stretch'>
-              <Image
-                src={MinusIcon}
-                alt='Hello'
-                className='!relative !h-[24px] !w-[24px]'
-              />
+            <div className='relative flex w-full max-h-[24px] flex-[0_0_auto] items-center gap-[16px] self-stretch'>
+              <MinusIcon className='cursor-pointer relative w-[24px]'/>
 
               <div className='w-full max-w-[356px]'>
                 <RangePicker values={values} setValues={setValues} />
@@ -81,11 +87,7 @@ const ProfileCropper = () => {
               {/* <div className='flex w-[50px] items-center justify-center rounded-[10px] bg-white/[0.05] py-[8px] text-white'>
         {values}
       </div> */}
-              <Image
-                src={PlusIcon}
-                alt='Hello'
-                className='!relative !h-[24px] !w-[24px]'
-              />
+              <PlusIcon className='cursor-pointer relative w-[24px] text-[#979797]'/>
             </div>
           </div>
           <div className='relative flex w-full flex-[0_0_auto] items-start gap-[12px] self-stretch'>
@@ -107,7 +109,7 @@ const ProfileCropper = () => {
             />
           </div>
           <Tooltip
-          assets="image.svg"
+          assets={TooltipArrow}
           className="!absolute !left-[359px] !top-[242px]"
           direction="top"
           text="90° left turn"

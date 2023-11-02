@@ -1,11 +1,7 @@
-/*
-We're constantly improving the code you see. 
-Please share your feedback here: https://form.asana.com/?k=uvp-HPgd3_hyoXRBw1IcNg&d=1152665201300829
-*/
-
 import PropTypes from "prop-types";
 import React from "react";
-
+import TooltipArrow from '../../../../../public/assets/svgImages/tooltiparrow.svg';
+import Image from "next/image";
 interface Props {
   direction:
     | "right"
@@ -90,14 +86,14 @@ export const Tooltip = ({ direction, className, text = "Tooltip", assets = "/img
         </div>
       </div>
       {["left", "left_1", "left_2", "top", "top_1", "top_2"].includes(direction) && (
-        <img
+        <Image
           className={`self-stretch flex-[0_0_auto] relative ${
             ["top", "top_1", "top_2"].includes(direction) ? "w-full" : ""
           }`}
           alt="Assets"
           src={
             direction === "top_1"
-              ? "/img/assets-1.svg"
+              ? `${TooltipArrow}`
               : direction === "top_2"
               ? "/img/assets-2.svg"
               : direction === "left"
