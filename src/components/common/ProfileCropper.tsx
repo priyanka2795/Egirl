@@ -1,5 +1,5 @@
 import RangePicker from '@components/creator-studio/common/RangePicker';
-import React, { useState } from 'react';
+import React, { SetStateAction, useState } from 'react';
 import AvatarEditor from 'react-avatar-editor';
 import PlusIcon from '../../../public/assets/svgImages/plus-large-icon.svg';
 import MinusIcon from '../../../public/assets/svgImages/minus-icon.svg';
@@ -11,7 +11,11 @@ import { Tooltip } from './SmallCompoents/Tooltip';
 import { Button } from './SmallCompoents/Button';
 import Image from 'next/image';
 
-const ProfileCropper = () => {
+interface profileInterface{
+  setUpdateProfileImg:React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const ProfileCropper = ({setUpdateProfileImg}:profileInterface) => {
   const [values, setValues] = useState<number[]>([1]);
   const [rotate , setRotate] = useState<number>(0);
   if (values < [1.0]) {
@@ -44,21 +48,36 @@ const ProfileCropper = () => {
                 rotate={0}
               />
              </div>
-            <div className='absolute left-[360px] top-[192px] inline-flex items-start gap-[4px] rounded-[8px] bg-black-alfa48 px-[12px] py-[10px]'>
-              <div onClick={() => {setRotate(rotate - 90), console.log(rotate ,'test minus')}} className="h-[20px] cursor-pointer">
+            <div className='absolute left-[354px] top-[192px] inline-flex items-start gap-[4px] rounded-[8px] bg-black-alfa48 px-[12px] py-[10px]'>
+              <div onClick={() => {setRotate(rotate - 90)}} className="group relative h-[20px] cursor-pointer">
               <Image
                 className="absolute left-[11px] top-[23px] h-[20px] w-[19px]"              
                 alt='Hand pointing'
                 src={RotateLeftIcon}
               />
+              
+              <Tooltip
+          assets={TooltipArrow}
+          className="group-hover:flex hidden !absolute !right-[-25px] !top-[-45px]"
+          direction="top"
+          text="90° left turn"
+        />
               </div>
             
-            <div className="cursor-pointer h-[20px]" onClick={() => {setRotate(rotate + 90)}}>
+            <div className="group cursor-pointer h-[20px]" onClick={() => {setRotate(rotate + 90)}}>
             <Image
                 className='absolute left-[11px] top-[23px] h-[20px] w-[19px]'
                 alt=''
                 src={RotateRightIcon}
               />
+            
+              <Tooltip
+          assets={TooltipArrow}
+          className="group-hover:flex hidden !absolute !right-[-15px] !top-[-40px]"
+          direction="top"
+          text="90° right turn"
+        />
+             
             </div>
             </div>
             <div className="cursor-pointer" onClick={() => setValues([1.0]) }>
@@ -91,29 +110,27 @@ const ProfileCropper = () => {
             </div>
           </div>
           <div className='relative flex w-full flex-[0_0_auto] items-start gap-[12px] self-stretch'>
-            <Button
+           <div className='flex flex-1 grow' onClick={() => setUpdateProfileImg(false)}>
+           <Button
               class1='outlined'
-              className='!flex !flex-1 !grow'
+              className='cursor-pointer flex flex-1 grow' 
               size='medium'
               state='default'
               text1='Cancel'
               type='secondary'
             />
+           </div>
+            <div className='flex flex-1 grow' onClick={() => setUpdateProfileImg(false)}>
             <Button
               class1='solid'
-              className='!flex !flex-1 !grow'
+              className='cursor-pointer flex flex-1 grow'
               size='medium'
               state='default'
               text1='Save'
               type='primary'
             />
+            </div>
           </div>
-          <Tooltip
-          assets={TooltipArrow}
-          className="!absolute !left-[359px] !top-[242px]"
-          direction="top"
-          text="90° left turn"
-        />
         </div>
       </div>
     </>

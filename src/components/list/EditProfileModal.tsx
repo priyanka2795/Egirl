@@ -176,7 +176,7 @@ const EditProfileModal = ({ closeState }: EditProfileModalProps) => {
      closeModal={() => setUpdateProfileImg(!updateProfileImg)}
      modalOverlayStyle='!bg-black/80'
    >
-    <ProfileCropper/>
+    <ProfileCropper setUpdateProfileImg={setUpdateProfileImg}/>
     </Modal>
      } 
 
