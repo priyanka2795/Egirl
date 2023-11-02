@@ -18,16 +18,15 @@ import OtpInput from './OtpInput';
 import { CustomIcon } from '@components/ui/custom-icon';
 import * as Yup from 'yup';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
+import Toast from '../../Toast';
+import { useAppDispatch, useAppSelector } from 'redux/hooks';
+import { showToast,setToastVisible } from 'redux/reducers/toastReducer';
 
 interface SignIn {
   SetFormStep: boolean;
 }
 const validationSchema = Yup.object().shape({
-  username: Yup.string().required('Username is required'),
   email: Yup.string().email('Invalid email').required('Email is required'),
-  verifyemail: Yup.string()
-    .required()
-    .oneOf([Yup.ref('email')], "That's an invalid email"),
   password: Yup.string().required('Password is required')
 });
 const initialValues = {
@@ -35,6 +34,9 @@ const initialValues = {
   password: ''
 };
 export default function SignIn({ SetFormStep }: SignIn) {
+  const dispatch = useAppDispatch()
+  const { isVisible, notification } = useAppSelector((state) => state.toast);
+  console.log("notification msg---",notification.message, "isVisible---",isVisible, "notification- type---",notification.type)
   const router = useRouter();
   const supabase = useSupabaseClient<Database>();
   const [email, setEmail] = useState<string>('');
@@ -86,10 +88,13 @@ export default function SignIn({ SetFormStep }: SignIn) {
     setOtp(value);
   };
 
-  // const handleSubmit = (values: any) => {
-  //   console.log('login form data---', values);
-  //   setSignInSteps(1);
-  // };
+  const handleSubmit = (values: any) => {
+    // console.log('login form data---', values);
+    // setSignInSteps(1);
+    // let notify = {type:"ERROR", message:"response error"}
+    // dispatch(setToastVisible())
+    // dispatch(showToast(notify))
+  };
 
   return (
     <>
@@ -142,13 +147,13 @@ export default function SignIn({ SetFormStep }: SignIn) {
             </div>
           ) : (
             <>
-              {/* <Formik
+              <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}
                 onSubmit={handleSubmit}
               >
                 {({ errors, touched }) => (
-                  <Form> */}
+                  <Form>
                     <div className='flex flex-col gap-8'>
                       <SigninLoginOpt heading={'Login'} pageName={'signup'} />
 
@@ -172,38 +177,38 @@ export default function SignIn({ SetFormStep }: SignIn) {
                           <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
                             Email address
                           </div>
-                          <input
+                          <Field
                             type='email'
                             id='email'
                             name='email'
                             placeholder='example@gmail.com'
                             className='font-normal flex rounded-[14px] border-none bg-transparent bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
-                            onChange={onEmailChange}
+                            // onChange={onEmailChange}
                           />
-                          {/* <ErrorMessage
+                          <ErrorMessage
                             className='font-normal Input-error text-[14px] leading-[18px] text-[#FF5336]'
                             name='email'
                             component='div'
-                          /> */}
+                          />
                         </div>
                         <div className='flex flex-col gap-3'>
                           <div className='flex flex-col gap-[6px]'>
                             <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
                               Password
                             </div>
-                            <input
+                            <Field
                               type='password'
                               placeholder='Password'
                               name='password'
                               id='password'
-                              onChange={onPasswordChange}
+                              // onChange={onPasswordChange}
                               className='font-normal flex rounded-[14px] border-none bg-transparent bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
                             />
-                            {/* <ErrorMessage
+                            <ErrorMessage
                               name='password'
                               component='div'
                               className='font-normal Input-error text-[14px] leading-[18px] text-[#FF5336]'
-                            /> */}
+                            />
                           </div>
                           <div className='font-normal text-[15px] leading-5 text-white'>
                             Forgot your password?
@@ -211,8 +216,8 @@ export default function SignIn({ SetFormStep }: SignIn) {
                         </div>
                       </div>
                       <button
-                        onClick={loginHandler}
-                        // type='submit'
+                        // onClick={loginHandler}
+                        type='submit'
                         className='font-bold flex items-center justify-center rounded-[16px] bg-[#5848BC] px-6 py-4 text-[18px] leading-6 text-white'
                       >
                         Continue
@@ -222,13 +227,14 @@ export default function SignIn({ SetFormStep }: SignIn) {
             </button> */}
                     </div>
                     <p className='py-5 text-red-400'>{errorMsg}</p>
-                  {/* </Form>
+                  </Form>
                 )}
-              </Formik> */}
+              </Formik>
             </>
           )}
         </div>
       </SigninTemplate>
+      {isVisible && <Toast />}
     </>
   );
 }
