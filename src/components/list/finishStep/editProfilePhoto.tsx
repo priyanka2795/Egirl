@@ -70,12 +70,15 @@ const EditProfilePhoto = ({
             <div className='absolute bottom-2 right-2 flex items-center gap-1 rounded-lg bg-[#0000007A] px-3 py-[10px]'>
               <button className='group relative h-[20px] w-[20px]'>
                 <Image src={ImageLeftIcon} className='h-full w-full' />
-                <div className='absolute -left-12 -top-9 z-50 w-max -translate-x-0 -translate-y-2/4 transform transition-all'>
+                <div className='group-hover:opacity-1 group-hover:visible invisible opacity-0 absolute -left-12 -top-9 z-50 w-max -translate-x-0 -translate-y-2/4 transform transition-all'>
                   <Tooltip Text={'90° left turn'} />
                 </div>
               </button>
               <button className='h-[20px] w-[20px]'>
                 <Image src={ImageRightIcon} className='h-full w-full' />
+                <div className='group-hover:opacity-1 group-hover:visible invisible opacity-0 absolute -left-12 -top-9 z-50 w-max -translate-x-0 -translate-y-2/4 transform transition-all'>
+                  <Tooltip Text={'90° right turn'} />
+                </div>
               </button>
             </div>
           </div>

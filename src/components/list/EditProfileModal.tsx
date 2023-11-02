@@ -172,7 +172,7 @@ const EditProfileModal = ({ closeState }: EditProfileModalProps) => {
     {updateProfileImg &&
      <Modal
      open={true}
-     modalClassName='flex flex-col w-full rounded-[14px] items-start h-max bg-[#1A1A1A] max-w-[468px] relative'
+     modalClassName='flex flex-col w-full rounded-[14px] items-start h-max bg-[#1A1A1A] max-w-[484px] relative'
      closeModal={() => setUpdateProfileImg(!updateProfileImg)}
      modalOverlayStyle='!bg-black/80'
    >
