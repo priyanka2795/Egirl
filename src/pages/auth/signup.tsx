@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { Database } from '../../../types/database';
 import { useRouter } from 'next/router';
@@ -59,6 +59,7 @@ const initialValues = {
 export default function SignUp() {
   const router = useRouter();
   const supabase = useSupabaseClient<Database>();
+  const [emailErr, setEmailErr] = useState("")
   const [password, setPassword] = useState('');
   const [isMinLength, setIsMinLength] = useState<boolean>(false);
   const [hasNumberOrSpecialChar, setHasNumberOrSpecialChar] =
@@ -94,15 +95,19 @@ export default function SignUp() {
       phone:values.phoneNumber
     }
     userSignUp(data).then((res:any)=>{
-      console.log("sign up res---", res)
-      Cookies.set('accessToken', res.data.access_token)
-      Cookies.set('refreshToken', res.data.refresh_token)
+      console.log("sign up res---", res.response)
+      if(res.response.data.detail === 'user already exists'){
+        setEmailErr(res.response.data.detail)
+      }
+      // Cookies.set('accessToken', res.response.data.access_token)
+      // Cookies.set('refreshToken', res.response.data.refresh_token)
     })
     .catch((err)=>{
       console.log("sign up err---", err)
     })
   };
 
+  
   return (
     <>
       <SigninTemplate>
@@ -111,7 +116,7 @@ export default function SignUp() {
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >
-          {({ errors, touched }) => (
+          {({ errors, touched ,handleChange}) => (
             <Form>
               <div className='flex h-[inherit] max-h-[692px] w-[500px] flex-col rounded-[40px] bg-[#070707] '>
                 <div className='flex max-h-[600px] flex-col gap-8 overflow-y-auto px-10 pt-10'>
@@ -171,6 +176,7 @@ export default function SignUp() {
                         name='email'
                         component='div'
                       />
+                      <p className='font-normal Input-error text-[14px] leading-[18px] text-[#FF5336]'>{emailErr}</p>
                     </div>
 
                     <div className='input-verifyemail-error flex flex-col gap-[6px]'>
