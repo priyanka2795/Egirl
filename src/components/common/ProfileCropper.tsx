@@ -28,6 +28,7 @@ const ProfileCropper = ({setUpdateProfileImg}:profileInterface) => {
         <Header
           className='!w-full !flex-[0_0_auto] !self-stretch !bg-transparent ![border-left-style:none] ![border-right-style:none] ![border-top-style:none]'
           text='Upload new photo'
+          leftIcon={true}
         />
         <div className='relative flex w-full flex-[0_0_auto] flex-col items-center gap-[24px] self-stretch p-[24px]'>
           <p className='relative mt-[-1.00px] self-stretch font-body-text-b2-regular text-[length:var(--body-text-b2-regular-font-size)] font-[number:var(--body-text-b2-regular-font-weight)] leading-[var(--body-text-b2-regular-line-height)] tracking-[var(--body-text-b2-regular-letter-spacing)] text-text-icon-colorslight-grey [font-style:var(--body-text-b2-regular-font-style)]'>

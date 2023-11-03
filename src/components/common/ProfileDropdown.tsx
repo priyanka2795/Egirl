@@ -12,7 +12,8 @@ interface profileDropdowProp {
   setProfileEdit: React.Dispatch<React.SetStateAction<boolean>>;
   setDeleteProfileState:React.Dispatch<React.SetStateAction<boolean>>;
   setUpdateProfileState: React.Dispatch<React.SetStateAction<boolean>>
-  setUpdateProfileImg: React.Dispatch<React.SetStateAction<boolean>>
+  // setUpdateProfileImg: React.Dispatch<React.SetStateAction<boolean>>
+  setUpdateProfileThumbnail: React.Dispatch<React.SetStateAction<boolean>>
 }
 const ProfileDropdown = ({
   profileEdit,
@@ -20,7 +21,7 @@ const ProfileDropdown = ({
   setProfileEdit,
   setDeleteProfileState,
   setUpdateProfileState,
-  setUpdateProfileImg
+  setUpdateProfileThumbnail
 }: profileDropdowProp) => {
 
   return (<>
@@ -35,7 +36,9 @@ const ProfileDropdown = ({
           </div>
         </div>
       </div>
-      <div onClick={() => {setUpdateProfileImg(true), setProfileEdit(false)}} className='inline-flex items-center justify-start gap-2 self-stretch bg-neutral-800 px-4 py-2.5'>
+      <div
+       onClick={() => {setUpdateProfileThumbnail(true), setProfileEdit(false)}}
+        className='inline-flex items-center justify-start gap-2 self-stretch bg-neutral-800 px-4 py-2.5'>
         <Image src={userImg} className='relative h-[18px] w-[18px]' />
         <div
           className="font-normal font-['Open Sans'] shrink grow basis-0 text-sm leading-[18px] text-white"

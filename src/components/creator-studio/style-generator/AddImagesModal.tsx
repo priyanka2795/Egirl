@@ -6,6 +6,7 @@ import img1 from '../../../../public/assets/style-gen-img1.png';
 import img2 from '../../../../public/assets/style-gen-img2.png';
 import img3 from '../../../../public/assets/style-gen-img3.png';
 import img4 from '../../../../public/assets/style-gen-img4.png';
+import ProfileCropper from '@components/common/ProfileCropper';
 
 interface AddImagesModalProps {
   setAddImagesModal?: any;
@@ -46,9 +47,10 @@ const AddImagesModal = ({
 }: AddImagesModalProps) => {
   const [toggle, setToggle] = useState<boolean>(false);
   //   const [styleGenHoverModal, setStyleGenHoverModal] = useState(false);
+  const [updateProfileImg ,setUpdateProfileImg] = useState<boolean>(false)
 
   return (
-    <div>
+    <>
       <Modal
         open={true}
         modalClassName='flex flex-col max-w-xl w-full rounded-2xl h-max bg-[#1A1A1A] max-w-[656px]'
@@ -65,7 +67,7 @@ const AddImagesModal = ({
             </div>
           </div>
           <Image
-            className='object-contain'
+            className='object-contain cursor-pointer'
             onClick={() => setAddImagesModal(false)}
             src={xMark}
             alt={''}
@@ -139,14 +141,27 @@ const AddImagesModal = ({
           <button
             className='w-1/2 items-center justify-center rounded-[14px] border border-transparent bg-[#5848BC] px-5 py-[13px] text-[16px] font-bold leading-[22px] text-white'
             onClick={() => {
-              setAddImagesModal(false), setStyleGeneratorNext(true);
+               setUpdateProfileImg(!updateProfileImg);
             }}
           >
             Save
           </button>
         </div>
       </Modal>
-    </div>
+
+
+      {updateProfileImg &&
+     <Modal
+     open={true}
+     modalClassName='flex flex-col w-full rounded-[14px] items-start h-max bg-[#1A1A1A] max-w-[484px] relative'
+     closeModal={() => setUpdateProfileImg(!updateProfileImg)}
+     modalOverlayStyle='!bg-black/80'
+   >
+    <ProfileCropper setUpdateProfileImg={setUpdateProfileImg}/>
+    </Modal>
+     } 
+     
+    </>
   );
 };
 
