@@ -20,7 +20,11 @@ import * as Yup from 'yup';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import Toast from '../../Toast';
 import { useAppDispatch, useAppSelector } from 'redux/hooks';
-import { showToast,setToastVisible } from 'redux/reducers/toastReducer';
+import { showToast, setToastVisible } from 'redux/reducers/toastReducer';
+import { userLogin } from 'services/services';
+import Cookies from 'js-cookie';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface SignIn {
   SetFormStep: boolean;
@@ -34,9 +38,8 @@ const initialValues = {
   password: ''
 };
 export default function SignIn({ SetFormStep }: SignIn) {
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   const { isVisible, notification } = useAppSelector((state) => state.toast);
-  console.log("notification msg---",notification.message, "isVisible---",isVisible, "notification- type---",notification.type)
   const router = useRouter();
   const supabase = useSupabaseClient<Database>();
   const [email, setEmail] = useState<string>('');
@@ -89,7 +92,26 @@ export default function SignIn({ SetFormStep }: SignIn) {
   };
 
   const handleSubmit = (values: any) => {
+    setErrorMsg("")
     console.log('login form data---', values);
+    userLogin(values)
+      .then((res: any) => {
+        console.log('login res--', res);
+        if (res.status === 200) {
+          toast.success('User login successful')
+          Cookies.set('accessToken', res.data.access_token);
+          Cookies.set('refreshToken', res.data.refresh_token);
+          setTimeout(()=>{
+            router.push('/home');
+          },1000)
+        }
+        if (res.response.status === 400) {
+          setErrorMsg("email or password wrong!");
+        }
+      })
+      .catch((err) => {
+        console.log('err----', err);
+      });
     // setSignInSteps(1);
     // let notify = {type:"ERROR", message:"response error"}
     // dispatch(setToastVisible())
@@ -235,6 +257,13 @@ export default function SignIn({ SetFormStep }: SignIn) {
         </div>
       </SigninTemplate>
       {isVisible && <Toast />}
+      <ToastContainer
+        position='bottom-center'
+        pauseOnHover
+        theme='colored'
+        hideProgressBar={true}
+        autoClose={2000}
+      />
     </>
   );
 }

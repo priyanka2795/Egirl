@@ -1,16 +1,34 @@
 import Image from 'next/image';
-import React from 'react';
+import React,{useState, useEffect} from 'react';
 import subscriptionImage1 from '../../../public/assets/list-subscription1.png';
 import subscriptionImage2 from '../../../public/assets/list-subscription2.png';
 import subscriptionImage3 from '../../../public/assets/list-subscription3.png';
 import Card from '../common/Card';
 import ListFilter from './ListFilter';
-
+import Cookies from 'js-cookie';
+import jwt from 'jsonwebtoken';
+import { getSubscribed } from 'services/services';
 interface SubscriptionOptionsProps {
   showProfile: React.Dispatch<React.SetStateAction<boolean>>;
   component?: any;
 }
+
+const accessToken = Cookies.get('accessToken');
+  const token = `${accessToken}`;
+  const decodedToken = jwt.decode(token);
+  const userId = decodedToken?.sub
 const SubscriptionOptions = ({ showProfile, component }: SubscriptionOptionsProps) => {
+  const [allSubscriptions, setSubscriptions] = useState([])
+  useEffect(()=>{
+    getSubscribed(userId,1)
+    .then((res:any)=>{
+      console.log("get subscription res---",res)
+      setSubscriptions(res.data)
+    })
+    .catch((err)=>{
+      console.log("err----",err)
+    })
+  },[])
   return (
     <div className={`flex flex-col items-start self-stretch ${component === 'RealisticPage' ? 'gap-6' : 'gap-4'}`}>
       {/* <div className='flex items-center gap-[33rem] justify-between'>
