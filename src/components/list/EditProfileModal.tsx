@@ -8,7 +8,8 @@ import InputFieldDesign from '@components/common/InputFieldDesign';
 import ProfileDropdown from '@components/common/ProfileDropdown';
 import DeleteProfileModal from '@components/common/DeleteProfileModal';
 import AddImagesModal from '@components/creator-studio/style-generator/AddImagesModal';
-import ProfileCropper from '@components/common/ProfileCropper';
+import EditProfileThumbnail from '@components/home/EditProfileThumbnail';
+
 interface EditProfileModalProps {
   closeState: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -19,7 +20,7 @@ const EditProfileModal = ({ closeState }: EditProfileModalProps) => {
   const [profileEdit, setProfileEdit] = useState<boolean>(false);
   const [deleteProfileState , setDeleteProfileState] = useState<boolean>(false)
   const [updateProfileState , setUpdateProfileState] = useState<boolean>(false)
-  const [updateProfileImg ,setUpdateProfileImg] = useState<boolean>(false)
+  const [updateProfileThumbnail ,setUpdateProfileThumbnail] = useState<boolean>(false)
   return (<>
     <Modal
       open={true}
@@ -60,7 +61,7 @@ const EditProfileModal = ({ closeState }: EditProfileModalProps) => {
                 deleteProfileState={deleteProfileState}
                 setDeleteProfileState={setDeleteProfileState}
                 setUpdateProfileState={setUpdateProfileState}
-                setUpdateProfileImg={setUpdateProfileImg}
+                setUpdateProfileThumbnail={setUpdateProfileThumbnail}
               />
              )}
           </div>
@@ -160,23 +161,16 @@ const EditProfileModal = ({ closeState }: EditProfileModalProps) => {
     } 
     {
       updateProfileState &&
-      <Modal
-      open={true}
-      modalClassName='flex flex-col w-full rounded-[14px] items-start h-max bg-[#1A1A1A] max-w-[468px] relative'
-      closeModal={() => setUpdateProfileState(!updateProfileState)}
-      modalOverlayStyle='!bg-black/80'
-    >
      <AddImagesModal setAddImagesModal={setUpdateProfileState}/>
-     </Modal>
     }
-    {updateProfileImg &&
+    {updateProfileThumbnail &&
      <Modal
      open={true}
-     modalClassName='flex flex-col w-full rounded-[14px] items-start h-max bg-[#1A1A1A] max-w-[468px] relative'
-     closeModal={() => setUpdateProfileImg(!updateProfileImg)}
+     modalClassName='flex flex-col w-full rounded-[14px] items-start h-max bg-[#1A1A1A] max-w-[484px] relative'
+     closeModal={() => setUpdateProfileThumbnail(!updateProfileThumbnail)}
      modalOverlayStyle='!bg-black/80'
    >
-    <ProfileCropper/>
+    <EditProfileThumbnail setUpdateProfileThumbnail={setUpdateProfileThumbnail}/>
     </Modal>
      } 
 

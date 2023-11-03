@@ -76,6 +76,9 @@ const EditProfilePhoto = ({
               </button>
               <button className='h-[20px] w-[20px]'>
                 <Image src={ImageRightIcon} className='h-full w-full' />
+                <div className='absolute -left-12 -top-9 z-50 w-max -translate-x-0 -translate-y-2/4 transform transition-all'>
+                  <Tooltip Text={'90° right turn'} />
+                </div>
               </button>
             </div>
           </div>

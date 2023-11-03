@@ -16,11 +16,30 @@ import SigninTemplate from './signinTemplate';
 import SigninLoginOpt from './SigninLoginOpt';
 import OtpInput from './OtpInput';
 import { CustomIcon } from '@components/ui/custom-icon';
+import * as Yup from 'yup';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import Toast from '../../Toast';
+import { useAppDispatch, useAppSelector } from 'redux/hooks';
+import { showToast, setToastVisible } from 'redux/reducers/toastReducer';
+import { userLogin } from 'services/services';
+import Cookies from 'js-cookie';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface SignIn {
   SetFormStep: boolean;
 }
+const validationSchema = Yup.object().shape({
+  email: Yup.string().email('Invalid email').required('Email is required'),
+  password: Yup.string().required('Password is required')
+});
+const initialValues = {
+  email: '',
+  password: ''
+};
 export default function SignIn({ SetFormStep }: SignIn) {
+  const dispatch = useAppDispatch();
+  const { isVisible, notification } = useAppSelector((state) => state.toast);
   const router = useRouter();
   const supabase = useSupabaseClient<Database>();
   const [email, setEmail] = useState<string>('');
@@ -70,6 +89,33 @@ export default function SignIn({ SetFormStep }: SignIn) {
 
   const onChange = (value: string) => {
     setOtp(value);
+  };
+
+  const handleSubmit = (values: any) => {
+    setErrorMsg("")
+    console.log('login form data---', values);
+    userLogin(values)
+      .then((res: any) => {
+        console.log('login res--', res);
+        if (res.status === 200) {
+          toast.success('User login successful')
+          Cookies.set('accessToken', res.data.access_token);
+          Cookies.set('refreshToken', res.data.refresh_token);
+          setTimeout(()=>{
+            router.push('/home');
+          },1000)
+        }
+        if (res.response.status === 400) {
+          setErrorMsg("email or password wrong!");
+        }
+      })
+      .catch((err) => {
+        console.log('err----', err);
+      });
+    // setSignInSteps(1);
+    // let notify = {type:"ERROR", message:"response error"}
+    // dispatch(setToastVisible())
+    // dispatch(showToast(notify))
   };
 
   return (
@@ -123,60 +169,101 @@ export default function SignIn({ SetFormStep }: SignIn) {
             </div>
           ) : (
             <>
-              <div className='flex flex-col gap-8'>
-                <SigninLoginOpt heading={'Login'} pageName={'signup'} />
+              <Formik
+                initialValues={initialValues}
+                validationSchema={validationSchema}
+                onSubmit={handleSubmit}
+              >
+                {({ errors, touched }) => (
+                  <Form>
+                    <div className='flex flex-col gap-8'>
+                      <SigninLoginOpt heading={'Login'} pageName={'signup'} />
 
-                <div className='flex flex-col gap-4'>
-                  <div className='flex gap-4'>
-                    <Image className='object-contain' src={vector1} alt={''} />
-                    <div className='font-normal text-[15px] leading-5 text-[#979797]'>
-                      Or
-                    </div>
-                    <Image className='object-contain' src={vector2} alt={''} />
-                  </div>
-                  <div className='flex flex-col gap-[6px]'>
-                    <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
-                      Email address
-                    </div>
-                    <input
-                      type='email'
-                      placeholder='example@gmail.com'
-                      className='font-normal flex rounded-[14px] border-none bg-transparent bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
-                      onChange={onEmailChange}
-                    />
-                  </div>
-                  <div className='flex flex-col gap-3'>
-                    <div className='flex flex-col gap-[6px]'>
-                      <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
-                        Password
+                      <div className='flex flex-col gap-4'>
+                        <div className='flex gap-4'>
+                          <Image
+                            className='object-contain'
+                            src={vector1}
+                            alt={''}
+                          />
+                          <div className='font-normal text-[15px] leading-5 text-[#979797]'>
+                            Or
+                          </div>
+                          <Image
+                            className='object-contain'
+                            src={vector2}
+                            alt={''}
+                          />
+                        </div>
+                        <div className='flex flex-col gap-[6px]'>
+                          <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
+                            Email address
+                          </div>
+                          <Field
+                            type='email'
+                            id='email'
+                            name='email'
+                            placeholder='example@gmail.com'
+                            className='font-normal flex rounded-[14px] border-none bg-transparent bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
+                            // onChange={onEmailChange}
+                          />
+                          <ErrorMessage
+                            className='font-normal Input-error text-[14px] leading-[18px] text-[#FF5336]'
+                            name='email'
+                            component='div'
+                          />
+                        </div>
+                        <div className='flex flex-col gap-3'>
+                          <div className='flex flex-col gap-[6px]'>
+                            <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
+                              Password
+                            </div>
+                            <Field
+                              type='password'
+                              placeholder='Password'
+                              name='password'
+                              id='password'
+                              // onChange={onPasswordChange}
+                              className='font-normal flex rounded-[14px] border-none bg-transparent bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
+                            />
+                            <ErrorMessage
+                              name='password'
+                              component='div'
+                              className='font-normal Input-error text-[14px] leading-[18px] text-[#FF5336]'
+                            />
+                          </div>
+                          <div className='font-normal text-[15px] leading-5 text-white'>
+                            Forgot your password?
+                          </div>
+                        </div>
                       </div>
-                      <input
-                        type='password'
-                        placeholder='Password'
-                        onChange={onPasswordChange}
-                        className='font-normal flex rounded-[14px] border-none bg-transparent bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
-                      />
-                    </div>
-                    <div className='font-normal text-[15px] leading-5 text-white'>
-                      Forgot your password?
-                    </div>
-                  </div>
-                </div>
-                <button
-                  onClick={loginHandler}
-                  className='font-bold flex items-center justify-center rounded-[16px] bg-[#5848BC] px-6 py-4 text-[18px] leading-6 text-white'
-                >
-                  Continue
-                </button>
-                {/* <button onClick={loginGoogleHandler} className='p-4 border-2'>
+                      <button
+                        // onClick={loginHandler}
+                        type='submit'
+                        className='font-bold flex items-center justify-center rounded-[16px] bg-[#5848BC] px-6 py-4 text-[18px] leading-6 text-white'
+                      >
+                        Continue
+                      </button>
+                      {/* <button onClick={loginGoogleHandler} className='p-4 border-2'>
               Google Login
             </button> */}
-              </div>
-              <p className='py-5 text-red-400'>{errorMsg}</p>
+                    </div>
+                    <p className='py-5 text-red-400'>{errorMsg}</p>
+                  </Form>
+                )}
+              </Formik>
             </>
           )}
         </div>
       </SigninTemplate>
+      {isVisible && <Toast />}
+      <ToastContainer
+        position='bottom-center'
+        pauseOnHover
+        theme='colored'
+        hideProgressBar={true}
+        autoClose={2000}
+      />
     </>
   );
 }
