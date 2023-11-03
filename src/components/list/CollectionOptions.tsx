@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import sarahScarlet from '../../../public/assets/sarahScarlet.png';
 import mirandal from '../../../public/assets/mirandalImg.png';
 import model2 from '../../../public/assets/gallery-tab-img.png';
@@ -11,41 +11,74 @@ import CollectionCard from './CollectionCard';
 import CollectionFilterContent from './CollectionFilterContent';
 import buttonPlusIcon from '../../../public/assets/plus-large.png';
 import CreateCollectionModal from './CreateCollectionModal';
-
+import Cookies from 'js-cookie';
+import jwt from 'jsonwebtoken';
+import { getAllCollections } from 'services/services';
 interface CollectionOptionsProps {
   setShowRealistic: any;
 }
-
-const CollectionOptions = ({setShowRealistic}:CollectionOptionsProps) => {
+const accessToken = Cookies.get('accessToken');
+const token = `${accessToken}`;
+const decodedToken = jwt.decode(token);
+const userId = decodedToken?.sub;
+const collectionImg = [model2, micaChan, mirandal, model2];
+const CollectionOptions = ({ setShowRealistic }: CollectionOptionsProps) => {
   const [createCollectionModal, setCreateCollectionModal] = useState(false);
   const [imageDropdownId, setImageDropdownId] = useState('');
   const [selectedCardId, setSelectedCardId] = useState('false');
-  const [filterByType , setFilterByType] = useState(false);
-  const [titleText , setTitleText] = useState("");
-  
-  const handleFilterContent = (e:any) => {
+  const [filterByType, setFilterByType] = useState(false);
+  const [titleText, setTitleText] = useState('');
+  const [allCollections, setAllCollections] = useState([]);
+  const [collectionUpdate, setCollectionUpdate] = useState(false)
+
+  const handleFilterContent = (e: any) => {
     setFilterByType(true);
     setTitleText(e.target.innerHTML);
-  }
+  };
+
+  useEffect(() => {
+    getAllCollections(userId, 1, 10)
+      .then((res: any) => {
+        console.log('all collection res--', res);
+        setAllCollections(res.data);
+      })
+      .catch((err) => {
+        console.log('all collection err---', err);
+      });
+  }, [collectionUpdate]);
   return (
     <>
-    
-      { filterByType === true ?
-      <CollectionFilterContent titleText={titleText} clearFilter={setFilterByType}/> :
-  <>
-      <div className='flex flex-col gap-6'>
-        <div className='flex flex-col gap-4'>
-          <div className='flex items-center justify-between'>
-            <div className='text-white text-[22px] font-bold leading-8'>All collections</div>
-            <button className='bg-[#5848BC] flex items-center justify-center gap-[6px] rounded-[12px] px-4 py-[10px]' onClick={() => {setCreateCollectionModal(true)}}>
-              <Image className='h-[18px] w-[18px]' src={buttonPlusIcon} alt={''} />
-              Create
-            </button>
-          </div>
-          <ListFilter />
-        </div>
-        <div className='grid grid-cols-3 gap-4'>
-          {/* <div className='flex flex-col items-center justify-center rounded-[16px] border border-white/[0.08] bg-[#121212]'>
+      {filterByType === true ? (
+        <CollectionFilterContent
+          titleText={titleText}
+          clearFilter={setFilterByType}
+        />
+      ) : (
+        <>
+          <div className='flex flex-col gap-6'>
+            <div className='flex flex-col gap-4'>
+              <div className='flex items-center justify-between'>
+                <div className='font-bold text-[22px] leading-8 text-white'>
+                  All collections
+                </div>
+                <button
+                  className='flex items-center justify-center gap-[6px] rounded-[12px] bg-[#5848BC] px-4 py-[10px]'
+                  onClick={() => {
+                    setCreateCollectionModal(true);
+                  }}
+                >
+                  <Image
+                    className='h-[18px] w-[18px]'
+                    src={buttonPlusIcon}
+                    alt={''}
+                  />
+                  Create
+                </button>
+              </div>
+              <ListFilter />
+            </div>
+            <div className='grid grid-cols-3 gap-4'>
+              {/* <div className='flex flex-col items-center justify-center rounded-[16px] border border-white/[0.08] bg-[#121212]'>
         <Image src={plusIcon} alt='' className='object-contain mb-4' />
         <div
           className='flex flex-col items-center justify-center cursor-pointer'
@@ -59,45 +92,50 @@ const CollectionOptions = ({setShowRealistic}:CollectionOptionsProps) => {
           </div>
         </div>
           </div> */}
-     
-     <CollectionCard
-        cardMainImg={model2}
-        characterName='Realistic'
-        cardImgClasses='relative !max-h-[308px]'
-        cardId='card-1'
-        getCardId={setImageDropdownId}
-        dropdownCardId={imageDropdownId} 
-        filterFunction={(e : any) => handleFilterContent(e)}
-        setShowRealistic={setShowRealistic}
-      />
+              {allCollections?.map((e, i) => {
+                console.log(e)
+                return (
+                  <CollectionCard
+                    cardMainImg={collectionImg[i]}
+                    characterName={e.collection_name}
+                    cardImgClasses='relative !max-h-[308px]'
+                    cardId='card-1'
+                    getCardId={setImageDropdownId}
+                    dropdownCardId={imageDropdownId}
+                    filterFunction={(e: any) => handleFilterContent(e)}
+                    setShowRealistic={setShowRealistic}
+                    key={i}
+                  />
+                );
+              })}
 
-      <CollectionCard
-        cardMainImg={micaChan}
-        characterName='Catgirls'
-        cardImgClasses='relative !max-h-[308px]'
-        cardId='card-2'
-        getCardId={setImageDropdownId}
-        dropdownCardId={imageDropdownId}
-        filterFunction={(e : any) => handleFilterContent(e)}
-        setShowRealistic={setShowRealistic}
-      />
-         
-      <CollectionCard
-        cardMainImg={mirandal}
-        characterName='Realistic'
-        cardImgClasses='relative !max-h-[308px]'
-        cardId='card-3'
-        getCardId={setImageDropdownId}
-        dropdownCardId={imageDropdownId}
-        filterFunction={(e : any) => handleFilterContent(e)}
-        setShowRealistic={setShowRealistic}
-      />
-      </div>
-      </div>
-  </>
-    }
+              {/* <CollectionCard
+                cardMainImg={micaChan}
+                characterName='Catgirls'
+                cardImgClasses='relative !max-h-[308px]'
+                cardId='card-2'
+                getCardId={setImageDropdownId}
+                dropdownCardId={imageDropdownId}
+                filterFunction={(e: any) => handleFilterContent(e)}
+                setShowRealistic={setShowRealistic}
+              />
+
+              <CollectionCard
+                cardMainImg={mirandal}
+                characterName='Realistic'
+                cardImgClasses='relative !max-h-[308px]'
+                cardId='card-3'
+                getCardId={setImageDropdownId}
+                dropdownCardId={imageDropdownId}
+                filterFunction={(e: any) => handleFilterContent(e)}
+                setShowRealistic={setShowRealistic}
+              /> */}
+            </div>
+          </div>
+        </>
+      )}
       {createCollectionModal && (
-        <CreateCollectionModal closeModalItem={setCreateCollectionModal} />
+        <CreateCollectionModal closeModalItem={setCreateCollectionModal} collectionUpdate={collectionUpdate} setCollectionUpdate={setCollectionUpdate} />
       )}
     </>
   );

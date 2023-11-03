@@ -16,13 +16,12 @@ export const postApi = async (url: string, data: any) => {
   }
 }
 
-export const postApiWithToken = async (url: string, data: any, token: string | null, multipart?: boolean) => {
+export const postWithParams = async (url: string) => {
   try {
     let apiUrl = `${config.serverURL}${url}`
-    const response = await axios.post(apiUrl, data, {
+    const response = await axios.post(apiUrl, {
       headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": multipart ? "multipart/form-data" : "application/json",
+      "Content-Type": "application/json",
         accept: "application/json",
       },
     })
@@ -46,6 +45,7 @@ export const getApi = async (url: string) => {
     return error
   }
 }
+
 
 export const getApiWithToken = async (url: string, token: string | null) => {
   try {
