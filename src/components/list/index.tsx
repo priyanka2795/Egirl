@@ -12,7 +12,6 @@ import userCheck from '../../../public/assets/user-check (1).png';
 import bookmark from '../../../public/assets/bookmark (2).png';
 import folderImage from '../../../public/assets/folder-image.png';
 import RealisticPage from './RealisticPage';
-
 const ListIndex = () => {
   const [activeListTab, setActiveListTab] = useState('Subscriptions');
   const tabContent = ['Subscriptions', 'Following', 'Bookmarks', 'Collections'];

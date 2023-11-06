@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { Database } from '../../../types/database';
 import { useRouter } from 'next/router';
@@ -14,6 +14,8 @@ import SigninLoginOpt from './SigninLoginOpt';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { userSignUp } from 'services/services';
 import Cookies from 'js-cookie';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // const validationSchema = Yup.object({
 //   username: Yup.string().required('Please Enter a username'),
@@ -43,7 +45,9 @@ const validationSchema = Yup.object().shape({
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
       'Password must meet criteria'
     ),
-    phoneNumber: Yup.number().required('Phone number is required').test(
+  phoneNumber: Yup.number()
+    .required('Phone number is required')
+    .test(
       'is-ten-digits',
       'Phone number must be exactly 10 digits',
       (value) => String(value).length === 10
@@ -59,6 +63,7 @@ const initialValues = {
 export default function SignUp() {
   const router = useRouter();
   const supabase = useSupabaseClient<Database>();
+
   const [password, setPassword] = useState('');
   const [isMinLength, setIsMinLength] = useState<boolean>(false);
   const [hasNumberOrSpecialChar, setHasNumberOrSpecialChar] =
@@ -86,21 +91,32 @@ export default function SignUp() {
   };
 
   const handleSubmit = (values: any) => {
+    setErrorMsg('');
     // You can handle the form data submission here
-    let data = { 
-      username:values.username, 
-      email:values.email, 
-      password:values.password, 
-      phone:values.phoneNumber
-    }
-    userSignUp(data).then((res:any)=>{
-      console.log("sign up res---", res)
-      Cookies.set('accessToken', res.data.access_token)
-      Cookies.set('refreshToken', res.data.refresh_token)
-    })
-    .catch((err)=>{
-      console.log("sign up err---", err)
-    })
+    let data = {
+      username: values.username,
+      email: values.email,
+      password: values.password,
+      phone: values.phoneNumber
+    };
+    userSignUp(data)
+      .then((res: any) => {
+        console.log('sign up res---', res);
+        if (res.status === 200) {
+          Cookies.set('accessToken', res.data.access_token);
+          Cookies.set('refreshToken', res.data.refresh_token);
+          toast.success('User login successful')
+          setTimeout(()=>{
+            router.push('/home');
+          },1000)
+        }
+        if (res.response.status === 400) {
+          setErrorMsg(res.response.data.detail);
+        }
+      })
+      .catch((err) => {
+        console.log('sign up err---', err);
+      });
   };
 
   return (
@@ -258,8 +274,6 @@ export default function SignUp() {
                         </ul>
                       </div>
                     </div>
-
-                    
                   </div>
                 </div>
 
@@ -270,6 +284,9 @@ export default function SignUp() {
                   >
                     Continue
                   </button>
+                  <p className='font-normal Input-error ml-2 mt-5 text-[14px] leading-[1px] text-[#FF5336]'>
+                    {errorMsg}
+                  </p>
                 </div>
               </div>
             </Form>
@@ -283,7 +300,13 @@ export default function SignUp() {
           setWelcomeStepsModal={setWelcomeStepsModal}
         />
       )} */}
+      <ToastContainer
+        position='bottom-center'
+        pauseOnHover
+        theme='colored'
+        hideProgressBar={true}
+        autoClose={2000}
+      />
     </>
   );
 }
-
