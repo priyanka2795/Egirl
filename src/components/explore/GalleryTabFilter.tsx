@@ -14,6 +14,7 @@ import SearchIcon from './svg/search.svg';
 import FilterIcon from './svg/filter.svg';
 import GalleryFilterCheckbox from './GalleryFilterCheckbox';
 import GalleryCardCollection from './GalleryCardCollection';
+import { exploreGallery } from 'services/services';
 
 const galleryArray = [
   {
@@ -66,13 +67,17 @@ const galleryArray = [
 interface GalleryTabFilterProps {
   singleProfileState: boolean;
   setSingleProfileState: React.Dispatch<React.SetStateAction<boolean>>;
+  userId : string
 }
 const GalleryTabFilter = ({
   singleProfileState,
-  setSingleProfileState
+  setSingleProfileState,
+  userId
 }: GalleryTabFilterProps) => {
+ 
   const [selectedFilter, setSelectedFilter] = useState('All');
   const [filterForm, setFilterForm] = useState(false);
+  const [galleryData , setGalleryData] = useState<any>() 
 
   if (selectedFilter === undefined || selectedFilter.length < 1) {
     setSelectedFilter('All');
@@ -80,6 +85,18 @@ const GalleryTabFilter = ({
   const handleSelectedFilter = (item: string) => {
     setSelectedFilter(item);
   };
+
+
+  useEffect(()=>{
+    exploreGallery(userId , 1)
+    .then((res:any)=>{
+      setGalleryData(res)
+      console.log(res , "exploreGallaryRes????");
+    })
+    .catch((err)=>{
+      console.log(err , "exploreError????");
+    })
+  },[])
 
   const settings = {
     dots: true,

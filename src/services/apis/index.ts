@@ -47,6 +47,7 @@ export const getApi = async (url: string) => {
 }
 
 
+
 export const getApiWithToken = async (url: string, token: string | null) => {
   try {
     let apiUrl = `${config.serverURL}${url}`
@@ -63,8 +64,9 @@ export const getApiWithToken = async (url: string, token: string | null) => {
   }
 }
 
-export const putApiWithToken = async (url: string, data: any, token: string | null, multipart?: boolean) => {
-  try {
+export const putApiWithToken = async(url:string, data:any, token:string|null, multipart?: boolean)=>{
+  try{
+
     let apiUrl = `${config.serverURL}${url}`
     const response = await axios.put(apiUrl, data, {
       headers: {
@@ -78,7 +80,6 @@ export const putApiWithToken = async (url: string, data: any, token: string | nu
     return error
   }
 }
-
 export const deleteApi = async (url: any, token: String | null) => {
   try {
     let apiUrl = `${config.serverURL}${url}`

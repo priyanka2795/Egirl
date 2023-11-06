@@ -4,6 +4,7 @@ import discordIcon from '../../../public/assets/discord-icon.png';
 import facebookIcon from '../../../public/assets/facebook-icon.png';
 import Image from 'next/image';
 import Link from 'next/link';
+import { discordCallback, discordLogin } from 'services/services';
 
 const login = [
   {
@@ -25,6 +26,26 @@ interface SignInLoginOptProp {
   pageName: string;
 }
 const SigninLoginOpt = ({ heading, pageName }: SignInLoginOptProp) => {
+  const handleDiscordLogin = (index: number) => {
+    if (index === 1) {
+      discordLogin()
+        .then((res: any) => {
+          console.log('discord????--', res);
+          if (res.status === 307) {
+            const redirectedURL = res.headers.get('Location');
+            console.log('Redirected URL:', redirectedURL);
+            window.location.href = redirectedURL; 
+          } else {
+            console.log("reError????");
+          }
+        })
+        .catch((err) => {
+          console.log('discord????error--', err);
+        });
+
+    }
+  };
+
   return (
     <>
       <div className='font-bold text-[32px] leading-10 text-white'>
@@ -35,7 +56,10 @@ const SigninLoginOpt = ({ heading, pageName }: SignInLoginOptProp) => {
           {login.map((item, index) => {
             return (
               <div key={index}>
-                <button className='flex w-full items-center justify-center gap-[10px] rounded-[16px] border border-white/[0.16] px-3 pb-[13px] pt-[11px]'>
+                <button
+                  onClick={() => handleDiscordLogin(index)}
+                  className='flex w-full items-center justify-center gap-[10px] rounded-[16px] border border-white/[0.16] px-3 pb-[13px] pt-[11px]'
+                >
                   <Image src={item.icon} alt={''} />
                   <div className='font-normal text-[15px] leading-5'>
                     {item.text}
