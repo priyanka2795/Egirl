@@ -1,17 +1,29 @@
 import { Button } from '@components/common/SmallCompoents/Button'
 import Image from 'next/image'
-import React ,{useState} from 'react'
+import React ,{useState ,useRef} from 'react'
 import AvatarEditor from 'react-avatar-editor'
 import PlusIcon from '../../../public/assets/svgImages/plus-large-icon.svg';
 import MinusIcon from '../../../public/assets/svgImages/minus-icon.svg';
 import RangePicker from '@components/creator-studio/common/RangePicker'
 import { Header } from '@components/common/SmallCompoents/Header';
+import uploadImage from '../../../public/assets/uploadimage.png'
 
 interface editThumbnailProp{
     setUpdateProfileThumbnail:  React.Dispatch<React.SetStateAction<boolean>>
 }
 const EditProfileThumbnail = ({setUpdateProfileThumbnail}:editThumbnailProp) => {
-    const [values, setValues] = useState<number[]>([1]);
+  const [values, setValues] = useState<number[]>([1]);
+  const [src, setSrc] = useState(`${uploadImage}`);
+  const [croppedImage, setCroppedImage] = useState<string | null>(null);
+  const cropRef = useRef<AvatarEditor | null>(null);
+  
+    const handleSave = () => {
+      if (cropRef.current) {
+        const dataUrl = cropRef.current.getImage().toDataURL();
+        setCroppedImage(dataUrl);
+      }
+    };
+    
   return (
     <div className='relative flex w-full flex-col items-start rounded-[20px] bg-backgroundsdark-100 shadow-4-0dp'>
         <Header
@@ -28,7 +40,16 @@ const EditProfileThumbnail = ({setUpdateProfileThumbnail}:editThumbnailProp) => 
           <div className='relative h-[240px] w-[243px] self-stretch bg-backgroundsdark-200'>
             <div className={`absolute left-[0px] top-0 flex w-full flex-col items-center justify-center bg-cover bg-[50%_50%]`}>
               <AvatarEditor   
-                image='https://img.youtube.com/vi/IUN664s7N-c/maxresdefault.jpg'
+                // image='https://img.youtube.com/vi/IUN664s7N-c/maxresdefault.jpg'
+                // width={242}
+                // height={240}
+                // border={0}
+                // borderRadius={150}
+                // color={[0, 0, 0, 0.8]} // RGBA
+                // scale={values}
+                // rotate={0}
+
+                image={src} // Use the source image you want to crop
                 width={242}
                 height={240}
                 border={0}
@@ -36,10 +57,19 @@ const EditProfileThumbnail = ({setUpdateProfileThumbnail}:editThumbnailProp) => 
                 color={[0, 0, 0, 0.8]} // RGBA
                 scale={values}
                 rotate={0}
+                ref={cropRef}
               />
              </div>
         
             </div>
+            {/* {croppedImage && (
+  <img
+    src={croppedImage}
+    alt="Cropped Thumbnail"
+    style={{ width: '100%', height: 'auto' }}
+  />
+)} */}
+
            
           </div>
           <div className='relative flex w-[436px] flex-[0_0_auto] flex-col items-start'>
@@ -63,17 +93,17 @@ const EditProfileThumbnail = ({setUpdateProfileThumbnail}:editThumbnailProp) => 
            <div className='flex flex-1 grow' onClick={() => setUpdateProfileThumbnail(false)}>
            <Button
               class1='outlined'
-              className='cursor-pointer flex flex-1 grow' 
+              className='flex flex-1 cursor-pointer grow' 
               size='medium'
               state='default'
               text1='Cancel'
               type='secondary'
             />
            </div>
-            <div className='flex flex-1 grow' onClick={() => setUpdateProfileThumbnail(false)}>
+            <div className='flex flex-1 grow' onClick={() => {setUpdateProfileThumbnail(false) , handleSave()}}>
             <Button
               class1='solid'
-              className='cursor-pointer flex flex-1 grow'
+              className='flex flex-1 cursor-pointer grow'
               size='medium'
               state='default'
               text1='Save'

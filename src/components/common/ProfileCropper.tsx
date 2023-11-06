@@ -1,11 +1,12 @@
 import RangePicker from '@components/creator-studio/common/RangePicker';
-import React, { SetStateAction, useState } from 'react';
+import React, { SetStateAction, useState, useRef } from 'react';
 import AvatarEditor from 'react-avatar-editor';
 import PlusIcon from '../../../public/assets/svgImages/plus-large-icon.svg';
 import MinusIcon from '../../../public/assets/svgImages/minus-icon.svg';
 import RotateLeftIcon from '../../../public/assets/image-rotate-left.png';
 import RotateRightIcon from '../../../public/assets/image-rotate-right.png';
 import TooltipArrow from '../../../public/assets/svgImages/tooltiparrow.svg';
+import ImageUploaded from '../../../public/assets/uploadimage.png';
 import { Header } from './SmallCompoents/Header';
 import { Tooltip } from './SmallCompoents/Tooltip';
 import { Button } from './SmallCompoents/Button';
@@ -16,11 +17,25 @@ interface profileInterface{
 }
 
 const ProfileCropper = ({setUpdateProfileImg}:profileInterface) => {
+
+  // const [src, setSrc] = useState('https://img.youtube.com/vi/IUN664s7N-c/maxresdefault.jpg');
+  const [src, setSrc] = useState('../../../public/assets/uploadimage.png');
   const [values, setValues] = useState<number[]>([1]);
   const [rotate , setRotate] = useState<number>(0);
+  const [croppedImage, setCroppedImage] = useState<string | null>(null);
+  const cropRef = useRef<AvatarEditor | null>(null);
+
   if (values < [1.0]) {
     setValues([1.0]);
   }
+
+  const handleSave = () => {
+    if (cropRef.current) {
+      const dataUrl = cropRef.current.getImage().toDataURL();
+      setCroppedImage(dataUrl);
+    }
+  };
+
 
   return (
     <>
@@ -39,14 +54,15 @@ const ProfileCropper = ({setUpdateProfileImg}:profileInterface) => {
           <div className='relative h-[240px] w-full self-stretch bg-backgroundsdark-200'>
             <div className={`rotate-[${rotate}deg] absolute left-[0px] top-0 flex w-full flex-col items-center justify-center bg-cover bg-[50%_50%]`}>
               <AvatarEditor
-                image='https://img.youtube.com/vi/IUN664s7N-c/maxresdefault.jpg'
-                width={242}
-                height={240}
-                border={0}
-                borderRadius={150}
-                color={[0, 0, 0, 0.8]} // RGBA
-                scale={values}
-                rotate={0}
+                image={'https://img.youtube.com/vi/IUN664s7N-c/maxresdefault.jpg'}
+  width={242}
+  height={240}
+  border={0}
+  borderRadius={150}
+  color={[0, 0, 0, 0.8]} // RGBA
+  scale={values}
+  rotate={0}
+  ref={cropRef}
               />
              </div>
             <div className='absolute left-[354px] top-[192px] inline-flex items-start gap-[4px] rounded-[8px] bg-black-alfa48 px-[12px] py-[10px]'>
@@ -110,21 +126,32 @@ const ProfileCropper = ({setUpdateProfileImg}:profileInterface) => {
               <PlusIcon className='cursor-pointer relative w-[24px] text-[#979797]'/>
             </div>
           </div>
+
+          {/* {croppedImage && (
+  <img
+    src={croppedImage}
+    alt="Cropped Thumbnail"
+    style={{ width: '100%', height: 'auto' }}
+  />
+)} */}
+
           <div className='relative flex w-full flex-[0_0_auto] items-start gap-[12px] self-stretch'>
            <div className='flex flex-1 grow' onClick={() => setUpdateProfileImg(false)}>
            <Button
               class1='outlined'
-              className='cursor-pointer flex flex-1 grow' 
+              className='flex flex-1 cursor-pointer grow' 
               size='medium'
               state='default'
               text1='Cancel'
               type='secondary'
             />
            </div>
-            <div className='flex flex-1 grow' onClick={() => setUpdateProfileImg(false)}>
+            <div className='flex flex-1 grow' onClick={() => {
+              // setUpdateProfileImg(false),
+              handleSave()}}>
             <Button
               class1='solid'
-              className='cursor-pointer flex flex-1 grow'
+              className='flex flex-1 cursor-pointer grow'
               size='medium'
               state='default'
               text1='Save'
