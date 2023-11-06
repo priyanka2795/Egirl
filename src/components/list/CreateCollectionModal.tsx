@@ -35,7 +35,6 @@ const CreateCollectionModal = ({ closeModalItem ,collectionUpdate, setCollection
     .catch((err)=>{
       console.log("create collection err----",err)
     })
-    
   }
   
   return (
