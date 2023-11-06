@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CardSlider from './CardSlider';
 import ExploreTabs from './ExploreTabs';
 import Slider from 'react-slick';
@@ -24,6 +24,9 @@ import TinderCard from './TinderCardSlider';
 import TinderCardSlider from './TinderCardSlider';
 import CardStack from './CardStack';
 import Banner from '@components/list/Banner';
+import Cookies from 'js-cookie';
+import jwt from 'jsonwebtoken';
+import { exploreSwipe } from 'services/services';
 
 const settings = {
   dots: true,
@@ -62,10 +65,26 @@ const exploreOptions = [
 ];
 
 const ExploreIndex = () => {
+  const accessToken = Cookies.get('accessToken');
+  const token = `${accessToken}`;
+  const decodedToken = jwt.decode(token);
+  const userId : any = decodedToken?.sub
   const [filterOptionShow, setFilterOptionShow] = useState(true);
   const [exploreSelectedTab, setExploreSelected] = useState('Swipe');
   const [defaultModal, setDefaultModal] = useState(false);
   const [singleProfileState, setSingleProfileState] = useState(false);
+  const [swipeData , setSwipeData] = useState<any>()
+
+  useEffect(()=>{
+    exploreSwipe(userId , 1)
+    .then((res:any)=>{
+      setSwipeData(res)
+      console.log(res , "exploreSwiperes????");
+    })
+    .catch((err)=>{
+      console.log(err , "exploreSwipeErr????");
+    })
+  },[])
 
   return (
     <>
@@ -125,6 +144,7 @@ const ExploreIndex = () => {
               <GalleryTabFilter
                 singleProfileState={singleProfileState}
                 setSingleProfileState={setSingleProfileState}
+                userId={userId}
               />
             </div>
           )}

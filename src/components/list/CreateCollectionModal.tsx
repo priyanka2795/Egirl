@@ -15,7 +15,7 @@ const CreateCollectionModal = ({ closeModalItem ,collectionUpdate, setCollection
   const token = `${accessToken}`;
   const decodedToken = jwt.decode(token);
   const userId = decodedToken?.sub
-  // console.log(decodedToken?.sub);
+  console.log(decodedToken?.sub);
   const [listName, setListName] = useState('')
   const [listNameErr, setListNameErr] = useState('')
   
@@ -35,7 +35,6 @@ const CreateCollectionModal = ({ closeModalItem ,collectionUpdate, setCollection
     .catch((err)=>{
       console.log("create collection err----",err)
     })
-    
   }
   
   return (

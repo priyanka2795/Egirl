@@ -57,7 +57,7 @@ const CollectionCard = ({
         ) :  null}
       </div>
       <div className='flex items-start w-full cursor-pointer'>     
-          <div className='w-full gap-1 gap-2 p-4 text-sm font-semibold text-white ' onClick={(e) => filterFunction(e)}>
+          <div className='w-full gap-2 p-4 text-sm font-semibold text-white ' onClick={(e) => filterFunction(e)}>
             {characterName}
           </div>        
       </div>
