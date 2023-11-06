@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Image from 'next/image';
 import deleteIcon from '../../../public/assets/trash-blank-alt2.png';
 import arrowDown from '../../../public/assets/arrow-down.png';
@@ -10,6 +10,9 @@ import bookmarkImg3 from '../../../public/assets/bookmarks-grid-img-3.png';
 import bookmarkImg4 from '../../../public/assets/bookmarks-grid-img-4.png';
 import BookMarkModal from './BookMarkModal';
 import ClearBookMarkModal from './ClearBookMarkModal';
+import Cookies from 'js-cookie';
+import jwt from 'jsonwebtoken';
+import { getBookMarked } from 'services/services';
 
 const userFrame = [
   {
@@ -77,12 +80,28 @@ const userFrame = [
   }
 ];
 const BookMarks = () => {
+  const accessToken = Cookies.get('accessToken');
+  const token = `${accessToken}`;
+  const decodedToken = jwt.decode(token);
+  const userId = decodedToken?.sub
   const [profileModalState, setProfileModalState] = useState(false);
   const [deleteBookmarkState, setDeleteBookmarkState] = useState(false);
+  const [bookMarkedData, setBookMarkedData] = useState([])
+
+  useEffect(()=>{
+    getBookMarked(userId,1,10)
+    .then((res:any)=>{
+      console.log("bookmarked data res---", res)
+      setBookMarkedData(res.data)
+    })
+    .catch((err)=>{
+      console.log("bookmarked err---", err)
+    })
+  },[])
   return (
     <>
       <div className='flex flex-col gap-6'>
-        <div className='flex w-full justify-between'>
+        <div className='flex justify-between w-full'>
           <div className='font-bold text-[18px] leading-6 text-[#FFFFFF]'>
             All bookmarks
           </div>
@@ -110,14 +129,15 @@ const BookMarks = () => {
           </div>
         </div>
         <div className='grid w-full grid-cols-3 gap-4'>
-          {userFrame.map((item) => {
+          {userFrame.map((item,index) => {
             return (
-              <>
+              
                 <div
                   className='group relative max-h-[308px] max-w-[308px] cursor-pointer'
                   onClick={() => setProfileModalState(true)}
+                  key={index}
                 >
-                  <div className='list-bookmark-container flex h-full w-full'>
+                  <div className='flex w-full h-full list-bookmark-container'>
                     <Image
                       className='list-bookmark-img rounded-[14px]'
                       src={item.image}
@@ -125,7 +145,7 @@ const BookMarks = () => {
                     />
                   </div>
                   <div className='bookmark-img-onhover absolute left-0 top-0 h-full w-full bg-[#000]/50 p-4 opacity-0 group-hover:opacity-100'>
-                    <div className='relative flex h-full w-full flex-col justify-between '>
+                    <div className='relative flex flex-col justify-between w-full h-full '>
                       <div className='absolute right-[8px] top-[8px] flex w-[19px] flex-col items-end'>
                         <Image
                           className='h-[20px] w-[20px]'
@@ -133,10 +153,10 @@ const BookMarks = () => {
                           alt={''}
                         />
                       </div>
-                      <div className='flex h-full w-full items-end gap-3'>
+                      <div className='flex items-end w-full h-full gap-3'>
                         <div className='h-[40px] w-[40px]'>
                           <Image
-                            className='h-full w-full'
+                            className='w-full h-full'
                             src={item.avatar}
                             alt={''}
                           />
@@ -153,7 +173,7 @@ const BookMarks = () => {
                     </div>
                   </div>
                 </div>
-              </>
+              
             );
           })}
         </div>

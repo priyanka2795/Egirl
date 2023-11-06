@@ -1,20 +1,30 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+interface ToastState {
+  isVisible: boolean;
+  notification: {
+    type: string;
+    message: string;
+  };
+}
+
+const initialState: ToastState = {
+  isVisible: false,
+  notification: { type: "", message: "" },
+};
 
 const toastSlice = createSlice({
   name: "toast",
-  initialState: {
-    isVisible: false,
-    notification:{type:"", message: ""}
-  },
+  initialState,
   reducers: {
-    showToast(state, action) {
+    showToast(state, action: PayloadAction<{ type: string; message: string }>) {
       state.notification = action.payload;
     },
-    setToastVisible(state){
-        state.isVisible = true;
-    }
+    setToastVisible(state) {
+      state.isVisible = true;
+    },
   },
 });
 
-export const {showToast,setToastVisible} = toastSlice.actions;
-export default toastSlice.reducer
+export const { showToast, setToastVisible } = toastSlice.actions;
+export default toastSlice.reducer;
