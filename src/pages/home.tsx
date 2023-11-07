@@ -12,11 +12,11 @@ export default function Home({ user }: { user: User }) {
   const supabase = useSupabaseClient<Database>();
   const accessToken = Cookies.get("accessToken")
   const refreshToken = Cookies.get("refreshToken")
-useEffect(()=>{
-  if(!accessToken ||!refreshToken){
-    router.push('/auth/signin')
-  }
-},[accessToken,refreshToken])
+// useEffect(()=>{
+//   if(!accessToken){
+//     router.push('/auth/signin')
+//   }
+// },[accessToken])
 
 return (
     <>

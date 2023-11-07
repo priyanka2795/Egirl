@@ -6,11 +6,17 @@ interface Feed {
   bookmarksActive: boolean;
   BookmarksActive: () => void;
   handleShare: () => void;
+  forYouData?: any;
+  postUpdate:boolean,
+  setPostUpdate:any
 }
 export default function Feed({
   bookmarksActive,
   BookmarksActive,
-  handleShare
+  handleShare,
+  forYouData,
+  postUpdate,
+  setPostUpdate
 }: Feed) {
   const [showForYou, setShowForYou] = useState(true);
   const [sticky, animate] = useScroll();
@@ -62,42 +68,34 @@ export default function Feed({
           .map((_, i) => (
             <p key={i}>Main content line {i + 1}</p>
           ))} */}
-        <Post
-          imageUrl='https://media.istockphoto.com/id/638756792/photo/beautiful-woman-posing-against-dark-background.jpg?s=612x612&w=0&k=20&c=AanwEr0pmrS-zhkVJEgAwxHKwnx14ywNh5dmzwbpyLk='
-          altText='Character Profile Picture'
-          name='Mika-chan'
-          username='@mikachan'
-          postText='Hello dears, my mood today is 🤗'
-          commentsNumber='98'
-          heartsNumber='6.2k'
-          viewsNumber='1.8k'
-          tags={['#girl', '#mood', '#relaxtime']}
-          location='Warsaw, Old Town'
-          hours='6h'
-          bookmarksActive={bookmarksActive}
-          BookmarksActive={BookmarksActive}
-          handleShare={handleShare}
-        />
-
-        <div className='mt-5'>
-          <Post
-            imageUrl='https://media.istockphoto.com/id/638756792/photo/beautiful-woman-posing-against-dark-background.jpg?s=612x612&w=0&k=20&c=AanwEr0pmrS-zhkVJEgAwxHKwnx14ywNh5dmzwbpyLk='
-            altText='Character Profile Picture'
-            name='Mika-chan'
-            username='@mikachan'
-            postText='Hello dears, my mood today is 🤗'
-            commentsNumber='98'
-            heartsNumber='6.2k'
-            viewsNumber='1.8k'
-            tags={['#girl', '#mood', '#relaxtime']}
-            location='Warsaw, Old Town'
-            hours='6h'
-            bookmarksActive={bookmarksActive}
-            BookmarksActive={BookmarksActive}
-            handleShare={handleShare}
-          />
-        </div>
+        {forYouData?.map((ele: any, index: number) => {
+          return (
+           <div className='mb-5' key={index}>
+             <Post
+              imageUrl={ele.character_image_url}
+              altText='Character Profile Picture'
+              name={ele.character_name}
+              username={`@${ele.character_username}`}
+              postText={ele.description}
+              commentsNumber={ele.comments_count}
+              heartsNumber={ele.likes_count}
+              viewsNumber='1.8k'
+              tags={['#girl', '#mood', '#relaxtime']}
+              location={ele.character_location}
+              hours='6h'
+              bookmarksActive={ele.is_bookmarked}
+              BookmarksActive={BookmarksActive}
+              handleShare={handleShare}
+              postId={ele.id}
+              postUpdate = {postUpdate}
+              setPostUpdate={setPostUpdate}
+            />
+           </div>
+          );
+        })}
       </div>
     </div>
   );
 }
+
+// 'https://media.istockphoto.com/id/638756792/photo/beautiful-woman-posing-against-dark-background.jpg?s=612x612&w=0&k=20&c=AanwEr0pmrS-zhkVJEgAwxHKwnx14ywNh5dmzwbpyLk='

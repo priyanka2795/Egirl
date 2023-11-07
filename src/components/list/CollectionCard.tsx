@@ -15,6 +15,7 @@ interface CollectionCardProps {
   filterFunction?: any;
   subscription?: string;
   setShowRealistic: any;
+  collectionId?:number
 }
 const CollectionCard = ({
   cardMainImg,
@@ -24,7 +25,8 @@ const CollectionCard = ({
   dropdownCardId,
   cardId,
   filterFunction,
-  setShowRealistic
+  setShowRealistic,
+  collectionId
 }: CollectionCardProps) => {   
   const [filterByType , setFilterByType] = useState(false);
   let filterTitle = "";
@@ -52,7 +54,7 @@ const CollectionCard = ({
         )}
         {dropdownCardId === cardId ? (
           <>
-            <CardDropdown closeDropdown={getCardId} />
+            <CardDropdown closeDropdown={getCardId} collectionId={collectionId} />
           </>
         ) :  null}
       </div>

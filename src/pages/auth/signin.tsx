@@ -105,7 +105,7 @@ export default function SignIn({ SetFormStep }: SignIn) {
             router.push('/home');
           },1000)
         }
-        if (res.response.status === 400) {
+        if (res.response?.status === 400) {
           setErrorMsg("email or password wrong!");
         }
       })

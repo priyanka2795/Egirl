@@ -9,8 +9,9 @@ import NewCollectionModal from './NewCollectionModal';
 
 interface cardDropdownProp{
   closeDropdown?: any;
+  collectionId?:number
 }
-const CardDropdown = ({closeDropdown}:cardDropdownProp) => {
+const CardDropdown = ({closeDropdown, collectionId}:cardDropdownProp) => {
     // const [editCollectionState, setEditCollectionState] = useState(false)
     const [newCollectionModal, setNewCollectionModal] = useState(false)
     const [deleteCollectionState , setDeleteCollectionState] = useState(false)
@@ -58,7 +59,7 @@ const CardDropdown = ({closeDropdown}:cardDropdownProp) => {
     <DeleteCollection closeDeleteModal={setDeleteCollectionState} closeDropdown={closeDropdown}/>
   }
   {addCollectionState &&
-    <CollectionCoverModal closeAddCollectionModal={setAddCollectionState} closeDropdown={closeDropdown}/>
+    <CollectionCoverModal closeAddCollectionModal={setAddCollectionState} closeDropdown={closeDropdown} collectionId={collectionId} />
   }
   </>
   )

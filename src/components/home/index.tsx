@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import Sidebar from '../common/Sidebar';
 import Feed from './Feed';
 import Widgets from './Widgets';
@@ -9,6 +9,10 @@ import Image from 'next/image';
 import Image1 from '../../../public/assets/messages/grid-img-15.png';
 import Image2 from '../../../public/assets/messages/grid-img-2.png';
 import Image3 from '../../../public/assets/messages/grid-img-1.png';
+import { forYouPost, getPostSubscription } from 'services/services';
+import Cookies from 'js-cookie';
+import { useAppDispatch, useAppSelector } from 'redux/hooks';
+import { tokenRefresh } from 'redux/api/RefreshTokenApi';
 
 const SearchData = [
   {
@@ -28,11 +32,17 @@ const SearchData = [
   }
 ];
 const Home = () => {
+  const token:any = Cookies.get("accessToken")
+ const dispatch = useAppDispatch()
+  console.log("token---",token)
+
   const [showForYou, setShowForYou] = useState(true);
   const [sticky, animate] = useScroll();
   const [bookmarksActive, setBookmarksActive] = useState<boolean>(false);
   const [toasts, setToasts] = useState(false);
   const [copyLink, setCopyLink] = useState(false);
+  const [forYouData, setForYouData] = useState([])
+  const [postUpdate, setPostUpdate] = useState(false)
   const handleFeedSwitch = (feedType: string) => {
     if (feedType === 'forYou' && !showForYou) {
       setShowForYou(true);
@@ -79,6 +89,47 @@ const Home = () => {
     setShowUser(filteredItems);
   };
 
+  useEffect(()=>{
+    forYouPost(1,10, token)
+    .then((res:any)=>{
+      console.log("forYou res---", res)
+      setForYouData(res?.data)
+      
+      if(res?.response?.status === 401){
+        dispatch(tokenRefresh())
+      }
+    })
+    .catch((err:any)=>{
+      console.log("forYou err---", err)
+    })
+
+    getPostSubscription(1, token)
+    .then((res:any)=>{
+      console.log("post subscription res---", res)
+    })
+    .catch((err:any)=>{
+      console.log("post subscription err---", err)
+    })
+  },[postUpdate])
+
+  
+  const formatTimestamp = (timestamp:any) => {
+    const currentDate:any = new Date();
+    const apiDate = Date.parse("2023-11-06T19:58:57.689637+00:00");
+    const diff = Math.abs(currentDate - apiDate);
+
+    const minutes = Math.floor(diff / 60000); 
+    const hours = Math.floor(minutes / 60); 
+    const days = Math.floor(hours / 24); 
+    if (days > 0) {
+      return `${days}d`;
+    }else if (hours > 0) {
+      return `${hours}h`;
+    } else {
+      return `${minutes}m`;
+    }
+  };
+  // console.log(formatTimestamp("2023-11-06T19:58:57.689637+00:00"))
   return (
     <>
       {/*  max-w-[1650px] */}
@@ -115,7 +166,7 @@ const Home = () => {
 
             <div className='relative mr-2 w-full max-w-[370px] '>
               <div className='flex h-[64px] items-center justify-between rounded-r-[14px] bg-main-bar'>
-                <div className='group relative mr-2 w-full'>
+                <div className='relative w-full mr-2 group'>
                   <div className='absolute left-4 top-3'>
                     <SearchIcon />
                   </div>
@@ -177,6 +228,9 @@ const Home = () => {
             bookmarksActive={bookmarksActive}
             BookmarksActive={BookmarksActive}
             handleShare={handleShare}
+            forYouData={forYouData}
+            postUpdate = {postUpdate}
+            setPostUpdate={setPostUpdate}
           />
           <Widgets />
           {toasts && (

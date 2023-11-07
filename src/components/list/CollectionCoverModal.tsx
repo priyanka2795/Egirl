@@ -5,10 +5,12 @@ import cameraIcon from '../../../public/assets/camera-icon.png';
 import avatar from '../../../public/assets/avatar.png';
 import CloseIcon from '../../../public/assets/svgImages/close-icon.svg';
 import MainImage from '../../../public/assets/gallery-tab-img-3.png';
+import { addCharacterToCollection } from 'services/services';
 
 interface CollectionCoverModalProps {
   closeAddCollectionModal?: any;
   closeDropdown: any;
+  collectionId?:number
 }
 
 const imagesArray = [
@@ -30,8 +32,22 @@ const imagesArray = [
 ];
 const CollectionCoverModal = ({
   closeAddCollectionModal,
-  closeDropdown
+  closeDropdown,
+  collectionId
 }: CollectionCoverModalProps) => {
+  
+  const handleCreate = ()=>{
+    closeAddCollectionModal(false)
+    closeDropdown('')
+    const data:any = []
+     addCharacterToCollection(collectionId, data)
+     .then((res)=>{
+      console.log("add character to collection res----", res)
+     })
+     .catch((err)=>{
+      console.log("add character to collection err----", err)
+     })
+  }
   return (
     <Modal
       open={true}
@@ -82,7 +98,7 @@ const CollectionCoverModal = ({
           </div>
           <div
             className='flex cursor-pointer items-center justify-center gap-2 rounded-2xl bg-[#5848BC] px-5 py-3'
-            onClick={() => {closeAddCollectionModal(false), closeDropdown('')}}
+            onClick={handleCreate}
           >
             <div className='text-base font-bold leading-snug text-white'>
               Create

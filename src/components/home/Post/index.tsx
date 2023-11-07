@@ -12,6 +12,8 @@ import DotsHorizontalIcon from './svg/dots-horizontal.svg';
 import CommentIcon from './svg/comment.svg';
 import Tooltip from '@components/common/tooltip';
 import BookMarkModal from '@components/list/BookMarkModal';
+import { postAddBookMark, postLike } from 'services/services';
+import Cookies from 'js-cookie';
 
 interface PostProps {
   imageUrl: string;
@@ -28,6 +30,9 @@ interface PostProps {
   bookmarksActive: boolean;
   BookmarksActive: () => void;
   handleShare: () => void;
+  postId: number;
+  postUpdate: boolean;
+  setPostUpdate: any;
 }
 
 const Post: React.FC<PostProps> = ({
@@ -44,26 +49,60 @@ const Post: React.FC<PostProps> = ({
   hours,
   bookmarksActive,
   BookmarksActive,
-  handleShare
+  handleShare,
+  postId,
+  postUpdate,
+  setPostUpdate
 }) => {
+  const token: any = Cookies.get('accessToken');
   const [likeActive, setLikeActive] = useState(false);
   const [commentsModal, setCommentsModal] = useState(false);
   // const [bookmarksActive, setBookmarksActive] = useState(false);
+
+  // ===== post like function ====
+  const handlePostLike = () => {
+    setLikeActive(!likeActive);
+    let likeData = {
+      post_id: postId,
+      is_like: true,
+      is_super: true
+    };
+    postLike(likeData, token)
+      .then((res) => {
+        console.log('post like res---', res);
+        setPostUpdate(!postUpdate);
+      })
+      .catch((err) => {
+        console.log('post like err---', err);
+      });
+  };
+
+  // ===== post addBookMark function ====
+  const handleAddBookMark = ()=>{
+    BookmarksActive()
+    postAddBookMark(postId, token)
+    .then((res)=>{
+      console.log("add bookmark res---", res)
+    })
+    .catch((err)=>{
+      console.log("add bookmark err---", err)
+    })
+  }
 
   return (
     <>
       <div className='flex w-full flex-col gap-y-4 rounded-[14px] bg-main-bar p-6'>
         {/* Profile Section */}
         <div className='flex items-center'>
-          <Image
+          <img
             src={imageUrl} // Change to your image path
             alt={altText} // Change to your alt text
             width={48}
             height={48}
             className='rounded-full'
           />
-          <div className='ml-4 flex items-center'>
-            <h3 className='font-bold mr-2 text-lg leading-6'>{name}</h3>
+          <div className='flex items-center ml-4'>
+            <h3 className='mr-2 text-lg font-bold leading-6'>{name}</h3>
             <p className='size-[15px] font-light leading-5 text-[#979797]'>
               {username + ' • ' + hours}
             </p>
@@ -85,7 +124,7 @@ const Post: React.FC<PostProps> = ({
             ))}
           </div>
         </div>
-        <div className='flex h-auto w-full flex-col gap-y-4'>
+        <div className='flex flex-col w-full h-auto gap-y-4'>
           <Image
             // src='https://www.shutterstock.com/image-vector/lock-glass-morphism-trendy-style-260nw-2047414109.jpg' // Change to your image path
             src='/dummy-img.png'
@@ -105,7 +144,7 @@ const Post: React.FC<PostProps> = ({
                   ? 'bg-[#FF533629] '
                   : 'bg-[#FFFFFF14] hover:bg-[#FFFFFF1F]'
               }`}
-              onClick={() => setLikeActive(!likeActive)}
+              onClick={handlePostLike}
             >
               {likeActive ? (
                 <HeartRed />
@@ -117,7 +156,7 @@ const Post: React.FC<PostProps> = ({
               >
                 {heartsNumber}
               </span>
-              <div className='absolute -top-7 z-50 w-max -translate-x-0 -translate-y-2/4 transform transition-all'>
+              <div className='absolute z-50 transition-all transform -top-7 w-max -translate-x-0 -translate-y-2/4'>
                 <Tooltip Text={'Like'} />
               </div>
             </button>
@@ -127,13 +166,13 @@ const Post: React.FC<PostProps> = ({
             >
               <CommentIcon className='text-[#979797]' />
               <span className='ml-[6px]'>{commentsNumber}</span>
-              <div className='absolute -left-4 -top-7 z-50 w-max -translate-x-0 -translate-y-2/4 transform transition-all'>
+              <div className='absolute z-50 transition-all transform -left-4 -top-7 w-max -translate-x-0 -translate-y-2/4'>
                 <Tooltip Text={'Comments'} />
               </div>
             </button>
             <button
               className='transition-duration-100 group relative flex items-center rounded-full bg-[#FFFFFF14] px-3 py-2 hover:bg-[#FFFFFF1F]'
-              onClick={() => BookmarksActive()}
+              onClick={handleAddBookMark}
             >
               {bookmarksActive ? (
                 <BookmarkFillIcon className='text-[#979797]' />
@@ -141,7 +180,7 @@ const Post: React.FC<PostProps> = ({
                 <BookmarkIcon className='text-[#979797]' />
               )}
 
-              <div className='absolute -left-6 -top-7 z-50 w-max -translate-x-0 -translate-y-2/4 transform transition-all'>
+              <div className='absolute z-50 transition-all transform -left-6 -top-7 w-max -translate-x-0 -translate-y-2/4'>
                 <Tooltip Text={'Bookmark'} />
               </div>
             </button>
@@ -150,7 +189,7 @@ const Post: React.FC<PostProps> = ({
               onClick={() => handleShare()}
             >
               <ReturnIcon className='text-[#979797]' />
-              <div className='absolute -left-3 -top-7 z-50 w-max -translate-x-0 -translate-y-2/4 transform transition-all'>
+              <div className='absolute z-50 transition-all transform -left-3 -top-7 w-max -translate-x-0 -translate-y-2/4'>
                 <Tooltip Text={'Share'} />
               </div>
             </button>
@@ -161,7 +200,14 @@ const Post: React.FC<PostProps> = ({
           </div>
         </div>
       </div>
-      {commentsModal && <BookMarkModal closeModalState={setCommentsModal} />}
+      {commentsModal && (
+        <BookMarkModal
+          closeModalState={setCommentsModal}
+          postId={postId}
+          postUpdate={postUpdate}
+          setPostUpdate={setPostUpdate}
+        />
+      )}
     </>
   );
 };

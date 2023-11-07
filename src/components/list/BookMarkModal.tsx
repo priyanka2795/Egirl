@@ -23,6 +23,8 @@ import CloseIconSvg from '../../../public/assets/svgImages/close-icon.svg';
 import FlagRed from '../../../public/assets/flag.svg';
 import Pen from '../../../public/assets/pen.png';
 import DeleteIcon from '../../../public/assets/trash-blank-alt3.png';
+import { postComment } from 'services/services';
+import Cookies from 'js-cookie';
 
 const settings = {
   dots: true,
@@ -34,12 +36,33 @@ const settings = {
 
 interface BookMarkModalProp {
   closeModalState: any;
+  postId:number,
+  postUpdate:boolean,
+  setPostUpdate:any
 }
-const BookMarkModal = ({ closeModalState }: BookMarkModalProp) => {
+const BookMarkModal = ({ closeModalState,postId,postUpdate,setPostUpdate }: BookMarkModalProp) => {
+  const token: any = Cookies.get('accessToken');
   const [reportToggle, setReportToggle] = useState(false);
   const [editToggle, setEditToggle] = useState(false);
   const [textAreaCount, setTextAreaTotal] = useState('');
   const [textArea, setTextArea] = useState(true);
+
+   // ===== post comment function ====
+   const handlePostComment = ()=>{
+    setTextArea(true), setTextAreaTotal('')
+    let commentData = {
+      "post_id": postId,
+     "description":textAreaCount
+    }
+    postComment(commentData, token)
+    .then((res:any)=>{
+      console.log("post comment res---", res)
+      setPostUpdate(!postUpdate)
+    })
+    .catch((err:any)=>{
+      console.log("post comment err---", err)
+    })
+  }
   return (
     <Modal
       open={true}
@@ -59,10 +82,10 @@ const BookMarkModal = ({ closeModalState }: BookMarkModalProp) => {
 
         <div className='w-full'>
           <div className='flex w-full flex-col gap-4 border-b border-white/[0.12] px-4 py-6'>
-            <div className='flex w-full justify-between'>
+            <div className='flex justify-between w-full'>
               <div className='flex items-center gap-4'>
                 <div className='h-[48px] w-[48px]'>
-                  <Image className='h-full w-full' src={avatar} alt={''} />
+                  <Image className='w-full h-full' src={avatar} alt={''} />
                 </div>
                 <div className='flex flex-col gap-1'>
                   <div className='font-bold text-[18px] leading-6 text-[#FFFFFF]'>
@@ -210,7 +233,7 @@ const BookMarkModal = ({ closeModalState }: BookMarkModalProp) => {
                   <div className='flex gap-3'>
                     <div className='h-[40px] w-[40px]'>
                       <Image
-                        className='h-full w-full'
+                        className='w-full h-full'
                         src={pinkPhnGirlAvatar}
                         alt={''}
                       />
@@ -232,7 +255,7 @@ const BookMarkModal = ({ closeModalState }: BookMarkModalProp) => {
                   <div className='relative h-[24px] w-[24px]'>
                     <button onClick={() => setEditToggle(!editToggle)}>
                       <Image
-                        className='h-full w-full'
+                        className='w-full h-full'
                         src={threeDotsWhite}
                         alt={''}
                       />
@@ -262,7 +285,7 @@ const BookMarkModal = ({ closeModalState }: BookMarkModalProp) => {
                     <div className='flex gap-1 rounded-[100px] bg-white/[0.08] px-2 py-[6px]'>
                       <div className='h-[16px] w-[16px]'>
                         <Image
-                          className='h-full w-full'
+                          className='w-full h-full'
                           src={heartIcon}
                           alt={''}
                         />
@@ -311,9 +334,7 @@ const BookMarkModal = ({ closeModalState }: BookMarkModalProp) => {
                 <p className='text-[#979797]'>{textAreaCount.length}/160</p>
                 <button
                   className='font-bold flex items-center justify-center rounded-[16px] bg-[#5848BC] px-6 py-4 text-[18px] leading-6 text-white'
-                  onClick={() => {
-                    setTextArea(true), setTextAreaTotal('');
-                  }}
+                  onClick={handlePostComment}
                 >
                   Send
                 </button>

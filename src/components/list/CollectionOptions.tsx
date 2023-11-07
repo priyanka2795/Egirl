@@ -92,12 +92,11 @@ const CollectionOptions = ({ setShowRealistic }: CollectionOptionsProps) => {
           </div>
         </div>
           </div> */}
-              {allCollections?.map((e, i) => {
-                console.log(e)
+              {allCollections?.map((e:any, i) => {
                 return (
                   <CollectionCard
                     cardMainImg={collectionImg[i]}
-                    characterName={e.collection_name}
+                    characterName={e?.collection_name}
                     cardImgClasses='relative !max-h-[308px]'
                     cardId='card-1'
                     getCardId={setImageDropdownId}
@@ -105,6 +104,7 @@ const CollectionOptions = ({ setShowRealistic }: CollectionOptionsProps) => {
                     filterFunction={(e: any) => handleFilterContent(e)}
                     setShowRealistic={setShowRealistic}
                     key={i}
+                    collectionId = {e?.id}
                   />
                 );
               })}
