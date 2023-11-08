@@ -12,7 +12,7 @@ import DotsHorizontalIcon from './svg/dots-horizontal.svg';
 import CommentIcon from './svg/comment.svg';
 import Tooltip from '@components/common/tooltip';
 import BookMarkModal from '@components/list/BookMarkModal';
-import { postAddBookMark, postLike } from 'services/services';
+import { postAddBookMark, postLike, postRemoveBookMark } from 'services/services';
 import Cookies from 'js-cookie';
 
 interface PostProps {
@@ -33,6 +33,8 @@ interface PostProps {
   postId: number;
   postUpdate: boolean;
   setPostUpdate: any;
+  setBookMarkToast : any;
+  is_liked_by_user:boolean;
 }
 
 const Post: React.FC<PostProps> = ({
@@ -52,7 +54,9 @@ const Post: React.FC<PostProps> = ({
   handleShare,
   postId,
   postUpdate,
-  setPostUpdate
+  setPostUpdate,
+  setBookMarkToast,
+  is_liked_by_user
 }) => {
   const token: any = Cookies.get('accessToken');
   const [likeActive, setLikeActive] = useState(false);
@@ -61,12 +65,22 @@ const Post: React.FC<PostProps> = ({
 
   // ===== post like function ====
   const handlePostLike = () => {
-    setLikeActive(!likeActive);
-    let likeData = {
-      post_id: postId,
-      is_like: true,
-      is_super: true
-    };
+    let likeData
+    if(is_liked_by_user === true){
+      likeData = {
+        post_id: postId,
+        is_like: false,
+        is_super: false
+      };
+      setLikeActive(false);
+    }else{
+      likeData = {
+        post_id: postId,
+        is_like: true,
+        is_super: true
+      };
+      setLikeActive(true);
+    }
     postLike(likeData, token)
       .then((res) => {
         console.log('post like res---', res);
@@ -79,14 +93,30 @@ const Post: React.FC<PostProps> = ({
 
   // ===== post addBookMark function ====
   const handleAddBookMark = ()=>{
-    BookmarksActive()
-    postAddBookMark(postId, token)
-    .then((res)=>{
-      console.log("add bookmark res---", res)
-    })
-    .catch((err)=>{
-      console.log("add bookmark err---", err)
-    })
+    if(bookmarksActive === false){
+      BookmarksActive()
+      postAddBookMark(postId, token)
+      .then((res)=>{
+        console.log("add bookmark res---", res)
+        setPostUpdate(!postUpdate);
+        setBookMarkToast(true)
+      })
+      .catch((err)=>{
+        console.log("add bookmark err---", err)
+      })
+    }else{
+      BookmarksActive()
+      postRemoveBookMark(postId, token)
+      .then((res)=>{
+        console.log("remove bookmark res---", res)
+        setPostUpdate(!postUpdate);
+        setBookMarkToast(false)
+      })
+      .catch((err)=>{
+        console.log("remove bookmark err---", err)
+      })
+    }
+   
   }
 
   return (
@@ -206,6 +236,12 @@ const Post: React.FC<PostProps> = ({
           postId={postId}
           postUpdate={postUpdate}
           setPostUpdate={setPostUpdate}
+          commentsNumber={commentsNumber}
+          heartsNumber={heartsNumber}
+          bookmarksActive={bookmarksActive}
+          name = {name}
+          username = {username}
+          postText = {postText}
         />
       )}
     </>

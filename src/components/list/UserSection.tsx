@@ -32,7 +32,7 @@ const UserSection = ({ userSectionStyle }: UserSectionInterface) => {
           <Image src={arrowRight} alt={''} />
         </div>
       </div>
-      <div className='bookmark-img-text px-6 py-6'>
+      <div className='px-6 py-6 bookmark-img-text'>
         <div className='profile-like-slider h-[286px]'>
           <Slider {...settings}>
             <UserFrame />

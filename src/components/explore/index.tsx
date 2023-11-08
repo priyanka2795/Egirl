@@ -65,10 +65,10 @@ const exploreOptions = [
 ];
 
 const ExploreIndex = () => {
-  const accessToken = Cookies.get('accessToken');
-  const token = `${accessToken}`;
-  const decodedToken = jwt.decode(token);
-  const userId : any = decodedToken?.sub
+  const token:any = Cookies.get('accessToken');
+  // const token = `${accessToken}`;
+  // const decodedToken = jwt.decode(token);
+  // const userId : any = decodedToken?.sub
   const [filterOptionShow, setFilterOptionShow] = useState(true);
   const [exploreSelectedTab, setExploreSelected] = useState('Swipe');
   const [defaultModal, setDefaultModal] = useState(false);
@@ -76,9 +76,9 @@ const ExploreIndex = () => {
   const [swipeData , setSwipeData] = useState<any>()
 
   useEffect(()=>{
-    exploreSwipe(userId , 1)
+    exploreSwipe("57713333-24df-4eaf-8070-ff4599b6061c", 1, token)
     .then((res:any)=>{
-      setSwipeData(res)
+      setSwipeData(res?.data)
       console.log(res , "exploreSwiperes????");
     })
     .catch((err)=>{
@@ -119,9 +119,10 @@ const ExploreIndex = () => {
                 >
                   <p>Hide</p>
                 </div>
-                {exploreOptions.map((item) => {
+                {exploreOptions.map((item, index) => {
                   return (
                     <div
+                    key={index}
                       className={`${
                         filterOptionShow === true
                           ? 'opacity-100'
@@ -144,7 +145,7 @@ const ExploreIndex = () => {
               <GalleryTabFilter
                 singleProfileState={singleProfileState}
                 setSingleProfileState={setSingleProfileState}
-                userId={userId}
+                userId="57713333-24df-4eaf-8070-ff4599b6061c"
               />
             </div>
           )}

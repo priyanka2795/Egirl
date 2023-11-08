@@ -35,10 +35,10 @@ export const postApiWithToken = async (url: string, data: any, token: string | n
 export const postWithParams = async (url: string, token: string | null) => {
   try {
     let apiUrl = `${config.serverURL}${url}`
-    const response = await axios.post(apiUrl, {
+    const response = await axios.post(apiUrl, {},{
       headers: {
         Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
+        "Content-Type": "application/json",
         accept: "application/json",
       },
     })
@@ -113,18 +113,4 @@ export const deleteApi = async (url: any, token: String | null) => {
   }
 }
 
-export const deleteWithParams = async (url: any) => {
-  try {
-    let apiUrl = `${config.serverURL}${url}`
-    const response = await axios.delete(apiUrl, {
-      headers: {
-        "Content-Type": "application/json",
-        accept: "application/json",
-      },
-    })
-    return response
-  } catch (error) {
-    return error
-  }
-}
 

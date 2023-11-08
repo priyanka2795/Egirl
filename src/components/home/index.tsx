@@ -33,6 +33,7 @@ const SearchData = [
 ];
 const Home = () => {
   const token:any = Cookies.get("accessToken")
+
  const dispatch = useAppDispatch()
   console.log("token---",token)
 
@@ -43,6 +44,7 @@ const Home = () => {
   const [copyLink, setCopyLink] = useState(false);
   const [forYouData, setForYouData] = useState([])
   const [postUpdate, setPostUpdate] = useState(false)
+  const [bookMarkToast, setBookMarkToast] = useState(false)
   const handleFeedSwitch = (feedType: string) => {
     if (feedType === 'forYou' && !showForYou) {
       setShowForYou(true);
@@ -105,7 +107,7 @@ const Home = () => {
 
     getPostSubscription(1, token)
     .then((res:any)=>{
-      console.log("post subscription res---", res)
+      // console.log("post subscription res---", res)
     })
     .catch((err:any)=>{
       console.log("post subscription err---", err)
@@ -121,7 +123,11 @@ const Home = () => {
     const minutes = Math.floor(diff / 60000); 
     const hours = Math.floor(minutes / 60); 
     const days = Math.floor(hours / 24); 
-    if (days > 0) {
+    const years = Math.floor(days/365)
+
+    if(years > 0){
+      return `${years}y`
+    }else if (days > 0) {
       return `${days}d`;
     }else if (hours > 0) {
       return `${hours}h`;
@@ -231,6 +237,7 @@ const Home = () => {
             forYouData={forYouData}
             postUpdate = {postUpdate}
             setPostUpdate={setPostUpdate}
+            setBookMarkToast = {setBookMarkToast}
           />
           <Widgets />
           {toasts && (
@@ -238,7 +245,7 @@ const Home = () => {
               <p className='text-[14px]'>
                 {copyLink
                   ? 'Copied to clipboard'
-                  : 'Post added to your bookmarks'}
+                  : bookMarkToast === true ? 'Post added to your bookmarks': 'Post removed to your bookmarks'}
                 {copyLink ? (
                   ''
                 ) : (

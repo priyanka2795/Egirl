@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import useScroll from '../../../hooks/useScroll';
 import Post from './Post';
 
+
 interface Feed {
   bookmarksActive: boolean;
   BookmarksActive: () => void;
   handleShare: () => void;
   forYouData?: any;
-  postUpdate:boolean,
-  setPostUpdate:any
+  postUpdate:boolean;
+  setPostUpdate:any;
+  setBookMarkToast : any;
 }
 export default function Feed({
   bookmarksActive,
@@ -16,7 +18,8 @@ export default function Feed({
   handleShare,
   forYouData,
   postUpdate,
-  setPostUpdate
+  setPostUpdate,
+  setBookMarkToast
 }: Feed) {
   const [showForYou, setShowForYou] = useState(true);
   const [sticky, animate] = useScroll();
@@ -74,7 +77,7 @@ export default function Feed({
              <Post
               imageUrl={ele.character_image_url}
               altText='Character Profile Picture'
-              name={ele.character_name}
+              name={ele.character_display_name}
               username={`@${ele.character_username}`}
               postText={ele.description}
               commentsNumber={ele.comments_count}
@@ -89,6 +92,8 @@ export default function Feed({
               postId={ele.id}
               postUpdate = {postUpdate}
               setPostUpdate={setPostUpdate}
+              setBookMarkToast = {setBookMarkToast}
+              is_liked_by_user={ele.is_liked_by_user}
             />
            </div>
           );

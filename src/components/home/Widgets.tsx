@@ -68,8 +68,8 @@ export default function Widgets() {
               <Image src={arrowRight} alt={''} />
             </div>
           </div>
-          <div className='bookmark-img-text h-full p-6'>
-            <div className='profile-like-slider home-page-slider relative h-full'>
+          <div className='h-full p-6 bookmark-img-text'>
+            <div className='relative h-full profile-like-slider home-page-slider'>
               <Slider {...settings}>
                 <UserFrame />
                 <UserFrame />
