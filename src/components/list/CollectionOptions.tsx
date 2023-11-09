@@ -17,10 +17,10 @@ import { getAllCollections } from 'services/services';
 interface CollectionOptionsProps {
   setShowRealistic: any;
 }
-const accessToken = Cookies.get('accessToken');
-const token = `${accessToken}`;
-const decodedToken = jwt.decode(token);
-const userId = decodedToken?.sub;
+const token:any = Cookies.get('accessToken');
+// const token = `${accessToken}`;
+// const decodedToken = jwt.decode(token);
+// const userId = decodedToken?.sub;
 const collectionImg = [model2, micaChan, mirandal, model2];
 const CollectionOptions = ({ setShowRealistic }: CollectionOptionsProps) => {
   const [createCollectionModal, setCreateCollectionModal] = useState(false);
@@ -37,7 +37,7 @@ const CollectionOptions = ({ setShowRealistic }: CollectionOptionsProps) => {
   };
 
   useEffect(() => {
-    getAllCollections(userId, 1, 10)
+    getAllCollections(1, 10, token)
       .then((res: any) => {
         console.log('all collection res--', res);
         setAllCollections(res.data);

@@ -32,10 +32,16 @@ const SearchData = [
   }
 ];
 const Home = () => {
+  const dispatch = useAppDispatch()
   const token:any = Cookies.get("accessToken")
+  const refreshTokenData:any = useAppSelector((state)=> state.tokenRefresh?.tokenData)
 
- const dispatch = useAppDispatch()
-  console.log("token---",token)
+  // useEffect(()=>{
+  //   Cookies.set("accessToken", refreshTokenData)
+  // },[refreshTokenData])
+
+ 
+  console.log("token---",token, "refreshTokenData---", refreshTokenData)
 
   const [showForYou, setShowForYou] = useState(true);
   const [sticky, animate] = useScroll();
@@ -92,6 +98,8 @@ const Home = () => {
   };
 
   useEffect(()=>{
+    Cookies.set("accessToken", refreshTokenData)
+    
     forYouPost(1,10, token)
     .then((res:any)=>{
       console.log("forYou res---", res)
@@ -100,24 +108,24 @@ const Home = () => {
       if(res?.response?.status === 401){
         dispatch(tokenRefresh())
       }
-    })
+     })
     .catch((err:any)=>{
       console.log("forYou err---", err)
     })
 
     getPostSubscription(1, token)
     .then((res:any)=>{
-      // console.log("post subscription res---", res)
+      console.log("post subscription res---", res)
     })
     .catch((err:any)=>{
       console.log("post subscription err---", err)
     })
-  },[postUpdate])
+  },[postUpdate,refreshTokenData])
 
   
   const formatTimestamp = (timestamp:any) => {
     const currentDate:any = new Date();
-    const apiDate = Date.parse("2023-11-06T19:58:57.689637+00:00");
+    const apiDate = Date.parse(timestamp);
     const diff = Math.abs(currentDate - apiDate);
 
     const minutes = Math.floor(diff / 60000); 
@@ -135,7 +143,7 @@ const Home = () => {
       return `${minutes}m`;
     }
   };
-  // console.log(formatTimestamp("2023-11-06T19:58:57.689637+00:00"))
+  // console.log(formatTimestamp("2023-11-09T07:38:22.394397+00:00"))
   return (
     <>
       {/*  max-w-[1650px] */}

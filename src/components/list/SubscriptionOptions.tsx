@@ -13,14 +13,15 @@ interface SubscriptionOptionsProps {
   component?: any;
 }
 
-const accessToken = Cookies.get('accessToken');
-  const token = `${accessToken}`;
-  const decodedToken = jwt.decode(token);
-  const userId = decodedToken?.sub
+const token:any = Cookies.get('accessToken');
+  // const token = `${accessToken}`;
+  // const decodedToken = jwt.decode(token);
+  // const userId = decodedToken?.sub
+  // console.log(userId)
 const SubscriptionOptions = ({ showProfile, component }: SubscriptionOptionsProps) => {
   const [allSubscriptions, setSubscriptions] = useState([])
   useEffect(()=>{
-    getSubscribed(userId,1)
+    getSubscribed(1,10, token)
     .then((res:any)=>{
       console.log("get subscription res---",res)
       setSubscriptions(res.data)

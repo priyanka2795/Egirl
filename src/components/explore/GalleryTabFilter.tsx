@@ -89,7 +89,7 @@ const GalleryTabFilter = ({
 
 
   useEffect(()=>{
-    exploreGallery(userId , 1, token)
+    exploreGallery(1, 10, token)
     .then((res:any)=>{
       setGalleryData(res?.data)
       console.log(res , "exploreGallaryRes????");

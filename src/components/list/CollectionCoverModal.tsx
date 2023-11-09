@@ -6,7 +6,7 @@ import avatar from '../../../public/assets/avatar.png';
 import CloseIcon from '../../../public/assets/svgImages/close-icon.svg';
 import MainImage from '../../../public/assets/gallery-tab-img-3.png';
 import { addCharacterToCollection } from 'services/services';
-
+import Cookies from 'js-cookie';
 interface CollectionCoverModalProps {
   closeAddCollectionModal?: any;
   closeDropdown: any;
@@ -35,12 +35,12 @@ const CollectionCoverModal = ({
   closeDropdown,
   collectionId
 }: CollectionCoverModalProps) => {
-  
+  const token:any = Cookies.get("accessToken")
   const handleCreate = ()=>{
     closeAddCollectionModal(false)
     closeDropdown('')
     const data:any = []
-     addCharacterToCollection(collectionId, data)
+     addCharacterToCollection(collectionId, data, token)
      .then((res)=>{
       console.log("add character to collection res----", res)
      })

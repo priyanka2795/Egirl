@@ -83,7 +83,7 @@ const Post: React.FC<PostProps> = ({
     }
     postLike(likeData, token)
       .then((res) => {
-        console.log('post like res---', res);
+        // console.log('post like res---', res);
         setPostUpdate(!postUpdate);
       })
       .catch((err) => {
@@ -170,13 +170,13 @@ const Post: React.FC<PostProps> = ({
           <div className='font-light flex w-full gap-x-3 text-[15px] leading-5'>
             <button
               className={`transition-duration-100 group relative flex items-center rounded-full px-3 py-2  ${
-                likeActive
+                is_liked_by_user
                   ? 'bg-[#FF533629] '
                   : 'bg-[#FFFFFF14] hover:bg-[#FFFFFF1F]'
               }`}
               onClick={handlePostLike}
             >
-              {likeActive ? (
+              {is_liked_by_user ? (
                 <HeartRed />
               ) : (
                 <HeartIcon className='text-[#979797]' />

@@ -23,7 +23,7 @@ import CloseIconSvg from '../../../public/assets/svgImages/close-icon.svg';
 import FlagRed from '../../../public/assets/flag.svg';
 import Pen from '../../../public/assets/pen.png';
 import DeleteIcon from '../../../public/assets/trash-blank-alt3.png';
-import { getPostComments, postComment } from 'services/services';
+import { getPostComments, getPostDetails, postComment } from 'services/services';
 import Cookies from 'js-cookie';
 import BookmarkIcon from '../home/Post/svg/bookmark.svg'
 import BookmarkFillIcon from '../home/Post/svg/bookmark-fill.svg';
@@ -55,7 +55,8 @@ const BookMarkModal = (
   const [editToggle, setEditToggle] = useState(false);
   const [textAreaCount, setTextAreaTotal] = useState('');
   const [textArea, setTextArea] = useState(true);
-
+  const [commentUpdate, setCommentUpdate] = useState(false)
+  const [commentsData, setCommentsData] = useState([])
    // ===== post comment function ====
    const handlePostComment = ()=>{
     setTextArea(true), setTextAreaTotal('')
@@ -67,6 +68,7 @@ const BookMarkModal = (
     .then((res:any)=>{
       console.log("post comment res---", res)
       setPostUpdate(!postUpdate)
+      setCommentUpdate(!commentUpdate)
     })
     .catch((err:any)=>{
       console.log("post comment err---", err)
@@ -76,13 +78,22 @@ const BookMarkModal = (
   // ===== get post comment api =====
   useEffect(()=>{
     getPostComments(postId, 1, 10, token)
-    .then((res)=>{
+    .then((res:any)=>{
       console.log("get comments res----", res)
+      setCommentsData(res?.data)
     })
     .catch((err)=>{
       console.log("get comments err----", err)
     })
-  },[])
+
+    // getPostDetails(postId, token)
+    // .then((res)=>{
+    //   console.log("post detail res---", res)
+    // })
+    // .catch((err)=>{
+    //   console.log("post details err---", err)
+    // })
+  },[commentUpdate])
 
   return (
     <Modal

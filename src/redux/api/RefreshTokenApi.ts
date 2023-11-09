@@ -23,35 +23,35 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import Cookies from "js-cookie";
-const token:any = Cookies.get("refreshToken")
+const token: any = Cookies.get("refreshToken")
 interface Token {
   token: string,
 }
-export interface TokenState { 
-    loading: boolean;
-  token: Array<Token>;
+export interface TokenState {
+  loading: boolean;
+  tokenData: string | null;
   error: string | undefined;
 }
 const initialState: TokenState = {
-    loading: false,
-    token: [],
-    error: undefined,
+  loading: false,
+  tokenData: "",
+  error: undefined,
 }
 export const tokenRefresh = createAsyncThunk(
-    "tokenRefresh",
-    async (data) => {
-        const response = await axios.post("http://65.21.65.49:8000/api/token/refresh",{
-          "refresh_token": "string"
-        },{
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-            accept: "application/json",
-          },
-        })
-        console.log("refresh token res---", response)
-        return response
-    }
+  "tokenRefresh",
+  async (data) => {
+    const response = await axios.post("http://65.21.65.49:8000/api/token/refresh", {
+      "refresh_token": "string"
+    }, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+        accept: "application/json",
+      },
+    })
+    console.log("refresh token res---", response?.data?.access_token)
+    return response?.data?.access_token
+  }
 )
 const tokenSlice = createSlice({
   name: 'token',
@@ -62,11 +62,11 @@ const tokenSlice = createSlice({
     });
     builder.addCase(tokenRefresh.fulfilled, (state, action: any) => {
       state.loading = false;
-      state.token = action.payload;
+      state.tokenData = action.payload;
     });
     builder.addCase(tokenRefresh.rejected, (state, action) => {
       state.loading = false;
-      state.token = [];
+      state.tokenData = "";
       state.error = action.error.message;
     });
   },

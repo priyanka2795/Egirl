@@ -6,17 +6,16 @@ import { Database } from '../../types/database';
 import { User, useSupabaseClient } from '@supabase/auth-helpers-react';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
-import jwt from 'jsonwebtoken';
 export default function Home({ user }: { user: User }) {
   const router = useRouter();
   const supabase = useSupabaseClient<Database>();
   const accessToken = Cookies.get("accessToken")
   const refreshToken = Cookies.get("refreshToken")
-useEffect(()=>{
-  if(!accessToken){
-    router.push('/auth/signin')
-  }
-},[accessToken])
+// useEffect(()=>{
+//   if(!accessToken){
+//     router.push('/auth/signin')
+//   }
+// },[accessToken])
 
 return (
     <>

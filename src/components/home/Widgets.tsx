@@ -61,7 +61,7 @@ export default function Widgets() {
         <div className='h-full w-full rounded-[14px] bg-[#121212]'>
           <div className='flex justify-between border-b border-white/[0.08] p-6'>
             <div className='font-bold text-[18px] text-[#FFFFFF]'>
-              You might like
+              You might like 
             </div>
             <div className='flex gap-3'>
               <Image src={arrowLeft} alt={''} />

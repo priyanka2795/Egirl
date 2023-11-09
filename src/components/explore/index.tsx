@@ -76,7 +76,7 @@ const ExploreIndex = () => {
   const [swipeData , setSwipeData] = useState<any>()
 
   useEffect(()=>{
-    exploreSwipe("57713333-24df-4eaf-8070-ff4599b6061c", 1, token)
+    exploreSwipe(1, 10, token)
     .then((res:any)=>{
       setSwipeData(res?.data)
       console.log(res , "exploreSwiperes????");
