@@ -110,8 +110,8 @@ export default function SignUp() {
             router.push('/home');
           },1000)
         }
-        if (res.response.status === 400) {
-          setErrorMsg(res.response.data.detail);
+        if (res.response?.status === 400) {
+          setErrorMsg(res.response?.data?.detail);
         }
       })
       .catch((err) => {

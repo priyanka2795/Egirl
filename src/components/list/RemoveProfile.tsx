@@ -1,14 +1,37 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Banner from './Banner';
 import PostCard from './PostCard';
 import UserSection from './UserSection';
 import PostInput from './PostInput';
+import { profileCharacter, profileInterest } from 'services/services';
+import Cookies from 'js-cookie';
 
 interface RemoveProfileProp{
   backFromProfile: React.Dispatch<React.SetStateAction<boolean>>
 }
 const RemoveProfile = ({backFromProfile} : RemoveProfileProp) => {
+  const token:any = Cookies.get("accessToken")
+  const [characterData, setCharacterData] = useState({})
+  useEffect(()=>{
+    // profile character api
+    profileCharacter("f47ac10b-58cc-4372-a567-0e02b2c3d510", token)
+    .then((res:any)=>{
+      console.log("profile character res----", res)
+      setCharacterData(res?.data[0])
+    })
+    .catch((err)=>{
+      console.log("profile character err---", err)
+    })
 
+    // character interest api
+    profileInterest("57713333-24df-4eaf-8070-ff4599b6061c", token)
+    .then((res:any)=>{
+      console.log("profile interest res----", res)
+    })
+    .catch((err)=>{
+      console.log("profile interest err---", err)
+    })
+  },[])
   return (
     <div className='pl-6 mb-5'>
       <Banner

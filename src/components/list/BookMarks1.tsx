@@ -80,16 +80,16 @@ const userFrame = [
   }
 ];
 const BookMarks = () => {
-  const accessToken = Cookies.get('accessToken');
-  const token = `${accessToken}`;
-  const decodedToken = jwt.decode(token);
-  const userId = decodedToken?.sub
+  const token:any = Cookies.get('accessToken');
+  // const token = `${accessToken}`;
+  // const decodedToken = jwt.decode(token);
+  // const userId = decodedToken?.sub
   const [profileModalState, setProfileModalState] = useState(false);
   const [deleteBookmarkState, setDeleteBookmarkState] = useState(false);
   const [bookMarkedData, setBookMarkedData] = useState([])
 
   useEffect(()=>{
-    getBookMarked(userId,1,10)
+    getBookMarked(1,10, token)
     .then((res:any)=>{
       console.log("bookmarked data res---", res)
       setBookMarkedData(res.data)

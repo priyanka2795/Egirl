@@ -8,7 +8,7 @@ import RefreshTokenApi from 'redux/api/RefreshTokenApi';
 const rootReducer = combineReducers({
   // Add all reducers here
   toast: toastReducer,
-  token:RefreshTokenApi
+  tokenRefresh:RefreshTokenApi
 //   [RefreshApi.reducePath]: RefreshApi.reducer,
 });
 

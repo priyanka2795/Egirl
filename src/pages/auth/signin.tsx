@@ -92,21 +92,20 @@ export default function SignIn({ SetFormStep }: SignIn) {
   };
 
   const handleSubmit = (values: any) => {
-    setErrorMsg("")
-    console.log('login form data---', values);
+    setErrorMsg('');
     userLogin(values)
       .then((res: any) => {
         console.log('login res--', res);
         if (res.status === 200) {
-          toast.success('User login successful')
+          toast.success('User login successful');
           Cookies.set('accessToken', res.data.access_token);
           Cookies.set('refreshToken', res.data.refresh_token);
-          setTimeout(()=>{
+          setTimeout(() => {
             router.push('/home');
-          },1000)
+          }, 1000);
         }
-        if (res.response.status === 400) {
-          setErrorMsg("email or password wrong!");
+        if (res.response?.status === 400) {
+          setErrorMsg('email or password wrong!');
         }
       })
       .catch((err) => {
@@ -116,7 +115,6 @@ export default function SignIn({ SetFormStep }: SignIn) {
     // let notify = {type:"ERROR", message:"response error"}
     // dispatch(setToastVisible())
     // dispatch(showToast(notify))
-  
   };
 
   return (
@@ -170,16 +168,15 @@ export default function SignIn({ SetFormStep }: SignIn) {
             </div>
           ) : (
             <>
-              <Formik
-                initialValues={initialValues}
-                validationSchema={validationSchema}
-                onSubmit={handleSubmit}
-              >
-                {({ errors, touched }) => (
-                  <Form>
-                    <div className='flex flex-col gap-8'>
-                      <SigninLoginOpt heading={'Login'} pageName={'signup'} />
-
+              <div className='flex flex-col gap-8'>
+                <SigninLoginOpt heading={'Login'} pageName={'signup'} />
+                <Formik
+                  initialValues={initialValues}
+                  validationSchema={validationSchema}
+                  onSubmit={handleSubmit}
+                >
+                  {({ errors, touched }) => (
+                    <Form>
                       <div className='flex flex-col gap-4'>
                         <div className='flex gap-4'>
                           <Image
@@ -241,18 +238,15 @@ export default function SignIn({ SetFormStep }: SignIn) {
                       <button
                         // onClick={loginHandler}
                         type='submit'
-                        className='font-bold flex items-center justify-center rounded-[16px] bg-[#5848BC] px-6 py-4 text-[18px] leading-6 text-white'
+                        className='font-bold mt-6 flex w-full items-center justify-center rounded-[16px] bg-[#5848BC] px-6 py-4 text-[18px] leading-6 text-white'
                       >
                         Continue
                       </button>
-                      {/* <button onClick={loginGoogleHandler} className='p-4 border-2'>
-              Google Login
-            </button> */}
-                    </div>
-                    <p className='py-5 text-red-400'>{errorMsg}</p>
-                  </Form>
-                )}
-              </Formik>
+                    </Form>
+                  )}
+                </Formik>
+              </div>
+              <p className='py-5 text-red-400'>{errorMsg}</p>
             </>
           )}
         </div>

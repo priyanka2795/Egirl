@@ -11,11 +11,11 @@ interface CollectionModalProp {
   setCollectionUpdate:any;
 }
 const CreateCollectionModal = ({ closeModalItem ,collectionUpdate, setCollectionUpdate}: CollectionModalProp) => {
-  const accessToken = Cookies.get('accessToken');
-  const token = `${accessToken}`;
-  const decodedToken = jwt.decode(token);
-  const userId = decodedToken?.sub
-  console.log(decodedToken?.sub);
+  const token:any = Cookies.get('accessToken');
+  // const token = `${accessToken}`;
+  // const decodedToken = jwt.decode(token);
+  // const userId = decodedToken?.sub
+  // console.log(decodedToken?.sub);
   const [listName, setListName] = useState('')
   const [listNameErr, setListNameErr] = useState('')
   
@@ -24,7 +24,7 @@ const CreateCollectionModal = ({ closeModalItem ,collectionUpdate, setCollection
       setListNameErr("required")
       return
     }
-    createCollection(userId,listName)
+    createCollection(listName, token)
     .then((res:any)=>{
       console.log("create collection res---",res)
       if(res.status === 200){
