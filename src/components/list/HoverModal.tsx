@@ -25,7 +25,6 @@ const HoverModal = ({
   const handleNextStep = () => {
     setTourCount(tourCount + 1);
   };
-  console.log(tourCount, 'tourCount added');
 
   const handlePrevStep = () => {
     console.log(tourCount, 'test count');
@@ -65,7 +64,7 @@ const HoverModal = ({
             <p className='font-normal mt-3 text-[14px] leading-5'>
               {tourSteps[tourCount].content}
             </p>
-            <div className='mt-3 flex items-center justify-between'>
+            <div className='flex items-center justify-between mt-3'>
               {/* <p className='font-normal text-[14px] text-[#979797]'>{step}</p> */}
               <p className='font-normal text-[14px] text-[#979797]'>
                 Step {tourCount + 1}/5
@@ -94,7 +93,7 @@ const HoverModal = ({
                 : 'fixed ml-[7px] rotate-90'
             }`}
           >
-            <Image className='h-full w-full' src={downArrow} alt={''} />
+            <Image className='w-full h-full' src={downArrow} alt={''} />
           </div>
         </div>
       )}

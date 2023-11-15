@@ -60,6 +60,8 @@ const CreatorStudioSidebar = ({
   const GuideStep3 = TourSteps[3].id;
   const GuideStep4 = TourSteps[4].id;
 
+
+  // window.screenY()
   return (
     <>
       <div
