@@ -70,11 +70,12 @@ const GalleryCardCollection = ({
     <RemoveProfile backFromProfile={setSingleProfileState} />
   ) : (
     <div className='grid grid-cols-2 gap-4'>
-      {exploreGallery.map((items) => {
+      {exploreGallery.map((items, index) => {
         return (
           <div
             className='relative cursor-pointer gallery-card-collection group rounded-[14px] overflow-hidden h-[470px]'
             onClick={() => setSingleProfileState(true)}
+            key={index}
           >
             {/* <div className='relative group'> */}
             <Image

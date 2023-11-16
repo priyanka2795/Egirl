@@ -14,6 +14,8 @@ import SearchIcon from './svg/search.svg';
 import FilterIcon from './svg/filter.svg';
 import GalleryFilterCheckbox from './GalleryFilterCheckbox';
 import GalleryCardCollection from './GalleryCardCollection';
+import { exploreGallery } from 'services/services';
+import Cookies from 'js-cookie';
 
 const galleryArray = [
   {
@@ -66,13 +68,17 @@ const galleryArray = [
 interface GalleryTabFilterProps {
   singleProfileState: boolean;
   setSingleProfileState: React.Dispatch<React.SetStateAction<boolean>>;
+  userId : string
 }
 const GalleryTabFilter = ({
   singleProfileState,
-  setSingleProfileState
+  setSingleProfileState,
+  userId
 }: GalleryTabFilterProps) => {
+  const token:any = Cookies.get('accessToken');
   const [selectedFilter, setSelectedFilter] = useState('All');
   const [filterForm, setFilterForm] = useState(false);
+  const [galleryData , setGalleryData] = useState<any>() 
 
   if (selectedFilter === undefined || selectedFilter.length < 1) {
     setSelectedFilter('All');
@@ -80,6 +86,18 @@ const GalleryTabFilter = ({
   const handleSelectedFilter = (item: string) => {
     setSelectedFilter(item);
   };
+
+
+  useEffect(()=>{
+    exploreGallery(1, 10, token)
+    .then((res:any)=>{
+      setGalleryData(res?.data)
+      console.log(res , "exploreGallaryRes????");
+    })
+    .catch((err)=>{
+      console.log(err , "exploreError????");
+    })
+  },[])
 
   const settings = {
     dots: true,
@@ -115,12 +133,12 @@ const GalleryTabFilter = ({
               className='explore-gallery-filter flex w-[907px]'
             >
              
-              {galleryArray.map((items) => {
+              {galleryArray.map((items, index) => {
                 return (
                   <div
                     onClick={(e) => handleSelectedFilter(items.filterText)}
                     // onWheel={(e) => sliderScroll(e)}
-                    key={items.id}
+                    key={index}
                     className={`list-last-item relative z-10 mr-3 !flex h-[56px] w-max cursor-pointer items-center justify-start gap-2 rounded-full py-3 pl-3 
             pr-4 last:mr-0  ${
               selectedFilter === items.filterText

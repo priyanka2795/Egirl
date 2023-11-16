@@ -15,6 +15,7 @@ interface CollectionCardProps {
   filterFunction?: any;
   subscription?: string;
   setShowRealistic: any;
+  collectionId?:number
 }
 const CollectionCard = ({
   cardMainImg,
@@ -24,7 +25,8 @@ const CollectionCard = ({
   dropdownCardId,
   cardId,
   filterFunction,
-  setShowRealistic
+  setShowRealistic,
+  collectionId
 }: CollectionCardProps) => {   
   const [filterByType , setFilterByType] = useState(false);
   let filterTitle = "";
@@ -52,12 +54,12 @@ const CollectionCard = ({
         )}
         {dropdownCardId === cardId ? (
           <>
-            <CardDropdown closeDropdown={getCardId} />
+            <CardDropdown closeDropdown={getCardId} collectionId={collectionId} />
           </>
         ) :  null}
       </div>
       <div className='flex items-start w-full cursor-pointer'>     
-          <div className='w-full gap-1 gap-2 p-4 text-sm font-semibold text-white ' onClick={(e) => filterFunction(e)}>
+          <div className='w-full gap-2 p-4 text-sm font-semibold text-white ' onClick={(e) => filterFunction(e)}>
             {characterName}
           </div>        
       </div>

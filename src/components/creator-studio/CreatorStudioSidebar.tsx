@@ -60,6 +60,7 @@ const CreatorStudioSidebar = ({
   const GuideStep3 = TourSteps[3].id;
   const GuideStep4 = TourSteps[4].id;
 
+  // window.screenY()
   return (
     <>
       <div
@@ -76,7 +77,7 @@ const CreatorStudioSidebar = ({
             className='flex cursor-pointer items-center justify-between py-[14px] pl-3 pr-4'
             onClick={() => setSidebarModal(!sidebarModal)}
           >
-            <div className='relative flex items-center w-full gap-2'>
+            <div className='relative flex w-full items-center gap-2'>
               <div className='h-[32px] w-[32px]'>
                 <Image
                   src={avtar}
@@ -92,7 +93,7 @@ const CreatorStudioSidebar = ({
                 Mika-chan
               </div>
             </div>
-            <div className='h-full mt-2'>
+            <div className='mt-2 h-full'>
               <Image src={arrowDown} alt='' />
             </div>
             {sidebarModal && (
@@ -355,7 +356,7 @@ const CreatorStudioSidebar = ({
             sideBarMenuText={`max-[1279px]:!hidden ${
               shrinkSideBar === true ? '!hidden' : 'w-full'
             } `}
-          />        
+          />
 
           <div className='font-bold group relative flex cursor-pointer items-center justify-center rounded-[14px] text-[16px] leading-[22px] text-white'>
             <SidebarMenuItem
@@ -411,7 +412,7 @@ const CreatorStudioSidebar = ({
           }`}
         >
           <div
-            className='relative mt-[50px] flex cursor-pointer items-center gap-2 py-3 pl-3 border-[#FFFFFF14] border-t'
+            className='relative mt-[50px] flex cursor-pointer items-center gap-2 border-t border-[#FFFFFF14] py-3 pl-3'
             onClick={() => setMoreOptionsModal(!moreOptionsModal)}
           >
             <div>

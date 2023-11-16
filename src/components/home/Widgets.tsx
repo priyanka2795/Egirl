@@ -61,15 +61,15 @@ export default function Widgets() {
         <div className='h-full w-full rounded-[14px] bg-[#121212]'>
           <div className='flex justify-between border-b border-white/[0.08] p-6'>
             <div className='font-bold text-[18px] text-[#FFFFFF]'>
-              You might like
+              You might like 
             </div>
             <div className='flex gap-3'>
               <Image src={arrowLeft} alt={''} />
               <Image src={arrowRight} alt={''} />
             </div>
           </div>
-          <div className='bookmark-img-text h-full p-6'>
-            <div className='profile-like-slider home-page-slider relative h-full'>
+          <div className='h-full p-6 bookmark-img-text'>
+            <div className='relative h-full profile-like-slider home-page-slider'>
               <Slider {...settings}>
                 <UserFrame />
                 <UserFrame />

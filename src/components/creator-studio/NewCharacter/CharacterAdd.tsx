@@ -11,16 +11,17 @@ const initialValues = {
   username: ''
 };
 interface CharacterAdd {
-  NewCharacterClose: any;
-  SetUserGuide: any;
-  SetIsTourOpen: any;
-  setTourCount: React.Dispatch<React.SetStateAction<number>>;
+  NewCharacterClose?: any;
+  SetUserGuide?: any;
+  SetIsTourOpen?: any;
+  UserGuide?: any;
+  setTourCount?: React.Dispatch<React.SetStateAction<number>>;
 }
 const CharacterAdd = ({
   NewCharacterClose,
   SetUserGuide,
   SetIsTourOpen,
-  setTourCount
+  setTourCount,UserGuide
 }: CharacterAdd) => {
   const { values, errors, handleBlur, touched, handleChange, handleSubmit } =
     useFormik({
@@ -126,15 +127,26 @@ const CharacterAdd = ({
               >
                 Cancel
               </button>
+              {UserGuide ?
               <button
                 type='submit'
                 className='font-bold h-12 w-[50%] items-center gap-2 rounded-[14px]  bg-[#5848BC] px-5 py-[13px] text-base leading-[22px]'
-                onClick={() => (
-                  SetUserGuide(false), SetIsTourOpen(true), setTourCount(0)
-                )}
+                onClick={() => {
+                  SetUserGuide(false);
+                  SetIsTourOpen(true);
+                  setTourCount(0);
+                }}
+              >
+                Create
+              </button>:<button
+                type='submit'
+                className='font-bold h-12 w-[50%] items-center gap-2 rounded-[14px]  bg-[#5848BC] px-5 py-[13px] text-base leading-[22px]'
+                onClick={() => { NewCharacterClose(false)
+                }}
               >
                 Create
               </button>
+              }
             </div>
           </div>
         </div>

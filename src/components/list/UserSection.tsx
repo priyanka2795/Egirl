@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Slider from 'react-slick';
 import UserFrame from './UserFrame';
 import Image from 'next/image';
 import arrowLeft from '../../../public/assets/arrow-narrow-left.png';
 import arrowRight from '../../../public/assets/arrow-narrow-right.png';
+import Cookies from 'js-cookie';
+import { profileYouMightLike } from 'services/services';
 
 const settings = {
   dots: true,
@@ -17,6 +19,16 @@ interface UserSectionInterface {
   userSectionStyle?: string;
 }
 const UserSection = ({ userSectionStyle }: UserSectionInterface) => {
+  const token:any = Cookies.get("accessToken")
+  useEffect(()=>{
+    profileYouMightLike("57713333-24df-4eaf-8070-ff4599b6061c", token)
+    .then((res)=>{
+      console.log("you might res---", res)
+    })
+    .catch((err)=>{
+      console.log("you might err---", err)
+    })
+  },[])
   return (
     <div
       className={`mt-5 h-max rounded-[14px] bg-[#121212] ${
@@ -25,14 +37,14 @@ const UserSection = ({ userSectionStyle }: UserSectionInterface) => {
     >
       <div className='flex justify-between border-b border-white/[0.08] p-6'>
         <div className='font-bold text-[18px] text-[#FFFFFF]'>
-          You might like
+          You might like 
         </div>
         <div className='flex gap-3'>
           <Image src={arrowLeft} alt={''} />
           <Image src={arrowRight} alt={''} />
         </div>
       </div>
-      <div className='bookmark-img-text px-6 py-6'>
+      <div className='px-6 py-6 bookmark-img-text'>
         <div className='profile-like-slider h-[286px]'>
           <Slider {...settings}>
             <UserFrame />

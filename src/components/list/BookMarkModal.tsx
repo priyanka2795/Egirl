@@ -1,5 +1,5 @@
 import { Modal } from '@components/modal/modal';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CloseIcon from '../../../public/assets/svgImages/close-icon.svg';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -23,6 +23,12 @@ import CloseIconSvg from '../../../public/assets/svgImages/close-icon.svg';
 import FlagRed from '../../../public/assets/flag.svg';
 import Pen from '../../../public/assets/pen.png';
 import DeleteIcon from '../../../public/assets/trash-blank-alt3.png';
+import { getPostComments, postComment } from 'services/services';
+import Cookies, { set } from 'js-cookie';
+import BookmarkIcon from '../home/Post/svg/bookmark.svg';
+import BookmarkFillIcon from '../home/Post/svg/bookmark-fill.svg';
+import { useAppDispatch, useAppSelector } from 'redux/hooks';
+import { tokenRefresh } from 'redux/api/RefreshTokenApi';
 
 const settings = {
   dots: true,
@@ -34,12 +40,74 @@ const settings = {
 
 interface BookMarkModalProp {
   closeModalState: any;
+  postId: number;
+  postUpdate: boolean;
+  setPostUpdate: any;
+  commentsNumber: string;
+  heartsNumber: string;
+  bookmarksActive: boolean;
+  name: string;
+  username: string;
+  postText: string;
 }
-const BookMarkModal = ({ closeModalState }: BookMarkModalProp) => {
+const BookMarkModal = ({
+  closeModalState,
+  postId,
+  postUpdate,
+  setPostUpdate,
+  commentsNumber,
+  heartsNumber,
+  bookmarksActive,
+  name,
+  username,
+  postText
+}: BookMarkModalProp) => {
+  const dispatch = useAppDispatch();
+  const token: any = Cookies.get('accessToken');
+  const refreshTokenData: any = useAppSelector(
+    (state) => state.tokenRefresh?.tokenData
+  );
+
   const [reportToggle, setReportToggle] = useState(false);
   const [editToggle, setEditToggle] = useState(false);
   const [textAreaCount, setTextAreaTotal] = useState('');
   const [textArea, setTextArea] = useState(true);
+  const [commentUpdate, setCommentUpdate] = useState(false);
+  const [commentsData, setCommentsData] = useState([]);
+  const [showMoreComment, setShowMoreComment] = useState(false)
+  // ===== post comment function ====
+  const handlePostComment = () => {
+    setTextArea(true), setTextAreaTotal('');
+    let commentData = {
+      post_id: postId,
+      description: textAreaCount
+    };
+    postComment(commentData, token)
+      .then((res: any) => {
+        console.log('post comment res---', res);
+        setPostUpdate(!postUpdate);
+        setCommentUpdate(!commentUpdate);
+      })
+      .catch((err: any) => {
+        console.log('post comment err---', err);
+      });
+  };
+
+  // ===== get post comment api =====
+  useEffect(() => {
+    getPostComments(postId, 1, 10, token)
+      .then((res: any) => {
+        console.log('get comments res----', res);
+        setCommentsData(res?.data);
+        if (res?.response?.status === 401) {
+          dispatch(tokenRefresh());
+        }
+      })
+      .catch((err) => {
+        console.log('get comments err----', err);
+      });
+  }, [commentUpdate]);
+
   return (
     <Modal
       open={true}
@@ -59,17 +127,17 @@ const BookMarkModal = ({ closeModalState }: BookMarkModalProp) => {
 
         <div className='w-full'>
           <div className='flex w-full flex-col gap-4 border-b border-white/[0.12] px-4 py-6'>
-            <div className='flex w-full justify-between'>
+            <div className='flex justify-between w-full'>
               <div className='flex items-center gap-4'>
                 <div className='h-[48px] w-[48px]'>
-                  <Image className='h-full w-full' src={avatar} alt={''} />
+                  <Image className='w-full h-full' src={avatar} alt={''} />
                 </div>
                 <div className='flex flex-col gap-1'>
                   <div className='font-bold text-[18px] leading-6 text-[#FFFFFF]'>
-                    Mika-chan
+                    {name}
                   </div>
                   <div className='font-normal text-[15px] leading-5 text-[#979797]'>
-                    @mikachan · 32m
+                    {username} · 32m
                   </div>
                 </div>
               </div>
@@ -92,7 +160,7 @@ const BookMarkModal = ({ closeModalState }: BookMarkModalProp) => {
             </div>
             <div className='flex flex-col gap-1 rounded-[12px] p-2'>
               <div className='font-normal text-[14px] leading-[18px] text-[#FFFFFF]'>
-                Hello dears, my mood today is 🤗
+                {postText}
               </div>
               <div className='flex gap-[6px]'>
                 <div className='font-normal text-[14px] leading-[18px] text-[#8C7DD0]'>
@@ -113,7 +181,9 @@ const BookMarkModal = ({ closeModalState }: BookMarkModalProp) => {
                   src={orangeHeart}
                   alt={''}
                 />
-                <div className='font-normal text-[15px] text-[#F44E32]'>2</div>
+                <div className='font-normal text-[15px] text-[#F44E32]'>
+                  {heartsNumber}
+                </div>
               </div>
               <div className='flex gap-[6px] rounded-[100px] bg-white/[0.08] px-3 py-2'>
                 <Image
@@ -121,14 +191,16 @@ const BookMarkModal = ({ closeModalState }: BookMarkModalProp) => {
                   src={messageIcon}
                   alt={''}
                 />
-                <div className='font-normal text-[15px] text-[#FFFFFF]'>1</div>
+                <div className='font-normal text-[15px] text-[#FFFFFF]'>
+                  {commentsNumber}
+                </div>
               </div>
               <div className='flex gap-[6px] rounded-[100px] bg-white/[0.08] px-3 py-2'>
-                <Image
-                  className='h-[20px] w-[20px] object-contain'
-                  src={bookmark}
-                  alt={''}
-                />
+                {bookmarksActive ? (
+                  <BookmarkFillIcon className='text-[#979797]' />
+                ) : (
+                  <BookmarkIcon className='text-[#979797]' />
+                )}
               </div>
               <div className='flex gap-[6px] rounded-[100px] bg-white/[0.08] px-3 py-2'>
                 <Image
@@ -205,77 +277,83 @@ const BookMarkModal = ({ closeModalState }: BookMarkModalProp) => {
                   </div>
                 </div>
               </div>
-              <div className='flex flex-col gap-2 rounded-[14px] bg-[#1A1A1A] px-5 py-4'>
-                <div className='flex justify-between'>
-                  <div className='flex gap-3'>
-                    <div className='h-[40px] w-[40px]'>
-                      <Image
-                        className='h-full w-full'
-                        src={pinkPhnGirlAvatar}
-                        alt={''}
-                      />
-                    </div>
-                    <div className='flex flex-col gap-[2px]'>
-                      <div className='flex gap-2'>
-                        <div className='font-bold text-[15px] text-[#FFFFFF]'>
-                          My Comment
-                        </div>
-                        <div className='font-normal text-[15px] text-[#979797]'>
-                          @mycomment
-                        </div>
-                      </div>
-                      <div className='font-normal text-[13px] text-[#979797]'>
-                        5h
-                      </div>
-                    </div>
-                  </div>
-                  <div className='relative h-[24px] w-[24px]'>
-                    <button onClick={() => setEditToggle(!editToggle)}>
-                      <Image
-                        className='h-full w-full'
-                        src={threeDotsWhite}
-                        alt={''}
-                      />
-                    </button>
-                    {editToggle && (
-                      <div className='shadow-[0px 8px 12px 0px #0000001F] absolute right-0 w-[218px] rounded-[14px] bg-[#272727] py-2'>
-                        <div className='flex items-center gap-2 px-4 py-[10px]'>
-                          <Image src={Pen} />
-                          <p className=''>Edit</p>
-                        </div>
-                        <div className='flex items-center gap-2 px-4 py-[10px]'>
+              {commentsData?.slice(0,showMoreComment).map((ele: any, index: number) => {
+                return (
+                  <div className='flex flex-col gap-2 rounded-[14px] bg-[#1A1A1A] px-5 py-4' key={index}>
+                    <div className='flex justify-between'>
+                      <div className='flex gap-3'>
+                        <div className='h-[40px] w-[40px]'>
                           <Image
-                            src={DeleteIcon}
-                            className='!h-[18px] !w-[18px] object-cover'
+                            className='w-full h-full'
+                            src={pinkPhnGirlAvatar}
+                            alt={''}
                           />
-                          <p className='text-[#FF5336]'>Delete</p>
+                        </div>
+                        <div className='flex flex-col gap-[2px]'>
+                          <div className='flex gap-2'>
+                            <div className='font-bold text-[15px] text-[#FFFFFF]'>
+                              {ele.commenter_username}
+                            </div>
+                            <div className='font-normal text-[15px] text-[#979797]'>
+                              @{ele.commenter_display_name}
+                            </div>
+                          </div>
+                          <div className='font-normal text-[13px] text-[#979797]'>
+                            5h
+                          </div>
                         </div>
                       </div>
-                    )}
-                  </div>
-                </div>
-                <div className='flex flex-col gap-[10px]'>
-                  <div className='font-normal text-[13px] leading-[18px] text-[#FFFFFF]'>
-                    I like it!!!
-                  </div>
-                  <div className='flex gap-[10px]'>
-                    <div className='flex gap-1 rounded-[100px] bg-white/[0.08] px-2 py-[6px]'>
-                      <div className='h-[16px] w-[16px]'>
-                        <Image
-                          className='h-full w-full'
-                          src={heartIcon}
-                          alt={''}
-                        />
+                      <div className='relative h-[24px] w-[24px]'>
+                        <button onClick={() => setEditToggle(!editToggle)}>
+                          <Image
+                            className='w-full h-full'
+                            src={threeDotsWhite}
+                            alt={''}
+                          />
+                        </button>
+                        {editToggle && (
+                          <div className='shadow-[0px 8px 12px 0px #0000001F] absolute right-0 w-[218px] rounded-[14px] bg-[#272727] py-2'>
+                            <div className='flex items-center gap-2 px-4 py-[10px]'>
+                              <Image src={Pen} />
+                              <p className=''>Edit</p>
+                            </div>
+                            <div className='flex items-center gap-2 px-4 py-[10px]'>
+                              <Image
+                                src={DeleteIcon}
+                                className='!h-[18px] !w-[18px] object-cover'
+                              />
+                              <p className='text-[#FF5336]'>Delete</p>
+                            </div>
+                          </div>
+                        )}
                       </div>
-                      <div className='text-[13px] font-semibold text-[#FFFFFF]'>
-                        2
+                    </div>
+                    <div className='flex flex-col gap-[10px]'>
+                      <div className='font-normal text-[13px] leading-[18px] text-[#FFFFFF]'>
+                        {ele.description}
+                      </div>
+                      <div className='flex gap-[10px]'>
+                        <div className='flex gap-1 rounded-[100px] bg-white/[0.08] px-2 py-[6px]'>
+                          <div className='h-[16px] w-[16px]'>
+                            <Image
+                              className='w-full h-full'
+                              src={heartIcon}
+                              alt={''}
+                            />
+                          </div>
+                          <div className='text-[13px] font-semibold text-[#FFFFFF]'>
+                            2
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
+                );
+              })}
             </div>
-            <button className='rounded-[12px] bg-white/[0.08] px-4 py-[10px] text-[14px] font-[700] text-[#979797]'>
+            <button className='rounded-[12px] bg-white/[0.08] px-4 py-[10px] text-[14px] font-[700] text-[#979797]'
+            onClick={()=> setShowMoreComment(!showMoreComment)}
+            >
               Show more comments
             </button>
           </div>
@@ -311,9 +389,7 @@ const BookMarkModal = ({ closeModalState }: BookMarkModalProp) => {
                 <p className='text-[#979797]'>{textAreaCount.length}/160</p>
                 <button
                   className='font-bold flex items-center justify-center rounded-[16px] bg-[#5848BC] px-6 py-4 text-[18px] leading-6 text-white'
-                  onClick={() => {
-                    setTextArea(true), setTextAreaTotal('');
-                  }}
+                  onClick={handlePostComment}
                 >
                   Send
                 </button>

@@ -1,16 +1,34 @@
 import { Modal } from '@components/modal/modal';
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Image from 'next/image';
 import bluestarIcon from '../../../public/assets/blue-start-icon.png';
 import starIcon from '../../../public/assets/star-icon.png';
 import heartIcon from '../../../public/assets/heart-icon.png';
 import crownIcon from '../../../public/assets/crown-icon.png';
 import CloseIcon from './svg/close-icon.svg';
-
+import { exploreUserSubscription } from 'services/services';
+import Cookies from 'js-cookie';
 interface subscriptionPlanModal {
   closeDefaulModal: any;
 }
 const SubscriptionPlan = ({ closeDefaulModal }: subscriptionPlanModal) => {
+  const token:any = Cookies.get("accessToken")
+    const handleSubscription = ()=>{
+      closeDefaulModal(false)
+      let data ={
+        "user_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "character_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "subscription_id": 0,
+        "stripe_subscription_id": "string"
+      }
+      exploreUserSubscription(data, token)
+      .then((res)=>{
+        console.log("subscription res---", res)
+      })
+      .catch((err)=>{
+        console.log("subscription err---", err)
+      })
+    }
   return (
     <Modal
       open={true}
@@ -154,7 +172,7 @@ const SubscriptionPlan = ({ closeDefaulModal }: subscriptionPlanModal) => {
           <div className='cursor-pointer flex w-1/2 items-center justify-center gap-2 rounded-[14px] border border-white/10 px-[20px] py-[12px] text-[16px] font-bold text-white' onClick={() =>{closeDefaulModal(false)}}>
             Cancel
           </div>
-          <div className='cursor-pointer flex w-1/2 items-center justify-center gap-2 rounded-[14px] bg-[#5848BC] px-[20px] py-[12px] text-[16px] font-bold text-white'  onClick={() =>{closeDefaulModal(false)}}>
+          <div className='cursor-pointer flex w-1/2 items-center justify-center gap-2 rounded-[14px] bg-[#5848BC] px-[20px] py-[12px] text-[16px] font-bold text-white'  onClick={handleSubscription}>
             Subscribe
           </div>
         </div>

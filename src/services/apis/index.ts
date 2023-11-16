@@ -16,12 +16,29 @@ export const postApi = async (url: string, data: any) => {
   }
 }
 
-export const postWithParams = async (url: string) => {
+export const postApiWithToken = async (url: string, data: any, token: string | null) => {
   try {
     let apiUrl = `${config.serverURL}${url}`
-    const response = await axios.post(apiUrl, {
+    const response = await axios.post(apiUrl, data, {
       headers: {
-      "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+        accept: "application/json",
+      },
+    })
+    return response;
+  } catch (error) {
+    return error
+  }
+}
+
+export const postWithParams = async (url: string, token: string | null) => {
+  try {
+    let apiUrl = `${config.serverURL}${url}`
+    const response = await axios.post(apiUrl, {},{
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
         accept: "application/json",
       },
     })
@@ -47,6 +64,7 @@ export const getApi = async (url: string) => {
 }
 
 
+
 export const getApiWithToken = async (url: string, token: string | null) => {
   try {
     let apiUrl = `${config.serverURL}${url}`
@@ -63,13 +81,14 @@ export const getApiWithToken = async (url: string, token: string | null) => {
   }
 }
 
-export const putApiWithToken = async (url: string, data: any, token: string | null, multipart?: boolean) => {
-  try {
+export const putApiWithToken = async(url:string, data:any, token:string|null)=>{
+  try{
+
     let apiUrl = `${config.serverURL}${url}`
     const response = await axios.put(apiUrl, data, {
       headers: {
         Authorization: `Bearer ${token}`,
-        "Content-Type": multipart ? "multipart/form-data" : "application/json",
+        "Content-Type":"application/json",
         accept: "application/json",
       },
     })
@@ -78,7 +97,6 @@ export const putApiWithToken = async (url: string, data: any, token: string | nu
     return error
   }
 }
-
 export const deleteApi = async (url: any, token: String | null) => {
   try {
     let apiUrl = `${config.serverURL}${url}`
@@ -94,4 +112,5 @@ export const deleteApi = async (url: any, token: String | null) => {
     return error
   }
 }
+
 
