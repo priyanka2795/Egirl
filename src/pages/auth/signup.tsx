@@ -32,9 +32,16 @@ import 'react-toastify/dist/ReactToastify.css';
 //       "That's an invalid password"
 //     )
 // });
+
+let emailValidation =
+  /^(([^<>()\[\]\\.,;:\s@"]+(.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/;
+
 const validationSchema = Yup.object().shape({
   username: Yup.string().required('Username is required'),
-  email: Yup.string().email('Invalid email').required('Email is required'),
+  email: Yup.string()
+    .email('Invalid email')
+    .required('Email is required')
+    .matches(emailValidation, 'Invalid email address'),
   verifyemail: Yup.string()
     .required()
     .oneOf([Yup.ref('email')], "That's an invalid email"),
@@ -65,6 +72,7 @@ export default function SignUp() {
   const supabase = useSupabaseClient<Database>();
 
   const [password, setPassword] = useState('');
+  const [form, setForm] = useState();
   const [isMinLength, setIsMinLength] = useState<boolean>(false);
   const [hasNumberOrSpecialChar, setHasNumberOrSpecialChar] =
     useState<boolean>(false);
@@ -105,10 +113,10 @@ export default function SignUp() {
         if (res.status === 200) {
           Cookies.set('accessToken', res.data.access_token);
           Cookies.set('refreshToken', res.data.refresh_token);
-          toast.success('User login successful')
-          setTimeout(()=>{
+          toast.success('User login successful');
+          setTimeout(() => {
             router.push('/home');
-          },1000)
+          }, 1000);
         }
         if (res.response?.status === 400) {
           setErrorMsg(res.response?.data?.detail);
@@ -118,6 +126,7 @@ export default function SignUp() {
         console.log('sign up err---', err);
       });
   };
+console.log(password,'password ');
 
   return (
     <>
@@ -207,7 +216,7 @@ export default function SignUp() {
                       />
                     </div>
 
-                    <div className='input-username-error flex flex-col gap-[6px]'>
+                    {/* <div className='input-username-error flex flex-col gap-[6px]'>
                       <label
                         htmlFor='phoneNumber'
                         className='text-[13px] font-semibold leading-[18px] text-[#979797]'
@@ -226,7 +235,7 @@ export default function SignUp() {
                         name='phoneNumber'
                         component='div'
                       />
-                    </div>
+                    </div> */}
 
                     <div className='flex flex-col gap-[6px]'>
                       <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
@@ -237,10 +246,11 @@ export default function SignUp() {
                         id='password'
                         name='password'
                         placeholder='password'
-                        // value={password}
-                        // onChange={(e: any) => {
-                        //   handlePasswordChange(e);
-                        // }}
+                        value={password}
+                        onChange={(e: any) => {
+                          handlePasswordChange(e);
+                        }}
+
                         className={`font-normal // flex rounded-[14px] bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-white placeholder:text-[#979797] 
                      focus:ring-0 ${
                        errors.password
@@ -256,22 +266,33 @@ export default function SignUp() {
                         className='text-red-500'
                       />
                       <div>
-                        <ul>
-                          <li className='mb-3'>Create a password that:</li>
-                          <li className='flex items-center mb-2'>
-                            {errors.password ? <CrossIcon /> : <CheckedIcon />}
-                            contains at least 8 characters
-                          </li>
-                          <li className='flex items-center'>
-                            {/* {hasNumberOrSpecialChar ? (
+                        {password === '' ? (
+                          ''
+                        ) : (
+                          <ul>
+                            <li className='mb-3'>Create a password that:</li>
+                            <li className='flex items-center mb-2'>
+                              {errors.password ? (
+                                <CrossIcon />
+                              ) : (
+                                <CheckedIcon />
+                              )}
+                              contains at least 8 characters
+                            </li>
+                            <li className='flex items-center'>
+                              {/* {hasNumberOrSpecialChar ? (
                             <CheckedIcon />
                           ) : (
-                            <CrossIcon />
                           )}{' '} */}
-                            {errors.password ? <CrossIcon /> : <CheckedIcon />}
-                            contains at least one number (0-9) or a symbol
-                          </li>
-                        </ul>
+                              {errors.password ? (
+                                <CrossIcon />
+                              ) : (
+                                <CheckedIcon />
+                              )}
+                              contains at least one number (0-9) or a symbol
+                            </li>
+                          </ul>
+                        )}
                       </div>
                     </div>
                   </div>
