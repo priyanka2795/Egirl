@@ -7,8 +7,10 @@ import HoverModal from '@components/list/HoverModal';
 import React, { useState } from 'react';
 
 interface CreatorStudioLayoutProps {
-  children?:any
-  setProfileInfoPage?: any;
+  setProfileInfoPage: any;
+  setUserDetails: any;
+  userDetails: any;
+  children?: any;
   btnSteps?: any;
   setBtnSteps?: any;
   activeStep?: any;
@@ -18,6 +20,8 @@ interface CreatorStudioLayoutProps {
 const CreatorStudioLayout = ({
   children,
   setProfileInfoPage,
+  setUserDetails,
+  userDetails,
   btnSteps,
   setBtnSteps,
   activeStep,
@@ -106,16 +110,18 @@ const CreatorStudioLayout = ({
                 ) : (
                   <CreatorStudio
                     IsOpen={isTourOpen}
+                    setUserDetails={setUserDetails}
                     OnClose={closeTour}
                     TourSteps={tourSteps}
                     SetIsTourOpen={setIsTourOpen}
                     tourCount={tourCount}
                     setTourCount={setTourCount}
                     setProfileInfoPage={setProfileInfoPage}
+                    userDetails={userDetails}
                     btnSteps={btnSteps}
-        setBtnSteps={setBtnSteps}
-        activeStep={activeStep}
-        setActiveStep={setActiveStep}
+                    setBtnSteps={setBtnSteps}
+                    activeStep={activeStep}
+                    setActiveStep={setActiveStep}
                   />
                 )}
               </>

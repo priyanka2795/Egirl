@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import plusIcon from '../../../../public/assets/plus-large.png';
 import ImagePlusIcon from '../svg/image-plus.svg';
@@ -12,6 +12,7 @@ import DotsHorizontal from '../../../../public/assets/dots-horizontal-white.png'
 import GiftCardEditModal from './giftCardEditModal';
 import GiftCategoryAction from './giftCategoryAction';
 import GiftCardDelete from './giftCardDelete';
+import { getGifts } from 'services/services';
 
 function Gifts() {
   const [giftModal, setGiftModal] = useState<boolean>(false);
@@ -62,6 +63,23 @@ function Gifts() {
     setToggle(!toggle);
   };
 
+  // const getAllGifts =()=>{
+  //   getGifts(0)
+  //   .then((res)=>{
+
+  //   })
+  // }
+
+  useEffect(() => {
+    getGifts(`gift_category_id=${1}`)
+      .then((res: any) => {
+        console.log(res, 'gifts????');
+      })
+      .catch((err) => {
+        console.log(err, 'giftserr????');
+      });
+  }, []);
+
   return (
     <>
       <div className='flex items-center justify-between'>
@@ -82,7 +100,7 @@ function Gifts() {
             SetCategory={setAddCategory}
           />
 
-          <div className='flex items-center justify-between mt-4'>
+          <div className='mt-4 flex items-center justify-between'>
             <p className='text-[#979797]'>1/9 gifts</p>
             <button
               className='flex items-center justify-center gap-1'
@@ -93,7 +111,7 @@ function Gifts() {
             </button>
           </div>
 
-          <div className='grid items-center grid-cols-1 mt-4 gap-9 md:grid-cols-2 lg:grid-cols-3'>
+          <div className='mt-4 grid grid-cols-1 items-center gap-9 md:grid-cols-2 lg:grid-cols-3'>
             {GiftCardName.map((item: string, index: number) => (
               <div
                 className='relative h-[300px] w-[300px] overflow-hidden rounded-xl'
@@ -101,7 +119,7 @@ function Gifts() {
               >
                 <Image
                   src={giftImageSet}
-                  className='object-cover w-full h-full'
+                  className='h-full w-full object-cover'
                 />
                 <div className='absolute right-2 top-2'>
                   <button
@@ -110,7 +128,7 @@ function Gifts() {
                   >
                     <Image
                       src={DotsHorizontal}
-                      className='object-cover w-full h-full'
+                      className='h-full w-full object-cover'
                       alt=''
                     />
                   </button>
@@ -124,7 +142,7 @@ function Gifts() {
                           >
                             <Image
                               src={Pencil}
-                              className='w-full h-full'
+                              className='h-full w-full'
                               alt=''
                             />
                             <p>Edit name</p>
@@ -135,7 +153,7 @@ function Gifts() {
                             onClick={() => EditGift(2)}
                           >
                             <div>
-                              <RightUp className='w-full h-full' alt={''} />
+                              <RightUp className='h-full w-full' alt={''} />
                             </div>
                             <p>Move to another category</p>
                           </button>
@@ -146,7 +164,7 @@ function Gifts() {
                           >
                             <Image
                               src={Delete}
-                              className='w-full h-full'
+                              className='h-full w-full'
                               alt={''}
                             />
                             <p>Delete</p>

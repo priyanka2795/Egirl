@@ -1,32 +1,33 @@
 import CreatorStudioLayout from '@components/common/CreatorStudioLayout';
 import CreatorStudio from '@components/creator-studio';
 import ProfileInfoModal from '@components/list/ProfileInfoModal';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const creatorStudio = () => {
   const [profileInfoPage, setProfileInfoPage] = useState(false);
+  const [userDetails, setUserDetails] = useState({
+    username: '',
+    display_name: '',
+    bio: '',
+    location: '',
+    profile_picture_media_id: 1,
+    profile_banner_media_id: 1,
+    profile_tags: []
+  });
 
-  // Stepper Code
-  const [btnSteps, setBtnSteps] = useState<boolean>(false);
-
-  const [activeStep, setActiveStep] = useState(0);
-  // Stepper Code End
-
+  useEffect(() => {
+    console.log(userDetails, '????details');
+  }, [userDetails]);
   return (
     <div>
       {profileInfoPage ? (
-        <ProfileInfoModal
-          setProfileInfoPage={setProfileInfoPage}
-          btnSteps={btnSteps}
-          setBtnSteps={setBtnSteps}
-          activeStep={activeStep}
-          setActiveStep={setActiveStep}
-        />
+        <ProfileInfoModal setProfileInfoPage={setProfileInfoPage} />
       ) : (
-        <CreatorStudioLayout setProfileInfoPage={setProfileInfoPage} btnSteps={btnSteps}
-        setBtnSteps={setBtnSteps}
-        activeStep={activeStep}
-        setActiveStep={setActiveStep}/>
+        <CreatorStudioLayout
+          setProfileInfoPage={setProfileInfoPage}
+          userDetails={userDetails}
+          setUserDetails={setUserDetails}
+        />
       )}
     </div>
   );

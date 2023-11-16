@@ -1,9 +1,11 @@
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import crossIcon from '../../../../public/assets/xmark (1).png';
 import { Modal } from '@components/modal/modal';
 import SelectImage from './selectImage';
 import NotFound from 'pages/404';
+import { postGiftCategory } from 'services/services';
+import Cookies from 'js-cookie';
 
 interface CreateCategory {
   CategoryClose: React.Dispatch<React.SetStateAction<boolean>>;
@@ -20,31 +22,53 @@ const CreateCategory = ({
   SetCategory
 }: CreateCategory) => {
   const [inputvalue, setInputValue] = useState<string>('');
+  const accessToken = Cookies.get('accessToken');
+  const token = `${accessToken}`;
+  const characterId = `0ba3594c-5f1d-4632-aa93-49978e98b266`;
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setInputValue(value);
   };
+
+  useEffect(() => {
+    console.log(inputvalue, 'valval');
+  }, [inputvalue]);
+
   const FindData = AddCategory.find((items) => items === inputvalue);
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     if (inputvalue === '') {
       alert('Please Enter Value');
-    } else if (Steps === 3) {
-      if (inputvalue === FindData) {
-        alert('Category Name is already defend');
-      }else{
-        SetCategory([...AddCategory, inputvalue]);
-        Previous(false);
-      }
-    } else if (Steps === 4) {
-      SetCategory([...AddCategory, inputvalue]);
-      CategoryClose(false);
     } else {
-      if (inputvalue === FindData) {
-        alert('Category Name is already defend');
-      } else {
-        SetCategory([...AddCategory, inputvalue]);
-        Steps(2);
+      try {
+        const requestData = {
+          character_id: characterId,
+          name: inputvalue
+        };
+
+        await postGiftCategory(requestData, token);
+
+        if (Steps === 3) {
+          if (inputvalue === FindData) {
+            alert('Category Name is already defend');
+          } else {
+            SetCategory([...AddCategory, inputvalue]);
+            Previous(false);
+          }
+        } else if (Steps === 4) {
+          SetCategory([...AddCategory, inputvalue]);
+          CategoryClose(false);
+        } else {
+          if (inputvalue === FindData) {
+            alert('Category Name is already defend');
+          } else {
+            SetCategory([...AddCategory, inputvalue]);
+            Steps(2);
+          }
+        }
+      } catch (error) {
+        console.error('Error creating gift category:', error);
+        // Handle the error appropriately (e.g., show an error message)
       }
     }
     console.log(FindData, 'FindData');
@@ -60,10 +84,10 @@ const CreateCategory = ({
         <div className='flex items-center justify-between border-b border-[#FFFFFF14] p-6'>
           <h5 className='text-lg font-semibold'>Create a new category</h5>
           <div
-            className='w-6 h-6 cursor-pointer'
+            className='h-6 w-6 cursor-pointer'
             onClick={() => CategoryClose(false)}
           >
-            <Image className='w-full h-full' src={crossIcon} alt={''} />
+            <Image className='h-full w-full' src={crossIcon} alt={''} />
           </div>
         </div>
         <div className='p-6'>
@@ -80,7 +104,7 @@ const CreateCategory = ({
               onChange={(e) => handleChange(e)}
             />
           </div>
-          <div className='grid grid-cols-2 gap-3 mt-6 font-semibold text-white'>
+          <div className='mt-6 grid grid-cols-2 gap-3 font-semibold text-white'>
             {Steps === 3 ? (
               <button
                 className='rounded-[14px] border border-[#FFFFFF52] px-5 py-3'

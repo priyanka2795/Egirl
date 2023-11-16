@@ -9,12 +9,14 @@ interface CreateCharacter {
   SetIsTourOpen: any;
   UserGuide: any;
   setTourCount: React.Dispatch<React.SetStateAction<number>>;
+  setUserDetails: any;
 }
 
 function CreateCharacter({
   SetUserGuide,
   SetIsTourOpen,
   setTourCount,
+  setUserDetails,
   UserGuide
 }: CreateCharacter) {
   const [createCharacter, setCreateCharacter] = useState<boolean>(false);
@@ -22,8 +24,8 @@ function CreateCharacter({
     <>
       <div className='flex h-[470px] w-full flex-col items-center justify-center'>
         <div className='w-max rounded-full bg-white/[0.05] p-5'>
-          <div className='w-6 h-6'>
-            <Image className='w-full h-full' src={userAddIcon} alt={''} />
+          <div className='h-6 w-6'>
+            <Image className='h-full w-full' src={userAddIcon} alt={''} />
           </div>
         </div>
         <div className='mt-3 text-[13px] text-[#979797]'>
@@ -44,8 +46,8 @@ function CreateCharacter({
           SetUserGuide={SetUserGuide}
           SetIsTourOpen={SetIsTourOpen}
           setTourCount={setTourCount}
+          setUserDetails={setUserDetails}
           UserGuide={UserGuide}
-
         />
       )}
     </>

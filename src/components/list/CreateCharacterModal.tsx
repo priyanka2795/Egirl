@@ -10,13 +10,16 @@ interface createCharacterProps {
   UserGuide: any;
   // SetIsTourOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setTourCount: React.Dispatch<React.SetStateAction<number>>;
+  setUserDetails: any;
 }
 
 function CreateCharacterModal({
   closeState,
   SetUserGuide,
   SetIsTourOpen,
-  setTourCount,UserGuide
+  setUserDetails,
+  setTourCount,
+  UserGuide
 }: createCharacterProps) {
   const [showVoiceRequest, setShowVoiceRequest] = useState(false);
   const [showNewCharacter, setShowNewCharacter] = useState(false);
@@ -121,6 +124,7 @@ function CreateCharacterModal({
       {createCharacter && (
         <CharacterAdd
           NewCharacterClose={setCreateCharacter}
+          setUserDetails={setUserDetails}
           SetUserGuide={SetUserGuide}
           SetIsTourOpen={SetIsTourOpen}
           setTourCount={setTourCount}

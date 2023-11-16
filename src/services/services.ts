@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-import { deleteApi, getApi, postApi, postWithParams, getApiWithToken , postApiWithToken} from "./apis";
+import { deleteApi, getApi, getApiWithParams, postApi, postApiWithToken, postWithParams, putApi, putApiWithToken } from "./apis";
 
 
 // Post Login data
@@ -10,6 +10,12 @@ export const refreshToken = (data:any)=>postApi('/api/token/refresh',data)
 // discord login
 export const discordLogin = () => getApi('/discord/login')
 export const discordCallback=() => getApi('/discord/callback?code=1')
+// google api
+export const googleSignup = ()=> getApi('/google/signup')
+
+export const googleLogin = ()=> getApi('/google/login')
+
+export const googleCallback = () => getApi('/google/callback')
 
 // app (room) api
 export const getRooms = (token:string | null) => getApiWithToken(`/room/`, token)
@@ -56,6 +62,43 @@ export const addCharacterToCollection = (collectionId:number | undefined, data:a
 export const getSubscribed = (page:number, count:number, token:string | null) => getApiWithToken(`/lists/subscriptions/${page}/${count}`, token)
 export const getFollowed = (page:number, count:number, token:string | null) => getApiWithToken(`/lists/following/${page}/${count}`, token)
 export const getBookMarked = (page:number, count:number, token:string | null) => getApiWithToken(`/lists/user/bookmarked-posts/${page}/${count}`, token)
+
+// creator studio api
+
+export const updateCharacter = (data:any)=> putApi('/studio/character' , data )
+
+export const postCharacter = (data:any , token:any) => postApiWithToken('/studio/character' , data , token)
+
+export const updateCharacterPersonality = (data:any)=> putApi('/studio/character/personality' , data)
+
+export const postCharacterPersonality = (data:any) => postApi('/studio/character/personality' , data)
+
+export const getGifts = (id:any)=> getApiWithParams('/studio/gift' , id) 
+
+export const updateGifts = (data:any) => putApi('/studio/gift' , data )
+
+export const postGifts = (data:any) => postApi('studio/gift' , data)
+
+export const deleteGift = (data:any)=> deleteApi('/studio/gift' , data)
+
+export const getGiftCategory = (id:any) => getApiWithParams('/studio/gift/category' , id)
+
+export const updateGiftCategory = (data:any) => putApi('/studio/gift/category' , data)
+
+export const postGiftCategory = (data:any , token:any) => postApiWithToken('/studio/gift/category' , data , token)
+
+export const deleteGiftCategory = (data:any) => deleteApi('/studio/gift/category' , data)
+
+export const postPromptImage = (data:any) => postApi('/studio/image_generator/prompt_image' , data)
+
+export const postInpaintImage = (data:any) => postApi('/studio/image_generation/inpaint_image' , data)
+
+export const postPoseImage = (data:any) => postApi('/studio/image_generation/pose_image' , data)
+
+export const getImageGeneration = (offset:number , limit:number) => getApi(`/studio/image_generation/?offset=${offset}limit=${limit}`)
+
+// export const deleteImageGeneration = (id:number) => deleteApi(`/studio/image_generation/${id}`)
+
 
 //logout function 
 export const logout = ()=>{

@@ -16,21 +16,23 @@ export const postApi = async (url: string, data: any) => {
   }
 }
 
-export const postApiWithToken = async (url: string, data: any, token: string | null) => {
+export const postApiWithToken = async (url: string, data: any, token: string) => {
   try {
-    let apiUrl = `${config.serverURL}${url}`
+    let apiUrl = `${config.serverURL}${url}`;
     const response = await axios.post(apiUrl, data, {
       headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-        accept: "application/json",
+        'Content-Type': 'application/json',
+        'accept': 'application/json',
+        'Authorization': `Bearer ${token}`, // Add the Authorization header with the token
       },
-    })
+    });
     return response;
   } catch (error) {
-    return error
+    return error;
   }
-}
+};
+
+
 
 export const postWithParams = async (url: string, token: string | null) => {
   try {
@@ -62,6 +64,22 @@ export const getApi = async (url: string) => {
     return error
   }
 }
+
+export const getApiWithParams = async (url:string, data:any) => {
+  try {
+    const apiUrl = `${config.serverURL}${url}`;
+    const response = await axios.get(apiUrl, {
+      params: data, 
+      headers: {
+        'Content-Type': 'application/json',
+        accept: 'application/json',
+      },
+    });
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
 
 
 
@@ -97,6 +115,21 @@ export const putApiWithToken = async(url:string, data:any, token:string|null)=>{
     return error
   }
 }
+
+export const putApi = async (url:string, data:any, multipart = false) => {
+  try {
+    const apiUrl = `${config.serverURL}${url}`;
+    const response = await axios.put(apiUrl, data, {
+      headers: {
+        'Content-Type': multipart ? 'multipart/form-data' : 'application/json',
+        accept: 'application/json',
+      },
+    });
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
 export const deleteApi = async (url: any, token: String | null) => {
   try {
     let apiUrl = `${config.serverURL}${url}`

@@ -114,6 +114,8 @@ interface BannerProp {
   followBtnStyle?: string;
   followText?: string;
   component?: string;
+  setUserDetails: any;
+  userDetails: any;
   // setEditProfileModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const Banner: React.FC<BannerProp> = ({
@@ -122,8 +124,10 @@ const Banner: React.FC<BannerProp> = ({
   followBtnStyle,
   followText,
   component,
-  // setEditProfileModal
-}: BannerProp) => {
+  setUserDetails,
+  userDetails
+}: // setEditProfileModal
+BannerProp) => {
   const [actionDivShow, setActionDivShow] = useState(false);
   const [exploreSelectedTab, setExploreSelected] = useState('');
   const [collectionModalState, setCollectionModalState] = useState(false);
@@ -138,8 +142,7 @@ const Banner: React.FC<BannerProp> = ({
   const [updatedProfile, setUpdatedProfile] = useState(false);
   const [editProfileModal, setEditProfileModal] = useState(false);
 
-  console.log(editProfileModal,'editProfileModal');
-  
+  console.log(editProfileModal, 'editProfileModal');
 
   const handleExploreSelected = (e: React.MouseEvent<HTMLElement>) => {
     setExploreSelected((e.target as HTMLElement).innerText);
@@ -209,7 +212,7 @@ const Banner: React.FC<BannerProp> = ({
         ''
       ) : (
         <div
-          className='flex gap-2 my-4 text-lg font-bold cursor-pointer'
+          className='font-bold my-4 flex cursor-pointer gap-2 text-lg'
           onClick={() => {
             backFromProfile(false);
           }}
@@ -221,13 +224,13 @@ const Banner: React.FC<BannerProp> = ({
 
       <div>
         <div className='h-max w-full overflow-hidden rounded-[16px] bg-[#121212]'>
-          <div className='relative block w-full sub-banner'>
+          <div className='sub-banner relative block w-full'>
             {removeCover ? (
               <div className='h-[200px] w-[1092px] bg-[#121212]'></div>
             ) : updatedProfile ? (
               <img className='h-[200px] w-[1092px] ' src={cropData} alt='' />
             ) : (
-              <Image className='w-full h-full ' src={Cover} alt='' />
+              <Image className='h-full w-full ' src={Cover} alt='' />
             )}
             <div
               className='absolute right-[20px] top-[20px] cursor-pointer'
@@ -274,7 +277,7 @@ const Banner: React.FC<BannerProp> = ({
               }`}
             >
               <div className='relative h-[120px] w-[120px] overflow-hidden rounded-full'>
-                <Image className='w-full h-full' src={avatar} alt='' />
+                <Image className='h-full w-full' src={avatar} alt='' />
               </div>
               <div className={'flex gap-3 self-end'}>
                 {/* <button
@@ -299,7 +302,10 @@ const Banner: React.FC<BannerProp> = ({
                 <button className='h-max rounded-[14px] border border-[#5848BC] bg-[#5848BC] px-[20px] py-[11px] text-base font-bold text-white'>
                   Subscribe
                 </button> */}
-                <button className='flex items-center justify-center gap-2 rounded-[14px] bg-white/[0.08] px-5 py-[13px]' onClick={()=>setEditProfileModal(true)}>
+                <button
+                  className='flex items-center justify-center gap-2 rounded-[14px] bg-white/[0.08] px-5 py-[13px]'
+                  onClick={() => setEditProfileModal(true)}
+                >
                   <Image src={pen} alt={''} />
                   <div className='font-bold text-[16px] leading-[22px] text-white'>
                     Edit profile
@@ -313,7 +319,7 @@ const Banner: React.FC<BannerProp> = ({
                     </div>
                     <div className='absolute -right-[2px] -top-[20px] h-[24px] w-10'>
                       <Image
-                        className='w-full h-full'
+                        className='h-full w-full'
                         src={downArrow}
                         alt={''}
                       />
@@ -486,11 +492,14 @@ const Banner: React.FC<BannerProp> = ({
         />
       )}
 
-{
-        editProfileModal && <EditProfileModal closeState={setEditProfileModal} />
-      } 
+      {editProfileModal && (
+        <EditProfileModal
+          closeState={setEditProfileModal}
+          setUserDetails={setUserDetails}
+          userDetails={userDetails}
+        />
+      )}
     </div>
-
   );
 };
 
