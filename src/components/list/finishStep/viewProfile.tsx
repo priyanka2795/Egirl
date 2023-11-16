@@ -4,19 +4,13 @@ import ImagePlusIcon from '../../../../public/assets/image-plus2.png';
 import InformationIcon from '../../../../public/assets/circle-information24.png';
 import DeleteWhiteIcon from '../../../../public/assets/trash-blank-alt-white.png';
 import Image from 'next/image';
-import SelectProfilePhoto from './selectProfilePhoto';
-import EditProfilePhoto from './editProfilePhoto';
 import CoverImageModel from './coverImageModel';
 import SelectExploreImages from './selectExploreImages';
+import AddImagesModal from '@components/creator-studio/style-generator/AddImagesModal';
 function ViewProfile() {
   const [selectProfilePhoto, setSelectProfilePhoto] = useState(false);
-  const [uploadImg, setUploadImg] = useState<boolean>(false);
   const [uploadCoverImg, setUploadCoverImg] = useState<boolean>(false);
   const [attachingImages, setAttachingImages] = useState<boolean>(false);
-  const UploadImgModal = () => {
-    setUploadImg(true);
-    setSelectProfilePhoto(false);
-  };
 
   //   upload image code
 
@@ -27,6 +21,16 @@ function ViewProfile() {
       selected: true
     }
   ]);
+
+  const handleDeleteImage = (index:number) => {
+    const updatedExploreImages = [...exploreImages];
+
+    updatedExploreImages.splice(index, 1);
+
+    setExploreImages(updatedExploreImages);
+  };
+
+  const [croppedImage, setCroppedImage] = useState<string | null>(null);
 
 
   return (
@@ -53,10 +57,20 @@ function ViewProfile() {
 
             <div className='absolute bottom-0 flex h-[84px] w-full items-center gap-4 bg-[#121212] pb-[16px] pl-[24px] pt-[24px]'>
               <div
-                className='mb-[35px] flex h-[88px] w-[88px] cursor-pointer items-center justify-center rounded-full border-[3px] border-[#121212] bg-[#272727]'
+                className='relative mb-[35px] flex h-[88px] w-[88px] cursor-pointer items-center justify-center rounded-full border-[3px] border-[#121212] bg-[#272727]'
                 onClick={() => setSelectProfilePhoto(true)}
               >
-                <Image src={ImagePlusIcon} />
+                {croppedImage ? (
+                  <img
+                    src={croppedImage || 'none'}
+                    alt=''
+                    className='h-[72px] w-[72px] rounded-full'
+                  />
+                ) : (
+                  <div className='absolute left-1/2 top-1/2 h-[32px] -translate-x-1/2 -translate-y-1/2'>
+                    <Image src={ImagePlusIcon} className='' />
+                  </div>
+                )}
               </div>
               <div>
                 <h2 className='text-lg font-black'>Mika-chan</h2>
@@ -73,7 +87,8 @@ function ViewProfile() {
           <div className='rounded-[14px] bg-[#121212] px-6 py-5'>
             <div className='flex flex-col gap-4 '>
               <div className='text-[15px] font-semibold'>
-                Images <span className='text-[#979797]'>{exploreImages.length}/4</span>
+                Images{' '}
+                <span className='text-[#979797]'>{exploreImages.length}/4</span>
               </div>
               <div className='grid grid-cols-2 gap-4'>
                 {exploreImages.map((items, index) => (
@@ -81,8 +96,8 @@ function ViewProfile() {
                     {items.image === '' ? (
                       ''
                     ) : (
-                      <div className='absolute right-[6px] top-3 hidden h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full bg-[#0000007A] group-hover:flex'>
-                        <Image src={DeleteWhiteIcon} />
+                      <div className='absolute right-[6px] top-3 hidden h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full bg-[#0000007A] group-hover:flex' onClick={() => handleDeleteImage(index)}>
+                        <Image src={DeleteWhiteIcon} alt='' />
                       </div>
                     )}
                     {items.image === '' ? (
@@ -95,14 +110,13 @@ function ViewProfile() {
                     ) : (
                       <div key={index} className='w-full h-full'>
                         <img
-                          src={items.image.src}
+                          src={items?.image?.src || ''}
                           className='object-contain w-full h-full'
                         />
                       </div>
                     )}
                   </div>
                 ))}
-
               </div>
             </div>
           </div>
@@ -110,15 +124,10 @@ function ViewProfile() {
       </div>
 
       {selectProfilePhoto && (
-        <SelectProfilePhoto
-          CloseModal={setSelectProfilePhoto}
-          UploadImgModal={UploadImgModal}
-        />
-      )}
-      {uploadImg && (
-        <EditProfilePhoto
-          CloseModal={setUploadImg}
-          SetSelectProfilePhoto={setSelectProfilePhoto}
+        <AddImagesModal
+          setAddImagesModal={setSelectProfilePhoto}
+          setCroppedImage={setCroppedImage}
+          AddImagesModal={selectProfilePhoto}
         />
       )}
       {uploadCoverImg && (

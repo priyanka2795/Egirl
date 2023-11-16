@@ -44,15 +44,25 @@ const personalityValue = {
   worldDescription: ''
 };
 interface ProfileInfoModal {
-  setProfileInfoPage: any;
+  setProfileInfoPage?: any;
+  btnSteps?: any;
+  setBtnSteps?: any;
+  activeStep?: any;
+  setActiveStep?: any;
 }
-const ProfileInfoModal = ({ setProfileInfoPage }: ProfileInfoModal) => {
+const ProfileInfoModal = ({
+  setProfileInfoPage,
+  btnSteps,
+  setBtnSteps,
+  activeStep,
+  setActiveStep
+}: ProfileInfoModal) => {
   const [form, setForm] = useState(initialValues);
-  const [btnSteps, setBtnSteps] = useState<boolean>(false);
+  // const [btnSteps, setBtnSteps] = useState<boolean>(false);
   const [showProfileTagsHint, setShowProfileTagsHint] = useState(false);
   const [profileTagsMenu, setProfileTagsMenu] = useState(SearchData);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: any) => {
     const { name, value } = e.target;
     setForm({
       ...form,
@@ -113,7 +123,7 @@ const ProfileInfoModal = ({ setProfileInfoPage }: ProfileInfoModal) => {
   const [threadStep, setThreadStep] = useState('');
   const [fourthStep, setFourthStep] = useState('');
 
-  const [activeStep, setActiveStep] = useState(0);
+  // const [activeStep, setActiveStep] = useState(4);
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -163,12 +173,15 @@ const ProfileInfoModal = ({ setProfileInfoPage }: ProfileInfoModal) => {
             src={CongratulationsImage}
             className='!h-full !w-full object-cover'
           /> */}
-           <Confetti/>
+          <Confetti />
         </div>
       )}
 
       <div className='flex border-b border-white/[0.08] px-6 py-4'>
-        <button className='font-bold flex items-center justify-center rounded-[12px] border border-white/[0.32] px-4 py-[10px] text-[14px] leading-5 text-white'>
+        <button
+          className='font-bold flex items-center justify-center rounded-[12px] border border-white/[0.32] px-4 py-[10px] text-[14px] leading-5 text-white'
+          onClick={() => setProfileInfoPage(false)}
+        >
           Save & Close
         </button>
       </div>
@@ -218,7 +231,7 @@ const ProfileInfoModal = ({ setProfileInfoPage }: ProfileInfoModal) => {
                         ? 'w-[100%] '
                         : 'bg-[#5848BC]'
                     } ${
-                      activeStep === 0 ? '' : '!bg-[#2EAA1B] '
+                      activeStep === 0 ? '' : '!bg-[#2EAA1B] w-full'
                     }w-0 rounded-xl bg-[#5848BC]  `}
                   ></div>
                 </div>
@@ -451,6 +464,7 @@ const ProfileInfoModal = ({ setProfileInfoPage }: ProfileInfoModal) => {
                             className='font-normal !autofill:bg-transparent border-none bg-transparent px-0 pl-1 text-[15px] leading-6 text-white placeholder:text-[#979797] focus:ring-0'
                             onChange={handleInputChange}
                             onKeyDown={handleEnterKeyPress}
+                            autoComplete='off'
                           />
                         </div>
                       </div>
@@ -510,7 +524,7 @@ const ProfileInfoModal = ({ setProfileInfoPage }: ProfileInfoModal) => {
                     value={form.bio}
                     placeholder='Type something...'
                     className='font-normal h-[120px] resize-none rounded-[14px] border-none bg-white/[0.05] py-3 pl-4 pr-3 text-[15px] leading-6 text-white placeholder:text-[#979797] focus:ring-0'
-                    onChange={handleInputChange}
+                    onChange={(e)=>handleInputChange(e)}
                     name='bio'
                     maxLength={160}
                     // onChange={(event) =>
@@ -556,7 +570,7 @@ const ProfileInfoModal = ({ setProfileInfoPage }: ProfileInfoModal) => {
             <button
               className={`font-bold flex items-center justify-center gap-2 rounded-[14px] bg-[#5848BC]
          px-5 py-[13px] text-[16px] leading-[22px] text-white`}
-              onClick={() => (setFinishStepCongrats(true))}
+              onClick={() => setFinishStepCongrats(true)}
             >
               <span>Finish</span> <Image src={RightIcon} />
             </button>
@@ -594,7 +608,6 @@ const ProfileInfoModal = ({ setProfileInfoPage }: ProfileInfoModal) => {
         </div>
       </div>
       {FinishStepCongrats && (
-        // <Confetti/>
         <FinishStepModal FinishStepCongratsModal={FinishStepCongratsModal} />
       )}
     </div>

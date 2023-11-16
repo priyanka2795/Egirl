@@ -14,10 +14,10 @@ import Image from 'next/image';
 import ArrowLeft from '../../../public/assets/svgImages/arrow-left.svg';
 import Xmark from '../../../public/assets/svgImages/xmark.svg';
 interface profileInterface {
-  setUpdateProfileImg: React.Dispatch<React.SetStateAction<boolean>>;
-  selectProfileImage: any;
-  setCroppedImage: any;
-  setAddImagesModal: any;
+  setUpdateProfileImg?: React.Dispatch<React.SetStateAction<boolean>>;
+  selectProfileImage?: any;
+  setCroppedImage?: any;
+  setAddImagesModal?: any;
 }
 
 const ProfileCropper = ({

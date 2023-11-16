@@ -17,6 +17,10 @@ interface CreatorStudio {
   tourCount: number;
   setTourCount: React.Dispatch<React.SetStateAction<number>>;
   setProfileInfoPage: any;
+  btnSteps?: any;
+  setBtnSteps?: any;
+  activeStep?: any;
+  setActiveStep?: any;
 }
 const CreatorStudio = ({
   IsOpen,
@@ -25,7 +29,11 @@ const CreatorStudio = ({
   tourCount,
   SetIsTourOpen,
   setTourCount,
-  setProfileInfoPage
+  setProfileInfoPage, btnSteps,
+  setBtnSteps,
+  activeStep,
+  setActiveStep
+
 }: CreatorStudio) => {
 
   const [UserGuide, setUserGuide] = useState(true);
@@ -38,6 +46,7 @@ const CreatorStudio = ({
           SetUserGuide={setUserGuide}
           SetIsTourOpen={SetIsTourOpen}
           setTourCount={setTourCount}
+          UserGuide={UserGuide}
         />
       ) : (
         <div className='mb-5'>
@@ -60,6 +69,10 @@ const CreatorStudio = ({
               SetIsTourOpen={SetIsTourOpen}
               setTourCount={setTourCount}
               setProfileInfoPage={setProfileInfoPage}
+              btnSteps={btnSteps}
+        setBtnSteps={setBtnSteps}
+        activeStep={activeStep}
+        setActiveStep={setActiveStep}
             />
           </div>
           <div className='flex max-w-[1196px] justify-between gap-5'>
