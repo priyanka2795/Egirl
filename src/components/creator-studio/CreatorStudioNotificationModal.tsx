@@ -32,17 +32,18 @@ const CreatorStudioNotificationModal = ({
   setStyleGenNext,
   styleGenNext
 }: NotificationModalProp) => {
-  const [activeNotification, setActiveNotification] = useState<string>('Any Lee');
+  const [activeNotification, setActiveNotification] =
+    useState<string>('Any Lee');
   const [viewStyleModal, setViewStyleModal] = useState<boolean>(false);
   // const [styleGenNext, setStyleGenNext] = useState(false);
   return (
     <>
       <div className='absolute right-0 top-[31px] z-[1] flex w-[484px] flex-col overflow-hidden rounded-[14px] bg-[#1A1A1A]'>
-        <div className='flex justify-between px-6 pt-6 pb-5'>
-          <div className='text-[18px] font-bold leading-6 text-[#FFFFFF]'>
+        <div className='flex justify-between px-6 pb-5 pt-6'>
+          <div className='font-bold text-[18px] leading-6 text-[#FFFFFF]'>
             Notifications
           </div>
-          <div className='mt-[3px] text-[12px] font-bold leading-[18px] text-[#979797]'>
+          <div className='font-bold mt-[3px] text-[12px] leading-[18px] text-[#979797]'>
             Mark all as read
           </div>
         </div>
@@ -60,15 +61,15 @@ const CreatorStudioNotificationModal = ({
               }}
             >
               <div className='flex flex-col gap-[6px]'>
-                <div className='text-[18px] font-bold leading-6 text-[#FFFFFF]'>
+                <div className='font-bold text-[18px] leading-6 text-[#FFFFFF]'>
                   {item.name}
                 </div>
-                <div className='text-[14px] font-normal leading-[18px] text-[#979797]'>
+                <div className='font-normal text-[14px] leading-[18px] text-[#979797]'>
                   {item.description}
                 </div>
               </div>
               <button
-                className='flex items-center justify-center rounded-[12px] bg-white/[0.08] px-4 py-[10px] text-[14px] font-bold leading-5 text-[#FFFFFF]'
+                className='font-bold flex items-center justify-center rounded-[12px] bg-white/[0.08] px-4 py-[10px] text-[14px] leading-5 text-[#FFFFFF]'
                 onClick={() => {
                   setViewStyleModal(true);
                 }}
