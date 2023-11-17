@@ -48,6 +48,7 @@ export const postWithParams = async (url: string, token: string | null) => {
   }
 }
 
+
 export const getApi = async (url: string) => {
   try {
     let apiUrl = `${config.serverURL}${url}`
@@ -62,7 +63,6 @@ export const getApi = async (url: string) => {
     return error
   }
 }
-
 
 
 export const getApiWithToken = async (url: string, token: string | null) => {
