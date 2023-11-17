@@ -15,6 +15,8 @@ interface CreatorStudioLayoutProps {
   setBtnSteps?: any;
   activeStep?: any;
   setActiveStep?: any;
+  UserGuide?: any;
+  setUserGuide?: any;
 }
 
 const CreatorStudioLayout = ({
@@ -25,7 +27,9 @@ const CreatorStudioLayout = ({
   btnSteps,
   setBtnSteps,
   activeStep,
-  setActiveStep
+  setActiveStep,
+  UserGuide,
+  setUserGuide
 }: CreatorStudioLayoutProps) => {
   const [shrinkSideBar, setShrinkSideBar] = useState<boolean>(false);
   const [styleGenNext, setStyleGenNext] = useState<boolean>(false);
@@ -122,6 +126,8 @@ const CreatorStudioLayout = ({
                     setBtnSteps={setBtnSteps}
                     activeStep={activeStep}
                     setActiveStep={setActiveStep}
+                    UserGuide={UserGuide}
+                    setUserGuide={setUserGuide}
                   />
                 )}
               </>

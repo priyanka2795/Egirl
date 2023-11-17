@@ -18,15 +18,35 @@ const creatorStudio = () => {
   useEffect(() => {
     console.log(userDetails, '????details');
   }, [userDetails]);
+
+  const [UserGuide, setUserGuide] = useState(true);
+  // Stepper Code
+  const [btnSteps, setBtnSteps] = useState<boolean>(false);
+
+  const [activeStep, setActiveStep] = useState(0);
+  // Stepper Code End
+  console.log(UserGuide, 'UserGuide');
+
   return (
     <div>
       {profileInfoPage ? (
-        <ProfileInfoModal setProfileInfoPage={setProfileInfoPage} />
+        <ProfileInfoModal
+          setProfileInfoPage={setProfileInfoPage}
+          btnSteps={btnSteps}
+          setBtnSteps={setBtnSteps}
+          activeStep={activeStep}
+          setActiveStep={setActiveStep}
+          setUserGuide={setUserGuide}
+        />
       ) : (
         <CreatorStudioLayout
           setProfileInfoPage={setProfileInfoPage}
-          userDetails={userDetails}
-          setUserDetails={setUserDetails}
+          btnSteps={btnSteps}
+          setBtnSteps={setBtnSteps}
+          activeStep={activeStep}
+          setActiveStep={setActiveStep}
+          UserGuide={UserGuide}
+          setUserGuide={setUserGuide}
         />
       )}
     </div>
