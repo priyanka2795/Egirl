@@ -126,7 +126,6 @@ export default function SignUp() {
         console.log('sign up err---', err);
       });
   };
-console.log(password,'password ');
 
   return (
     <>

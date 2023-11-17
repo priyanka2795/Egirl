@@ -83,7 +83,7 @@ function Gifts() {
           />
 
           <div className='flex items-center justify-between mt-4'>
-            <p className='text-[#979797]'>1/9 gifts</p>
+            <p className='text-[#979797]'>{GiftCardName.length}/9 gifts</p>
             <button
               className='flex items-center justify-center gap-1'
               onClick={() => DeleteAllGiftCard()}

@@ -62,7 +62,7 @@ const MarketPlaceFilters = () => {
                   : 'border border-transparent bg-white/10'
               }`}
             >
-              <div className='text-[15px] text-[#FFF]'>Realistic</div>
+              <div className='text-[15px] text-[#FFF]'>{selectedFilter}</div>
               <Image
                 src={style ? arrowUp : arrowDown}
                 alt=''
