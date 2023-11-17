@@ -5,12 +5,14 @@ import React, { useState } from 'react';
 
 const creatorStudio = () => {
   const [profileInfoPage, setProfileInfoPage] = useState(false);
-
+  const [UserGuide, setUserGuide] = useState(true);
   // Stepper Code
   const [btnSteps, setBtnSteps] = useState<boolean>(false);
 
   const [activeStep, setActiveStep] = useState(0);
   // Stepper Code End
+console.log(UserGuide,'UserGuide');
+
 
   return (
     <div>
@@ -21,12 +23,16 @@ const creatorStudio = () => {
           setBtnSteps={setBtnSteps}
           activeStep={activeStep}
           setActiveStep={setActiveStep}
+          setUserGuide={setUserGuide}
         />
       ) : (
         <CreatorStudioLayout setProfileInfoPage={setProfileInfoPage} btnSteps={btnSteps}
         setBtnSteps={setBtnSteps}
         activeStep={activeStep}
-        setActiveStep={setActiveStep}/>
+        setActiveStep={setActiveStep}
+        UserGuide={UserGuide}
+setUserGuide={setUserGuide}
+        />
       )}
     </div>
   );

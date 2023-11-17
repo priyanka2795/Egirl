@@ -5,7 +5,6 @@ import PersonalityTraitsSection from './PersonalityTraitsSection';
 import Image from 'next/image';
 import circleInformation from '../../../../public/assets/circle-information5.png';
 
-
 interface PersonalityContent {
   SetBtnSteps?: any;
   personalityData?: any;
@@ -38,7 +37,7 @@ const PersonalityContent = ({
 
   return (
     <>
-      <div className='flex flex-col items-start self-stretch gap-4'>
+      <div className='flex flex-col items-start gap-4 self-stretch'>
         <PersonalityS1
           personalityData={personalityData}
           setPersonalityData={setPersonalityData}
@@ -53,9 +52,9 @@ const PersonalityContent = ({
             <div className='font-bold text-[18px] leading-6 text-[#FFFFFF]'>
               Descriptions
             </div>
-            <div className='w-4 h-4'>
+            <div className='h-4 w-4'>
               <Image
-                className='w-full h-full'
+                className='h-full w-full'
                 src={circleInformation}
                 alt={''}
               />
@@ -81,7 +80,6 @@ const PersonalityContent = ({
                 maxLength={10}
               ></textarea>
             </div>
-
             <div className='flex w-1/2 flex-col gap-[6px]'>
               <div className='flex justify-between'>
                 <div className='text-[13px] font-[500] leading-[18px] text-[#979797]'>
@@ -89,7 +87,7 @@ const PersonalityContent = ({
                 </div>
                 <div className='font-normal text-[14px] leading-[18px] text-[#515151]'>
                   {/* {personalityData.worldDescription.length}/2000   */}
-                  0/2000  
+                  0/2000
                 </div>
               </div>
               <textarea
@@ -101,6 +99,9 @@ const PersonalityContent = ({
                 maxLength={12}
               ></textarea>
             </div>
+          </div>
+          <div className='font-bold ml-auto w-max items-center justify-center rounded-[14px] bg-[#5848BC] px-5 py-[10px] text-[16px] leading-[22px] text-white'>
+            Save
           </div>
         </div>
       </div>
