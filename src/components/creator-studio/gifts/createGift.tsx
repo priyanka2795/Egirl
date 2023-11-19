@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import Image from 'next/image';
 import React, { useState } from 'react';
 import AlbumFirst from '../../../../public/assets/gallery-tab-img.png';

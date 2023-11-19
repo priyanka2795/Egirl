@@ -45,3 +45,5 @@ next-env.d.ts
 # typesense data 
 src/api/docker/typesense-data/
 src/api/typesense/data
+
+.yarnrc.yml
