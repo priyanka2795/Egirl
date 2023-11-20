@@ -16,7 +16,7 @@ export const postApi = async (url: string, data: any) => {
   }
 }
 
-export const postApiWithToken = async (url: string, data: any, token: string) => {
+export const postApiWithToken = async (url: string, data: any, token: string|null) => {
   try {
     let apiUrl = `${config.serverURL}${url}`;
     const response = await axios.post(apiUrl, data, {
