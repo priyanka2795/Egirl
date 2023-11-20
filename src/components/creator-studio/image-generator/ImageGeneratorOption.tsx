@@ -27,6 +27,8 @@ import SearchIcon from '../../../../public/assets/search-alt (1).png';
 import RightIcon from '../../../../public/assets/check-cs.png';
 import DeleteIcon from '../../../../public/assets/delete-icon.png';
 
+import {uploadSvg} from "./svg/upload";
+
 const EditPromptName = [
   'Mica-chan',
   'Blue Jeans',
@@ -143,8 +145,8 @@ const ImageGeneratorOption = ({
     setPromptTags(promptTags.filter((el: string, i: number) => i !== index));
   }
   // Drag And Drop Item
-  const dragItem = useRef<number | null>();
-  const dragOverItem = useRef<number | null>();
+  const dragItem = useRef<any>();
+  const dragOverItem = useRef<any>();
 
   const dragStart = (e: React.DragEvent<HTMLDivElement>, position: number) => {
     dragItem.current = position;
@@ -212,6 +214,8 @@ const ImageGeneratorOption = ({
   };
 
   const SavedDrawingImage = localStorage.getItem('savedDrawingImage');
+  console.log(SavedDrawingImage,'SavedDrawingImage............');
+  
 
   return (
     <>
@@ -448,14 +452,9 @@ const ImageGeneratorOption = ({
                   <div className='flex items-center'>
                     <div className='sub-banner relative h-[140px] w-[140px]'>
                       <img
-                        src={'https://i.imgur.com/a0CGGVC.jpg'}
-                        className='h-full w-full rounded-[14px] object-cover'
-                      />
-
-                      <img
                         src={SavedDrawingImage || ''}
                         alt=''
-                        className='absolute top-0 left-0 w-full h-full'
+                        className='object-cover w-full h-full'
                       />
                       <div
                         className='group absolute right-3 top-3 flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full bg-[#0000007A]'

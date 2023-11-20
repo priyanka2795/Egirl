@@ -16,6 +16,7 @@ import RestWhite from '../../../../public/assets/rotate-cw-white.png';
 import ReactDOM from 'react-dom';
 import CanvasDraw from 'react-canvas-draw';
 
+import { ReactSketchCanvas } from 'react-sketch-canvas';
 interface CustomCanvasRect extends CanvasRect {
   eraseAll(): void;
   clear(): void;
@@ -38,23 +39,25 @@ const InpaintingModals = ({
   EditInpainting,
   SavedDrawingImage
 }: InpaintingModals) => {
-  const [brushSize, setBrushSize] = useState<number[]>([4]);
+  const [brushSize, setBrushSize] = useState<number[]>([10]);
   const [brushSizeToggle, setBrushSizeToggle] = useState<boolean>(false);
-  const [SaveImg, setSaveImg] = useState();
-
   const canvasRef = useRef<CustomCanvasRect>(null);
 
   const brushSizes: number = parseInt(brushSize[0]);
 
   const SaveImage = () => {
-    const image = canvasRef?.current?.getDataURL();
-    localStorage.setItem('savedDrawingImage', image);
-    setSaveImg(image);
+    const image = canvasRef?.current?.exportImage('png');
+    image
+      .then((data: any) => {
+        const Image =data;      
+        localStorage.setItem('savedDrawingImage', Image);
+      })
+      .catch((e: string) => {
+        console.log(e);
+      });
     CloseInpaintingModal(false);
     SetInpaintingCreated(true);
   };
-
-  console.log(SavedDrawingImage, 'SavedDrawingImage');
 
   return (
     <Modal
@@ -75,27 +78,21 @@ const InpaintingModals = ({
           <Image src={CloseIcon} className='' />
         </button>
       </div>
-
       <div className='px-6 pt-6'>
         <div className='sub-banner relative m-auto h-[640px] w-[640px] rounded-lg '>
           {/* <Image
             src={Image1}
             className='object-cover w-full h-full rounded-lg'
           />  */}
-
-          <CanvasDraw
-            enablePanAndZoom
-            clampLinesToDocument
-            gridColor='#ccc'
-            imgSrc={'https://i.imgur.com/a0CGGVC.jpg'}
-            // imgSrc={"https://images.pexels.com/photos/443446/pexels-photo-443446.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"}
+          <ReactSketchCanvas
             ref={(canvasDraw: any) => (canvasRef.current = canvasDraw)}
-            hideInterface
-            hideGrid
-            brushRadius={brushSizes}
-            canvasWidth={640}
-            canvasHeight={640}
-            brushColor={'#5848BC'}
+            strokeWidth={brushSizes}
+            strokeColor={'#5848BC'}
+            backgroundImage={Image1.src}
+            exportWithBackgroundImage={true}
+            width={'100%'}
+            height={'100%'}
+            className='border-none'
           />
 
           <div className='absolute flex items-center gap-2 right-3 top-3'>
@@ -122,11 +119,7 @@ const InpaintingModals = ({
             <div
               className='flex  cursor-pointer items-center gap-1 rounded-[100px] bg-[#000000CC] p-3'
               onClick={() => {
-                canvasRef.current?.clear();
-                console.log(
-                  canvasRef.current?.clear(),
-                  'canvasRef.current?.clear()'
-                );
+                canvasRef.current?.resetCanvas();
               }}
             >
               {EditInpainting ? (
