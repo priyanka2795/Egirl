@@ -66,22 +66,6 @@ export const getApi = async (url: string) => {
   }
 }
 
-export const getApiWithParams = async (url:string, data:any) => {
-  try {
-    const apiUrl = `${config.serverURL}${url}`;
-    const response = await axios.get(apiUrl, {
-      params: data, 
-      headers: {
-        'Content-Type': 'application/json',
-        accept: 'application/json',
-      },
-    });
-    return response;
-  } catch (error) {
-    return error;
-  }
-};
-
 
 export const getApiWithToken = async (url: string, token: string | null) => {
   try {

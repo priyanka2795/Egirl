@@ -12,7 +12,8 @@ import DotsHorizontal from '../../../../public/assets/dots-horizontal-white.png'
 import GiftCardEditModal from './giftCardEditModal';
 import GiftCategoryAction from './giftCategoryAction';
 import GiftCardDelete from './giftCardDelete';
-import { getGifts } from 'services/services';
+import { getGiftCategory, getGifts } from 'services/services';
+import Cookies from 'js-cookie';
 
 function Gifts() {
   const [giftModal, setGiftModal] = useState<boolean>(false);
@@ -28,6 +29,8 @@ function Gifts() {
   const [addCategory, setAddCategory] = useState<string[]>([]);
   const [giftImageSet, setGiftImageSet] = useState('');
   const [giftName, setGiftName] = useState('');
+  const characterId = Cookies.get('character_id') || '';
+  const token : any =  Cookies.get('accessToken');
 
   const EditGift = (val: number) => {
     setGiftCard(true);
@@ -63,15 +66,32 @@ function Gifts() {
     setToggle(!toggle);
   };
 
-  // const getAllGifts =()=>{
-  //   getGifts(0)
-  //   .then((res)=>{
 
-  //   })
-  // }
+  const getAllCategory =  () => {
+    // let characterIdFormat = { "character_id": characterId }
+     getGiftCategory( token)
+      .then((response :any) => {
+        if (response && response.data) {
+          console.log(response.data, "res????");
+        } else {
+          console.error("Invalid response structure:", response);
+        }
+      })
+      .catch((err) => {
+        console.error(err, "err????");
+      });
+  };
+  
+  useEffect(() => {
+    getAllCategory();
+  }, []);
+  
+
+
 
   useEffect(() => {
-    getGifts(`gift_category_id=${1}`)
+    // getGifts(`gift_category_id=${4}` , token)
+    getGifts( token)
       .then((res: any) => {
         console.log(res, 'gifts????');
       })

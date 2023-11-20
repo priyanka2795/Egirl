@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-import { deleteApi, getApi, getApiWithParams, getApiWithToken, postApi, postApiWithToken, postWithParams, putApi, putApiWithToken } from "./apis";
+import { deleteApi, getApi, getApiWithToken, postApi, postApiWithToken, postWithParams, putApi, putApiWithToken } from "./apis";
 
 
 // Post Login data
@@ -73,7 +73,7 @@ export const updateCharacterPersonality = (data:any , token : string | null)=> p
 
 export const postCharacterPersonality = (data:any) => postApi('/studio/character/personality' , data)
 
-export const getGifts = (id:any)=> getApiWithParams('/studio/gift' , id) 
+export const getGifts = ( token:string|null)=> getApiWithToken('/studio/gift'  , token) 
 
 export const updateGifts = (data:any , token : string | null) => putApiWithToken('/studio/gift' , data , token)
 
@@ -81,7 +81,7 @@ export const postGifts = (data:any) => postApi('studio/gift' , data)
 
 export const deleteGift = (data:any)=> deleteApi('/studio/gift' , data)
 
-export const getGiftCategory = (id:any) => getApiWithParams('/studio/gift/category' , id)
+export const getGiftCategory = (  token:string|null) => getApiWithToken('/studio/gift/category'  , token)
 
 export const updateGiftCategory = (data:any , token : string | null) => putApiWithToken('/studio/gift/category' , data , token)
 
