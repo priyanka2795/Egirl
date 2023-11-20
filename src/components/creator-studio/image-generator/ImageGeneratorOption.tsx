@@ -29,6 +29,8 @@ import SearchIcon from '../../../../public/assets/search-alt (1).png';
 import RightIcon from '../../../../public/assets/check-cs.png';
 import DeleteIcon from '../../../../public/assets/delete-icon.png';
 
+import {uploadSvg} from "./svg/upload";
+
 const EditPromptName = [
   'Mica-chan',
   'Blue Jeans',
@@ -145,8 +147,8 @@ const ImageGeneratorOption = ({
     setPromptTags(promptTags.filter((el: string, i: number) => i !== index));
   }
   // Drag And Drop Item
-  const dragItem = useRef<number | null>();
-  const dragOverItem = useRef<number | null>();
+  const dragItem = useRef<any>();
+  const dragOverItem = useRef<any>();
 
   const dragStart = (e: React.DragEvent<HTMLDivElement>, position: number) => {
     dragItem.current = position;
@@ -212,6 +214,11 @@ const ImageGeneratorOption = ({
       inputRef.current.focus();
     }
   };
+
+  const SavedDrawingImage = localStorage.getItem('savedDrawingImage');
+  console.log(SavedDrawingImage,'SavedDrawingImage............');
+  
+
   return (
     <>
       <div className='flex flex-col rounded-[14px] bg-[#121212]'>
@@ -260,7 +267,9 @@ const ImageGeneratorOption = ({
                 )}
               </div>
             </div>
-            <div className='flex h-auto min-h-[124px] w-full flex-wrap content-start items-start rounded-[14px] bg-[#0000007A] px-4 py-3'   onClick={handleBoxClick}
+            <div
+              className='flex h-auto min-h-[124px] w-full flex-wrap content-start items-start rounded-[14px] bg-[#0000007A] px-4 py-3'
+              onClick={handleBoxClick}
             >
               <div className='flex flex-wrap items-center gap-2'>
                 {MyCharacterToggle && (
@@ -444,9 +453,10 @@ const ImageGeneratorOption = ({
                 {inpaintingCreated ? (
                   <div className='flex items-center'>
                     <div className='sub-banner relative h-[140px] w-[140px]'>
-                      <Image
-                        src={Image1}
-                        className='h-full w-full rounded-[14px] object-cover'
+                      <img
+                        src={SavedDrawingImage || ''}
+                        alt=''
+                        className='object-cover w-full h-full'
                       />
                       <div
                         className='group absolute right-3 top-3 flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full bg-[#0000007A]'
@@ -612,6 +622,7 @@ const ImageGeneratorOption = ({
           CloseInpaintingModal={setInpaintingModal}
           SetInpaintingCreated={setInpaintingCreated}
           EditInpainting={editInpainting}
+          SavedDrawingImage={SavedDrawingImage}
         />
       )}
 

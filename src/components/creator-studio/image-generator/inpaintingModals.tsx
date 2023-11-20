@@ -15,82 +15,51 @@ import RangePicker from '../common/RangePicker';
 import Tooltip from '@components/common/tooltip';
 import RestWhite from '../../../../public/assets/rotate-cw-white.png';
 
+import ReactDOM from 'react-dom';
+import CanvasDraw from 'react-canvas-draw';
+
+import { ReactSketchCanvas } from 'react-sketch-canvas';
+interface CustomCanvasRect extends CanvasRect {
+  eraseAll(): void;
+  clear(): void;
+  undo(): void;
+  redo(): void;
+}
+
 interface InpaintingModals {
   CloseInpaintingModal: React.Dispatch<React.SetStateAction<boolean>>;
   SetInpaintingCreated: React.Dispatch<React.SetStateAction<boolean>>;
   EditInpainting: boolean;
+  SavedDrawingImage: any;
+}
+interface CustomCanvasRect extends CanvasRect {
+  eraseAll(): void;
 }
 const InpaintingModals = ({
   CloseInpaintingModal,
   SetInpaintingCreated,
-  EditInpainting
+  EditInpainting,
+  SavedDrawingImage
 }: InpaintingModals) => {
-  const [brushSize, setBrushSize] = useState<number[]>([20]);
+  const [brushSize, setBrushSize] = useState<number[]>([10]);
   const [brushSizeToggle, setBrushSizeToggle] = useState<boolean>(false);
+  const canvasRef = useRef<CustomCanvasRect>(null);
 
-  //////////////////////////////
+  const brushSizes: number = parseInt(brushSize[0]);
 
-  const canvasRef = useRef(null);
-  const imageRef = useRef(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const context = canvas.getContext("2d");
-
-    const image = imageRef.current;
-
-    // Set the canvas size to match the image size
-    canvas.width = image.width;
-    canvas.height = image.height;
-
-    // Draw the image on the canvas
-    context.drawImage(image, 0, 0);
-
-    // Set up event listeners for drawing
-    let isDrawing = false;
-
-    const startDrawing = (e:any) => {
-      isDrawing = true;
-      draw(e);
-    };
-
-    const stopDrawing = () => {
-      isDrawing = false;
-      context.beginPath();
-    };
-
-    const draw = (e:any) => {
-      if (!isDrawing) return;
-
-      context.lineWidth = 5;
-      context.lineCap = "round";
-      context.strokeStyle = "black";
-
-      context.lineTo(
-        e.clientX - canvas.offsetLeft,
-        e.clientY - canvas.offsetTop
-      );
-      context.stroke();
-      context.beginPath();
-      context.moveTo(
-        e.clientX - canvas.offsetLeft,
-        e.clientY - canvas.offsetTop
-      );
-    };
-
-    // Attach event listeners
-    canvas.addEventListener("mousedown", startDrawing);
-    canvas.addEventListener("mouseup", stopDrawing);
-    canvas.addEventListener("mousemove", draw);
-
-    // Cleanup event listeners on component unmount
-    return () => {
-      canvas.removeEventListener("mousedown", startDrawing);
-      canvas.removeEventListener("mouseup", stopDrawing);
-      canvas.removeEventListener("mousemove", draw);
-    };
-  }, []);
-  ///////////////////////////
+  const SaveImage = () => {
+    const image = canvasRef?.current?.exportImage('png');
+    image
+      .then((data: any) => {
+        const Image =data;      
+        localStorage.setItem('savedDrawingImage', Image);
+      })
+      .catch((e: string) => {
+        console.log(e);
+      });
+    CloseInpaintingModal(false);
+    SetInpaintingCreated(true);
+  };
 
   return (
     <Modal
@@ -111,24 +80,23 @@ const InpaintingModals = ({
           <Image src={CloseIcon} className='' />
         </button>
       </div>
-
       <div className='px-6 pt-6'>
-        <div className='sub-banner relative m-auto  h-[640px] w-[640px] '>
+        <div className='sub-banner relative m-auto h-[640px] w-[640px] rounded-lg '>
           {/* <Image
             src={Image1}
             className='object-cover w-full h-full rounded-lg'
-          /> */}
-            {/* canvasssssssss */}
-             <div style={{ position: 'relative' }}>
-      <img
-        ref={imageRef}
-        src="https://cdn4.sharechat.com/Animegirlimages_278af637_1626869450549_sc_cmprsd_40.jpg?tenant=sc&referrer=pwa-sharechat-service&f=rsd_40.jpg" 
-        alt="Drawing Canvas"
-        style={{ width: '100%', height: 'auto' }}
-      />
-      <canvas ref={canvasRef} style={{ position: 'absolute', top: 0, left: 0 }} />
-    </div>
-    {/*  */}
+          />  */}
+          <ReactSketchCanvas
+            ref={(canvasDraw: any) => (canvasRef.current = canvasDraw)}
+            strokeWidth={brushSizes}
+            strokeColor={'#5848BC'}
+            backgroundImage={Image1.src}
+            exportWithBackgroundImage={true}
+            width={'100%'}
+            height={'100%'}
+            className='border-none'
+          />
+
           <div className='absolute flex items-center gap-2 right-3 top-3'>
             <div className='relative flex items-center justify-center gap-3 rounded-[100px] bg-[#000000CC] p-3'>
               <div className='group relative h-5 cursor-pointer border-r border-[#FFFFFF3D] pr-3'>
@@ -150,7 +118,12 @@ const InpaintingModals = ({
                 </div>
               )}
             </div>
-            <div className='flex  cursor-pointer items-center gap-1 rounded-[100px] bg-[#000000CC] p-3'>
+            <div
+              className='flex  cursor-pointer items-center gap-1 rounded-[100px] bg-[#000000CC] p-3'
+              onClick={() => {
+                canvasRef.current?.resetCanvas();
+              }}
+            >
               {EditInpainting ? (
                 <Image src={RestWhite} className='w-full h-full' />
               ) : (
@@ -169,11 +142,17 @@ const InpaintingModals = ({
             <Image
               src={Backward}
               className='object-cover w-full h-full cursor-pointer'
+              onClick={() => {
+                canvasRef.current?.undo();
+              }}
             />
             <p className='h-[16px] w-[10px] border-r border-[#FFFFFF3D]'></p>
             <Image
               src={Forward}
               className='object-cover w-full h-full cursor-pointer'
+              onClick={() => {
+                canvasRef.current?.redo();
+              }}
             />
           </div>
         </div>
@@ -189,7 +168,7 @@ const InpaintingModals = ({
           <button
             className='rounded-[14px] bg-[#5848BC] px-5 py-3'
             onClick={() => {
-              CloseInpaintingModal(false);
+              SaveImage();
             }}
           >
             Save
@@ -198,7 +177,7 @@ const InpaintingModals = ({
           <button
             className='rounded-[14px] bg-[#5848BC] px-5 py-3'
             onClick={() => {
-              SetInpaintingCreated(true), CloseInpaintingModal(false);
+              SaveImage();
             }}
           >
             Create
