@@ -44,8 +44,8 @@ const Nav = ({ setBetaAccess, setSideNav }: Props) => {
               </div>
             </div>
           </div>
-          <div className='md:flex'>
-            <div className='mr-6 hidden lg:flex lg:items-center'>
+          <div className='gap-2 md:flex'>
+            <div className='hidden mr-6 lg:flex lg:items-center'>
               <button>
                 <Link href='/contact-us'>
                   <span className='text-[32px] font-[500] text-[#181818] hover:text-[#5848BC] hover:underline hover:decoration-[#5848BC] hover:underline-offset-8 lg:text-[16px]'>
@@ -58,11 +58,31 @@ const Nav = ({ setBetaAccess, setSideNav }: Props) => {
               onClick={() => {
                 setBetaAccess();
               }}
-              className='justify-center rounded-[12px] bg-[#5848BC] px-[18px] py-[10px] transition duration-100 hover:bg-[#4D37DA] xs:hidden sm:hidden md:flex md:items-center lg:flex lg:w-[158px] lg:items-center'
+              className='justify-center rounded-[12px] bg-[#5848BC] px-[18px] py-[10px] transition duration-100 hover:bg-[#4D37DA] xs:hidden sm:hidden md:flex md:items-center lg:flex lg:w-[158px] lg:items-center '
             >
               <span className='text-[16px] font-[500] text-white'>
                 Get beta access
               </span>
+            </button>
+
+            <button
+              className='justify-center rounded-[12px] bg-[#5848BC] px-[10px] py-[10px] transition duration-100 hover:bg-[#4D37DA] xs:hidden sm:hidden md:flex md:items-center lg:flex lg:w-[80px] lg:items-center'
+            >
+              <Link href='/auth/signin'>
+                  <span className='text-[32px] font-[500] text-white hover:text-[#5848BC] hover:underline hover:decoration-[#5848BC] hover:underline-offset-8 lg:text-[16px]'>
+                    Login
+                  </span>
+                </Link>
+            </button>
+
+            <button
+              className='justify-center rounded-[12px] bg-[#5848BC] px-[10px] py-[10px] transition duration-100 hover:bg-[#4D37DA] xs:hidden sm:hidden md:flex md:items-center lg:flex lg:w-[80px] lg:items-center'
+            >
+              <Link href='/auth/signup'>
+                  <span className='text-[32px] font-[500] text-white hover:text-[#5848BC] hover:underline hover:decoration-[#5848BC] hover:underline-offset-8 lg:text-[16px]'>
+                    Sign Up
+                  </span>
+                </Link>
             </button>
             <div
               className='ml-[32px] xs:flex xs:items-center sm:flex sm:items-center md:flex md:items-center lg:flex lg:items-center'
