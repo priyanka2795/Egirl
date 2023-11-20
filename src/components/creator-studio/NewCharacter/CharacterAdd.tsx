@@ -11,6 +11,7 @@ const initialValues = {
   username: ''
 };
 interface CharacterAdd {
+  setUserDetails: any;
   NewCharacterClose?: any;
   SetUserGuide?: any;
   SetIsTourOpen?: any;
@@ -21,15 +22,24 @@ const CharacterAdd = ({
   NewCharacterClose,
   SetUserGuide,
   SetIsTourOpen,
-  setTourCount,UserGuide
+  setTourCount,
+  setUserDetails,
+  UserGuide
 }: CharacterAdd) => {
   const { values, errors, handleBlur, touched, handleChange, handleSubmit } =
     useFormik({
-      // validationSchema: signUpSchema,
       initialValues: initialValues,
       onSubmit: (values, action) => {
+        // Update userDetails state with entered name and username
+        setUserDetails((prevState: any) => ({
+          ...prevState,
+          display_name: values.name,
+          username: values.username
+        }));
+
         console.log('Values', values);
         action.resetForm();
+        SetUserGuide(false), SetIsTourOpen(true), setTourCount(0);
         // NewCharacterClose(false);
       }
     });
@@ -43,10 +53,10 @@ const CharacterAdd = ({
       modalClassName={`bg-[#121212] flex  flex-col flex-start rounded-[20px]`}
     >
       <div className='flex items-start gap-2 self-stretch border-b border-white/[0.08] p-6'>
-        <div className='w-full gap-1 text-lg font-bold leading-6'>
+        <div className='font-bold w-full gap-1 text-lg leading-6'>
           Add New Character
         </div>
-        <div className='w-6 h-6'>
+        <div className='h-6 w-6'>
           <Cross onClick={() => NewCharacterClose(false)} />
         </div>
       </div>
@@ -61,7 +71,7 @@ const CharacterAdd = ({
               </div>
               {/* <div className='items-center gap-2.5 py-3 px-4 self-stretch rounded-[14px] bg-white/[0.05]'>
                            <input className='text-[#979797] bg-white/[0.05] text-[15px] font-normal leading-6' type='text'>
-                      
+
                            </input>
                        </div>
               errors.name && touched.name   */}
@@ -120,33 +130,39 @@ const CharacterAdd = ({
             </div>
 
             {/* buttons */}
-            <div className='flex items-start self-stretch gap-3 '>
+            <div className='flex items-start gap-3 self-stretch '>
               <button
                 onClick={() => NewCharacterClose(false)}
                 className='font-bold h-12 w-[50%] items-center gap-2 rounded-[14px] border border-white/[0.32] px-5 py-[13px] text-base leading-[22px]'
               >
                 Cancel
               </button>
-              {UserGuide ?
-              <button
-                type='submit'
-                className='font-bold h-12 w-[50%] items-center gap-2 rounded-[14px]  bg-[#5848BC] px-5 py-[13px] text-base leading-[22px]'
-                onClick={() => {
-                  SetUserGuide(false);
-                  SetIsTourOpen(true);
-                  setTourCount(0);
-                }}
-              >
-                Create
-              </button>:<button
-                type='submit'
-                className='font-bold h-12 w-[50%] items-center gap-2 rounded-[14px]  bg-[#5848BC] px-5 py-[13px] text-base leading-[22px]'
-                onClick={() => { NewCharacterClose(false)
-                }}
-              >
-                Create
-              </button>
-              }
+              {UserGuide ? (
+                <button
+                  type='submit'
+                  className='font-bold h-12 w-[50%] items-center gap-2 rounded-[14px]  bg-[#5848BC] px-5 py-[13px] text-base leading-[22px]'
+                  // onClick={() => (
+                  //   SetUserGuide(false), SetIsTourOpen(true), setTourCount(0)
+                  // )}
+                  onClick={() => {
+                    SetUserGuide(false);
+                    SetIsTourOpen(true);
+                    setTourCount(0);
+                  }}
+                >
+                  Create
+                </button>
+              ) : (
+                <button
+                  type='submit'
+                  className='font-bold h-12 w-[50%] items-center gap-2 rounded-[14px]  bg-[#5848BC] px-5 py-[13px] text-base leading-[22px]'
+                  onClick={() => {
+                    NewCharacterClose(false);
+                  }}
+                >
+                  Create
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -156,3 +172,130 @@ const CharacterAdd = ({
 };
 
 export default CharacterAdd;
+
+// const CharacterAdd = ({
+//   NewCharacterClose,
+//   SetUserGuide,
+//   SetIsTourOpen,
+//   setTourCount,
+//   setUserDetails
+// }: CharacterAdd) => {
+//   const { values, errors, handleBlur, touched, handleChange, handleSubmit } =
+//     useFormik({
+//       initialValues: initialValues,
+//       onSubmit: (values, action) => {
+//         // Update userDetails state with entered name and username
+//         setUserDetails((prevState: any) => ({
+//           ...prevState,
+//           display_name: values.name,
+//           username: values.username
+//         }));
+
+//         console.log('Values', values);
+//         action.resetForm();
+//         // NewCharacterClose(false);
+//       }
+//     });
+
+//   const nameLength = values.name.length;
+//   const usernameLength = values.username.length;
+
+//   return (
+//     <Modal
+//       open={true}
+//       closeModal={() => NewCharacterClose(false)}
+//       modalOverlayStyle='!bg-black/80 '
+//       modalClassName={`bg-[#121212] flex  flex-col flex-start rounded-[20px]`}
+//     >
+//       <div className='flex items-start gap-2 self-stretch border-b border-white/[0.08] p-6'>
+//         <div className='font-bold w-full gap-1 text-lg leading-6'>
+//           Add New Character
+//         </div>
+//         <div className='h-6 w-6'>
+//           <Cross onClick={() => NewCharacterClose(false)} />
+//         </div>
+//       </div>
+//       <form onSubmit={handleSubmit}>
+//         <div className='inline-flex flex-col items-start rounded-[20px] bg-[1A1A1A] '>
+//           <div className='flex flex-col items-start gap-8 p-6'>
+//             <div className='flex w-[420px] flex-col gap-1.5'>
+//               <div className='self-stretch text-[13px] font-semibold leading-[18px] text-[#979797]'>
+//                 Name
+//               </div>
+//               <div
+//                 className={
+//                   nameLength == 0 && touched.name
+//                     ? 'flex w-full flex-col gap-[10px] rounded-[14px] border border-[#FF5336] bg-white/[0.05] px-4 py-3'
+//                     : 'flex w-full flex-col gap-[10px] rounded-[14px] bg-white/[0.05] px-4 py-3'
+//                 }
+//               >
+//                 <input
+//                   name='name'
+//                   placeholder='ex. Mika-chan'
+//                   type='text'
+//                   autoComplete='off'
+//                   value={values.name}
+//                   onChange={handleChange}
+//                   onBlur={handleBlur}
+//                   className='font-normal border-none bg-transparent p-0 text-[15px] leading-6 text-[#979797] focus:ring-0 '
+//                 />
+//               </div>
+//               {nameLength == 0 && touched.name ? (
+//                 <p className='text-[#FF5336] '>{errors.name}</p>
+//               ) : null}
+//             </div>
+
+//             <div className='flex w-[420px] flex-col gap-1.5'>
+//               <div className='self-stretch text-[13px] font-semibold leading-[18px] text-[#979797]'>
+//                 Username
+//               </div>
+//               <div
+//                 className={
+//                   usernameLength == 0 && touched.username
+//                     ? 'flex w-full flex-col gap-[10px] rounded-[14px] border border-[#FF5336] bg-white/[0.05] px-4 py-3'
+//                     : 'flex w-full flex-col gap-[10px] rounded-[14px] bg-white/[0.05] px-4 py-3'
+//                 }
+//               >
+//                 <input
+//                   name='username'
+//                   autoComplete='off'
+//                   value={values.username}
+//                   onChange={handleChange}
+//                   onBlur={handleBlur}
+//                   placeholder='ex. Mika-chan'
+//                   type='text'
+//                   className='font-normal border-none bg-transparent p-0 text-[15px] leading-6 text-[#979797] focus:ring-0 '
+//                 />
+//               </div>
+//               {usernameLength == 0 && touched.username ? (
+//                 <p className='font-normal text-sm leading-[18px] text-[#FF5336]'>
+//                   {errors.username}
+//                 </p>
+//               ) : null}
+//             </div>
+
+//             <div className='flex items-start gap-3 self-stretch '>
+//               <button
+//                 onClick={() => NewCharacterClose(false)}
+//                 className='font-bold h-12 w-[50%] items-center gap-2 rounded-[14px] border border-white/[0.32] px-5 py-[13px] text-base leading-[22px]'
+//               >
+//                 Cancel
+//               </button>
+//               <button
+//                 type='submit'
+//                 onClick={() => (
+//                   SetUserGuide(false), SetIsTourOpen(true), setTourCount(0)
+//                 )}
+//                 className='font-bold h-12 w-[50%] items-center gap-2 rounded-[14px]  bg-[#5848BC] px-5 py-[13px] text-base leading-[22px]'
+//               >
+//                 Create
+//               </button>
+//             </div>
+//           </div>
+//         </div>
+//       </form>
+//     </Modal>
+//   );
+// };
+
+// export default CharacterAdd;

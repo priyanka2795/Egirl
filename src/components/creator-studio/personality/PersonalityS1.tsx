@@ -19,18 +19,23 @@ const PersonalityS1 = ({
   const [values, setValues] = useState<number[]>([0]);
   const short = ['Roleplay', 'Conversational'];
 
-  const [shortTab, setShortTab] = useState<string>('Roleplay');
+  const [shortTab, setShortTab] = useState<string>('');
+
+  useEffect(() => {
+    setPersonalityData((prevData: any) => ({
+      ...prevData,
+      base_type: shortTab,
+      creativity: values[0]
+    }));
+  }, [shortTab, values, setPersonalityData]);
+
+  useEffect(() => {
+    console.log(personalityData, 'values');
+  }, [personalityData]);
 
   const SelectShort = (name: string) => {
     setShortTab(name);
   };
-  // useEffect(() => {
-  //   setPersonalityData({
-  //     ...personalityData,
-  //     ['baseType']: shortTab,
-  //     ['Creativity']: values
-  //   });
-  // }, [shortTab, values]);
 
   return (
     <div className='flex w-full items-start gap-4 '>

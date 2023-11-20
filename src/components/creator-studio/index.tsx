@@ -17,6 +17,8 @@ interface CreatorStudio {
   tourCount: number;
   setTourCount: React.Dispatch<React.SetStateAction<number>>;
   setProfileInfoPage: any;
+  setUserDetails: any;
+  userDetails: any;
   btnSteps?: any;
   setBtnSteps?: any;
   activeStep?: any;
@@ -31,23 +33,24 @@ const CreatorStudio = ({
   tourCount,
   SetIsTourOpen,
   setTourCount,
-  setProfileInfoPage, btnSteps,
+  setProfileInfoPage,
+  setUserDetails,
+  userDetails,
+  btnSteps,
   setBtnSteps,
   activeStep,
   setActiveStep,
   UserGuide,
   setUserGuide
-
 }: CreatorStudio) => {
-
   // const [UserGuide, setUserGuide] = useState(true);
-
 
   return (
     <>
       {UserGuide ? (
         <CreateCharacter
           SetUserGuide={setUserGuide}
+          setUserDetails={setUserDetails}
           SetIsTourOpen={SetIsTourOpen}
           setTourCount={setTourCount}
           UserGuide={UserGuide}
@@ -62,6 +65,8 @@ const CreatorStudio = ({
             }
             followText={'Follow'}
             component={'CreatorStudioProfile'}
+            userDetails={userDetails}
+            setUserDetails={setUserDetails}
             // setEditProfileModal={setEditProfileModal}
           />
           <div>
@@ -74,9 +79,9 @@ const CreatorStudio = ({
               setTourCount={setTourCount}
               setProfileInfoPage={setProfileInfoPage}
               btnSteps={btnSteps}
-        setBtnSteps={setBtnSteps}
-        activeStep={activeStep}
-        setActiveStep={setActiveStep}
+              setBtnSteps={setBtnSteps}
+              activeStep={activeStep}
+              setActiveStep={setActiveStep}
             />
           </div>
           <div className='flex max-w-[1196px] justify-between gap-5'>
@@ -88,10 +93,9 @@ const CreatorStudio = ({
               <UserSection userSectionStyle={'w-full'} />
             </div>
           </div>
-
         </div>
       )}
-       {/* {
+      {/* {
         editProfileModal && <EditProfileModal closeState={setEditProfileModal} />
       }  */}
     </>
