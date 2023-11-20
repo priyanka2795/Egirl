@@ -9,9 +9,10 @@ import ProfileDropdown from '@components/common/ProfileDropdown';
 import DeleteProfileModal from '@components/common/DeleteProfileModal';
 import AddImagesModal from '@components/creator-studio/style-generator/AddImagesModal';
 import ProfileCropper from '@components/common/ProfileCropper';
-import { postCharacter } from 'services/services';
+import { postCharacter, updateCharacter } from 'services/services';
 import Cookies from 'js-cookie';
 import EditProfileThumbnail from '@components/home/EditProfileThumbnail';
+import { putApiWithToken } from 'services/apis';
 
 interface EditProfileModalProps {
   closeState: React.Dispatch<React.SetStateAction<boolean>>;
@@ -37,14 +38,30 @@ const EditProfileModal = ({
     useState<boolean>(false);
   const [croppedImage, setCroppedImage] = useState<string | null>(null);
 
+
   const handleSave = async () => {
     try {
-      await postCharacter(userDetails, token);
-      console.log('Character saved successfully!');
+      const response: any = await postCharacter(userDetails, token);
+
+      const character_id = response.data?.character_id;
+      Cookies.set('character_id', character_id);
+
+      console.log('Character saved successfully!', response);
     } catch (error) {
       console.error('Error saving character:', error);
     }
     closeState(false);
+  };
+
+  const updateCharacterApi = async (data: any, token: string | null) => {
+    try {
+      const response = await updateCharacter(data, token);
+      console.log('Character updated successfully!', response);
+      return response;
+    } catch (error) {
+      console.error('Error updating character:', error);
+      throw error;
+    }
   };
 
   return (

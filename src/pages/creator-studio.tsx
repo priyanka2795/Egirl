@@ -45,6 +45,8 @@ const creatorStudio = () => {
           setBtnSteps={setBtnSteps}
           activeStep={activeStep}
           setActiveStep={setActiveStep}
+          userDetails={userDetails}
+          setUserDetails={setUserDetails}
           UserGuide={UserGuide}
           setUserGuide={setUserGuide}
         />

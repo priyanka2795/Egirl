@@ -24,15 +24,12 @@ const CreateCategory = ({
   const [inputvalue, setInputValue] = useState<string>('');
   const accessToken = Cookies.get('accessToken');
   const token = `${accessToken}`;
-  const characterId = `0ba3594c-5f1d-4632-aa93-49978e98b266`;
+  const characterId = Cookies.get('character_id') || '';
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setInputValue(value);
   };
 
-  useEffect(() => {
-    console.log(inputvalue, 'valval');
-  }, [inputvalue]);
 
   const FindData = AddCategory.find((items) => items === inputvalue);
 
@@ -68,7 +65,6 @@ const CreateCategory = ({
         }
       } catch (error) {
         console.error('Error creating gift category:', error);
-        // Handle the error appropriately (e.g., show an error message)
       }
     }
     console.log(FindData, 'FindData');

@@ -4,6 +4,7 @@ import PersonalityLikeSection from './PersonalityLikeSection';
 import PersonalityTraitsSection from './PersonalityTraitsSection';
 import Image from 'next/image';
 import circleInformation from '../../../../public/assets/circle-information5.png';
+import { updateCharacterPersonality } from 'services/services';
 
 interface PersonalityContent {
   SetBtnSteps: any;
@@ -21,6 +22,16 @@ const PersonalityContent = ({
       ...prevData,
       [name]: value
     }));
+  };
+  const updateCharacterApi = async (data: any, token: string | null) => {
+    try {
+      const response = await updateCharacterPersonality( data, token);
+      console.log('Character updated successfully!', response);
+      return response;
+    } catch (error) {
+      console.error('Error updating character:', error);
+      throw error;
+    }
   };
 
   // useEffect(() => {

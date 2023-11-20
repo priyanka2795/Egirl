@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-import { deleteApi, getApi, getApiWithParams, getApiWithToken, postApi, postApiWithToken, postWithParams, putApi, putApiWithToken } from "./apis";
+import { deleteApi, getApi, getApiWithToken, postApi, postApiWithToken, postWithParams, putApi, putApiWithToken } from "./apis";
 
 
 // Post Login data
@@ -65,25 +65,25 @@ export const getBookMarked = (page:number, count:number, token:string | null) =>
 
 // creator studio api
 
-export const updateCharacter = (data:any)=> putApi('/studio/character' , data )
+export const updateCharacter = (data:any , token : string | null)=> putApiWithToken('/studio/character' , data , token )
 
 export const postCharacter = (data:any , token:any) => postApiWithToken('/studio/character' , data , token)
 
-export const updateCharacterPersonality = (data:any)=> putApi('/studio/character/personality' , data)
+export const updateCharacterPersonality = (data:any , token : string | null)=> putApiWithToken('/studio/character/personality' , data , token)
 
 export const postCharacterPersonality = (data:any) => postApi('/studio/character/personality' , data)
 
-export const getGifts = (id:any)=> getApiWithParams('/studio/gift' , id) 
+export const getGifts = ( token:string|null)=> getApiWithToken('/studio/gift'  , token) 
 
-export const updateGifts = (data:any) => putApi('/studio/gift' , data )
+export const updateGifts = (data:any , token : string | null) => putApiWithToken('/studio/gift' , data , token)
 
 export const postGifts = (data:any) => postApi('studio/gift' , data)
 
 export const deleteGift = (data:any)=> deleteApi('/studio/gift' , data)
 
-export const getGiftCategory = (id:any) => getApiWithParams('/studio/gift/category' , id)
+export const getGiftCategory = (  token:string|null) => getApiWithToken('/studio/gift/category'  , token)
 
-export const updateGiftCategory = (data:any) => putApi('/studio/gift/category' , data)
+export const updateGiftCategory = (data:any , token : string | null) => putApiWithToken('/studio/gift/category' , data , token)
 
 export const postGiftCategory = (data:any , token:any) => postApiWithToken('/studio/gift/category' , data , token)
 
