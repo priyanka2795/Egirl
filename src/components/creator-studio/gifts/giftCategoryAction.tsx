@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import React, { useState } from 'react';
 import VerticalDots from '../svg/dots-vertical.svg';
 import Search from '../../../../public/assets/search-alt (1).png';

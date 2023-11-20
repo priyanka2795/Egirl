@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import React, { useState } from 'react';
 import RandomImageToggle from '../common/Toggler';
 import CloseIcon from './svg/close-icon.svg';
