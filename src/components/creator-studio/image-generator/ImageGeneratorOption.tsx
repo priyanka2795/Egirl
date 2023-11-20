@@ -210,6 +210,9 @@ const ImageGeneratorOption = ({
       inputRef.current.focus();
     }
   };
+
+  const SavedDrawingImage = localStorage.getItem('savedDrawingImage');
+
   return (
     <>
       <div className='flex flex-col rounded-[14px] bg-[#121212]'>
@@ -258,7 +261,9 @@ const ImageGeneratorOption = ({
                 )}
               </div>
             </div>
-            <div className='flex h-auto min-h-[124px] w-full flex-wrap content-start items-start rounded-[14px] bg-[#0000007A] px-4 py-3'   onClick={handleBoxClick}
+            <div
+              className='flex h-auto min-h-[124px] w-full flex-wrap content-start items-start rounded-[14px] bg-[#0000007A] px-4 py-3'
+              onClick={handleBoxClick}
             >
               <div className='flex flex-wrap items-center gap-2'>
                 {MyCharacterToggle && (
@@ -442,9 +447,15 @@ const ImageGeneratorOption = ({
                 {inpaintingCreated ? (
                   <div className='flex items-center'>
                     <div className='sub-banner relative h-[140px] w-[140px]'>
-                      <Image
-                        src={Image1}
+                      <img
+                        src={'https://i.imgur.com/a0CGGVC.jpg'}
                         className='h-full w-full rounded-[14px] object-cover'
+                      />
+
+                      <img
+                        src={SavedDrawingImage || ''}
+                        alt=''
+                        className='absolute top-0 left-0 w-full h-full'
                       />
                       <div
                         className='group absolute right-3 top-3 flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full bg-[#0000007A]'
@@ -610,6 +621,7 @@ const ImageGeneratorOption = ({
           CloseInpaintingModal={setInpaintingModal}
           SetInpaintingCreated={setInpaintingCreated}
           EditInpainting={editInpainting}
+          SavedDrawingImage={SavedDrawingImage}
         />
       )}
 

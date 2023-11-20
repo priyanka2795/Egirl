@@ -15,10 +15,19 @@ import RestWhite from '../../../../public/assets/rotate-cw-white.png';
 
 import ReactDOM from 'react-dom';
 import CanvasDraw from 'react-canvas-draw';
+
+interface CustomCanvasRect extends CanvasRect {
+  eraseAll(): void;
+  clear(): void;
+  undo(): void;
+  redo(): void;
+}
+
 interface InpaintingModals {
   CloseInpaintingModal: React.Dispatch<React.SetStateAction<boolean>>;
   SetInpaintingCreated: React.Dispatch<React.SetStateAction<boolean>>;
   EditInpainting: boolean;
+  SavedDrawingImage: any;
 }
 interface CustomCanvasRect extends CanvasRect {
   eraseAll(): void;
@@ -26,17 +35,26 @@ interface CustomCanvasRect extends CanvasRect {
 const InpaintingModals = ({
   CloseInpaintingModal,
   SetInpaintingCreated,
-  EditInpainting
+  EditInpainting,
+  SavedDrawingImage
 }: InpaintingModals) => {
   const [brushSize, setBrushSize] = useState<number[]>([4]);
   const [brushSizeToggle, setBrushSizeToggle] = useState<boolean>(false);
+  const [SaveImg, setSaveImg] = useState();
 
-  // Assuming CanvasRefType is the correct type
   const canvasRef = useRef<CustomCanvasRect>(null);
 
-const brushSizes = brushSize[0];
+  const brushSizes: number = parseInt(brushSize[0]);
 
+  const SaveImage = () => {
+    const image = canvasRef?.current?.getDataURL();
+    localStorage.setItem('savedDrawingImage', image);
+    setSaveImg(image);
+    CloseInpaintingModal(false);
+    SetInpaintingCreated(true);
+  };
 
+  console.log(SavedDrawingImage, 'SavedDrawingImage');
 
   return (
     <Modal
@@ -59,22 +77,25 @@ const brushSizes = brushSize[0];
       </div>
 
       <div className='px-6 pt-6'>
-        <div className='sub-banner relative m-auto  h-[640px] w-[640px] '>
+        <div className='sub-banner relative m-auto h-[640px] w-[640px] rounded-lg '>
           {/* <Image
             src={Image1}
             className='object-cover w-full h-full rounded-lg'
           />  */}
+
           <CanvasDraw
             enablePanAndZoom
             clampLinesToDocument
             gridColor='#ccc'
-            imgSrc='https://i.imgur.com/a0CGGVC.jpg'
+            imgSrc={'https://i.imgur.com/a0CGGVC.jpg'}
+            // imgSrc={"https://images.pexels.com/photos/443446/pexels-photo-443446.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"}
             ref={(canvasDraw: any) => (canvasRef.current = canvasDraw)}
-            hideInterface 
+            hideInterface
             hideGrid
             brushRadius={brushSizes}
             canvasWidth={640}
             canvasHeight={640}
+            brushColor={'#5848BC'}
           />
 
           <div className='absolute flex items-center gap-2 right-3 top-3'>
@@ -101,7 +122,11 @@ const brushSizes = brushSize[0];
             <div
               className='flex  cursor-pointer items-center gap-1 rounded-[100px] bg-[#000000CC] p-3'
               onClick={() => {
-                canvasRef.current?.eraseAll();
+                canvasRef.current?.clear();
+                console.log(
+                  canvasRef.current?.clear(),
+                  'canvasRef.current?.clear()'
+                );
               }}
             >
               {EditInpainting ? (
@@ -130,6 +155,9 @@ const brushSizes = brushSize[0];
             <Image
               src={Forward}
               className='object-cover w-full h-full cursor-pointer'
+              onClick={() => {
+                canvasRef.current?.redo();
+              }}
             />
           </div>
         </div>
@@ -145,7 +173,7 @@ const brushSizes = brushSize[0];
           <button
             className='rounded-[14px] bg-[#5848BC] px-5 py-3'
             onClick={() => {
-              CloseInpaintingModal(false);
+              SaveImage();
             }}
           >
             Save
@@ -154,7 +182,7 @@ const brushSizes = brushSize[0];
           <button
             className='rounded-[14px] bg-[#5848BC] px-5 py-3'
             onClick={() => {
-              SetInpaintingCreated(true), CloseInpaintingModal(false);
+              SaveImage();
             }}
           >
             Create
