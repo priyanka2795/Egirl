@@ -23,6 +23,8 @@ interface CreatorStudio {
   setBtnSteps?: any;
   activeStep?: any;
   setActiveStep?: any;
+  UserGuide?: any;
+  setUserGuide?: any;
 }
 const CreatorStudio = ({
   IsOpen,
@@ -37,9 +39,11 @@ const CreatorStudio = ({
   btnSteps,
   setBtnSteps,
   activeStep,
-  setActiveStep
+  setActiveStep,
+  UserGuide,
+  setUserGuide
 }: CreatorStudio) => {
-  const [UserGuide, setUserGuide] = useState(true);
+  // const [UserGuide, setUserGuide] = useState(true);
 
   return (
     <>
