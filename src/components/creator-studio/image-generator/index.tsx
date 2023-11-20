@@ -7,6 +7,7 @@ const ImageGeneratorIndex = () => {
   const [inpaintingToggle, setInpaintingToggle] = useState<boolean>(false);
   const [posingToggle, setPosingToggle] = useState<boolean>(false);
   const [myCharacterToggle, setMyCharacterToggle] = useState<boolean>(false);
+  const [numOfImages, setNumOfImages] = useState<number>()
 
   return (
     <div className='flex gap-8'>
@@ -17,6 +18,7 @@ const ImageGeneratorIndex = () => {
           MyCharacterToggle={myCharacterToggle}
           EditGeneration={true}
           EditTooltip={true}
+          numOfImages={numOfImages}
         />
         <ImageAndIdeaGeneratorTab />
       </div>
@@ -28,6 +30,7 @@ const ImageGeneratorIndex = () => {
           PosingToggle={posingToggle}
           SetMyCharacterToggle={setMyCharacterToggle}
           MyCharacterToggle={myCharacterToggle}
+          setNumOfImages={setNumOfImages}
         />
       </div>
 

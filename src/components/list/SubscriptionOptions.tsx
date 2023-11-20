@@ -17,7 +17,7 @@ const token:any = Cookies.get('accessToken');
   // const token = `${accessToken}`;
   const decodedToken = jwt.decode(token);
   const userId = decodedToken?.sub
-  console.log(userId)
+  console.log(userId,"userId")
 const SubscriptionOptions = ({ showProfile, component }: SubscriptionOptionsProps) => {
   const [allSubscriptions, setSubscriptions] = useState([])
   useEffect(()=>{

@@ -26,6 +26,8 @@ import UserWhite from '../../../../public/assets/circle-user-white.png';
 import SearchIcon from '../../../../public/assets/search-alt (1).png';
 import RightIcon from '../../../../public/assets/check-cs.png';
 import DeleteIcon from '../../../../public/assets/delete-icon.png';
+import { postInpaintImage, postPromptImage } from 'services/services';
+import Cookies from 'js-cookie';
 
 const EditPromptName = [
   'Mica-chan',
@@ -71,13 +73,15 @@ interface ImageGeneratorOption {
   MyCharacterToggle: boolean;
   EditGeneration: boolean;
   EditTooltip: boolean;
+  numOfImages?:number;
 }
 const ImageGeneratorOption = ({
   InpaintingToggle,
   PosingToggle,
   MyCharacterToggle,
   EditGeneration,
-  EditTooltip
+  EditTooltip,
+  numOfImages
 }: ImageGeneratorOption) => {
   const [prompt, setPrompt] = useState<boolean>(false);
   const [tagState, setTagState] = useState<boolean>(false);
@@ -107,6 +111,7 @@ const ImageGeneratorOption = ({
   const [promptTagsHint, setPromptTagsHint] = useState(PromptTagsSearchAll);
   // const [promptTagsHint, setPromptTagsHint] = useState(PromptTagsSearch);
   const [promptHint, setPromptHint] = useState<string>('');
+  const [negativePrompt, setNegativePrompt] = useState<string>('')
 
   const DeletePromptMenu = (item: string) => {
     setEditPromptMenu(
@@ -134,7 +139,7 @@ const ImageGeneratorOption = ({
       e.target.value = '';
     }
   }
-
+console.log("InpaintingToggle---",InpaintingToggle)
   const EditPromptData = (item: null) => {
     setEditPrompt((prev) => (prev === item ? null : item));
   };
@@ -210,6 +215,68 @@ const ImageGeneratorOption = ({
       inputRef.current.focus();
     }
   };
+  //====== prompt image api for image generation ========
+  const token:any = Cookies.get("accessToken")
+  let promptData:any = {
+    "prompt": [
+      {
+        "prompt_id": 0,
+        "prompt_type": promptTags.toString(),
+        "prompt_value": "string"
+      }
+    ],
+    "negative_prompt": negativePrompt,
+    "sd_image_model": "string",
+    "height": 0,
+    "width": 0,
+    "guidance_scale": 1,
+    "inference_steps": 1,
+    "num_of_images": numOfImages
+  }
+  let inPaintData = {
+    "base_image": {
+      "media_id": 0,
+      "media_url": "string"
+    },
+    "mask_image_base64_str": "string",
+    "prompt": [
+      {
+        "prompt_id": 0,
+        "prompt_type": "string",
+        "prompt_value": "string"
+      }
+    ],
+    "negative_prompt": negativePrompt,
+    "sd_image_model": "string",
+    "height": 0,
+    "width": 0,
+    "guidance_scale": 0,
+    "inference_steps": 0,
+    "num_of_images": numOfImages
+  }
+  const handleGenerate = ()=>{
+    if(InpaintingToggle === true){
+      postInpaintImage(inPaintData, token)
+      .then((res)=>{
+        console.log("inPaintImage res---", res)
+      })
+      .catch((err)=>{
+        console.log("inPaintImage err---", err)
+      })
+    }else{
+      postPromptImage(promptData,token)
+    .then((res)=>{
+      console.log("prompt image res---", res)
+    })
+    .catch((err)=>{
+      console.log("prompt image err---", err)
+    })
+    }
+    
+  }
+  
+  console.log("token---",token,editPromptMenuIndex,promptTags)
+  //=======================
   return (
     <>
       <div className='flex flex-col rounded-[14px] bg-[#121212]'>
@@ -379,6 +446,7 @@ const ImageGeneratorOption = ({
                               <div className=''>
                                 {items.hint.map((hints, index) => (
                                   <p
+                                  key={index}
                                     className='mb-1 cursor-pointer rounded-lg px-2 py-1.5 hover:bg-[#FFFFFF29] [&>*:last-child]:border-b-0'
                                     onClick={(e) => HandleTypeHint(e)}
                                   >
@@ -417,6 +485,7 @@ const ImageGeneratorOption = ({
                   placeholder='Type a negative prompt...'
                   className='h-12 rounded-[14px] border-none bg-[#FFFFFF0D] px-4 text-white placeholder:text-[#979797] focus:border-[#5848BC] focus:ring-[#5848BC] active:border-[#5848BC]'
                   name='negative'
+                  onChange={(e)=>setNegativePrompt(e.target.value)}
                 />
               </div>
             )}
@@ -549,7 +618,9 @@ const ImageGeneratorOption = ({
         <div>
           {EditGeneration ? (
             <div className='border-t border-white/[0.08] p-6'>
-              <div className='font-bold ml-auto w-max items-center justify-center rounded-[14px] bg-[#5848BC] px-5 py-[13px] text-[16px] leading-[22px] text-white'>
+              <div className='font-bold ml-auto w-max items-center justify-center rounded-[14px] bg-[#5848BC] px-5 py-[13px] text-[16px] leading-[22px] text-white cursor-pointer'
+              onClick={handleGenerate}
+              >
                 Generate
               </div>
             </div>

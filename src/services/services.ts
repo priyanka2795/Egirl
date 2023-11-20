@@ -89,13 +89,13 @@ export const postGiftCategory = (data:any , token:any) => postApiWithToken('/stu
 
 export const deleteGiftCategory = (data:any) => deleteApi('/studio/gift/category' , data)
 
-export const postPromptImage = (data:any) => postApi('/studio/image_generator/prompt_image' , data)
+export const postPromptImage = (data:any, token:string | null) => postApiWithToken('/studio/image_generation/prompt_image' , data, token)
 
-export const postInpaintImage = (data:any) => postApi('/studio/image_generation/inpaint_image' , data)
+export const postInpaintImage = (data:any, token:string | null) => postApiWithToken('/studio/image_generation/inpaint_image' , data, token)
 
-export const postPoseImage = (data:any) => postApi('/studio/image_generation/pose_image' , data)
+export const postPoseImage = (data:any, token:string | null) => postApiWithToken('/studio/image_generation/pose_image' , data, token)
 
-export const getImageGeneration = (offset:number , limit:number) => getApi(`/studio/image_generation/?offset=${offset}limit=${limit}`)
+export const getImageGeneration = (offset:number , limit:number, token:any) => getApiWithToken(`/studio/image_generation/?offset=${offset}limit=${limit}`, token)
 
 // export const deleteImageGeneration = (id:number) => deleteApi(`/studio/image_generation/${id}`)
 
