@@ -277,7 +277,7 @@ const BookMarkModal = ({
                   </div>
                 </div>
               </div>
-              {commentsData?.slice(0,showMoreComment).map((ele: any, index: number) => {
+              {commentsData?.map((ele: any, index: number) => {
                 return (
                   <div className='flex flex-col gap-2 rounded-[14px] bg-[#1A1A1A] px-5 py-4' key={index}>
                     <div className='flex justify-between'>
