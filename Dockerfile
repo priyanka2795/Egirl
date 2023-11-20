@@ -1,5 +1,5 @@
 # Step 1: Use an official Node.js runtime as a parent image
-FROM node:18.14.2
+FROM node:18
 
 # Step 2: Set the working directory in the container
 WORKDIR /usr/src/app
@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 # COPY package.json ./
 COPY . .
 
-# RUN npm cache clean --force
+RUN npm cache clean --force
 
 # Step 4: Install any necessary dependencies
 RUN npm install
