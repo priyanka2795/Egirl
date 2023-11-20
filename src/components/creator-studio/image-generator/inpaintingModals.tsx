@@ -1,6 +1,6 @@
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import CloseIcon from '../../../../public/assets/xmark (1).png';
 import Image1 from '../../../../public/assets/inpaint-Image.png';
 import Rest from '../../../../public/assets/rotate-cw.png';
@@ -26,6 +26,70 @@ const InpaintingModals = ({
   const [brushSize, setBrushSize] = useState<number[]>([20]);
   const [brushSizeToggle, setBrushSizeToggle] = useState<boolean>(false);
 
+  //////////////////////////////
+
+  const canvasRef = useRef(null);
+  const imageRef = useRef(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const context = canvas.getContext("2d");
+
+    const image = imageRef.current;
+
+    // Set the canvas size to match the image size
+    canvas.width = image.width;
+    canvas.height = image.height;
+
+    // Draw the image on the canvas
+    context.drawImage(image, 0, 0);
+
+    // Set up event listeners for drawing
+    let isDrawing = false;
+
+    const startDrawing = (e:any) => {
+      isDrawing = true;
+      draw(e);
+    };
+
+    const stopDrawing = () => {
+      isDrawing = false;
+      context.beginPath();
+    };
+
+    const draw = (e:any) => {
+      if (!isDrawing) return;
+
+      context.lineWidth = 5;
+      context.lineCap = "round";
+      context.strokeStyle = "black";
+
+      context.lineTo(
+        e.clientX - canvas.offsetLeft,
+        e.clientY - canvas.offsetTop
+      );
+      context.stroke();
+      context.beginPath();
+      context.moveTo(
+        e.clientX - canvas.offsetLeft,
+        e.clientY - canvas.offsetTop
+      );
+    };
+
+    // Attach event listeners
+    canvas.addEventListener("mousedown", startDrawing);
+    canvas.addEventListener("mouseup", stopDrawing);
+    canvas.addEventListener("mousemove", draw);
+
+    // Cleanup event listeners on component unmount
+    return () => {
+      canvas.removeEventListener("mousedown", startDrawing);
+      canvas.removeEventListener("mouseup", stopDrawing);
+      canvas.removeEventListener("mousemove", draw);
+    };
+  }, []);
+  ///////////////////////////
+
   return (
     <Modal
       open={true}
@@ -48,10 +112,21 @@ const InpaintingModals = ({
 
       <div className='px-6 pt-6'>
         <div className='sub-banner relative m-auto  h-[640px] w-[640px] '>
-          <Image
+          {/* <Image
             src={Image1}
             className='object-cover w-full h-full rounded-lg'
-          />
+          /> */}
+            {/* canvasssssssss */}
+             <div style={{ position: 'relative' }}>
+      <img
+        ref={imageRef}
+        src="https://cdn4.sharechat.com/Animegirlimages_278af637_1626869450549_sc_cmprsd_40.jpg?tenant=sc&referrer=pwa-sharechat-service&f=rsd_40.jpg" 
+        alt="Drawing Canvas"
+        style={{ width: '100%', height: 'auto' }}
+      />
+      <canvas ref={canvasRef} style={{ position: 'absolute', top: 0, left: 0 }} />
+    </div>
+    {/*  */}
           <div className='absolute flex items-center gap-2 right-3 top-3'>
             <div className='relative flex items-center justify-center gap-3 rounded-[100px] bg-[#000000CC] p-3'>
               <div className='group relative h-5 cursor-pointer border-r border-[#FFFFFF3D] pr-3'>

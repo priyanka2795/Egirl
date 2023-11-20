@@ -6,6 +6,7 @@ import InstaIcon from './assets/icons/InstaIcon';
 import FooterImg from './assets/Footer/FooterImg';
 import ExperienceTheFuture from './assets/ExperienceTheFuture';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Footer = () => {
   return (
@@ -20,7 +21,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className='flex justify-center space-x-3 pt-6 text-center lg:justify-start lg:text-start'>
+          <div className='flex justify-center pt-6 space-x-3 text-center lg:justify-start lg:text-start'>
             <span className='select-none text-[24px] font-[600] text-white md:text-[48px]'>
               More than 3000 people have
               <span className='mx-2 font-[500] italic lg:mx-4'>
@@ -32,7 +33,7 @@ const Footer = () => {
             Join us
           </button>
         </div>
-        <div className='hidden justify-end lg:flex '>
+        <div className='justify-end hidden lg:flex '>
           {/* <FooterImg /> */}
           <Image
             src={'/assets2/Common/FooterImg/FooterImg2x.png'}
@@ -88,7 +89,7 @@ const Footer = () => {
       </div>
       <div className='mt-10 flex  select-none justify-between text-[15px] font-[400]'>
         <p>© 2023 Egirls Inc. All Rights Reserved</p>
-        <p>Privacy Policy</p>
+        <Link href="/privacy-policy">Privacy Policy</Link>
       </div>
     </div>
   );

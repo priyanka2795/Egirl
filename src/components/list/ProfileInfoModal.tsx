@@ -49,13 +49,15 @@ interface ProfileInfoModal {
   setBtnSteps?: any;
   activeStep?: any;
   setActiveStep?: any;
+  setUserGuide?: any;
 }
 const ProfileInfoModal = ({
   setProfileInfoPage,
   btnSteps,
   setBtnSteps,
   activeStep,
-  setActiveStep
+  setActiveStep,
+  setUserGuide
 }: ProfileInfoModal) => {
   const [form, setForm] = useState(initialValues);
   // const [btnSteps, setBtnSteps] = useState<boolean>(false);
@@ -180,7 +182,7 @@ const ProfileInfoModal = ({
       <div className='flex border-b border-white/[0.08] px-6 py-4'>
         <button
           className='font-bold flex items-center justify-center rounded-[12px] border border-white/[0.32] px-4 py-[10px] text-[14px] leading-5 text-white'
-          onClick={() => setProfileInfoPage(false)}
+          onClick={() => {setUserGuide(false),setProfileInfoPage(false)}}
         >
           Save & Close
         </button>
