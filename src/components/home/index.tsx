@@ -98,7 +98,7 @@ const Home = () => {
   };
 
   useEffect(()=>{
-    Cookies.set("accessToken", refreshTokenData)
+    // Cookies.set("accessToken", refreshTokenData)
     
     forYouPost(1,10, token)
     .then((res:any)=>{
@@ -120,7 +120,7 @@ const Home = () => {
     .catch((err:any)=>{
       console.log("post subscription err---", err)
     })
-  },[postUpdate,refreshTokenData])
+  },[postUpdate])
 
   
   const formatTimestamp = (timestamp:any) => {

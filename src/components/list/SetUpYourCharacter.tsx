@@ -7,6 +7,11 @@ import imagePlusIcon from '../../../public/assets/image-plus.png';
 import palette from '../../../public/assets/palette.png';
 import flag from '../../../public/assets/flag.png';
 import HoverModal from './HoverModal';
+import paletteWhiteIcon from '../../../public/assets/palette-white.png';
+import RightIcon from '../../../public/assets/check-cs.png';
+import personalityWhiteIcon from '../../../public/assets/user-white.png';
+import imagePlusWhiteIcon from '../../../public/assets/image-plus-white.png';
+import flagWhite from '../../../public/assets/flag-white.png';
 
 interface SetUpYourCharacter {
   IsOpen: any;
@@ -16,6 +21,10 @@ interface SetUpYourCharacter {
   setTourCount: React.Dispatch<React.SetStateAction<number>>;
   SetIsTourOpen: React.Dispatch<React.SetStateAction<number>>;
   setProfileInfoPage: any;
+  btnSteps?: any;
+  setBtnSteps?: any;
+  activeStep?: any;
+  setActiveStep?: any;
 }
 function SetUpYourCharacter({
   IsOpen,
@@ -24,7 +33,11 @@ function SetUpYourCharacter({
   tourCount,
   SetIsTourOpen,
   setTourCount,
-  setProfileInfoPage
+  setProfileInfoPage,
+  btnSteps,
+  setBtnSteps,
+  activeStep,
+  setActiveStep
 }: SetUpYourCharacter) {
   {
     /*
@@ -70,7 +83,9 @@ function SetUpYourCharacter({
               className={`flex items-center gap-2 rounded-xl bg-[#5848BC] px-4 py-2.5 ${
                 GuideStep === tourCount ? 'relative z-[2]' : ''
               }`}
-              onClick={() => {setProfileInfoPage(true)}}
+              onClick={() => {
+                setProfileInfoPage(true);
+              }}
             >
               <Image src={bookUser} alt={''} />
               Guided Character Creator
@@ -98,56 +113,194 @@ function SetUpYourCharacter({
         </div>
       </div>
 
-      <div className='flex gap-5'>
-        <div className='flex gap-4'>
-          <div className='flex h-10 w-10 items-center justify-center rounded-full bg-[#5848BC]'>
-            <Image src={userPenIcon} alt='' />
+      <div className='flex justify-center gap-4'>
+        <div className='flex items-center gap-4'>
+          <div
+            className={`flex h-10 w-10 items-center justify-center rounded-full text-white                  ${
+              activeStep === 0
+                ? 'bg-[#5848BC]'
+                : activeStep >= 1
+                ? 'bg-[#2EAA1B]'
+                : 'bg-[#FFFFFF14]' // Set a default color for other steps
+            }                  
+                  `}
+          >
+            {/* ${
+                    activeStep === 0 ? 'bg-[#5848BC]' : 'bg-[#2EAA1B]'
+                  } */}
+            <Image src={activeStep === 0 ? userPenIcon : RightIcon} alt='' />
           </div>
           <div>
             <p className='text-[15px]'>
-              Profile info <span className='pl-1 text-[#979797]'>2/4</span>
+              Profile info
+              <span className='pl-1 text-[#979797]'>4/4</span>
             </p>
-            <div className='mt-1 h-1 w-[155px] rounded-xl bg-[#5848BC] bg-opacity-[40%]'>
-              <div className='h-1 w-3/6 rounded-xl bg-[#5848BC] '></div>
+            <div
+              className={`mt-1 h-1 w-[155px] rounded-xl ${
+                activeStep === 0 ? 'bg-[#5848BC]' : ''
+              } bg-opacity-[40%]`}
+            >
+               <div
+                    className={`h-1  ${
+                      activeStep === 0 ? '' : '!bg-[#2EAA1B] w-full '
+                    }w-0 rounded-xl bg-[#5848BC]  `}
+                  ></div> 
             </div>
           </div>
         </div>
-        <div className='flex gap-4'>
-          <div className='flex h-10 w-10 items-center justify-center rounded-full bg-white/[0.08] '>
-            <Image src={personalityIcon} alt='' />
+
+        <div className='flex items-center gap-4'>
+          <div
+            className={`flex h-10 w-10 items-center justify-center rounded-full text-white ${
+              activeStep === 1
+                ? 'bg-[#5848BC]'
+                : activeStep >= 1
+                ? 'bg-[#2EAA1B]'
+                : 'bg-[#FFFFFF14]' // Set a default color for other steps
+            }
+                  `}
+          >
+            <Image
+              src={
+                activeStep === 1
+                  ? personalityWhiteIcon
+                  : activeStep >= 1
+                  ? RightIcon
+                  : personalityIcon
+              }
+              alt=''
+              className='text-white'
+            />
           </div>
           <div>
             <p className='text-[15px]'>
-              Personality <span className='pl-1 text-[#979797]'>0/5</span>
+              Personality
+              <span className='pl-1 text-[#979797]'>0/5</span>
             </p>
-            <div className='mt-1 h-1 w-[155px] rounded-xl bg-white/[0.12]'></div>
+            <div
+              className={`mt-1 h-1 w-[155px] rounded-xl  ${
+                activeStep === 1
+                  ? 'bg-[#5848BC] bg-opacity-[40%]'
+                  : 'bg-[#FFFFFF1F]  '
+              }`}
+            >
+              <div
+                className={`h-1 w-0 ${
+                  activeStep === 1
+                    ? 'bg-[#5848BC]'
+                    : activeStep >= 1
+                    ? 'w-full !bg-[#2EAA1B]'
+                    : 'bg-[#5848BC]'
+                } rounded-xl`}
+              ></div>
+            </div>
           </div>
         </div>
-        <div className='flex gap-4 '>
-          <div className='setup_character flex h-10 w-10 items-center justify-center rounded-full bg-white/[0.08] '>
-            <Image src={imagePlusIcon} alt='' />
+
+        <div className='flex items-center gap-4'>
+          <div
+            className={`setup_character flex h-10 w-10 items-center justify-center rounded-full text-white 
+                  ${
+                    activeStep === 2
+                      ? 'bg-[#5848BC]'
+                      : activeStep >= 2
+                      ? 'bg-[#2EAA1B]'
+                      : 'bg-[#FFFFFF14]'
+                  }
+                  `}
+          >
+            <Image
+              src={
+                activeStep === 2
+                  ? imagePlusWhiteIcon
+                  : activeStep >= 2
+                  ? RightIcon
+                  : imagePlusIcon
+              }
+              alt=''
+              className='text-white'
+            />
           </div>
           <div>
             <p className='text-[15px]'>
-              Images <span className='pl-1 text-[#979797]'>0/4</span>
+              Images
+              <span className='pl-1 text-[#979797]'>0/4</span>
             </p>
-            <div className='mt-1 h-1 w-[155px] rounded-xl bg-white/[0.12]'></div>
+            <div
+              className={`mt-1 h-1 w-[155px] rounded-xl  ${
+                activeStep === 2
+                  ? 'bg-[#5848BC] bg-opacity-[40%]'
+                  : 'bg-[#FFFFFF1F]  '
+              }`}
+            >
+              <div
+                className={`h-1 w-0 ${
+                  activeStep === 2
+                    ? 'bg-[#5848BC]'
+                    : activeStep >= 2
+                    ? 'w-[100%] !bg-[#2EAA1B]'
+                    : 'bg-[#5848BC]'
+                } rounded-xl `}
+              ></div>
+            </div>
           </div>
         </div>
-        <div className='flex gap-4'>
-          <div className='flex h-10 w-10 items-center justify-center rounded-full bg-white/[0.08]'>
-            <Image src={palette} alt='' />
+
+        <div className='flex items-center gap-4'>
+          <div
+            className={`flex h-10 w-10 items-center justify-center rounded-full text-white
+                  ${
+                    activeStep === 3
+                      ? 'bg-[#5848BC]'
+                      : activeStep >= 3
+                      ? 'bg-[#2EAA1B]'
+                      : 'bg-[#FFFFFF14]'
+                  }`}
+          >
+            <Image
+              src={
+                activeStep === 3
+                  ? paletteWhiteIcon
+                  : activeStep >= 3
+                  ? RightIcon
+                  : palette
+              }
+              alt=''
+              className='text-white'
+            />
           </div>
           <div>
             <p className='text-[15px]'>
-              Style <span className='pl-1 text-[#979797]'>0/1</span>
+              Style
+              <span className='pl-1 text-[#979797]'>0/1</span>
             </p>
-            <div className='mt-1 h-1 w-[155px] rounded-xl bg-white/[0.12]'></div>
+            <div
+              className={`mt-1 h-1 w-[155px] rounded-xl  ${
+                activeStep === 3
+                  ? 'bg-[#5848BC] bg-opacity-[40%]'
+                  : 'bg-[#FFFFFF1F]  '
+              }`}
+            >
+              <div
+                className={`h-1 w-0 ${
+                  activeStep === 3
+                    ? 'bg-[#5848BC]'
+                    : activeStep >= 3
+                    ? 'w-[100%] !bg-[#2EAA1B]'
+                    : 'bg-[#5848BC]'
+                } rounded-xl `}
+              ></div>
+            </div>
           </div>
         </div>
+
         <div className='flex gap-4'>
-          <div className='flex h-10 w-10 items-center justify-center rounded-full bg-white/[0.08]'>
-            <Image src={flag} alt='' />
+          <div
+            className={`flex h-10 w-10 items-center justify-center rounded-full  ${
+              activeStep === 4 ? 'active bg-[#5848BC] ' : 'bg-[#FFFFFF14] '
+            }`}
+          >
+            <Image src={activeStep === 4 ? flagWhite : flag} alt='' />
           </div>
         </div>
       </div>

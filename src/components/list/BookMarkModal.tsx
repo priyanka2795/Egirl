@@ -174,6 +174,7 @@ const BookMarkModal = ({
                 </div>
               </div>
             </div>
+          
             <div className='flex gap-3 p-2'>
               <div className='flex gap-[6px] rounded-[100px] bg-[#FF5336]/[0.16] px-3 py-2'>
                 <Image

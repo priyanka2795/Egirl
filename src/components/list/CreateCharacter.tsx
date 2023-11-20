@@ -7,13 +7,15 @@ import CreateCharacterModal from './CreateCharacterModal';
 interface CreateCharacter {
   SetUserGuide: any;
   SetIsTourOpen: any;
+  UserGuide: any;
   setTourCount: React.Dispatch<React.SetStateAction<number>>;
 }
 
 function CreateCharacter({
   SetUserGuide,
   SetIsTourOpen,
-  setTourCount
+  setTourCount,
+  UserGuide
 }: CreateCharacter) {
   const [createCharacter, setCreateCharacter] = useState<boolean>(false);
   return (
@@ -42,6 +44,8 @@ function CreateCharacter({
           SetUserGuide={SetUserGuide}
           SetIsTourOpen={SetIsTourOpen}
           setTourCount={setTourCount}
+          UserGuide={UserGuide}
+
         />
       )}
     </>

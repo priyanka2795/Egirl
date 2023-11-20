@@ -7,10 +7,22 @@ import HoverModal from '@components/list/HoverModal';
 import React, { useState } from 'react';
 
 interface CreatorStudioLayoutProps {
-  setProfileInfoPage: any;
+  children?:any
+  setProfileInfoPage?: any;
+  btnSteps?: any;
+  setBtnSteps?: any;
+  activeStep?: any;
+  setActiveStep?: any;
 }
 
-const CreatorStudioLayout = ({ children, setProfileInfoPage }: any) => {
+const CreatorStudioLayout = ({
+  children,
+  setProfileInfoPage,
+  btnSteps,
+  setBtnSteps,
+  activeStep,
+  setActiveStep
+}: CreatorStudioLayoutProps) => {
   const [shrinkSideBar, setShrinkSideBar] = useState<boolean>(false);
   const [styleGenNext, setStyleGenNext] = useState<boolean>(false);
 
@@ -100,6 +112,10 @@ const CreatorStudioLayout = ({ children, setProfileInfoPage }: any) => {
                     tourCount={tourCount}
                     setTourCount={setTourCount}
                     setProfileInfoPage={setProfileInfoPage}
+                    btnSteps={btnSteps}
+        setBtnSteps={setBtnSteps}
+        activeStep={activeStep}
+        setActiveStep={setActiveStep}
                   />
                 )}
               </>

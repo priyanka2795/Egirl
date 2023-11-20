@@ -59,12 +59,26 @@ const SelectExploreImages = ({
   const [toggle, setToggle] = useState<boolean>(false);
   const [selectExploreImage, setSelectExploreImage] = useState([]);
   const [selectAlbumImages, setSelectAlbumImages] = useState(false);
-  const handleImageClick = (index: number) => {
-    const updatedPhotos = [...allPhotos];
-    updatedPhotos[index].selected = !updatedPhotos[index].selected;
-    // Update the state with the new selected status.
-    setSelectExploreImage(updatedPhotos.filter((item) => item.selected));
+
+
+  const handleImageClick = (index: any) => {
+    const updatedSelectedImages = [...selectExploreImage];
+
+    if (!allPhotos[index].selected && updatedSelectedImages.length < 4) {
+      allPhotos[index].selected = true;
+      updatedSelectedImages.push(allPhotos[index]);
+    } else {
+      allPhotos[index].selected = false;
+      const imageIndex = updatedSelectedImages.findIndex(
+        (item) => item.image === allPhotos[index].image
+      );
+      updatedSelectedImages.splice(imageIndex, 1);
+    }
+
+    setSelectExploreImage(updatedSelectedImages);
   };
+
+
   const handleExploreImageSet = () => {
     setAttachingImages(false);
     setExploreImages(selectExploreImage);

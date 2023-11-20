@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import CloseIcon from '../../../public/assets/svgImages/close-icon.svg';
 import arrowLeft from '../../../public/assets/arrow-left.png';
 import downArrow from '../../../public/assets/arrow-down-grey.png';
@@ -25,7 +25,6 @@ const HoverModal = ({
   const handleNextStep = () => {
     setTourCount(tourCount + 1);
   };
-  console.log(tourCount, 'tourCount added');
 
   const handlePrevStep = () => {
     console.log(tourCount, 'test count');
@@ -37,13 +36,35 @@ const HoverModal = ({
     onClose();
   };
   // Guide  End
+
+  // Position Get
+
+  const boxRef = useRef<HTMLDivElement>(null);
+
+
+  const [positionY, setPositionY] = useState<number | undefined>();
+
+  const getPosition = () => {
+    const positionY = boxRef.current?.offsetTop;
+    setPositionY(positionY);
+  };
+  useEffect(() => {
+    getPosition();
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('resize', getPosition);
+  }, []);
+
+  console.log(positionY, 'Y position In Guid Box');
+
   return (
     <div
       className={` ${isOpen ? ' ' : ''}  
         `}
     >
       {isOpen && (
-        <div>
+        <div >
           <div
             className={`      
             ${
@@ -52,6 +73,7 @@ const HoverModal = ({
                 : 'fixed ml-[20px]'
             }
             z-[4] w-[330px] rounded-[14px] bg-[#1A1A1A] p-4 text-xs text-white transition-all `}
+            ref={boxRef}
           >
             <div className='flex justify-between border-b-[1px] border-zinc-700 pb-3'>
               <h4 className=' font-bold text-[18px]'>
@@ -65,7 +87,7 @@ const HoverModal = ({
             <p className='font-normal mt-3 text-[14px] leading-5'>
               {tourSteps[tourCount].content}
             </p>
-            <div className='mt-3 flex items-center justify-between'>
+            <div className='flex items-center justify-between mt-3'>
               {/* <p className='font-normal text-[14px] text-[#979797]'>{step}</p> */}
               <p className='font-normal text-[14px] text-[#979797]'>
                 Step {tourCount + 1}/5
@@ -80,7 +102,9 @@ const HoverModal = ({
                 </button>
                 <button
                   className=' font-bold rounded-xl bg-[#5848BC] px-4 py-2 text-[14px] leading-[22px]'
-                  onClick={handleNextStep}
+                  onClick={() => {
+                    handleNextStep(),getPosition(), window.scrollTo({ top: positionY, behavior: "smooth" });
+                  }}
                 >
                   Next
                 </button>
@@ -94,7 +118,7 @@ const HoverModal = ({
                 : 'fixed ml-[7px] rotate-90'
             }`}
           >
-            <Image className='h-full w-full' src={downArrow} alt={''} />
+            <Image className='w-full h-full' src={downArrow} alt={''} />
           </div>
         </div>
       )}
