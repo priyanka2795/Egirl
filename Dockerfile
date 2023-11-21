@@ -5,22 +5,19 @@ FROM node:18
 WORKDIR /usr/src/app
 
 # Step 3: Copy the package.json and yarn.lock files from your project folder
-# COPY package.json ./
-COPY . .
+COPY package.json yarn.lock ./
 
-RUN npm cache clean --force
-
-# Step 4: Install any necessary dependencies
-RUN npm install
+# Step 4: Install any necessary dependencies using Yarn
+RUN yarn install
 
 # Step 5: Copy the rest of your application's source code from your project folder to the Docker container
-# COPY . .
+COPY . .
 
 # Step 6: Build your Next.js application
-RUN npm run build
+RUN yarn build
 
 # Step 7: Define the network port that this container will listen on at runtime
 EXPOSE 3000
 
 # Step 8: Define the command to run your app
-CMD [ "npm","run","start"]
+CMD ["yarn", "start"]
