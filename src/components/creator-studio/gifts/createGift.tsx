@@ -22,7 +22,7 @@ interface CreateGiftPopup {
   GiftName: string[];
   SetGiftName: React.Dispatch<React.SetStateAction<string[]>>;
   GiftImageSet: string;
-  giftCategory : any
+  giftCategory: any;
 }
 
 function CreateGift({
@@ -40,32 +40,26 @@ function CreateGift({
   const [tabSelectedOpt, setTabSelectedOpt] = useState<any>('');
   const [giftName, setGiftName] = useState<string>('');
   const characterId = Cookies.get('character_id') || '';
-  const token : any =  Cookies.get('accessToken');
-  const [createGiftData , setCreateGiftData] = useState<any>()
+  const token: any = Cookies.get('accessToken');
+  const [createGiftData, setCreateGiftData] = useState<any>();
 
-  useEffect(()=>{
-    console.log(createGiftData , "jjjjj");
-  },[createGiftData])
+  useEffect(() => {
+    console.log(createGiftData, 'jjjjj');
+  }, [createGiftData]);
 
-  useEffect(()=>{
+  useEffect(() => {
     setCreateGiftData({
-    
-      "character_id": characterId,
-      "name": giftName,
-      "price": 0,
-      "media_id": 0,
-      "gift_category_id": tabSelectedOpt
-    
-  })
-  },[giftName , characterId ,tabSelectedOpt ])
-
-  
+      character_id: characterId,
+      name: giftName,
+      price: 0,
+      media_id: 1,
+      gift_category_id: tabSelectedOpt
+    });
+  }, [giftName, characterId, tabSelectedOpt]);
 
   const handleActiveTab = (items: any) => {
     setTabSelectedOpt(items?.gift_category_id);
   };
-
-
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -73,20 +67,19 @@ function CreateGift({
   };
 
   const GiftCreated = () => {
-    if (giftName === '' ) {
+    if (giftName === '') {
       alert('Please Enter Gift Name');
-    }else if (GiftImageSet === '') {
+    } else if (GiftImageSet === '') {
       alert('Please Select Image');
-      
     } else {
       // SetGiftName([...GiftName, giftName]);
-      postGifts(createGiftData , token)
-      .then((res:any)=>{
-        console.log(res , "????giftCreated");
-      })
-      .catch((err:any)=>{
-        console.log(err , "????createGiftError");
-      })
+      postGifts(createGiftData, token)
+        .then((res: any) => {
+          console.log(res, '????giftCreated');
+        })
+        .catch((err: any) => {
+          console.log(err, '????createGiftError');
+        });
       createGiftClose(false);
       GiftsView(true);
     }
@@ -98,9 +91,9 @@ function CreateGift({
   console.log(GiftImageSet, 'GiftImageSet');
   // console.log(AlbumFirst,'AlbumFirst');
 
-  useEffect(()=>{
-    console.log(giftCategory , "????category");
-  },[giftCategory])
+  useEffect(() => {
+    console.log(giftCategory, '????category');
+  }, [giftCategory]);
 
   return (
     <div className='w-[385px]'>
@@ -119,13 +112,13 @@ function CreateGift({
           <div className='flex items-center justify-between border-b border-[#FFFFFF14] p-6'>
             <h5 className='text-lg font-semibold'>Create gift</h5>
             <div
-              className='w-6 h-6 cursor-pointer'
+              className='h-6 w-6 cursor-pointer'
               onClick={() => {
                 createGiftClose(false);
                 SetCategory([]);
               }}
             >
-              <Image className='w-full h-full' src={crossIcon} alt={''} />
+              <Image className='h-full w-full' src={crossIcon} alt={''} />
             </div>
           </div>
           <div className='flex flex-col gap-4 p-6'>
@@ -217,7 +210,7 @@ function CreateGift({
               className='flex items-center gap-2 font-semibold '
               onClick={() => setCreateCategory(true)}
             >
-              <Image className='w-full h-full' src={plusIcon} alt={''} />
+              <Image className='h-full w-full' src={plusIcon} alt={''} />
               <p>New Category</p>
             </button>
 
