@@ -7,9 +7,9 @@ interface MyComponentProps {
   isActive: boolean;
   name: string;
   username: string;
-  messagePreview: string;
-  newMessages: number;
-  timeLastSeen: string;
+  // messagePreview: string;
+  // newMessages: number;
+  // timeLastSeen: string;
   onClick: (username: string) => void;
   currentlyActive?: boolean;
 }
@@ -17,9 +17,9 @@ const Character: React.FC<MyComponentProps> = ({
   isActive,
   name,
   username,
-  messagePreview,
-  newMessages,
-  timeLastSeen,
+  // messagePreview,
+  // newMessages,
+  // timeLastSeen,
   currentlyActive,
   onClick
 }) => {
@@ -44,13 +44,13 @@ const Character: React.FC<MyComponentProps> = ({
               className='rounded-full'
             />
             {currentlyActive && (
-              <div className='absolute right-0 top-0'>
+              <div className='absolute top-0 right-0'>
                 <ActiveIcon />
               </div>
             )}
           </div>
-          <div className='ml-3 flex flex-col'>
-            <div className='mb-1 flex items-center'>
+          <div className='flex flex-col ml-3'>
+            <div className='flex items-center mb-1'>
               <h3
                 className={`mr-2 text-[16px] leading-[22px] ${
                   isActive ? 'font-semibold' : 'font-normal'
@@ -67,7 +67,7 @@ const Character: React.FC<MyComponentProps> = ({
             </div> */}
           </div>
         </div>
-        <div className='three-dots hidden group-hover:flex'>
+        <div className='hidden three-dots group-hover:flex'>
           <ThreeDots />
         </div>
         {/* <div className='grid w-6 place-items-center rounded-[10px] bg-[#3E347E] py-[2px] text-[12px] font-semibold leading-[16px]'>

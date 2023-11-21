@@ -66,25 +66,6 @@ export default function Lists(): JSX.Element {
   >(null);
 
 
-  // const fetchSubscriptionsList = async () => {
-  //   const subslist = await getSubscriptions(
-  //     'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
-  //     supabaseClient
-  //   )
-  //     .then((data) => {
-  //       setSubscriptions(data.characters.data);
-  //     })
-  //     .then(() => {
-  //       setLoading(false);
-  //     });
-  // };
-
-  // useEffect(() => {
-  //   if (supabaseUser) {
-  //     fetchSubscriptionsList();
-  //   }
-  // }, [supabaseUser]);
-
   const user: User = {
     id: '1',
     username: 'egirl',

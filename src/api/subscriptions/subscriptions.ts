@@ -2,7 +2,6 @@ import { getSubscriptionsByUser, createUserSubscription } from '../utils/subscri
 
 import { getUserSubscriptionsByCharacterId } from '../utils/characters';
 
-import { supabaseClient } from '../../config/supabaseClient';
 
 /// Subscriptions
 
@@ -50,4 +49,3 @@ export async function createSubscription(
 //     - Same thing we do for For you
 //         - but instead of posts, we do the actual profiles (characters)
 
-getSubscriptions('e8a2be37-76f6-4ebb-bfd8-b9e370046a41', supabaseClient);
