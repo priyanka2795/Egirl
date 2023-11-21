@@ -198,6 +198,7 @@ const ViewImagesMainPage = () => {
                   className='w-full rounded-[16px] object-cover'
                   src={items.image}
                   alt={''}
+                  onClick={() => AllImageToggle(index)}
                 />
                 <div
                   className='invisible absolute right-[7px] top-[7px] flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full bg-black/[0.48] group-hover:visible group-hover:opacity-100'

@@ -31,6 +31,8 @@ import arrowLeft from '../../../public/assets/arrow-left.png';
 import CloseIcon from '../../../public/assets/svgImages/close-icon.svg';
 import arrowLeftTooltip from '../../../public/assets/arrow-left-tooltip.png';
 import HoverModal from '@components/list/HoverModal';
+import userAdd from '../../../public/assets/user-plus1.png'
+import CreateCharacterModal from '@components/list/CreateCharacterModal';
 
 interface CreatorStudioNavbarPropProp {
   shrinkSideBar: boolean;
@@ -39,6 +41,14 @@ interface CreatorStudioNavbarPropProp {
   OnClose: any;
   TourSteps: any;
   tourCount: number;
+  setTourCount: React.Dispatch<React.SetStateAction<number>>;
+  SetUserGuide: any;
+  SetIsTourOpen: any;
+  UserGuide: any;
+}
+
+interface CreateCharacter {
+  
   setTourCount: React.Dispatch<React.SetStateAction<number>>;
 }
 
@@ -49,11 +59,15 @@ const CreatorStudioSidebar = ({
   OnClose,
   TourSteps,
   tourCount,
-  setTourCount
+  setTourCount,
+  SetUserGuide,
+  SetIsTourOpen,
+  UserGuide
 }: CreatorStudioNavbarPropProp) => {
   const [sidebarModal, setSidebarModal] = useState<boolean>(false);
   const [moreOptionsModal, setMoreOptionsModal] = useState<boolean>(false);
   const [newCharacter, setNewCharacter] = useState<boolean>(false);
+  const [createCharacter, setCreateCharacter] = useState<boolean>(false);
   // const [sideBarShrink, setSideBarShrink] = useState(false);
   const GuideStep1 = TourSteps[1].id;
   const GuideStep2 = TourSteps[2].id;
@@ -77,7 +91,7 @@ const CreatorStudioSidebar = ({
             className='flex cursor-pointer items-center justify-between py-[14px] pl-3 pr-4'
             onClick={() => setSidebarModal(!sidebarModal)}
           >
-            <div className='relative flex w-full items-center gap-2'>
+            <div className='relative flex items-center w-full gap-2'>
               <div className='h-[32px] w-[32px]'>
                 <Image
                   src={avtar}
@@ -93,7 +107,7 @@ const CreatorStudioSidebar = ({
                 Mika-chan
               </div>
             </div>
-            <div className='mt-2 h-full'>
+            <div className='h-full mt-2'>
               <Image src={arrowDown} alt='' />
             </div>
             {sidebarModal && (
@@ -103,6 +117,23 @@ const CreatorStudioSidebar = ({
               />
             )}
           </div>
+              {/*  */}
+            {/* <div className='flex flex-col items-start self-stretch gap-2 px-6 pt-6 pb-2 '>
+              <button onClick={() => setCreateCharacter(true)} className='w-full h-auto flex py-2.5 px-4 justify-center items-center gap-1.5 self-stretch rounded-xl bg-[#5848BC]'>
+                  <Image src={userAdd} alt='' className='w-[18px] h-[18px]'/>
+                  <span className='text-sm font-semibold leading-5 normal'>Create character</span>
+              </button>
+            </div> */}
+            
+            {createCharacter && (
+        <CreateCharacterModal
+          closeState={setCreateCharacter}
+          SetUserGuide={SetUserGuide}
+          SetIsTourOpen={SetIsTourOpen}
+          setTourCount={setTourCount}
+          UserGuide={UserGuide}
+        />
+      )}
 
           <SidebarMenuItem
             text='Analytics'
