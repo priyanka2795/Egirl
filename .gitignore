@@ -48,7 +48,7 @@ src/api/typesense/data
 
 .yarnrc.yml
 .env.development
-# yarn.lock
+yarn.lock
 .yarn
 .pnp.cjs
 .pnp.loader.mjs
