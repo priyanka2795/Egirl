@@ -5,7 +5,16 @@ import CloseIcon from '../../../../public/assets/svgImages/close-icon.svg';
 import searchIcon from '../../../../public/assets/search-alt.png';
 import Image from 'next/image';
 import PersonalityHoverModal from './PersonalityHoverModal';
-const PersonalityLikeSection = () => {
+
+interface PersonalityLikesInterface {
+  setPersonalityData?: any;
+  personalityData?: any;
+}
+
+const PersonalityLikeSection = ({
+  setPersonalityData,
+  personalityData
+}: PersonalityLikesInterface) => {
   const [open, setOpen] = React.useState<boolean>(false);
   const [seletedTab, setSelectedTab] = useState<boolean>(false);
   const [selectChar, setSelectChar] = useState<string>('A');
@@ -37,6 +46,13 @@ const PersonalityLikeSection = () => {
     handleClose();
     handleClearSelection();
   };
+
+  useEffect(() => {
+    setPersonalityData({
+      ...personalityData,
+      likes: selectedOptions
+    });
+  }, [selectedOptions]);
 
   const data = [
     {
@@ -130,7 +146,7 @@ const PersonalityLikeSection = () => {
   return (
     <>
       <div className='flex h-auto w-full max-w-full flex-col rounded-lg bg-[#121212]'>
-        <div className='flex items-center justify-between max-w-full p-6'>
+        <div className='flex max-w-full items-center justify-between p-6'>
           <div className='flex flex-col gap-[2px]'>
             {showHoverModal && <PersonalityHoverModal />}
             <h2 className='font-bold flex items-center gap-[6px] text-lg'>
@@ -147,9 +163,11 @@ const PersonalityLikeSection = () => {
           </div>
 
           <button
-            className={`font-black flex items-center gap-[6px] justify-center rounded-[12px] border border-white/[0.32] px-4 py-[10px] text-[14px] leading-5 ${selectedOptions.length === 10 ? 'text-[#515151] ':'text-white'}`}
-            onClick={handleOpen} 
-            disabled={selectedOptions.length === 10 ?true:false}
+            className={`flex items-center justify-center gap-[6px] rounded-[12px] border border-white/[0.32] px-4 py-[10px] text-[14px] font-black leading-5 ${
+              selectedOptions.length === 10 ? 'text-[#515151] ' : 'text-white'
+            }`}
+            onClick={handleOpen}
+            disabled={selectedOptions.length === 10 ? true : false}
           >
             <span className='pr-1 text-[18px]'>+</span> <p>Add</p>
           </button>
@@ -164,7 +182,7 @@ const PersonalityLikeSection = () => {
               {selectedOptions.map((option) => (
                 <div
                   key={option}
-                  className='flex gap-2 text-sm rounded-xl px-3 py-[7px] bg-neutral-800'
+                  className='flex gap-2 rounded-xl bg-neutral-800 px-3 py-[7px] text-sm'
                 >
                   {option}{' '}
                   <span
@@ -208,8 +226,8 @@ const PersonalityLikeSection = () => {
 
         <div className='border-b border-white/[0.08] px-8 py-4'>
           <div className='flex w-full gap-[10px] rounded-[14px] bg-white/[0.05] px-4 py-3'>
-            <div className='w-6 h-6'>
-              <Image className='w-full h-full' src={searchIcon} alt={''} />
+            <div className='h-6 w-6'>
+              <Image className='h-full w-full' src={searchIcon} alt={''} />
             </div>
             <input
               type='text'
@@ -254,7 +272,7 @@ const PersonalityLikeSection = () => {
             </div>
           </div>
         </div>
-        <div className='relative content-holder ' id='content-holder'>
+        <div className='content-holder relative ' id='content-holder'>
           <ul className='alpha-nav scrollbar-hide absolute left-5 top-4 z-[30] h-[270px] -translate-y-3 translate-x-[460px] transform overflow-auto leading-4'>
             {Array.from(Array(26), (e, i) => String.fromCharCode(65 + i)).map(
               (char) => (
@@ -701,7 +719,7 @@ const PersonalityLikeSection = () => {
           <label className="pl-8 h-10 inline-block px-3 py-2 mb-4 ml-3 text-base transition cursor-pointer rounded-3xl bg-[#c6c6c6] text-[#525252] w-max peer-checked:bg-fuchsia-700 peer-checked:text-[#f4f4f4]" id='a2' for="Services/ Software">Anime</label>
           </div> */}
           </div>
-          <div className='flex flex-row self-stretch gap-3 px-8 pt-4 pb-8 '>
+          <div className='flex flex-row gap-3 self-stretch px-8 pb-8 pt-4 '>
             <button
               onClick={clearSelection}
               className='font-bold flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-white/[0.32] px-5 py-[13px]'

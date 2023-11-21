@@ -28,8 +28,10 @@ import UserWhite from '../../../../public/assets/circle-user-white.png';
 import SearchIcon from '../../../../public/assets/search-alt (1).png';
 import RightIcon from '../../../../public/assets/check-cs.png';
 import DeleteIcon from '../../../../public/assets/delete-icon.png';
+import { postInpaintImage, postPromptImage } from 'services/services';
+import Cookies from 'js-cookie';
 
-import {uploadSvg} from "./svg/upload";
+import { uploadSvg } from './svg/upload';
 
 const EditPromptName = [
   'Mica-chan',
@@ -75,13 +77,15 @@ interface ImageGeneratorOption {
   MyCharacterToggle: boolean;
   EditGeneration: boolean;
   EditTooltip: boolean;
+  numOfImages?: number;
 }
 const ImageGeneratorOption = ({
   InpaintingToggle,
   PosingToggle,
   MyCharacterToggle,
   EditGeneration,
-  EditTooltip
+  EditTooltip,
+  numOfImages
 }: ImageGeneratorOption) => {
   const [prompt, setPrompt] = useState<boolean>(false);
   const [tagState, setTagState] = useState<boolean>(false);
@@ -111,6 +115,7 @@ const ImageGeneratorOption = ({
   const [promptTagsHint, setPromptTagsHint] = useState(PromptTagsSearchAll);
   // const [promptTagsHint, setPromptTagsHint] = useState(PromptTagsSearch);
   const [promptHint, setPromptHint] = useState<string>('');
+  const [negativePrompt, setNegativePrompt] = useState<string>('');
 
   const DeletePromptMenu = (item: string) => {
     setEditPromptMenu(
@@ -138,7 +143,7 @@ const ImageGeneratorOption = ({
       e.target.value = '';
     }
   }
-
+  console.log('InpaintingToggle---', InpaintingToggle);
   const EditPromptData = (item: null) => {
     setEditPrompt((prev) => (prev === item ? null : item));
   };
@@ -216,9 +221,68 @@ const ImageGeneratorOption = ({
   };
 
   const SavedDrawingImage = localStorage.getItem('savedDrawingImage');
-  console.log(SavedDrawingImage,'SavedDrawingImage............');
-  
 
+  //====== prompt image api for image generation ========
+  const token: any = Cookies.get('accessToken');
+  let promptData: any = {
+    prompt: [
+      {
+        prompt_id: 0,
+        prompt_type: promptTags.toString(),
+        prompt_value: 'string'
+      }
+    ],
+    negative_prompt: negativePrompt,
+    sd_image_model: 'string',
+    height: 0,
+    width: 0,
+    guidance_scale: 1,
+    inference_steps: 1,
+    num_of_images: numOfImages
+  };
+  let inPaintData = {
+    base_image: {
+      media_id: 0,
+      media_url: 'string'
+    },
+    mask_image_base64_str: 'string',
+    prompt: [
+      {
+        prompt_id: 0,
+        prompt_type: 'string',
+        prompt_value: 'string'
+      }
+    ],
+    negative_prompt: negativePrompt,
+    sd_image_model: 'string',
+    height: 0,
+    width: 0,
+    guidance_scale: 0,
+    inference_steps: 0,
+    num_of_images: numOfImages
+  };
+  const handleGenerate = () => {
+    if (InpaintingToggle === true) {
+      postInpaintImage(inPaintData, token)
+        .then((res) => {
+          console.log('inPaintImage res---', res);
+        })
+        .catch((err) => {
+          console.log('inPaintImage err---', err);
+        });
+    } else {
+      postPromptImage(promptData, token)
+        .then((res) => {
+          console.log('prompt image res---', res);
+        })
+        .catch((err) => {
+          console.log('prompt image err---', err);
+        });
+    }
+  };
+
+  console.log('token---', token, editPromptMenuIndex, promptTags);
+  //=======================
   return (
     <>
       <div className='flex flex-col rounded-[14px] bg-[#121212]'>
@@ -236,7 +300,7 @@ const ImageGeneratorOption = ({
                   <p className='font-normal text-[15px] leading-6 text-[#979797]'>
                     Genre
                   </p>
-                  <Image src={ArrowRight} className='w-full h-full' />
+                  <Image src={ArrowRight} className='h-full w-full' />
                 </div>
 
                 <div
@@ -259,7 +323,7 @@ const ImageGeneratorOption = ({
               <div className='group relative flex w-12 cursor-pointer items-center justify-center gap-2 rounded-[14px] bg-white bg-opacity-10 py-3'>
                 <ShuffleSvg />
                 {EditTooltip ? (
-                  <div className='absolute z-50 -left-16 -top-12 w-max'>
+                  <div className='absolute -left-16 -top-12 z-50 w-max'>
                     <Tooltip Text={'Add a random prompt'} />
                   </div>
                 ) : (
@@ -274,7 +338,7 @@ const ImageGeneratorOption = ({
               <div className='flex flex-wrap items-center gap-2'>
                 {MyCharacterToggle && (
                   <div className='flex cursor-pointer items-center gap-1 rounded-xl bg-[#403BAC] px-[10px] py-2'>
-                    <Image src={UserWhite} className='w-full h-full' />
+                    <Image src={UserWhite} className='h-full w-full' />
                     <p className='text-[14px]'>Mika-chan</p>
                   </div>
                 )}
@@ -291,7 +355,7 @@ const ImageGeneratorOption = ({
                       onDragEnd={drop}
                       draggable
                     >
-                      <Image src={Grid} className='w-full h-full' />
+                      <Image src={Grid} className='h-full w-full' />
                       <span className='text'>{tag}</span>
                       {/* <span className="cursor-pointer" onClick={() => removeTag(index)}>&times;</span> */}
                     </div>
@@ -300,7 +364,7 @@ const ImageGeneratorOption = ({
                         <div className='m-4 flex items-center justify-between gap-[6px] rounded-[10px] bg-[#FFFFFF0D] px-3'>
                           <Image
                             src={SearchIcon}
-                            className='object-cover w-full h-full '
+                            className='h-full w-full object-cover '
                           />
                           <input
                             type='text'
@@ -327,7 +391,7 @@ const ImageGeneratorOption = ({
                               {editPromptMenuIndex === items ? (
                                 <Image
                                   src={RightIcon}
-                                  className='w-full h-full'
+                                  className='h-full w-full'
                                 />
                               ) : (
                                 ''
@@ -343,7 +407,7 @@ const ImageGeneratorOption = ({
                             >
                               <Image
                                 src={DeleteIcon}
-                                className='w-full h-full'
+                                className='h-full w-full'
                               />{' '}
                               Delete
                             </button>
@@ -390,6 +454,7 @@ const ImageGeneratorOption = ({
                               <div className=''>
                                 {items.hint.map((hints, index) => (
                                   <p
+                                    key={index}
                                     className='mb-1 cursor-pointer rounded-lg px-2 py-1.5 hover:bg-[#FFFFFF29] [&>*:last-child]:border-b-0'
                                     onClick={(e) => HandleTypeHint(e)}
                                   >
@@ -428,6 +493,7 @@ const ImageGeneratorOption = ({
                   placeholder='Type a negative prompt...'
                   className='h-12 rounded-[14px] border-none bg-[#FFFFFF0D] px-4 text-white placeholder:text-[#979797] focus:border-[#5848BC] focus:ring-[#5848BC] active:border-[#5848BC]'
                   name='negative'
+                  onChange={(e) => setNegativePrompt(e.target.value)}
                 />
               </div>
             )}
@@ -447,7 +513,7 @@ const ImageGeneratorOption = ({
                     className='cursor-pointer pt-1.5'
                     onClick={() => setInpaintingExample(true)}
                   >
-                    <Image src={Question} className='w-full h-full' />
+                    <Image src={Question} className='h-full w-full' />
                   </div>
                 </div>
                 {inpaintingCreated ? (
@@ -456,7 +522,7 @@ const ImageGeneratorOption = ({
                       <img
                         src={SavedDrawingImage || ''}
                         alt=''
-                        className='object-cover w-full h-full'
+                        className='h-full w-full object-cover'
                       />
                       <div
                         className='group absolute right-3 top-3 flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full bg-[#0000007A]'
@@ -477,7 +543,7 @@ const ImageGeneratorOption = ({
                       <div className='flex h-[56px] w-[56px] items-center justify-center rounded-full bg-[#FFFFFF0D]'>
                         <Image
                           src={ImageSquare}
-                          className='object-cover w-full h-full'
+                          className='h-full w-full object-cover'
                         />{' '}
                       </div>
                       <p className='text-[13px] text-[#979797]'>
@@ -503,7 +569,7 @@ const ImageGeneratorOption = ({
                     className='cursor-pointer pt-1.5'
                     onClick={() => setPoseExample(true)}
                   >
-                    <Image src={Question} className='w-full h-full' />
+                    <Image src={Question} className='h-full w-full' />
                   </div>
                 </div>
 
@@ -538,7 +604,7 @@ const ImageGeneratorOption = ({
                       <div className='flex h-[56px] w-[56px] items-center justify-center rounded-full bg-[#FFFFFF0D]'>
                         <Image
                           src={People}
-                          className='object-cover w-full h-full'
+                          className='h-full w-full object-cover'
                         />
                       </div>
                       <p className='text-[13px] text-[#979797]'>
@@ -561,7 +627,10 @@ const ImageGeneratorOption = ({
         <div>
           {EditGeneration ? (
             <div className='border-t border-white/[0.08] p-6'>
-              <div className='font-bold ml-auto w-max items-center justify-center rounded-[14px] bg-[#5848BC] px-5 py-[13px] text-[16px] leading-[22px] text-white'>
+              <div
+                className='font-bold ml-auto w-max cursor-pointer items-center justify-center rounded-[14px] bg-[#5848BC] px-5 py-[13px] text-[16px] leading-[22px] text-white'
+                onClick={handleGenerate}
+              >
                 Generate
               </div>
             </div>
@@ -578,7 +647,7 @@ const ImageGeneratorOption = ({
       >
         <div className='flex flex-col items-start rounded-[20px] bg-[#121212] '>
           <div className='flex items-start gap-2.5 self-stretch border-b border-white/[0.08] border-b-white/[0.08] px-8 pb-6 pt-8'>
-            <div className='flex w-full text-lg font-bold leading-6 decoration-white'>
+            <div className='font-bold flex w-full text-lg leading-6 decoration-white'>
               Genre
             </div>
             <div className='cursor-pointer' onClick={handleCloseGenre}>
@@ -587,7 +656,7 @@ const ImageGeneratorOption = ({
           </div>
 
           <ImageGallery />
-          <div className='flex flex-row self-stretch gap-3 px-8 pt-4 pb-8'>
+          <div className='flex flex-row gap-3 self-stretch px-8 pb-8 pt-4'>
             <button
               onClick={handleCloseGenre}
               className='font-bold flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-white/[0.32] px-5 py-[13px]'

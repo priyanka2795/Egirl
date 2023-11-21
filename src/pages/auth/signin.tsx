@@ -93,6 +93,7 @@ export default function SignIn({ SetFormStep }: SignIn) {
 
   const handleSubmit = (values: any) => {
     setErrorMsg('');
+    console.log('login form data---', values);
     userLogin(values)
       .then((res: any) => {
         console.log('login res--', res);
@@ -104,7 +105,7 @@ export default function SignIn({ SetFormStep }: SignIn) {
             router.push('/home');
           }, 1000);
         }
-        if (res.response?.status === 400) {
+        if (res.response.status === 400) {
           setErrorMsg('email or password wrong!');
         }
       })
@@ -236,7 +237,7 @@ export default function SignIn({ SetFormStep }: SignIn) {
                         </div>
                       </div>
                       <button
-                        // onClick={loginHandler}
+                        onClick={loginHandler}
                         type='submit'
                         className='font-bold mt-6 flex w-full items-center justify-center rounded-[16px] bg-[#5848BC] px-6 py-4 text-[18px] leading-6 text-white'
                       >

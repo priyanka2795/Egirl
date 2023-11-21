@@ -4,9 +4,10 @@ import PersonalityLikeSection from './PersonalityLikeSection';
 import PersonalityTraitsSection from './PersonalityTraitsSection';
 import Image from 'next/image';
 import circleInformation from '../../../../public/assets/circle-information5.png';
+import { updateCharacterPersonality } from 'services/services';
 
 interface PersonalityContent {
-  SetBtnSteps?: any;
+  SetBtnSteps: any;
   personalityData?: any;
   setPersonalityData?: any;
 }
@@ -17,17 +18,28 @@ const PersonalityContent = ({
 }: PersonalityContent) => {
   const HandleChange = (e: any) => {
     const { name, value } = e.target;
-    // setPersonalityData({
-    //   ...personalityData,
-    //   [name]: value
-    // });
+    setPersonalityData((prevData: any) => ({
+      ...prevData,
+      [name]: value
+    }));
   };
+  const updateCharacterApi = async (data: any, token: string | null) => {
+    try {
+      const response = await updateCharacterPersonality( data, token);
+      console.log('Character updated successfully!', response);
+      return response;
+    } catch (error) {
+      console.error('Error updating character:', error);
+      throw error;
+    }
+  };
+
   // useEffect(() => {
   //   if (
-  //     personalityData.baseType != '' &&
-  //     personalityData.Creativity != '' &&
-  //     personalityData.description != '' &&
-  //     personalityData.worldDescription != ''
+  //     personalityData.base_type !== '' &&
+  //     personalityData.creativity !== 0 &&
+  //     personalityData.description !== '' &&
+  //     personalityData.worldDescription !== ''
   //   ) {
   //     SetBtnSteps(true);
   //   } else {
@@ -43,9 +55,15 @@ const PersonalityContent = ({
           setPersonalityData={setPersonalityData}
         />
 
-        <PersonalityLikeSection />
+        <PersonalityLikeSection
+          setPersonalityData={setPersonalityData}
+          personalityData={personalityData}
+        />
 
-        <PersonalityTraitsSection />
+        <PersonalityTraitsSection
+          setPersonalityData={setPersonalityData}
+          personalityData={personalityData}
+        />
 
         <div className='flex w-full flex-col gap-4 rounded-[14px] bg-[#121212] p-6'>
           <div className='flex gap-[6px]'>
@@ -74,7 +92,7 @@ const PersonalityContent = ({
               <textarea
                 className='font-normal h-[135px] resize-none rounded-[14px] border-none bg-white/[0.05] py-3 pl-4 pr-3 text-[15px] leading-6 text-white placeholder-[#979797] focus:ring-0'
                 placeholder='Enter a description here...'
-                name='description'
+                name='general_description'
                 // value={personalityData.description}
                 onChange={HandleChange}
                 maxLength={10}
@@ -93,7 +111,7 @@ const PersonalityContent = ({
               <textarea
                 className='font-normal h-[135px] resize-none rounded-[14px] border-none bg-white/[0.05] py-3 pl-4 pr-3 text-[15px] leading-6 text-white placeholder-[#979797] focus:ring-0'
                 placeholder='Enter a world description here...'
-                name='worldDescription'
+                name='world_description'
                 // value={personalityData.worldDescription}
                 onChange={HandleChange}
                 maxLength={12}
