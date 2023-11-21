@@ -4,11 +4,11 @@ FROM node:18
 # Step 2: Set the working directory in the container
 WORKDIR /usr/src/app
 
-# Step 3: Copy the package.json and yarn.lock files from your project folder
-COPY package.json yarn.lock ./
-
-# Step 4: Install any necessary dependencies using Yarn
+# Step 3: Install any necessary dependencies using Yarn
 RUN yarn install
+
+# Step 4: Copy the package.json and yarn.lock files from your project folder
+COPY package.json yarn.lock ./
 
 # Step 5: Copy the rest of your application's source code from your project folder to the Docker container
 COPY . .
