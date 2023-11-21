@@ -16,6 +16,7 @@ import DeleteIcon from './svg/delete-icon.svg';
 import ChatIcon from './svg/chat-icon-small.svg';
 import UploadIcon from './svg/uplaod-icon.svg';
 import InfoIcon from './svg/info-icon.svg';
+import { useDropzone } from 'react-dropzone';
 
 import SendWhiteIcon from './svg/send-white-icon.svg';
 
@@ -42,6 +43,7 @@ import ImageRequestMsg from './ImageRequestMsg';
 import MessageIndicator from './MessageIndicator';
 import TextareaAutosize from 'react-textarea-autosize';
 import RecordVoice from './RecordVoice';
+import CrossIcon from '../../../public/assets/xmark-9.png';
 
 type chatProps = {
   chatScreenClassName?: string;
@@ -85,8 +87,7 @@ export default function ChatScreen({
   // const [chatViewStyle ,setChatViewStyle] = useState('Inline chat');
   const [imageRequestMsg, setImageRequestMsg] = useState(false);
   const [typingState, setTypingState] = useState(false);
-  const [imageUploaded, setImageUploaded] = useState([]);
-  const [uploadedItemState, setUploadedItemState] = useState<any>();
+  // const [uploadedItemState, setUploadedItemState] = useState<any>();
 
   const handleChatViewModal = () => {
     setChatViewOption(!chatViewOption);
@@ -130,6 +131,46 @@ export default function ChatScreen({
     }
   };
 
+  // console.log(uploadedItemState, 'uploadedItemState');
+  // console.log(imageUploaded, 'imageUploaded');
+  const [imageUploaded, setImageUploaded] = useState<any[]>([]);
+
+  const {
+    isDragActive,
+    getRootProps,
+    getInputProps,
+    isDragReject,
+    acceptedFiles,
+    fileRejections
+  } = useDropzone({
+    accept: {
+      'image/jpeg': [],
+      'image/jpg': [],
+      'image/png': []
+    },
+    multiple: true,
+    maxFiles: 10,
+    maxSize: 2 * 1024 * 1024
+  });
+
+  useEffect(() => {
+    if (acceptedFiles.length > 0) {
+      const newImages = acceptedFiles.map((file) => ({
+        file,
+        preview: URL.createObjectURL(file)
+      }));
+      setImageUploaded((prevImages) => [...prevImages, ...newImages]);
+    }
+  }, [acceptedFiles]);
+
+  const handleDeleteImage = (index: number) => {
+    const updatedImages = [...imageUploaded];
+    updatedImages.splice(index, 1);
+    setImageUploaded(updatedImages);
+  };
+console.log(imageUploaded.length,'imageUploaded');
+
+
   return (
     <div
       className={`w-full border-r-[2px] border-[#252525] bg-[#121212] lg:inline ${chatScreenClassName}`}
@@ -147,7 +188,7 @@ export default function ChatScreen({
           <div className='flex flex-col items-start ml-3'>
             <h3 className='text-[15px] font-semibold leading-5'>Mika-chan</h3>
             <h6
-              className='flex cursor-pointer gap-1 text-xs font-normal text-[#979797]'
+              className='font-normal flex cursor-pointer gap-1 text-xs text-[#979797]'
               onClick={() => setCurrentPlanModal(true)}
             >
               50 messages remaining
@@ -207,11 +248,11 @@ export default function ChatScreen({
           chatScreenMsgClassName
             ? chatScreenMsgClassName
             : 'h-[calc(100vh-72px-92px)] '
-        }`}
+        } ${ imageUploaded.length === 0 ?'h-[calc(100vh-72px-92px)]' :'h-[calc(72vh-72px-92px)]'}`}
       >
         <div
           ref={containerRef}
-          className={`flex h-max min-h-full w-full flex-col items-end justify-end bg-[#121212] px-6 pt-4`}
+          className={`flex h-max min-h-full w-full flex-col justify-start bg-[#121212] px-6 pt-4`}
         >
           {selectUserState === 'One More Mika' ? (
             <>
@@ -236,16 +277,13 @@ export default function ChatScreen({
           {showGiftMsg && (
             <Gift showGiftImg={showGiftImg} showGiftName={showGiftName} />
           )}
-          <div id="audio-get">Hello</div>
           {imageRequestMsg && <ImageRequestMsg />}
         </div>
       </div>
       {showInput && (
         <>
-          <div
-            className={`sticky bottom-[40px] flex w-full items-start bg-[red-400] px-6 pt-3`}
-          >
-            <div className='relative'>
+          <div className={` flex w-full items-start bg-[red-400] px-6 pt-3`}>
+            <div className='relative self-end  mb-[10px]'>
               <div
                 className='plus-icon mr-[10px] mt-[8px] grid h-[32px] w-[32px] min-w-[32px] cursor-pointer place-items-center rounded-full bg-[#5848BC] transition duration-100 hover:bg-[#4b3abd]'
                 onClick={() => setSendUploadImgState(!sendUploadImgState)}
@@ -253,7 +291,7 @@ export default function ChatScreen({
                 <PlusIcon strokeclasses='stroke-[#ffffff]' />
               </div>
               {sendUploadImgState && (
-                <div className='absolute -top-[152px] left-0 mt-2 inline-flex w-[218px] flex-col items-start justify-start rounded-2xl bg-zinc-900 py-2 shadow'>
+                <div className='absolute -top-[152px] left-0 z-50 mt-2 inline-flex w-[218px] flex-col items-start justify-start rounded-2xl bg-zinc-900 py-2 shadow'>
                   <div className='flex-col items-center self-stretch justify-start gap-2 cursor-pointer '>
                     <div
                       className='flex gap-2 px-4 py-[10px] text-sm'
@@ -269,20 +307,21 @@ export default function ChatScreen({
                       <GiftIcon />
                       Send gift
                     </div>
-                    <div
-                      className='flex gap-2 px-4 py-[10px] text-sm'
-                      onClick={() => setDropZoneState(true)}
-                    >
-                      <UploadIcon />
-                      {/* <input type={'file'} onChange={handleImage} /> */}
-                      {/* Upload image */}
-
-                      <ImageDropZone
-                        files={setImageUploaded}
-                        uploadedItemState={uploadedItemState}
-                        setUploadedItemState={setUploadedItemState}
-                      />
-                    </div>
+                    {imageUploaded.length < 4 ? (
+                      <div
+                        className='flex gap-2 px-4 py-[10px] text-sm'
+                        {...getRootProps()}
+                      >
+                        <UploadIcon />
+                        <input className='hidden mb-5' {...getInputProps()} />
+                        <button>Upload image</button>
+                      </div>
+                    ) : (
+                      <div className='flex gap-2 px-4 py-[10px] text-sm'>
+                        <UploadIcon />
+                        <button>Upload image</button>
+                      </div>
+                    )}
                   </div>
                 </div>
               )}
@@ -316,57 +355,55 @@ export default function ChatScreen({
                 </Modal>
               )}
             </div>
-            <div className='relative flex flex-col w-full'>
-              {/* <textarea
-              className='resize-none min-h-[48px] max-h-[300px] w-full rounded-[14px] border-none bg-[#1E1E1E] py-[10px] pl-4 pr-[50px] text-[15px] font-light leading-6 text-[#979797] transition-all duration-100 focus:ring-1 focus:ring-transparent'
-              // type='text'
-              placeholder='Type a message'
-              // value={message}
-              // onChange={(event) => setMessage(event.target.value)}
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              onFocus={() => setTypingState(true)}
-              onBlur={(e) => handleTypingIndicator(e)}
-              style={{ outline: 'none' }}
-            /> */}
-              <ul className='flex gap-1'>
-                {imageUploaded?.map((file: any) => (
-                  <li key={file.path}>
-                    <Image
-                      src={uploadedItemState?.preview}
-                      alt=''
-                      width='100'
-                      height='100'
-                      className='object-cover'
-                    />
-                  </li>
-                ))}
-              </ul>              
-                <TextareaAutosize
-                  className='min-h-[48px] w-full resize-none rounded-[14px] border-none bg-[#1E1E1E] py-[10px] pl-4 pr-[50px] 
-   text-[15px] font-light leading-6 text-[#979797] transition-all duration-100 focus:ring-1 focus:ring-transparent'
-                  cacheMeasurements
-                  value={message}
-                  // onChange={ev => setValue(ev.target.value)}
-                  onChange={(e) => setMessage(e.target.value)}
-                  onFocus={() => setTypingState(true)}
-                  onBlur={(e) => handleTypingIndicator(e)}
-                  style={{ outline: 'none' }}
-                  maxRows={5}
-                />             
-            
-              <div
-                className='absolute bottom-3 right-4'
-                onClick={() => setEmojiPicker((val) => !val)}
-              >
-                <SmileIcon />
-              </div>
+            <div className='relative w-full'>
+              <div className='relative flex w-full flex-col items-center rounded-[14px] bg-[#1E1E1E]'>
+                <div className='flex items-start bg-[#1E1E1E] w-full rounded-t-[14px]'>
+                  {imageUploaded?.map((file: any, index: number) => (
+                    <div className='relative p-2'>
+                      <Image
+                        src={file?.preview || ''}
+                        alt=''
+                        width={150}
+                        height={150}
+                        className='h-[150px] w-[150px] rounded-lg object-cover'
+                      />
+                      <div
+                        className='absolute right-4 top-3 flex h-4 w-4 cursor-pointer items-center justify-center rounded-full bg-[#0000007A]'
+                        onClick={() => handleDeleteImage(index)}
+                      >
+                        <Image src={CrossIcon} alt='' className='w-2 h-2' />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className={`'relative w-full ${imageUploaded.length === 0 ?'border-t-0':'border-t border-[#FFFFFF1F]' } '`}>
+                  <TextareaAutosize
+                    className='font-light min-h-[48px] w-full resize-none  rounded-[14px] border-none  bg-[#1E1E1E] py-[10px] 
+   pl-4 pr-[50px] text-[15px] leading-6 text-[#979797] transition-all duration-100 focus:ring-1 focus:ring-transparent'
+                    cacheMeasurements
+                    value={message}
+                    // onChange={ev => setValue(ev.target.value)}
+                    onChange={(e) => setMessage(e.target.value)}
+                    onFocus={() => setTypingState(true)}
+                    onBlur={(e) => handleTypingIndicator(e)}
+                    style={{ outline: 'none' }}
+                    maxRows={5}
+                  />
 
-              <div className='absolute bottom-5 right-[50px]'>
-                {emojiPicker && <Emoji setMessage={setMessage} />}
+                  <div
+                    className='absolute bottom-4 right-4'
+                    onClick={() => setEmojiPicker((val) => !val)}
+                  >
+                    <SmileIcon />
+                  </div>
+
+                  <div className='absolute bottom-5 right-[50px]'>
+                    {emojiPicker && <Emoji setMessage={setMessage} />}
+                  </div>
+                </div>
               </div>
             </div>
-            <div className='ml-[10px] mt-[10px] transition-all duration-100'>
+            <div className='ml-[10px] mb-[10px] transition-all duration-100 self-end'>
               {message ? (
                 <button onClick={handleMessage}>
                   <SendIcon />
@@ -405,7 +442,7 @@ export default function ChatScreen({
           </button>
         </div> */}
           <div className='flex justify-between mx-5'>
-            <RecordVoice handleMessage={handleMessage} />           
+            <RecordVoice handleMessage={handleMessage} />
           </div>
         </>
       )}
