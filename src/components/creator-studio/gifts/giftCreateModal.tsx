@@ -14,6 +14,7 @@ interface giftCreateModalProp {
   SetCategory: React.Dispatch<React.SetStateAction<string[]>>;
   giftImageSet: string;
   setGiftImageSet: React.Dispatch<React.SetStateAction<string>>;
+  giftCategory:any
 }
 function giftCreateModal({
   closeModal,
@@ -23,7 +24,8 @@ function giftCreateModal({
   AddCategory,
   SetCategory,
   giftImageSet,
-  setGiftImageSet
+  setGiftImageSet,
+  giftCategory
 }: giftCreateModalProp) {
   const [steps, setSteps] = useState<number>(1);
   // const [giftImageSet, setGiftImageSet] = useState('');
@@ -45,6 +47,7 @@ function giftCreateModal({
               GiftsView={GiftsView}
               AddCategory={AddCategory}
               SetCategory={SetCategory}
+              giftCategory={giftCategory}
               Steps={setSteps}
               GiftName={GiftName}
               SetGiftName={SetGiftName}

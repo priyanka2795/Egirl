@@ -77,7 +77,7 @@ export const getGifts = (giftCategoryId :number , token:string|null)=> getApiWit
 
 export const updateGifts = (data:any , token : string | null) => putApiWithToken('/studio/gift' , data , token)
 
-export const postGifts = (data:any) => postApi('studio/gift' , data)
+export const postGifts = (data:any , token : string|null) => postApiWithToken('studio/gift' , data , token)
 
 export const deleteGift = (data:any)=> deleteApi('/studio/gift' , data)
 

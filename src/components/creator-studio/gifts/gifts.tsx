@@ -29,6 +29,7 @@ function Gifts() {
   const [addCategory, setAddCategory] = useState<string[]>([]);
   const [giftImageSet, setGiftImageSet] = useState('');
   const [giftName, setGiftName] = useState('');
+  const [giftCategory , setGiftCategory] = useState()
   const characterId = Cookies.get('character_id') || '';
   const token : any =  Cookies.get('accessToken');
 
@@ -72,6 +73,7 @@ function Gifts() {
      getGiftCategory( characterId, token)
       .then((response :any) => {
         if (response && response.data) {
+          setGiftCategory(response?.data)
           console.log(response.data, "res????");
         } else {
           console.error("Invalid response structure:", response);
@@ -89,16 +91,16 @@ function Gifts() {
 
 
 
-  useEffect(() => {
-    // getGifts(`gift_category_id=${4}` , token)
-    getGifts( token)
-      .then((res: any) => {
-        console.log(res, 'gifts????');
-      })
-      .catch((err) => {
-        console.log(err, 'giftserr????');
-      });
-  }, []);
+  // useEffect(() => {
+  //   // getGifts(`gift_category_id=${4}` , token)
+  //   getGifts( token)
+  //     .then((res: any) => {
+  //       console.log(res, 'gifts????');
+  //     })
+  //     .catch((err) => {
+  //       console.log(err, 'giftserr????');
+  //     });
+  // }, []);
 
   return (
     <>
@@ -253,6 +255,7 @@ function Gifts() {
           SetGiftName={setGiftCardName}
           AddCategory={addCategory}
           SetCategory={setAddCategory}
+          giftCategory={giftCategory}
           giftImageSet={giftImageSet}
           setGiftImageSet={setGiftImageSet}
         />
