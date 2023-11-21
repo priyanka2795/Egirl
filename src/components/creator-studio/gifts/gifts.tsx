@@ -69,7 +69,7 @@ function Gifts() {
 
   const getAllCategory =  () => {
     // let characterIdFormat = { "character_id": characterId }
-     getGiftCategory( token)
+     getGiftCategory( characterId, token)
       .then((response :any) => {
         if (response && response.data) {
           console.log(response.data, "res????");
