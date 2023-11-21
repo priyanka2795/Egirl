@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AlbumFirst from '../../../../public/assets/gallery-tab-img.png';
 import ImagePlus from '../../../../public/assets/image-plus2.png';
 import Edit from '../../../../public/assets/pen.svg';
@@ -12,6 +12,8 @@ import plusIcon from '../../../../public/assets/plus-large.png';
 import crossIcon from '../../../../public/assets/xmark (1).png';
 import CreateCategory from './createCategory';
 import Tooltip from './tooltip';
+import Cookies from 'js-cookie';
+import { postGifts } from 'services/services';
 
 interface CreateGiftPopup {
   createGiftClose: React.Dispatch<React.SetStateAction<boolean>>;
@@ -22,6 +24,7 @@ interface CreateGiftPopup {
   GiftName: string[];
   SetGiftName: React.Dispatch<React.SetStateAction<string[]>>;
   GiftImageSet: string;
+  giftCategory : any
 }
 
 function CreateGift({
@@ -32,15 +35,39 @@ function CreateGift({
   SetCategory,
   GiftName,
   SetGiftName,
+  giftCategory,
   GiftImageSet
 }: CreateGiftPopup) {
   const [createCategory, setCreateCategory] = useState<boolean>(false);
-  const [tabSelectedOpt, setTabSelectedOpt] = useState<string>('');
+  const [tabSelectedOpt, setTabSelectedOpt] = useState<any>('');
   const [giftName, setGiftName] = useState<string>('');
+  const characterId = Cookies.get('character_id') || '';
+  const token : any =  Cookies.get('accessToken');
+  const [createGiftData , setCreateGiftData] = useState<any>()
 
-  const handleActiveTab = (items: string) => {
-    setTabSelectedOpt(items);
+  useEffect(()=>{
+    console.log(createGiftData , "jjjjj");
+  },[createGiftData])
+
+  useEffect(()=>{
+    setCreateGiftData({
+    
+      "character_id": characterId,
+      "name": giftName,
+      "price": 0,
+      "media_id": 0,
+      "gift_category_id": tabSelectedOpt
+    
+  })
+  },[giftName , characterId ,tabSelectedOpt ])
+
+  
+
+  const handleActiveTab = (items: any) => {
+    setTabSelectedOpt(items?.gift_category_id);
   };
+
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -54,7 +81,14 @@ function CreateGift({
       alert('Please Select Image');
       
     } else {
-      SetGiftName([...GiftName, giftName]);
+      // SetGiftName([...GiftName, giftName]);
+      postGifts(createGiftData , token)
+      .then((res:any)=>{
+        console.log(res , "????giftCreated");
+      })
+      .catch((err:any)=>{
+        console.log(err , "????createGiftError");
+      })
       createGiftClose(false);
       GiftsView(true);
     }
@@ -65,6 +99,10 @@ function CreateGift({
   };
   console.log(GiftImageSet, 'GiftImageSet');
   // console.log(AlbumFirst,'AlbumFirst');
+
+  useEffect(()=>{
+    console.log(giftCategory , "????category");
+  },[giftCategory])
 
   return (
     <div className='w-[385px]'>
@@ -139,7 +177,7 @@ function CreateGift({
               <p className='pb-1 text-[13px] font-semibold text-[#979797]'>
                 Category
               </p>
-              {AddCategory.map((items: string, index: number) => (
+              {giftCategory?.map((items: any, index: number) => (
                 <div
                   key={index}
                   className={`cursor-pointer rounded-[14px] border px-4 py-3 
@@ -167,7 +205,7 @@ function CreateGift({
                         )}
                       </div>
                       <div className=''>
-                        <p className='font-semibold'>{items}</p>
+                        <p className='font-semibold'>{items?.name}</p>
                         <p className='text-xs text-[#979797]'>0/9 gifts</p>
                       </div>
                     </div>
