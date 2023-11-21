@@ -5,8 +5,6 @@ import {
   getCharacterToUserMessagesLim
 } from '../utils/messages';
 
-// import { supabaseClient } from '../../config/supabaseClient';
-
 // this will grab the entire chat history between the user and the character
 export async function getAllUserCharChat(
   user_id: string,
@@ -71,17 +69,10 @@ export async function getAllUserCharChat(
     who_is_sender: message.who_is_sender
   }));
 
-  //   const messages = [...userMessages, ...characterMessages];
-
-  //   messages.sort(
-  //     (a, b) =>
-  //       new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
-  //   );
-
-  //   const arrMessages = messages.map((message) => message.message);
+ 
   return arrMessages;
 }
-// getAllUserCharChat('e8a2be37-76f6-4ebb-bfd8-b9e370046a41', 1, supabaseClient);
+
 
 // --------------------------------------------------------------------------------
 
@@ -156,29 +147,6 @@ export async function getFlexUserCharChat(
     who_is_sender: message.who_is_sender
   }));
 
-  // -------------
-
-  //   // this uses the spread operator to concatenate the userMessages and characterMessages arrays
-  //   const messages = [...userMessages, ...characterMessages];
-  //     console.log(messages)
-
-  //   // sorting messages by created_at field in ascending order
-  //   messages.sort(
-  //     (a, b) =>
-  //       new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
-  //   );
-
-  //   // extracting latest 20 messages content from messsages array
-  //   // const latestMessages = messages.slice(0, 20).map((message) => message.message);
-  //   const latestMessages = messages.slice(-20).map((message) => message.message);
-
-  // -------------
-
   return latestMessages;
 }
-// getFlexUserCharChat(
-//   'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
-//   1,
-//   20,
-//   supabaseClient
-// );
+

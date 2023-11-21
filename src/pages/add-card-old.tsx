@@ -16,7 +16,6 @@ import { ToolTip } from '@components/ui/tooltip';
 import { HeroIcon } from '@components/ui/hero-icon';
 import type { ReactElement, ReactNode } from 'react';
 import { User } from '@lib/types/user';
-import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react';
 import type { User as AdminUser } from '@lib/types/user';
 import { UserCard } from '@components/user/user-card';
 import { AddListModal } from '@components/modal/add-list-model';
@@ -60,33 +59,12 @@ type SubsCharacterType = {
 
 export default function Lists(): JSX.Element {
   const { open, openModal, closeModal } = useModal();
-  const supabaseClient = useSupabaseClient();
   const [activeList, setActiveList] = useState<number>(-3);
   const [loading, setLoading] = useState(true);
   const [subscriptions, setSubscriptions] = useState<
     SubsCharacterType[] | null
   >(null);
-  const supabaseUser = useUser();
 
-  const fetchSubscriptionsList = async () => {
-    // get custom lists
-    const subslist = await getSubscriptions(
-      'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
-      supabaseClient
-    )
-      .then((data) => {
-        setSubscriptions(data.characters.data);
-      })
-      .then(() => {
-        setLoading(false);
-      });
-  };
-
-  useEffect(() => {
-    if (supabaseUser) {
-      fetchSubscriptionsList();
-    }
-  }, [supabaseUser]);
 
   const user: User = {
     id: '1',
@@ -228,9 +206,6 @@ export default function Lists(): JSX.Element {
         </form>
       </section>
     </MainBookmarkContainer>
-    // <div>
-    //   Hwelo
-    // </div>
   );
 }
 

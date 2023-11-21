@@ -16,7 +16,6 @@ import { ToolTip } from '@components/ui/tooltip';
 import { HeroIcon } from '@components/ui/hero-icon';
 import type { ReactElement, ReactNode } from 'react';
 import { User } from '@lib/types/user';
-import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react';
 import type { User as AdminUser } from '@lib/types/user';
 import { UserCard } from '@components/user/user-card';
 import { AddListModal } from '@components/modal/add-list-model';
@@ -60,33 +59,31 @@ type SubsCharacterType = {
 
 export default function Lists(): JSX.Element {
   const { open, openModal, closeModal } = useModal();
-  const supabaseClient = useSupabaseClient();
   const [activeList, setActiveList] = useState<number>(-3);
   const [loading, setLoading] = useState(true);
   const [subscriptions, setSubscriptions] = useState<
     SubsCharacterType[] | null
   >(null);
-  const supabaseUser = useUser();
 
-  const fetchSubscriptionsList = async () => {
-    // get custom lists
-    const subslist = await getSubscriptions(
-      'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
-      supabaseClient
-    )
-      .then((data) => {
-        setSubscriptions(data.characters.data);
-      })
-      .then(() => {
-        setLoading(false);
-      });
-  };
 
-  useEffect(() => {
-    if (supabaseUser) {
-      fetchSubscriptionsList();
-    }
-  }, [supabaseUser]);
+  // const fetchSubscriptionsList = async () => {
+  //   const subslist = await getSubscriptions(
+  //     'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
+  //     supabaseClient
+  //   )
+  //     .then((data) => {
+  //       setSubscriptions(data.characters.data);
+  //     })
+  //     .then(() => {
+  //       setLoading(false);
+  //     });
+  // };
+
+  // useEffect(() => {
+  //   if (supabaseUser) {
+  //     fetchSubscriptionsList();
+  //   }
+  // }, [supabaseUser]);
 
   const user: User = {
     id: '1',
@@ -132,19 +129,17 @@ export default function Lists(): JSX.Element {
         />
       </Modal>
       <MainHeader className='flex items-center justify-between'>
-        <div className='-mb-1 flex flex-col'>
+        <div className='flex flex-col -mb-1'>
           <h2 className='-mt-1 text-xl font-bold'>Subscriptions</h2>
           <p className='text-xs text-light-secondary dark:text-dark-secondary'>
             @{user?.username}
           </p>
         </div>
         <Button
-          className='dark-bg-tab group relative p-2 hover:bg-light-primary/10
-                     active:bg-light-primary/20 dark:hover:bg-dark-primary/10 
-                     dark:active:bg-dark-primary/20'
+          className='relative p-2 dark-bg-tab group hover:bg-light-primary/10 active:bg-light-primary/20 dark:hover:bg-dark-primary/10 dark:active:bg-dark-primary/20'
           onClick={openModal}
         >
-          <HeroIcon className='h-5 w-5' iconName='ArchiveBoxXMarkIcon' />
+          <HeroIcon className='w-5 h-5' iconName='ArchiveBoxXMarkIcon' />
           <ToolTip
             className='!-translate-x-20 translate-y-3 md:-translate-x-1/2'
             tip='Clear lists'
@@ -155,9 +150,9 @@ export default function Lists(): JSX.Element {
       <section className='mt-0.5'>
         <div className='flex'>
           <button
-            onClick={() => {
-              fetchSubscriptionsList();
-            }}
+            // onClick={() => {
+            //   fetchSubscriptionsList();
+            // }}
             className={`border-2 border-black p-4 text-white hover:border-white ${
               activeList == -3 && 'bg-accent-blue'
             }`}
@@ -165,9 +160,9 @@ export default function Lists(): JSX.Element {
             All
           </button>
           <button
-            onClick={() => {
-              fetchSubscriptionsList();
-            }}
+            // onClick={() => {
+            //   fetchSubscriptionsList();
+            // }}
             className={`border-2 border-black p-4 text-white hover:border-white ${
               activeList == -2 && 'bg-accent-blue'
             }`}
@@ -175,9 +170,9 @@ export default function Lists(): JSX.Element {
             Active
           </button>
           <button
-            onClick={() => {
-              fetchSubscriptionsList();
-            }}
+            // onClick={() => {
+            //   fetchSubscriptionsList();
+            // }}
             className={`border-2 border-black p-4 text-white hover:border-white ${
               activeList == -1 && 'bg-accent-blue'
             }`}
@@ -185,9 +180,9 @@ export default function Lists(): JSX.Element {
             Expired
           </button>
           <button
-            onClick={() => {
-              fetchSubscriptionsList();
-            }}
+            // onClick={() => {
+            //   fetchSubscriptionsList();
+            // }}
             className={`border-2 border-black p-4 text-white hover:border-white ${
               activeList == 0 && 'bg-accent-blue'
             }`}

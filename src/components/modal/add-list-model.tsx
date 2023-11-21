@@ -4,7 +4,6 @@ import { Dialog } from '@headlessui/react';
 import { Button } from '@components/ui/button';
 import { CustomIcon } from '@components/ui/custom-icon';
 import { createCustomList } from 'api/lists/lists';
-import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react';
 
 type AddListModalProps = {
   title: string;
@@ -31,8 +30,6 @@ export function AddListModal({
   action,
   closeModal
 }: AddListModalProps): JSX.Element {
-  const supabaseClient = useSupabaseClient();
-  const user = useUser();
 
   const mainBtn = useRef<HTMLButtonElement>(null);
 
@@ -49,7 +46,6 @@ export function AddListModal({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const createList = async () => {
-    await createCustomList(user!.id, listName, [], supabaseClient);
     action();
   };
   return (
@@ -58,7 +54,7 @@ export function AddListModal({
         {useIcon && (
           <i className='mx-auto'>
             <CustomIcon
-              className='h-10 w-10 text-accent-blue dark:text-twitter-icon'
+              className='w-10 h-10 text-accent-blue dark:text-twitter-icon'
               iconName='TwitterIcon'
             />
           </i>
@@ -72,7 +68,7 @@ export function AddListModal({
       </div>
       <div className='flex flex-col gap-3 inner:py-2 inner:font-bold'>
         <input
-          className='rounded-full pl-5'
+          className='pl-5 rounded-full'
           type='text'
           placeholder='name of list'
           onChange={onChangeListName}

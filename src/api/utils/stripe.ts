@@ -5,7 +5,7 @@ import {
 } from '@stripe/stripe-js';
 import Stripe from 'stripe';
 import { toDateTime } from './helpers';
-// import { supabaseClient } from '../../config/supabaseClient';
+
 
 let stripePromise: Promise<StripeObj | null>;
 

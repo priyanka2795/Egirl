@@ -22,7 +22,6 @@ import { Loading } from '@components/ui/loading';
 import type { ReactElement, ReactNode } from 'react';
 import { User } from '@lib/types/user';
 import { Tweet as TypeTweet } from '@lib/types/tweet';
-import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react';
 import {
   getBlockedCharacters,
   getCustomLists,
@@ -61,66 +60,31 @@ const suggestionsData: AdminUser[] = [
 export default function Lists(): JSX.Element {
   const { open, openModal, closeModal } = useModal();
   const [pageState, setPageState] = useState('following');
-  const supabaseClient = useSupabaseClient();
   const [characters, setCharacters] = useState<any>([]);
   const [lists, setLists] = useState<string[]>([]);
   const [activeList, setActiveList] = useState<number>(-2);
   const [loading, setLoading] = useState(true);
-  const supabaseUser = useUser();
 
   const fetchCustomLists = async () => {
     // get custom lists
-    const custeomListsRes = await getCustomLists(
-      'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
-      supabaseClient
-    );
-    setLists(custeomListsRes.data.map((list: any) => list.list_name));
+  
   };
 
   const fetchFollowersList = async () => {
     // set characters for Follower list (default)
-    const followersRes = await getFollowerLists(
-      'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
-      supabaseClient
-    );
-    setCharacters(followersRes.characters.data);
     setActiveList(-2);
   };
 
   const fetchBlockedList = async () => {
-    // set characters for Follower list (default)
-    const blockedRes = await getBlockedCharacters(
-      'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
-      supabaseClient
-    );
-    setCharacters(blockedRes.blockedCharacters.characters.data);
     setActiveList(-1);
   };
 
   // set characters to chosen custom list
   const changeCustomListHandler = async (listIndex: number) => {
     setActiveList(listIndex);
-    const res = await getCustomLists(
-      'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
-      supabaseClient
-    );
-    if (res.final_characters[listIndex].data.length > 0) {
-      setCharacters(res.final_characters[listIndex].data);
-    }
     setActiveList(listIndex);
   };
 
-  useEffect(() => {
-    if (supabaseUser) {
-      fetchCustomLists()
-        .then(() => {
-          fetchFollowersList();
-        })
-        .then(() => {
-          setLoading(false);
-        });
-    }
-  }, [supabaseUser]);
 
   const user: User = {
     id: '1',

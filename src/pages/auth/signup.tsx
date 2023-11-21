@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { Database } from '../../../types/database';
 import { useRouter } from 'next/router';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
@@ -20,28 +19,13 @@ import SigninTemplate from './signinTemplate';
 import WelcomeStepsModal from './welcomeSteps';
 import SigninLoginOpt from './SigninLoginOpt';
 
-// const login = [
-//   {
-//     icon: googleIcon,
-//     text: 'Login with Google'
-//   },
-//   {
-//     icon: discordIcon,
-//     text: 'Login with Discord'
-//   },
-//   {
-//     icon: facebookIcon,
-//     text: 'Login with Facebook'
-//   }
-// ];
 
 const initialValues = {
   username: '',
   email: '',
+  verifyemail:'',
   password: '',
-  confirmpassword: '',
   phone: '',
-  address: ''
 };
 
 const validationSchema = Yup.object({
@@ -60,18 +44,9 @@ const validationSchema = Yup.object({
     )
 });
 
-const initialstate = {
-  username: '',
-  email: '',
-  password: '',
-  confirmPassword: '',
-  phone:''
-
-};
 
 export default function SignUp() {
   const router = useRouter();
-  const supabase = useSupabaseClient<Database>();
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState('');
   const [isMinLength, setIsMinLength] = useState<boolean>(false);
@@ -90,19 +65,6 @@ export default function SignUp() {
     setPassword(e.target.value);
   };
 
-  const loginHandler = async () => {
-    console.log('loggin in with - email:', email, '| password:', password);
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email: email,
-      password: password
-    });
-    console.log('results of logging in: ', data, error);
-    if (!error) {
-      router.push('/home');
-    } else {
-      setErrorMsg(error.message);
-    }
-  };
 
   const handlePasswordChange = (e: any) => {
     const newPassword = e.target.value;
@@ -117,47 +79,25 @@ export default function SignUp() {
     );
   };
 
-  const loginGoogleHandler = async () => {
-    console.log('loggin in with google');
-    const { data, error } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
-      options: {
-        redirectTo: `${new URL(location.href).origin}/logging-in?redirect=/home`
-      }
-    });
-    console.log('results of logging in: ', data, error);
-  };
 
-  const onSubmit = (values: any, onSubmitProps: any) => {
+
+  const onSubmit = (values: any) => {
     console.log('Form data', values);
-    console.log('onSubmitProps data', onSubmitProps);
-    // onSubmitProps.setSubmitting(false);
-    // onSubmitProps.resetForm();
-    // setWelcomeStepsModal(true);
-
-    // axios.post(`https://jsonplaceholder.typicode.com/users`, { user })
-    // .then(res => {
-    //   console.log(res);
-    //   console.log(res.data);
-    // })
   };
 
-// Validations 
-const [form, setForm] = useState(initialstate);
-const [error, setError] = useState({});
 
 
-const handleChange = (e:any) => {
-  const { name, value } = e.target;
-  setForm({
-    ...form,
-    [name]: value,
-  });
-  setError({
-    ...error,
-    [name]: '',
-  });
-};
+// const handleChange = (e:any) => {
+//   const { name, value } = e.target;
+//   setForm({
+//     ...form,
+//     [name]: value,
+//   });
+//   setError({
+//     ...error,
+//     [name]: '',
+//   });
+// };
 
 
 
@@ -342,7 +282,7 @@ const handleChange = (e:any) => {
                 <button
                   type='submit'
                   className='font-bold flex w-full items-center justify-center rounded-[16px] bg-[#5848BC] px-6 py-4 text-[18px] leading-6 text-white'
-                  onClick={() => setWelcomeStepsModal(true)}
+                  // onClick={() => setWelcomeStepsModal(true)}
                 >
                   Continue
                 </button>

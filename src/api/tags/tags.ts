@@ -6,7 +6,7 @@ import {
   createPromptTag
 } from '../utils/tags';
 
-// import { supabaseClient } from '../../config/supabaseClient';
+
 
 /// Tags
 
@@ -53,12 +53,4 @@ export async function createTag(category: string, tag: string, client: any) {
   return newTag;
 }
 
-// createTagCategory('subject', supabaseClient);
-// createTagCategory('environment', supabaseClient);
 
-//createTag('subject', 'cat', supabaseClient);
-// createTag('subject', 'dog', supabaseClient);
-// createTag('subject', 'car', supabaseClient);
-// createTag('subject', 'swimsuit', supabaseClient);
-
-//getAutocompleteTagsByPrefix('ca', supabaseClient);

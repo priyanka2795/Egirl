@@ -96,17 +96,3 @@ export async function getCharacterToUserMessages(
   return data;
 }
 
-// async function testCharToUser() {
-//   try {
-//     const messages = await getCharacterToUserMessagesLim(
-//       1,
-//       'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
-//       20,
-//       supabaseClient
-//     );
-//     console.log(messages);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
-// testCharToUser();

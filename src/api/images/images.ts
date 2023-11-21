@@ -5,7 +5,7 @@ import {
   addMaskImage
 } from '../utils/images';
 
-import { supabaseClient } from '../../config/supabaseClient';
+
 
 /// Images
 
@@ -69,13 +69,3 @@ export async function createMaskImage(
   return mask;
 }
 
-// getImgsByUser('e8a2be37-76f6-4ebb-bfd8-b9e370046a41', supabaseClient);
-// getImgMetadata('e8a2be37-76f6-4ebb-bfd8-b9e370046a41', 1, supabaseClient);
-// createImage(
-//   'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
-//   'beautiful scenery',
-//   'https://storage.googleapis.com/mindshape-image-test/1680294154128-scenery2',
-//   '3dde349c30bc5f4ead26a21d6ad9085a',
-//   'test-label-scenery',
-//   supabaseClient
-// );
