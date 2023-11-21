@@ -25,12 +25,20 @@ const messages: MessageData[] = [
 
 type props = {
   userSelected: any;
+  searchTerm:any
 };
 
-const UserList = ({ userSelected }: props) => {
+const UserList = ({ userSelected,searchTerm }: props) => {
+  
+  const filteredMessages = messages.filter((message) =>
+  message.name.toLowerCase().includes(searchTerm.toLowerCase())
+);
+
   return (
     <div>
-      {messages.map((message, index) => (              
+        {filteredMessages.length > 0  ?
+      <>
+      {filteredMessages.map((message, index) => (              
             <div
               key={index}
               className='flex items-center mb-6 cursor-pointer'
@@ -54,6 +62,9 @@ const UserList = ({ userSelected }: props) => {
               </div>
             </div>   
       ))}
+      </>
+      :
+      <NoResultFound /> }
       {/* <NoResultFound />
       <ImageRequestModal /> */}
     </div>
