@@ -23,6 +23,8 @@ interface CreateGiftPopup {
   SetGiftName: React.Dispatch<React.SetStateAction<string[]>>;
   GiftImageSet: string;
   giftCategory: any;
+  setCreateCategory: React.Dispatch<React.SetStateAction<boolean>>;
+  createCategory : boolean
 }
 
 function CreateGift({
@@ -34,9 +36,11 @@ function CreateGift({
   GiftName,
   SetGiftName,
   giftCategory,
-  GiftImageSet
+  GiftImageSet,
+  setCreateCategory,
+  createCategory
 }: CreateGiftPopup) {
-  const [createCategory, setCreateCategory] = useState<boolean>(false);
+  
   const [tabSelectedOpt, setTabSelectedOpt] = useState<any>('');
   const [giftName, setGiftName] = useState<string>('');
   const characterId = Cookies.get('character_id') || '';
@@ -91,9 +95,6 @@ function CreateGift({
   console.log(GiftImageSet, 'GiftImageSet');
   // console.log(AlbumFirst,'AlbumFirst');
 
-  useEffect(() => {
-    console.log(giftCategory, '????category');
-  }, [giftCategory]);
 
   return (
     <div className='w-[385px]'>

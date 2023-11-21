@@ -1,6 +1,6 @@
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import crossIcon from '../../../../public/assets/xmark (1).png';
 import GiftCardDelete from './giftCardDelete';
@@ -13,6 +13,9 @@ interface EditCategoryPopup {
   UpdateCategoryName: () => void;
   DeleteActionCategory: (value: number) => void;
   CategoryActionIndex: any;
+  editCategoryId: number | undefined;
+  characterId: string | null;
+  setEditCategoryData:any
 }
 
 function EditCategoryAction({
@@ -22,11 +25,21 @@ function EditCategoryAction({
   SetEditName,
   UpdateCategoryName,
   DeleteActionCategory,
-  CategoryActionIndex
+  CategoryActionIndex,
+  editCategoryId,
+  characterId,
+  setEditCategoryData
 }: EditCategoryPopup) {
+  
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     SetEditName(value);
+    setEditCategoryData({
+      character_id: characterId,
+      name: value,
+      gift_category_id: editCategoryId
+    });
   };
 
   return (
@@ -95,6 +108,8 @@ function EditCategoryAction({
           DeleteAllGift
           DeleteBtnStep={3}
           CategoryActionIndex={CategoryActionIndex}
+         
+          
         />
       ) : (
         ''

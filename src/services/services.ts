@@ -87,7 +87,7 @@ export const updateGiftCategory = (data:any , token : string | null) => putApiWi
 
 export const postGiftCategory = (data:any , token:any) => postApiWithToken('/studio/gift/category' , data , token)
 
-export const deleteGiftCategory = (data:any) => deleteApi('/studio/gift/category' , data)
+export const deleteGiftCategory = (characterId :string|null , giftCategoryId:number , token:string|null) => deleteApi(`/studio/gift/category?character_id=${characterId}&gift_category_id=${giftCategoryId}` , token)
 
 export const postPromptImage = (data:any, token:string | null) => postApiWithToken('/studio/image_generation/prompt_image' , data, token)
 

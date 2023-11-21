@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import VerticalDots from '../svg/dots-vertical.svg';
 import Search from '../../../../public/assets/search-alt (1).png';
 import Image from 'next/image';
@@ -9,98 +9,145 @@ import EditCategoryAction from './editCategoryAction';
 import CreateCategory from './createCategory';
 import crossIcon from '../../../../public/assets/xmark (1).png';
 import Tooltip from './tooltip';
+import { deleteGiftCategory, updateGiftCategory } from 'services/services';
 
 interface GiftCategoryAction {
   AddCategory: string[];
   SetCategory: React.Dispatch<React.SetStateAction<string[]>>;
+  giftCategory: any;
+  characterId: string | null;
+  token: any;
+  createCategoryToggle: boolean;
+  setCreateCategoryToggle: React.Dispatch<React.SetStateAction<boolean>>;
+  setSelectedCategoryId:React.Dispatch<React.SetStateAction<number>>
 }
-function GiftCategoryAction({ AddCategory, SetCategory }: GiftCategoryAction) {
+function GiftCategoryAction({
+  AddCategory,
+  SetCategory,
+  giftCategory,
+  characterId,
+  token,
+  createCategoryToggle,
+  setCreateCategoryToggle,
+  setSelectedCategoryId
+}: GiftCategoryAction) {
   const [toggle, setToggle] = useState<boolean>(false);
   const [closeState, setCloseState] = useState<boolean>(false);
-  const [editCategoryActionModal, setEditCategoryActionModal] = useState<number>();
+  const [editCategoryActionModal, setEditCategoryActionModal] =
+    useState<number>();
   const [createCategory, setCreateCategory] = useState<boolean>(false);
   const [isActive, setActive] = useState<boolean>(false);
   const [tabs, setTabs] = useState<number>(0);
   const [editName, setEditName] = useState<string>('');
   const [categoryActionIndex, setCategoryActionIndex] = useState<number>();
+  const [toggledItemIndex, setToggledItemIndex] = useState<number | null>(null);
+  const [editCategoryId, setEditCategoryId] = useState<number | undefined>();
+  const [editCategoryData, setEditCategoryData] = useState<any>();
+  const [deleteCategoryData , setDeleteCategoryData] = useState<any>({})
 
   const CategoryAction = (val: number) => {
     setEditCategoryActionModal(val);
     setCloseState(true);
   };
-  const ActiveTab = (index: number) => {
+  const ActiveTab = (index: number , categoryId:number) => {
     setTabs(index);
+    setSelectedCategoryId(categoryId)
   };
 
-  const EditCategoryName = (name: string, step: number) => {
+  const EditCategoryName = (name: string, id: number, step: number) => {
     setEditCategoryActionModal(step);
     setCloseState(true);
     setEditName(name);
+    setEditCategoryId(id);
   };
   const UpdateCategoryName = () => {
-    if (editName) {
-      console.log('Update');
-    } else {
-      console.log('Not Same');
-    }
+    updateGiftCategory(editCategoryData, token)
+      .then((res: any) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+      setCreateCategoryToggle(!createCategoryToggle)
+      setCloseState(false)
   };
 
-  const DeleteActionCategoryModal = (index: number, Step: number) => {
+  const DeleteActionCategoryModal = (index: number, Step: number , categoryId:number) => {
     setEditCategoryActionModal(Step);
     setCloseState(true);
     setCategoryActionIndex(index);
+    setDeleteCategoryData({
+        "character_id": characterId,
+        "gift_category_id": categoryId
+    })
   };
 
+
   const DeleteActionCategory = (i: number) => {
-    SetCategory((oldValue: string[]) => {
-      return oldValue.filter((item: string, index: number) => index !== i);
-    });
+    // SetCategory((oldValue: string[]) => {
+    //   return oldValue.filter((item: string, index: number) => index !== i);
+    // });
+    console.log(deleteCategoryData , "????data");
+    // deleteGiftCategory(deleteCategoryData , token)
+    // .then((res:any)=>{
+    //   console.log(res);
+    // })
+    // .catch((err:any)=>{
+    //   console.log(err);
+    // })
+  };
+
+  const handleToggle = (index: number) => {
+    setToggle(!toggle);
+    setToggledItemIndex(index);
   };
 
   return (
     <>
-      <div className='flex items-center justify-between mt-4'>
+      <div className='mt-4 flex items-center justify-between'>
         <div className='flex items-center justify-center gap-3 '>
-          {AddCategory.map((items: string, index: number) => (
+          {giftCategory?.map((items: any, index: number) => (
             <div
-              className={`relative flex cursor-pointer items-center justify-center gap-2 rounded-xl px-3 py-1.5 font-bold ${
+              className={`font-bold relative flex cursor-pointer items-center justify-center gap-2 rounded-xl px-3 py-1.5 ${
                 tabs === index ? 'bg-[#FFFFFF29]' : 'bg-transparent'
               }`}
-              onClick={() => ActiveTab(index)}
+              onClick={() => ActiveTab(index , items?.gift_category_id)}
               key={index}
             >
               <span className={tabs == index ? 'text-white' : 'text-[#979797]'}>
-                {items}
+                {items?.name}
               </span>
-              <button className='' onClick={() => setToggle(!toggle)}>
+              <button className='' onClick={() => handleToggle(index)}>
                 {tabs === index ? <VerticalDots /> : ''}
               </button>
 
-              {toggle ? (
+              {toggle && toggledItemIndex === index ? (
                 <>
-                  {tabs === items && (
-                    <div className='absolute left-0 top-12 z-50 flex h-[92px] w-[251px] flex-col gap-3 rounded-[14px] bg-[#1A1A1A] p-4'>
-                      <button
-                        className='flex items-center gap-2'
-                        onClick={() => EditCategoryName(items, 1)}
-                      >
-                        <Image src={Pencil} className='w-full h-full' alt='' />
-                        <p>Edit name</p>
-                      </button>
+                  {/* {tabs === items && ( */}
+                  <div className='absolute left-0 top-12 z-50 flex h-[92px] w-[251px] flex-col gap-3 rounded-[14px] bg-[#1A1A1A] p-4'>
+                    <button
+                      className='flex items-center gap-2'
+                      onClick={() =>
+                        EditCategoryName(
+                          items?.name,
+                          items?.gift_category_id,
+                          1
+                        )
+                      }
+                    >
+                      <Image src={Pencil} className='h-full w-full' alt='' />
+                      <p>Edit name</p>
+                    </button>
 
-                      <button
-                        className='flex items-center gap-2'
-                        onClick={() => DeleteActionCategoryModal(index, 2)}
-                      >
-                        <Image
-                          src={Delete}
-                          className='w-full h-full'
-                          alt={''}
-                        />
-                        <p>Delete</p>
-                      </button>
-                    </div>
-                  )}
+                    <button
+                      className='flex items-center gap-2'
+                      onClick={() => DeleteActionCategoryModal(index, 2 , items?.gift_category_id)}
+                    >
+                      <Image src={Delete} className='h-full w-full' alt={''} />
+                      <p>Delete</p>
+                    </button>
+                  </div>
+                  {/* )} */}
                 </>
               ) : (
                 ''
@@ -109,7 +156,7 @@ function GiftCategoryAction({ AddCategory, SetCategory }: GiftCategoryAction) {
           ))}
 
           <button
-            className='relative pt-1 group '
+            className='group relative pt-1 '
             onClick={() => setCreateCategory(true)}
           >
             <Image src={plusIcon} alt='' className='h-[18px] w-[18px]' />
@@ -138,7 +185,7 @@ function GiftCategoryAction({ AddCategory, SetCategory }: GiftCategoryAction) {
                 className='absolute right-2 top-2'
                 onClick={() => setActive(!isActive)}
               >
-                <Image className='w-full h-full' src={crossIcon} alt={''} />
+                <Image className='h-full w-full' src={crossIcon} alt={''} />
               </span>
             ) : (
               ''
@@ -156,6 +203,9 @@ function GiftCategoryAction({ AddCategory, SetCategory }: GiftCategoryAction) {
           UpdateCategoryName={UpdateCategoryName}
           DeleteActionCategory={DeleteActionCategory}
           CategoryActionIndex={categoryActionIndex}
+          editCategoryId={editCategoryId}
+          characterId={characterId}
+          setEditCategoryData={setEditCategoryData}
         />
       )}
       {createCategory && (
