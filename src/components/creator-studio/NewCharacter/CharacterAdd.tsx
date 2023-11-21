@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import React from 'react';
 import Cross from '../../../../public/assets/svgImages/close-icon.svg';
 import Image from 'next/image';

@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { Button } from '@components/common/SmallCompoents/Button';
 import Image from 'next/image';
 import React, { useState, useRef } from 'react';

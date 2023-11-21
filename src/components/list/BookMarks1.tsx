@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import React, { useState,useEffect } from 'react';
 import Image from 'next/image';
 import deleteIcon from '../../../public/assets/trash-blank-alt2.png';

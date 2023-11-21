@@ -45,3 +45,10 @@ next-env.d.ts
 # typesense data 
 src/api/docker/typesense-data/
 src/api/typesense/data
+
+.yarnrc.yml
+.env.development
+yarn.lock
+.yarn
+.pnp.cjs
+.pnp.loader.mjs
