@@ -65,10 +65,12 @@ const VIMainImageBlock = ({
 
   const AlbumImageToggle = (index: number) => {
     setShowDropDown((prev) => (prev === index ? null : index));
+    
   };
   const AllImageToggle = (index: number) => {
     setAllImage((prev) => (prev === index ? null : index));
   };
+
   const DeleteImage = (e: React.MouseEvent<HTMLElement>) => {
     const Data = (e.target as HTMLElement).innerText;
     if (Data === 'Delete') {
@@ -113,8 +115,13 @@ const VIMainImageBlock = ({
                   className='object-cover w-full '
                   src={item.image}
                   alt={''}
+                  onClick={() => {
+                    AlbumImageToggle(item.id);
+                  }}
                 />
-                <div className=' absolute bottom-0 flex h-[150px] w-full bg-gradient-to-t from-[#000000CC] to-[#00000000] px-5 pb-3 font-semibold'>
+                <div onClick={() => {
+                    AlbumImageToggle(item.id);
+                  }} className=' absolute bottom-0 flex h-[150px] w-full bg-gradient-to-t from-[#000000CC] to-[#00000000] px-5 pb-3 font-semibold'>
                   <div className='flex items-end justify-between w-full '>
                     <p
                       className='cursor-pointer '
@@ -186,16 +193,18 @@ const VIMainImageBlock = ({
           </div>
         </>
       ) : (
-        <div className='grid grid-cols-3 gap-3' ref={dropdownRef}>
+        <div className='grid grid-cols-3 gap-3' ref={dropdownRef}> 
           {allImages.map((item, index: number) => (
             <div
               className='sub-banner group relative h-full w-full rounded-[16px] bg-red-100'
               key={index}
+              
             >
               <Image
                 className=' h-full !w-full rounded-[16px] object-cover'
                 src={item.image}
                 alt={''}
+                onClick={() => AllImageToggle(index)}
               />
               <div
                 className='invisible absolute right-[7px] top-[7px] flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full bg-black/[0.48] group-hover:visible group-hover:opacity-100'

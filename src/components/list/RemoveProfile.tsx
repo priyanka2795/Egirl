@@ -13,11 +13,11 @@ const RemoveProfile = ({backFromProfile} : RemoveProfileProp) => {
   const token:any = Cookies.get("accessToken")
   const [characterData, setCharacterData] = useState({})
   useEffect(()=>{
-    // profile character api
-    profileCharacter("f47ac10b-58cc-4372-a567-0e02b2c3d510", token)
+    // profile character api 
+    profileCharacter("f8ee29cd-c1b9-4022-8fa3-c3b19822a1f3", token)
     .then((res:any)=>{
       console.log("profile character res----", res)
-      setCharacterData(res?.data[0])
+      // setCharacterData(res?.data[0])
     })
     .catch((err)=>{
       console.log("profile character err---", err)

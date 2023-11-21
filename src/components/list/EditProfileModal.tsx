@@ -8,23 +8,62 @@ import InputFieldDesign from '@components/common/InputFieldDesign';
 import ProfileDropdown from '@components/common/ProfileDropdown';
 import DeleteProfileModal from '@components/common/DeleteProfileModal';
 import AddImagesModal from '@components/creator-studio/style-generator/AddImagesModal';
+import ProfileCropper from '@components/common/ProfileCropper';
+import { postCharacter, updateCharacter } from 'services/services';
+import Cookies from 'js-cookie';
 import EditProfileThumbnail from '@components/home/EditProfileThumbnail';
+import { putApiWithToken } from 'services/apis';
 
 interface EditProfileModalProps {
   closeState: React.Dispatch<React.SetStateAction<boolean>>;
+  setUserDetails: any;
+  userDetails: any;
 }
 
-const EditProfileModal = ({ closeState }: EditProfileModalProps) => {
+const EditProfileModal = ({
+  closeState,
+  setUserDetails,
+  userDetails
+}: EditProfileModalProps) => {
   const tabs = ['Profile view', 'Explore view'];
   const [activeTab, setActiveTab] = useState<number>(0);
   const [profileEdit, setProfileEdit] = useState<boolean>(false);
   const [deleteProfileState, setDeleteProfileState] = useState<boolean>(false);
   const [updateProfileState, setUpdateProfileState] = useState<boolean>(false);
+  const [updateProfileImg, setUpdateProfileImg] = useState<boolean>(false);
+  const accessToken = Cookies.get('accessToken');
+  const token = `${accessToken}`;
+
   const [updateProfileThumbnail, setUpdateProfileThumbnail] =
     useState<boolean>(false);
   const [croppedImage, setCroppedImage] = useState<string | null>(null);
 
-  
+
+  const handleSave = async () => {
+    try {
+      const response: any = await postCharacter(userDetails, token);
+
+      const character_id = response.data?.character_id;
+      Cookies.set('character_id', character_id);
+
+      console.log('Character saved successfully!', response);
+    } catch (error) {
+      console.error('Error saving character:', error);
+    }
+    closeState(false);
+  };
+
+  const updateCharacterApi = async (data: any, token: string | null) => {
+    try {
+      const response = await updateCharacter(data, token);
+      console.log('Character updated successfully!', response);
+      return response;
+    } catch (error) {
+      console.error('Error updating character:', error);
+      throw error;
+    }
+  };
+
   return (
     <>
       <Modal
@@ -41,7 +80,7 @@ const EditProfileModal = ({ closeState }: EditProfileModalProps) => {
             <Image src={xMark} alt={''} className='h-[24px] w-[24px]' />
           </button>
         </div>
-        <div className='flex items-center gap-4 px-6 pt-6 pb-3'>
+        <div className='flex items-center gap-4 px-6 pb-3 pt-6'>
           <div
             className='relative h-[72px] w-[72px] cursor-pointer '
             onClick={() => {
@@ -56,7 +95,7 @@ const EditProfileModal = ({ closeState }: EditProfileModalProps) => {
               alt=''
               className='h-[72px] w-[72px] rounded-full'
             />
-            <div className='absolute top-0 left-0 flex items-center justify-center w-full h-full'>
+            <div className='absolute left-0 top-0 flex h-full w-full items-center justify-center'>
               <div className='flex h-[32px] w-[32px] items-center justify-center rounded-[100px] bg-black bg-opacity-60'>
                 <Image
                   src={cameraOverlay}
@@ -108,36 +147,74 @@ const EditProfileModal = ({ closeState }: EditProfileModalProps) => {
             );
           })}
         </div>
-        <div className='flex flex-col gap-6 px-6 pt-3 pb-6'>
+        <div className='flex flex-col gap-6 px-6 pb-6 pt-3'>
           <div className='flex flex-col gap-4'>
             <InputFieldDesign
               labelName='Name'
               inputType='text'
               inputPlaceholder='Mika-chan'
+              value={userDetails.display_name}
+              onChange={(value: any) =>
+                setUserDetails((prev: any) => ({
+                  ...prev,
+                  display_name: value
+                }))
+              }
             />
 
             <InputFieldDesign
               labelName='Username'
               inputType='text'
               inputPlaceholder='mikachan'
+              value={userDetails.username}
+              onChange={(value: any) =>
+                setUserDetails((prev: any) => ({ ...prev, username: value }))
+              }
             />
 
             <InputFieldDesign
               labelName='Profile Tags'
               inputType='text'
               inputPlaceholder='Add profile tags'
+              value={userDetails?.profile_tags}
+              // onChange={(value: any) =>
+              //   setUserDetails((prev: any) => ({
+              //     ...prev,
+              //     profile_tags: value
+              //   }))
+              // }
+              onChange={(value: any) =>
+                setUserDetails((prev: any) => ({
+                  ...prev,
+                  profile_tags: typeof value === 'string' ? [value] : value
+                }))
+              }
             />
 
             <InputFieldDesign
               labelName='Select location'
               inputType='dropdown'
               inputPlaceholder='Tokyo'
+              value={userDetails?.location}
+              onChange={(value: any) =>
+                setUserDetails((prev: any) => ({
+                  ...prev,
+                  location: value
+                }))
+              }
             />
 
             <InputFieldDesign
               labelName='Bio'
               inputType='textarea'
               inputPlaceholder='Shy fox girl looking for adventure ·冒険を探している恥ずかしがり屋のキツ ...'
+              value={userDetails?.bio}
+              onChange={(value: any) =>
+                setUserDetails((prev: any) => ({
+                  ...prev,
+                  bio: value
+                }))
+              }
             />
 
             <div className='flex gap-3 '>
@@ -152,7 +229,7 @@ const EditProfileModal = ({ closeState }: EditProfileModalProps) => {
 
               <button
                 className='inline-flex h-12 w-[204px] items-center justify-center gap-2 rounded-[14px] bg-[#5848BC] px-5'
-                onClick={() => closeState(false)}
+                onClick={() => handleSave()}
               >
                 <div className="font-bold font-['Open Sans'] text-base leading-snug text-white">
                   Save

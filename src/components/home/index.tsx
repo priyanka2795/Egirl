@@ -98,7 +98,10 @@ const Home = () => {
   };
 
   useEffect(()=>{
-    Cookies.set("accessToken", refreshTokenData)
+    if(refreshTokenData){
+      Cookies.set("accessToken", refreshTokenData)
+    }
+    
     
     forYouPost(1,10, token)
     .then((res:any)=>{

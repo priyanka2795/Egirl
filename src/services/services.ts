@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-import { deleteApi, getApi, postApi, postWithParams, getApiWithToken , postApiWithToken} from "./apis";
+import { deleteApi, getApi, getApiWithToken, postApi, postApiWithToken, postWithParams, putApi, putApiWithToken } from "./apis";
 
 
 // Post Login data
@@ -10,24 +10,30 @@ export const refreshToken = (data:any)=>postApi('/api/token/refresh',data)
 // discord login
 export const discordLogin = () => getApi('/discord/login')
 export const discordCallback=() => getApi('/discord/callback?code=1')
+// google api
+export const googleSignup = ()=> getApi('/google/signup')
+
+export const googleLogin = ()=> getApi('/google/login')
+
+export const googleCallback = () => getApi('/google/callback')
 
 // app (room) api
 export const getRooms = (token:string | null) => getApiWithToken(`/room/`, token)
-export const createRoom = (data:any, token:string | null) => postApiWithToken(`/room/`, data, token)
+export const createRoom = (data:any, token:string ) => postApiWithToken(`/room/`, data, token)
 export const getRoomMessageById = (roomId:number, offset:number, limit:number, token:string | null) => getApiWithToken(`/room/${roomId}/messages?last_offset=${offset}&limit=${limit}`, token)
 export const getMessageReactions = (token:string | null) => getApiWithToken(`/room/messages/reactions`, token)
-export const updateMessageReaction = (data:any, token:string | null) => postApiWithToken(`/room/message/reaction`, data, token)
-export const roomVoiceMessage = (roomId:number, data:any, token:string | null) => postApiWithToken(`/room/${roomId}/voice_message`, data, token)
+export const updateMessageReaction = (data:any, token:string ) => postApiWithToken(`/room/message/reaction`, data, token)
+export const roomVoiceMessage = (roomId:number, data:any, token:string ) => postApiWithToken(`/room/${roomId}/voice_message`, data, token)
 
 // explore api
 export const exploreGallery = (page : number, count:number, token:string | null) => getApiWithToken(`/explore/explore/gallery/${page}/${count}`, token)
 export const exploreSwipe = (page : number, count:number, token:string | null) => getApiWithToken(`/explore/explore/swipe/${page}/${count}`, token)
-export const exploreUserSubscription = (data:any, token:string | null) => postApiWithToken(`/explore/user-subscriptions` , data, token)
+export const exploreUserSubscription = (data:any, token:string ) => postApiWithToken(`/explore/user-subscriptions` , data, token)
 
 // home (post) api
 export const forYouPost = (page:number, limit:number, token:string | null) => getApiWithToken(`/posts/foryou/${page}/${limit}`, token)
-export const postLike = (data:any, token:string | null) => postApiWithToken(`/posts/like/`, data, token)
-export const postComment = (data:any, token:string | null) => postApiWithToken(`/posts/comment/`, data, token)
+export const postLike = (data:any, token:string ) => postApiWithToken(`/posts/like/`, data, token)
+export const postComment = (data:any, token:string ) => postApiWithToken(`/posts/comment/`, data, token)
 export const getPostComments = (postId:number, page:number, pageSize:number, token:string | null) => getApiWithToken(`/posts/post/${postId}/comments?page=${page}&page_size=${pageSize}`, token)
 export const getPostSubscription = (page:number, token:string | null) => getApiWithToken(`/posts/subscriptions/${page}`, token)
 // (will not use) export const getPostDetails = (postId:number, token:string | null) => getApiWithToken(`/posts/post/${postId}/details`, token)
@@ -52,10 +58,47 @@ export const profileDetails = (postId : any , userId : any) => getApi(`/profile/
 //list apis
 export const createCollection = (collectionName:string, token:string | null) => postWithParams(`/lists/create-collection/?collection_name=${collectionName}`, token)
 export const getAllCollections = (page:number, count:number, token:string | null) => getApiWithToken(`/lists/get-collections/${page}/${count}`,token)
-export const addCharacterToCollection = (collectionId:number | undefined, data:any, token:string | null) => postApiWithToken(`/lists/add-characters-to-collection/${collectionId}`, data, token)
+export const addCharacterToCollection = (collectionId:number | undefined, data:any, token:string ) => postApiWithToken(`/lists/add-characters-to-collection/${collectionId}`, data, token)
 export const getSubscribed = (page:number, count:number, token:string | null) => getApiWithToken(`/lists/subscriptions/${page}/${count}`, token)
 export const getFollowed = (page:number, count:number, token:string | null) => getApiWithToken(`/lists/following/${page}/${count}`, token)
 export const getBookMarked = (page:number, count:number, token:string | null) => getApiWithToken(`/lists/user/bookmarked-posts/${page}/${count}`, token)
+
+// creator studio api
+
+export const updateCharacter = (data:any , token : string | null)=> putApiWithToken('/studio/character' , data , token )
+
+export const postCharacter = (data:any , token:any) => postApiWithToken('/studio/character' , data , token)
+
+export const updateCharacterPersonality = (data:any , token : string | null)=> putApiWithToken('/studio/character/personality' , data , token)
+
+export const postCharacterPersonality = (data:any) => postApi('/studio/character/personality' , data)
+
+export const getGifts = (giftCategoryId :number , token:string|null)=> getApiWithToken( `/studio/gift/${giftCategoryId}`  , token) 
+
+export const updateGifts = (data:any , token : string | null) => putApiWithToken('/studio/gift' , data , token)
+
+export const postGifts = (data:any , token : string|null) => postApiWithToken('studio/gift' , data , token)
+
+export const deleteGift = (data:any)=> deleteApi('/studio/gift' , data)
+
+export const getGiftCategory = ( characterId:string|null , token:string|null) => getApiWithToken(`/studio/gift/category/${characterId}`  , token)
+
+export const updateGiftCategory = (data:any , token : string | null) => putApiWithToken('/studio/gift/category' , data , token)
+
+export const postGiftCategory = (data:any , token:any) => postApiWithToken('/studio/gift/category' , data , token)
+
+export const deleteGiftCategory = (data:any) => deleteApi('/studio/gift/category' , data)
+
+export const postPromptImage = (data:any, token:string | null) => postApiWithToken('/studio/image_generation/prompt_image' , data, token)
+
+export const postInpaintImage = (data:any, token:string | null) => postApiWithToken('/studio/image_generation/inpaint_image' , data, token)
+
+export const postPoseImage = (data:any, token:string | null) => postApiWithToken('/studio/image_generation/pose_image' , data, token)
+
+export const getImageGeneration = (offset:number , limit:number, token:any) => getApiWithToken(`/studio/image_generation/?offset=${offset}limit=${limit}`, token)
+
+// export const deleteImageGeneration = (id:number) => deleteApi(`/studio/image_generation/${id}`)
+
 
 //logout function 
 export const logout = ()=>{
