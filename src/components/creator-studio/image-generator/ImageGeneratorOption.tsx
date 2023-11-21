@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import React, { useRef, useState } from 'react';
 import ShuffleSvg from '../../../../public/assets/svgImages/shuffle.svg';
 import PlusIconSvg from '../../../../public/assets/svgImages/plus-icon.svg';

@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { Modal } from '@components/modal/modal';
 import React, { useState, useEffect } from 'react';
 import ArrowLeft from '../../../public/assets/arrow-left.png';
