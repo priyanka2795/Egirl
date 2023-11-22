@@ -20,7 +20,7 @@ const Layout = ({ children }: any) => {
 
         <div className={`main-content-scroller relative h-screen flex-grow overflow-y-hidden overflow-x-hidden bg-main-background lg:min-w-[600px] `}>
           <NotificationModal selectedMoreOption={activeMoreMenuItem} />   
-          {activeItem === "Add Card" &&
+          {activeItem === "Add Card" && 
           <AddCardSidebar seletedAddCard={activeItem}/>         
           }
             

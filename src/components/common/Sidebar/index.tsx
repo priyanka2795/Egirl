@@ -66,6 +66,7 @@ sideBarProp) {
   const [userAccountMenu, setUserAccountMenu] = useState(false);
   const [addCardState , setAddCardState]  = useState(false);
   const sidebarVariable = sessionStorage.getItem('sideBarCollapse');
+  const sideBarCollapse = sessionStorage.getItem('sideBarCollapse');
 
   const [shrinkSidebar, setShrinkSidebar] = useState(
     sidebarVariable ? sidebarVariable : ''
@@ -215,9 +216,8 @@ sideBarProp) {
           {moreOption && (
             <MoreMenuOption
               classes={`${
-                shrinkSidebar === 'true'
-                  ? 'fixed bottom-5 left-[80px]'
-                  : 'absolute left-[10px] top-[60px] '
+                sideBarCollapse ? 'fixed bottom-5 left-[90px]'
+                  : 'absolute '
               }`}
               activeMoreOption={activeMoreOption}
               moreOptionItem={moreOptionItem}
