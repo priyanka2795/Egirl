@@ -134,8 +134,8 @@ const ImageGeneratorOption = ({
       const lastTagIndex = promptTags.length - 1;
       const lastTag = promptTags[lastTagIndex];
       setEditPrompt(lastTag);
-      setPromptTags(promptTags.slice(0, -1)); // Remove the last tag
-      setPromptHint(lastTag); // Set promptHint to the last tag for editing
+      setPromptTags(promptTags.slice(0, -1)); 
+      setPromptHint(lastTag); 
     }
 
     // if (e.key === 'Backspace' && promptHint === '') {
