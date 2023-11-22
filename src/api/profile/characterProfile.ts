@@ -4,11 +4,6 @@ import {
   createCharacterProfile as createCharacterProfileHelper
 } from '../utils/characters';
 
-//import { supabaseClient } from '../../config/supabaseClient';
-
-/// Character profile
-
-/// Getters
 
 // Get character profile
 export async function getCharacter(character_id: number, client: any) {
@@ -45,4 +40,3 @@ export async function createCharacterProfile(
   return;
 }
 
-//getCharacter(3, supabaseClient);

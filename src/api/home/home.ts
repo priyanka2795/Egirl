@@ -16,7 +16,6 @@ import {
   getUserSubscriptionsByUserId
 } from '../utils/subscriptions';
 import { getBlockedCharacterIdsByUser } from '../utils/blocks';
-import { supabaseClient } from '../../config/supabaseClient';
 
 import { getBookmarkedPostIdsByUser } from '../utils/bookmarks';
 
@@ -159,18 +158,3 @@ export async function addBookmarkedPostIdsToPosts(
   return posts;
 }
 
-// getHomePostsSubscribedTo(
-//   'e05b8c71-a5e0-41c5-96e7-549c0d7a4a04',
-//   supabaseClient
-// );
-//getHomePostsFollowing('e8a2be37-76f6-4ebb-bfd8-b9e370046a41', supabaseClient);
-// getHomePostsByProfileTags(
-//   'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
-//   supabaseClient
-// );
-//getHomePostsLatest(supabaseClient);
-// getHomeCharacterSuggestionsByProfileTags(
-//   'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
-//   supabaseClient
-// );
-//getHomePostsLikedByUser('e8a2be37-76f6-4ebb-bfd8-b9e370046a41', supabaseClient);

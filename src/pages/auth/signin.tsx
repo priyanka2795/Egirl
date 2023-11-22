@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { Database } from '../../../types/database';
 import { useRouter } from 'next/router';
 import bgImage from '../../../public/assets/sign-in-bg-img.png';
@@ -41,7 +40,6 @@ export default function SignIn({ SetFormStep }: SignIn) {
   const dispatch = useAppDispatch();
   const { isVisible, notification } = useAppSelector((state) => state.toast);
   const router = useRouter();
-  const supabase = useSupabaseClient<Database>();
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [errorMsg, setErrorMsg] = useState<string>('');
@@ -55,32 +53,6 @@ export default function SignIn({ SetFormStep }: SignIn) {
 
   const onPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
-  };
-
-  const loginHandler = async () => {
-    console.log('loggin in with - email:', email, '| password:', password);
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email: email,
-      password: password
-    });
-    console.log('results of logging in: ', data, error);
-    if (!error) {
-      router.push('/home');
-    } else {
-      setErrorMsg(error.message);
-    }
-    setSignInSteps(1);
-  };
-
-  const loginGoogleHandler = async () => {
-    console.log('loggin in with google');
-    const { data, error } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
-      options: {
-        redirectTo: `${new URL(location.href).origin}/logging-in?redirect=/home`
-      }
-    });
-    console.log('results of logging in: ', data, error);
   };
 
   // Otp
@@ -237,7 +209,6 @@ export default function SignIn({ SetFormStep }: SignIn) {
                         </div>
                       </div>
                       <button
-                        onClick={loginHandler}
                         type='submit'
                         className='font-bold mt-6 flex w-full items-center justify-center rounded-[16px] bg-[#5848BC] px-6 py-4 text-[18px] leading-6 text-white'
                       >

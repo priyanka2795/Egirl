@@ -14,7 +14,7 @@ import type { Variants } from 'framer-motion';
 import type { User } from '@lib/types/user';
 import type { Tweet } from '@lib/types/tweet';
 import type { FilesWithId, ImagesPreview, ImageData } from '@lib/types/file';
-import { useUser } from '@supabase/auth-helpers-react';
+
 
 type InputProps = {
   modal?: boolean;
@@ -46,7 +46,7 @@ export function Input({
   const [loading, setLoading] = useState(false);
   const [visited, setVisited] = useState(false);
 
-  const user = useUser();
+  
 
   // const { name, username, photoURL } = user as User;
 
@@ -71,7 +71,7 @@ export function Input({
 
     const isReplying = reply ?? replyModal;
 
-    const userId = user?.id as string;
+  
 
     const tweetData = {
       text: inputValue.trim() || null,
@@ -115,7 +115,7 @@ export function Input({
         <span className='flex gap-2'>
           Your Tweet was sent
           <Link href={`/tweet/${tweetId}`}>
-            <a className='custom-underline font-bold'>View</a>
+            <a className='font-bold custom-underline'>View</a>
           </Link>
         </span>
       ),
@@ -237,7 +237,7 @@ export function Input({
         htmlFor={formId}
       >
         {/* <UserAvatar src={photoURL} alt={name} username={username} /> */}
-        <div className='flex w-full flex-col gap-4'>
+        <div className='flex flex-col w-full gap-4'>
           <InputForm
             modal={modal}
             reply={reply}

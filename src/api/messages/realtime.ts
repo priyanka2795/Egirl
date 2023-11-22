@@ -1,4 +1,4 @@
-import { supabaseClient } from '../../config/supabaseClient';
+
 
 // TODO: need to do inference on chatbot model
 // for actually generating the msgs
@@ -68,7 +68,7 @@ export async function getCharacterMessageToUser(
   console.log('Res from inserting msg: ', res);
 }
 
-// Setup supabase realtime channel
+
 export async function setupChannel(
   setCallHistory: any,
   callHistory: any,
@@ -148,26 +148,26 @@ export async function testRealTime() {
   let message = 'Realtime testing 4';
   let unsubscribe = () => false;
 
-  await setupChannel(
-    setCallHistory,
-    callHistory,
-    roomId,
-    characterId,
-    userId,
-    initialBalance,
-    costPerMsg,
-    timeoutThreshold,
-    unsubscribe,
-    supabaseClient
-  );
+  // await setupChannel(
+  //   setCallHistory,
+  //   callHistory,
+  //   roomId,
+  //   characterId,
+  //   userId,
+  //   initialBalance,
+  //   costPerMsg,
+  //   timeoutThreshold,
+  //   unsubscribe,
+ 
+  // );
 
-  await getCharacterMessageToUser(
-    roomId,
-    characterId,
-    userId,
-    message,
-    supabaseClient
-  );
+  // await getCharacterMessageToUser(
+  //   roomId,
+  //   characterId,
+  //   userId,
+  //   message,
+
+  // );
 
   console.log('Done with testRealTime()..');
 }
