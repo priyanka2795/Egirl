@@ -2,7 +2,7 @@ import React from 'react';
 
 const MessageIndicator = () => {
   return (
-    <div className='flex pt-2 pb-4 '>
+    <div className='flex pb-4 '>
       <div className='typing-indicator'>
         <span></span>
         <span></span>

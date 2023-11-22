@@ -245,19 +245,19 @@ const ImageAndIdeaGeneratorTab = () => {
             ))}
           </div>
         ) : activeTab === 'Idea Generation' ? (
-          <div className='flex flex-col gap-4 mt-6'>
+          <div className='flex flex-col gap-4 '>
             <div className='rounded-[14px] bg-[#FFFFFF0D] p-5'>
               <label
                 htmlFor='prompt'
-                className='mb-[6px] text-[13px] font-semibold text-[#FFFFFFCC]'
+                className='text-[13px] font-semibold text-[#FFFFFFCC]'
               >
                 Type a prompt concept
               </label>
-              <div className='flex items-center gap-4'>
+              <div className='flex items-center gap-4 mt-[6px]'>
                 <textarea
                   id='prompt'
                   placeholder='Start typing your idea'
-                  className='h-[48px] w-full resize-none overflow-visible rounded-[14px] border-none bg-[#FFFFFF0D] pt-[13px] text-white placeholder:text-[#979797] focus:border-[#5848BC] focus:ring-0 active:border-none '
+                  className='max-h-[55px] w-full resize-none overflow-visible rounded-[14px] border-none bg-[#FFFFFF0D] pt-[13px] text-white placeholder:text-[#979797] focus:border-[#5848BC] focus:ring-0 active:border-none h-auto pb-0'
                   value={ideaGenerationInput}
                   name='prompt'
                   onChange={(e) => HandleChange(e)}
