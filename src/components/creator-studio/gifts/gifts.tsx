@@ -29,19 +29,26 @@ function Gifts() {
   const [addCategory, setAddCategory] = useState<string[]>([]);
   const [giftImageSet, setGiftImageSet] = useState('');
   const [giftName, setGiftName] = useState('');
-  const [giftCategory , setGiftCategory] = useState<any>()
+  const [giftCategory, setGiftCategory] = useState<any>();
   const [createCategory, setCreateCategory] = useState<boolean>(false);
-  const [createCategoryToggle , setCreateCategoryToggle] = useState<boolean>(false)
-  const [selectedCategoryId , setSelectedCategoryId] = useState<any>()
+  const [createCategoryToggle, setCreateCategoryToggle] =
+    useState<boolean>(false);
+  const [selectedCategoryId, setSelectedCategoryId] = useState<any>();
   const characterId = Cookies.get('character_id') || '';
-  const token : any =  Cookies.get('accessToken');
-  const [selectedCategoryGifts , setSelectedCategoryGifts] = useState<any>()
+  const token: any = Cookies.get('accessToken');
+  const [selectedCategoryGifts, setSelectedCategoryGifts] = useState<any>();
+  const [selectedGiftData, setSelectedGiftData] = useState<any>();
+  const [updateGift, setUpdateGift] = useState(false);
 
-  const EditGift = (val: number) => {
+  const EditGift = (val: number, data: any) => {
+    setSelectedGiftData(data);
     setGiftCard(true);
     setGiftEditPopup(val);
   };
 
+  useEffect(() => {
+    console.log(selectedGiftData, '????giftData');
+  }, [selectedGiftData]);
 
   const DeleteGiftCardModal = (
     index: number,
@@ -50,9 +57,8 @@ function Gifts() {
   ) => {
     setGiftCard(true);
     setGiftEditPopup(num);
-    setDeleteIndex(index);
     setDeleteBtnStep(1);
-    setGiftName(giftName);
+    setGiftName('giftName');
   };
 
   const DeleteGift = (ind: number) => {
@@ -72,38 +78,40 @@ function Gifts() {
     setToggle(!toggle);
   };
 
-
-  const getAllCategory =  () => {
-     getGiftCategory( characterId, token)
-      .then((response :any) => {
+  const getAllCategory = () => {
+    getGiftCategory(characterId, token)
+      .then((response: any) => {
         if (response && response.data) {
-          setGiftCategory(response?.data)
-          console.log(response.data, "res????");
+          setGiftCategory(response?.data);
+          console.log(response.data, 'res????');
         } else {
-          console.error("Invalid response structure:", response);
+          console.error('Invalid response structure:', response);
         }
       })
       .catch((err) => {
-        console.error(err, "err????");
+        console.error(err, 'err????');
       });
   };
 
-
-  
   useEffect(() => {
     getAllCategory();
   }, [createCategoryToggle]);
-  
-useEffect(()=>{
-  getGifts(selectedCategoryId ? selectedCategoryId : (giftCategory && giftCategory[0]?.gift_category_id) , token)
-  .then((res:any)=>{
-    console.log(res);
-    setSelectedCategoryGifts(res?.data)
-  })
-  .catch((err:any)=>{
-    console.log(err);
-  })
-},[selectedCategoryId])
+
+  useEffect(() => {
+    getGifts(
+      selectedCategoryId
+        ? selectedCategoryId
+        : giftCategory && giftCategory[0]?.gift_category_id,
+      token
+    )
+      .then((res: any) => {
+        console.log(res);
+        setSelectedCategoryGifts(res?.data);
+      })
+      .catch((err: any) => {
+        console.log(err);
+      });
+  }, [selectedCategoryId, updateGift]);
 
   return (
     <>
@@ -132,7 +140,9 @@ useEffect(()=>{
           />
 
           <div className='mt-4 flex items-center justify-between'>
-            <p className='text-[#979797]'>{`${selectedCategoryGifts?.length}/9`} gifts</p>
+            <p className='text-[#979797]'>
+              {`${selectedCategoryGifts?.length}/9`} gifts
+            </p>
             <button
               className='flex items-center justify-center gap-1'
               onClick={() => DeleteAllGiftCard()}
@@ -146,14 +156,17 @@ useEffect(()=>{
             {selectedCategoryGifts?.map((item: any, index: number) => (
               <div
                 className='relative h-[300px] w-[300px] overflow-hidden rounded-xl'
-                key={index}
+                key={item?.gift_id}
               >
                 {/* <Image
                   src={item?.media_url}
                   className='h-full w-full object-cover'
                 /> */}
-                <img src={item?.media_url} className='h-full w-full object-cover'/>
-                
+                <img
+                  src={item?.media_url}
+                  className='h-full w-full object-cover'
+                />
+
                 <div className='absolute right-2 top-2'>
                   <button
                     className='h-[30px] w-[30px] rounded-full bg-[#0000007A] p-1'
@@ -171,7 +184,7 @@ useEffect(()=>{
                         <div className='absolute right-0 top-8 flex h-[130px] w-[251px] flex-col gap-3 rounded-[14px] bg-[#1A1A1A] p-4'>
                           <button
                             className='flex items-center gap-2'
-                            onClick={() => EditGift(1)}
+                            onClick={() => EditGift(1, item)}
                           >
                             <Image
                               src={Pencil}
@@ -225,6 +238,11 @@ useEffect(()=>{
               DeleteBtnStep={deleteBtnStep}
               giftImageSet={giftImageSet}
               giftName={giftName}
+              selectedGiftData={selectedGiftData}
+              characterId={characterId}
+              token={token}
+              setUpdateGift={setUpdateGift}
+              updateGift={updateGift}
             />
           )}
 
@@ -273,7 +291,6 @@ useEffect(()=>{
           createCategory={createCategory}
           setCreateCategoryToggle={setCreateCategoryToggle}
           createCategoryToggle={createCategoryToggle}
-          
         />
       )}
     </>

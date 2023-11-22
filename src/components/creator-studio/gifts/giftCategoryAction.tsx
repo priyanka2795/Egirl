@@ -19,7 +19,7 @@ interface GiftCategoryAction {
   token: any;
   createCategoryToggle: boolean;
   setCreateCategoryToggle: React.Dispatch<React.SetStateAction<boolean>>;
-  setSelectedCategoryId:React.Dispatch<React.SetStateAction<number>>
+  setSelectedCategoryId: React.Dispatch<React.SetStateAction<number>>;
 }
 function GiftCategoryAction({
   AddCategory,
@@ -43,15 +43,15 @@ function GiftCategoryAction({
   const [toggledItemIndex, setToggledItemIndex] = useState<number | null>(null);
   const [editCategoryId, setEditCategoryId] = useState<number | undefined>();
   const [editCategoryData, setEditCategoryData] = useState<any>();
-  const [deleteCategoryData , setDeleteCategoryData] = useState<any>({})
+  const [deleteCategoryData, setDeleteCategoryData] = useState<any>({});
 
   const CategoryAction = (val: number) => {
     setEditCategoryActionModal(val);
     setCloseState(true);
   };
-  const ActiveTab = (index: number , categoryId:number) => {
+  const ActiveTab = (index: number, categoryId: number) => {
     setTabs(index);
-    setSelectedCategoryId(categoryId)
+    setSelectedCategoryId(categoryId);
   };
 
   const EditCategoryName = (name: string, id: number, step: number) => {
@@ -68,33 +68,40 @@ function GiftCategoryAction({
       .catch((err) => {
         console.log(err);
       });
-      setCreateCategoryToggle(!createCategoryToggle)
-      setCloseState(false)
+    setCreateCategoryToggle(!createCategoryToggle);
+    setCloseState(false);
   };
 
-  const DeleteActionCategoryModal = (index: number, Step: number , categoryId:number) => {
+  const DeleteActionCategoryModal = (
+    index: number,
+    Step: number,
+    categoryId: number
+  ) => {
     setEditCategoryActionModal(Step);
     setCloseState(true);
     setCategoryActionIndex(index);
     setDeleteCategoryData({
-        "character_id": characterId,
-        "gift_category_id": categoryId
-    })
+      character_id: characterId,
+      gift_category_id: categoryId
+    });
   };
-
 
   const DeleteActionCategory = (i: number) => {
     // SetCategory((oldValue: string[]) => {
     //   return oldValue.filter((item: string, index: number) => index !== i);
     // });
-    console.log(deleteCategoryData , "????data");
-    // deleteGiftCategory(deleteCategoryData , token)
-    // .then((res:any)=>{
-    //   console.log(res);
-    // })
-    // .catch((err:any)=>{
-    //   console.log(err);
-    // })
+    deleteGiftCategory(
+      deleteCategoryData?.character_id,
+      deleteCategoryData?.gift_category_id,
+      token
+    )
+      .then((res: any) => {
+        console.log(res);
+        setCreateCategoryToggle(!createCategoryToggle);
+      })
+      .catch((err: any) => {
+        console.log(err);
+      });
   };
 
   const handleToggle = (index: number) => {
@@ -111,7 +118,7 @@ function GiftCategoryAction({
               className={`font-bold relative flex cursor-pointer items-center justify-center gap-2 rounded-xl px-3 py-1.5 ${
                 tabs === index ? 'bg-[#FFFFFF29]' : 'bg-transparent'
               }`}
-              onClick={() => ActiveTab(index , items?.gift_category_id)}
+              onClick={() => ActiveTab(index, items?.gift_category_id)}
               key={index}
             >
               <span className={tabs == index ? 'text-white' : 'text-[#979797]'}>
@@ -141,7 +148,13 @@ function GiftCategoryAction({
 
                     <button
                       className='flex items-center gap-2'
-                      onClick={() => DeleteActionCategoryModal(index, 2 , items?.gift_category_id)}
+                      onClick={() =>
+                        DeleteActionCategoryModal(
+                          index,
+                          2,
+                          items?.gift_category_id
+                        )
+                      }
                     >
                       <Image src={Delete} className='h-full w-full' alt={''} />
                       <p>Delete</p>

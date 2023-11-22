@@ -1,6 +1,6 @@
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
 import crossIcon from '../../../../public/assets/xmark (1).png';
 import AlbumFirst from '../../../../public/assets/gallery-tab-img.png';
 import ImageSquareGray from '../svg/image-square-gray.svg';
@@ -9,6 +9,7 @@ import MoveImgFirst from '../svg/Image-block.png';
 import MoveImg from '../svg/Image-block2.png';
 import ImageSquare from '../svg/image-square.png';
 import GiftCardDelete from './giftCardDelete';
+import { updateGifts } from 'services/services';
 // dots-horizontal-white
 interface CardEditModal {
   closeModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -17,7 +18,12 @@ interface CardEditModal {
   DeleteIndex: number | undefined;
   DeleteBtnStep: number;
   giftImageSet: string;
-  giftName?:string
+  giftName?: string;
+  selectedGiftData: any;
+  characterId: string;
+  token: string;
+  updateGift: boolean;
+  setUpdateGift: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const moveData = [
   {
@@ -44,8 +50,38 @@ function GiftCardEditModal({
   DeleteBtnStep,
   giftImageSet,
   giftName,
+  selectedGiftData,
+  characterId,
+  token,
+  setUpdateGift,
+  updateGift
 }: CardEditModal) {
-  console.log(GiftEditModal, 'GiftEditModal');
+  const [EditName, setEditName] = useState<any>(selectedGiftData?.name);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setEditName(value);
+  };
+
+  const handleSave = () => {
+    const updatedDataFormat = {
+      character_id: characterId,
+      gift_id: selectedGiftData?.gift_id,
+      name: EditName,
+      price: 'UNCHANGED',
+      media_id: 'UNCHANGED',
+      gift_category_id: 'UNCHANGED'
+    };
+    updateGifts(updatedDataFormat, token)
+      .then((res: any) => {
+        setUpdateGift(!updateGift);
+        console.log(res);
+      })
+      .catch((err: any) => {
+        console.log(err);
+      });
+    closeModal(false);
+  };
 
   return (
     <>
@@ -60,16 +96,16 @@ function GiftCardEditModal({
             <div className='flex items-center justify-between border-b border-[#FFFFFF14] p-6'>
               <h5 className='text-lg font-semibold'>Edit name</h5>
               <div
-                className='w-6 h-6 cursor-pointer'
+                className='h-6 w-6 cursor-pointer'
                 onClick={() => closeModal(false)}
               >
-                <Image className='w-full h-full' src={crossIcon} alt={''} />
+                <Image className='h-full w-full' src={crossIcon} alt={''} />
               </div>
             </div>
             <div className='p-6'>
               <div className='m-auto mb-5 max-h-[156px] max-w-[156px] overflow-hidden rounded-xl'>
                 <Image
-                  className='object-cover w-full h-full'
+                  className='h-full w-full object-cover'
                   src={giftImageSet}
                 />
               </div>
@@ -82,9 +118,11 @@ function GiftCardEditModal({
                   id='name'
                   placeholder='Romantic dinner'
                   className='h-12 rounded-[14px] border-none bg-[#FFFFFF0D] px-4 focus:border-[#5848BC] focus:ring-[#5848BC] active:border-[#5848BC]'
+                  value={EditName}
+                  onChange={(e) => handleChange(e)}
                 />
               </div>
-              <div className='grid grid-cols-2 gap-3 mt-6 font-semibold text-white'>
+              <div className='mt-6 grid grid-cols-2 gap-3 font-semibold text-white'>
                 <button
                   className='rounded-[14px] border border-[#FFFFFF52] px-5 py-3'
                   onClick={() => closeModal(false)}
@@ -93,7 +131,7 @@ function GiftCardEditModal({
                 </button>
                 <button
                   className='rounded-[14px] bg-[#5848BC] px-5 py-3'
-                  onClick={() => closeModal(false)}
+                  onClick={handleSave}
                 >
                   Save
                 </button>
@@ -105,16 +143,16 @@ function GiftCardEditModal({
             <div className='flex items-center justify-between border-b border-[#FFFFFF14] p-6'>
               <h5 className='text-lg font-semibold'>Romantic dinner</h5>
               <div
-                className='w-6 h-6 cursor-pointer'
+                className='h-6 w-6 cursor-pointer'
                 onClick={() => closeModal(false)}
               >
-                <Image className='w-full h-full' src={crossIcon} alt={''} />
+                <Image className='h-full w-full' src={crossIcon} alt={''} />
               </div>
             </div>
             <div className='p-6'>
               <div className='m-auto mb-5 max-h-[156px] max-w-[156px] overflow-hidden rounded-xl'>
                 <Image
-                  className='object-cover w-full h-full'
+                  className='h-full w-full object-cover'
                   src={giftImageSet}
                 />
               </div>
@@ -131,7 +169,7 @@ function GiftCardEditModal({
                         <div className='flex h-[40px] w-[40px] items-center justify-center rounded-lg bg-[#FFFFFF0D]'>
                           <Image
                             src={items.imgpath}
-                            className='w-full h-full m-auto'
+                            className='m-auto h-full w-full'
                           />
                         </div>
                         <div className=''>
@@ -147,11 +185,11 @@ function GiftCardEditModal({
                 ))}
               </div>
               <button className='flex items-center gap-2 pb-3 font-semibold'>
-                <Image className='w-full h-full' src={plusIcon} alt={''} />
+                <Image className='h-full w-full' src={plusIcon} alt={''} />
                 <p>New Category</p>
               </button>
 
-              <div className='grid grid-cols-2 gap-3 mt-6 font-semibold text-white'>
+              <div className='mt-6 grid grid-cols-2 gap-3 font-semibold text-white'>
                 <button
                   className='rounded-[14px] border border-[#FFFFFF52] px-5 py-3'
                   onClick={() => closeModal(false)}
@@ -181,7 +219,7 @@ function GiftCardEditModal({
           Img={false}
           DeleteGift={DeleteGift}
           DeleteIndex={DeleteIndex}
-          DeleteBtnStep={DeleteBtnStep}          
+          DeleteBtnStep={DeleteBtnStep}
         />
       ) : (
         ''
