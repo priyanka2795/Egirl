@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import Sidebar from '../common/Sidebar';
 import Characters from './Characters';
 import ChatScreen from './ChatScreen';
@@ -6,8 +6,13 @@ import ChatScreen from './ChatScreen';
 import TestSidebar from './TestSidebar';
 import { Modal } from '@components/modal/modal';
 import StartConversation from './StartConversation';
+import Cookies from 'js-cookie';
+import { getRooms } from 'services/services';
+import { useAppDispatch, useAppSelector } from 'redux/hooks';
+import { tokenRefresh } from 'redux/api/RefreshTokenApi';
 
 const Messages = () => {
+  const dispatch = useAppDispatch()
   const [chartScreenView, setChartScreenView] = useState('Default view');
   const [chatViewStyle ,setChatViewStyle] = useState('Inline chat');
   const [modalView, setModalView] = useState(false);
@@ -25,9 +30,28 @@ const Messages = () => {
 
   const handleSidebarWidth = () => {
     setShrinkSidebar(!shrinkSidebar);
-    console.log('reduce');
   };
-
+  //========= get rooms api ==========
+  const token:any = Cookies.get('accessToken')
+  const refreshTokenData:any = useAppSelector((state)=> state.tokenRefresh?.tokenData)
+  const [roomData, setRoomData] = useState([])
+  useEffect(()=>{
+    if(refreshTokenData){
+      Cookies.set("accessToken", refreshTokenData)
+    }
+    getRooms(token)
+    .then((res:any)=>{
+      console.log("get rooms res--", res)
+      setRoomData(res?.data)
+      if(res?.response?.status === 401){
+        dispatch(tokenRefresh())
+      }
+    })
+    .catch((err)=>{
+      console.log("get rooms err---", err)
+    })
+  },[refreshTokenData])
+  //========= get rooms api ==========
   // console.log(chatViewStyle,':chatViewStyle',chartScreenView,': chartScreenView')
   return (
     <>
@@ -38,6 +62,7 @@ const Messages = () => {
             <Characters
               shrinkSidebar={shrinkSidebar}
               selectUserState={selectUserState}
+              roomData={roomData}
             />
             <StartConversation
               startConversationModal={startConversationModal}

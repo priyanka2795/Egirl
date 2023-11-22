@@ -9,7 +9,6 @@ import {
   addUserInterest as addUserInterestHelper
 } from '../utils/profiles';
 
-//import { supabaseClient } from '../../config/supabaseClient';
 
 /// User profile
 
@@ -64,16 +63,3 @@ export async function addUserInterest(
   return;
 }
 
-//getUserProfile('a0e83fdc-039c-46cf-9d3d-ff515aaa7bfd', supabaseClient);
-//getUserProfileInterests('a0e83fdc-039c-46cf-9d3d-ff515aaa7bfd', supabaseClient);
-
-// createUserProfile(
-//   '0af1f824-8db2-4642-b468-3a97e8d72cb4',
-//   'htest',
-//   'h test',
-//   '',
-//   '',
-//   'www.image.com',
-//   'www.imagebanner.com',
-//   supabaseClient
-// );

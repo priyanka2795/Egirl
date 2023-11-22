@@ -7,11 +7,6 @@ import {
   getBlockedProfilesByUser
 } from '../utils/lists';
 
-// import { supabaseClient } from '../../config/supabaseClient';
-
-/// Lists
-
-/// Getters
 
 // Get custom lists
 export async function getCustomLists(user_id: string, client: any) {
@@ -69,19 +64,3 @@ export async function addCharactersToList(
   return newCharacterIdList;
 }
 
-//getCustomLists('e8a2be37-76f6-4ebb-bfd8-b9e370046a41', supabaseClient);
-// getFollowerLists('e8a2be37-76f6-4ebb-bfd8-b9e370046a41', supabaseClient);
-// createCustomList(
-//   'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
-//   'furries2',
-//   [2, 3],
-//   supabaseClient
-// );
-// addCharactersToList(
-//   'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
-//   [3, 2],
-//   supabaseClient
-// );
-
-//getBlockedCharacters('e8a2be37-76f6-4ebb-bfd8-b9e370046a41', supabaseClient);
-//getBlockedProfiles('e8a2be37-76f6-4ebb-bfd8-b9e370046a41', supabaseClient);

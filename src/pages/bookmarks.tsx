@@ -29,27 +29,17 @@ import { Loading } from '@components/ui/loading';
 import type { ReactElement, ReactNode } from 'react';
 import { User } from '@lib/types/user';
 import { Tweet as TypeTweet } from '@lib/types/tweet';
-import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react';
 import { getBookmarksByUser } from 'api/utils/bookmarks';
 
 export default function Bookmarks(): JSX.Element {
   const { open, openModal, closeModal } = useModal();
   const [selection, setSelection] = useState('all');
   const [tweetLoading, setTweetLoading] = useState(false);
-  const supabaseClient = useSupabaseClient();
-  const supabaseUser = useUser();
 
   const [bookmarks, setBookmarks] = useState<
     (TypeTweet & { user: User })[] | null
   >(null);
 
-  const fetchUserBookmarks = async () => {
-    // get custom lists
-    const bookmarksResponse = await getBookmarksByUser(
-      'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
-      supabaseClient
-    ).then((data) => {});
-  };
 
   const allTweet: (TypeTweet & { user: User })[] | null = [
     {
@@ -421,14 +411,6 @@ export default function Bookmarks(): JSX.Element {
     setSelection(value);
   };
 
-  useEffect(() => {
-    if (supabaseUser) {
-      fetchUserBookmarks().then(() => {
-        setTweetLoading(false);
-      });
-    }
-  }, [tweetData, selection, supabaseUser]);
-
   return (
     <MainBookmarkContainer>
       <SEO title='Bookmarks / Twitter' />
@@ -448,19 +430,17 @@ export default function Bookmarks(): JSX.Element {
         />
       </Modal>
       <MainHeader className='flex items-center justify-between'>
-        <div className='-mb-1 flex flex-col'>
+        <div className='flex flex-col -mb-1'>
           <h2 className='-mt-1 text-xl font-bold'>Bookmarks</h2>
           <p className='text-xs text-light-secondary dark:text-dark-secondary'>
             @{user?.username}
           </p>
         </div>
         <Button
-          className='dark-bg-tab group relative p-2 hover:bg-light-primary/10
-                     active:bg-light-primary/20 dark:hover:bg-dark-primary/10 
-                     dark:active:bg-dark-primary/20'
+          className='relative p-2 dark-bg-tab group hover:bg-light-primary/10 active:bg-light-primary/20 dark:hover:bg-dark-primary/10 dark:active:bg-dark-primary/20'
           onClick={openModal}
         >
-          <HeroIcon className='h-5 w-5' iconName='ArchiveBoxXMarkIcon' />
+          <HeroIcon className='w-5 h-5' iconName='ArchiveBoxXMarkIcon' />
           <ToolTip
             className='!-translate-x-20 translate-y-3 md:-translate-x-1/2'
             tip='Clear bookmarks'
@@ -472,7 +452,7 @@ export default function Bookmarks(): JSX.Element {
           <div className='w-1/4'>
             <div className='w-full'>
               <button
-                className='w-full rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700'
+                className='w-full px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700'
                 onClick={async () => {
                   const selection = 'all';
                   await handleSelection(selection);
@@ -481,7 +461,7 @@ export default function Bookmarks(): JSX.Element {
                 All Bookmarks
               </button>
               <button
-                className='w-full rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700'
+                className='w-full px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700'
                 onClick={async () => {
                   const selection = 'posts';
                   await handleSelection(selection);
@@ -490,7 +470,7 @@ export default function Bookmarks(): JSX.Element {
                 Posts
               </button>
               <button
-                className='w-full rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700'
+                className='w-full px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700'
                 onClick={async () => {
                   const selection = 'photos';
                   await handleSelection(selection);
@@ -499,7 +479,7 @@ export default function Bookmarks(): JSX.Element {
                 Photos
               </button>
               <button
-                className='w-full rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700'
+                className='w-full px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700'
                 onClick={async () => {
                   const selection = 'locked';
                   await handleSelection(selection);

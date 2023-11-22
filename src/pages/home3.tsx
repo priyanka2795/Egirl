@@ -16,14 +16,11 @@ import {
   getHomePostsFollowing,
   getHomePostsSubscribedTo
 } from '../api/home/home';
-import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react';
 import { Tweet as TypeTweet } from '@lib/types/tweet';
 import { User } from '@lib/types/user';
 import type { ImagesPreview, ImageData } from '@lib/types/file';
 
 export default function Home(): JSX.Element {
-  const user = useUser();
-  const client = useSupabaseClient();
   const [postList, setPostList] = useState<any[]>([]);
   // const { isMobile } = useWindow();
 
@@ -38,19 +35,6 @@ export default function Home(): JSX.Element {
   const getHomePosts = async () => {
     // console.log('user id ', user.id);
     // user!.id
-    const res = await getHomePostsSubscribedTo(user!.id, client);
-
-    setPostList(
-      res.clientData.map((post: any, index: number) => {
-        return {
-          ...post,
-          likes: res.final_post_likes[index],
-          comments: res.final_comments[index],
-          infoTags: res.final_infotags[index],
-          media: res.final_media[index]
-        };
-      })
-    );
   };
 
   useEffect(() => {
@@ -58,7 +42,7 @@ export default function Home(): JSX.Element {
     // if (user) {
     getHomePosts();
     // }
-  }, [user]);
+  }, []);
 
   const isMobile = false;
 

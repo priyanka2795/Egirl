@@ -24,6 +24,7 @@ const HoverModal = ({
 }: HoverModalProp) => {
   const handleNextStep = () => {
     setTourCount(tourCount + 1);
+    handleChange()
   };
 
   const handlePrevStep = () => {
@@ -47,6 +48,7 @@ const HoverModal = ({
   const getPosition = () => {
     const positionY = boxRef.current?.offsetTop;
     setPositionY(positionY);
+    setValue(true)
   };
   useEffect(() => {
     getPosition();
@@ -57,7 +59,12 @@ const HoverModal = ({
   }, []);
 
   console.log(positionY, 'Y position In Guid Box');
-
+  const [value, setValue] = useState(false)
+  const handleChange = () => {
+    setValue(true)
+    console.log("clickkk")
+  }
+  console.log("object", value)
   return (
     <div
       className={` ${isOpen ? ' ' : ''}  
@@ -103,7 +110,7 @@ const HoverModal = ({
                 <button
                   className=' font-bold rounded-xl bg-[#5848BC] px-4 py-2 text-[14px] leading-[22px]'
                   onClick={() => {
-                    handleNextStep(),getPosition(), window.scrollTo({ top: positionY, behavior: "smooth" });
+                    handleChange(),handleNextStep(),getPosition(), window.scrollTo({ top: positionY, behavior: "smooth" });
                   }}
                 >
                   Next

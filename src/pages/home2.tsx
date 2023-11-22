@@ -1,5 +1,4 @@
 import { Sidebar } from '@components/sidebar/sidebar';
-import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react';
 import { WindowContextProvider } from '@lib/context/window-context';
 import { MainHeader } from '@components/home-old/main-header';
 import { UpdateUsername } from '@components/home-old/update-username';
@@ -16,9 +15,7 @@ import { Input } from '@components/input/input';
 import { Input2 } from '@components/input/input2';
 
 export default function Home2(): JSX.Element {
-  const user = useUser();
-  const supabase = useSupabaseClient();
-  const loading = false;
+ const loading = false;
   const data: any[] = [{ id: '1' }];
   const isMobile = false;
 

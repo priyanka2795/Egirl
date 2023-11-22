@@ -1,6 +1,5 @@
 import * as fs from 'fs';
 import * as readline from 'readline';
-import { supabaseClient } from '../../config/supabaseClient';
 import { createAutocompleteTags } from '../utils/tags';
 
 // Parse csv file to JSON
@@ -79,11 +78,10 @@ async function getExampleJson() {
   return parsedData;
 }
 
-// Upload tags to supabase
+
 async function getAndUploadTags() {
   const parsedData = await getExampleJson();
   console.log('this is parsedData: ', parsedData);
-  //createAutocompleteTags(parsedData, supabaseClient);
 }
 
 getAndUploadTags();
