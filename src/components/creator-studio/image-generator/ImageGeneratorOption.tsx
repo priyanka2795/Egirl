@@ -26,7 +26,7 @@ import UserWhite from '../../../../public/assets/circle-user-white.png';
 import SearchIcon from '../../../../public/assets/search-alt (1).png';
 import RightIcon from '../../../../public/assets/check-cs.png';
 import DeleteIcon from '../../../../public/assets/delete-icon.png';
-import { postInpaintImage, postPromptImage } from 'services/services';
+import { postInpaintImage, postPoseImage, postPromptImage } from 'services/services';
 import Cookies from 'js-cookie';
 
 const EditPromptName = [
@@ -139,7 +139,7 @@ const ImageGeneratorOption = ({
       e.target.value = '';
     }
   }
-console.log("InpaintingToggle---",InpaintingToggle)
+console.log("InpaintingToggle---",InpaintingToggle, "posing---",PosingToggle)
   const EditPromptData = (item: null) => {
     setEditPrompt((prev) => (prev === item ? null : item));
   };
@@ -254,8 +254,31 @@ console.log("InpaintingToggle---",InpaintingToggle)
     "inference_steps": 0,
     "num_of_images": numOfImages
   }
+  let poseData = {
+    "preset_pose_image": {
+      "media_id": 0,
+      "media_url": "string"
+    },
+    "pose_image_base64_str": "string",
+    "prompt": [
+      {
+        "prompt_id": 0,
+        "prompt_type": "string",
+        "prompt_value": "string"
+      }
+    ],
+    "negative_prompt": "string",
+    "sd_image_model": "string",
+    "height": 0,
+    "width": 0,
+    "guidance_scale": 0,
+    "inference_steps": 0,
+    "num_of_images": 0
+  }
   const handleGenerate = ()=>{
+ 
     if(InpaintingToggle === true){
+         //------ inpainting image api ----
       postInpaintImage(inPaintData, token)
       .then((res)=>{
         console.log("inPaintImage res---", res)
@@ -263,7 +286,20 @@ console.log("InpaintingToggle---",InpaintingToggle)
       .catch((err)=>{
         console.log("inPaintImage err---", err)
       })
-    }else{
+    }
+    
+    else if(PosingToggle === true){
+      //----------- pose image api -------
+      postPoseImage(poseData, token)
+      .then((res)=>{
+        console.log("pose image res---", res)
+      })
+      .catch((err)=>{
+        console.log("pose image err---", err)
+      })
+    }
+    else{
+      //------- prompt image api ------
       postPromptImage(promptData,token)
     .then((res)=>{
       console.log("prompt image res---", res)
@@ -275,7 +311,7 @@ console.log("InpaintingToggle---",InpaintingToggle)
     
   }
   
-  console.log("token---",token,editPromptMenuIndex,promptTags)
+ 
   //=======================
   return (
     <>
