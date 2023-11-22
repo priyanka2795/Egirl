@@ -29,8 +29,14 @@ function Gifts() {
   const [addCategory, setAddCategory] = useState<string[]>([]);
   const [giftImageSet, setGiftImageSet] = useState('');
   const [giftName, setGiftName] = useState('');
+  const [giftCategory, setGiftCategory] = useState<any>();
+  const [createCategory, setCreateCategory] = useState<boolean>(false);
+  const [createCategoryToggle, setCreateCategoryToggle] =
+    useState<boolean>(false);
+  const [selectedCategoryId, setSelectedCategoryId] = useState<any>();
   const characterId = Cookies.get('character_id') || '';
-  const token : any =  Cookies.get('accessToken');
+  const token: any = Cookies.get('accessToken');
+  const [selectedCategoryGifts, setSelectedCategoryGifts] = useState<any>();
 
   const EditGift = (val: number) => {
     setGiftCard(true);
@@ -66,39 +72,40 @@ function Gifts() {
     setToggle(!toggle);
   };
 
-
-  const getAllCategory =  () => {
-    // let characterIdFormat = { "character_id": characterId }
-     getGiftCategory( token)
-      .then((response :any) => {
+  const getAllCategory = () => {
+    getGiftCategory(characterId, token)
+      .then((response: any) => {
         if (response && response.data) {
-          console.log(response.data, "res????");
+          setGiftCategory(response?.data);
+          console.log(response.data, 'res????');
         } else {
-          console.error("Invalid response structure:", response);
+          console.error('Invalid response structure:', response);
         }
       })
       .catch((err) => {
-        console.error(err, "err????");
+        console.error(err, 'err????');
       });
   };
-  
+
   useEffect(() => {
     getAllCategory();
-  }, []);
-  
-
-
+  }, [createCategoryToggle]);
 
   useEffect(() => {
-    // getGifts(`gift_category_id=${4}` , token)
-    getGifts( token)
+    getGifts(
+      selectedCategoryId
+        ? selectedCategoryId
+        : giftCategory && giftCategory[0]?.gift_category_id,
+      token
+    )
       .then((res: any) => {
-        console.log(res, 'gifts????');
+        console.log(res);
+        setSelectedCategoryGifts(res?.data);
       })
-      .catch((err) => {
-        console.log(err, 'giftserr????');
+      .catch((err: any) => {
+        console.log(err);
       });
-  }, []);
+  }, [selectedCategoryId]);
 
   return (
     <>
@@ -118,10 +125,18 @@ function Gifts() {
           <GiftCategoryAction
             AddCategory={addCategory}
             SetCategory={setAddCategory}
+            giftCategory={giftCategory}
+            characterId={characterId}
+            token={token}
+            setSelectedCategoryId={setSelectedCategoryId}
+            setCreateCategoryToggle={setCreateCategoryToggle}
+            createCategoryToggle={createCategoryToggle}
           />
 
           <div className='mt-4 flex items-center justify-between'>
-            <p className='text-[#979797]'>1/9 gifts</p>
+            <p className='text-[#979797]'>
+              {`${selectedCategoryGifts?.length}/9`} gifts
+            </p>
             <button
               className='flex items-center justify-center gap-1'
               onClick={() => DeleteAllGiftCard()}
@@ -132,15 +147,20 @@ function Gifts() {
           </div>
 
           <div className='mt-4 grid grid-cols-1 items-center gap-9 md:grid-cols-2 lg:grid-cols-3'>
-            {GiftCardName.map((item: string, index: number) => (
+            {selectedCategoryGifts?.map((item: any, index: number) => (
               <div
                 className='relative h-[300px] w-[300px] overflow-hidden rounded-xl'
                 key={index}
               >
-                <Image
-                  src={giftImageSet}
+                {/* <Image
+                  src={item?.media_url}
+                  className='object-cover w-full h-full'
+                /> */}
+                <img
+                  src={item?.media_url}
                   className='h-full w-full object-cover'
                 />
+
                 <div className='absolute right-2 top-2'>
                   <button
                     className='h-[30px] w-[30px] rounded-full bg-[#0000007A] p-1'
@@ -197,7 +217,7 @@ function Gifts() {
                   )}
                 </div>
                 <div className='absolute bottom-0 w-full bg-[#000000A3] p-3 text-center'>
-                  {item}
+                  {item?.name}
                 </div>
               </div>
             ))}
@@ -253,8 +273,13 @@ function Gifts() {
           SetGiftName={setGiftCardName}
           AddCategory={addCategory}
           SetCategory={setAddCategory}
+          giftCategory={giftCategory}
           giftImageSet={giftImageSet}
           setGiftImageSet={setGiftImageSet}
+          setCreateCategory={setCreateCategory}
+          createCategory={createCategory}
+          setCreateCategoryToggle={setCreateCategoryToggle}
+          createCategoryToggle={createCategoryToggle}
         />
       )}
     </>

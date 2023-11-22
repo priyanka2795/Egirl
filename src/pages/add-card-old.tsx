@@ -65,7 +65,6 @@ export default function Lists(): JSX.Element {
     SubsCharacterType[] | null
   >(null);
 
-
   const user: User = {
     id: '1',
     username: 'egirl',
@@ -117,7 +116,7 @@ export default function Lists(): JSX.Element {
           </p>
         </div>
         <Button
-          className='relative p-2 dark-bg-tab group hover:bg-light-primary/10 // active:bg-light-primary/20 dark:hover:bg-dark-primary/10 dark:active:bg-dark-primary/20'
+          className='relative p-2 dark-bg-tab // group hover:bg-light-primary/10 active:bg-light-primary/20 dark:hover:bg-dark-primary/10 dark:active:bg-dark-primary/20'
           onClick={openModal}
         >
           <HeroIcon className='w-5 h-5' iconName='ArchiveBoxXMarkIcon' />

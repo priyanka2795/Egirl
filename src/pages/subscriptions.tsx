@@ -65,7 +65,6 @@ export default function Lists(): JSX.Element {
     SubsCharacterType[] | null
   >(null);
 
-
   const user: User = {
     id: '1',
     username: 'egirl',

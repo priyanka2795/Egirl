@@ -13,13 +13,17 @@ interface CreateCategory {
   Previous?: any;
   AddCategory: string[];
   SetCategory: React.Dispatch<React.SetStateAction<string[]>>;
+  setCreateCategoryToggle:React.Dispatch<React.SetStateAction<boolean>>,
+  createCategoryToggle:boolean
 }
 const CreateCategory = ({
   CategoryClose,
   Steps,
   Previous,
   AddCategory,
-  SetCategory
+  SetCategory,
+  setCreateCategoryToggle,
+  createCategoryToggle
 }: CreateCategory) => {
   const [inputvalue, setInputValue] = useState<string>('');
   const accessToken = Cookies.get('accessToken');
@@ -44,7 +48,7 @@ const CreateCategory = ({
         };
 
         await postGiftCategory(requestData, token);
-
+        setCreateCategoryToggle(!createCategoryToggle)
         if (Steps === 3) {
           if (inputvalue === FindData) {
             alert('Category Name is already defend');
