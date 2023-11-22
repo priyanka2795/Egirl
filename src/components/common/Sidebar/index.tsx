@@ -44,7 +44,7 @@ type sideBarProp = {
   sideBarMenuArrowClasses?: string;
   moreOptionItem?: React.Dispatch<React.SetStateAction<string>>;
   activeMoreOption?: string;
-  activeItem?:any;
+  activeItem?: any;
   // shrinkSidebar?: boolean;
   // sideBarWidth?: () => void;
 };
@@ -64,8 +64,9 @@ sideBarProp) {
   const [subscribeModal, setSubscribeModal] = useState(false);
   const [moreOption, setMoreOption] = useState(false);
   const [userAccountMenu, setUserAccountMenu] = useState(false);
-  const [addCardState , setAddCardState]  = useState(false);
+  const [addCardState, setAddCardState] = useState(false);
   const sidebarVariable = sessionStorage.getItem('sideBarCollapse');
+  const sideBarCollapse = sessionStorage.getItem('sideBarCollapse');
 
   const [shrinkSidebar, setShrinkSidebar] = useState(
     sidebarVariable ? sidebarVariable : ''
@@ -141,15 +142,22 @@ sideBarProp) {
             shrinkSidebar === 'true' ? '!hidden' : 'w-full'
           }`}
         />
-        <SidebarMenuItem
-          text='Messages'
-          href='/messages'
-          Icon={MessagesIcon}
-          IconActive={MessageActiveIcon}
-          sideBarMenuText={`${sideBarMenuText} ${
-            shrinkSidebar === 'true' ? '!hidden' : 'w-full'
-          }`}
-        />
+        <div
+          onClick={() => {
+            activeItem('messages');
+          }}
+        >
+          <SidebarMenuItem
+            text='Messages'
+            href='/messages'
+            Icon={MessagesIcon}
+            IconActive={MessageActiveIcon}
+            sideBarMenuText={`${sideBarMenuText} ${
+              shrinkSidebar === 'true' ? '!hidden' : 'w-full'
+            }`}
+          />
+        </div>
+
         <SidebarMenuItem
           text='Lists'
           href='/lists'
@@ -159,7 +167,11 @@ sideBarProp) {
             shrinkSidebar === 'true' ? '!hidden' : 'w-full'
           }`}
         />
-        <div onClick={() => {activeItem('Add Card'), moreOptionItem('')}}>
+        <div
+          onClick={() => {
+            activeItem('Add Card'), moreOptionItem('');
+          }}
+        >
           <SidebarMenuItem
             text='Add Card'
             // href='/add-card'
@@ -197,7 +209,7 @@ sideBarProp) {
           sideBarMenuText={`${sideBarMenuText} ${
             shrinkSidebar === 'true' ? '!hidden' : 'w-full'
           }`}
-          changeTab={"CreatorStudioActive"}
+          changeTab={'CreatorStudioActive'}
         />
 
         <div className='relative'>
@@ -215,9 +227,7 @@ sideBarProp) {
           {moreOption && (
             <MoreMenuOption
               classes={`${
-                shrinkSidebar === 'true'
-                  ? 'fixed bottom-5 left-[80px]'
-                  : 'absolute left-[10px] top-[60px] '
+                sideBarCollapse ? 'fixed bottom-5 left-[90px]' : 'absolute '
               }`}
               activeMoreOption={activeMoreOption}
               moreOptionItem={moreOptionItem}
@@ -251,7 +261,7 @@ sideBarProp) {
       </div> */}
 
       <div
-        className='flex items-center justify-between w-full px-[18px] mt-auto mb-6 cursor-pointer'
+        className='mb-6 mt-auto flex w-full cursor-pointer items-center justify-between px-[18px]'
         onClick={() => {
           setUserAccountMenu(!userAccountMenu);
         }}
@@ -270,8 +280,8 @@ sideBarProp) {
               shrinkSidebar ? '!hidden' : ''
             }`}
           >
-            <h4 className='text-sm font-bold leading-[18px]'>Username</h4>
-            <p className='text-[13px] font-light leading-[18px] text-[#979797]'>
+            <h4 className='font-bold text-sm leading-[18px]'>Username</h4>
+            <p className='font-light text-[13px] leading-[18px] text-[#979797]'>
               @Username
             </p>
           </div>

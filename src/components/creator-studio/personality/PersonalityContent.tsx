@@ -49,7 +49,7 @@ const PersonalityContent = ({
 
   return (
     <>
-      <div className='flex flex-col items-start gap-4 self-stretch'>
+      <div className='flex flex-col items-start self-stretch gap-4'>
         <PersonalityS1
           personalityData={personalityData}
           setPersonalityData={setPersonalityData}
@@ -70,9 +70,9 @@ const PersonalityContent = ({
             <div className='font-bold text-[18px] leading-6 text-[#FFFFFF]'>
               Descriptions
             </div>
-            <div className='h-4 w-4'>
+            <div className='w-4 h-4'>
               <Image
-                className='h-full w-full'
+                className='w-full h-full'
                 src={circleInformation}
                 alt={''}
               />
@@ -95,7 +95,7 @@ const PersonalityContent = ({
                 name='general_description'
                 // value={personalityData.description}
                 onChange={HandleChange}
-                maxLength={10}
+                maxLength={2000}
               ></textarea>
             </div>
             <div className='flex w-1/2 flex-col gap-[6px]'>
@@ -114,7 +114,7 @@ const PersonalityContent = ({
                 name='world_description'
                 // value={personalityData.worldDescription}
                 onChange={HandleChange}
-                maxLength={12}
+                maxLength={2000}
               ></textarea>
             </div>
           </div>

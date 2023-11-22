@@ -15,9 +15,6 @@ import RangePicker from '../common/RangePicker';
 import Tooltip from '@components/common/tooltip';
 import RestWhite from '../../../../public/assets/rotate-cw-white.png';
 
-import ReactDOM from 'react-dom';
-import CanvasDraw from 'react-canvas-draw';
-
 import { ReactSketchCanvas } from 'react-sketch-canvas';
 interface CustomCanvasRect extends CanvasRect {
   eraseAll(): void;
@@ -46,19 +43,20 @@ const InpaintingModals = ({
   const canvasRef = useRef<CustomCanvasRect>(null);
 
   const brushSizes: number = parseInt(brushSize[0]);
-
+  const [Data, setData] = useState();
   const SaveImage = () => {
     const image = canvasRef?.current?.exportImage('png');
     image
       .then((data: any) => {
-        const Image =data;      
-        localStorage.setItem('savedDrawingImage', Image);
+        const Images = data;
+        setData(Images);
+        localStorage.setItem('savedDrawingImage', Images);
       })
       .catch((e: string) => {
         console.log(e);
       });
-    CloseInpaintingModal(false);
-    SetInpaintingCreated(true);
+    // CloseInpaintingModal(false);
+    // SetInpaintingCreated(true);
   };
 
   return (
@@ -81,11 +79,12 @@ const InpaintingModals = ({
         </button>
       </div>
       <div className='px-6 pt-6'>
+        <img src={Data || ''} alt='' />
         <div className='sub-banner relative m-auto h-[640px] w-[640px] rounded-lg '>
           {/* <Image
             src={Image1}
             className='object-cover w-full h-full rounded-lg'
-          />  */}
+          />   */}
           <ReactSketchCanvas
             ref={(canvasDraw: any) => (canvasRef.current = canvasDraw)}
             strokeWidth={brushSizes}

@@ -1,10 +1,11 @@
 import SearchIcon from '@components/common/Search/SearchIcon';
 import { Modal } from '@components/modal/modal';
 import React, { Dispatch, SetStateAction, useState } from 'react';
-import ChatIcon from './svg/chat-icon.svg';
+import ChatIcon from '../../../public/assets/message-circle-lines-alt.png';
 import UserList from './UserList';
 import CloseIcon from './svg/close-icon.svg';
 import ImageRequestModal from './ImageRequestModal';
+import Image from 'next/image';
 
 type startConversation = {
   startConversationModal: boolean;
@@ -27,12 +28,14 @@ const StartConversation = ({
   return (
     <div className='flex w-full items-center justify-center border-r-[2px] border-[#252525] bg-[#070707] '>
       <div className='flex w-[240px] flex-col items-center'>
-        <ChatIcon className='mb-4' />
-        <h3 className='mb-6 text-center text-[22px] font-bold text-[#515151]'>
+        <div className='flex h-[80px] w-[80px] items-center justify-center rounded-full bg-[#FFFFFF0D]'>
+          <Image src={ChatIcon} alt='' />
+        </div>
+        <h3 className='font-bold mb-6 text-center text-[22px] text-[#515151]'>
           Select a chat to start messaging
         </h3>
         <button
-          className='rounded-[14px] bg-[#1E1E1E] px-5 py-[13px] text-base font-bold text-[#979797]'
+          className='font-bold rounded-[14px] bg-[#1E1E1E] px-5 py-[13px] text-base text-[#979797]'
           onClick={handleCloseConversationModal}
         >
           Start a conversation
@@ -66,7 +69,7 @@ const StartConversation = ({
               <input
                 onFocus={handleInputFocus}
                 onBlur={handleInputBlur}
-                className='py-auto h-[48px] w-full rounded-[14px] border-none bg-[#1E1E1E] pl-[50px] text-[15px] font-light leading-6 text-[#979797] transition duration-100 focus:ring-[#5848BC]'
+                className='py-auto font-light h-[48px] w-full rounded-[14px] border-none bg-[#1E1E1E] pl-[50px] text-[15px] leading-6 text-[#979797] transition duration-100 focus:ring-[#5848BC]'
                 type='text'
                 placeholder='Search'
                 value={searchTerm}

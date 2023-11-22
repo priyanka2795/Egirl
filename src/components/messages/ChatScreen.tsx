@@ -159,6 +159,7 @@ export default function ChatScreen({
         file,
         preview: URL.createObjectURL(file)
       }));
+      setSendUploadImgState(false)
       setImageUploaded((prevImages) => [...prevImages, ...newImages]);
     }
   }, [acceptedFiles]);
@@ -168,12 +169,10 @@ export default function ChatScreen({
     updatedImages.splice(index, 1);
     setImageUploaded(updatedImages);
   };
-console.log(imageUploaded.length,'imageUploaded');
-
 
   return (
     <div
-      className={`w-full border-r-[2px] border-[#252525] bg-[#121212] lg:inline ${chatScreenClassName}`}
+      className={`w-full border-r-[2px] border-[#252525] bg-[#121212] lg:inline pb-3 ${chatScreenClassName}`}
     >
       <div className='flex h-[72px] w-full items-center justify-between border-b border-[#252525] px-6'>
         <div className='flex items-center'>
@@ -243,12 +242,15 @@ console.log(imageUploaded.length,'imageUploaded');
           </div>
         </div>
       </div>
+      <div className='flex flex-col w-full h-full'>
+
       <div
         className={`custom-scroll-bar flex overflow-y-auto pb-5 ${
           chatScreenMsgClassName
             ? chatScreenMsgClassName
             : 'h-[calc(100vh-72px-92px)] '
-        } ${ imageUploaded.length === 0 ?'h-[calc(100vh-72px-92px)]' :'h-[calc(72vh-72px-92px)]'}`}
+        } ${imageUploaded.length === 0 ?'h-[calc(100vh-72px-92px)]' :'h-[calc(72vh-72px-92px)]'} `}
+        // ${ imageUploaded.length === 0 ?'h-[calc(100vh-72px-92px)]' :'h-[calc(72vh-72px-92px)]'}
       >
         <div
           ref={containerRef}
@@ -281,8 +283,9 @@ console.log(imageUploaded.length,'imageUploaded');
         </div>
       </div>
       {showInput && (
-        <>
-          <div className={` flex w-full items-start bg-[red-400] px-6 pt-3`}>
+        <div className='flex flex-col gap-1 '>
+        
+          <div className={` flex w-full items-start bg-[red-400] px-6 pt-3 `}>
             <div className='relative self-end  mb-[10px]'>
               <div
                 className='plus-icon mr-[10px] mt-[8px] grid h-[32px] w-[32px] min-w-[32px] cursor-pointer place-items-center rounded-full bg-[#5848BC] transition duration-100 hover:bg-[#4b3abd]'
@@ -376,10 +379,9 @@ console.log(imageUploaded.length,'imageUploaded');
                     </div>
                   ))}
                 </div>
-                <div className={`'relative w-full ${imageUploaded.length === 0 ?'border-t-0':'border-t border-[#FFFFFF1F]' } '`}>
+                <div className={`'relative w-full ${imageUploaded.length === 0 ?'border-t-0':'border-t border-[#FFFFFF1F] pt-2' } '`}>
                   <TextareaAutosize
-                    className='font-light min-h-[48px] w-full resize-none  rounded-[14px] border-none  bg-[#1E1E1E] py-[10px] 
-   pl-4 pr-[50px] text-[15px] leading-6 text-[#979797] transition-all duration-100 focus:ring-1 focus:ring-transparent'
+                    className='font-light min-h-[48px] max-h-[50px] w-full resize-none rounded-[14px] border-none bg-[#1E1E1E] pt-4 text-[15px] leading-6 text-[#979797] transition-all duration-100 focus:ring-1 focus:ring-transparent pr-8'
                     cacheMeasurements
                     value={message}
                     // onChange={ev => setValue(ev.target.value)}
@@ -420,8 +422,10 @@ console.log(imageUploaded.length,'imageUploaded');
             </div>
           </div>
           {typingState && <MessageIndicator />}
-        </>
+        </div>
       )}
+      </div>
+
       {!showInput && (
         <>
           {/* <div className='flex h-[92px] items-center justify-between border-t border-[#252525] bg-[red-400] px-6'>

@@ -25,7 +25,7 @@ const DefaultChatViewDropdown = ({
     if(items === 'FullScreen view'){
       sessionStorage.setItem('sideBarCollapse', 'true');  
     }else{
-      sessionStorage.setItem('sideBarCollapse', 'false');
+      sessionStorage.setItem('sideBarCollapse', '');
     }
 
     setSelectedChatView(items);
