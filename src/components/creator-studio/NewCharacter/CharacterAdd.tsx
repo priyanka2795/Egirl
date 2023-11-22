@@ -13,8 +13,8 @@ const initialValues = {
 };
 
 interface CharacterAddProps {
-  setUserDetails: (userDetails: any) => void;
-  NewCharacterClose?: () => void;
+  setUserDetails?: (userDetails: any) => void;
+  NewCharacterClose?: any
   SetUserGuide?: (value: boolean) => void;
   SetIsTourOpen?: (value: boolean) => void;
   UserGuide?: any;
@@ -56,10 +56,10 @@ const CharacterAdd: React.FC<CharacterAddProps> = ({
       modalClassName={`bg-[#121212] flex  flex-col flex-start rounded-[20px]`}
     >
       <div className='flex items-start gap-2 self-stretch border-b border-white/[0.08] p-6'>
-        <div className='font-bold w-full gap-1 text-lg leading-6'>
+        <div className='w-full gap-1 text-lg font-bold leading-6'>
           Add New Character
         </div>
-        <div className='h-6 w-6'>
+        <div className='w-6 h-6'>
           <Cross onClick={() => NewCharacterClose?.()} />
         </div>
       </div>
@@ -111,7 +111,7 @@ const CharacterAdd: React.FC<CharacterAddProps> = ({
                 />
               </div>
 
-              <div className='flex items-start gap-3 self-stretch '>
+              <div className='flex items-start self-stretch gap-3 '>
                 <button
                   type='button'
                   onClick={() => NewCharacterClose?.()}
@@ -206,10 +206,10 @@ export default CharacterAdd;
 //       modalClassName={`bg-[#121212] flex  flex-col flex-start rounded-[20px]`}
 //     >
 //       <div className='flex items-start gap-2 self-stretch border-b border-white/[0.08] p-6'>
-//         <div className='font-bold w-full gap-1 text-lg leading-6'>
+//         <div className='w-full gap-1 text-lg font-bold leading-6'>
 //           Add New Character
 //         </div>
-//         <div className='h-6 w-6'>
+//         <div className='w-6 h-6'>
 //           <Cross onClick={() => NewCharacterClose(false)} />
 //         </div>
 //       </div>
@@ -291,7 +291,7 @@ export default CharacterAdd;
 //             </div>
 
 //             {/* buttons */}
-//             <div className='flex items-start gap-3 self-stretch '>
+//             <div className='flex items-start self-stretch gap-3 '>
 //               <button
 //                 onClick={() => NewCharacterClose(false)}
 //                 className='font-bold h-12 w-[50%] items-center gap-2 rounded-[14px] border border-white/[0.32] px-5 py-[13px] text-base leading-[22px]'

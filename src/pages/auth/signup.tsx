@@ -1,4 +1,5 @@
 import React, { FormEvent, useState } from 'react';
+import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { Database } from '../../../types/database';
 import { useRouter } from 'next/router';
 import * as Yup from 'yup';
@@ -16,7 +17,6 @@ import Cookies from 'js-cookie';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
 const validationSchema = Yup.object().shape({
   username: Yup.string().required('Username is required'),
   email: Yup.string().email('Invalid email').required('Email is required'),
@@ -29,14 +29,7 @@ const validationSchema = Yup.object().shape({
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
       'Password must meet criteria'
-    ),
-  // phoneNumber: Yup.number()
-  //   .required('Phone number is required')
-  //   .test(
-  //     'is-ten-digits',
-  //     'Phone number must be exactly 10 digits',
-  //     (value) => String(value).length === 10
-  //   )
+    )
 });
 const initialValues = {
   username: '',
@@ -45,10 +38,10 @@ const initialValues = {
   password: '',
   phoneNumber: ''
 };
-
-
 export default function SignUp() {
   const router = useRouter();
+  const supabase = useSupabaseClient<Database>();
+
   const [password, setPassword] = useState('');
   const [isMinLength, setIsMinLength] = useState<boolean>(false);
   const [hasNumberOrSpecialChar, setHasNumberOrSpecialChar] =
@@ -192,6 +185,8 @@ export default function SignUp() {
                       />
                     </div>
 
+                   
+
                     <div className='flex flex-col gap-[6px]'>
                       <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
                         Password
@@ -201,6 +196,10 @@ export default function SignUp() {
                         id='password'
                         name='password'
                         placeholder='password'
+                        // value={password}
+                        // onChange={(e: any) => {
+                        //   handlePasswordChange(e);
+                        // }}
                         className={`font-normal // flex rounded-[14px] bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-white placeholder:text-[#979797] 
                      focus:ring-0 ${
                        errors.password
@@ -270,4 +269,3 @@ export default function SignUp() {
     </>
   );
 }
-
