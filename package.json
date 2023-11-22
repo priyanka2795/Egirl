@@ -44,7 +44,6 @@
     "react": "18.2.0",
     "react-audio-voice-recorder": "^2.1.2",
     "react-avatar-editor": "^13.0.0",
-    "react-canvas-draw": "^1.2.1",
     "react-confetti": "^6.1.0",
     "react-cropper": "^2.3.3",
     "react-dom": "18.2.0",
