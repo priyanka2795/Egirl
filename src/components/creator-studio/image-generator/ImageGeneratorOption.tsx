@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ShuffleSvg from '../../../../public/assets/svgImages/shuffle.svg';
 import PlusIconSvg from '../../../../public/assets/svgImages/plus-icon.svg';
 import Toggle from '@components/common/Toggler';
@@ -28,6 +28,9 @@ import RightIcon from '../../../../public/assets/check-cs.png';
 import DeleteIcon from '../../../../public/assets/delete-icon.png';
 import { postInpaintImage, postPoseImage, postPromptImage } from 'services/services';
 import Cookies from 'js-cookie';
+import { useAppDispatch, useAppSelector } from 'redux/hooks';
+import { tokenRefresh } from 'redux/api/RefreshTokenApi';
+import { useRouter } from 'next/router'
 
 const EditPromptName = [
   'Mica-chan',
@@ -74,6 +77,7 @@ interface ImageGeneratorOption {
   EditGeneration: boolean;
   EditTooltip: boolean;
   numOfImages?:number;
+  imageDimension?:any;
 }
 const ImageGeneratorOption = ({
   InpaintingToggle,
@@ -81,8 +85,12 @@ const ImageGeneratorOption = ({
   MyCharacterToggle,
   EditGeneration,
   EditTooltip,
-  numOfImages
+  numOfImages,
+  imageDimension
 }: ImageGeneratorOption) => {
+  const dispatch = useAppDispatch()
+  const router = useRouter()
+  
   const [prompt, setPrompt] = useState<boolean>(false);
   const [tagState, setTagState] = useState<boolean>(false);
   const [openGenre, setOpenGenre] = React.useState<boolean>(false);
@@ -113,6 +121,7 @@ const ImageGeneratorOption = ({
   const [promptHint, setPromptHint] = useState<string>('');
   const [negativePrompt, setNegativePrompt] = useState<string>('')
 
+
   const DeletePromptMenu = (item: string) => {
     setEditPromptMenu(
       editPromptMenu.filter((el: string, i: number) => el !== item)
@@ -139,7 +148,7 @@ const ImageGeneratorOption = ({
       e.target.value = '';
     }
   }
-console.log("InpaintingToggle---",InpaintingToggle, "posing---",PosingToggle)
+
   const EditPromptData = (item: null) => {
     setEditPrompt((prev) => (prev === item ? null : item));
   };
@@ -215,43 +224,65 @@ console.log("InpaintingToggle---",InpaintingToggle, "posing---",PosingToggle)
       inputRef.current.focus();
     }
   };
+
+  
+  let promptValueObj:{promptType:string, promptValue:string}
+  const [promptValArr, setPromptValArr] = useState([] as any)
+  
+  if(editPrompt && editPromptMenuIndex){
+     promptValueObj =  {promptType:editPrompt, promptValue:editPromptMenuIndex}
+  }
+  useEffect(()=>{
+    setPromptValArr([...promptValArr, promptValueObj])
+  },[editPromptMenuIndex])
+  console.log("promptValArr---",promptValArr)
   //====== prompt image api for image generation ========
   const token:any = Cookies.get("accessToken")
-  let promptData:any = {
-    "prompt": [
-      {
-        "prompt_id": 0,
-        "prompt_type": promptTags.toString(),
+  const refreshTokenData:any = useAppSelector((state)=> state.tokenRefresh?.tokenData)
+  
+  useEffect(()=>{
+    if(refreshTokenData){
+      Cookies.set("accessToken", refreshTokenData)
+    }
+  },[refreshTokenData, router.pathname])
+  
+  let promptData = {
+    "prompt": promptTags.map((ele:string,index:number)=>{
+      return {
+        "prompt_id": index,
+        "prompt_type": ele,
         "prompt_value": "string"
       }
-    ],
+    }),
     "negative_prompt": negativePrompt,
-    "sd_image_model": "string",
-    "height": 0,
-    "width": 0,
-    "guidance_scale": 1,
-    "inference_steps": 1,
+    "sd_image_model": "SemiRealMix",
+    "height": imageDimension?.height,
+    "width": imageDimension?.width,
+    "guidance_scale": 7.5,
+    "inference_steps": 10,
     "num_of_images": numOfImages
   }
+ 
+
   let inPaintData = {
     "base_image": {
       "media_id": 0,
       "media_url": "string"
     },
     "mask_image_base64_str": "string",
-    "prompt": [
-      {
-        "prompt_id": 0,
-        "prompt_type": "string",
+    "prompt": promptTags.map((ele:string,index:number)=>{
+      return {
+        "prompt_id": index,
+        "prompt_type": ele,
         "prompt_value": "string"
       }
-    ],
+    }),
     "negative_prompt": negativePrompt,
-    "sd_image_model": "string",
-    "height": 0,
-    "width": 0,
-    "guidance_scale": 0,
-    "inference_steps": 0,
+    "sd_image_model": "SemiRealMix",
+    "height": imageDimension?.height,
+    "width": imageDimension?.width,
+    "guidance_scale": 7.5,
+    "inference_steps": 10,
     "num_of_images": numOfImages
   }
   let poseData = {
@@ -260,25 +291,25 @@ console.log("InpaintingToggle---",InpaintingToggle, "posing---",PosingToggle)
       "media_url": "string"
     },
     "pose_image_base64_str": "string",
-    "prompt": [
-      {
-        "prompt_id": 0,
-        "prompt_type": "string",
+    "prompt":promptTags.map((ele:string,index:number)=>{
+      return {
+        "prompt_id": index,
+        "prompt_type": ele,
         "prompt_value": "string"
       }
-    ],
-    "negative_prompt": "string",
-    "sd_image_model": "string",
-    "height": 0,
-    "width": 0,
-    "guidance_scale": 0,
-    "inference_steps": 0,
-    "num_of_images": 0
+    }),
+    "negative_prompt": negativePrompt,
+    "sd_image_model": "SemiRealMix",
+    "height": imageDimension?.height,
+    "width": imageDimension?.width,
+    "guidance_scale": 7.5,
+    "inference_steps": 10,
+    "num_of_images": numOfImages
   }
   const handleGenerate = ()=>{
  
     if(InpaintingToggle === true){
-         //------ inpainting image api ----
+         //------ inPainting image api ----
       postInpaintImage(inPaintData, token)
       .then((res)=>{
         console.log("inPaintImage res---", res)
@@ -287,7 +318,6 @@ console.log("InpaintingToggle---",InpaintingToggle, "posing---",PosingToggle)
         console.log("inPaintImage err---", err)
       })
     }
-    
     else if(PosingToggle === true){
       //----------- pose image api -------
       postPoseImage(poseData, token)
@@ -301,17 +331,18 @@ console.log("InpaintingToggle---",InpaintingToggle, "posing---",PosingToggle)
     else{
       //------- prompt image api ------
       postPromptImage(promptData,token)
-    .then((res)=>{
+    .then((res:any)=>{
       console.log("prompt image res---", res)
+      if(res?.response?.status === 401){
+        dispatch(tokenRefresh())
+      }
     })
     .catch((err)=>{
       console.log("prompt image err---", err)
     })
     }
-    
   }
   
- 
   //=======================
   return (
     <>
@@ -403,29 +434,31 @@ console.log("InpaintingToggle---",InpaintingToggle, "posing---",PosingToggle)
                           />
                         </div>
                         <div className='flex flex-col gap-[10px]'>
-                          {editPromptMenu.map((items, index) => (
+                          {editPromptMenu.map((items, index) => {
+                          return(
                             <div
-                              key={index}
-                              className={`${
-                                editPromptMenuIndex === items
-                                  ? 'bg-[#FFFFFF0D]'
-                                  : ''
-                              } flex cursor-pointer items-center justify-between px-4 py-[10px]`}
-                              onClick={() => {
-                                setEditPromptMenuIndex(items);
-                              }}
-                            >
-                              <p>{items}</p>
-                              {editPromptMenuIndex === items ? (
-                                <Image
-                                  src={RightIcon}
-                                  className='w-full h-full'
-                                />
-                              ) : (
-                                ''
-                              )}
-                            </div>
-                          ))}
+                            key={index}
+                            className={`${
+                              editPromptMenuIndex === items
+                                ? 'bg-[#FFFFFF0D]'
+                                : ''
+                            } flex cursor-pointer items-center justify-between px-4 py-[10px]`}
+                            onClick={() => {
+                              setEditPromptMenuIndex(items);
+                            }}
+                          >
+                            <p>{items}</p>
+                            {editPromptMenuIndex === items ? (
+                              <Image
+                                src={RightIcon}
+                                className='w-full h-full'
+                              />
+                            ) : (
+                              ''
+                            )}
+                          </div>
+                          )
+                            })}
                           <div className='px-4 py-[10px]'>
                             <button
                               className='font-bold flex w-full items-center justify-center gap-[6px] rounded-[10px] bg-[#FFFFFF14] py-[7px] text-[#979797]'
