@@ -53,3 +53,9 @@ package-lock.json
 .yarn
 .pnp.cjs
 .pnp.loader.mjs
+firebase-debug.log
+firebase.json
+firestore.indexes.json
+firestore.rules
+.firebaserc 
+storage.rules

@@ -32,7 +32,6 @@
     "clsx": "^1.2.1",
     "dotenv": "^16.0.3",
     "emoji-picker-react": "^4.4.9",
-    "firebase": "^9.9.4",
     "formik": "^2.4.5",
     "framer-motion": "^7.2.1",
     "heroicons": "^2.0.16",
