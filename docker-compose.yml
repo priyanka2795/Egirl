@@ -2,6 +2,7 @@ version: '3'
 services:
   web:
     container_name: egirls_frontend_container
+    image: egirls_frontend_image
     build: .
     ports:
       - "3000:3000"

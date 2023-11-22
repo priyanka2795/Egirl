@@ -87,7 +87,7 @@ const CreatorStudioSidebar = ({
             shrinkSideBar !== true ? 'mx-3 max-w-[276px] ' : 'mx-2'
           }`}
         >
-          <div
+          {/* <div
             className='flex cursor-pointer items-center justify-between py-[14px] pl-3 pr-4'
             onClick={() => setSidebarModal(!sidebarModal)}
           >
@@ -116,14 +116,14 @@ const CreatorStudioSidebar = ({
                 setNewCharacter={setNewCharacter}
               />
             )}
-          </div>
+          </div> */}
               {/*  */}
-            {/* <div className='flex flex-col items-start self-stretch gap-2 px-6 pt-6 pb-2 '>
+            <div className='flex flex-col items-start self-stretch gap-2 px-6 pt-6 pb-2 '>
               <button onClick={() => setCreateCharacter(true)} className='w-full h-auto flex py-2.5 px-4 justify-center items-center gap-1.5 self-stretch rounded-xl bg-[#5848BC]'>
                   <Image src={userAdd} alt='' className='w-[18px] h-[18px]'/>
                   <span className='text-sm font-semibold leading-5 normal'>Create character</span>
               </button>
-            </div> */}
+            </div>
             
             {createCharacter && (
         <CreateCharacterModal

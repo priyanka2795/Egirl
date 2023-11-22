@@ -14,7 +14,11 @@ interface giftCreateModalProp {
   SetCategory: React.Dispatch<React.SetStateAction<string[]>>;
   giftImageSet: string;
   setGiftImageSet: React.Dispatch<React.SetStateAction<string>>;
-  giftCategory:any
+  giftCategory:any,
+  setCreateCategory : React.Dispatch<React.SetStateAction<boolean>>,
+  createCategory: boolean;
+  setCreateCategoryToggle:React.Dispatch<React.SetStateAction<boolean>>,
+  createCategoryToggle:boolean
 }
 function giftCreateModal({
   closeModal,
@@ -25,7 +29,11 @@ function giftCreateModal({
   SetCategory,
   giftImageSet,
   setGiftImageSet,
-  giftCategory
+  giftCategory,
+  setCreateCategory,
+  createCategory,
+  setCreateCategoryToggle,
+  createCategoryToggle
 }: giftCreateModalProp) {
   const [steps, setSteps] = useState<number>(1);
   // const [giftImageSet, setGiftImageSet] = useState('');
@@ -48,10 +56,12 @@ function giftCreateModal({
               AddCategory={AddCategory}
               SetCategory={SetCategory}
               giftCategory={giftCategory}
+              setCreateCategory={setCreateCategory}
               Steps={setSteps}
               GiftName={GiftName}
               SetGiftName={SetGiftName}
               GiftImageSet={giftImageSet}
+              createCategory={createCategory}
             />
           ) : steps === 3 ? (
             <SelectImage
@@ -71,6 +81,8 @@ function giftCreateModal({
           Steps={setSteps}
           AddCategory={AddCategory}
           SetCategory={SetCategory}
+          setCreateCategoryToggle={setCreateCategoryToggle}
+          createCategoryToggle={createCategoryToggle}
         />
       ) : (
         ''
