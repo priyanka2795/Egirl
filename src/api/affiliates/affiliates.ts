@@ -7,7 +7,7 @@ import {
   addReferralJoin
 } from '../utils/affiliates';
 
-import { supabaseClient } from '../../config/supabaseClient';
+
 
 /// Affiliates and Referrals
 
@@ -77,33 +77,5 @@ export async function createReferralJoin(
   return referral_join;
 }
 
-// createAffiliateLink(
-//   'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
-//   'test-affiliate-1',
-//   supabaseClient
-// );
-// createReferral(
-//   'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
-//   'test-referral-1',
-//   supabaseClient
-// );
-// createAffiliateJoin(
-//   'test-affiliate-1',
-//   'd692bc5c-5df1-408f-9d18-a14afc8216ed',
-//   supabaseClient
-// );
-// createReferralJoin(
-//   'test-referral-1',
-//   'd692bc5c-5df1-408f-9d18-a14afc8216ed',
-//   supabaseClient
-// );
 
-// getAffiliatesByUser(
-//   'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
-//   supabaseClient
-// );
 
-getReferralsByUser(
-  'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
-  supabaseClient
-);

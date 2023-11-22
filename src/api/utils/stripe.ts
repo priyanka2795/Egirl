@@ -5,7 +5,7 @@ import {
 } from '@stripe/stripe-js';
 import Stripe from 'stripe';
 import { toDateTime } from './helpers';
-// import { supabaseClient } from '../../config/supabaseClient';
+
 
 let stripePromise: Promise<StripeObj | null>;
 
@@ -162,7 +162,6 @@ export async function createSubscription(
     throw new Error('Sorry, your card was declined. Please try another card.')
   }
 
-  // Insert subscription id into Supabase
   const { error } = await client
     .from('stripe_subscriptions')
     .insert([
@@ -191,7 +190,6 @@ export async function cancelSubscription(
     throw new Error('Sorry, your subscription could not be cancelled. Please try again.')
   }
 
-  // Delete subscription id from Supabase
   const { error } = await client
     .from('stripe_subscriptions')
     .delete()

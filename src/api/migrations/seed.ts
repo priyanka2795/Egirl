@@ -1,4 +1,4 @@
-import { supabaseClient } from '../../config/supabaseClient';
+
 
 async function profile() {
   const data = [
@@ -44,11 +44,6 @@ async function profile() {
     }
   ];
 
-  const { error } = await supabaseClient.from('profile').insert(data);
-
-  if (error) {
-    console.log(error);
-  }
 }
 
 async function creators() {
@@ -79,11 +74,7 @@ async function creators() {
     }
   ];
 
-  const { error } = await supabaseClient.from('creators').insert(data);
-
-  if (error) {
-    console.log(error);
-  }
+  
 }
 
 async function characters() {
@@ -126,11 +117,6 @@ async function characters() {
     }
   ];
 
-  const { error } = await supabaseClient.from('characters').insert(data);
-
-  if (error) {
-    console.log(error);
-  }
 }
 
 async function subscriptions() {
@@ -185,11 +171,7 @@ async function subscriptions() {
     }
   ];
 
-  const { error } = await supabaseClient.from('subscriptions').insert(data);
-
-  if (error) {
-    console.log(error);
-  }
+ 
 }
 
 async function user_subscriptions() {
@@ -227,14 +209,6 @@ async function user_subscriptions() {
       created_at: '2016-07-24T03:32:45.678Z'
     }
   ];
-
-  const { error } = await supabaseClient
-    .from('user_subscriptions')
-    .insert(data);
-
-  if (error) {
-    console.log(error);
-  }
 }
 
 async function creator_subscriptions() {
@@ -262,13 +236,6 @@ async function creator_subscriptions() {
     }
   ];
 
-  const { error } = await supabaseClient
-    .from('creator_subscriptions')
-    .insert(data);
-
-  if (error) {
-    console.log(error);
-  }
 }
 
 async function followers() {
@@ -299,45 +266,8 @@ async function followers() {
     }
   ];
 
-  const { error } = await supabaseClient.from('followers').insert(data);
-
-  if (error) {
-    console.log(error);
-  }
 }
 
-// NOTE: deprecated
-// async function infotags() {
-//   const data = [
-//     {
-//       id: 1,
-//       created_by: 1,
-//       name: 'dom',
-//       is_hashtag: false,
-//       created_at: '2016-07-24T03:32:45.678Z'
-//     },
-//     {
-//       id: 2,
-//       created_by: 2,
-//       name: '#kinky',
-//       is_hashtag: true,
-//       created_at: '2017-07-24T03:32:45.678Z'
-//     },
-//     {
-//       id: 3,
-//       created_by: 3,
-//       name: 'bdsm',
-//       is_hashtag: false,
-//       created_at: '2018-07-24T03:32:45.678Z'
-//     }
-//   ];
-
-//   const { error } = await supabaseClient.from('infotags').insert(data);
-
-//   if (error) {
-//     console.log(error);
-//   }
-// }
 
 async function posts() {
   const data = [
@@ -391,11 +321,7 @@ async function posts() {
     }
   ];
 
-  const { error } = await supabaseClient.from('posts').insert(data);
 
-  if (error) {
-    console.log(error);
-  }
 }
 
 async function media() {
@@ -423,11 +349,7 @@ async function media() {
     }
   ];
 
-  const { error } = await supabaseClient.from('media').insert(data);
 
-  if (error) {
-    console.log(error);
-  }
 }
 
 async function comments() {
@@ -462,11 +384,6 @@ async function comments() {
     }
   ];
 
-  const { error } = await supabaseClient.from('comments').insert(data);
-
-  if (error) {
-    console.log(error);
-  }
 }
 
 async function post_likes() {
@@ -505,11 +422,6 @@ async function post_likes() {
     }
   ];
 
-  const { error } = await supabaseClient.from('post_likes').insert(data);
-
-  if (error) {
-    console.log(error);
-  }
 }
 
 async function items() {
@@ -543,11 +455,6 @@ async function items() {
     }
   ];
 
-  const { error } = await supabaseClient.from('items').insert(data);
-
-  if (error) {
-    console.log(error);
-  }
 }
 
 async function bookmarks() {
@@ -575,11 +482,6 @@ async function bookmarks() {
     }
   ];
 
-  const { error } = await supabaseClient.from('bookmarks').insert(data);
-
-  if (error) {
-    console.log(error);
-  }
 }
 
 async function interests() {
@@ -610,11 +512,6 @@ async function interests() {
     }
   ];
 
-  const { error } = await supabaseClient.from('interests').insert(data);
-
-  if (error) {
-    console.log(error);
-  }
 }
 
 async function lists() {
@@ -649,11 +546,6 @@ async function lists() {
     }
   ];
 
-  const { error } = await supabaseClient.from('lists').insert(data);
-
-  if (error) {
-    console.log(error);
-  }
 }
 
 async function user_blocks() {
@@ -678,11 +570,6 @@ async function user_blocks() {
     }
   ];
 
-  const { error } = await supabaseClient.from('user_blocks').insert(data);
-
-  if (error) {
-    console.log(error);
-  }
 }
 
 async function user_reports() {
@@ -707,11 +594,6 @@ async function user_reports() {
     }
   ];
 
-  const { error } = await supabaseClient.from('user_reports').insert(data);
-
-  if (error) {
-    console.log(error);
-  }
 }
 
 async function messages_user_to_character() {
@@ -742,13 +624,6 @@ async function messages_user_to_character() {
     }
   ];
 
-  const { error } = await supabaseClient
-    .from('messages_user_to_character')
-    .insert(data);
-
-  if (error) {
-    console.log(error);
-  }
 }
 
 async function messages_character_to_user() {
@@ -771,13 +646,6 @@ async function messages_character_to_user() {
     }
   ];
 
-  const { error } = await supabaseClient
-    .from('messages_character_to_user')
-    .insert(data);
-
-  if (error) {
-    console.log(error);
-  }
 }
 
 async function prepaid_dollars() {
@@ -792,11 +660,6 @@ async function prepaid_dollars() {
     }
   ];
 
-  const { error } = await supabaseClient.from('prepaid_dollars').insert(data);
-
-  if (error) {
-    console.log(error);
-  }
 }
 
 async function user_transactions() {
@@ -817,11 +680,6 @@ async function user_transactions() {
     }
   ];
 
-  const { error } = await supabaseClient.from('user_transactions').insert(data);
-
-  if (error) {
-    console.log(error);
-  }
 }
 
 async function rooms() {
@@ -858,11 +716,6 @@ async function rooms() {
     }
   ];
 
-  const { error } = await supabaseClient.from('rooms').insert(data);
-
-  if (error) {
-    console.log(error);
-  }
 }
 
 // Updated profile tags
@@ -886,11 +739,6 @@ async function profile_tags() {
     }
   ];
 
-  const { error } = await supabaseClient.from('profile_tags').insert(data);
-
-  if (error) {
-    console.log(error);
-  }
 }
 
 async function main() {

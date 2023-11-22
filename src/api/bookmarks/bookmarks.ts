@@ -1,6 +1,6 @@
 import { getBookmarksByUser, createUserBookmark } from '../utils/bookmarks';
 
-//import { supabaseClient } from '../../config/supabaseClient';
+
 
 /// Bookmarks
 
@@ -22,4 +22,4 @@ export async function createBookmark(
 }
 
 
-// getBookmarks('e8a2be37-76f6-4ebb-bfd8-b9e370046a41', supabaseClient);
+

@@ -4,7 +4,6 @@ import { Dialog } from '@headlessui/react';
 import { Button } from '@components/ui/button';
 import { CustomIcon } from '@components/ui/custom-icon';
 import { createCustomList } from 'api/lists/lists';
-import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react';
 import Image from 'next/image';
 import { RequestItem } from './RequestItem';
 
@@ -33,8 +32,7 @@ export function ImageRequestModal({
   action,
   closeModal
 }: ImageRequestModalProps): JSX.Element {
-  const supabaseClient = useSupabaseClient();
-  const user = useUser();
+
 
   const mainBtn = useRef<HTMLButtonElement>(null);
 
@@ -51,7 +49,6 @@ export function ImageRequestModal({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const createList = async () => {
-    await createCustomList(user!.id, listName, [], supabaseClient);
     action();
   };
 
@@ -61,7 +58,7 @@ export function ImageRequestModal({
         {useIcon && (
           <i className='mx-auto'>
             <CustomIcon
-              className='h-10 w-10 text-accent-blue dark:text-twitter-icon'
+              className='w-10 h-10 text-accent-blue dark:text-twitter-icon'
               iconName='TwitterIcon'
             />
           </i>
@@ -131,10 +128,10 @@ export function ImageRequestModal({
         <h3 className='font-semibold text-black'>Cost: $1.00</h3>
       </div>
       <div className='flex flex-col gap-3 inner:font-bold'>
-        <p className='w-full rounded bg-gray-100 p-4 text-sm text-gray-400'>
+        <p className='w-full p-4 text-sm text-gray-400 bg-gray-100 rounded'>
           Hey sexy, can you send me a pic of you...
         </p>
-        <p className='w-full rounded bg-gray-100 p-4 text-sm text-gray-400'>
+        <p className='w-full p-4 text-sm text-gray-400 bg-gray-100 rounded'>
           Wearing a <span className='text-gray-800'>black mini skirt</span>{' '}
           while at <span className='text-gray-800'>the beach</span>?
         </p>
@@ -142,7 +139,7 @@ export function ImageRequestModal({
           onClick={() => {
             action();
           }}
-          className='w-full rounded-full bg-blue-400 p-2'
+          className='w-full p-2 bg-blue-400 rounded-full'
         >
           Send
         </button>

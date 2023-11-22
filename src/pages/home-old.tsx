@@ -13,26 +13,16 @@ import { Loading } from '@components/ui/loading';
 import { Error } from '@components/ui/error';
 import { ReactElement, ReactNode, useEffect } from 'react';
 import { getHomePostsSubscribedTo } from '../api/home/home';
-import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react';
 import { User } from '@lib/types/user';
 import { Tweet as TypeTweet } from '@lib/types/tweet';
 import Router from 'next/router';
 
 export default function Home(): JSX.Element {
-  const user = useUser();
-  const client = useSupabaseClient();
 
-  console.log('user', user);
 
-  const getHomePosts = async () => {
-    const data = await getHomePostsSubscribedTo(user!.id, client);
-  };
+ 
 
-  useEffect(() => {
-    if (user) {
-      getHomePosts();
-    }
-  }, [user]);
+
 
   const isMobile = false;
 
@@ -194,19 +184,6 @@ export default function Home(): JSX.Element {
 
   const data: any[] = tweetData;
 
-  const handleLogout = async () => {
-    await client.auth.signOut();
-    if (user == null) {
-      Router.push('/home');
-    }
-  };
-
-  useEffect(() => {
-    if (user == null) {
-      Router.push('/');
-    }
-  }, [user]);
-
   return (
     <MainContainer>
       <SEO title='Home / Twitter' />
@@ -232,7 +209,7 @@ export default function Home(): JSX.Element {
           </>
         )}
         <div>
-          <button onClick={handleLogout}>Logout</button>
+          <button>Logout</button>
         </div>
       </section>
     </MainContainer>

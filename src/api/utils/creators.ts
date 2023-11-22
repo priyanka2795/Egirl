@@ -1,4 +1,4 @@
-import { supabaseClient } from '../../config/supabaseClient';
+
 import { getSubscriptions } from './subscriptions';
 
 /// Getters

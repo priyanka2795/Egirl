@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { Database } from '../../../types/database';
 import { useRouter } from 'next/router';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
@@ -19,29 +18,18 @@ import SignIn from './signin';
 import SigninTemplate from './signinTemplate';
 import WelcomeStepsModal from './welcomeSteps';
 import SigninLoginOpt from './SigninLoginOpt';
+import { userSignUp } from 'services/services';
+import Cookies from 'js-cookie';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-// const login = [
-//   {
-//     icon: googleIcon,
-//     text: 'Login with Google'
-//   },
-//   {
-//     icon: discordIcon,
-//     text: 'Login with Discord'
-//   },
-//   {
-//     icon: facebookIcon,
-//     text: 'Login with Facebook'
-//   }
-// ];
 
 const initialValues = {
   username: '',
   email: '',
+  verifyEmail:'',
   password: '',
-  confirmpassword: '',
   phone: '',
-  address: ''
 };
 
 const validationSchema = Yup.object({
@@ -49,7 +37,7 @@ const validationSchema = Yup.object({
   email: Yup.string()
     .email("That's an invalid email")
     .required('Please Enter your Email'),
-  verifyemail: Yup.string()
+  verifyEmail: Yup.string()
     .required()
     .oneOf([Yup.ref('email')], "That's an invalid email"),
   password: Yup.string()
@@ -60,18 +48,9 @@ const validationSchema = Yup.object({
     )
 });
 
-const initialstate = {
-  username: '',
-  email: '',
-  password: '',
-  confirmPassword: '',
-  phone:''
-
-};
 
 export default function SignUp() {
   const router = useRouter();
-  const supabase = useSupabaseClient<Database>();
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState('');
   const [isMinLength, setIsMinLength] = useState<boolean>(false);
@@ -90,19 +69,6 @@ export default function SignUp() {
     setPassword(e.target.value);
   };
 
-  const loginHandler = async () => {
-    console.log('loggin in with - email:', email, '| password:', password);
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email: email,
-      password: password
-    });
-    console.log('results of logging in: ', data, error);
-    if (!error) {
-      router.push('/home');
-    } else {
-      setErrorMsg(error.message);
-    }
-  };
 
   const handlePasswordChange = (e: any) => {
     const newPassword = e.target.value;
@@ -117,47 +83,49 @@ export default function SignUp() {
     );
   };
 
-  const loginGoogleHandler = async () => {
-    console.log('loggin in with google');
-    const { data, error } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
-      options: {
-        redirectTo: `${new URL(location.href).origin}/logging-in?redirect=/home`
+
+
+  const onSubmit = (values: any) => {
+    setErrorMsg('')
+    let data = {
+      "username": values.username,
+      "email": values.email,
+      "password": values.verifyEmail,
+      "phone": "1234567890"
+    }
+    userSignUp(data)
+    .then((res:any)=>{
+      console.log("sign up res---", res)
+      if (res.status === 200) {
+        toast.success('User signUp successful');
+        Cookies.set('accessToken', res.data.access_token);
+        Cookies.set('refreshToken', res.data.refresh_token);
+        setTimeout(() => {
+          router.push('/home');
+        }, 1000);
       }
-    });
-    console.log('results of logging in: ', data, error);
+      if (res.response.status === 400) {
+        setErrorMsg(res.response.data.detail);
+      } 
+    })
+    .catch((err)=>{
+      console.log("sign up err---", err)
+    })
   };
 
-  const onSubmit = (values: any, onSubmitProps: any) => {
-    console.log('Form data', values);
-    console.log('onSubmitProps data', onSubmitProps);
-    // onSubmitProps.setSubmitting(false);
-    // onSubmitProps.resetForm();
-    // setWelcomeStepsModal(true);
-
-    // axios.post(`https://jsonplaceholder.typicode.com/users`, { user })
-    // .then(res => {
-    //   console.log(res);
-    //   console.log(res.data);
-    // })
-  };
-
-// Validations 
-const [form, setForm] = useState(initialstate);
-const [error, setError] = useState({});
 
 
-const handleChange = (e:any) => {
-  const { name, value } = e.target;
-  setForm({
-    ...form,
-    [name]: value,
-  });
-  setError({
-    ...error,
-    [name]: '',
-  });
-};
+// const handleChange = (e:any) => {
+//   const { name, value } = e.target;
+//   setForm({
+//     ...form,
+//     [name]: value,
+//   });
+//   setError({
+//     ...error,
+//     [name]: '',
+//   });
+// };
 
 
 
@@ -249,20 +217,20 @@ const handleChange = (e:any) => {
                     />
                   </div>
 
-                  <div className='input-verifyemail-error flex flex-col gap-[6px]'>
+                  <div className='input-verifyEmail-error flex flex-col gap-[6px]'>
                     <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
                       Verify Email address
                     </div>
                     <Field
                       type='email'
-                      id='verifyemail'
-                      name='verifyemail'
+                      id='verifyEmail'
+                      name='verifyEmail'
                       className='font-normal input-error-border flex rounded-[14px] border-none bg-transparent bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
                       placeholder='example@gmail.com'
                     />
                     <ErrorMessage
                       className='font-normal Input-error text-[14px] leading-[18px] text-[#FF5336]'
-                      name='verifyemail'
+                      name='verifyEmail'
                       component='div'
                     />
                   </div>
@@ -276,61 +244,29 @@ const handleChange = (e:any) => {
                       id='password'
                       name='password'
                       placeholder='password'
-                      value={password}
-                      onChange={(e: any) => {
-                        // setPassword(e.target.value),
-                        //   console.log(password, 'dfdgdg');
-                        handlePasswordChange(e);
-                      }}
-                      className={`font-normal flex rounded-[14px] bg-transparent bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] 
-                      placeholder:text-[#979797]  focus:ring-0 ${
-                        isMinLength && hasNumberOrSpecialChar
-                          ? 'focus:border-transparent'
-                          : 'border border-[#FF5336] focus:border-[#FF5336]'
-                      }`}
+                      // value={password}
+                      // onChange={(e: any) => {
+                      //   handlePasswordChange(e);
+                      // }}
+                      className={`font-normal flex rounded-[14px] bg-transparent border-none bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] 
+                      placeholder:text-[#979797]  focus:ring-0 `}
                     />
-                    {/* <input
-                      type='password'
-                      onChange={(e) => setPasswordAgain(e.target.value)}
-                    /> */}
-
-                    {/* <PasswordChecklist
-                      rules={[
-                        'minLength',
-                        'specialChar',
-                        'number'
-
-                        // 'match'
-                      ]}
-                      minLength={8}
-                      value={password}
-                      valueAgain={passwordAgain}
-                      messages={{
-                        minLength: 'contains at least 8 characters',
-                        specialChar: 'The password has special characters.',
-                        number: 'The password has a number.'
-                      }}
-                    /> */}
-
-                    {/* <ErrorMessage
-                      className='font-normal text-[14px] leading-[18px] text-[#FF5336]'
-                      name='password'
-                      component='div'
-                    /> */}
                     <div>
                       <ul>
                         <li className='mb-3'>Create a password that:</li>
                         <li className='flex items-center mb-2'>
-                          {isMinLength ? <CheckedIcon /> : <CrossIcon />}{' '}
+                          {/* {isMinLength ? */}
+                           <CheckedIcon /> 
+                           {/* : <CrossIcon />} */}
                           contains at least 8 characters
                         </li>
                         <li className='flex items-center'>
-                          {hasNumberOrSpecialChar ? (
+                          {/* {hasNumberOrSpecialChar ? ( */}
                             <CheckedIcon />
-                          ) : (
+                          {/* ) : (
                             <CrossIcon />
-                          )}{' '}
-                          contains at least one number (0-9) or a symbol
+                          )}{' '} */}
+                          contains at least one number (0-9) and a symbol
                         </li>
                       </ul>
                     </div>
@@ -338,18 +274,21 @@ const handleChange = (e:any) => {
                 </div>
               </div>
 
-              <div className='w-full px-10 pt-5 pb-10'>
+              <div className={`w-full px-10 pt-5 ${errorMsg ? 'pb-5' : 'pb-10'} `}>
                 <button
                   type='submit'
                   className='font-bold flex w-full items-center justify-center rounded-[16px] bg-[#5848BC] px-6 py-4 text-[18px] leading-6 text-white'
-                  onClick={() => setWelcomeStepsModal(true)}
+                  // onClick={() => setWelcomeStepsModal(true)}
                 >
                   Continue
                 </button>
               </div>
+              <p className={`px-10 text-red-400 ${errorMsg ? 'pb-10' : ''}`}>{errorMsg}</p>
             </div>
+            
           </Form>
         </Formik>
+        
       </SigninTemplate>
       {/* {welcomeStepsModal && (
         <WelcomeStepsModal
@@ -357,6 +296,19 @@ const handleChange = (e:any) => {
           setWelcomeStepsModal={setWelcomeStepsModal}
         />
       )} */}
+       <ToastContainer
+        position='bottom-center'
+        pauseOnHover
+        theme='colored'
+        hideProgressBar={true}
+        autoClose={2000}
+      />
     </>
   );
 }
+
+// ${
+//   isMinLength && hasNumberOrSpecialChar
+//     ? 'focus:border-transparent'
+//     : 'border border-[#FF5336] focus:border-[#FF5336]'
+// }
