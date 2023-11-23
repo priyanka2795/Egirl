@@ -27,6 +27,7 @@ import SearchIcon from '../../../../public/assets/search-alt (1).png';
 import RightIcon from '../../../../public/assets/check-cs.png';
 import DeleteIcon from '../../../../public/assets/delete-icon.png';
 import {
+  getImageGeneration,
   postInpaintImage,
   postPoseImage,
   postPromptImage
@@ -80,10 +81,10 @@ interface ImageGeneratorOption {
   MyCharacterToggle: boolean;
   EditGeneration: boolean;
   EditTooltip: boolean;
-  numOfImages?:number;
-  imageDimension?:any;
-  guidanceScale:number[];
-  stepScale:number[];
+  numOfImages?: number;
+  imageDimension?: any;
+  guidanceScale: number[];
+  stepScale: number[];
 }
 const ImageGeneratorOption = ({
   InpaintingToggle,
@@ -128,6 +129,7 @@ const ImageGeneratorOption = ({
   // const [promptTagsHint, setPromptTagsHint] = useState(PromptTagsSearch);
   const [promptHint, setPromptHint] = useState<string>('');
   const [negativePrompt, setNegativePrompt] = useState<string>('');
+  const [savedDrawingImage, setSavedDrawingImage] = useState();
 
   const DeletePromptMenu = (item: string) => {
     setEditPromptMenu(
@@ -256,94 +258,91 @@ const ImageGeneratorOption = ({
     }
   }, [refreshTokenData, router.pathname]);
 
-  let promptData = {
-    prompt: promptTags.map((ele: string, index: number) => {
-      return {
-        prompt_id: index,
-        prompt_type: ele,
-        prompt_value: 'string'
-      };
-    }),
-    negative_prompt: negativePrompt,
-    sd_image_model: 'SemiRealMix',
-    height: imageDimension?.height,
-    width: imageDimension?.width,
-    guidance_scale: 7.5,
-    inference_steps: 10,
-    num_of_images: numOfImages
-  };
-
-  let inPaintData = {
-    base_image: {
-      media_id: 0,
-      media_url: 'string'
-    },
-    mask_image_base64_str: 'string',
-    prompt: promptTags.map((ele: string, index: number) => {
-      return {
-        prompt_id: index,
-        prompt_type: ele,
-        prompt_value: 'string'
-      };
-    }),
-    negative_prompt: negativePrompt,
-    sd_image_model: 'SemiRealMix',
-    height: imageDimension?.height,
-    width: imageDimension?.width,
-    guidance_scale: 7.5,
-    inference_steps: 10,
-    num_of_images: numOfImages
-  };
-  let poseData = {
-    preset_pose_image: {
-      media_id: 0,
-      media_url: 'string'
-    },
-    pose_image_base64_str: 'string',
-    prompt: promptTags.map((ele: string, index: number) => {
-      return {
-        prompt_id: index,
-        prompt_type: ele,
-        prompt_value: 'string'
-      };
-    }),
-    negative_prompt: negativePrompt,
-    sd_image_model: 'SemiRealMix',
-    height: imageDimension?.height,
-    width: imageDimension?.width,
-    guidance_scale: 7.5,
-    inference_steps: 10,
-    num_of_images: numOfImages
-  };
   const handleGenerate = () => {
     if (InpaintingToggle === true) {
       //------ inPainting image api ----
+      const inPaintData = {
+        base_image: {
+          media_id: 0,
+          media_url: 'string'
+        },
+        mask_image_base64_str: 'string',
+        prompt: promptTags.map((ele: string, index: number) => {
+          return {
+            prompt_id: index,
+            prompt_type: ele,
+            prompt_value: 'string'
+          };
+        }),
+        negative_prompt: negativePrompt,
+        sd_image_model: 'SemiRealMix',
+        height: imageDimension?.height,
+        width: imageDimension?.width,
+        guidance_scale: guidanceScale[0],
+        inference_steps: stepScale[0],
+        num_of_images: numOfImages
+      };
       postInpaintImage(inPaintData, token)
-      .then((res:any)=>{
-        console.log("inPaintImage res---", res)
-        if(res?.response?.status === 401){
-          dispatch(tokenRefresh())
-        }
-      })
-      .catch((err)=>{
-        console.log("inPaintImage err---", err)
-      })
-    }
-    else if(PosingToggle === true){
+        .then((res: any) => {
+          console.log('inPaintImage res---', res);
+          if (res?.response?.status === 401) {
+            dispatch(tokenRefresh());
+          }
+        })
+        .catch((err) => {
+          console.log('inPaintImage err---', err);
+        });
+    } else if (PosingToggle === true) {
       //----------- pose image api -------
+      const poseData = {
+        preset_pose_image: {
+          media_id: 0,
+          media_url: 'string'
+        },
+        pose_image_base64_str: 'string',
+        prompt: promptTags.map((ele: string, index: number) => {
+          return {
+            prompt_id: index,
+            prompt_type: ele,
+            prompt_value: 'string'
+          };
+        }),
+        negative_prompt: negativePrompt,
+        sd_image_model: 'SemiRealMix',
+        height: imageDimension?.height,
+        width: imageDimension?.width,
+        guidance_scale: guidanceScale[0],
+        inference_steps: stepScale[0],
+        num_of_images: numOfImages
+      };
       postPoseImage(poseData, token)
-      .then((res:any)=>{
-        console.log("pose image res---", res)
-        if(res?.response?.status === 401){
-          dispatch(tokenRefresh())
-        }
-      })
-      .catch((err)=>{
-        console.log("pose image err---", err)
-      })
-    }
-    else{
+        .then((res: any) => {
+          console.log('pose image res---', res);
+          if (res?.response?.status === 401) {
+            dispatch(tokenRefresh());
+          }
+        })
+        .catch((err) => {
+          console.log('pose image err---', err);
+        });
+    } else {
       //------- prompt image api ------
+      const promptData = {
+        prompt: promptTags.map((ele: string, index: number) => {
+          return {
+            prompt_id: index,
+            prompt_type: ele,
+            prompt_value: 'string'
+          };
+        }),
+        negative_prompt: negativePrompt,
+        sd_image_model: 'SemiRealMix',
+        height: imageDimension?.height,
+        width: imageDimension?.width,
+        guidance_scale: guidanceScale[0],
+        inference_steps: stepScale[0],
+        num_of_images: numOfImages
+      };
       postPromptImage(promptData, token)
         .then((res: any) => {
           console.log('prompt image res---', res);
@@ -357,11 +356,22 @@ const ImageGeneratorOption = ({
     }
   };
 
-  //=======================
-
-
-  // const SavedDrawingImage = localStorage.getItem('savedDrawingImage');
-  const [savedDrawingImage, setSavedDrawingImage] = useState() 
+  //-------------------------------------------------
+//------------ get image generation api--------------
+const [allImgData, setAllImgData] = useState([])
+getImageGeneration(1,10,token)
+.then((res:any)=>{
+  console.log("get image generation res----",res)
+  setAllImgData(res?.data)
+  if(res?.response?.status === 401){
+    dispatch(tokenRefresh())
+  }
+})
+.catch((err)=>{
+  console.log("get image generation err---",err)
+})
+//---------------------------------------------------
+ 
 
   return (
     <>
