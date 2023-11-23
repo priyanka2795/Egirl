@@ -32,10 +32,10 @@ const InpaintingModals = ({
   const imageRef = useRef(null);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
+    const canvas:any = canvasRef.current;
     const context = canvas.getContext("2d");
 
-    const image = imageRef.current;
+    const image:any = imageRef.current;
 
     // Set the canvas size to match the image size
     canvas.width = image.width;

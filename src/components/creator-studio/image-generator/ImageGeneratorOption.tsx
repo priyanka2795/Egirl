@@ -78,6 +78,8 @@ interface ImageGeneratorOption {
   EditTooltip: boolean;
   numOfImages?:number;
   imageDimension?:any;
+  guidanceScale:number[];
+  stepScale:number[];
 }
 const ImageGeneratorOption = ({
   InpaintingToggle,
@@ -86,7 +88,9 @@ const ImageGeneratorOption = ({
   EditGeneration,
   EditTooltip,
   numOfImages,
-  imageDimension
+  imageDimension,
+  guidanceScale,
+  stepScale
 }: ImageGeneratorOption) => {
   const dispatch = useAppDispatch()
   const router = useRouter()
@@ -311,8 +315,11 @@ const ImageGeneratorOption = ({
     if(InpaintingToggle === true){
          //------ inPainting image api ----
       postInpaintImage(inPaintData, token)
-      .then((res)=>{
+      .then((res:any)=>{
         console.log("inPaintImage res---", res)
+        if(res?.response?.status === 401){
+          dispatch(tokenRefresh())
+        }
       })
       .catch((err)=>{
         console.log("inPaintImage err---", err)
@@ -321,8 +328,11 @@ const ImageGeneratorOption = ({
     else if(PosingToggle === true){
       //----------- pose image api -------
       postPoseImage(poseData, token)
-      .then((res)=>{
+      .then((res:any)=>{
         console.log("pose image res---", res)
+        if(res?.response?.status === 401){
+          dispatch(tokenRefresh())
+        }
       })
       .catch((err)=>{
         console.log("pose image err---", err)
