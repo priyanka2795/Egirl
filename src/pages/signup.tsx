@@ -211,7 +211,7 @@ export default function SignUp() {
                       <div>
                         <ul>
                           <li className='mb-3'>Create a password that:</li>
-                          <li className='mb-2 flex items-center'>
+                          <li className='flex items-center mb-2'>
                             {errors.password ? <CrossIcon /> : <CheckedIcon />}
                             contains at least 8 characters
                           </li>
@@ -230,7 +230,7 @@ export default function SignUp() {
                   </div>
                 </div>
 
-                <div className='w-full px-10 pb-10 pt-5'>
+                <div className='w-full px-10 pt-5 pb-10'>
                   <button
                     type='submit'
                     className='font-bold flex w-full items-center justify-center rounded-[16px] bg-[#5848BC] px-6 py-4 text-[18px] leading-6 text-white'

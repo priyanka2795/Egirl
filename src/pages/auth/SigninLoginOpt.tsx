@@ -73,9 +73,9 @@ const SigninLoginOpt = ({ heading, pageName }: SignInLoginOptProp) => {
           <div className='font-normal text-[15px] leading-5 text-white'>
             New user?
           </div>
-          <Link href={`/auth/${pageName}`}>
+          <Link href={`/${pageName}`}>
             <a className='font-normal cursor-pointer text-[15px] leading-5 text-[#5848BC]'>
-              {pageName === 'signin' ? 'Sign in' : 'Sign up'}
+              {pageName === 'login' ? 'Sign in' : 'Sign up'}
             </a>
           </Link>
         </div>
