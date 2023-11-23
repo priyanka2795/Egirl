@@ -71,8 +71,8 @@ interface NotificationModal {
 const NotificationModal = ({ selectedMoreOption }: NotificationModal) => {
   const [activeListTab, setActiveListTab] = useState('All');
   return (
-    <div>
-      {/* {selectedMoreOption === 'Notifications' ?  */}
+    <>
+      {selectedMoreOption === 'Notifications' ? 
       <div className={`transitions z-[80] ${selectedMoreOption === 'Notifications' ? 'fixed !bg-black/80  w-full h-full': 'absolute w-0'}`}>
       <div
       className={`transitions mt-4 inline-flex h-[804px] w-[425px] flex-col items-start justify-start rounded-[14px] bg-zinc-900 pb-6 ${
@@ -166,8 +166,8 @@ const NotificationModal = ({ selectedMoreOption }: NotificationModal) => {
       </div>
     </div>
     </div> 
-    {/* // : ''} */}
-    </div>
+    : ''}
+    </>
     
     
   );

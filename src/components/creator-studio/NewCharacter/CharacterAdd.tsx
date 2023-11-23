@@ -1,4 +1,3 @@
-// @ts-nocheck
 
 import React from 'react';
 import Cross from '../../../../public/assets/svgImages/close-icon.svg';
@@ -73,16 +72,16 @@ const CharacterAdd: React.FC<CharacterAddProps> = ({
   return (
     <Modal
       open={true}
-      closeModal={() => NewCharacterClose?.()}
+      closeModal={() => NewCharacterClose?.(false)}
       modalOverlayStyle='!bg-black/80 '
       modalClassName={`bg-[#121212] flex  flex-col flex-start rounded-[20px]`}
     >
       <div className='flex items-start gap-2 self-stretch border-b border-white/[0.08] p-6'>
-        <div className='font-bold w-full gap-1 text-lg leading-6'>
+        <div className='w-full gap-1 text-lg font-bold leading-6'>
           Add New Character
         </div>
-        <div className='h-6 w-6'>
-          <Cross onClick={() => NewCharacterClose?.()} />
+        <div className='w-6 h-6'>
+          <Cross onClick={() => NewCharacterClose?.(false)} />
         </div>
       </div>
       <Formik
@@ -133,10 +132,10 @@ const CharacterAdd: React.FC<CharacterAddProps> = ({
                 />
               </div>
 
-              <div className='flex items-start gap-3 self-stretch '>
+              <div className='flex items-start self-stretch gap-3 '>
                 <button
                   type='button'
-                  onClick={() => NewCharacterClose?.()}
+                  onClick={() => NewCharacterClose?.(false)}
                   className='font-bold h-12 w-[50%] items-center gap-2 rounded-[14px] border border-white/[0.32] px-5 py-[13px] text-base leading-[22px]'
                 >
                   Cancel
@@ -153,7 +152,7 @@ const CharacterAdd: React.FC<CharacterAddProps> = ({
                   <button
                     type='submit'
                     className='font-bold h-12 w-[50%] items-center gap-2 rounded-[14px]  bg-[#5848BC] px-5 py-[13px] text-base leading-[22px]'
-                    onClick={() => NewCharacterClose?.()}
+                    onClick={() => NewCharacterClose?.(false)}
                   >
                     Create
                   </button>
@@ -168,6 +167,8 @@ const CharacterAdd: React.FC<CharacterAddProps> = ({
 };
 
 export default CharacterAdd;
+
+
 
 // import React from 'react';
 // import Cross from '../../../../public/assets/svgImages/close-icon.svg';
@@ -211,9 +212,11 @@ export default CharacterAdd;
 //         console.log('Values', values);
 //         action.resetForm();
 //         SetUserGuide(false), SetIsTourOpen(true), setTourCount(0);
-//         // NewCharacterClose(false);
+//         // NewCharacterClose(false); 
 //       }
 //     });
+
+
 
 //   const nameLength = values.name.length;
 //   const usernameLength = values.username.length;
@@ -352,3 +355,4 @@ export default CharacterAdd;
 // };
 
 // export default CharacterAdd;
+

@@ -14,8 +14,11 @@ import GiftCategoryAction from './giftCategoryAction';
 import GiftCardDelete from './giftCardDelete';
 import { getGiftCategory, getGifts } from 'services/services';
 import Cookies from 'js-cookie';
+import { useAppDispatch, useAppSelector } from 'redux/hooks';
+import { tokenRefresh } from 'redux/api/RefreshTokenApi';
 
 function Gifts() {
+  const dispatch = useAppDispatch()
   const [giftModal, setGiftModal] = useState<boolean>(false);
   const [giftCard, setGiftCard] = useState<boolean>(false);
   const [toggle, setToggle] = useState<boolean>(false);
@@ -35,7 +38,8 @@ function Gifts() {
     useState<boolean>(false);
   const [selectedCategoryId, setSelectedCategoryId] = useState<any>();
   const characterId = Cookies.get('character_id') || '';
-  const token: any = Cookies.get('accessToken');
+  const token:any = Cookies.get('accessToken');
+  const refreshTokenData:any = useAppSelector((state)=> state.tokenRefresh?.tokenData)
   const [selectedCategoryGifts, setSelectedCategoryGifts] = useState<any>();
   const [selectedGiftData, setSelectedGiftData] = useState<any>();
   const [updateGift, setUpdateGift] = useState(false);
@@ -78,12 +82,20 @@ function Gifts() {
     setToggle(!toggle);
   };
 
+  useEffect(()=>{
+    if(refreshTokenData){
+      Cookies.set("accessToken", refreshTokenData)
+    }
+  },[refreshTokenData])
   const getAllCategory = () => {
     getGiftCategory(characterId, token)
       .then((response: any) => {
         if (response && response.data) {
           setGiftCategory(response?.data);
           console.log(response.data, 'res????');
+          if(response?.response?.status === 401){
+            dispatch(tokenRefresh())
+          }
         } else {
           console.error('Invalid response structure:', response);
         }
@@ -107,6 +119,9 @@ function Gifts() {
       .then((res: any) => {
         console.log(res);
         setSelectedCategoryGifts(res?.data);
+        if(res?.response?.status === 401){
+          dispatch(tokenRefresh())
+        }
       })
       .catch((err: any) => {
         console.log(err);
@@ -139,7 +154,7 @@ function Gifts() {
             createCategoryToggle={createCategoryToggle}
           />
 
-          <div className='mt-4 flex items-center justify-between'>
+          <div className='flex items-center justify-between mt-4'>
             <p className='text-[#979797]'>
               {`${selectedCategoryGifts?.length}/9`} gifts
             </p>
@@ -152,7 +167,7 @@ function Gifts() {
             </button>
           </div>
 
-          <div className='mt-4 grid grid-cols-1 items-center gap-9 md:grid-cols-2 lg:grid-cols-3'>
+          <div className='grid items-center grid-cols-1 mt-4 gap-9 md:grid-cols-2 lg:grid-cols-3'>
             {selectedCategoryGifts?.map((item: any, index: number) => (
               <div
                 className='relative h-[300px] w-[300px] overflow-hidden rounded-xl'
@@ -164,7 +179,7 @@ function Gifts() {
                 /> */}
                 <img
                   src={item?.media_url}
-                  className='h-full w-full object-cover'
+                  className='object-cover w-full h-full'
                 />
 
                 <div className='absolute right-2 top-2'>
@@ -174,7 +189,7 @@ function Gifts() {
                   >
                     <Image
                       src={DotsHorizontal}
-                      className='h-full w-full object-cover'
+                      className='object-cover w-full h-full'
                       alt=''
                     />
                   </button>
@@ -188,7 +203,7 @@ function Gifts() {
                           >
                             <Image
                               src={Pencil}
-                              className='h-full w-full'
+                              className='w-full h-full'
                               alt=''
                             />
                             <p>Edit name</p>
@@ -199,7 +214,7 @@ function Gifts() {
                             onClick={() => EditGift(2)}
                           >
                             <div>
-                              <RightUp className='h-full w-full' alt={''} />
+                              <RightUp className='w-full h-full' alt={''} />
                             </div>
                             <p>Move to another category</p>
                           </button>
@@ -210,7 +225,7 @@ function Gifts() {
                           >
                             <Image
                               src={Delete}
-                              className='h-full w-full'
+                              className='w-full h-full'
                               alt={''}
                             />
                             <p>Delete</p>

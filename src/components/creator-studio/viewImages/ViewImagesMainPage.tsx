@@ -164,7 +164,6 @@ const ViewImagesMainPage = () => {
   };
   return (
     <div className='mt-6 flex flex-col gap-5 rounded-[14px] bg-[#121212] p-6'>
-      
       {albumImages ? (
         <>
           <div className='flex justify-between border-b border-white/[0.08] pb-5'>
@@ -193,12 +192,11 @@ const ViewImagesMainPage = () => {
           </div>
           <div className='grid grid-cols-3 gap-3' ref={dropdownRef}>
             {images.map((items, index: number) => (
-              <div className='sub-banner group relative h-full w-full rounded-[16px]' >
+              <div className='sub-banner group relative h-full w-full rounded-[16px]'>
                 <Image
                   className='w-full rounded-[16px] object-cover'
                   src={items.image}
                   alt={''}
-                  onClick={() => AllImageToggle(index)}
                 />
                 <div
                   className='invisible absolute right-[7px] top-[7px] flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full bg-black/[0.48] group-hover:visible group-hover:opacity-100'

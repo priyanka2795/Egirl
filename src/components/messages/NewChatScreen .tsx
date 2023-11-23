@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import SearchIcon from './svg/search-icon.svg';
 import useScroll from '../../../hooks/useScroll';
 import YouMightLike from '../home/YouMightLike';

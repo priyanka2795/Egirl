@@ -15,9 +15,6 @@ import RangePicker from '../common/RangePicker';
 import Tooltip from '@components/common/tooltip';
 import RestWhite from '../../../../public/assets/rotate-cw-white.png';
 
-import ReactDOM from 'react-dom';
-import CanvasDraw from 'react-canvas-draw';
-
 import { ReactSketchCanvas } from 'react-sketch-canvas';
 interface CustomCanvasRect extends CanvasRect {
   eraseAll(): void;
@@ -46,20 +43,25 @@ const InpaintingModals = ({
   const canvasRef = useRef<CustomCanvasRect>(null);
 
   const brushSizes: number = parseInt(brushSize[0]);
-
+  const [Data, setData] = useState();
   const SaveImage = () => {
-    const image = canvasRef?.current?.exportImage('png');
+    const image = canvasRef?.current?.exportSvg();
     image
       .then((data: any) => {
-        const Image =data;      
-        localStorage.setItem('savedDrawingImage', Image);
+        const Images = data;
+        setData(Images);
+        SavedDrawingImage(Images);
+        localStorage.setItem('savedDrawingImage', Images);
       })
       .catch((e: string) => {
         console.log(e);
       });
+
     CloseInpaintingModal(false);
     SetInpaintingCreated(true);
   };
+
+  console.log(Data, 'Data');
 
   return (
     <Modal
@@ -70,7 +72,7 @@ const InpaintingModals = ({
     >
       {/* Header */}
       <div className='flex items-center justify-between border-b border-white/[0.08] border-b-white/[0.08] px-6 pb-6'>
-        <h5 className='text-lg font-bold'>
+        <h5 className='font-bold text-lg'>
           {EditInpainting ? 'Edit' : ''} Inpainting{' '}
         </h5>
         <button
@@ -81,36 +83,44 @@ const InpaintingModals = ({
         </button>
       </div>
       <div className='px-6 pt-6'>
+        {/* <div className='h-[150px] w-[150px]'>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: `     ${Data}       `
+            }}
+          />
+        </div> */}
+        {/* <img
+          src={Data || ''}
+          className='object-cover w-full h-full rounded-lg'
+        /> */}
+
         <div className='sub-banner relative m-auto h-[640px] w-[640px] rounded-lg '>
-          {/* <Image
-            src={Image1}
-            className='object-cover w-full h-full rounded-lg'
-          />  */}
           <ReactSketchCanvas
             ref={(canvasDraw: any) => (canvasRef.current = canvasDraw)}
             strokeWidth={brushSizes}
             strokeColor={'#5848BC'}
             backgroundImage={Image1.src}
             exportWithBackgroundImage={true}
-            width={'100%'}
-            height={'100%'}
-            className='border-none'
+            width={640}
+            height={640}
+            className='w-full h-full border-none'
           />
 
-          <div className='absolute flex items-center gap-2 right-3 top-3'>
+          <div className='absolute right-3 top-3 flex items-center gap-2'>
             <div className='relative flex items-center justify-center gap-3 rounded-[100px] bg-[#000000CC] p-3'>
               <div className='group relative h-5 cursor-pointer border-r border-[#FFFFFF3D] pr-3'>
-                <Image src={ImageSquare} className='w-full h-full' />
+                <Image src={ImageSquare} className='h-full w-full' />
                 <div className='absolute -left-14 -top-12 w-max'>
                   <Tooltip Text={'Replace image'} />
                 </div>
               </div>
               <div
-                className='flex items-center gap-2 cursor-pointer'
+                className='flex cursor-pointer items-center gap-2'
                 onClick={() => setBrushSizeToggle(!brushSizeToggle)}
               >
-                <Image src={BrushWhite} className='w-full h-full' />
-                <Image src={ArrowDown} className='w-full h-full' />
+                <Image src={BrushWhite} className='h-full w-full' />
+                <Image src={ArrowDown} className='h-full w-full' />
               </div>
               {brushSizeToggle && (
                 <div className='absolute right-0 top-12 flex h-[68px] w-[211px] items-center justify-center rounded-[14px] bg-[#121212] px-5 '>
@@ -125,9 +135,9 @@ const InpaintingModals = ({
               }}
             >
               {EditInpainting ? (
-                <Image src={RestWhite} className='w-full h-full' />
+                <Image src={RestWhite} className='h-full w-full' />
               ) : (
-                <Image src={Rest} className='w-full h-full' />
+                <Image src={Rest} className='h-full w-full' />
               )}
               <p
                 className={`${
@@ -141,7 +151,7 @@ const InpaintingModals = ({
           <div className='absolute bottom-3 left-3 flex items-center justify-center gap-3 rounded-[100px] bg-[#000000CC] px-5 py-3'>
             <Image
               src={Backward}
-              className='object-cover w-full h-full cursor-pointer'
+              className='h-full w-full cursor-pointer object-cover'
               onClick={() => {
                 canvasRef.current?.undo();
               }}
@@ -149,7 +159,7 @@ const InpaintingModals = ({
             <p className='h-[16px] w-[10px] border-r border-[#FFFFFF3D]'></p>
             <Image
               src={Forward}
-              className='object-cover w-full h-full cursor-pointer'
+              className='h-full w-full cursor-pointer object-cover'
               onClick={() => {
                 canvasRef.current?.redo();
               }}
@@ -157,7 +167,7 @@ const InpaintingModals = ({
           </div>
         </div>
       </div>
-      <div className='flex items-center justify-end gap-3 mx-6 mt-6 font-semibold text-white'>
+      <div className='mx-6 mt-6 flex items-center justify-end gap-3 font-semibold text-white'>
         <button
           className='rounded-[14px] border border-[#FFFFFF52] px-5 py-3'
           onClick={() => CloseInpaintingModal(false)}
