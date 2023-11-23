@@ -120,13 +120,21 @@ const CreatorStudioSidebar = ({
             )}
           </div> */}
               {/*  */}
-            <div className='flex flex-col items-start self-stretch gap-2 px-6 pt-6 pb-2 '>
+            
+            
+            {
+              shrinkSideBar ? <div className='flex flex-col items-start self-stretch gap-2 pt-6 pb-2'>
+              <button onClick={() => setCreateCharacter(true)} className='w-[45px] h-[42px] flex py-2.5 px-2 justify-center items-center gap-1.5 self-stretch rounded-xl bg-[#5848BC]'>
+                  <Image src={userAdd} alt='' className='w-[25px] h-[25px]'/>
+                  
+              </button>
+            </div>:<div className='flex flex-col items-start self-stretch gap-2 px-6 pt-6 pb-2 '>
               <button onClick={() => setCreateCharacter(true)} className='w-full h-auto flex py-2.5 px-4 justify-center items-center gap-1.5 self-stretch rounded-xl bg-[#5848BC]'>
                   <Image src={userAdd} alt='' className='w-[18px] h-[18px]'/>
                   <span className='text-sm font-semibold leading-5 normal'>Create character</span>
               </button>
             </div>
-            
+            }
             {createCharacter && (
        <CreateCharacterModal
        closeState={setCreateCharacter}
