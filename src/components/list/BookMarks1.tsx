@@ -13,6 +13,10 @@ import ClearBookMarkModal from './ClearBookMarkModal';
 import Cookies from 'js-cookie';
 import jwt from 'jsonwebtoken';
 import { getBookMarked } from 'services/services';
+import { tokenRefresh } from 'redux/api/RefreshTokenApi';
+import { useAppDispatch, useAppSelector } from 'redux/hooks';
+import { useRouter } from 'next/router'
+
 
 const userFrame = [
   {
@@ -80,24 +84,31 @@ const userFrame = [
   }
 ];
 const BookMarks = () => {
+  const dispatch = useAppDispatch()
+  const router = useRouter()
   const token:any = Cookies.get('accessToken');
-  // const token = `${accessToken}`;
-  // const decodedToken = jwt.decode(token);
-  // const userId = decodedToken?.sub
+  const refreshTokenData:any = useAppSelector((state)=> state.tokenRefresh?.tokenData)
   const [profileModalState, setProfileModalState] = useState(false);
   const [deleteBookmarkState, setDeleteBookmarkState] = useState(false);
   const [bookMarkedData, setBookMarkedData] = useState([])
 
   useEffect(()=>{
+    if(refreshTokenData){
+      Cookies.set("accessToken", refreshTokenData)
+    }
+
     getBookMarked(1,10, token)
     .then((res:any)=>{
       console.log("bookmarked data res---", res)
       setBookMarkedData(res.data)
+      if(res?.response?.status === 401){
+        dispatch(tokenRefresh())
+      }
     })
     .catch((err)=>{
       console.log("bookmarked err---", err)
     })
-  },[])
+  },[refreshTokenData, router.pathname])
   return (
     <>
       <div className='flex flex-col gap-6'>
