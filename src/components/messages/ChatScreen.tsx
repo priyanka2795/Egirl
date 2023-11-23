@@ -242,7 +242,7 @@ export default function ChatScreen({
           </div>
         </div>
       </div>
-      <div className='flex flex-col w-full h-full'>
+      <div className='flex flex-col w-full '>
         <div
           className={`custom-scroll-bar flex overflow-y-auto pb-5 ${
             chatScreenMsgClassName
@@ -330,7 +330,7 @@ export default function ChatScreen({
                     </div>
                   </div>
                 )}
-                {/* {UploadedFiles} */}
+                {/* {/ {UploadedFiles} /} */}
                 {chatViewOption && (
                   <Modal
                     open={chatViewOption}

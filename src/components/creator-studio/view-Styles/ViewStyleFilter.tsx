@@ -24,7 +24,7 @@ const ViewStyleFilter = () => {
     'style2',
     'style3'
   ];
-  const [activeIndex, setActiveIndex] = useState<number>(-1);
+  const [activeIndex, setActiveIndex] = useState<number>(0);
   const [clothingAll, setClothingAll] = useState<boolean>(false);
   const [accessoriesAll, setAccessoriesAll] = useState<boolean>(false);
   const [filterValues, setFilterValues] = useState<object>({});
