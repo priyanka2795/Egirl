@@ -15,7 +15,8 @@ interface ImageSetting {
   SetPosingToggle: React.Dispatch<React.SetStateAction<boolean>>;
   MyCharacterToggle: boolean;
   SetMyCharacterToggle: React.Dispatch<React.SetStateAction<boolean>>;
-  setNumOfImages:any
+  setNumOfImages:any,
+  setImageDimension:any
 }
 const ImageSetting = ({
   SetInpaintingToggle,
@@ -24,7 +25,8 @@ const ImageSetting = ({
   SetPosingToggle,
   MyCharacterToggle,
   SetMyCharacterToggle,
-  setNumOfImages
+  setNumOfImages,
+  setImageDimension
 }: ImageSetting) => {
   const [guidanceScale, setGuidanceScale] = useState<number[]>([19]);
   const [stepScale, setStepScale] = useState<number[]>([83]);
@@ -38,7 +40,7 @@ const ImageSetting = ({
           Image settings
         </div>
         <ImageNumber setNumOfImages={setNumOfImages} />
-        <ImageDimension />
+        <ImageDimension setImageDimension={setImageDimension} />
         <div className='px-5'>
           <div className='flex justify-between mt-6'>
             <h6 className='text-[14px] font-semibold leading-[18px] text-white'>

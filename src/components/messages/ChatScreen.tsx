@@ -159,7 +159,7 @@ export default function ChatScreen({
         file,
         preview: URL.createObjectURL(file)
       }));
-      setSendUploadImgState(false)
+      setSendUploadImgState(false);
       setImageUploaded((prevImages) => [...prevImages, ...newImages]);
     }
   }, [acceptedFiles]);
@@ -172,7 +172,7 @@ export default function ChatScreen({
 
   return (
     <div
-      className={`w-full border-r-[2px] border-[#252525] bg-[#121212] lg:inline pb-3 ${chatScreenClassName}`}
+      className={`w-full border-r-[2px] border-[#252525] bg-[#121212] pb-3 lg:inline ${chatScreenClassName}`}
     >
       <div className='flex h-[72px] w-full items-center justify-between border-b border-[#252525] px-6'>
         <div className='flex items-center'>
@@ -184,7 +184,7 @@ export default function ChatScreen({
             height={40}
             className='rounded-full'
           />
-          <div className='flex flex-col items-start ml-3'>
+          <div className='ml-3 flex flex-col items-start'>
             <h3 className='text-[15px] font-semibold leading-5'>Mika-chan</h3>
             <h6
               className='font-normal flex cursor-pointer gap-1 text-xs text-[#979797]'
@@ -242,188 +242,196 @@ export default function ChatScreen({
           </div>
         </div>
       </div>
-      <div className='flex flex-col w-full h-full'>
-
-      <div
-        className={`custom-scroll-bar flex overflow-y-auto pb-5 ${
-          chatScreenMsgClassName
-            ? chatScreenMsgClassName
-            : 'h-[calc(100vh-72px-92px)] '
-        } ${imageUploaded.length === 0 ?'h-[calc(100vh-72px-92px)]' :'h-[calc(72vh-72px-92px)]'} `}
-        // ${ imageUploaded.length === 0 ?'h-[calc(100vh-72px-92px)]' :'h-[calc(72vh-72px-92px)]'}
-      >
+      <div className='flex h-full w-full flex-col'>
         <div
-          ref={containerRef}
-          className={`flex h-max min-h-full w-full flex-col justify-start bg-[#121212] px-6 pt-4`}
+          className={`custom-scroll-bar flex overflow-y-auto pb-5 ${
+            chatScreenMsgClassName
+              ? chatScreenMsgClassName
+              : 'h-[calc(100vh-72px-92px)] '
+          } ${
+            imageUploaded.length === 0
+              ? 'h-[calc(100vh-72px-92px)]'
+              : 'h-[calc(72vh-72px-92px)]'
+          } `}
+          // ${ imageUploaded.length === 0 ?'h-[calc(100vh-72px-92px)]' :'h-[calc(72vh-72px-92px)]'}
         >
-          {selectUserState === 'One More Mika' ? (
-            <>
-              <NewConversationWithUser />
-              {showMessage && (
-                <Message
-                  src='/dummy-char.png'
-                  alt={`Character Profile Picture ${2}`}
-                  time='09:23'
-                  isLast={true}
-                  message={message}
-                  name='You'
-                  messageIcons={true}
-                  chatName={chatViewStyle}
-                />
-              )}
-            </>
-          ) : (
-            clearChat === false && <DummyMessage chatName={chatViewStyle} />
-          )}
+          <div
+            ref={containerRef}
+            className={`flex h-max min-h-full w-full flex-col justify-start bg-[#121212] px-6 pt-4`}
+          >
+            {selectUserState === 'One More Mika' ? (
+              <>
+                <NewConversationWithUser />
+                {showMessage && (
+                  <Message
+                    src='/dummy-char.png'
+                    alt={`Character Profile Picture ${2}`}
+                    time='09:23'
+                    isLast={true}
+                    message={message}
+                    name='You'
+                    messageIcons={true}
+                    chatName={chatViewStyle}
+                  />
+                )}
+              </>
+            ) : (
+              clearChat === false && <DummyMessage chatName={chatViewStyle} />
+            )}
 
-          {showGiftMsg && (
-            <Gift showGiftImg={showGiftImg} showGiftName={showGiftName} />
-          )}
-          {imageRequestMsg && <ImageRequestMsg />}
+            {showGiftMsg && (
+              <Gift showGiftImg={showGiftImg} showGiftName={showGiftName} />
+            )}
+            {imageRequestMsg && <ImageRequestMsg />}
+          </div>
         </div>
-      </div>
-      {showInput && (
-        <div className='flex flex-col gap-1 '>
-        
-          <div className={` flex w-full items-start bg-[red-400] px-6 pt-3 `}>
-            <div className='relative self-end  mb-[10px]'>
-              <div
-                className='plus-icon mr-[10px] mt-[8px] grid h-[32px] w-[32px] min-w-[32px] cursor-pointer place-items-center rounded-full bg-[#5848BC] transition duration-100 hover:bg-[#4b3abd]'
-                onClick={() => setSendUploadImgState(!sendUploadImgState)}
-              >
-                <PlusIcon strokeclasses='stroke-[#ffffff]' />
-              </div>
-              {sendUploadImgState && (
-                <div className='absolute -top-[152px] left-0 z-50 mt-2 inline-flex w-[218px] flex-col items-start justify-start rounded-2xl bg-zinc-900 py-2 shadow'>
-                  <div className='flex-col items-center self-stretch justify-start gap-2 cursor-pointer '>
-                    <div
-                      className='flex gap-2 px-4 py-[10px] text-sm'
-                      onClick={handleChatViewModal}
-                    >
-                      <SendTransparentIcon />
-                      Send image request
-                    </div>
-                    <div
-                      className='flex gap-2 px-4 py-[10px] text-sm'
-                      onClick={handleGiftModal}
-                    >
-                      <GiftIcon />
-                      Send gift
-                    </div>
-                    {imageUploaded.length < 4 ? (
+        {showInput && (
+          <div className='flex flex-col gap-1 '>
+            <div className={` flex w-full items-start bg-[red-400] px-6 pt-3 `}>
+              <div className='relative mb-[10px]  self-end'>
+                <div
+                  className='plus-icon mr-[10px] mt-[8px] grid h-[32px] w-[32px] min-w-[32px] cursor-pointer place-items-center rounded-full bg-[#5848BC] transition duration-100 hover:bg-[#4b3abd]'
+                  onClick={() => setSendUploadImgState(!sendUploadImgState)}
+                >
+                  <PlusIcon strokeclasses='stroke-[#ffffff]' />
+                </div>
+                {sendUploadImgState && (
+                  <div className='absolute -top-[152px] left-0 z-50 mt-2 inline-flex w-[218px] flex-col items-start justify-start rounded-2xl bg-zinc-900 py-2 shadow'>
+                    <div className='cursor-pointer flex-col items-center justify-start gap-2 self-stretch '>
                       <div
                         className='flex gap-2 px-4 py-[10px] text-sm'
-                        {...getRootProps()}
+                        onClick={handleChatViewModal}
                       >
-                        <UploadIcon />
-                        <input className='hidden mb-5' {...getInputProps()} />
-                        <button>Upload image</button>
+                        <SendTransparentIcon />
+                        Send image request
                       </div>
-                    ) : (
-                      <div className='flex gap-2 px-4 py-[10px] text-sm'>
-                        <UploadIcon />
-                        <button>Upload image</button>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              )}
-              {/* {UploadedFiles} */}
-              {chatViewOption && (
-                <Modal
-                  open={chatViewOption}
-                  modalClassName='flex flex-col gap-5 max-w-xl bg-zinc-900 !w-[517px] rounded-2xl shadow relative bg-[#1A1A1A] rounded-[20px]'
-                  modalOverlayStyle='!bg-black/80'
-                  closeModal={handleChatViewModal}
-                >
-                  <ImageRequestModal
-                    closeModal={handleChatViewModal}
-                    setImageRequestMsg={setImageRequestMsg}
-                  />
-                </Modal>
-              )}
-              {giftModal && (
-                <Modal
-                  open={giftModal}
-                  modalClassName='flex flex-col max-w-xl bg-zinc-900 !w-[454px] rounded-2xl shadow relative bg-[#1A1A1A] rounded-[20px]'
-                  modalOverlayStyle='!bg-black/80'
-                  closeModal={handleGiftModal}
-                >
-                  <GiftModal
-                    setShowGiftImg={setShowGiftImg}
-                    setShowGiftName={setShowGiftName}
-                    setShowGiftMsg={setShowGiftMsg}
-                    closeModal={handleGiftModal}
-                  />
-                </Modal>
-              )}
-            </div>
-            <div className='relative w-full'>
-              <div className='relative flex w-full flex-col items-center rounded-[14px] bg-[#1E1E1E]'>
-                <div className='flex items-start bg-[#1E1E1E] w-full rounded-t-[14px]'>
-                  {imageUploaded?.map((file: any, index: number) => (
-                    <div className='relative p-2'>
-                      <Image
-                        src={file?.preview || ''}
-                        alt=''
-                        width={150}
-                        height={150}
-                        className='h-[150px] w-[150px] rounded-lg object-cover'
-                      />
                       <div
-                        className='absolute right-4 top-3 flex h-4 w-4 cursor-pointer items-center justify-center rounded-full bg-[#0000007A]'
-                        onClick={() => handleDeleteImage(index)}
+                        className='flex gap-2 px-4 py-[10px] text-sm'
+                        onClick={handleGiftModal}
                       >
-                        <Image src={CrossIcon} alt='' className='w-2 h-2' />
+                        <GiftIcon />
+                        Send gift
                       </div>
+                      {imageUploaded.length < 4 ? (
+                        <div
+                          className='flex gap-2 px-4 py-[10px] text-sm'
+                          {...getRootProps()}
+                        >
+                          <UploadIcon />
+                          <input className='mb-5 hidden' {...getInputProps()} />
+                          <button>Upload image</button>
+                        </div>
+                      ) : (
+                        <div className='flex gap-2 px-4 py-[10px] text-sm'>
+                          <UploadIcon />
+                          <button>Upload image</button>
+                        </div>
+                      )}
                     </div>
-                  ))}
-                </div>
-                <div className={`'relative w-full ${imageUploaded.length === 0 ?'border-t-0':'border-t border-[#FFFFFF1F] pt-2' } '`}>
-                  <TextareaAutosize
-                    className='font-light min-h-[48px] max-h-[50px] w-full resize-none rounded-[14px] border-none bg-[#1E1E1E] pt-4 text-[15px] leading-6 text-[#979797] transition-all duration-100 focus:ring-1 focus:ring-transparent pr-8'
-                    cacheMeasurements
-                    value={message}
-                    // onChange={ev => setValue(ev.target.value)}
-                    onChange={(e) => setMessage(e.target.value)}
-                    onFocus={() => setTypingState(true)}
-                    onBlur={(e) => handleTypingIndicator(e)}
-                    style={{ outline: 'none' }}
-                    maxRows={5}
-                  />
-
-                  <div
-                    className='absolute bottom-4 right-4'
-                    onClick={() => setEmojiPicker((val) => !val)}
-                  >
-                    <SmileIcon />
                   </div>
+                )}
+                {/* {UploadedFiles} */}
+                {chatViewOption && (
+                  <Modal
+                    open={chatViewOption}
+                    modalClassName='flex flex-col gap-5 max-w-xl bg-zinc-900 !w-[517px] rounded-2xl shadow relative bg-[#1A1A1A] rounded-[20px]'
+                    modalOverlayStyle='!bg-black/80'
+                    closeModal={handleChatViewModal}
+                  >
+                    <ImageRequestModal
+                      closeModal={handleChatViewModal}
+                      setImageRequestMsg={setImageRequestMsg}
+                    />
+                  </Modal>
+                )}
+                {giftModal && (
+                  <Modal
+                    open={giftModal}
+                    modalClassName='flex flex-col max-w-xl bg-zinc-900 !w-[454px] rounded-2xl shadow relative bg-[#1A1A1A] rounded-[20px]'
+                    modalOverlayStyle='!bg-black/80'
+                    closeModal={handleGiftModal}
+                  >
+                    <GiftModal
+                      setShowGiftImg={setShowGiftImg}
+                      setShowGiftName={setShowGiftName}
+                      setShowGiftMsg={setShowGiftMsg}
+                      closeModal={handleGiftModal}
+                    />
+                  </Modal>
+                )}
+              </div>
+              <div className='relative w-full'>
+                <div className='relative flex w-full flex-col items-center rounded-[14px] bg-[#1E1E1E]'>
+                  <div className='flex w-full items-start rounded-t-[14px] bg-[#1E1E1E]'>
+                    {imageUploaded?.map((file: any, index: number) => (
+                      <div className='relative p-2'>
+                        <Image
+                          src={file?.preview || ''}
+                          alt=''
+                          width={150}
+                          height={150}
+                          className='h-[150px] w-[150px] rounded-lg object-cover'
+                        />
+                        <div
+                          className='absolute right-4 top-3 flex h-4 w-4 cursor-pointer items-center justify-center rounded-full bg-[#0000007A]'
+                          onClick={() => handleDeleteImage(index)}
+                        >
+                          <Image src={CrossIcon} alt='' className='h-2 w-2' />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <div
+                    className={`'relative w-full ${
+                      imageUploaded.length === 0
+                        ? 'border-t-0'
+                        : 'border-t border-[#FFFFFF1F] pt-2'
+                    } '`}
+                  >
+                    <TextareaAutosize
+                      className='font-light max-h-[50px] min-h-[48px] w-full resize-none rounded-[14px] border-none bg-[#1E1E1E] pr-8 pt-4 text-[15px] leading-6 text-[#979797] transition-all duration-100 focus:ring-1 focus:ring-transparent'
+                      cacheMeasurements
+                      value={message}
+                      // onChange={ev => setValue(ev.target.value)}
+                      onChange={(e) => setMessage(e.target.value)}
+                      onFocus={() => setTypingState(true)}
+                      onBlur={(e) => handleTypingIndicator(e)}
+                      style={{ outline: 'none' }}
+                      maxRows={5}
+                    />
 
-                  <div className='absolute bottom-5 right-[50px]'>
-                    {emojiPicker && <Emoji setMessage={setMessage} />}
+                    <div
+                      className='absolute bottom-4 right-4'
+                      onClick={() => setEmojiPicker((val) => !val)}
+                    >
+                      <SmileIcon />
+                    </div>
+
+                    <div className='absolute bottom-5 right-[50px]'>
+                      {emojiPicker && <Emoji setMessage={setMessage} />}
+                    </div>
                   </div>
                 </div>
               </div>
+              <div className='mb-[10px] ml-[10px] self-end transition-all duration-100'>
+                {message ? (
+                  <button onClick={handleMessage}>
+                    <SendIcon />
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => {
+                      setShowInput(false);
+                    }}
+                  >
+                    <VoiceIcon />
+                  </button>
+                )}
+              </div>
             </div>
-            <div className='ml-[10px] mb-[10px] transition-all duration-100 self-end'>
-              {message ? (
-                <button onClick={handleMessage}>
-                  <SendIcon />
-                </button>
-              ) : (
-                <button
-                  onClick={() => {
-                    setShowInput(false);
-                  }}
-                >
-                  <VoiceIcon />
-                </button>
-              )}
-            </div>
+            {typingState && <MessageIndicator />}
           </div>
-          {typingState && <MessageIndicator />}
-        </div>
-      )}
+        )}
       </div>
 
       {!showInput && (
@@ -445,7 +453,7 @@ export default function ChatScreen({
             <SendWhiteIcon />
           </button>
         </div> */}
-          <div className='flex justify-between mx-5'>
+          <div className='mx-5 flex justify-between'>
             <RecordVoice handleMessage={handleMessage} />
           </div>
         </>

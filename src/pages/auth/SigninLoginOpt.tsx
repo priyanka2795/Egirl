@@ -6,11 +6,25 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { discordCallback, discordLogin } from 'services/services';
 
+const login = [
+  {
+    icon: googleIcon,
+    text: 'Login with Google'
+  },
+  {
+    icon: discordIcon,
+    text: 'Login with Discord'
+  },
+  {
+    icon: facebookIcon,
+    text: 'Login with Facebook'
+  }
+];
+
 interface SignInLoginOptProp {
   heading: string;
   pageName: string;
 }
-
 const SigninLoginOpt = ({ heading, pageName }: SignInLoginOptProp) => {
   const handleDiscordLogin = (index: number) => {
     if (index === 1) {
@@ -31,24 +45,6 @@ const SigninLoginOpt = ({ heading, pageName }: SignInLoginOptProp) => {
 
     }
   };
-  const buttonActionText = pageName === 'signup' ? 'Login with ' : 'Sign Up with ';
-
-  const login = [
-    {
-      icon: googleIcon,
-      text: buttonActionText + 'Google'
-    },
-    {
-      icon: discordIcon,
-      text: buttonActionText + 'Discord'
-    },
-    {
-      icon: facebookIcon,
-      text: buttonActionText + 'Facebook'
-    }
-  ];
-
-  const userTypeText = pageName === 'signup' ? 'New user?' : 'Existing user?';
 
   return (
     <>
@@ -75,7 +71,7 @@ const SigninLoginOpt = ({ heading, pageName }: SignInLoginOptProp) => {
         </div>
         <div className='flex gap-[6px]'>
           <div className='font-normal text-[15px] leading-5 text-white'>
-            {userTypeText}
+            New user?
           </div>
           <Link href={`/auth/${pageName}`}>
             <a className='font-normal cursor-pointer text-[15px] leading-5 text-[#5848BC]'>

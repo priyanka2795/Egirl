@@ -8,6 +8,7 @@ const ImageGeneratorIndex = () => {
   const [posingToggle, setPosingToggle] = useState<boolean>(false);
   const [myCharacterToggle, setMyCharacterToggle] = useState<boolean>(false);
   const [numOfImages, setNumOfImages] = useState<number>()
+  const [imageDimension, setImageDimension] = useState()
 
   return (
     <div className='flex gap-8'>
@@ -19,6 +20,7 @@ const ImageGeneratorIndex = () => {
           EditGeneration={true}
           EditTooltip={true}
           numOfImages={numOfImages}
+          imageDimension={imageDimension}
         />
         <ImageAndIdeaGeneratorTab />
       </div>
@@ -31,6 +33,7 @@ const ImageGeneratorIndex = () => {
           SetMyCharacterToggle={setMyCharacterToggle}
           MyCharacterToggle={myCharacterToggle}
           setNumOfImages={setNumOfImages}
+          setImageDimension={setImageDimension}
         />
       </div>
 

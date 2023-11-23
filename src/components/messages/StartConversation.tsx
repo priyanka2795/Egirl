@@ -23,8 +23,6 @@ const StartConversation = ({
   const handleInputFocus = () => setInputActive(true);
   const handleInputBlur = () => setInputActive(false);
 
-  const [searchTerm, setSearchTerm] = useState('');
-
   return (
     <div className='flex w-full items-center justify-center border-r-[2px] border-[#252525] bg-[#070707] '>
       <div className='flex w-[240px] flex-col items-center'>
@@ -72,11 +70,9 @@ const StartConversation = ({
                 className='py-auto font-light h-[48px] w-full rounded-[14px] border-none bg-[#1E1E1E] pl-[50px] text-[15px] leading-6 text-[#979797] transition duration-100 focus:ring-[#5848BC]'
                 type='text'
                 placeholder='Search'
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
-            <UserList userSelected={userSelected} searchTerm={searchTerm} />
+            <UserList userSelected={userSelected} />
           </div>
         </Modal>
       )}

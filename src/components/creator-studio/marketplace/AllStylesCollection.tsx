@@ -7,8 +7,8 @@ import checkIcon from '../../../../public/assets/check-cs.png';
 const AllStylesCollection = () => {
   const [showNewest, setShowNewest] = useState<boolean>(false);
   const [showDuration, setShowDuration] = useState<boolean>(false);
-  const [selectedNewest, setSelectedNewest] = useState<string>('Newest');
-  const [selectedDuration, setSelectedDuration] = useState<string>('Month');
+  const [selectedNewest, setSelectedNewest] = useState<string>('');
+  const [selectedDuration, setSelectedDuration] = useState<string>('');
   const newestArr = [
     'Highest rated',
     'Most downloaded',
@@ -61,7 +61,7 @@ const AllStylesCollection = () => {
               className='flex cursor-pointer gap-2 border-r border-white/[0.08] pr-2'
               onClick={handleNewest}
             >
-              <p>{selectedNewest}</p>
+              <p>Newest</p>
               <Image
                 src={showNewest ? arrowUp : arrowDown}
                 alt=''
@@ -90,7 +90,7 @@ const AllStylesCollection = () => {
           </div>
           <div className='relative'>
             <div className='flex gap-2 cursor-pointer' onClick={handleDuration}>
-              <p>{selectedDuration}</p>
+              <p>Month</p>
               <Image
                 src={showDuration ? arrowUp : arrowDown}
                 alt=''

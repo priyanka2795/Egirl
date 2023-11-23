@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import mikaChanImg from '../../../public/assets/mikaChan.png';
 import sarahScarlet from '../../../public/assets/sarahScarlet.png';
 import galleryTabImg3 from '../../../public/assets/explore-gallery-image2.png';
@@ -66,25 +66,14 @@ const GalleryCardCollection = ({
   setSingleProfileState
 }: GalleryCardProp) => {
   // const [showRemoveProfile, setShowRemoveProfile] = useState(false);
-
-  const SideBarCollapse = sessionStorage.getItem('sideBarCollapse');
-
-  const [sideBarCollapses, setSideBarCollapses] = useState(SideBarCollapse);
-
-  useEffect(() => {
-    setSideBarCollapses(SideBarCollapse);
-  }, [SideBarCollapse]);
-
-  console.log(sideBarCollapses, 'SideBarCollapse sideBarCollapse');
-
   return singleProfileState ? (
     <RemoveProfile backFromProfile={setSingleProfileState} />
   ) : (
-    <div className={`grid ${sideBarCollapses? 'grid-cols-3':"grid-cols-2"} gap-4`}>
+    <div className='grid grid-cols-2 gap-4'>
       {exploreGallery.map((items, index) => {
         return (
           <div
-            className='gallery-card-collection group relative cursor-pointer overflow-hidden rounded-[14px]'
+            className='relative cursor-pointer gallery-card-collection group rounded-[14px] overflow-hidden h-[470px]'
             onClick={() => setSingleProfileState(true)}
             key={index}
           >
@@ -92,7 +81,7 @@ const GalleryCardCollection = ({
             <Image
               src={items.mainImg}
               alt=''
-              className=' h-full w-full object-cover hover:bg-[#000000A3]'
+              className=' object-cover hover:bg-[#000000A3] w-full h-full'
             />
             {/* </div> */}
             <div className='absolute inset-0 transition duration-300 cursor-pointer group-hover:bg-black/50'></div>

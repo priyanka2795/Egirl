@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';

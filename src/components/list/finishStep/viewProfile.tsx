@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import React, { useState } from 'react';
 import CameraIcon from '../../../../public/assets/camera.png';
 import ImagePlusIcon from '../../../../public/assets/image-plus2.png';

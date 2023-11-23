@@ -7,15 +7,9 @@ const MarketPlaceFilters = () => {
   const [style, setStyle] = useState<boolean>(false);
   const [subCategory, setSubCategory] = useState<boolean>(false);
   const [price, setPrice] = useState<boolean>(false);
-  const [selectedFilter, setSelectedFilter] = useState<string>('Realistic');
-  const [selectedSub, setSelectedSub] = useState<string>('Choose Clothing');
-  const [selectedClothing, setSelectedClothing] = useState<string>('Choose Accessories');
-  const [selectedPrice, setSelectedPrice] = useState<string>('Free');
+  const [selectedFilter, setSelectedFilter] = useState<string>('');
 
-  const accessoriesArr = ['Realistic', 'Dress', 'Gold Chain', 'Jacket', 'Jeans', 'Sneakers'];
-  const accessoriesArr1 = ['Choose Clothing', 'Dress', 'Gold Chain', 'Jacket', 'Jeans', 'Sneakers'];
-  const accessoriesArr2 = ['Choose Accessories', 'Dress', 'Gold Chain', 'Jacket', 'Jeans', 'Sneakers'];
-  const accessoriesArr3 = ['Free', 'Dress', 'Gold Chain', 'Jacket', 'Jeans', 'Sneakers'];
+  const accessoriesArr = ['Dress', 'Gold Chain', 'Jacket', 'Jeans', 'Sneakers'];
 
   const handleAccessories = () => {
     setAccessories(!accessories);
@@ -33,15 +27,6 @@ const MarketPlaceFilters = () => {
 
   const handleSelectedFilter = (ele: string) => {
     setSelectedFilter(ele);
-  };
-  const handleSelectedSub = (ele: string) => {
-    setSelectedSub(ele);
-  };
-  const handleSelectedClothing = (ele: string) => {
-    setSelectedClothing(ele);
-  };
-  const handleSelectedPrice = (ele: string) => {
-    setSelectedPrice(ele);
   };
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -77,7 +62,7 @@ const MarketPlaceFilters = () => {
                   : 'border border-transparent bg-white/10'
               }`}
             >
-              <div className='text-[15px] text-[#FFF]'>{selectedFilter}</div>
+              <div className='text-[15px] text-[#FFF]'>Realistic</div>
               <Image
                 src={style ? arrowUp : arrowDown}
                 alt=''
@@ -117,7 +102,7 @@ const MarketPlaceFilters = () => {
                   : 'border border-transparent bg-white/10'
               }`}
             >
-              <div className='text-[15px] text-[#FFF]'>{selectedSub}</div>
+              <div className='text-[15px] text-[#FFF]'>Choose Clothing</div>
               <Image
                 src={accessories ? arrowUp : arrowDown}
                 alt=''
@@ -126,16 +111,16 @@ const MarketPlaceFilters = () => {
             </div>
             {accessories && (
               <div className='absolute right-0 top-[55px] z-50 w-full rounded-xl bg-[#1E1E1E] px-2 py-3'>
-                {accessoriesArr1.map((e, index) => {
+                {accessoriesArr.map((e, index) => {
                   return (
                     <div
                       key={index}
                       className={`cursor-pointer px-2 py-1 ${
-                        selectedSub === e
+                        selectedFilter === e
                           ? 'rounded-md bg-white bg-opacity-10'
                           : ''
                       }`}
-                      onClick={() => handleSelectedSub(e)}
+                      onClick={() => handleSelectedFilter(e)}
                     >
                       {e}
                     </div>
@@ -157,7 +142,7 @@ const MarketPlaceFilters = () => {
                   : 'border border-transparent bg-white/10'
               }`}
             >
-              <div className='text-[15px] text-[#FFF]'>{selectedClothing}</div>
+              <div className='text-[15px] text-[#FFF]'>Choose Accessories</div>
               <Image
                 src={subCategory ? arrowUp : arrowDown}
                 alt=''
@@ -166,16 +151,16 @@ const MarketPlaceFilters = () => {
             </div>
             {subCategory && (
               <div className='absolute right-0 top-[55px] z-50 w-full rounded-xl bg-[#1E1E1E] px-2 py-3'>
-                {accessoriesArr2.map((e, index) => {
+                {accessoriesArr.map((e, index) => {
                   return (
                     <div
                       key={index}
                       className={`cursor-pointer px-2 py-1 ${
-                        selectedClothing === e
+                        selectedFilter === e
                           ? 'rounded-md bg-white bg-opacity-10'
                           : ''
                       }`}
-                      onClick={() => handleSelectedClothing(e)}
+                      onClick={() => handleSelectedFilter(e)}
                     >
                       {e}
                     </div>
@@ -197,7 +182,7 @@ const MarketPlaceFilters = () => {
                   : 'border border-transparent bg-white/10'
               }`}
             >
-              <div className='text-[15px] text-[#FFF]'>{selectedPrice}</div>
+              <div className='text-[15px] text-[#FFF]'>Free</div>
               <Image
                 src={price ? arrowUp : arrowDown}
                 alt=''
@@ -206,16 +191,16 @@ const MarketPlaceFilters = () => {
             </div>
             {price && (
               <div className='absolute right-0 top-[55px] z-50 w-full rounded-xl bg-[#1E1E1E] px-2 py-3'>
-                {accessoriesArr3.map((e, index) => {
+                {accessoriesArr.map((e, index) => {
                   return (
                     <div
                       key={index}
                       className={`cursor-pointer px-2 py-1 ${
-                        selectedPrice === e
+                        selectedFilter === e
                           ? 'rounded-md bg-white bg-opacity-10'
                           : ''
                       }`}
-                      onClick={() => handleSelectedPrice(e)}
+                      onClick={() => handleSelectedFilter(e)}
                     >
                       {e}
                     </div>

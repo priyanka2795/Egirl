@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import React, { useEffect, useRef, useState } from 'react';
 import Information from '../../../../public/assets/circle-information2.png';
 import Dots from '../../../../public/assets/dots-horizontal.png';

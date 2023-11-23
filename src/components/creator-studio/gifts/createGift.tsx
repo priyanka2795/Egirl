@@ -115,13 +115,13 @@ function CreateGift({
           <div className='flex items-center justify-between border-b border-[#FFFFFF14] p-6'>
             <h5 className='text-lg font-semibold'>Create gift</h5>
             <div
-              className='h-6 w-6 cursor-pointer'
+              className='w-6 h-6 cursor-pointer'
               onClick={() => {
                 createGiftClose(false);
                 SetCategory([]);
               }}
             >
-              <Image className='h-full w-full' src={crossIcon} alt={''} />
+              <Image className='w-full h-full' src={crossIcon} alt={''} />
             </div>
           </div>
           <div className='flex flex-col gap-4 p-6'>
@@ -213,7 +213,7 @@ function CreateGift({
               className='flex items-center gap-2 font-semibold '
               onClick={() => setCreateCategory(true)}
             >
-              <Image className='h-full w-full' src={plusIcon} alt={''} />
+              <Image className='w-full h-full' src={plusIcon} alt={''} />
               <p>New Category</p>
             </button>
 
