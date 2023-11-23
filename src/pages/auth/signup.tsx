@@ -1,6 +1,4 @@
-import React, { FormEvent, useState } from 'react';
-import { useSupabaseClient } from '@supabase/auth-helpers-react';
-import { Database } from '../../../types/database';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import * as Yup from 'yup';
 import Image from 'next/image';
@@ -40,7 +38,7 @@ const initialValues = {
 };
 export default function SignUp() {
   const router = useRouter();
-  const supabase = useSupabaseClient<Database>();
+
 
   const [password, setPassword] = useState('');
   const [isMinLength, setIsMinLength] = useState<boolean>(false);

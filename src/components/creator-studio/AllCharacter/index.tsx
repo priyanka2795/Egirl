@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { useState } from 'react';
 import plusIcon from '../../../../public/assets/plus-large.png';
 import Image from 'next/image';

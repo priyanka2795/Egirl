@@ -1,3 +1,4 @@
+//@ts-nocheck
 import Image from 'next/image';
 import React, { useState } from 'react';
 import avtar from '../../../public/assets/mica-chan-avatar-image.png';

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Database } from '../../../types/database';
 import { useRouter } from 'next/router';
 
 export default function Login() {
