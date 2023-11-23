@@ -144,7 +144,7 @@ export default function SignUp() {
                 {/* <div className='font-bold text-[32px] leading-10 text-white'>
                   Sign in
                 </div> */}
-                <SigninLoginOpt heading={'Sign up'} pageName={'signin'} />
+                <SigninLoginOpt heading={'Sign up'} pageName={'login'} />
 
                 {/* <div className='flex flex-col gap-3'>
                   <div className='flex flex-col gap-2'>
