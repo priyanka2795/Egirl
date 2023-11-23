@@ -12,7 +12,6 @@ import type { NextPage } from 'next';
 import type { AppProps } from 'next/app';
 import { useEffect, useState } from 'react';
 import Script from 'next/script';
-import { Database } from '../../types/database';
 import { Provider } from 'react-redux';
 import store from '../store';
 

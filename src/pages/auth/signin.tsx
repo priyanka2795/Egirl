@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Database } from '../../../types/database';
 import { useRouter } from 'next/router';
 import bgImage from '../../../public/assets/sign-in-bg-img.png';
 import logo from '../../../public/assets/Logo-white.png';

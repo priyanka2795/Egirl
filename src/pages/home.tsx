@@ -1,7 +1,6 @@
 import HomeContent from '@components/home';
 import React, { useEffect } from 'react';
 import { GetServerSidePropsContext } from 'next';
-import { Database } from '../../types/database';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
 export default function Home() {

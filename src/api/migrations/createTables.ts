@@ -1,4 +1,4 @@
-async function createTables() {
-}
-
+// async function createTables() {
+// }
+export {}
 
