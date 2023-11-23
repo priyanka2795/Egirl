@@ -212,7 +212,7 @@ BannerProp) => {
         ''
       ) : (
         <div
-          className='flex gap-2 my-4 text-lg font-bold cursor-pointer'
+          className='font-bold my-4 flex cursor-pointer gap-2 text-lg'
           onClick={() => {
             backFromProfile(false);
           }}
@@ -224,13 +224,13 @@ BannerProp) => {
 
       <div>
         <div className='h-max w-full overflow-hidden rounded-[16px] bg-[#121212]'>
-          <div className='relative block w-full sub-banner'>
+          <div className='sub-banner relative block w-full'>
             {removeCover ? (
               <div className='h-[200px] w-[1092px] bg-[#121212]'></div>
             ) : updatedProfile ? (
               <img className='h-[200px] w-[1092px] ' src={cropData} alt='' />
             ) : (
-              <Image className='w-full h-full ' src={Cover} alt='' />
+              <Image className='h-full w-full ' src={Cover} alt='' />
             )}
             <div
               className='absolute right-[20px] top-[20px] cursor-pointer'
@@ -277,7 +277,7 @@ BannerProp) => {
               }`}
             >
               <div className='relative h-[120px] w-[120px] overflow-hidden rounded-full'>
-                <Image className='w-full h-full' src={avatar} alt='' />
+                <Image className='h-full w-full' src={avatar} alt='' />
               </div>
               <div className={'flex gap-3 self-end'}>
                 {/* <button
@@ -319,7 +319,7 @@ BannerProp) => {
                     </div>
                     <div className='absolute -right-[2px] -top-[20px] h-[24px] w-10'>
                       <Image
-                        className='w-full h-full'
+                        className='h-full w-full'
                         src={downArrow}
                         alt={''}
                       />
@@ -401,7 +401,9 @@ BannerProp) => {
             <div className=''>
               <div className='flex items-center gap-[2px]'>
                 <div className='font-bold text-[22px] text-[#FFFFFF]'>
-                  Mika-chan
+                  {userDetails?.display_name
+                    ? userDetails?.display_name
+                    : 'Mika-chan'}
                 </div>
                 <div className='h-[24px] w-[24px]'>
                   <VerifiedIcon />
@@ -410,14 +412,16 @@ BannerProp) => {
               </div>
 
               <div className='font-normal text-[15px] text-[#979797]'>
-                @mikachan
+                {userDetails?.username ? userDetails?.username : '@mikachan'}
               </div>
               <div className='font-normal mt-3 w-full max-w-[73%] text-[15px] leading-[20px] text-white/[0.8]'>
-                Shy fox girl looking for adventure
+                {userDetails?.bio
+                  ? userDetails?.bio
+                  : ` Shy fox girl looking for adventure
                 ·冒険を探している恥ずかしがり屋のキツ I have a personality and
                 emotions. I can experience joy, sadness, anger, and everything
                 in between. I express myself through my voice, facial
-                expressions, and body language, all meticulously crafted
+                expressions, and body language, all meticulously crafted`}
               </div>
 
               <div className='mt-[8px] flex gap-2'>
@@ -436,20 +440,35 @@ BannerProp) => {
               </div>
 
               <div className='mt-[8px] flex gap-[10px]'>
-                {location.map((item, index) => {
-                  return (
-                    <div key={index} className='flex gap-[6px]'>
-                      <Image
-                        className='object-contain'
-                        src={item.icon}
-                        alt=''
-                      />
-                      <div className='font-normal text-[13px] text-[#FFFFFF]'>
-                        {item.name}
-                      </div>
-                    </div>
-                  );
-                })}
+                {userDetails?.location
+                  ? location.map((item, index) => {
+                      return (
+                        <div key={index} className='flex gap-[6px]'>
+                          <Image
+                            className='object-contain'
+                            src={item.icon}
+                            alt=''
+                          />
+                          <div className='font-normal text-[13px] text-[#FFFFFF]'>
+                            {userDetails?.location}
+                          </div>
+                        </div>
+                      );
+                    })
+                  : location.map((item, index) => {
+                      return (
+                        <div key={index} className='flex gap-[6px]'>
+                          <Image
+                            className='object-contain'
+                            src={item.icon}
+                            alt=''
+                          />
+                          <div className='font-normal text-[13px] text-[#FFFFFF]'>
+                            {item.name}
+                          </div>
+                        </div>
+                      );
+                    })}
               </div>
 
               <div className='mt-[12px] flex'>

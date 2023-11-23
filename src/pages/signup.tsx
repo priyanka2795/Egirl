@@ -23,13 +23,12 @@ import Cookies from 'js-cookie';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
 const initialValues = {
   username: '',
   email: '',
-  verifyEmail:'',
+  verifyEmail: '',
   password: '',
-  phone: '',
+  phone: ''
 };
 
 const validationSchema = Yup.object({
@@ -47,7 +46,6 @@ const validationSchema = Yup.object({
       "That's an invalid password"
     )
 });
-
 
 export default function SignUp() {
   const router = useRouter();
@@ -69,7 +67,6 @@ export default function SignUp() {
     setPassword(e.target.value);
   };
 
-
   const handlePasswordChange = (e: any) => {
     const newPassword = e.target.value;
     setPassword(newPassword);
@@ -83,56 +80,49 @@ export default function SignUp() {
     );
   };
 
-
-
   const onSubmit = (values: any) => {
-    setErrorMsg('')
+    setErrorMsg('');
     let data = {
-      "username": values.username,
-      "email": values.email,
-      "password": values.verifyEmail,
-      "phone": "1234567890"
-    }
+      username: values.username,
+      email: values.email,
+      password: values.verifyEmail,
+      phone: '1234567890'
+    };
     userSignUp(data)
-    .then((res:any)=>{
-      console.log("sign up res---", res)
-      if (res.status === 200) {
-        toast.success('User signUp successful');
-        Cookies.set('accessToken', res.data.access_token);
-        Cookies.set('refreshToken', res.data.refresh_token);
-        setTimeout(() => {
-          router.push('/home');
-        }, 1000);
-      }
-      if (res.response.status === 400) {
-        setErrorMsg(res.response.data.detail);
-      } 
-    })
-    .catch((err)=>{
-      console.log("sign up err---", err)
-    })
+      .then((res: any) => {
+        console.log('sign up res---', res);
+        if (res.status === 200) {
+          toast.success('User signUp successful');
+          Cookies.set('accessToken', res.data.access_token);
+          Cookies.set('refreshToken', res.data.refresh_token);
+          setTimeout(() => {
+            router.push('/home');
+          }, 1000);
+        }
+        if (res.response.status === 400) {
+          setErrorMsg(res.response.data.detail);
+        }
+      })
+      .catch((err) => {
+        console.log('sign up err---', err);
+      });
   };
 
-
-
-// const handleChange = (e:any) => {
-//   const { name, value } = e.target;
-//   setForm({
-//     ...form,
-//     [name]: value,
-//   });
-//   setError({
-//     ...error,
-//     [name]: '',
-//   });
-// };
-
-
+  // const handleChange = (e:any) => {
+  //   const { name, value } = e.target;
+  //   setForm({
+  //     ...form,
+  //     [name]: value,
+  //   });
+  //   setError({
+  //     ...error,
+  //     [name]: '',
+  //   });
+  // };
 
   return (
     <>
       <SigninTemplate>
-
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
@@ -248,21 +238,21 @@ export default function SignUp() {
                       // onChange={(e: any) => {
                       //   handlePasswordChange(e);
                       // }}
-                      className={`font-normal flex rounded-[14px] bg-transparent border-none bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] 
+                      className={`font-normal flex rounded-[14px] border-none bg-transparent bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] 
                       placeholder:text-[#979797]  focus:ring-0 `}
                     />
                     <div>
                       <ul>
                         <li className='mb-3'>Create a password that:</li>
-                        <li className='flex items-center mb-2'>
+                        <li className='mb-2 flex items-center'>
                           {/* {isMinLength ? */}
-                           <CheckedIcon /> 
-                           {/* : <CrossIcon />} */}
+                          <CheckedIcon />
+                          {/* : <CrossIcon />} */}
                           contains at least 8 characters
                         </li>
                         <li className='flex items-center'>
                           {/* {hasNumberOrSpecialChar ? ( */}
-                            <CheckedIcon />
+                          <CheckedIcon />
                           {/* ) : (
                             <CrossIcon />
                           )}{' '} */}
@@ -274,7 +264,9 @@ export default function SignUp() {
                 </div>
               </div>
 
-              <div className={`w-full px-10 pt-5 ${errorMsg ? 'pb-5' : 'pb-10'} `}>
+              <div
+                className={`w-full px-10 pt-5 ${errorMsg ? 'pb-5' : 'pb-10'} `}
+              >
                 <button
                   type='submit'
                   className='font-bold flex w-full items-center justify-center rounded-[16px] bg-[#5848BC] px-6 py-4 text-[18px] leading-6 text-white'
@@ -283,12 +275,12 @@ export default function SignUp() {
                   Continue
                 </button>
               </div>
-              <p className={`px-10 text-red-400 ${errorMsg ? 'pb-10' : ''}`}>{errorMsg}</p>
+              <p className={`px-10 text-red-400 ${errorMsg ? 'pb-10' : ''}`}>
+                {errorMsg}
+              </p>
             </div>
-            
           </Form>
         </Formik>
-        
       </SigninTemplate>
       {/* {welcomeStepsModal && (
         <WelcomeStepsModal
@@ -296,7 +288,7 @@ export default function SignUp() {
           setWelcomeStepsModal={setWelcomeStepsModal}
         />
       )} */}
-       <ToastContainer
+      <ToastContainer
         position='bottom-center'
         pauseOnHover
         theme='colored'

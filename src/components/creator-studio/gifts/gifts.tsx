@@ -37,11 +37,18 @@ function Gifts() {
   const characterId = Cookies.get('character_id') || '';
   const token: any = Cookies.get('accessToken');
   const [selectedCategoryGifts, setSelectedCategoryGifts] = useState<any>();
+  const [selectedGiftData, setSelectedGiftData] = useState<any>();
+  const [updateGift, setUpdateGift] = useState(false);
 
-  const EditGift = (val: number) => {
+  const EditGift = (val: number, data: any) => {
+    setSelectedGiftData(data);
     setGiftCard(true);
     setGiftEditPopup(val);
   };
+
+  useEffect(() => {
+    console.log(selectedGiftData, '????giftData');
+  }, [selectedGiftData]);
 
   const DeleteGiftCardModal = (
     index: number,
@@ -50,9 +57,8 @@ function Gifts() {
   ) => {
     setGiftCard(true);
     setGiftEditPopup(num);
-    setDeleteIndex(index);
     setDeleteBtnStep(1);
-    setGiftName(giftName);
+    setGiftName('giftName');
   };
 
   const DeleteGift = (ind: number) => {
@@ -105,7 +111,7 @@ function Gifts() {
       .catch((err: any) => {
         console.log(err);
       });
-  }, [selectedCategoryId]);
+  }, [selectedCategoryId, updateGift]);
 
   return (
     <>
@@ -150,7 +156,7 @@ function Gifts() {
             {selectedCategoryGifts?.map((item: any, index: number) => (
               <div
                 className='relative h-[300px] w-[300px] overflow-hidden rounded-xl'
-                key={index}
+                key={item?.gift_id}
               >
                 {/* <Image
                   src={item?.media_url}
@@ -178,7 +184,7 @@ function Gifts() {
                         <div className='absolute right-0 top-8 flex h-[130px] w-[251px] flex-col gap-3 rounded-[14px] bg-[#1A1A1A] p-4'>
                           <button
                             className='flex items-center gap-2'
-                            onClick={() => EditGift(1)}
+                            onClick={() => EditGift(1, item)}
                           >
                             <Image
                               src={Pencil}
@@ -232,6 +238,11 @@ function Gifts() {
               DeleteBtnStep={deleteBtnStep}
               giftImageSet={giftImageSet}
               giftName={giftName}
+              selectedGiftData={selectedGiftData}
+              characterId={characterId}
+              token={token}
+              setUpdateGift={setUpdateGift}
+              updateGift={updateGift}
             />
           )}
 

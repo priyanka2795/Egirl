@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { useEffect, useState } from 'react';
 import VerticalDots from '../svg/dots-vertical.svg';
 import Search from '../../../../public/assets/search-alt (1).png';
@@ -90,14 +91,18 @@ function GiftCategoryAction({
     // SetCategory((oldValue: string[]) => {
     //   return oldValue.filter((item: string, index: number) => index !== i);
     // });
-    console.log(deleteCategoryData, '????data');
-    // deleteGiftCategory(deleteCategoryData , token)
-    // .then((res:any)=>{
-    //   console.log(res);
-    // })
-    // .catch((err:any)=>{
-    //   console.log(err);
-    // })
+    deleteGiftCategory(
+      deleteCategoryData?.character_id,
+      deleteCategoryData?.gift_category_id,
+      token
+    )
+      .then((res: any) => {
+        console.log(res);
+        setCreateCategoryToggle(!createCategoryToggle);
+      })
+      .catch((err: any) => {
+        console.log(err);
+      });
   };
 
   const handleToggle = (index: number) => {

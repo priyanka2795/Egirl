@@ -1,7 +1,6 @@
 import MessagesContent from '@components/messages';
 import React from 'react';
 import { GetServerSidePropsContext } from 'next';
-import { Database } from '../../types/database';
 import Layout from '@components/common/Layout';
 export default function Explore() {
 
