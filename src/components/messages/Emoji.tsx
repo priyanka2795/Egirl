@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import EmojiPicker from 'emoji-picker-react';
 import React from 'react';
 

@@ -109,17 +109,17 @@ export default function Lists(): JSX.Element {
         />
       </Modal>
       <MainHeader className='flex items-center justify-between'>
-        <div className='-mb-1 flex flex-col'>
-          <h2 className='font-bold -mt-1 text-xl'>Add Card</h2>
+        <div className='flex flex-col -mb-1'>
+          <h2 className='-mt-1 text-xl font-bold'>Add Card</h2>
           <p className='text-xs text-light-secondary dark:text-dark-secondary'>
             @{user?.username}
           </p>
         </div>
         <Button
-          className='dark-bg-tab // group relative p-2 hover:bg-light-primary/10 active:bg-light-primary/20 dark:hover:bg-dark-primary/10 dark:active:bg-dark-primary/20'
+          className='relative p-2 dark-bg-tab // group hover:bg-light-primary/10 active:bg-light-primary/20 dark:hover:bg-dark-primary/10 dark:active:bg-dark-primary/20'
           onClick={openModal}
         >
-          <HeroIcon className='h-5 w-5' iconName='ArchiveBoxXMarkIcon' />
+          <HeroIcon className='w-5 h-5' iconName='ArchiveBoxXMarkIcon' />
           <ToolTip
             className='!-translate-x-20 translate-y-3 md:-translate-x-1/2'
             tip='Clear lists'
@@ -128,11 +128,11 @@ export default function Lists(): JSX.Element {
       </MainHeader>
 
       <section className='mt-0.5'>
-        <form className='flex w-full flex-wrap gap-3 p-5'>
-          <label className='relative flex w-full flex-col'>
-            <span className='font-bold mb-3'>Card number</span>
+        <form className='flex flex-wrap w-full gap-3 p-5'>
+          <label className='relative flex flex-col w-full'>
+            <span className='mb-3 font-bold'>Card number</span>
             <input
-              className='peer rounded-md border-2 border-gray-200 py-2 pl-12 pr-2 placeholder-gray-300'
+              className='py-2 pl-12 pr-2 placeholder-gray-300 border-2 border-gray-200 rounded-md peer'
               type='text'
               name='card_number'
               placeholder='0000 0000 0000'
@@ -148,10 +148,10 @@ export default function Lists(): JSX.Element {
             </svg>
           </label>
 
-          <label className='relative flex flex-1 flex-col'>
-            <span className='font-bold mb-3'>Expire date</span>
+          <label className='relative flex flex-col flex-1'>
+            <span className='mb-3 font-bold'>Expire date</span>
             <input
-              className='peer rounded-md border-2 border-gray-200 py-2 pl-12 pr-2 placeholder-gray-300'
+              className='py-2 pl-12 pr-2 placeholder-gray-300 border-2 border-gray-200 rounded-md peer'
               type='text'
               name='expire_date'
               placeholder='MM/YY'
@@ -167,17 +167,17 @@ export default function Lists(): JSX.Element {
             </svg>
           </label>
 
-          <label className='relative flex flex-1 flex-col'>
-            <span className='font-bold mb-3 flex items-center gap-3'>
+          <label className='relative flex flex-col flex-1'>
+            <span className='flex items-center gap-3 mb-3 font-bold'>
               CVC/CVV
-              <span className='group relative'>
-                <span className='absolute -right-2 top-1/2 hidden w-max -translate-y-1/2 translate-x-full transform items-center justify-center bg-black px-2 py-1 text-xs text-white group-hover:flex'>
+              <span className='relative group'>
+                <span className='absolute items-center justify-center hidden px-2 py-1 text-xs text-white transform translate-x-full -translate-y-1/2 bg-black -right-2 top-1/2 w-max group-hover:flex'>
                   {' '}
                   Hey ceci est une infobulle !
                 </span>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
-                  className='h-4 w-4'
+                  className='w-4 h-4'
                   fill='none'
                   viewBox='0 0 24 24'
                   stroke='currentColor'
@@ -187,7 +187,7 @@ export default function Lists(): JSX.Element {
               </span>
             </span>
             <input
-              className='peer rounded-md border-2 border-gray-200 py-2 pl-12 pr-2 placeholder-gray-300'
+              className='py-2 pl-12 pr-2 placeholder-gray-300 border-2 border-gray-200 rounded-md peer'
               type='text'
               name='card_cvc'
               placeholder='&bull;&bull;&bull;'

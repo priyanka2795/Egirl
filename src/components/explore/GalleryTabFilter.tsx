@@ -72,17 +72,17 @@ const galleryArray = [
 interface GalleryTabFilterProps {
   singleProfileState: boolean;
   setSingleProfileState: React.Dispatch<React.SetStateAction<boolean>>;
-  userId: string;
+  userId : string
 }
 const GalleryTabFilter = ({
   singleProfileState,
   setSingleProfileState,
   userId
 }: GalleryTabFilterProps) => {
-  const token: any = Cookies.get('accessToken');
+  const token:any = Cookies.get('accessToken');
   const [selectedFilter, setSelectedFilter] = useState('All');
   const [filterForm, setFilterForm] = useState(false);
-  const [galleryData, setGalleryData] = useState<any>();
+  const [galleryData , setGalleryData] = useState<any>() 
 
   if (selectedFilter === undefined || selectedFilter.length < 1) {
     setSelectedFilter('All');
@@ -91,16 +91,17 @@ const GalleryTabFilter = ({
     setSelectedFilter(item);
   };
 
-  useEffect(() => {
+
+  useEffect(()=>{
     exploreGallery(1, 10, token)
-      .then((res: any) => {
-        setGalleryData(res?.data);
-        console.log(res, 'exploreGallaryRes????');
-      })
-      .catch((err) => {
-        console.log(err, 'exploreError????');
-      });
-  }, []);
+    .then((res:any)=>{
+      setGalleryData(res?.data)
+      console.log(res , "exploreGallaryRes????");
+    })
+    .catch((err)=>{
+      console.log(err , "exploreError????");
+    })
+  },[])
 
   const settings = {
     dots: true,
@@ -123,6 +124,8 @@ const GalleryTabFilter = ({
     });
   }, []);
 
+
+
   return (
     <>
       {singleProfileState === false ? (
@@ -144,19 +147,7 @@ const GalleryTabFilter = ({
                         : 'bg-white bg-opacity-10 '
                     } ${items.id === 7 && 'filter-bg-gradient'}`}
                   >
-                    {/* <div
-                      className={`flex items-center justify-center rounded-3xl bg-white bg-opacity-5`}
-                    >
-                      {items.filterText === 'All' ? (
-                        <UserProfile className='white-stroke' />
-                      ) : (
-                        <Image
-                          className='w-16 h-8 rounded-full'
-                          src={items.filterImg}
-                          alt=''
-                        />
-                      )}
-                    </div> */}
+                    
 
                     <div className='text-[15px] font-semibold leading-tight text-white'>
                       <p>{items.filterText}</p>
@@ -169,7 +160,7 @@ const GalleryTabFilter = ({
 
           <div className='mb-[23px] flex justify-between gap-10'>
             <div
-              className={`font-normal flex cursor-pointer items-center gap-1 rounded-lg bg-white/10 px-[10px] py-1 text-xs leading-none text-white ${
+              className={`flex cursor-pointer items-center gap-1 rounded-lg bg-white/10 px-[10px] py-1 text-xs font-normal leading-none text-white ${
                 selectedFilter === 'All' ? '' : 'py-3'
               }`}
             >

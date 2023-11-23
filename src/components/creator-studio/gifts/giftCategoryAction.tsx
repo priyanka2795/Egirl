@@ -91,14 +91,18 @@ function GiftCategoryAction({
     // SetCategory((oldValue: string[]) => {
     //   return oldValue.filter((item: string, index: number) => index !== i);
     // });
-    console.log(deleteCategoryData, '????data');
-    // deleteGiftCategory(deleteCategoryData , token)
-    // .then((res:any)=>{
-    //   console.log(res);
-    // })
-    // .catch((err:any)=>{
-    //   console.log(err);
-    // })
+    deleteGiftCategory(
+      deleteCategoryData?.character_id,
+      deleteCategoryData?.gift_category_id,
+      token
+    )
+      .then((res: any) => {
+        console.log(res);
+        setCreateCategoryToggle(!createCategoryToggle);
+      })
+      .catch((err: any) => {
+        console.log(err);
+      });
   };
 
   const handleToggle = (index: number) => {
@@ -108,7 +112,7 @@ function GiftCategoryAction({
 
   return (
     <>
-      <div className='mt-4 flex items-center justify-between'>
+      <div className='flex items-center justify-between mt-4'>
         <div className='flex items-center justify-center gap-3 '>
           {giftCategory?.map((items: any, index: number) => (
             <div
@@ -139,7 +143,7 @@ function GiftCategoryAction({
                         )
                       }
                     >
-                      <Image src={Pencil} className='h-full w-full' alt='' />
+                      <Image src={Pencil} className='w-full h-full' alt='' />
                       <p>Edit name</p>
                     </button>
 
@@ -153,7 +157,7 @@ function GiftCategoryAction({
                         )
                       }
                     >
-                      <Image src={Delete} className='h-full w-full' alt={''} />
+                      <Image src={Delete} className='w-full h-full' alt={''} />
                       <p>Delete</p>
                     </button>
                   </div>
@@ -166,7 +170,7 @@ function GiftCategoryAction({
           ))}
 
           <button
-            className='group relative pt-1 '
+            className='relative pt-1 group '
             onClick={() => setCreateCategory(true)}
           >
             <Image src={plusIcon} alt='' className='h-[18px] w-[18px]' />
@@ -195,7 +199,7 @@ function GiftCategoryAction({
                 className='absolute right-2 top-2'
                 onClick={() => setActive(!isActive)}
               >
-                <Image className='h-full w-full' src={crossIcon} alt={''} />
+                <Image className='w-full h-full' src={crossIcon} alt={''} />
               </span>
             ) : (
               ''

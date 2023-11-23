@@ -4,13 +4,10 @@ import { LoginMain } from '@components/login/login-main';
 import { LoginFooter } from '@components/login/login-footer';
 import { ReactElement, ReactNode, useEffect } from 'react';
 
-
 import Account from '../components/account/account';
 import Router from 'next/router';
 
 export default function Login(): JSX.Element {
- 
-
   const customTheme = {
     default: {
       colors: {
@@ -85,8 +82,6 @@ export default function Login(): JSX.Element {
     }
   };
 
- 
-
   return (
     <div className='grid min-h-screen grid-rows-[1fr,auto]'>
       <SEO
@@ -94,13 +89,11 @@ export default function Login(): JSX.Element {
         description='From breaking news and entertainment to sports and politics, get the full story with all the live commentary.'
       />
       <div className='grid grid-cols-5'>
-        <div className='flex items-center justify-center col-span-3 font-serif italic font-bold bg-white text-8xl text-main-red'>
+        <div className='font-bold col-span-3 flex items-center justify-center bg-white font-serif text-8xl italic text-main-red'>
           e-Girls
         </div>
-        <div className='flex items-center col-span-2 bg-main-red'>
-          <div className='container p-10 mx-40 bg-white shadow-2xl drop-shadow-2xl'>
-          
-          </div>
+        <div className='col-span-2 flex items-center bg-main-red'>
+          <div className='container mx-40 bg-white p-10 shadow-2xl drop-shadow-2xl'></div>
         </div>
       </div>
 

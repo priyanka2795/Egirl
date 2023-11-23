@@ -73,7 +73,7 @@ export const updateCharacterPersonality = (data:any , token : string | null)=> p
 
 export const postCharacterPersonality = (data:any) => postApi('/studio/character/personality' , data)
 
-export const getGifts = (giftCategoryId :number , token:string|null)=> getApiWithToken( `/studio/gift/${giftCategoryId}`  , token) 
+export const getGifts = (token:string|null)=> getApiWithToken('/studio/gift'  , token) 
 
 export const updateGifts = (data:any , token : string | null) => putApiWithToken('/studio/gift' , data , token)
 
@@ -81,13 +81,13 @@ export const postGifts = (data:any , token : string|null) => postApiWithToken('/
 
 export const deleteGift = (data:any)=> deleteApi('/studio/gift' , data)
 
-export const getGiftCategory = ( characterId:string|null , token:string|null) => getApiWithToken(`/studio/gift/category/${characterId}`  , token)
+export const getGiftCategory = (token:string|null) => getApiWithToken('/studio/gift/category'  , token)
 
 export const updateGiftCategory = (data:any , token : string | null) => putApiWithToken('/studio/gift/category' , data , token)
 
 export const postGiftCategory = (data:any , token:any) => postApiWithToken('/studio/gift/category' , data , token)
 
-export const deleteGiftCategory = (characterId :string|null , giftCategoryId:number , token:string|null) => deleteApi(`/studio/gift/category?character_id=${characterId}&gift_category_id=${giftCategoryId}` , token)
+export const deleteGiftCategory = (characterId :string|null , giftCategoryId:number , token:string|null) => deleteApi(`/studio/gift/category/${characterId}/${giftCategoryId}` , token)
 
 export const postPromptImage = (data:any, token:string | null) => postApiWithToken('/studio/image_generation/prompt_image' , data, token)
 
