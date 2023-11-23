@@ -10,12 +10,8 @@ import { AppHead } from '@components/common-old/app-head';
 import type { ReactElement, ReactNode } from 'react';
 import type { NextPage } from 'next';
 import type { AppProps } from 'next/app';
-import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs';
-import { SessionContextProvider, Session } from '@supabase/auth-helpers-react';
 import { useEffect, useState } from 'react';
-import SupabaseAuthContextProvider from '@lib/context/supabase-auth-context';
 import Script from 'next/script';
-import { Database } from '../../types/database';
 import { Provider } from 'react-redux';
 import store from '../store';
 
@@ -40,10 +36,6 @@ export default function App({
     setInitialRenderComplete(true);
   }, []);
 
-  // Create a new supabase browser client on every first render.
-  const [supabaseClient] = useState(() =>
-    createBrowserSupabaseClient<Database>()
-  );
   if (!initialRenderComplete) return <></>;
   return (
     <>
@@ -69,18 +61,11 @@ export default function App({
       </Script>
       <Provider store={store}>
         <AppHead />
-        <SessionContextProvider
-          supabaseClient={supabaseClient}
-          initialSession={pageProps.initialSession}
-        >
           {/* <AuthContextProvider> */}
-          {/* <SupabaseAuthContextProvider> */}
           <ThemeContextProvider>
             {<Component {...pageProps} />}
           </ThemeContextProvider>
-          {/* </SupabaseAuthContextProvider> */}
           {/* </AuthContextProvider> */}
-        </SessionContextProvider>
       </Provider>
     </>
   );

@@ -1,11 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { toast } from 'react-hot-toast';
-import { orderBy, query } from 'firebase/firestore';
 import { useModal } from '@lib/hooks/useModal';
-import { useCollection } from '@lib/hooks/useCollection';
-import { useArrayDocument } from '@lib/hooks/useArrayDocument';
-import { clearAllBookmarks } from '@lib/firebase/utils';
+
 import { HomeLayout, ProtectedLayout } from '@components/layout/common-layout';
 import { MainLayout } from '@components/layout/main-layout';
 import { SEO } from '@components/common-old/seo';
@@ -20,129 +17,91 @@ import { ToolTip } from '@components/ui/tooltip';
 import { HeroIcon } from '@components/ui/hero-icon';
 import { Loading } from '@components/ui/loading';
 import type { ReactElement, ReactNode } from 'react';
-import { User } from '@lib/types/user';
-import { Tweet as TypeTweet } from '@lib/types/tweet';
-import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react';
+
 import {
   getBlockedCharacters,
   getCustomLists,
   getFollowerLists
 } from 'api/lists/lists';
-import type { User as AdminUser } from '@lib/types/user';
 import { UserCard } from '@components/user/user-card';
 import { AddListModal } from '@components/modal/add-list-model';
 import ListIndex from '@components/list';
 import Sidebar from '@components/common/Sidebar';
 import Layout from '@components/common/Layout';
 
-const suggestionsData: AdminUser[] = [
-  {
-    accent: 'blue',
-    bio: 'Syahir',
-    coverPhotoURL:
-      'https://www.wikihow.com/images/thumb/f/fc/Get-the-URL-for-Pictures-Step-1-Version-6.jpg/v4-460px-Get-the-URL-for-Pictures-Step-1-Version-6.jpg.webp',
-    followers: ['1', '2'],
-    following: ['1'],
-    id: '1',
-    location: '123',
-    name: 'Syahir Amali',
-    photoURL:
-      'https://www.wikihow.com/images/thumb/f/fc/Get-the-URL-for-Pictures-Step-1-Version-6.jpg/v4-460px-Get-the-URL-for-Pictures-Step-1-Version-6.jpg.webp',
-    pinnedTweet: 'pinned test tweet',
-    theme: 'dark',
-    totalPhotos: 1,
-    totalTweets: 5,
-    username: 'patoto',
-    verified: true,
-    website: 'www.testsite.com'
-  }
-];
+// const suggestionsData: AdminUser[] = [
+//   {
+//     accent: 'blue',
+//     bio: 'Syahir',
+//     coverPhotoURL:
+//       'https://www.wikihow.com/images/thumb/f/fc/Get-the-URL-for-Pictures-Step-1-Version-6.jpg/v4-460px-Get-the-URL-for-Pictures-Step-1-Version-6.jpg.webp',
+//     followers: ['1', '2'],
+//     following: ['1'],
+//     id: '1',
+//     location: '123',
+//     name: 'Syahir Amali',
+//     photoURL:
+//       'https://www.wikihow.com/images/thumb/f/fc/Get-the-URL-for-Pictures-Step-1-Version-6.jpg/v4-460px-Get-the-URL-for-Pictures-Step-1-Version-6.jpg.webp',
+//     pinnedTweet: 'pinned test tweet',
+//     theme: 'dark',
+//     totalPhotos: 1,
+//     totalTweets: 5,
+//     username: 'patoto',
+//     verified: true,
+//     website: 'www.testsite.com'
+//   }
+// ];
 
 export default function Lists(): JSX.Element {
   const { open, openModal, closeModal } = useModal();
   const [pageState, setPageState] = useState('following');
-  const supabaseClient = useSupabaseClient();
   const [characters, setCharacters] = useState<any>([]);
   const [lists, setLists] = useState<string[]>([]);
   const [activeList, setActiveList] = useState<number>(-2);
   const [loading, setLoading] = useState(true);
-  const supabaseUser = useUser();
 
   const fetchCustomLists = async () => {
     // get custom lists
-    const custeomListsRes = await getCustomLists(
-      'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
-      supabaseClient
-    );
-    setLists(custeomListsRes.data.map((list: any) => list.list_name));
+  
   };
 
   const fetchFollowersList = async () => {
     // set characters for Follower list (default)
-    const followersRes = await getFollowerLists(
-      'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
-      supabaseClient
-    );
-    setCharacters(followersRes.characters.data);
     setActiveList(-2);
   };
 
   const fetchBlockedList = async () => {
-    // set characters for Follower list (default)
-    const blockedRes = await getBlockedCharacters(
-      'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
-      supabaseClient
-    );
-    setCharacters(blockedRes.blockedCharacters.characters.data);
     setActiveList(-1);
   };
 
   // set characters to chosen custom list
   const changeCustomListHandler = async (listIndex: number) => {
     setActiveList(listIndex);
-    const res = await getCustomLists(
-      'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
-      supabaseClient
-    );
-    if (res.final_characters[listIndex].data.length > 0) {
-      setCharacters(res.final_characters[listIndex].data);
-    }
     setActiveList(listIndex);
   };
 
-  useEffect(() => {
-    if (supabaseUser) {
-      fetchCustomLists()
-        .then(() => {
-          fetchFollowersList();
-        })
-        .then(() => {
-          setLoading(false);
-        });
-    }
-  }, [supabaseUser]);
 
-  const user: User = {
-    id: '1',
-    username: 'egirl',
-    name: 'E girl 1',
-    accent: 'blue',
-    bio: 'Im an Egirl',
-    coverPhotoURL:
-      'https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png',
-    followers: ['100'],
-    following: ['10'],
-    location: 'Metaverse',
-    photoURL: 'https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg',
-    pinnedTweet: 'My first tweet',
-    theme: 'dark',
-    totalPhotos: 123,
-    totalTweets: 111,
-    verified: true,
-    website: 'www.egirl.com'
-  };
+  // const user: User = {
+  //   id: '1',
+  //   username: 'egirl',
+  //   name: 'E girl 1',
+  //   accent: 'blue',
+  //   bio: 'Im an Egirl',
+  //   coverPhotoURL:
+  //     'https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png',
+  //   followers: ['100'],
+  //   following: ['10'],
+  //   location: 'Metaverse',
+  //   photoURL: 'https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg',
+  //   pinnedTweet: 'My first tweet',
+  //   theme: 'dark',
+  //   totalPhotos: 123,
+  //   totalTweets: 111,
+  //   verified: true,
+  //   website: 'www.egirl.com'
+  // };
 
-  const userId = user?.id as string;
+  // const userId = user?.id as string;
 
   // const { data: bookmarksRef, loading: bookmarksRefLoading } = useCollection(
   //   query(userBookmarksCollection(userId), orderBy('createdAt', 'desc')),
@@ -163,10 +122,10 @@ export default function Lists(): JSX.Element {
     }
   ];
 
-  const tweetIds = useMemo(
-    () => bookmarksRef?.map(({ id }) => id) ?? [],
-    [bookmarksRef]
-  );
+  // const tweetIds = useMemo(
+  //   () => bookmarksRef?.map(({ id }) => id) ?? [],
+  //   [bookmarksRef]
+  // );
 
   // const { data: tweetData, loading: tweetLoading } = useArrayDocument(
   //   tweetIds,
@@ -174,128 +133,128 @@ export default function Lists(): JSX.Element {
   //   { includeUser: true }
   // );
 
-  const tweetLoading = false;
+  // const tweetLoading = false;
 
-  const tweetData: (TypeTweet & { user: User })[] | null = [
-    {
-      createdAt: 12345,
-      createdBy: 'egirl1',
-      id: '1',
-      images: null,
-      parent: {
-        id: '10',
-        username: 'eGorl'
-      },
-      text: 'First tweet of the day',
-      updatedAt: 88889,
-      user: {
-        id: '1',
-        username: 'egirl',
-        name: 'E girl 1',
-        accent: 'blue',
-        bio: 'Im an Egirl',
-        coverPhotoURL:
-          'https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png',
-        followers: ['100'],
-        following: ['10'],
-        location: 'Metaverse',
-        photoURL: 'https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg',
-        pinnedTweet: 'My first tweet',
-        theme: 'dark',
-        totalPhotos: 123,
-        totalTweets: 111,
-        verified: true,
-        website: 'www.egirl.com'
-      },
-      userLikes: ['111'],
-      userReplies: 123,
-      userRetweets: ['123']
-    },
-    {
-      createdAt: 12345,
-      createdBy: 'egirl1',
-      id: '1',
-      images: null,
-      parent: {
-        id: '10',
-        username: 'eGorl'
-      },
-      text: 'Bookmark this!',
-      updatedAt: 88889,
-      user: {
-        id: '1',
-        username: 'egirl',
-        name: 'E girl 1',
-        accent: 'blue',
-        bio: 'Im an Egirl',
-        coverPhotoURL:
-          'https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png',
-        followers: ['100'],
-        following: ['10'],
-        location: 'Metaverse',
-        photoURL: 'https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg',
-        pinnedTweet: 'My first tweet',
-        theme: 'dark',
-        totalPhotos: 123,
-        totalTweets: 111,
-        verified: true,
-        website: 'www.egirl.com'
-      },
-      userLikes: ['111'],
-      userReplies: 123,
-      userRetweets: ['123']
-    },
-    {
-      createdAt: 12345,
-      createdBy: 'egirl1',
-      id: '1',
-      images: [
-        {
-          src: 'https://i.pinimg.com/550x/8d/4f/44/8d4f442214edc01230b38228bad5226f.jpg',
-          alt: 'anime girl',
-          id: '123'
-        },
-        {
-          src: 'https://i.pinimg.com/564x/f4/fb/6b/f4fb6b6dc78c15007f8c16599ce6e03b.jpg',
-          alt: 'anime girl 2',
-          id: '1233'
-        }
-      ],
-      parent: {
-        id: '10',
-        username: 'eGorl'
-      },
-      text: 'Bookmark with image!',
-      updatedAt: 88889,
-      user: {
-        id: '1',
-        username: 'egirl',
-        name: 'E girl 1',
-        accent: 'blue',
-        bio: 'Im an Egirl',
-        coverPhotoURL:
-          'https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png',
-        followers: ['100'],
-        following: ['10'],
-        location: 'Metaverse',
-        photoURL: 'https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg',
-        pinnedTweet: 'My first tweet',
-        theme: 'dark',
-        totalPhotos: 123,
-        totalTweets: 111,
-        verified: true,
-        website: 'www.egirl.com'
-      },
-      userLikes: ['111'],
-      userReplies: 123,
-      userRetweets: ['123']
-    }
-  ];
+  // const tweetData: (TypeTweet & { user: User })[] | null = [
+  //   {
+  //     createdAt: 12345,
+  //     createdBy: 'egirl1',
+  //     id: '1',
+  //     images: null,
+  //     parent: {
+  //       id: '10',
+  //       username: 'eGorl'
+  //     },
+  //     text: 'First tweet of the day',
+  //     updatedAt: 88889,
+  //     user: {
+  //       id: '1',
+  //       username: 'egirl',
+  //       name: 'E girl 1',
+  //       accent: 'blue',
+  //       bio: 'Im an Egirl',
+  //       coverPhotoURL:
+  //         'https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png',
+  //       followers: ['100'],
+  //       following: ['10'],
+  //       location: 'Metaverse',
+  //       photoURL: 'https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg',
+  //       pinnedTweet: 'My first tweet',
+  //       theme: 'dark',
+  //       totalPhotos: 123,
+  //       totalTweets: 111,
+  //       verified: true,
+  //       website: 'www.egirl.com'
+  //     },
+  //     userLikes: ['111'],
+  //     userReplies: 123,
+  //     userRetweets: ['123']
+  //   },
+  //   {
+  //     createdAt: 12345,
+  //     createdBy: 'egirl1',
+  //     id: '1',
+  //     images: null,
+  //     parent: {
+  //       id: '10',
+  //       username: 'eGorl'
+  //     },
+  //     text: 'Bookmark this!',
+  //     updatedAt: 88889,
+  //     user: {
+  //       id: '1',
+  //       username: 'egirl',
+  //       name: 'E girl 1',
+  //       accent: 'blue',
+  //       bio: 'Im an Egirl',
+  //       coverPhotoURL:
+  //         'https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png',
+  //       followers: ['100'],
+  //       following: ['10'],
+  //       location: 'Metaverse',
+  //       photoURL: 'https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg',
+  //       pinnedTweet: 'My first tweet',
+  //       theme: 'dark',
+  //       totalPhotos: 123,
+  //       totalTweets: 111,
+  //       verified: true,
+  //       website: 'www.egirl.com'
+  //     },
+  //     userLikes: ['111'],
+  //     userReplies: 123,
+  //     userRetweets: ['123']
+  //   },
+  //   {
+  //     createdAt: 12345,
+  //     createdBy: 'egirl1',
+  //     id: '1',
+  //     images: [
+  //       {
+  //         src: 'https://i.pinimg.com/550x/8d/4f/44/8d4f442214edc01230b38228bad5226f.jpg',
+  //         alt: 'anime girl',
+  //         id: '123'
+  //       },
+  //       {
+  //         src: 'https://i.pinimg.com/564x/f4/fb/6b/f4fb6b6dc78c15007f8c16599ce6e03b.jpg',
+  //         alt: 'anime girl 2',
+  //         id: '1233'
+  //       }
+  //     ],
+  //     parent: {
+  //       id: '10',
+  //       username: 'eGorl'
+  //     },
+  //     text: 'Bookmark with image!',
+  //     updatedAt: 88889,
+  //     user: {
+  //       id: '1',
+  //       username: 'egirl',
+  //       name: 'E girl 1',
+  //       accent: 'blue',
+  //       bio: 'Im an Egirl',
+  //       coverPhotoURL:
+  //         'https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png',
+  //       followers: ['100'],
+  //       following: ['10'],
+  //       location: 'Metaverse',
+  //       photoURL: 'https://pbs.twimg.com/media/D-Qr5eVUwAAV7cV.jpg',
+  //       pinnedTweet: 'My first tweet',
+  //       theme: 'dark',
+  //       totalPhotos: 123,
+  //       totalTweets: 111,
+  //       verified: true,
+  //       website: 'www.egirl.com'
+  //     },
+  //     userLikes: ['111'],
+  //     userReplies: 123,
+  //     userRetweets: ['123']
+  //   }
+  // ];
 
-  const action = async (): Promise<void> => {
-    closeModal();
-    toast.success('Successfully added list');
-  };
+  // const action = async (): Promise<void> => {
+  //   closeModal();
+  //   toast.success('Successfully added list');
+  // };
 
   return (
     // <MainContainer>

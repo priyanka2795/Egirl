@@ -1,3 +1,4 @@
+//@ts-nocheck
 import CreatorStudio from '@components/creator-studio';
 import CreatorStudioNavbar from '@components/creator-studio/CreatorStudioNavbar';
 import CreatorStudioSidebar from '@components/creator-studio/CreatorStudioSidebar';

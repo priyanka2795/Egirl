@@ -1,13 +1,4 @@
-// import { supabaseClient } from '../../config/supabaseClient';
 
-// interface reference
-// interface UserToCharMessage {
-//     id: number;
-//     sender_id: number;
-//     recipient_id: string;
-//     message: string;
-//     created_at: string;
-// }
 
 // getting messages from a user to a character with a limit
 export async function getUserToCharacterMessagesLim(
@@ -45,20 +36,6 @@ export async function getUserToCharacterMessages(
   return data;
 }
 
-// async function testUserToChar() {
-//   try {
-//     const messages = await getUserToCharacterMessagesLim(
-//       'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
-//       1,
-//       20,
-//       supabaseClient
-//     );
-//     console.log(messages);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
-// testUserToChar();
 
 // getting messages from a character to a user with a limit
 export async function getCharacterToUserMessagesLim(
@@ -96,17 +73,3 @@ export async function getCharacterToUserMessages(
   return data;
 }
 
-// async function testCharToUser() {
-//   try {
-//     const messages = await getCharacterToUserMessagesLim(
-//       1,
-//       'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
-//       20,
-//       supabaseClient
-//     );
-//     console.log(messages);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
-// testCharToUser();

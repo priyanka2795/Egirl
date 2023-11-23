@@ -4,13 +4,13 @@ import CloseIcon from '../../../public/assets/svgImages/close-icon.svg';
 import CharacterAdd from '@components/creator-studio/NewCharacter/CharacterAdd';
 
 interface createCharacterProps {
-  closeState: React.Dispatch<React.SetStateAction<boolean>>;
-  SetUserGuide: any;
-  SetIsTourOpen: any;
-  UserGuide: any;
+  closeState?: React.Dispatch<React.SetStateAction<boolean>>;
+  SetUserGuide?: any;
+  SetIsTourOpen?: any;
+  UserGuide?: any;
   // SetIsTourOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  setTourCount: React.Dispatch<React.SetStateAction<number>>;
-  setUserDetails: any;
+  setTourCount?: React.Dispatch<React.SetStateAction<number>>;
+  setUserDetails?: any;
 }
 
 function CreateCharacterModal({

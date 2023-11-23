@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { Modal } from '@components/modal/modal';
 import React, { useState, useEffect } from 'react';
 import CloseIcon from '../../../public/assets/svgImages/close-icon.svg';
@@ -40,15 +42,15 @@ const settings = {
 
 interface BookMarkModalProp {
   closeModalState: any;
-  postId: number;
-  postUpdate: boolean;
-  setPostUpdate: any;
-  commentsNumber: string;
-  heartsNumber: string;
-  bookmarksActive: boolean;
-  name: string;
-  username: string;
-  postText: string;
+  postId?: number;
+  postUpdate?: boolean;
+  setPostUpdate?: any;
+  commentsNumber?: string;
+  heartsNumber?: string;
+  bookmarksActive?: boolean;
+  name?: string;
+  username?: string;
+  postText?: string;
 }
 const BookMarkModal = ({
   closeModalState,

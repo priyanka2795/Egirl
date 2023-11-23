@@ -3,12 +3,6 @@ import { SEO } from '@components/common-old/seo';
 import { LoginMain } from '@components/login/login-main';
 import { LoginFooter } from '@components/login/login-footer';
 import { ReactElement, ReactNode, useEffect, useState } from 'react';
-import { Auth, ThemeSupa } from '@supabase/auth-ui-react';
-import {
-  useSession,
-  useSupabaseClient,
-  useUser
-} from '@supabase/auth-helpers-react';
 import Account from '../components/account/account';
 import Router from 'next/router';
 import { LayoutProps } from '@components/layout/common-layout';
@@ -30,9 +24,6 @@ export function LandingLayout({ children }: LayoutProps): JSX.Element {
 }
 
 export default function CreatorLanding(): JSX.Element {
-  const session = useSession();
-  const supabase = useSupabaseClient();
-  const user = useUser();
   const [section1, setSection1] = useState(true);
   const [section2, setSection2] = useState(false);
   const [section3, setSection3] = useState(false);
@@ -149,7 +140,7 @@ export default function CreatorLanding(): JSX.Element {
               ></XMarkIcon>
             </div>
           </div>
-          <div className='space-y-20 pt-20'>
+          <div className='pt-20 space-y-20'>
             <div className=''>
               <button>
                 <Link href='/'>
@@ -177,7 +168,7 @@ export default function CreatorLanding(): JSX.Element {
             </div>
           </div>
 
-          <div className='absolute inset-x-10 bottom-16 flex justify-center'>
+          <div className='absolute flex justify-center inset-x-10 bottom-16'>
             <div className='flex w-full justify-center rounded-[12px] bg-[#5848BC] px-[18px] py-[10px] lg:hidden'>
               <button>
                 <span className='text-[32px] font-[500] text-white'>
@@ -212,7 +203,7 @@ export default function CreatorLanding(): JSX.Element {
                   </span>
                 </div>
               </div>
-              <div className='w-fit pt-12'>
+              <div className='pt-12 w-fit'>
                 <span className='text-[18px] font-[400] text-black'>
                   Are you interested in becoming our partner or simply want to
                   share your thoughts about our work? Please feel free to
@@ -223,8 +214,8 @@ export default function CreatorLanding(): JSX.Element {
             </div>
             <div className='min-[200px]:pt-10'>
               <div className='w-full'>
-                <form className='mb-4 rounded bg-white px-8 pb-8 pt-6 shadow-md'>
-                  <div className='mb-4 flex justify-around space-x-4'>
+                <form className='px-8 pt-6 pb-8 mb-4 bg-white rounded shadow-md'>
+                  <div className='flex justify-around mb-4 space-x-4'>
                     <div className='w-1/2'>
                       <label className='mb-2 text-[13px] font-[500] text-[#646668]'>
                         Name
@@ -288,7 +279,7 @@ export default function CreatorLanding(): JSX.Element {
                   </div>
                 </div>
               </div>
-              <div className='flex justify-center space-x-3 pt-10 text-center lg:justify-start lg:text-start'>
+              <div className='flex justify-center pt-10 space-x-3 text-center lg:justify-start lg:text-start'>
                 <span className='text-[24px] font-[600] text-white lg:text-[56px]'>
                   More than 3000 people have
                   <span className='mx-2 font-[500] italic lg:mx-4'>joined</span>
@@ -320,7 +311,7 @@ export default function CreatorLanding(): JSX.Element {
             </div>
           </div>
         </div>
-        <div className='space-y-10 py-10 lg:flex lg:justify-between'>
+        <div className='py-10 space-y-10 lg:flex lg:justify-between'>
           <div>
             <span className='text-[32px] font-semibold text-white'>Egirls</span>
           </div>

@@ -5,11 +5,10 @@ import Image from 'next/image';
 // import uploadImg from "../images/upload.png";
 // import downloadImage from "../images/download-img.png";
 interface ImageDropZoneProp{
-  files: any;
   uploadedItemState: any;
   setUploadedItemState: any;
 }
-const ImageDropZone = ({files , uploadedItemState , setUploadedItemState}:ImageDropZoneProp) => {
+const ImageDropZone = ({ uploadedItemState , setUploadedItemState}:ImageDropZoneProp) => {
   // const [uploadedItemState, setUploadedItemState] = useState<any>();
   const maxSize = 2 * 1024 * 1024;
   const {
@@ -33,7 +32,7 @@ const ImageDropZone = ({files , uploadedItemState , setUploadedItemState}:ImageD
   // console.log(acceptedFiles[0]?.size, "setLogo", fileRejections[0]?.errors[0]);
 
   if (acceptedFiles?.length) {
-    console.log(acceptedFiles, 'test 1');
+    // console.log(acceptedFiles, 'test 1');
     // setUploadedItemState(Object.assign(acceptedFiles[0],{preview:URL.createObjectURL(acceptedFiles[0])}))
 
     if (!uploadedItemState) {
@@ -48,7 +47,10 @@ const ImageDropZone = ({files , uploadedItemState , setUploadedItemState}:ImageD
     //  console.log(fileRejections[0]?.errors);
   }
   
-files(acceptedFiles);
+// files([acceptedFiles]);
+// console.log(acceptedFiles,'acceptedFiles');
+
+
 // files = acceptedFiles.map((file: any) => (
 //     <li key={file.path}>
 //       <Image src={uploadedItemState?.preview} alt='' width='100' height='100' />
@@ -64,8 +66,6 @@ files(acceptedFiles);
   //       <button onClick={removeFile(file)}>Remove File</button>
   //     </div>
   //   ));
-
-  console.log(uploadedItemState, 'test the uplpaswd');
   return (
     <>
       <section>
@@ -81,16 +81,16 @@ files(acceptedFiles);
           </h6>
           {/* <Image src={uploadImg} alt="upload file" /> */}
         </div>
-        <aside>
+        {/* <aside>
           <ul>{files}</ul>
           {fileRejections[0]?.errors[0] && (
             <li className='mt-2 text-danger'>
-              {/* <Image src={fileRejections[0]?.errors[0].message} alt=""/> */}
+              //// <Image src={fileRejections[0]?.errors[0].message} alt=""/> 
               {fileRejections[0]?.errors[0].message}
             </li>
           )}
-          {/* {thumbs} */}
-        </aside>
+         //// {thumbs} 
+        </aside> */}
       </section>
     </>
   );

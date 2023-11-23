@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
-import { useSupabaseClient } from '@supabase/auth-helpers-react';
-import { Database } from '../../../types/database';
 import { useRouter } from 'next/router';
 
 export default function Login() {
   const router = useRouter();
-  const supabase = useSupabaseClient<Database>();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -22,27 +19,10 @@ export default function Login() {
 
   const signupHandler = async () => {
     console.log('signing up with - email:', email, '| password:', password);
-    const { data, error } = await supabase.auth.signUp({
-      email: email,
-      password: password
-    });
-    console.log('results of signing up: ', data, error);
-    if (!error) {
-      router.push('/home');
-    } else {
-      setErrorMsg(error.message);
-    }
   };
 
   const signupWithGoogleHandler = async () => {
     console.log('signing up with google');
-    const { data, error } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
-      options: {
-        redirectTo: `${new URL(location.href).origin}/logging-in?redirect=/home`
-      }
-    });
-    console.log('results of signing up: ', data, error);
   };
 
   return (

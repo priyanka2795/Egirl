@@ -160,7 +160,7 @@ function Gifts() {
               >
                 {/* <Image
                   src={item?.media_url}
-                  className='h-full w-full object-cover'
+                  className='object-cover w-full h-full'
                 /> */}
                 <img
                   src={item?.media_url}

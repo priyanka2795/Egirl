@@ -1,7 +1,5 @@
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
-import { where } from 'firebase/firestore';
-import { useInfiniteScroll } from '@lib/hooks/useInfiniteScroll';
 import {
   PeopleLayout,
   ProtectedLayout
@@ -15,10 +13,8 @@ import { Loading } from '@components/ui/loading';
 import { Error } from '@components/ui/error';
 import { variants } from '@components/aside/aside-trends';
 import type { ReactElement, ReactNode } from 'react';
-import { useUser } from '@supabase/auth-helpers-react';
 
 export default function People(): JSX.Element {
-  const user = useUser();
 
   // const { data, loading, LoadMore } = useInfiniteScroll(
   //   usersCollection,

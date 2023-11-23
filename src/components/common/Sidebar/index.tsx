@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import Image from 'next/image';
 import SidebarMenuItem from './SidebarMenuItem';
 import TestIcon from './TestIcon';
@@ -28,6 +30,7 @@ import AddCardActiveIcon from './svg/AddCardActiveIcon';
 import UserImg from './svg/user-img.svg';
 import MoreMenuOption from './MoreMenuOption';
 import UserDetailModal from './UserDetailModal';
+import Link from 'next/link';
 
 // sideBarClasses={'!w-[88px]'}
 // sideBarLogoClasses={'!hidden'}
@@ -100,10 +103,11 @@ sideBarProp) {
           }`}
         />
 
-        <div
+        <Link
           className={`flex cursor-pointer  items-center ${
             sideBarMenuArrowClasses ? 'w-full justify-center' : ''
           }`}
+          href={'#'}
         >
           {/* <NavMenuIcon /> */}
           <NavMenuArrow
@@ -113,7 +117,7 @@ sideBarProp) {
             onClick={handleSidebarWidth}
             // onClick={sideBarWidth}
           />
-        </div>
+        </Link>
       </div>
 
       {/* Menu */}

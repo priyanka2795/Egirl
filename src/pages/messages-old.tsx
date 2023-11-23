@@ -1,5 +1,4 @@
 import { AnimatePresence } from 'framer-motion';
-import { where, orderBy } from 'firebase/firestore';
 // import { useWindow } from '@lib/context/window-context';
 // import { Input } from '@components/input/input';
 import { toast } from 'react-hot-toast';
@@ -22,9 +21,7 @@ import {
   getHomePostsFollowing,
   getHomePostsSubscribedTo
 } from '../api/home/home';
-import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react';
-import { Tweet as TypeTweet } from '@lib/types/tweet';
-import { User } from '@lib/types/user';
+
 import type { ImagesPreview, ImageData } from '@lib/types/file';
 import { getFlexUserCharChat } from 'api/messages/messages';
 import { Message } from '@components/messages-old/Message';
@@ -36,8 +33,7 @@ import { Modal } from '@components/modal/modal';
 import { getFollowerLists } from 'api/lists/lists';
 
 export default function Messages(): JSX.Element {
-  const user = useUser();
-  const client = useSupabaseClient();
+ 
   const [postList, setPostList] = useState<any[]>([]);
   const [enteredMessage, setEnteredMessage] = useState<string>('');
   const [messages, setMessages] = useState<any[]>([]);
@@ -59,20 +55,11 @@ export default function Messages(): JSX.Element {
   const sendImageRequestHandler = () => {};
 
   const loadMessageData = async () => {
-    const res = await getFlexUserCharChat(
-      'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
-      1,
-      20,
-      client
-    );
-    setMessages(res);
+ 
   };
 
   const getFollowedChars = async () => {
-    const res = await getFollowerLists(
-      'e8a2be37-76f6-4ebb-bfd8-b9e370046a41',
-      client
-    );
+   
   };
 
   useEffect(() => {
@@ -114,20 +101,20 @@ export default function Messages(): JSX.Element {
         />
       </Modal>
       <div className='flex'>
-        <section className='flex w-full max-w-xl flex-col bg-blue-400'>
+        <section className='flex flex-col w-full max-w-xl bg-blue-400'>
           <input
             type='text'
             className='p-2'
             placeholder='Search Conversations'
           />
-          <div className='my-4 flex select-none gap-x-2'>
-            <button className='rounded bg-gray-200 p-2 text-sm text-black hover:bg-gray-300 focus:bg-gray-300'>
+          <div className='flex my-4 select-none gap-x-2'>
+            <button className='p-2 text-sm text-black bg-gray-200 rounded hover:bg-gray-300 focus:bg-gray-300'>
               Followed
             </button>
-            <button className='rounded bg-gray-200 p-2 text-sm text-black hover:bg-gray-300 focus:bg-gray-300'>
+            <button className='p-2 text-sm text-black bg-gray-200 rounded hover:bg-gray-300 focus:bg-gray-300'>
               Subscribed
             </button>
-            <button className='rounded bg-gray-200 p-2 text-sm text-black hover:bg-gray-300 focus:bg-gray-300'>
+            <button className='p-2 text-sm text-black bg-gray-200 rounded hover:bg-gray-300 focus:bg-gray-300'>
               All
             </button>
           </div>
@@ -162,25 +149,25 @@ export default function Messages(): JSX.Element {
               </>
             )}
           </div>
-          <div className='flex select-none flex-col gap-y-2 py-2'>
-            <div className='flex w-full justify-between'>
-              <button className='rounded bg-gray-200 p-1 text-sm text-black hover:bg-gray-300 focus:bg-gray-300'>
+          <div className='flex flex-col py-2 select-none gap-y-2'>
+            <div className='flex justify-between w-full'>
+              <button className='p-1 text-sm text-black bg-gray-200 rounded hover:bg-gray-300 focus:bg-gray-300'>
                 Subscribe
               </button>
-              <button className='rounded bg-green-400 p-1 text-sm text-white hover:bg-green-500 focus:bg-green-500'>
+              <button className='p-1 text-sm text-white bg-green-400 rounded hover:bg-green-500 focus:bg-green-500'>
                 Free Messaging
               </button>
             </div>
-            <div className='flex w-full justify-between'>
+            <div className='flex justify-between w-full'>
               <button
                 onClick={openModal}
-                className='rounded bg-gray-200 p-1 text-sm text-black hover:bg-gray-300 focus:bg-gray-300'
+                className='p-1 text-sm text-black bg-gray-200 rounded hover:bg-gray-300 focus:bg-gray-300'
               >
                 Image Request
               </button>
               <button
                 onClick={openModal}
-                className='rounded bg-green-400 p-1 text-sm text-white hover:bg-green-500 focus:bg-green-500'
+                className='p-1 text-sm text-white bg-green-400 rounded hover:bg-green-500 focus:bg-green-500'
               >
                 Your Heart's Desire
               </button>
@@ -188,7 +175,7 @@ export default function Messages(): JSX.Element {
           </div>
           <div className='flex w-full'>
             <input
-              className='w-full rounded-l p-4 text-gray-800'
+              className='w-full p-4 text-gray-800 rounded-l'
               type='text'
               placeholder='message...'
               value={enteredMessage}
@@ -196,7 +183,7 @@ export default function Messages(): JSX.Element {
             />
             <button
               onClick={sendImageRequestHandler}
-              className='rounded-r bg-green-400 p-4 hover:bg-green-500 focus:bg-green-500'
+              className='p-4 bg-green-400 rounded-r hover:bg-green-500 focus:bg-green-500'
             >
               Send
             </button>

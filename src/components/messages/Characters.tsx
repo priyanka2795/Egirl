@@ -8,6 +8,7 @@ import Character from './Character';
 import CharacterSmall from './CharacterSmall';
 import SearchAltIcon from './svg/search-alt.svg';
 
+
 interface MessageData {
   name: string;
   username: string;
@@ -46,12 +47,15 @@ type props = {
   shrinkSidebar?: boolean;
   selectUserState?: string;
   handleSeletedUser?: () => void;
+  roomData?:any
 };
 
 export default function Characters({
   shrinkSidebar,
-  handleSeletedUser
+  handleSeletedUser,
+  roomData
 }: props) {
+  
   // active character state
   const [activeUsername, setActiveUsername] = useState<string>(
     messages[0].username
@@ -117,6 +121,8 @@ export default function Characters({
       document.removeEventListener('mouseup', mouseUpHandler);
     };
   }, [isDragging, sidebarWidth, changeWidth]);
+
+
 
   return (
     <div
@@ -190,25 +196,25 @@ export default function Characters({
         `}
       >
         {sidebarWidth == 375 &&
-          messages.map((message) => (
+          roomData?.map((ele:any, index:number) => (
             <Character
-              key={message.username}
-              isActive={message.username === activeUsername}
-              name={message.name}
-              username={message.username}
-              messagePreview={message.messagePreview}
-              newMessages={message.newMessages}
-              timeLastSeen={message.timeLastSeen}
+              key={index}
+              isActive={ele.character_id === activeUsername}
+              name="Mika-chan"
+              username={ele.character_id}
+              // messagePreview={message.messagePreview}
+              // newMessages={message.newMessages}
+              // timeLastSeen={message.timeLastSeen}
               onClick={handleUpdateUsername}
-              currentlyActive={message.currentlyActive}
+              // currentlyActive={message.currentlyActive}
             />
           ))}
         {sidebarWidth == 80 &&
-          messages.map((message) => (
+          roomData?.map((ele:any, index:number) => (
             <CharacterSmall
-              key={message.username}
-              username={message.username}
-              isActive={message.username === activeUsername}
+              key={index}
+              username={ele.character_id}
+              isActive={ele.character_id === activeUsername}
               onClick={handleUpdateUsername}
             />
           ))}

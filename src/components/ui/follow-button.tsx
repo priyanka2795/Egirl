@@ -3,7 +3,6 @@ import { preventBubbling } from '@lib/utils';
 import { Modal } from '@components/modal/modal';
 import { ActionModal } from '@components/modal/action-modal';
 import { Button } from '@components/ui/button';
-import { useUser } from '@supabase/auth-helpers-react';
 
 type FollowButtonProps = {
   userTargetId: string;
@@ -14,11 +13,10 @@ export function FollowButton({
   userTargetId,
   userTargetUsername
 }: FollowButtonProps): JSX.Element | null {
-  const user = useUser();
+
 
   const { open, openModal, closeModal } = useModal();
 
-  if (user?.id === userTargetId) return null;
 
   // const { id: userId, following } = user ?? {};
 
