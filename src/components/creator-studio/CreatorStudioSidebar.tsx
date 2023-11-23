@@ -63,7 +63,8 @@ const CreatorStudioSidebar = ({
   setTourCount,
   SetUserGuide,
   SetIsTourOpen,
-  UserGuide
+  UserGuide,
+  setUserDetails
 }: CreatorStudioNavbarPropProp) => {
   const [sidebarModal, setSidebarModal] = useState<boolean>(false);
   const [moreOptionsModal, setMoreOptionsModal] = useState<boolean>(false);
@@ -127,13 +128,14 @@ const CreatorStudioSidebar = ({
             </div>
             
             {createCharacter && (
-        <CreateCharacterModal
-          closeState={setCreateCharacter}
-          SetUserGuide={SetUserGuide}
-          SetIsTourOpen={SetIsTourOpen}
-          setTourCount={setTourCount}
-          UserGuide={UserGuide}
-        />
+       <CreateCharacterModal
+       closeState={setCreateCharacter}
+       SetUserGuide={SetUserGuide}
+       SetIsTourOpen={SetIsTourOpen}
+       setTourCount={setTourCount}
+       setUserDetails={setUserDetails}
+       UserGuide={UserGuide}
+     />
       )}
 
           <SidebarMenuItem
