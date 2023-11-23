@@ -37,6 +37,16 @@ export function UserEditProfile({ hide }: UserEditProfileProps): JSX.Element {
   const { open, openModal, closeModal } = useModal();
 
   const [loading, setLoading] = useState(false);
+  const [userDetails, setUserDetails] = useState({
+    character_id : '',
+    username: '',
+    display_name: '',
+    bio: 'UNCHANGED',
+    location: 'UNCHANGED',
+    profile_picture_media_id: 'UNCHANGED',
+    profile_banner_media_id: 'UNCHANGED',
+    profile_tags: "UNCHANGED"
+  });
 
   const bio = 'I am an egirl';
   const name = 'E Girl 1';

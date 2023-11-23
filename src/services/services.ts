@@ -65,13 +65,13 @@ export const getBookMarked = (page:number, count:number, token:string | null) =>
 
 // creator studio api
 
-export const updateCharacter = (data:any , token : string | null)=> putApiWithToken('/studio/character' , data , token )
+export const updateCharacter = (data:any , token : string | null)=> putApiWithToken('/studio/character/update_character' , data , token )
 
-export const postCharacter = (data:any , token:any) => postApiWithToken('/studio/character' , data , token)
+export const postCharacter = (data:any , token:any) => postApiWithToken('/studio/character/create_character' , data , token)
 
 export const updateCharacterPersonality = (data:any , token : string | null)=> putApiWithToken('/studio/character/personality' , data , token)
 
-export const postCharacterPersonality = (data:any , token:string|null) => postApiWithToken('/studio/character/personality' , data , token)
+export const postCharacterPersonality = (data:any , token:string|null) => postApiWithToken('/studio/character/create_personality' , data , token)
 
 export const getGifts = (giftCategoryId :number , token:string|null)=> getApiWithToken( `/studio/gift/${giftCategoryId}`  , token) 
 

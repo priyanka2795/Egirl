@@ -7,6 +7,8 @@ import { Modal } from '@components/modal/modal';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { UserDetails } from '@components/user/user-details';
+import Cookies from 'js-cookie';
+import { postCharacter } from 'services/services';
 
 const initialValues = {
   name: '',
@@ -14,12 +16,13 @@ const initialValues = {
 };
 
 interface CharacterAddProps {
-  setUserDetails: (userDetails: any) => void;
-  NewCharacterClose?: () => void;
+  setCreateCharacterData: any;
+  NewCharacterClose?: React.Dispatch<React.SetStateAction<boolean>>;
   SetUserGuide?: (value: boolean) => void;
   SetIsTourOpen?: (value: boolean) => void;
   UserGuide?: any;
   setTourCount?: React.Dispatch<React.SetStateAction<number>> | any;
+  setUserDetails:any
 }
 
 const validationSchema = Yup.object().shape({
@@ -32,16 +35,34 @@ const CharacterAdd: React.FC<CharacterAddProps> = ({
   SetUserGuide,
   SetIsTourOpen,
   setTourCount,
-  setUserDetails,
-  UserGuide
+  setCreateCharacterData,
+  UserGuide,
+  setUserDetails
 }) => {
+  const token: any = Cookies.get('accessToken');
   const onSubmit = (values: any, { resetForm }: any) => {
-    console.log('Form values:', values);
+    setCreateCharacterData((prevState: any) => ({
+      ...prevState,
+      display_name: values?.name,
+      username: values?.username
+    }));
     setUserDetails((prevState: any) => ({
       ...prevState,
       display_name: values?.name,
       username: values?.username
     }));
+    const createData = {
+      display_name:values?.name,
+      username: values?.username
+    }
+
+    postCharacter(createData , token)
+    .then((res:any)=>{
+      console.log(res);
+    })
+    .catch((err:any)=>{
+      console.log(err);
+    })
 
     resetForm();
     SetUserGuide?.(false);
@@ -127,7 +148,8 @@ const CharacterAdd: React.FC<CharacterAddProps> = ({
                   >
                     Create
                   </button>
-                ) : (
+                ) 
+                : (
                   <button
                     type='submit'
                     className='font-bold h-12 w-[50%] items-center gap-2 rounded-[14px]  bg-[#5848BC] px-5 py-[13px] text-base leading-[22px]'

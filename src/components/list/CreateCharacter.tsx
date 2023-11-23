@@ -9,15 +9,17 @@ interface CreateCharacter {
   SetIsTourOpen: any;
   UserGuide: any;
   setTourCount: React.Dispatch<React.SetStateAction<number>>;
-  setUserDetails: any;
+  setCreateCharacterData: any;
+  setUserDetails:any
 }
 
 function CreateCharacter({
   SetUserGuide,
   SetIsTourOpen,
   setTourCount,
-  setUserDetails,
-  UserGuide
+  setCreateCharacterData,
+  UserGuide,
+  setUserDetails
 }: CreateCharacter) {
   const [createCharacter, setCreateCharacter] = useState<boolean>(false);
   return (
@@ -46,8 +48,9 @@ function CreateCharacter({
           SetUserGuide={SetUserGuide}
           SetIsTourOpen={SetIsTourOpen}
           setTourCount={setTourCount}
-          setUserDetails={setUserDetails}
+          setCreateCharacterData={setCreateCharacterData}
           UserGuide={UserGuide}
+          setUserDetails={setUserDetails}
         />
       )}
     </>

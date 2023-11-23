@@ -25,6 +25,8 @@ interface CreatorStudio {
   setActiveStep?: any;
   UserGuide?: any;
   setUserGuide?: any;
+  setCreateCharacterData:any;
+  createCharacterData:any
 }
 const CreatorStudio = ({
   IsOpen,
@@ -41,19 +43,24 @@ const CreatorStudio = ({
   activeStep,
   setActiveStep,
   UserGuide,
-  setUserGuide
+  setUserGuide,
+  setCreateCharacterData,
+  createCharacterData
 }: CreatorStudio) => {
   // const [UserGuide, setUserGuide] = useState(true);
+
+  
 
   return (
     <>
       {UserGuide ? (
         <CreateCharacter
           SetUserGuide={setUserGuide}
-          setUserDetails={setUserDetails}
+          setCreateCharacterData={setCreateCharacterData}
           SetIsTourOpen={SetIsTourOpen}
           setTourCount={setTourCount}
           UserGuide={UserGuide}
+          setUserDetails={setUserDetails}
         />
       ) : (
         <div className='mb-5'>
