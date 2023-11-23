@@ -1,11 +1,9 @@
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import mikaChanImg from '../../../public/assets/mikaChan.png';
-import sarahScarlet from '../../../public/assets/sarahScarlet.png';
 import galleryTabImg3 from '../../../public/assets/explore-gallery-image2.png';
 import galleryTabImg4 from '../../../public/assets/explore-gallery-Image.png';
 import galleryTabImg5 from '../../../public/assets/explore-gallery-image3.png';
-import galleryTabImg6 from '../../../public/assets/gallery-tab-img-3.png';
 import UserPlusIcon from '../../../public/assets/user-plus-alt-1.png';
 import RemoveProfile from '@components/list/RemoveProfile';
 
@@ -65,25 +63,32 @@ const GalleryCardCollection = ({
   singleProfileState,
   setSingleProfileState
 }: GalleryCardProp) => {
-  // const [showRemoveProfile, setShowRemoveProfile] = useState(false);
+
+  const SideBarCollapse = sessionStorage.getItem('sideBarCollapse');
+  const [sideBarCollapses, setSideBarCollapses] = useState(SideBarCollapse);
+  useEffect(() => {
+    setSideBarCollapses(SideBarCollapse);
+  }, [SideBarCollapse]);
+
+
+
   return singleProfileState ? (
     <RemoveProfile backFromProfile={setSingleProfileState} />
   ) : (
-    <div className='grid grid-cols-2 gap-4'>
+    <div className={`grid ${sideBarCollapses? 'grid-cols-3':"grid-cols-2"} gap-4`}>
       {exploreGallery.map((items, index) => {
         return (
           <div
-            className='relative cursor-pointer gallery-card-collection group rounded-[14px] overflow-hidden h-[470px]'
+          className='gallery-card-collection group relative cursor-pointer overflow-hidden rounded-[14px]'
             onClick={() => setSingleProfileState(true)}
             key={index}
           >
-            {/* <div className='relative group'> */}
+
             <Image
               src={items.mainImg}
               alt=''
-              className=' object-cover hover:bg-[#000000A3] w-full h-full'
+              className=' h-full w-full object-cover hover:bg-[#000000A3]'
             />
-            {/* </div> */}
             <div className='absolute inset-0 transition duration-300 cursor-pointer group-hover:bg-black/50'></div>
             <div className='absolute hidden right-3 top-3 group-hover:block '>
               <Image src={UserPlusIcon} />

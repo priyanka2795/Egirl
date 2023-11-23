@@ -126,39 +126,25 @@ const GalleryTabFilter = ({
     <>
       {singleProfileState === false ? (
         <>
-          <div className='flex mt-8 mb-8'>
+          <div className='flex w-full px-8 mt-8 mb-8'>
             <Slider
               {...settings}
-        ref={sliderRef}
-              className='explore-gallery-filter flex w-[907px]'
+              ref={sliderRef}
+              className='flex w-full explore-gallery-filter'
             >
-             
               {galleryArray.map((items, index) => {
                 return (
                   <div
                     onClick={(e) => handleSelectedFilter(items.filterText)}
                     // onWheel={(e) => sliderScroll(e)}
                     key={index}
-                    className={`list-last-item relative z-10 mr-3 !flex h-[56px] w-max cursor-pointer items-center justify-start gap-2 rounded-full py-3 pl-3 
-            pr-4 last:mr-0  ${
+                    className={`list-last-item relative z-10 !flex w-max cursor-pointer items-center justify-start gap-2 rounded-full last:mr-0 px-4 py-3  ${
               selectedFilter === items.filterText
                 ? '!bg-[#5848BC]'
                 : 'bg-white bg-opacity-10 '
             } ${items.id === 7 && 'filter-bg-gradient'}`}
                   >
-                    <div
-                      className={`flex items-center justify-center rounded-3xl bg-white bg-opacity-5`}
-                    >
-                      {items.filterText === 'All' ? (
-                        <UserProfile className='white-stroke' />
-                      ) : (
-                        <Image
-                          className='w-16 h-8 rounded-full'
-                          src={items.filterImg}
-                          alt=''
-                        />
-                      )}
-                    </div>
+                    
 
                     <div className='text-[15px] font-semibold leading-tight text-white'>
                       <p>{items.filterText}</p>

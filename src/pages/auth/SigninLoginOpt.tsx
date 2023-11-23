@@ -34,15 +34,14 @@ const SigninLoginOpt = ({ heading, pageName }: SignInLoginOptProp) => {
           if (res.status === 307) {
             const redirectedURL = res.headers.get('Location');
             console.log('Redirected URL:', redirectedURL);
-            window.location.href = redirectedURL; 
+            window.location.href = redirectedURL;
           } else {
-            console.log("reError????");
+            console.log('reError????');
           }
         })
         .catch((err) => {
           console.log('discord????error--', err);
         });
-
     }
   };
 
@@ -73,9 +72,9 @@ const SigninLoginOpt = ({ heading, pageName }: SignInLoginOptProp) => {
           <div className='font-normal text-[15px] leading-5 text-white'>
             New user?
           </div>
-          <Link href={`/auth/${pageName}`}>
+          <Link href={`/${pageName}`}>
             <a className='font-normal cursor-pointer text-[15px] leading-5 text-[#5848BC]'>
-              {pageName === 'signin' ? 'Sign in' : 'Sign up'}
+              {pageName === 'login' ? 'Sign in' : 'Sign up'}
             </a>
           </Link>
         </div>

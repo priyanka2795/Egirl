@@ -2,18 +2,17 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import * as Yup from 'yup';
 import Image from 'next/image';
-import vector1 from '../../../public/assets/Vector 1.png';
-import vector2 from '../../../public/assets/Vector 2.png';
-import CheckedIcon from './svg/checkedIcon.svg';
-import CrossIcon from './svg/xMark.svg';
-import SigninTemplate from './signinTemplate';
-import WelcomeStepsModal from './welcomeSteps';
-import SigninLoginOpt from './SigninLoginOpt';
+import vector1 from '../../public/assets/Vector_1.png';
+import vector2 from '../../public/assets/Vector_2.png';
+import CheckedIcon from './auth/svg/checkedIcon.svg';
+import CrossIcon from './auth/svg/xMark.svg';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { userSignUp } from 'services/services';
 import Cookies from 'js-cookie';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import SigninTemplate from './auth/signinTemplate';
+import SigninLoginOpt from './auth/SigninLoginOpt';
 
 const validationSchema = Yup.object().shape({
   username: Yup.string().required('Username is required'),
@@ -38,7 +37,6 @@ const initialValues = {
 };
 export default function SignUp() {
   const router = useRouter();
-
 
   const [password, setPassword] = useState('');
   const [isMinLength, setIsMinLength] = useState<boolean>(false);
@@ -73,7 +71,7 @@ export default function SignUp() {
       username: values.username,
       email: values.email,
       password: values.password,
-      phone: "1234567890"
+      phone: '1234567890'
     };
     userSignUp(data)
       .then((res: any) => {
@@ -81,10 +79,10 @@ export default function SignUp() {
         if (res.status === 200) {
           Cookies.set('accessToken', res.data.access_token);
           Cookies.set('refreshToken', res.data.refresh_token);
-          toast.success('User login successful')
-          setTimeout(()=>{
+          toast.success('User login successful');
+          setTimeout(() => {
             router.push('/home');
-          },1000)
+          }, 1000);
         }
         if (res.response?.status === 400) {
           setErrorMsg(res.response?.data?.detail);
@@ -107,7 +105,7 @@ export default function SignUp() {
             <Form>
               <div className='flex h-[inherit] max-h-[692px] w-[500px] flex-col rounded-[40px] bg-[#070707] '>
                 <div className='flex max-h-[600px] flex-col gap-8 overflow-y-auto px-10 pt-10'>
-                  <SigninLoginOpt heading={'Sign up'} pageName={'signin'} />
+                  <SigninLoginOpt heading={'Sign up'} pageName={'login'} />
 
                   <div className='flex flex-col gap-4'>
                     <div className='flex gap-4'>
@@ -183,8 +181,6 @@ export default function SignUp() {
                       />
                     </div>
 
-                   
-
                     <div className='flex flex-col gap-[6px]'>
                       <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
                         Password
@@ -215,7 +211,7 @@ export default function SignUp() {
                       <div>
                         <ul>
                           <li className='mb-3'>Create a password that:</li>
-                          <li className='flex items-center mb-2'>
+                          <li className='mb-2 flex items-center'>
                             {errors.password ? <CrossIcon /> : <CheckedIcon />}
                             contains at least 8 characters
                           </li>
@@ -234,7 +230,7 @@ export default function SignUp() {
                   </div>
                 </div>
 
-                <div className='w-full px-10 pt-5 pb-10'>
+                <div className='w-full px-10 pb-10 pt-5'>
                   <button
                     type='submit'
                     className='font-bold flex w-full items-center justify-center rounded-[16px] bg-[#5848BC] px-6 py-4 text-[18px] leading-6 text-white'

@@ -56,7 +56,7 @@ const ImageGallery = () => {
   ];
   const tabContent = ['Prompt', 'Negative prompt'];
   const [exploreSelectedTab, setExploreSelected] = useState<string>('Prompt');
-  const [selectImage, setSelectImage] = useState<string>('');
+  const [selectImage, setSelectImage] = useState<number>();
 
   const handleExploreSelected = (e: React.MouseEvent<HTMLElement>) => {
     setExploreSelected((e.target as HTMLElement).innerText);
