@@ -43,7 +43,7 @@ import ImageRequestMsg from './ImageRequestMsg';
 import MessageIndicator from './MessageIndicator';
 import TextareaAutosize from 'react-textarea-autosize';
 import RecordVoice from './RecordVoice';
-import CrossIcon from '../../../public/assets/xmark-9.png';
+import CrossIcon from '../../../public/assets/xmark.png';
 
 type chatProps = {
   chatScreenClassName?: string;
@@ -184,7 +184,7 @@ export default function ChatScreen({
             height={40}
             className='rounded-full'
           />
-          <div className='ml-3 flex flex-col items-start'>
+          <div className='flex flex-col items-start ml-3'>
             <h3 className='text-[15px] font-semibold leading-5'>Mika-chan</h3>
             <h6
               className='font-normal flex cursor-pointer gap-1 text-xs text-[#979797]'
@@ -242,7 +242,7 @@ export default function ChatScreen({
           </div>
         </div>
       </div>
-      <div className='flex h-full w-full flex-col'>
+      <div className='flex flex-col w-full h-full'>
         <div
           className={`custom-scroll-bar flex overflow-y-auto pb-5 ${
             chatScreenMsgClassName
@@ -297,7 +297,7 @@ export default function ChatScreen({
                 </div>
                 {sendUploadImgState && (
                   <div className='absolute -top-[152px] left-0 z-50 mt-2 inline-flex w-[218px] flex-col items-start justify-start rounded-2xl bg-zinc-900 py-2 shadow'>
-                    <div className='cursor-pointer flex-col items-center justify-start gap-2 self-stretch '>
+                    <div className='flex-col items-center self-stretch justify-start gap-2 cursor-pointer '>
                       <div
                         className='flex gap-2 px-4 py-[10px] text-sm'
                         onClick={handleChatViewModal}
@@ -318,7 +318,7 @@ export default function ChatScreen({
                           {...getRootProps()}
                         >
                           <UploadIcon />
-                          <input className='mb-5 hidden' {...getInputProps()} />
+                          <input className='hidden mb-5' {...getInputProps()} />
                           <button>Upload image</button>
                         </div>
                       ) : (
@@ -376,7 +376,7 @@ export default function ChatScreen({
                           className='absolute right-4 top-3 flex h-4 w-4 cursor-pointer items-center justify-center rounded-full bg-[#0000007A]'
                           onClick={() => handleDeleteImage(index)}
                         >
-                          <Image src={CrossIcon} alt='' className='h-2 w-2' />
+                          <Image src={CrossIcon} alt='' className='w-2 h-2' />
                         </div>
                       </div>
                     ))}
@@ -453,7 +453,7 @@ export default function ChatScreen({
             <SendWhiteIcon />
           </button>
         </div> */}
-          <div className='mx-5 flex justify-between'>
+          <div className='flex justify-between mx-5'>
             <RecordVoice handleMessage={handleMessage} />
           </div>
         </>
