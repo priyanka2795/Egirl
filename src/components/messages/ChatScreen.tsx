@@ -453,7 +453,7 @@ export default function ChatScreen({
             <SendWhiteIcon />
           </button>
         </div> */}
-          <div className='flex justify-between mx-5'>
+          <div className='flex justify-between pt-5 mx-5'>
             <RecordVoice handleMessage={handleMessage} />
           </div>
         </>
