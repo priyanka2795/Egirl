@@ -134,8 +134,8 @@ const ImageGeneratorOption = ({
       const lastTagIndex = promptTags.length - 1;
       const lastTag = promptTags[lastTagIndex];
       setEditPrompt(lastTag);
-      setPromptTags(promptTags.slice(0, -1)); 
-      setPromptHint(lastTag); 
+      setPromptTags(promptTags.slice(0, -1));
+      setPromptHint(lastTag);
     }
 
     // if (e.key === 'Backspace' && promptHint === '') {
@@ -236,7 +236,6 @@ const ImageGeneratorOption = ({
     }
   };
 
-  const SavedDrawingImage = localStorage.getItem('savedDrawingImage');
 
   //====== prompt image api for image generation ========
   const token: any = Cookies.get('accessToken');
@@ -299,6 +298,10 @@ const ImageGeneratorOption = ({
 
   // console.log('token---', token, editPromptMenuIndex, promptTags);
   //=======================
+
+
+  // const SavedDrawingImage = localStorage.getItem('savedDrawingImage');
+  const [savedDrawingImage, setSavedDrawingImage] = useState() 
 
   return (
     <>
@@ -536,11 +539,16 @@ const ImageGeneratorOption = ({
                 {inpaintingCreated ? (
                   <div className='flex items-center'>
                     <div className='sub-banner relative h-[140px] w-[140px]'>
-                      <img
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: `     ${savedDrawingImage}       `
+                        }}
+                      />
+                      {/* <img
                         src={SavedDrawingImage || ''}
                         alt=''
                         className='object-cover w-full h-full'
-                      />
+                      /> */}
                       <div
                         className='group absolute right-3 top-3 flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full bg-[#0000007A]'
                         onClick={() => {
@@ -709,7 +717,7 @@ const ImageGeneratorOption = ({
           CloseInpaintingModal={setInpaintingModal}
           SetInpaintingCreated={setInpaintingCreated}
           EditInpainting={editInpainting}
-          SavedDrawingImage={SavedDrawingImage}
+          SavedDrawingImage={setSavedDrawingImage}
         />
       )}
 
