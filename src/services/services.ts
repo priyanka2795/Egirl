@@ -71,7 +71,7 @@ export const postCharacter = (data:any , token:any) => postApiWithToken('/studio
 
 export const updateCharacterPersonality = (data:any , token : string | null)=> putApiWithToken('/studio/character/personality' , data , token)
 
-export const postCharacterPersonality = (data:any) => postApi('/studio/character/personality' , data)
+export const postCharacterPersonality = (data:any , token:string|null) => postApiWithToken('/studio/character/personality' , data , token)
 
 export const getGifts = (giftCategoryId :number , token:string|null)=> getApiWithToken( `/studio/gift/${giftCategoryId}`  , token) 
 
