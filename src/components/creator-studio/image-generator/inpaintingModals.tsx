@@ -45,19 +45,23 @@ const InpaintingModals = ({
   const brushSizes: number = parseInt(brushSize[0]);
   const [Data, setData] = useState();
   const SaveImage = () => {
-    const image = canvasRef?.current?.exportImage('png');
+    const image = canvasRef?.current?.exportSvg();
     image
       .then((data: any) => {
         const Images = data;
         setData(Images);
+        SavedDrawingImage(Images);
         localStorage.setItem('savedDrawingImage', Images);
       })
       .catch((e: string) => {
         console.log(e);
       });
-    // CloseInpaintingModal(false);
-    // SetInpaintingCreated(true);
+
+    CloseInpaintingModal(false);
+    SetInpaintingCreated(true);
   };
+
+  console.log(Data, 'Data');
 
   return (
     <Modal
@@ -79,21 +83,28 @@ const InpaintingModals = ({
         </button>
       </div>
       <div className='px-6 pt-6'>
-        <img src={Data || ''} alt='' />
+        {/* <div className='h-[150px] w-[150px]'>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: `     ${Data}       `
+            }}
+          />
+        </div> */}
+        {/* <img
+          src={Data || ''}
+          className='object-cover w-full h-full rounded-lg'
+        /> */}
+
         <div className='sub-banner relative m-auto h-[640px] w-[640px] rounded-lg '>
-          {/* <Image
-            src={Image1}
-            className='object-cover w-full h-full rounded-lg'
-          />   */}
           <ReactSketchCanvas
             ref={(canvasDraw: any) => (canvasRef.current = canvasDraw)}
             strokeWidth={brushSizes}
             strokeColor={'#5848BC'}
             backgroundImage={Image1.src}
             exportWithBackgroundImage={true}
-            width={'100%'}
-            height={'100%'}
-            className='border-none'
+            width={640}
+            height={640}
+            className='w-full h-full border-none'
           />
 
           <div className='absolute right-3 top-3 flex items-center gap-2'>
