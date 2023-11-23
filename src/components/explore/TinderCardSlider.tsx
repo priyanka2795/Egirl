@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import React, { useState, useRef, useMemo, useEffect } from 'react';
 import mikaChanImg from '../../../public/assets/mikaChan.png';
 import cardImg from '../../../public/assets/explore/explore-img.png';

@@ -21,7 +21,7 @@ const ImageNumber = ({setNumOfImages}:imageNumber) => {
           return (
             <div
               key={index}
-              className={`rounded-[16px] border border-white/[0.32] w-12 h-12 flex justify-center items-center text-white text-[18px] font-bold leading-6 cursor-pointer ${selectedItem === items ? 'bg-white/[0.08]' : ''}`}
+              className={`rounded-[16px] border border-white/[0.32] w-12 h-12 flex justify-center items-center text-white text-[18px] font-bold leading-6 cursor-pointer ${selectedItem === items ? 'bg-[#1f1b3f]' : ''}`}
               onClick={()=> handleImageNumbers(items)}
             >
               {items}

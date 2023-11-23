@@ -1,4 +1,3 @@
-// @ts-nocheck
 
 import React from 'react';
 import Cross from '../../../../public/assets/svgImages/close-icon.svg';
@@ -14,8 +13,8 @@ const initialValues = {
 };
 
 interface CharacterAddProps {
-  setUserDetails: (userDetails: any) => void;
-  NewCharacterClose?: () => void;
+  setUserDetails?: (userDetails: any) => void;
+  NewCharacterClose?: any
   SetUserGuide?: (value: boolean) => void;
   SetIsTourOpen?: (value: boolean) => void;
   UserGuide?: any;
@@ -57,10 +56,10 @@ const CharacterAdd: React.FC<CharacterAddProps> = ({
       modalClassName={`bg-[#121212] flex  flex-col flex-start rounded-[20px]`}
     >
       <div className='flex items-start gap-2 self-stretch border-b border-white/[0.08] p-6'>
-        <div className='font-bold w-full gap-1 text-lg leading-6'>
+        <div className='w-full gap-1 text-lg font-bold leading-6'>
           Add New Character
         </div>
-        <div className='h-6 w-6'>
+        <div className='w-6 h-6'>
           <Cross onClick={() => NewCharacterClose?.()} />
         </div>
       </div>
@@ -112,7 +111,7 @@ const CharacterAdd: React.FC<CharacterAddProps> = ({
                 />
               </div>
 
-              <div className='flex items-start gap-3 self-stretch '>
+              <div className='flex items-start self-stretch gap-3 '>
                 <button
                   type='button'
                   onClick={() => NewCharacterClose?.()}
@@ -146,6 +145,8 @@ const CharacterAdd: React.FC<CharacterAddProps> = ({
 };
 
 export default CharacterAdd;
+
+
 
 // import React from 'react';
 // import Cross from '../../../../public/assets/svgImages/close-icon.svg';
@@ -189,9 +190,11 @@ export default CharacterAdd;
 //         console.log('Values', values);
 //         action.resetForm();
 //         SetUserGuide(false), SetIsTourOpen(true), setTourCount(0);
-//         // NewCharacterClose(false);
+//         // NewCharacterClose(false); 
 //       }
 //     });
+
+
 
 //   const nameLength = values.name.length;
 //   const usernameLength = values.username.length;
@@ -330,3 +333,4 @@ export default CharacterAdd;
 // };
 
 // export default CharacterAdd;
+

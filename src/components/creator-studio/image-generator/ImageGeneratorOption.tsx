@@ -1,6 +1,4 @@
-// @ts-nocheck
-
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ShuffleSvg from '../../../../public/assets/svgImages/shuffle.svg';
 import PlusIconSvg from '../../../../public/assets/svgImages/plus-icon.svg';
 import Toggle from '@components/common/Toggler';
@@ -28,10 +26,15 @@ import UserWhite from '../../../../public/assets/circle-user-white.png';
 import SearchIcon from '../../../../public/assets/search-alt (1).png';
 import RightIcon from '../../../../public/assets/check-cs.png';
 import DeleteIcon from '../../../../public/assets/delete-icon.png';
-import { postInpaintImage, postPromptImage } from 'services/services';
+import {
+  postInpaintImage,
+  postPoseImage,
+  postPromptImage
+} from 'services/services';
 import Cookies from 'js-cookie';
-
-import { uploadSvg } from './svg/upload';
+import { useAppDispatch, useAppSelector } from 'redux/hooks';
+import { tokenRefresh } from 'redux/api/RefreshTokenApi';
+import { useRouter } from 'next/router';
 
 const EditPromptName = [
   'Mica-chan',
@@ -78,6 +81,7 @@ interface ImageGeneratorOption {
   EditGeneration: boolean;
   EditTooltip: boolean;
   numOfImages?: number;
+  imageDimension?: any;
 }
 const ImageGeneratorOption = ({
   InpaintingToggle,
@@ -85,8 +89,12 @@ const ImageGeneratorOption = ({
   MyCharacterToggle,
   EditGeneration,
   EditTooltip,
-  numOfImages
+  numOfImages,
+  imageDimension
 }: ImageGeneratorOption) => {
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+
   const [prompt, setPrompt] = useState<boolean>(false);
   const [tagState, setTagState] = useState<boolean>(false);
   const [openGenre, setOpenGenre] = React.useState<boolean>(false);
@@ -126,24 +134,21 @@ const ImageGeneratorOption = ({
 
   function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
     setEditPrompt(null);
-    const found = promptTags.find((Tags: string) => Tags == promptHint);
-    if (promptHint === found) {
-      if (e.key === 'Enter') {
-        setPromptHint('');
-        alert('this value is already in adjust');
-      }
-    } else {
-      if (e.key === 'Enter') {
-        setPromptHint('');
-      }
-      if (e.key !== 'Enter') return;
+    if (e.key === 'Enter') {
       const value = e.target.value;
       if (!value.trim()) return;
       setPromptTags([...promptTags, value]);
-      e.target.value = '';
+      setPromptHint('');
+    } else if (e.key === 'Backspace' && promptHint === '') {
+      // Backspace key pressed and promptHint is empty, edit the last tag
+      const lastTagIndex = promptTags.length - 1;
+      const lastTag = promptTags[lastTagIndex];
+      setEditPrompt(lastTag);
+      setPromptTags(promptTags.slice(0, -1));
+      setPromptHint(lastTag);
     }
   }
-  console.log('InpaintingToggle---', InpaintingToggle);
+
   const EditPromptData = (item: null) => {
     setEditPrompt((prev) => (prev === item ? null : item));
   };
@@ -152,6 +157,8 @@ const ImageGeneratorOption = ({
     setPromptTags(promptTags.filter((el: string, i: number) => i !== index));
   }
   // Drag And Drop Item
+  // const dragItem = useRef<number | null>();
+  // const dragOverItem = useRef<number | null>();
   const dragItem = useRef<any>();
   const dragOverItem = useRef<any>();
 
@@ -220,49 +227,93 @@ const ImageGeneratorOption = ({
     }
   };
 
-  const SavedDrawingImage = localStorage.getItem('savedDrawingImage');
+  let promptValueObj: { promptType: string; promptValue: string };
+  const [promptValArr, setPromptValArr] = useState([] as any);
 
+  if (editPrompt && editPromptMenuIndex) {
+    promptValueObj = {
+      promptType: editPrompt,
+      promptValue: editPromptMenuIndex
+    };
+  }
+  useEffect(() => {
+    setPromptValArr([...promptValArr, promptValueObj]);
+  }, [editPromptMenuIndex]);
+  console.log('promptValArr---', promptValArr);
   //====== prompt image api for image generation ========
   const token: any = Cookies.get('accessToken');
-  let promptData: any = {
-    prompt: [
-      {
-        prompt_id: 0,
-        prompt_type: promptTags.toString(),
+  const refreshTokenData: any = useAppSelector(
+    (state) => state.tokenRefresh?.tokenData
+  );
+
+  useEffect(() => {
+    if (refreshTokenData) {
+      Cookies.set('accessToken', refreshTokenData);
+    }
+  }, [refreshTokenData, router.pathname]);
+
+  let promptData = {
+    prompt: promptTags.map((ele: string, index: number) => {
+      return {
+        prompt_id: index,
+        prompt_type: ele,
         prompt_value: 'string'
-      }
-    ],
+      };
+    }),
     negative_prompt: negativePrompt,
-    sd_image_model: 'string',
-    height: 0,
-    width: 0,
-    guidance_scale: 1,
-    inference_steps: 1,
+    sd_image_model: 'SemiRealMix',
+    height: imageDimension?.height,
+    width: imageDimension?.width,
+    guidance_scale: 7.5,
+    inference_steps: 10,
     num_of_images: numOfImages
   };
+
   let inPaintData = {
     base_image: {
       media_id: 0,
       media_url: 'string'
     },
     mask_image_base64_str: 'string',
-    prompt: [
-      {
-        prompt_id: 0,
-        prompt_type: 'string',
+    prompt: promptTags.map((ele: string, index: number) => {
+      return {
+        prompt_id: index,
+        prompt_type: ele,
         prompt_value: 'string'
-      }
-    ],
+      };
+    }),
     negative_prompt: negativePrompt,
-    sd_image_model: 'string',
-    height: 0,
-    width: 0,
-    guidance_scale: 0,
-    inference_steps: 0,
+    sd_image_model: 'SemiRealMix',
+    height: imageDimension?.height,
+    width: imageDimension?.width,
+    guidance_scale: 7.5,
+    inference_steps: 10,
+    num_of_images: numOfImages
+  };
+  let poseData = {
+    preset_pose_image: {
+      media_id: 0,
+      media_url: 'string'
+    },
+    pose_image_base64_str: 'string',
+    prompt: promptTags.map((ele: string, index: number) => {
+      return {
+        prompt_id: index,
+        prompt_type: ele,
+        prompt_value: 'string'
+      };
+    }),
+    negative_prompt: negativePrompt,
+    sd_image_model: 'SemiRealMix',
+    height: imageDimension?.height,
+    width: imageDimension?.width,
+    guidance_scale: 7.5,
+    inference_steps: 10,
     num_of_images: numOfImages
   };
   const handleGenerate = () => {
     if (InpaintingToggle === true) {
+      //------ inPainting image api ----
       postInpaintImage(inPaintData, token)
         .then((res) => {
           console.log('inPaintImage res---', res);
@@ -270,10 +321,23 @@ const ImageGeneratorOption = ({
         .catch((err) => {
           console.log('inPaintImage err---', err);
         });
-    } else {
-      postPromptImage(promptData, token)
+    } else if (PosingToggle === true) {
+      //----------- pose image api -------
+      postPoseImage(poseData, token)
         .then((res) => {
+          console.log('pose image res---', res);
+        })
+        .catch((err) => {
+          console.log('pose image err---', err);
+        });
+    } else {
+      //------- prompt image api ------
+      postPromptImage(promptData, token)
+        .then((res: any) => {
           console.log('prompt image res---', res);
+          if (res?.response?.status === 401) {
+            dispatch(tokenRefresh());
+          }
         })
         .catch((err) => {
           console.log('prompt image err---', err);
@@ -281,8 +345,12 @@ const ImageGeneratorOption = ({
     }
   };
 
-  console.log('token---', token, editPromptMenuIndex, promptTags);
   //=======================
+
+
+  // const SavedDrawingImage = localStorage.getItem('savedDrawingImage');
+  const [savedDrawingImage, setSavedDrawingImage] = useState() 
+
   return (
     <>
       <div className='flex flex-col rounded-[14px] bg-[#121212]'>
@@ -300,7 +368,7 @@ const ImageGeneratorOption = ({
                   <p className='font-normal text-[15px] leading-6 text-[#979797]'>
                     Genre
                   </p>
-                  <Image src={ArrowRight} className='h-full w-full' />
+                  <Image src={ArrowRight} className='w-full h-full' />
                 </div>
 
                 <div
@@ -323,7 +391,7 @@ const ImageGeneratorOption = ({
               <div className='group relative flex w-12 cursor-pointer items-center justify-center gap-2 rounded-[14px] bg-white bg-opacity-10 py-3'>
                 <ShuffleSvg />
                 {EditTooltip ? (
-                  <div className='absolute -left-16 -top-12 z-50 w-max'>
+                  <div className='absolute z-50 -left-16 -top-12 w-max'>
                     <Tooltip Text={'Add a random prompt'} />
                   </div>
                 ) : (
@@ -338,7 +406,7 @@ const ImageGeneratorOption = ({
               <div className='flex flex-wrap items-center gap-2'>
                 {MyCharacterToggle && (
                   <div className='flex cursor-pointer items-center gap-1 rounded-xl bg-[#403BAC] px-[10px] py-2'>
-                    <Image src={UserWhite} className='h-full w-full' />
+                    <Image src={UserWhite} className='w-full h-full' />
                     <p className='text-[14px]'>Mika-chan</p>
                   </div>
                 )}
@@ -355,7 +423,7 @@ const ImageGeneratorOption = ({
                       onDragEnd={drop}
                       draggable
                     >
-                      <Image src={Grid} className='h-full w-full' />
+                      <Image src={Grid} className='w-full h-full' />
                       <span className='text'>{tag}</span>
                       {/* <span className="cursor-pointer" onClick={() => removeTag(index)}>&times;</span> */}
                     </div>
@@ -364,7 +432,7 @@ const ImageGeneratorOption = ({
                         <div className='m-4 flex items-center justify-between gap-[6px] rounded-[10px] bg-[#FFFFFF0D] px-3'>
                           <Image
                             src={SearchIcon}
-                            className='h-full w-full object-cover '
+                            className='object-cover w-full h-full '
                           />
                           <input
                             type='text'
@@ -375,29 +443,31 @@ const ImageGeneratorOption = ({
                           />
                         </div>
                         <div className='flex flex-col gap-[10px]'>
-                          {editPromptMenu.map((items, index) => (
-                            <div
-                              key={index}
-                              className={`${
-                                editPromptMenuIndex === items
-                                  ? 'bg-[#FFFFFF0D]'
-                                  : ''
-                              } flex cursor-pointer items-center justify-between px-4 py-[10px]`}
-                              onClick={() => {
-                                setEditPromptMenuIndex(items);
-                              }}
-                            >
-                              <p>{items}</p>
-                              {editPromptMenuIndex === items ? (
-                                <Image
-                                  src={RightIcon}
-                                  className='h-full w-full'
-                                />
-                              ) : (
-                                ''
-                              )}
-                            </div>
-                          ))}
+                          {editPromptMenu.map((items, index) => {
+                            return (
+                              <div
+                                key={index}
+                                className={`${
+                                  editPromptMenuIndex === items
+                                    ? 'bg-[#FFFFFF0D]'
+                                    : ''
+                                } flex cursor-pointer items-center justify-between px-4 py-[10px]`}
+                                onClick={() => {
+                                  setEditPromptMenuIndex(items);
+                                }}
+                              >
+                                <p>{items}</p>
+                                {editPromptMenuIndex === items ? (
+                                  <Image
+                                    src={RightIcon}
+                                    className='w-full h-full'
+                                  />
+                                ) : (
+                                  ''
+                                )}
+                              </div>
+                            );
+                          })}
                           <div className='px-4 py-[10px]'>
                             <button
                               className='font-bold flex w-full items-center justify-center gap-[6px] rounded-[10px] bg-[#FFFFFF14] py-[7px] text-[#979797]'
@@ -407,7 +477,7 @@ const ImageGeneratorOption = ({
                             >
                               <Image
                                 src={DeleteIcon}
-                                className='h-full w-full'
+                                className='w-full h-full'
                               />{' '}
                               Delete
                             </button>
@@ -513,17 +583,22 @@ const ImageGeneratorOption = ({
                     className='cursor-pointer pt-1.5'
                     onClick={() => setInpaintingExample(true)}
                   >
-                    <Image src={Question} className='h-full w-full' />
+                    <Image src={Question} className='w-full h-full' />
                   </div>
                 </div>
                 {inpaintingCreated ? (
                   <div className='flex items-center'>
                     <div className='sub-banner relative h-[140px] w-[140px]'>
-                      <img
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: `     ${savedDrawingImage}       `
+                        }}
+                      />
+                      {/* <img
                         src={SavedDrawingImage || ''}
                         alt=''
-                        className='h-full w-full object-cover'
-                      />
+                        className='object-cover w-full h-full'
+                      /> */}
                       <div
                         className='group absolute right-3 top-3 flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full bg-[#0000007A]'
                         onClick={() => {
@@ -543,7 +618,7 @@ const ImageGeneratorOption = ({
                       <div className='flex h-[56px] w-[56px] items-center justify-center rounded-full bg-[#FFFFFF0D]'>
                         <Image
                           src={ImageSquare}
-                          className='h-full w-full object-cover'
+                          className='object-cover w-full h-full'
                         />{' '}
                       </div>
                       <p className='text-[13px] text-[#979797]'>
@@ -569,7 +644,7 @@ const ImageGeneratorOption = ({
                     className='cursor-pointer pt-1.5'
                     onClick={() => setPoseExample(true)}
                   >
-                    <Image src={Question} className='h-full w-full' />
+                    <Image src={Question} className='w-full h-full' />
                   </div>
                 </div>
 
@@ -604,7 +679,7 @@ const ImageGeneratorOption = ({
                       <div className='flex h-[56px] w-[56px] items-center justify-center rounded-full bg-[#FFFFFF0D]'>
                         <Image
                           src={People}
-                          className='h-full w-full object-cover'
+                          className='object-cover w-full h-full'
                         />
                       </div>
                       <p className='text-[13px] text-[#979797]'>
@@ -647,7 +722,7 @@ const ImageGeneratorOption = ({
       >
         <div className='flex flex-col items-start rounded-[20px] bg-[#121212] '>
           <div className='flex items-start gap-2.5 self-stretch border-b border-white/[0.08] border-b-white/[0.08] px-8 pb-6 pt-8'>
-            <div className='font-bold flex w-full text-lg leading-6 decoration-white'>
+            <div className='flex w-full text-lg font-bold leading-6 decoration-white'>
               Genre
             </div>
             <div className='cursor-pointer' onClick={handleCloseGenre}>
@@ -656,7 +731,7 @@ const ImageGeneratorOption = ({
           </div>
 
           <ImageGallery />
-          <div className='flex flex-row gap-3 self-stretch px-8 pb-8 pt-4'>
+          <div className='flex flex-row self-stretch gap-3 px-8 pt-4 pb-8'>
             <button
               onClick={handleCloseGenre}
               className='font-bold flex h-[48px] w-[100%] items-center justify-center rounded-[14px] border border-white/[0.32] px-5 py-[13px]'
@@ -691,7 +766,7 @@ const ImageGeneratorOption = ({
           CloseInpaintingModal={setInpaintingModal}
           SetInpaintingCreated={setInpaintingCreated}
           EditInpainting={editInpainting}
-          SavedDrawingImage={SavedDrawingImage}
+          SavedDrawingImage={setSavedDrawingImage}
         />
       )}
 

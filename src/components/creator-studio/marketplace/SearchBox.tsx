@@ -15,10 +15,7 @@ const SearchBox = () => {
       setShowSearchBox(false);
     }
   };
-  const [searchTerm, setSearchTerm] = useState('');
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
-  };
+
 
 
   return (
@@ -38,12 +35,10 @@ const SearchBox = () => {
                   />
                 </div>
                 <input
-                value={searchTerm}
-                onChange={handleSearch}
                   className='py-auto h-[40px] w-full rounded-[14px] border-none bg-[#1E1E1E] pl-[50px] text-[15px] font-light leading-6 text-[#979797] transition duration-100 focus:ring-1 focus:ring-transparent'
                   type='search'
                   placeholder='Search...'
-                  // onChange={handleSearchInput}
+                  onChange={handleSearchInput}
                 />
                 {showSearchBox && (
                   <div className='absolute left-0 top-[50px] z-50 w-full rounded-xl bg-[#1E1E1E] px-2 py-3'>

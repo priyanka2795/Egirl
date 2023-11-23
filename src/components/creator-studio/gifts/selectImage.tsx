@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import Image from 'next/image';
 import React, { useState } from 'react';
 import crossIcon from '../../../../public/assets/xmark (1).png';

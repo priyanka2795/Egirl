@@ -13,6 +13,7 @@ import { forYouPost, getPostSubscription } from 'services/services';
 import Cookies from 'js-cookie';
 import { useAppDispatch, useAppSelector } from 'redux/hooks';
 import { tokenRefresh } from 'redux/api/RefreshTokenApi';
+import { useRouter } from 'next/router';
 
 const SearchData = [
   {
@@ -32,16 +33,12 @@ const SearchData = [
   }
 ];
 const Home = () => {
+  const router = useRouter()
   const dispatch = useAppDispatch()
   const token:any = Cookies.get("accessToken")
   const refreshTokenData:any = useAppSelector((state)=> state.tokenRefresh?.tokenData)
 
-  // useEffect(()=>{
-  //   Cookies.set("accessToken", refreshTokenData)
-  // },[refreshTokenData])
-
- 
-  console.log("token---",token, "refreshTokenData---", refreshTokenData)
+ console.log("token---",token, "refreshTokenData---", refreshTokenData)
 
   const [showForYou, setShowForYou] = useState(true);
   const [sticky, animate] = useScroll();
@@ -119,11 +116,14 @@ const Home = () => {
     getPostSubscription(1, token)
     .then((res:any)=>{
       console.log("post subscription res---", res)
+      if(res?.response?.status === 401){
+        dispatch(tokenRefresh())
+      }
     })
     .catch((err:any)=>{
       console.log("post subscription err---", err)
     })
-  },[postUpdate,refreshTokenData])
+  },[postUpdate,refreshTokenData,router.pathname])
 
   
   const formatTimestamp = (timestamp:any) => {

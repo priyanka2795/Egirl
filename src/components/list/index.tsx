@@ -39,7 +39,7 @@ const ListIndex = () => {
             setShowCollections={setShowCollections}
             setShowRealistic={setShowRealistic}
           />
-          <div className='h-[85vh] px-8 py-4'>
+          <div className='h-[100vh] px-8 py-4'>
             {activeListTab === 'Subscriptions' ? (
               showSubscriptionOption ? (
                 <SubscriptionOptions showProfile={setProfileSectionState} />

@@ -14,8 +14,11 @@ import GiftCategoryAction from './giftCategoryAction';
 import GiftCardDelete from './giftCardDelete';
 import { getGiftCategory, getGifts } from 'services/services';
 import Cookies from 'js-cookie';
+import { useAppDispatch, useAppSelector } from 'redux/hooks';
+import { tokenRefresh } from 'redux/api/RefreshTokenApi';
 
 function Gifts() {
+  const dispatch = useAppDispatch()
   const [giftModal, setGiftModal] = useState<boolean>(false);
   const [giftCard, setGiftCard] = useState<boolean>(false);
   const [toggle, setToggle] = useState<boolean>(false);
@@ -35,13 +38,21 @@ function Gifts() {
     useState<boolean>(false);
   const [selectedCategoryId, setSelectedCategoryId] = useState<any>();
   const characterId = Cookies.get('character_id') || '';
-  const token: any = Cookies.get('accessToken');
+  const token:any = Cookies.get('accessToken');
+  const refreshTokenData:any = useAppSelector((state)=> state.tokenRefresh?.tokenData)
   const [selectedCategoryGifts, setSelectedCategoryGifts] = useState<any>();
+  const [selectedGiftData, setSelectedGiftData] = useState<any>();
+  const [updateGift, setUpdateGift] = useState(false);
 
-  const EditGift = (val: number) => {
+  const EditGift = (val: number, data: any) => {
+    setSelectedGiftData(data);
     setGiftCard(true);
     setGiftEditPopup(val);
   };
+
+  useEffect(() => {
+    console.log(selectedGiftData, '????giftData');
+  }, [selectedGiftData]);
 
   const DeleteGiftCardModal = (
     index: number,
@@ -50,9 +61,8 @@ function Gifts() {
   ) => {
     setGiftCard(true);
     setGiftEditPopup(num);
-    setDeleteIndex(index);
     setDeleteBtnStep(1);
-    setGiftName(giftName);
+    setGiftName('giftName');
   };
 
   const DeleteGift = (ind: number) => {
@@ -72,12 +82,20 @@ function Gifts() {
     setToggle(!toggle);
   };
 
+  useEffect(()=>{
+    if(refreshTokenData){
+      Cookies.set("accessToken", refreshTokenData)
+    }
+  },[refreshTokenData])
   const getAllCategory = () => {
     getGiftCategory(characterId, token)
       .then((response: any) => {
         if (response && response.data) {
           setGiftCategory(response?.data);
           console.log(response.data, 'res????');
+          if(response?.response?.status === 401){
+            dispatch(tokenRefresh())
+          }
         } else {
           console.error('Invalid response structure:', response);
         }
@@ -101,11 +119,14 @@ function Gifts() {
       .then((res: any) => {
         console.log(res);
         setSelectedCategoryGifts(res?.data);
+        if(res?.response?.status === 401){
+          dispatch(tokenRefresh())
+        }
       })
       .catch((err: any) => {
         console.log(err);
       });
-  }, [selectedCategoryId]);
+  }, [selectedCategoryId, updateGift]);
 
   return (
     <>
@@ -133,7 +154,7 @@ function Gifts() {
             createCategoryToggle={createCategoryToggle}
           />
 
-          <div className='mt-4 flex items-center justify-between'>
+          <div className='flex items-center justify-between mt-4'>
             <p className='text-[#979797]'>
               {`${selectedCategoryGifts?.length}/9`} gifts
             </p>
@@ -146,11 +167,11 @@ function Gifts() {
             </button>
           </div>
 
-          <div className='mt-4 grid grid-cols-1 items-center gap-9 md:grid-cols-2 lg:grid-cols-3'>
+          <div className='grid items-center grid-cols-1 mt-4 gap-9 md:grid-cols-2 lg:grid-cols-3'>
             {selectedCategoryGifts?.map((item: any, index: number) => (
               <div
                 className='relative h-[300px] w-[300px] overflow-hidden rounded-xl'
-                key={index}
+                key={item?.gift_id}
               >
                 {/* <Image
                   src={item?.media_url}
@@ -158,7 +179,7 @@ function Gifts() {
                 /> */}
                 <img
                   src={item?.media_url}
-                  className='h-full w-full object-cover'
+                  className='object-cover w-full h-full'
                 />
 
                 <div className='absolute right-2 top-2'>
@@ -168,7 +189,7 @@ function Gifts() {
                   >
                     <Image
                       src={DotsHorizontal}
-                      className='h-full w-full object-cover'
+                      className='object-cover w-full h-full'
                       alt=''
                     />
                   </button>
@@ -178,11 +199,11 @@ function Gifts() {
                         <div className='absolute right-0 top-8 flex h-[130px] w-[251px] flex-col gap-3 rounded-[14px] bg-[#1A1A1A] p-4'>
                           <button
                             className='flex items-center gap-2'
-                            onClick={() => EditGift(1)}
+                            onClick={() => EditGift(1, item)}
                           >
                             <Image
                               src={Pencil}
-                              className='h-full w-full'
+                              className='w-full h-full'
                               alt=''
                             />
                             <p>Edit name</p>
@@ -193,7 +214,7 @@ function Gifts() {
                             onClick={() => EditGift(2)}
                           >
                             <div>
-                              <RightUp className='h-full w-full' alt={''} />
+                              <RightUp className='w-full h-full' alt={''} />
                             </div>
                             <p>Move to another category</p>
                           </button>
@@ -204,7 +225,7 @@ function Gifts() {
                           >
                             <Image
                               src={Delete}
-                              className='h-full w-full'
+                              className='w-full h-full'
                               alt={''}
                             />
                             <p>Delete</p>
@@ -232,6 +253,11 @@ function Gifts() {
               DeleteBtnStep={deleteBtnStep}
               giftImageSet={giftImageSet}
               giftName={giftName}
+              selectedGiftData={selectedGiftData}
+              characterId={characterId}
+              token={token}
+              setUpdateGift={setUpdateGift}
+              updateGift={updateGift}
             />
           )}
 
