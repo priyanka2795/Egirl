@@ -124,17 +124,17 @@ const FavoriteStyleModal = ({
             <div className='h-[calc(86vh-100px)] overflow-y-auto'>
               <div className='flex flex-col gap-4 px-6 pt-6 pb-5'>
                 <div className='flex flex-col gap-[2px]'>
-                  <div className='text-[22px] font-bold leading-8 text-white'>
+                  <div className='font-bold text-[22px] leading-8 text-white'>
                     Any Lee
                   </div>
-                  <div className='text-[18px] font-normal leading-6 text-[#979797]'>
+                  <div className='font-normal text-[18px] leading-6 text-[#979797]'>
                     Not posted
                   </div>
                 </div>
                 <div className='flex gap-3'>
                   <button className='flex w-full items-center justify-center gap-2 rounded-[14px] bg-white/[0.08] px-5 py-[13px]'>
                     <Image src={check} alt='' />
-                    <div className='text-[16px] font-bold leading-[22px] text-white'>
+                    <div className='font-bold text-[16px] leading-[22px] text-white'>
                       Added
                     </div>
                   </button>
@@ -145,14 +145,14 @@ const FavoriteStyleModal = ({
               </div>
               <div className='flex flex-col gap-5 px-6 pb-6'>
                 <div className='flex flex-col gap-[14px]'>
-                  <div className='text-[15px] font-normal leading-5 text-white'>
+                  <div className='font-normal text-[15px] leading-5 text-white'>
                     Model Details
                   </div>
                   {list.map((item, index) => {
                     return (
                       <div key={index} className='flex gap-5'>
                         <div className='flex w-[25%] gap-1'>
-                          <div className='text-[14px] font-normal leading-[18px] text-[#979797]'>
+                          <div className='font-normal text-[14px] leading-[18px] text-[#979797]'>
                             {item.type}
                           </div>
                           {item.image && (
@@ -163,17 +163,17 @@ const FavoriteStyleModal = ({
                             />
                           )}
                         </div>
-                        <div className='text-[14px] font-normal leading-[18px] text-white'>
+                        <div className='font-normal text-[14px] leading-[18px] text-white'>
                           {item.style}
                         </div>
                       </div>
                     );
                   })}
                   <div className='flex flex-col gap-2'>
-                    <div className='text-[14px] font-normal leading-[18px] text-[#979797]'>
+                    <div className='font-normal text-[14px] leading-[18px] text-[#979797]'>
                       Description
                     </div>
-                    <div className='text-[14px] font-normal leading-[18px] text-white'>
+                    <div className='font-normal text-[14px] leading-[18px] text-white'>
                       After a lot of tests I'm finally releasing my mix. This
                       started as a model to make After a lot of tests I'm
                       finally releasing my mix. This started as a model to make.
@@ -182,20 +182,20 @@ const FavoriteStyleModal = ({
                 </div>
                 {component === 'FavoriteStyles' ? (
                   <div className='flex justify-between rounded-[12px] bg-white/[0.05] px-4 py-[14px]'>
-                    <div className='text-[15px] font-normal leading-5 text-white'>
+                    <div className='font-normal text-[15px] leading-5 text-white'>
                       Generation data
                     </div>
                     <Image src={arrowDown} alt='' />
                   </div>
                 ) : (
-                  <div className='flex flex-col gap-4 rounded-[12px] bg-white/[0.05] px-4 py-[14px]'>
-                    <div
-                      className='flex items-center justify-between'
-                      onClick={() => {
-                        setGenerationData(!generationData);
-                      }}
-                    >
-                      <div className='text-[15px] font-normal leading-5 text-white'>
+                  <div
+                    className='flex flex-col gap-4 rounded-[12px] bg-white/[0.05] px-4 py-[14px]'
+                    
+                  >
+                    <div className='flex items-center justify-between cursor-pointer' onClick={() => {
+                      setGenerationData(!generationData);
+                    }}>
+                      <div className='font-normal text-[15px] leading-5 text-white'>
                         Generation data
                       </div>
                       <Image
@@ -213,7 +213,7 @@ const FavoriteStyleModal = ({
                                   key={index}
                                   className={`flex cursor-pointer items-center justify-center rounded-[12px] px-3 py-2 text-[14px] leading-[18px] ${
                                     activeIndex === index
-                                      ? 'bg-white/[0.16] font-bold text-white'
+                                      ? 'font-bold bg-white/[0.16] text-white'
                                       : 'font-semibold text-[#979797]'
                                   }`}
                                   onClick={() => {
@@ -232,7 +232,7 @@ const FavoriteStyleModal = ({
                               alt=''
                             />
                             <div className='invisible group-hover:visible group-hover:opacity-100'>
-                              <div className='absolute -right-[16px] -top-[38px] flex items-center justify-center rounded-[6px] bg-[#303030] px-3 py-[6px] text-[12px] font-normal leading-4 text-white'>
+                              <div className='font-normal absolute -right-[16px] -top-[38px] flex items-center justify-center rounded-[6px] bg-[#303030] px-3 py-[6px] text-[12px] leading-4 text-white'>
                                 Copy
                               </div>
                               <div className='absolute -right-[26px] -top-[22px] h-[24px] w-10'>
@@ -245,7 +245,7 @@ const FavoriteStyleModal = ({
                             </div>
                           </div>
                         </div>
-                        <div className='text-[14px] font-normal leading-[18px] text-white'>
+                        <div className='font-normal text-[14px] leading-[18px] text-white'>
                           Best quality, masterpiece, ultra high res,
                           (photorealistic), raw photo, 1girl, offshoulder, in
                           the dark, deep shadow, low key,
@@ -257,7 +257,7 @@ const FavoriteStyleModal = ({
                                 <div className='text-[14px] font-semibold leading-[18px] text-white'>
                                   {item.text}
                                 </div>
-                                <div className='text-[14px] font-normal leading-[18px] text-[#979797]'>
+                                <div className='font-normal text-[14px] leading-[18px] text-[#979797]'>
                                   {item.number}
                                 </div>
                               </div>
@@ -283,12 +283,12 @@ const FavoriteStyleModal = ({
                         <div className='text-[15px] font-semibold leading-5 text-white'>
                           Gayle Frami
                         </div>
-                        <div className='text-[13px] font-normal leading-[18px] text-[#979797]'>
+                        <div className='font-normal text-[13px] leading-[18px] text-[#979797]'>
                           @mikachan
                         </div>
                       </div>
                     </div>
-                    <button className='flex items-center justify-center rounded-[12px] bg-white/[0.08] px-4 py-[10px] text-[14px] font-bold leading-5 text-white'>
+                    <button className='font-bold flex items-center justify-center rounded-[12px] bg-white/[0.08] px-4 py-[10px] text-[14px] leading-5 text-white'>
                       Follow
                     </button>
                   </div>
@@ -343,11 +343,11 @@ const FavoriteStyleModal = ({
                                   </div>
                                 </div>
                               </div>
-                              <div className='text-[14px] font-normal leading-[18px] text-[#979797]'>
+                              <div className='font-normal text-[14px] leading-[18px] text-[#979797]'>
                                 {item.text}
                               </div>
                             </div>
-                            <div className='text-[12px] font-normal leading-4 text-[#979797]'>
+                            <div className='font-normal text-[12px] leading-4 text-[#979797]'>
                               {item.time}
                             </div>
                           </div>
@@ -360,7 +360,7 @@ const FavoriteStyleModal = ({
             </div>
             <div className='flex w-full border-t border-white/[0.08] bg-[#1A1A1A] p-6'>
               <div className='flex w-full justify-between rounded-[14px] bg-white/[0.05] px-5 py-4'>
-                <div className='text-[15px] font-normal leading-6 text-[#979797]'>
+                <div className='font-normal text-[15px] leading-6 text-[#979797]'>
                   Type your comment ...
                 </div>
                 <Image src={smiley} alt='' />

@@ -242,7 +242,7 @@ export default function ChatScreen({
           </div>
         </div>
       </div>
-      <div className='flex flex-col w-full h-full'>
+      <div className='flex flex-col w-full'>
 
       <div
         className={`custom-scroll-bar flex overflow-y-auto pb-5 ${
@@ -282,6 +282,7 @@ export default function ChatScreen({
           {imageRequestMsg && <ImageRequestMsg />}
         </div>
       </div>
+      
       {showInput && (
         <div className='flex flex-col gap-1 '>
         
