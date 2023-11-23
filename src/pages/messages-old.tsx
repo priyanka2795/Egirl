@@ -1,5 +1,4 @@
 import { AnimatePresence } from 'framer-motion';
-import { where, orderBy } from 'firebase/firestore';
 // import { useWindow } from '@lib/context/window-context';
 // import { Input } from '@components/input/input';
 import { toast } from 'react-hot-toast';
@@ -22,8 +21,7 @@ import {
   getHomePostsFollowing,
   getHomePostsSubscribedTo
 } from '../api/home/home';
-import { Tweet as TypeTweet } from '@lib/types/tweet';
-import { User } from '@lib/types/user';
+
 import type { ImagesPreview, ImageData } from '@lib/types/file';
 import { getFlexUserCharChat } from 'api/messages/messages';
 import { Message } from '@components/messages-old/Message';

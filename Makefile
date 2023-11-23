@@ -11,3 +11,6 @@ up_build:
 
 down:
 	docker-compose down
+
+clean:
+	rm -rf node_modules .next next-env.d.ts yarn.lock package-lock.json
