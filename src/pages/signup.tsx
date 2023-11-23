@@ -105,7 +105,7 @@ export default function SignUp() {
             <Form>
               <div className='flex h-[inherit] max-h-[692px] w-[500px] flex-col rounded-[40px] bg-[#070707] '>
                 <div className='flex max-h-[600px] flex-col gap-8 overflow-y-auto px-10 pt-10'>
-                  <SigninLoginOpt heading={'Sign up'} pageName={'signin'} />
+                  <SigninLoginOpt heading={'Sign up'} pageName={'login'} />
 
                   <div className='flex flex-col gap-4'>
                     <div className='flex gap-4'>
@@ -211,7 +211,7 @@ export default function SignUp() {
                       <div>
                         <ul>
                           <li className='mb-3'>Create a password that:</li>
-                          <li className='flex items-center mb-2'>
+                          <li className='mb-2 flex items-center'>
                             {errors.password ? <CrossIcon /> : <CheckedIcon />}
                             contains at least 8 characters
                           </li>
@@ -230,7 +230,7 @@ export default function SignUp() {
                   </div>
                 </div>
 
-                <div className='w-full px-10 pt-5 pb-10'>
+                <div className='w-full px-10 pb-10 pt-5'>
                   <button
                     type='submit'
                     className='font-bold flex w-full items-center justify-center rounded-[16px] bg-[#5848BC] px-6 py-4 text-[18px] leading-6 text-white'

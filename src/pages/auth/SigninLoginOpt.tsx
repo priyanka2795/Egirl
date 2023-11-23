@@ -34,15 +34,14 @@ const SigninLoginOpt = ({ heading, pageName }: SignInLoginOptProp) => {
           if (res.status === 307) {
             const redirectedURL = res.headers.get('Location');
             console.log('Redirected URL:', redirectedURL);
-            window.location.href = redirectedURL; 
+            window.location.href = redirectedURL;
           } else {
-            console.log("reError????");
+            console.log('reError????');
           }
         })
         .catch((err) => {
           console.log('discord????error--', err);
         });
-
     }
   };
 
