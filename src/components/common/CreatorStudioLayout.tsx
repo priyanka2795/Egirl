@@ -146,6 +146,7 @@ const CreatorStudioLayout = ({
                     createCharacterData={createCharacterData}
                     setCreateCharacterData={setCreateCharacterData}
                     setUserDetails={setUserDetails}
+                    activeProfile={activeProfile}
                   />
                 )}
               </>

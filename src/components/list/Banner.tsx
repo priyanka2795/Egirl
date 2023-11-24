@@ -116,6 +116,7 @@ interface BannerProp {
   component?: string;
   setUserDetails?: any;
   userDetails?: any;
+  activeProfile:any
   // setEditProfileModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const Banner: React.FC<BannerProp> = ({
@@ -125,7 +126,8 @@ const Banner: React.FC<BannerProp> = ({
   followText,
   component,
   setUserDetails,
-  userDetails
+  userDetails,
+  activeProfile
 }: // setEditProfileModal
 BannerProp) => {
   const [actionDivShow, setActionDivShow] = useState(false);
@@ -142,7 +144,6 @@ BannerProp) => {
   const [updatedProfile, setUpdatedProfile] = useState(false);
   const [editProfileModal, setEditProfileModal] = useState(false);
 
-  console.log(editProfileModal, 'editProfileModal');
 
   const handleExploreSelected = (e: React.MouseEvent<HTMLElement>) => {
     setExploreSelected((e.target as HTMLElement).innerText);
@@ -403,7 +404,7 @@ BannerProp) => {
                 <div className='font-bold text-[22px] text-[#FFFFFF]'>
                   {userDetails?.display_name
                     ? userDetails?.display_name
-                    : 'Mika-chan'}
+                    : (activeProfile ? activeProfile?.username : 'Mika-chan')}
                 </div>
                 <div className='h-[24px] w-[24px]'>
                   <VerifiedIcon />
@@ -412,16 +413,16 @@ BannerProp) => {
               </div>
 
               <div className='font-normal text-[15px] text-[#979797]'>
-                {userDetails?.username ? userDetails?.username : '@mikachan'}
+                {userDetails?.username ? userDetails?.username : (activeProfile ? activeProfile?.display_name : '@mikachan')}
               </div>
               <div className='font-normal mt-3 w-full max-w-[73%] text-[15px] leading-[20px] text-white/[0.8]'>
                 {userDetails?.bio
                   ? userDetails?.bio
-                  : ` Shy fox girl looking for adventure
+                  : ( activeProfile ? activeProfile?.bio : ` Shy fox girl looking for adventure
                 ·冒険を探している恥ずかしがり屋のキツ I have a personality and
                 emotions. I can experience joy, sadness, anger, and everything
                 in between. I express myself through my voice, facial
-                expressions, and body language, all meticulously crafted`}
+                expressions, and body language, all meticulously crafted`)}
               </div>
 
               <div className='mt-[8px] flex gap-2'>
@@ -450,7 +451,7 @@ BannerProp) => {
                             alt=''
                           />
                           <div className='font-normal text-[13px] text-[#FFFFFF]'>
-                            {userDetails?.location}
+                            {activeProfile ? activeProfile?.location : userDetails?.location}
                           </div>
                         </div>
                       );

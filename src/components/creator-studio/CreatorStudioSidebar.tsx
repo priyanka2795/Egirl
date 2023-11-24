@@ -111,7 +111,7 @@ const CreatorStudioSidebar = ({
                   shrinkSideBar === true ? '!hidden' : ''
                 }`}
               >
-                Mika-chan
+                {activeProfile ? activeProfile?.username : "Select Character"}
               </div>
             </div>
             <div className='h-full mt-2'>

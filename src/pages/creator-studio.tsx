@@ -15,6 +15,9 @@ const creatorStudio = () => {
     username:'',
     display_name:''
   })
+  const [UserGuide, setUserGuide] = useState(true);
+  const [btnSteps, setBtnSteps] = useState<boolean>(false);
+  const [activeStep, setActiveStep] = useState(0);
   const [userDetails, setUserDetails] = useState({
     character_id : characterId,
     username: createCharacterData?.username,
@@ -38,12 +41,10 @@ const creatorStudio = () => {
 
   
   useEffect(() => {
-    console.log(allCharacterData, '????all');
-  }, [allCharacterData]);
+    console.log(activeProfile, '????active');
+  }, [activeProfile]);
 
-  const [UserGuide, setUserGuide] = useState(true);
-  const [btnSteps, setBtnSteps] = useState<boolean>(false);
-  const [activeStep, setActiveStep] = useState(0);
+  
 
   return (
     <div>

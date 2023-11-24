@@ -48,7 +48,7 @@ const SidebarModal = ({
 
   return (
     <div
-      className={`fixed top-[131px] z-10 -ml-1 mt-2 flex h-max w-[260px] flex-col rounded-[14px] bg-[#1A1A1A] px-0 pb-3 pt-2`}
+      className={`fixed top-[131px] z-10 -ml-1 mt-2 flex h-[200px] overflow-auto w-[260px] flex-col rounded-[14px] bg-[#1A1A1A] px-0 pb-3 pt-2`}
     >
       {/* <div className='px-6 py-[14px]'>
         <div className='flex gap-[10px] '>
@@ -78,17 +78,15 @@ const SidebarModal = ({
       {sidebarModal.map((item, index) => {
         return (
           <div
-            onClick={() => {
-              setActiveProfile(item.name);
-            }}
-            key={index}
-            className='overflow-auto'
-          >
+            // onClick={() => {
+            //   setActiveProfile(item.name);
+            // }}
+            key={index}>
             {/* {activeProfile === item.name ? ( */}
               {allCharacterData && allCharacterData?.length && allCharacterData?.map((item:any)=> {
                 return (
-                  <div onClick={()=>setActiveProfile(item?.id)} className='flex px-4 py-[6px]'>
-                  <div className={`mt-[5px] flex w-full items-center justify-between ${activeProfile === item?.id && 'rounded-full  bg-white/[0.08]'} py-2 pl-2 pr-[14px]`}>
+                  <div onClick={()=>setActiveProfile(item)} className='flex px-4 py-[6px]'>
+                  <div className={`mt-[5px] flex w-full items-center justify-between ${activeProfile?.id === item?.id && 'rounded-full  bg-white/[0.08]'} py-2 pl-2 pr-[14px]`}>
                     <div className='flex gap-[10px]'>
                       <div className='w-8 h-8'>
                         <Image
@@ -101,9 +99,9 @@ const SidebarModal = ({
                         {item?.username}
                       </div>
                     </div>
-                    <div className='w-4 h-4'>
+                    {activeProfile?.id == item?.id && <div className='w-4 h-4'>
                       <Image className='w-full h-full' src={check} alt={''} />
-                    </div>
+                    </div>}
                   </div>
                  </div>
                 )
