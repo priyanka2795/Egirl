@@ -124,9 +124,7 @@ const ReferralsIndex = () => {
               <div className='w-6 h-6'>
                 <Image className='w-full h-full' src={linkIcon} alt={''} />
               </div>
-              <div className='text-[14px] font-normal leading-5 text-[#979797]'>
-                egirls.com/qwert1234
-              </div>
+              <input type='text' placeholder='egirls.com/qwert1234' className='text-[14px] font-normal leading-5 text-[#979797] focus:ring-0 border-none bg-transparent placeholder:text-[#979797] p-0' />
             </div>
             <button className='flex w-max items-center justify-center rounded-[16px] bg-[#5848BC] px-6 py-4 text-[18px] font-bold leading-6 text-[#FFFFFF]'>
               Copy link
