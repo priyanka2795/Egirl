@@ -17,6 +17,9 @@ interface SidebarModals {
   // setShrinkSideBar: React.Dispatch<React.SetStateAction<boolean>>;
   setSidebarModal: React.Dispatch<React.SetStateAction<boolean>>;
   setNewCharacter: React.Dispatch<React.SetStateAction<boolean>>;
+  allCharacterData:any;
+  setActiveProfile:any;
+  activeProfile:any
 }
 
 const sidebarModal = [
@@ -38,9 +41,9 @@ const SidebarModal = ({
   // shrinkSideBar,
   // setShrinkSideBar,
   setSidebarModal,
-  setNewCharacter
+  setNewCharacter,allCharacterData,setActiveProfile,activeProfile
 }: SidebarModals) => {
-  const [activeProfile, setActiveProfile] = useState<string>('Mika-chan');
+  
   
 
   return (
@@ -79,37 +82,43 @@ const SidebarModal = ({
               setActiveProfile(item.name);
             }}
             key={index}
+            className='overflow-auto'
           >
-            {activeProfile === item.name ? (
-              <div className='flex px-4 py-[6px]'>
-                <div className='mt-[5px] flex w-full items-center justify-between rounded-full bg-white/[0.08] py-2 pl-2 pr-[14px]'>
-                  <div className='flex gap-[10px]'>
-                    <div className='w-8 h-8'>
-                      <Image
-                        className='w-full h-full'
-                        src={avatart1}
-                        alt={''}
-                      />
+            {/* {activeProfile === item.name ? ( */}
+              {allCharacterData && allCharacterData?.length && allCharacterData?.map((item:any)=> {
+                return (
+                  <div onClick={()=>setActiveProfile(item?.id)} className='flex px-4 py-[6px]'>
+                  <div className={`mt-[5px] flex w-full items-center justify-between ${activeProfile === item?.id && 'rounded-full  bg-white/[0.08]'} py-2 pl-2 pr-[14px]`}>
+                    <div className='flex gap-[10px]'>
+                      <div className='w-8 h-8'>
+                        <Image
+                          className='w-full h-full'
+                          src={avatart1}
+                          alt={''}
+                        />
+                      </div>
+                      <div className='flex items-center text-[14px] font-normal leading-[18px] text-[#FFFFFF] '>
+                        {item?.username}
+                      </div>
                     </div>
-                    <div className='flex items-center text-[14px] font-normal leading-[18px] text-[#FFFFFF] '>
-                      Mika-chan
+                    <div className='w-4 h-4'>
+                      <Image className='w-full h-full' src={check} alt={''} />
                     </div>
                   </div>
-                  <div className='w-4 h-4'>
-                    <Image className='w-full h-full' src={check} alt={''} />
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <div className='flex gap-[10px] py-[14px] pl-6 pr-4'>
-                <div className='w-8 h-8 overflow-hidden rounded-full'>
-                  <Image className='w-full h-full' src={avatart2} alt={''} />
-                </div>
-                <div className='mt-[6px] text-[14px] font-normal leading-[18px] text-[#FFFFFF]'>
-                  Character 2
-                </div>
-              </div>
-            )}
+                 </div>
+                )
+              })}
+            {/* // ) 
+            // : (
+            //   <div className='flex gap-[10px] py-[14px] pl-6 pr-4'>
+            //     <div className='w-8 h-8 overflow-hidden rounded-full'>
+            //       <Image className='w-full h-full' src={avatart2} alt={''} />
+            //     </div>
+            //     <div className='mt-[6px] text-[14px] font-normal leading-[18px] text-[#FFFFFF]'>
+            //       Character 2
+            //     </div>
+            //   </div>
+            // )} */}
           </div>
         );
       })}

@@ -3,10 +3,14 @@ import CreatorStudio from '@components/creator-studio';
 import ProfileInfoModal from '@components/list/ProfileInfoModal';
 import Cookies from 'js-cookie';
 import React, { useEffect, useState } from 'react';
+import { getAllCharacter } from 'services/services';
 
 const creatorStudio = () => {
   const [profileInfoPage, setProfileInfoPage] = useState(false);
   const characterId = Cookies.get('character_id') || '';
+  const [allCharacterData , setAllCharacterData] = useState<any>()
+  const token: any = Cookies.get('accessToken');
+  const [activeProfile, setActiveProfile] = useState<any>();
   const [createCharacterData , setCreateCharacterData] = useState({
     username:'',
     display_name:''
@@ -22,11 +26,20 @@ const creatorStudio = () => {
     profile_tags: "UNCHANGED"
   });
 
+  useEffect(()=>{
+    getAllCharacter(token)
+    .then((res:any)=>{
+      setAllCharacterData(res?.data)
+    })
+    .catch((err:any)=>{
+      console.log(err);
+    })
+  },[])
+
   
   useEffect(() => {
-    console.log(userDetails, '????details');
-    console.log(createCharacterData , "????create");
-  }, [userDetails , createCharacterData]);
+    console.log(allCharacterData, '????all');
+  }, [allCharacterData]);
 
   const [UserGuide, setUserGuide] = useState(true);
   const [btnSteps, setBtnSteps] = useState<boolean>(false);
@@ -56,6 +69,9 @@ const creatorStudio = () => {
           setUserGuide={setUserGuide}
           createCharacterData={createCharacterData}
           setCreateCharacterData={setCreateCharacterData}
+          allCharacterData={allCharacterData}
+          setActiveProfile={setActiveProfile}
+          activeProfile={activeProfile}
         />
       )}
     </div>

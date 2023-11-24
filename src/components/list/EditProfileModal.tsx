@@ -42,8 +42,7 @@ const EditProfileModal = ({
   const handleSave = async () => {
     try {
       const response: any = await updateCharacter(userDetails, token);
-      const character_id = response.data?.character_id;
-      Cookies.set('character_id', character_id);
+      
 
       console.log('Character saved successfully!', response);
     } catch (error) {
