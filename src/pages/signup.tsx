@@ -33,7 +33,7 @@ const initialValues = {
   email: '',
   verifyemail: '',
   password: '',
-  phoneNumber: ''
+  // phoneNumber: ''
 };
 export default function SignUp() {
   const router = useRouter();
@@ -71,7 +71,7 @@ export default function SignUp() {
       username: values.username,
       email: values.email,
       password: values.password,
-      phone: '1234567890'
+      // phone: '1234567890'
     };
     userSignUp(data)
       .then((res: any) => {
@@ -190,10 +190,6 @@ export default function SignUp() {
                         id='password'
                         name='password'
                         placeholder='password'
-                        // value={password}
-                        // onChange={(e: any) => {
-                        //   handlePasswordChange(e);
-                        // }}
                         className={`font-normal // flex rounded-[14px] bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-white placeholder:text-[#979797] 
                      focus:ring-0 ${
                        errors.password
@@ -211,16 +207,11 @@ export default function SignUp() {
                       <div>
                         <ul>
                           <li className='mb-3'>Create a password that:</li>
-                          <li className='mb-2 flex items-center'>
+                          <li className='flex items-center mb-2'>
                             {errors.password ? <CrossIcon /> : <CheckedIcon />}
                             contains at least 8 characters
                           </li>
                           <li className='flex items-center'>
-                            {/* {hasNumberOrSpecialChar ? (
-                            <CheckedIcon />
-                          ) : (
-                            <CrossIcon />
-                          )}{' '} */}
                             {errors.password ? <CrossIcon /> : <CheckedIcon />}
                             contains at least one number (0-9) or a symbol
                           </li>
@@ -230,7 +221,7 @@ export default function SignUp() {
                   </div>
                 </div>
 
-                <div className='w-full px-10 pb-10 pt-5'>
+                <div className='w-full px-10 pt-5 pb-10'>
                   <button
                     type='submit'
                     className='font-bold flex w-full items-center justify-center rounded-[16px] bg-[#5848BC] px-6 py-4 text-[18px] leading-6 text-white'

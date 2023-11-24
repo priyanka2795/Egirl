@@ -175,6 +175,7 @@ const ViewImagesMainPage = () => {
   };
   //---------- get image generation api -----------
   const [allImgData, setAllImgData] = useState([])
+  const [imageUpdate, setImageUpdate] = useState(false)
  useEffect(()=>{
   if (refreshTokenData) {
     Cookies.set('accessToken', refreshTokenData);
@@ -190,7 +191,7 @@ const ViewImagesMainPage = () => {
   .catch((err)=>{
     console.log("get image generation err---",err)
   })
- },[refreshTokenData, router.pathname])
+ },[refreshTokenData, router.pathname, imageUpdate])
   //-----------------------------------------------
   return (
     <div className='mt-6 flex flex-col gap-5 rounded-[14px] bg-[#121212] p-6'>
@@ -272,6 +273,8 @@ const ViewImagesMainPage = () => {
               SetAlbumImages={setAlbumImages}
               AlbumData={albumData}
               allImgData={allImgData}
+              imageUpdate={imageUpdate}
+              setImageUpdate={setImageUpdate}
             />
           ) : (
             <VIMainImageBlock
@@ -280,6 +283,8 @@ const ViewImagesMainPage = () => {
               SetAlbumImages={setAlbumImages}
               AlbumData={albumData}
               allImgData={allImgData}
+              imageUpdate={imageUpdate}
+              setImageUpdate={setImageUpdate}
             />
           )}
         </>
