@@ -1,24 +1,32 @@
 import { Modal } from '@components/modal/modal';
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import CloseIcon from '../../../public/assets/svgImages/close-icon.svg';
 import Cookies from 'js-cookie';
 import jwt from 'jsonwebtoken';
 import { createCollection } from 'services/services';
-
+import { tokenRefresh } from 'redux/api/RefreshTokenApi';
+import { useAppDispatch, useAppSelector } from 'redux/hooks';
+import { useRouter } from 'next/router'
 interface CollectionModalProp {
   closeModalItem: any;
   collectionUpdate:boolean;
   setCollectionUpdate:any;
 }
 const CreateCollectionModal = ({ closeModalItem ,collectionUpdate, setCollectionUpdate}: CollectionModalProp) => {
+  const dispatch = useAppDispatch()
+  const router = useRouter()
   const token:any = Cookies.get('accessToken');
-  // const token = `${accessToken}`;
-  // const decodedToken = jwt.decode(token);
-  // const userId = decodedToken?.sub
-  // console.log(decodedToken?.sub);
+  const refreshTokenData:any = useAppSelector((state)=> state.tokenRefresh?.tokenData)
+
   const [listName, setListName] = useState('')
   const [listNameErr, setListNameErr] = useState('')
   
+  useEffect(()=>{
+    if(refreshTokenData){
+      Cookies.set("accessToken", refreshTokenData)
+    }
+  },[refreshTokenData, router.pathname])
+
   const handleCreate = ()=>{
     if(!listName){
       setListNameErr("required")
@@ -30,6 +38,9 @@ const CreateCollectionModal = ({ closeModalItem ,collectionUpdate, setCollection
       if(res.status === 200){
         closeModalItem(false)
         setCollectionUpdate(!collectionUpdate)
+        if(res?.response?.status === 401){
+          dispatch(tokenRefresh())
+        }
       }
     })
     .catch((err)=>{
