@@ -18,6 +18,8 @@ interface CreatorStudioLayoutProps {
   setActiveStep?: any;
   UserGuide?: any;
   setUserGuide?: any;
+  setCreateCharacterData:any;
+  createCharacterData:any
 }
 
 const CreatorStudioLayout = ({
@@ -30,7 +32,9 @@ const CreatorStudioLayout = ({
   activeStep,
   setActiveStep,
   UserGuide,
-  setUserGuide
+  setUserGuide,
+  setCreateCharacterData,
+  createCharacterData
 }: CreatorStudioLayoutProps) => {
   const [shrinkSideBar, setShrinkSideBar] = useState<boolean>(false);
   const [styleGenNext, setStyleGenNext] = useState<boolean>(false);
@@ -129,6 +133,9 @@ const CreatorStudioLayout = ({
                     setActiveStep={setActiveStep}
                     UserGuide={UserGuide}
                     setUserGuide={setUserGuide}
+                    createCharacterData={createCharacterData}
+                    setCreateCharacterData={setCreateCharacterData}
+                    setUserDetails={setUserDetails}
                   />
                 )}
               </>

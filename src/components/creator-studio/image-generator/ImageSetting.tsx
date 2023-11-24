@@ -16,7 +16,11 @@ interface ImageSetting {
   MyCharacterToggle: boolean;
   SetMyCharacterToggle: React.Dispatch<React.SetStateAction<boolean>>;
   setNumOfImages:any,
-  setImageDimension:any
+  setImageDimension:any,
+  guidanceScale:number[],
+  stepScale:number[],
+  setGuidanceScale:any,
+  setStepScale:any
 }
 const ImageSetting = ({
   SetInpaintingToggle,
@@ -26,10 +30,12 @@ const ImageSetting = ({
   MyCharacterToggle,
   SetMyCharacterToggle,
   setNumOfImages,
-  setImageDimension
+  setImageDimension,
+  guidanceScale,
+  stepScale,
+  setGuidanceScale,
+  setStepScale
 }: ImageSetting) => {
-  const [guidanceScale, setGuidanceScale] = useState<number[]>([19]);
-  const [stepScale, setStepScale] = useState<number[]>([83]);
   const [tiling, setTiling] = useState<boolean>(false);
   const [advancedSettings, setAdvancedSettings] = useState<boolean>(false);
 

@@ -14,15 +14,19 @@ import CreateCollectionModal from './CreateCollectionModal';
 import Cookies from 'js-cookie';
 import jwt from 'jsonwebtoken';
 import { getAllCollections } from 'services/services';
+import { tokenRefresh } from 'redux/api/RefreshTokenApi';
+import { useAppDispatch, useAppSelector } from 'redux/hooks';
+import { useRouter } from 'next/router'
 interface CollectionOptionsProps {
   setShowRealistic: any;
 }
-const token:any = Cookies.get('accessToken');
-// const token = `${accessToken}`;
-// const decodedToken = jwt.decode(token);
-// const userId = decodedToken?.sub;
+
 const collectionImg = [model2, micaChan, mirandal, model2];
 const CollectionOptions = ({ setShowRealistic }: CollectionOptionsProps) => {
+  const dispatch = useAppDispatch()
+  const router = useRouter()
+  const token:any = Cookies.get('accessToken');
+  const refreshTokenData:any = useAppSelector((state)=> state.tokenRefresh?.tokenData)
   const [createCollectionModal, setCreateCollectionModal] = useState(false);
   const [imageDropdownId, setImageDropdownId] = useState('');
   const [selectedCardId, setSelectedCardId] = useState('false');
@@ -37,15 +41,21 @@ const CollectionOptions = ({ setShowRealistic }: CollectionOptionsProps) => {
   };
 
   useEffect(() => {
+    if(refreshTokenData){
+      Cookies.set("accessToken", refreshTokenData)
+    }
     getAllCollections(1, 10, token)
       .then((res: any) => {
         console.log('all collection res--', res);
         setAllCollections(res.data);
+        if(res?.response?.status === 401){
+          dispatch(tokenRefresh())
+        }
       })
       .catch((err) => {
         console.log('all collection err---', err);
       });
-  }, [collectionUpdate]);
+  }, [collectionUpdate,refreshTokenData, router.pathname]);
   return (
     <>
       {filterByType === true ? (

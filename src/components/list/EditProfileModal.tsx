@@ -9,7 +9,7 @@ import ProfileDropdown from '@components/common/ProfileDropdown';
 import DeleteProfileModal from '@components/common/DeleteProfileModal';
 import AddImagesModal from '@components/creator-studio/style-generator/AddImagesModal';
 import ProfileCropper from '@components/common/ProfileCropper';
-import { postCharacter, updateCharacter } from 'services/services';
+import { postCharacter, updateCharacter, updateCharacterPersonality } from 'services/services';
 import Cookies from 'js-cookie';
 import EditProfileThumbnail from '@components/home/EditProfileThumbnail';
 import { putApiWithToken } from 'services/apis';
@@ -41,8 +41,7 @@ const EditProfileModal = ({
 
   const handleSave = async () => {
     try {
-      const response: any = await postCharacter(userDetails, token);
-
+      const response: any = await updateCharacter(userDetails, token);
       const character_id = response.data?.character_id;
       Cookies.set('character_id', character_id);
 
@@ -153,7 +152,7 @@ const EditProfileModal = ({
               labelName='Name'
               inputType='text'
               inputPlaceholder='Mika-chan'
-              value={userDetails.display_name}
+              value={userDetails?.display_name}
               onChange={(value: any) =>
                 setUserDetails((prev: any) => ({
                   ...prev,
@@ -166,7 +165,7 @@ const EditProfileModal = ({
               labelName='Username'
               inputType='text'
               inputPlaceholder='mikachan'
-              value={userDetails.username}
+              value={userDetails?.username}
               onChange={(value: any) =>
                 setUserDetails((prev: any) => ({ ...prev, username: value }))
               }
