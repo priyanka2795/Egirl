@@ -100,13 +100,15 @@ const HoverModal = ({
                 Step {tourCount + 1}/5
               </p>
               <div className='flex items-center gap-4'>
-                <button
-                  className={`flex h-9 w-9 items-center justify-center rounded-full border-[1px] border-white/[0.32] ${tourCount}`}
-                  onClick={handlePrevStep}
-                  disabled={tourCount === 0}
-                >
-                  <Image src={arrowLeft} alt='' />
-                </button>
+               {
+                tourCount == 0 ?null: <button
+                className={`flex h-9 w-9 items-center justify-center rounded-full border-[1px] border-white/[0.32] ${tourCount}`}
+                onClick={handlePrevStep}
+                disabled={tourCount === 0}
+              >
+                <Image src={arrowLeft} alt='' />
+              </button>
+               }
                 <button
                   className=' font-bold rounded-xl bg-[#5848BC] px-4 py-2 text-[14px] leading-[22px]'
                   onClick={() => {
