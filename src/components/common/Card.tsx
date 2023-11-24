@@ -13,7 +13,7 @@ const Card = ({cardMainImg ,verified, characterName, characterType, availableCou
   return (
     <div className='flex flex-col items-start self-stretch overflow-hidden cursor-pointer rounded-2xl bg-white/10'>
     <div className='flex self-stretch justify-center h-full overflow-hidden'>
-        <Image className='object-cover' src={cardMainImg} alt={''} />
+        <Image className='object-cover w-full' src={cardMainImg} alt={''} />
     </div>
     <div className='flex flex-col gap-2 p-4'>
         <div className='flex items-center gap-1'>

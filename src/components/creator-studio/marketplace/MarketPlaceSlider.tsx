@@ -84,7 +84,7 @@ const MarketPlaceSlider = () => {
   }, []);
 
   return (
-    <div className='px-3 mt-6 mb-6'>
+    <div className='px-3 my-6 '>
       <Slider
         {...settings}
         ref={sliderRef}

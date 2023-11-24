@@ -56,6 +56,9 @@ const CollectionOptions = ({ setShowRealistic }: CollectionOptionsProps) => {
         console.log('all collection err---', err);
       });
   }, [collectionUpdate,refreshTokenData, router.pathname]);
+
+  const sidebarCollapse =  sessionStorage.getItem('sideBarCollapse');
+
   return (
     <>
       {filterByType === true ? (
@@ -87,7 +90,7 @@ const CollectionOptions = ({ setShowRealistic }: CollectionOptionsProps) => {
               </div>
               <ListFilter />
             </div>
-            <div className='grid grid-cols-3 gap-4'>
+            <div className={`grid w-full ${sidebarCollapse? 'grid-cols-4':'grid-cols-3'} gap-4`}>
               {/* <div className='flex flex-col items-center justify-center rounded-[16px] border border-white/[0.08] bg-[#121212]'>
         <Image src={plusIcon} alt='' className='object-contain mb-4' />
         <div
