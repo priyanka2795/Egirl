@@ -1,6 +1,6 @@
 import React from 'react'
 import avatar from '../../../public/assets/avatar 67.png'
-import camera from '../../../public/assets/camera-Icon.png'
+import camera from '../../../public/assets/cameraIcon.png'
 import smiley from '../../../public/assets/smiley-Icon.png'
 import Image from 'next/image';
 
