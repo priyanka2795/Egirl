@@ -67,12 +67,14 @@ interface VIMainImageBlock {
   ToggleMenu: boolean;
   SetAlbumImages: React.Dispatch<React.SetStateAction<boolean>>;
   AlbumData: any;
+  allImgData:any
 }
 
 const VIMainImageBlock = ({
   ToggleMenu,
   SetAlbumImages,
   AlbumData,
+  allImgData
 }: VIMainImageBlock) => {
   const [allImages, setAllImages] = useState(images);
   const [showDropDown, setShowDropDown] = useState<number | null>(null);

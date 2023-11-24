@@ -32,7 +32,7 @@ import arrowLeft from '../../../public/assets/arrow-left.png';
 import CloseIcon from '../../../public/assets/svgImages/close-icon.svg';
 import arrowLeftTooltip from '../../../public/assets/arrow-left-tooltip.png';
 import HoverModal from '@components/list/HoverModal';
-import userAdd from '../../../public/assets/user-plus1.png'
+import userAdd from '../../../public/assets/user-plus1.png';
 import CreateCharacterModal from '@components/list/CreateCharacterModal';
 
 interface CreatorStudioNavbarPropProp {
@@ -49,7 +49,6 @@ interface CreatorStudioNavbarPropProp {
 }
 
 interface CreateCharacter {
-  
   setTourCount: React.Dispatch<React.SetStateAction<number>>;
 }
 
@@ -119,24 +118,40 @@ const CreatorStudioSidebar = ({
               />
             )}
           </div> */}
-              {/*  */}
-            <div className='flex flex-col items-start self-stretch gap-2 px-6 pt-6 pb-2 '>
-              <button onClick={() => setCreateCharacter(true)} className='w-full h-auto flex py-2.5 px-4 justify-center items-center gap-1.5 self-stretch rounded-xl bg-[#5848BC]'>
-                  <Image src={userAdd} alt='' className='w-[18px] h-[18px]'/>
-                  <span className='text-sm font-semibold leading-5 normal'>Create character</span>
+          {/*  */}
+
+          {shrinkSideBar ? (
+            <div className='flex flex-col items-start self-stretch gap-2 pt-6 pb-2'>
+              <button
+                onClick={() => setCreateCharacter(true)}
+                className='flex h-[42px] w-[45px] items-center justify-center gap-1.5 self-stretch rounded-xl bg-[#5848BC] px-2 py-2.5'
+              >
+                <Image src={userAdd} alt='' className='h-[25px] w-[25px]' />
               </button>
             </div>
-            
-            {createCharacter && (
-       <CreateCharacterModal
-       closeState={setCreateCharacter}
-       SetUserGuide={SetUserGuide}
-       SetIsTourOpen={SetIsTourOpen}
-       setTourCount={setTourCount}
-       setUserDetails={setUserDetails}
-       UserGuide={UserGuide}
-     />
-      )}
+          ) : (
+            <div className='flex flex-col items-start self-stretch gap-2 px-6 pt-6 pb-2 '>
+              <button
+                onClick={() => setCreateCharacter(true)}
+                className='flex h-auto w-full items-center justify-center gap-1.5 self-stretch rounded-xl bg-[#5848BC] px-4 py-2.5'
+              >
+                <Image src={userAdd} alt='' className='h-[18px] w-[18px]' />
+                <span className='text-sm font-semibold leading-5 normal'>
+                  Create character
+                </span>
+              </button>
+            </div>
+          )}
+          {createCharacter && (
+            <CreateCharacterModal
+              closeState={setCreateCharacter}
+              SetUserGuide={SetUserGuide}
+              SetIsTourOpen={SetIsTourOpen}
+              setTourCount={setTourCount}
+              setUserDetails={setUserDetails}
+              UserGuide={UserGuide}
+            />
+          )}
 
           <SidebarMenuItem
             text='Analytics'

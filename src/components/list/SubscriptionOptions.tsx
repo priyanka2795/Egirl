@@ -8,28 +8,43 @@ import ListFilter from './ListFilter';
 import Cookies from 'js-cookie';
 import jwt from 'jsonwebtoken';
 import { getSubscribed } from 'services/services';
+import { useAppDispatch, useAppSelector } from 'redux/hooks';
+import { useRouter } from 'next/router'
+import { tokenRefresh } from 'redux/api/RefreshTokenApi';
 interface SubscriptionOptionsProps {
   showProfile: React.Dispatch<React.SetStateAction<boolean>>;
   component?: any;
 }
 
-const token:any = Cookies.get('accessToken');
-  // const token = `${accessToken}`;
-  const decodedToken = jwt.decode(token);
-  const userId = decodedToken?.sub
-  console.log(userId,"userId")
+
+
+  // const decodedToken = jwt.decode(token);
+  // const userId = decodedToken?.sub
+  // console.log(userId,"userId")
 const SubscriptionOptions = ({ showProfile, component }: SubscriptionOptionsProps) => {
+  const dispatch = useAppDispatch()
+  const router = useRouter()
+  const token:any = Cookies.get('accessToken');
+  const refreshTokenData:any = useAppSelector((state)=> state.tokenRefresh?.tokenData)
   const [allSubscriptions, setSubscriptions] = useState([])
+
   useEffect(()=>{
+    if(refreshTokenData){
+      Cookies.set("accessToken", refreshTokenData)
+    }
+
     getSubscribed(1,10, token)
     .then((res:any)=>{
       console.log("get subscription res---",res)
       setSubscriptions(res.data)
+      if(res?.response?.status === 401){
+        dispatch(tokenRefresh())
+      }
     })
     .catch((err)=>{
       console.log("err----",err)
     })
-  },[])
+  },[refreshTokenData, router.pathname])
   return (
     <div className={`flex flex-col items-start self-stretch ${component === 'RealisticPage' ? 'gap-6' : 'gap-4'}`}>
       {/* <div className='flex items-center gap-[33rem] justify-between'>

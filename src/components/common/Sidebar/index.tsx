@@ -28,6 +28,7 @@ import AddCardActiveIcon from './svg/AddCardActiveIcon';
 import UserImg from './svg/user-img.svg';
 import MoreMenuOption from './MoreMenuOption';
 import UserDetailModal from './UserDetailModal';
+import Link from 'next/link';
 
 // sideBarClasses={'!w-[88px]'}
 // sideBarLogoClasses={'!hidden'}
@@ -107,6 +108,7 @@ sideBarProp) {
           }`}
         >
           {/* <NavMenuIcon /> */}
+          <Link href={'#'}>
           <NavMenuArrow
             className={`${sideBarMenuArrowClasses} ${
               shrinkSidebar === 'true' ? 'rotate-180' : ''
@@ -114,6 +116,8 @@ sideBarProp) {
             onClick={handleSidebarWidth}
             // onClick={sideBarWidth}
           />
+          </Link>
+
         </div>
       </div>
 

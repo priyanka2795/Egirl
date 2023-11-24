@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import plusIcon from '../../../public/assets/plus-white.png';
-import userAddIcon from '../../../public/assets/user-add-icon.png';
+import userAddIcon from '../../../public/assets/user-plus.png';
 import CreateCharacterModal from './CreateCharacterModal';
 
 interface CreateCharacter {
@@ -9,27 +9,29 @@ interface CreateCharacter {
   SetIsTourOpen: any;
   UserGuide: any;
   setTourCount: React.Dispatch<React.SetStateAction<number>>;
-  setUserDetails: any;
+  setCreateCharacterData: any;
+  setUserDetails:any
 }
 
 function CreateCharacter({
   SetUserGuide,
   SetIsTourOpen,
   setTourCount,
-  setUserDetails,
-  UserGuide
+  setCreateCharacterData,
+  UserGuide,
+  setUserDetails
 }: CreateCharacter) {
   const [createCharacter, setCreateCharacter] = useState<boolean>(false);
   return (
     <>
       <div className='flex h-[470px] w-full flex-col items-center justify-center'>
-        <div className='w-max rounded-full bg-white/[0.05] p-5'>
-          <div className='h-6 w-6'>
-            <Image className='h-full w-full' src={userAddIcon} alt={''} />
+        <div className='w-max rounded-full bg-white/[0.05] p-4'>
+          <div className='w-6 h-6'>
+            <Image className='w-full h-full' src={userAddIcon} alt={''} />
           </div>
         </div>
-        <div className='mt-3 text-[13px] text-[#979797]'>
-          You don't have any characters. <br></br>
+        <div className='mt-3 text-[13px] text-[#979797] text-center'>
+          You don't have any characters.<br></br>
           Click on the button to create one
         </div>
         <button
@@ -37,7 +39,7 @@ function CreateCharacter({
           onClick={() => setCreateCharacter(true)}
         >
           <Image src={plusIcon} alt='' />
-          Create character
+          <p className='text-sm font-bold leading-5'>Create character</p>
         </button>
       </div>
       {createCharacter && (
@@ -46,8 +48,9 @@ function CreateCharacter({
           SetUserGuide={SetUserGuide}
           SetIsTourOpen={SetIsTourOpen}
           setTourCount={setTourCount}
-          setUserDetails={setUserDetails}
+          setCreateCharacterData={setCreateCharacterData}
           UserGuide={UserGuide}
+          setUserDetails={setUserDetails}
         />
       )}
     </>

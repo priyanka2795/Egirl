@@ -1,32 +1,36 @@
 import CreatorStudioLayout from '@components/common/CreatorStudioLayout';
 import CreatorStudio from '@components/creator-studio';
 import ProfileInfoModal from '@components/list/ProfileInfoModal';
+import Cookies from 'js-cookie';
 import React, { useEffect, useState } from 'react';
 
 const creatorStudio = () => {
   const [profileInfoPage, setProfileInfoPage] = useState(false);
+  const characterId = Cookies.get('character_id') || '';
+  const [createCharacterData , setCreateCharacterData] = useState({
+    username:'',
+    display_name:''
+  })
   const [userDetails, setUserDetails] = useState({
-    username: '',
-    display_name: '',
-    bio: '',
-    location: '',
-    profile_picture_media_id: 1,
-    profile_banner_media_id: 1,
-    profile_tags: []
+    character_id : characterId,
+    username: createCharacterData?.username,
+    display_name: createCharacterData?.display_name,
+    bio: 'UNCHANGED',
+    location: 'UNCHANGED',
+    profile_picture_media_id: 'UNCHANGED',
+    profile_banner_media_id: 'UNCHANGED',
+    profile_tags: "UNCHANGED"
   });
 
   
   useEffect(() => {
     console.log(userDetails, '????details');
-  }, [userDetails]);
+    console.log(createCharacterData , "????create");
+  }, [userDetails , createCharacterData]);
 
   const [UserGuide, setUserGuide] = useState(true);
-  // Stepper Code
   const [btnSteps, setBtnSteps] = useState<boolean>(false);
-
   const [activeStep, setActiveStep] = useState(0);
-  // Stepper Code End
-  console.log(UserGuide, 'UserGuide');
 
   return (
     <div>
@@ -50,6 +54,8 @@ const creatorStudio = () => {
           setUserDetails={setUserDetails}
           UserGuide={UserGuide}
           setUserGuide={setUserGuide}
+          createCharacterData={createCharacterData}
+          setCreateCharacterData={setCreateCharacterData}
         />
       )}
     </div>

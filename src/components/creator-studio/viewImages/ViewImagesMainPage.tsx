@@ -24,7 +24,11 @@ import imageSquare from '../../../../public/assets/image-square.png';
 import image from '../../../../public/assets/image.png';
 import undo from '../../../../public/assets/Undo.png';
 import deleteIcon from '../../../../public/assets/trash-blank-alt.png';
-import { boolean } from 'yup';
+import { getImageGeneration } from 'services/services';
+import Cookies from 'js-cookie';
+import { useAppDispatch, useAppSelector } from 'redux/hooks';
+import { useRouter } from 'next/router';
+import { tokenRefresh } from 'redux/api/RefreshTokenApi';
 const tabContent = ['All images', 'Posted', 'Not posted', 'Albums'];
 
 const album = [
@@ -119,6 +123,12 @@ const toggleImages = [
   }
 ]; 
 const ViewImagesMainPage = () => {
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+  const token:any = Cookies.get("accessToken")
+  const refreshTokenData: any = useAppSelector(
+    (state) => state.tokenRefresh?.tokenData
+  );
   const [exploreSelectedTab, setExploreSelected] =
     useState<string>('All images');
   const [allImage, setAllImage] = useState<number>();
@@ -163,6 +173,25 @@ const ViewImagesMainPage = () => {
       setAllImage(undefined);
     }
   };
+  //---------- get image generation api -----------
+  const [allImgData, setAllImgData] = useState([])
+ useEffect(()=>{
+  if (refreshTokenData) {
+    Cookies.set('accessToken', refreshTokenData);
+  }
+  getImageGeneration(1,10,token)
+  .then((res:any)=>{
+    console.log("get image generation res----",res)
+    setAllImgData(res?.data)
+    if(res?.response?.status === 401){
+      dispatch(tokenRefresh())
+    }
+  })
+  .catch((err)=>{
+    console.log("get image generation err---",err)
+  })
+ },[refreshTokenData, router.pathname])
+  //-----------------------------------------------
   return (
     <div className='mt-6 flex flex-col gap-5 rounded-[14px] bg-[#121212] p-6'>
       {albumImages ? (
@@ -242,6 +271,7 @@ const ViewImagesMainPage = () => {
               ToggleMenu={true}
               SetAlbumImages={setAlbumImages}
               AlbumData={albumData}
+              allImgData={allImgData}
             />
           ) : (
             <VIMainImageBlock
@@ -249,6 +279,7 @@ const ViewImagesMainPage = () => {
               // SetAlbumImages
               SetAlbumImages={setAlbumImages}
               AlbumData={albumData}
+              allImgData={allImgData}
             />
           )}
         </>
