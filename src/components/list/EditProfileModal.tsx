@@ -79,7 +79,7 @@ const EditProfileModal = ({
             <Image src={xMark} alt={''} className='h-[24px] w-[24px]' />
           </button>
         </div>
-        <div className='flex items-center gap-4 px-6 pb-3 pt-6'>
+        <div className='flex items-center gap-4 px-6 pt-6 pb-3'>
           <div
             className='relative h-[72px] w-[72px] cursor-pointer '
             onClick={() => {
@@ -94,7 +94,7 @@ const EditProfileModal = ({
               alt=''
               className='h-[72px] w-[72px] rounded-full'
             />
-            <div className='absolute left-0 top-0 flex h-full w-full items-center justify-center'>
+            <div className='absolute top-0 left-0 flex items-center justify-center w-full h-full'>
               <div className='flex h-[32px] w-[32px] items-center justify-center rounded-[100px] bg-black bg-opacity-60'>
                 <Image
                   src={cameraOverlay}
@@ -146,7 +146,7 @@ const EditProfileModal = ({
             );
           })}
         </div>
-        <div className='flex flex-col gap-6 px-6 pb-6 pt-3'>
+        <div className='flex flex-col gap-6 px-6 pt-3 pb-6'>
           <div className='flex flex-col gap-4'>
             <InputFieldDesign
               labelName='Name'

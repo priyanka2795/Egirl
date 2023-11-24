@@ -95,9 +95,9 @@ export const postInpaintImage = (data:any, token:string | null) => postApiWithTo
 
 export const postPoseImage = (data:any, token:string | null) => postApiWithToken('/studio/image_generation/pose_image' , data, token)
 
-export const getImageGeneration = (offset:number , limit:number, token:any) => getApiWithToken(`/studio/image_generation/?offset=${offset}limit=${limit}`, token)
+export const getImageGeneration = (offset:number , limit:number, token:any) => getApiWithToken(`/studio/image_generation/?offset=${offset}&limit=${limit}`, token)
 
-// export const deleteImageGeneration = (id:number) => deleteApi(`/studio/image_generation/${id}`)
+export const deleteImageGeneration = (id:number, token:any) => deleteApi(`/studio/image_generation/${id}`, token)
 
 
 //logout function 

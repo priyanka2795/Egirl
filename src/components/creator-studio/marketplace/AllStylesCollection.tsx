@@ -20,15 +20,23 @@ const AllStylesCollection = () => {
 
   const handleNewest = () => {
     setShowNewest(!showNewest);
+    setShowDuration(false);
+
   };
   const handleDuration = () => {
     setShowDuration(!showDuration);
+    setShowNewest(false);
+
   };
   const handleSelectedNewest = (ele: string) => {
     setSelectedNewest(ele);
+    setShowNewest(false);
+
   };
   const handleSelectedDuration = (ele: string) => {
     setSelectedDuration(ele);
+    setShowDuration(false);
+
   };
 
   const dropdownRef = useRef<HTMLDivElement>(null);
