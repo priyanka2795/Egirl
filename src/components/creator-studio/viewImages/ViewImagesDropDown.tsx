@@ -7,6 +7,7 @@ import undo from '../../../../public/assets/Undo.png';
 import deleteIcon from '../../../../public/assets/trash-blank-alt.png';
 import Image from 'next/image';
 
+
 const images = [
   {
     image: plusIcon,
@@ -36,7 +37,8 @@ const images = [
 interface ViewImagesDropDown {
   DeleteImage?: any;
 }
-const ViewImagesDropDown = ({ DeleteImage }: ViewImagesDropDown) => {
+const ViewImagesDropDown = ({ DeleteImage}: ViewImagesDropDown) => {
+ 
   return (
     <>
       <div className='flex w-[218px] flex-col rounded-[14px] bg-[#1A1A1A]'>

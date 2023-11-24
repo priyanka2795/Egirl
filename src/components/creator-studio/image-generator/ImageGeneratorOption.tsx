@@ -359,7 +359,8 @@ const ImageGeneratorOption = ({
   //-------------------------------------------------
 //------------ get image generation api--------------
 const [allImgData, setAllImgData] = useState([])
-getImageGeneration(1,10,token)
+useEffect(()=>{
+  getImageGeneration(1,10,token)
 .then((res:any)=>{
   console.log("get image generation res----",res)
   setAllImgData(res?.data)
@@ -370,6 +371,7 @@ getImageGeneration(1,10,token)
 .catch((err)=>{
   console.log("get image generation err---",err)
 })
+},[])
 //---------------------------------------------------
  
 
@@ -781,6 +783,7 @@ getImageGeneration(1,10,token)
         <SelectImage
           CloseModal={setSelectImageModal}
           SetInpaintingModal={setInpaintingModal}
+          allImgData={allImgData}
         />
       )}
       {inpaintingModal && (
