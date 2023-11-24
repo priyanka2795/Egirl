@@ -16,6 +16,15 @@ import EditAlbum from './editAlbum';
 import AlbumDetailsModal from './albumDetailsModal';
 import ViewImagesDropDown from './ViewImagesDropDown';
 import MoveAlbumModal from './moveAlbumModal';
+import EditImageGeneration from '../image-generator/editImagegeneration';
+import { Modal } from '@components/modal/modal';
+import girlPic from '../../../../public/assets/girl.png';
+import Cross from '../../../../public/assets/svgImages/close-icon.svg';
+import Info from '../svg/info.svg';
+import Grid from '../../../../public/assets/dots-vertical.png';
+import Copy from '../svg/Copy.svg';
+import ImageInfoModal from './ImageInfoModal';
+
 const images = [
   {
     image: image1
@@ -43,15 +52,27 @@ const images = [
   }
 ];
 
+const PromptTags = [
+  'Silver hair',
+  'Almond-shaped eyes',
+  'Lean and agile',
+  'Scarred cheek',
+  'Elegantly poised',
+  'Broad shoulders',
+  'Bald-headed',
+  'Enigmatic gaze'
+];
+
 interface VIMainImageBlock {
   ToggleMenu: boolean;
   SetAlbumImages: React.Dispatch<React.SetStateAction<boolean>>;
   AlbumData: any;
 }
+
 const VIMainImageBlock = ({
   ToggleMenu,
   SetAlbumImages,
-  AlbumData
+  AlbumData,
 }: VIMainImageBlock) => {
   const [allImages, setAllImages] = useState(images);
   const [showDropDown, setShowDropDown] = useState<number | null>(null);
@@ -62,6 +83,15 @@ const VIMainImageBlock = ({
   const [deleteImageModal, setDeleteImageModal] = useState<boolean>(false);
   const [moveAlbumModal, setMoveAlbumModal] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const [imageInfoPage, setImageInfoPage] = useState<boolean>(false);
+  const [showMorePrompt, setShowMorePrompt] = useState(false);
+  const [selectPrompt, setSelectPrompt] = useState<string[]>([]);
+  const tabContent = ['Prompt', 'Negative prompt'];
+  const [exploreSelectedTab, setExploreSelected] = useState<string>('Prompt');
+
+  const handleExploreSelected = (e: React.MouseEvent<HTMLElement>) => {
+    setExploreSelected((e.target as HTMLElement).innerText);
+  };
 
   const AlbumImageToggle = (index: number) => {
     setShowDropDown((prev) => (prev === index ? null : index));
@@ -96,6 +126,18 @@ const VIMainImageBlock = ({
       setShowDropDown(null);
     }
   };
+
+  const SelectPrompts =(name:string)=>{
+    if (selectPrompt.length > 2) {
+      setSelectPrompt(selectPrompt.filter((item) => item !== name));
+    } else {
+      if (selectPrompt.includes(name)) {
+        setSelectPrompt(selectPrompt.filter((item) => item !== name));
+      } else {
+        setSelectPrompt([...selectPrompt, name]);
+      }
+    }
+  }
 
   // SEARCH---------------
 
@@ -189,8 +231,9 @@ const VIMainImageBlock = ({
         <div className='grid grid-cols-3 gap-3' ref={dropdownRef}>
           {allImages.map((item, index: number) => (
             <div
-              className='sub-banner group relative h-full w-full rounded-[16px] bg-red-100'
+              className='sub-banner group relative h-full w-full rounded-[16px] bg-red-100 cursor-pointer'
               key={index}
+              onClick={() => setImageInfoPage(true)}
             >
               <Image
                 className=' h-full !w-full rounded-[16px] object-cover'
@@ -235,6 +278,10 @@ const VIMainImageBlock = ({
         />
       )}
       {moveAlbumModal && <MoveAlbumModal MoveModalClose={setMoveAlbumModal} />}
+      
+      {imageInfoPage && (
+        <ImageInfoModal setImageInfoPage={setImageInfoPage} />
+      )}
     </>
   );
 };

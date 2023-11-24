@@ -24,6 +24,7 @@ import imageSquare from '../../../../public/assets/image-square.png';
 import image from '../../../../public/assets/image.png';
 import undo from '../../../../public/assets/Undo.png';
 import deleteIcon from '../../../../public/assets/trash-blank-alt.png';
+import { boolean } from 'yup';
 const tabContent = ['All images', 'Posted', 'Not posted', 'Albums'];
 
 const album = [
@@ -116,7 +117,7 @@ const toggleImages = [
     image: deleteIcon,
     text: 'Delete'
   }
-];
+]; 
 const ViewImagesMainPage = () => {
   const [exploreSelectedTab, setExploreSelected] =
     useState<string>('All images');
@@ -194,7 +195,7 @@ const ViewImagesMainPage = () => {
             {images.map((items, index: number) => (
               <div className='sub-banner group relative h-full w-full rounded-[16px]'>
                 <Image
-                  className='w-full rounded-[16px] object-cover'
+                  className='w-full rounded-[16px] object-cover cursor-pointer'
                   src={items.image}
                   alt={''}
                 />
