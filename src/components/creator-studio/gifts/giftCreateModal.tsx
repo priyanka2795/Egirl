@@ -62,6 +62,8 @@ function giftCreateModal({
               SetGiftName={SetGiftName}
               GiftImageSet={giftImageSet}
               createCategory={createCategory}
+              setCreateCategoryToggle={setCreateCategoryToggle}
+              createCategoryToggle={createCategoryToggle}
             />
           ) : steps === 3 ? (
             <SelectImage

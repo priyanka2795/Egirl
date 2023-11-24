@@ -26,7 +26,9 @@ interface CreateGiftPopup {
   GiftImageSet: string;
   giftCategory: any;
   setCreateCategory: React.Dispatch<React.SetStateAction<boolean>>;
-  createCategory : boolean
+  createCategory : boolean;
+  setCreateCategoryToggle:React.Dispatch<React.SetStateAction<boolean>>;
+  createCategoryToggle:boolean
 }
 
 function CreateGift({
@@ -40,7 +42,9 @@ function CreateGift({
   giftCategory,
   GiftImageSet,
   setCreateCategory,
-  createCategory
+  createCategory,
+  setCreateCategoryToggle,
+  createCategoryToggle
 }: CreateGiftPopup) {
   
   const [tabSelectedOpt, setTabSelectedOpt] = useState<any>('');
@@ -108,6 +112,8 @@ function CreateGift({
             Previous={setCreateCategory}
             AddCategory={AddCategory}
             SetCategory={SetCategory}
+            setCreateCategoryToggle={setCreateCategoryToggle}
+            createCategoryToggle={createCategoryToggle}
           />
         </>
       ) : (

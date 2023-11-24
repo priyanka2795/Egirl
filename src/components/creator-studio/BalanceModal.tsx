@@ -18,7 +18,7 @@ const BalanceModal = () => {
             <button className='px-3 py-[7px] justify-center items-center bg-white/[0.08] rounded-[10px] text-[12px] text-[#979797] font-bold leading-[18px]'>Get more</button>
         </div>
       </div>
-      <div className='px-4 py-[10px] flex gap-2 bg-[#1A1A1A] cursor-pointer' onClick={()=>{ logout(),router.push("/auth/signin")}}>
+      <div className='px-4 py-[10px] flex gap-2 bg-[#1A1A1A] cursor-pointer' onClick={()=>{ logout(),router.push("/login")}}>
         <div className='w-[18px] h-[18px]'>
             <Image className='w-full h-full' src={arrowLeft} alt={''} />
         </div>
