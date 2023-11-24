@@ -103,6 +103,7 @@ const GalleryTabFilter = ({
     })
   },[])
 
+  
   const settings = {
     dots: true,
     infinite: false,
@@ -124,17 +125,15 @@ const GalleryTabFilter = ({
     });
   }, []);
 
-
-
   return (
     <>
       {singleProfileState === false ? (
         <>
-          <div className='flex w-full px-8 mt-8 mb-8'>
+          <div className='flex w-full px-8 my-8'>
             <Slider
               {...settings}
               ref={sliderRef}
-              className='flex w-full explore-gallery-filter'
+              className='flex w-full explore-gallery-filter marketplace-slider'
             >
               {galleryArray.map((items, index) => {
                 return (

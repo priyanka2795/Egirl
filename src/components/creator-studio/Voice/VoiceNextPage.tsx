@@ -10,7 +10,8 @@ import volume from '../../../../public/assets/volume-max.png';
 import pencil from '../../../../public/assets/pencil.png';
 import TextEdit from './TextEdit';
 import RangePicker from '../common/RangePicker';
-
+import arrowDown from '../../../../public/assets/arrow-down.png';
+import arrowUp from '../../../../public/assets/arrow-up.png';
 const voiceGenerations = [
   {
     voice: 'Melodious voice',
@@ -35,6 +36,9 @@ const voiceGenerations = [
   }
 ];
 
+const Genders = ['Female', 'Male', 'Other'];
+const Ages = ['Young', 'Old', 'Child,'];
+const Accents = ['American', '  Indian', 'African'];
 const VoiceNextPage = () => {
   const [state1, setState1] = useState<number[]>([50]);
   const [state2, setState2] = useState<number[]>([50]);
@@ -48,12 +52,18 @@ const VoiceNextPage = () => {
   const [accentState, setAccentState] = useState<number[]>([0]);
   const [voiceStabilityState, setVoiceStabilityState] = useState<number[]>([0]);
   const [voiceClarityState, setVoiceClarityState] = useState<number[]>([0]);
+  const [Gender, setGender] = useState<boolean>(false);
+  const [selectGender, setSelectGender] = useState('Male');
+  const [age, setAge] = useState<boolean>(false);
+  const [selectAge, setSelectAge] = useState('Young');
+  const [accent, setAccent] = useState<boolean>(false);
+  const [selectAccent, setSelectAccent] = useState('Indian');
 
   return (
     <div className='flex flex-col gap-5'>
       <div className='mt-5 flex h-max flex-col rounded-[14px] bg-[#121212]'>
         <div className='flex justify-between border-b border-white/[0.08] p-6'>
-          <div className='text-[18px] font-bold leading-6 text-[#FFFFFF]'>
+          <div className='font-bold text-[18px] leading-6 text-[#FFFFFF]'>
             Voice generator
           </div>
           <div className='w-6 h-6 cursor-pointer'>
@@ -75,30 +85,140 @@ const VoiceNextPage = () => {
                   </div>
                   <input
                     placeholder='Ex. Serious voice'
-                    className='w-full rounded-[14px] border-none bg-white/[0.05] px-4 py-3 text-[15px] font-normal leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
+                    className='font-normal w-full rounded-[14px] border-none bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-white placeholder:text-[#979797] focus:ring-0'
                     type='text'
                   />
                 </div>
 
-                <div className='flex flex-col gap-[6px]'>
-                  <label
-                    htmlFor='gender'
-                    className='text-[13px] font-semibold leading-[18px] text-[#979797]'
-                  >
+                <div
+                  className='relative flex flex-col cursor-pointer '
+                  onClick={() => setGender(!Gender)}
+                >
+                  <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
                     Gender
-                  </label>
-                  <select
-                    id='gender'
-                    name='gender'
-                    className='rounded-[14px] border-none bg-white/[0.05] px-4 py-3 text-[15px] font-normal leading-6 text-[#979797] focus:ring-0'
+                  </div>
+                  <div
+                    className={`mt-2 flex justify-between rounded-xl p-3  ${
+                      Gender
+                        ? 'border border-[#515151] bg-transparent'
+                        : 'border border-transparent bg-white/[0.05]'
+                    }`}
                   >
-                    <option value='Female'>Female</option>
-                    <option value='Male'>Male</option>
-                    <option value='Other'>Other</option>
-                  </select>
+                    <div className='text-[15px] text-[#FFF]'>
+                      {selectGender}
+                    </div>
+                    <Image
+                      src={Gender ? arrowUp : arrowDown}
+                      alt=''
+                      className='object-cover'
+                    />
+                  </div>
+                  {Gender && (
+                    <div className='absolute right-0 top-[90px] z-50 w-full rounded-xl bg-[#1E1E1E] px-2 py-3'>
+                      {Genders.map((gender, index) => {
+                        return (
+                          <div
+                            key={index}
+                            className={`bg-opacity-10' cursor-pointer rounded-md px-2 py-1 ${
+                              selectGender === gender
+                                ? 'rounded-md bg-white bg-opacity-10'
+                                : ''
+                            }`}
+                            onClick={() => setSelectGender(gender)}
+                          >
+                            {gender}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+                <div
+                  className='relative flex flex-col cursor-pointer '
+                  onClick={() => setAge(!age)}
+                >
+                  <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
+                    Age
+                  </div>
+                  <div
+                    className={`mt-2 flex justify-between rounded-xl p-3  ${
+                      age
+                        ? 'border border-[#515151] bg-transparent'
+                        : 'border border-transparent bg-white/[0.05]'
+                    }`}
+                  >
+                    <div className='text-[15px] text-[#FFF]'>{selectAge}</div>
+                    <Image
+                      src={age ? arrowUp : arrowDown}
+                      alt=''
+                      className='object-cover'
+                    />
+                  </div>
+                  {age && (
+                    <div className='absolute right-0 top-[90px] z-50 w-full rounded-xl bg-[#1E1E1E] px-2 py-3'>
+                      {Ages.map((age, index) => {
+                        return (
+                          <div
+                            key={index}
+                            className={`bg-opacity-10' cursor-pointer rounded-md px-2 py-1 ${
+                              selectAge === age
+                                ? 'rounded-md bg-white bg-opacity-10'
+                                : ''
+                            }`}
+                            onClick={() => setSelectAge(age)}
+                          >
+                            {age}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+                <div
+                  className='relative flex flex-col cursor-pointer '
+                  onClick={() => setAccent(!accent)}
+                >
+                  <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
+                    Accent
+                  </div>
+                  <div
+                    className={`mt-2 flex justify-between rounded-xl p-3  ${
+                      accent
+                        ? 'border border-[#515151] bg-transparent'
+                        : 'border border-transparent bg-white/[0.05]'
+                    }`}
+                  >
+                    <div className='text-[15px] text-[#FFF]'>
+                      {selectAccent}
+                    </div>
+                    <Image
+                      src={accent ? arrowUp : arrowDown}
+                      alt=''
+                      className='object-cover'
+                    />
+                  </div>
+                  {accent && (
+                    <div className='absolute right-0 top-[90px] z-50 w-full rounded-xl bg-[#1E1E1E] px-2 py-3'>
+                      {Accents.map((accent, index) => {
+                        return (
+                          <div
+                            key={index}
+                            className={`bg-opacity-10' cursor-pointer rounded-md px-2 py-1 ${
+                              selectAccent === accent
+                                ? 'rounded-md bg-white bg-opacity-10'
+                                : ''
+                            }`}
+                            onClick={() => setSelectAccent(accent)}
+                          >
+                            {accent}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
                 </div>
 
-                <div className='flex flex-col gap-[6px]'>
+                {/* <div className='flex flex-col gap-[6px]'>
                   <label
                     htmlFor='age'
                     className='text-[13px] font-semibold leading-[18px] text-[#979797]'
@@ -108,15 +228,15 @@ const VoiceNextPage = () => {
                   <select
                     id='age'
                     name='age'
-                    className='rounded-[14px] border-none bg-white/[0.05] px-4 py-3 text-[15px] font-normal leading-6 text-[#979797] focus:ring-0'
+                    className='font-normal rounded-[14px] border-none bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] focus:ring-0'
                   >
                     <option value='Young'>Young</option>
                     <option value='Old'>Old</option>
                     <option value='Child'>Child</option>
                   </select>
-                </div>
+                </div> */}
 
-                <div className='flex flex-col gap-[6px]'>
+                {/* <div className='flex flex-col gap-[6px]'>
                   <label
                     htmlFor='accent'
                     className='text-[13px] font-semibold leading-[18px] text-[#979797]'
@@ -126,13 +246,13 @@ const VoiceNextPage = () => {
                   <select
                     id='accent'
                     name='accent'
-                    className='rounded-[14px] border-none bg-white/[0.05] px-4 py-3 text-[15px] font-normal leading-6 text-[#979797] focus:ring-0'
+                    className='font-normal rounded-[14px] border-none bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] focus:ring-0'
                   >
                     <option value='American'>American</option>
                     <option value='Indian'>Indian</option>
                     <option value='African'>African</option>
                   </select>
-                </div>
+                </div> */}
 
                 <div className='flex flex-col gap-[6px]'>
                   <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
@@ -140,7 +260,7 @@ const VoiceNextPage = () => {
                   </div>
                   <input
                     placeholder='Ex. Serious voice'
-                    className='w-full rounded-[14px] border-none bg-white/[0.05] px-4 py-3 text-[15px] font-normal leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
+                    className='font-normal w-full rounded-[14px] border-none bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
                     type='text'
                   />
                 </div>
@@ -152,7 +272,7 @@ const VoiceNextPage = () => {
                 </div>
                 <textarea
                   placeholder='Type something'
-                  className='h-[105px] w-full resize-none rounded-[14px] border-none bg-white/[0.05] py-3 pl-4 pr-3 text-[15px] font-normal leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
+                  className='font-normal h-[105px] w-full resize-none rounded-[14px] border-none bg-white/[0.05] py-3 pl-4 pr-3 text-[15px] leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
                 />
               </div>
             </div>
@@ -162,7 +282,7 @@ const VoiceNextPage = () => {
                 <div className='text-[15px] font-semibold leading-5 text-[#FFFFFF]'>
                   Voice settings
                 </div>
-                <button className='items-center justify-center rounded-[10px] bg-white/[0.08] px-3 py-[7px] text-[12px] font-bold leading-[18px] text-[#FFFFFF]'>
+                <button className='font-bold items-center justify-center rounded-[10px] bg-white/[0.08] px-3 py-[7px] text-[12px] leading-[18px] text-[#FFFFFF]'>
                   Default
                 </button>
               </div>
@@ -218,10 +338,10 @@ const VoiceNextPage = () => {
                       setValues={setAccentState}
                     />
                     <div className='flex justify-between mt-3'>
-                      <div className='text-[14px] font-normal leading-[18px] text-[#515151]'>
+                      <div className='font-normal text-[14px] leading-[18px] text-[#515151]'>
                         Low
                       </div>
-                      <div className='text-[14px] font-normal leading-[18px] text-[#515151]'>
+                      <div className='font-normal text-[14px] leading-[18px] text-[#515151]'>
                         High
                       </div>
                     </div>
@@ -280,10 +400,10 @@ const VoiceNextPage = () => {
                       setValues={setVoiceStabilityState}
                     />
                     <div className='flex justify-between mt-3'>
-                      <div className='text-[14px] font-normal leading-[18px] text-[#515151]'>
+                      <div className='font-normal text-[14px] leading-[18px] text-[#515151]'>
                         Low
                       </div>
-                      <div className='text-[14px] font-normal leading-[18px] text-[#515151]'>
+                      <div className='font-normal text-[14px] leading-[18px] text-[#515151]'>
                         High
                       </div>
                     </div>
@@ -342,10 +462,10 @@ const VoiceNextPage = () => {
                       setValues={setVoiceClarityState}
                     />
                     <div className='flex justify-between mt-3'>
-                      <div className='text-[14px] font-normal leading-[18px] text-[#515151]'>
+                      <div className='font-normal text-[14px] leading-[18px] text-[#515151]'>
                         Low
                       </div>
-                      <div className='text-[14px] font-normal leading-[18px] text-[#515151]'>
+                      <div className='font-normal text-[14px] leading-[18px] text-[#515151]'>
                         High
                       </div>
                     </div>
@@ -357,10 +477,10 @@ const VoiceNextPage = () => {
         </form>
 
         <div className='flex items-end justify-end gap-3 p-6'>
-          <button className='cursor-pointer items-center justify-center rounded-[14px] border border-white/[0.32] px-5 py-[13px] text-[16px] font-bold leading-[22px] text-[#FFFFFF]'>
+          <button className='font-bold cursor-pointer items-center justify-center rounded-[14px] border border-white/[0.32] px-5 py-[13px] text-[16px] leading-[22px] text-[#FFFFFF]'>
             Cancel
           </button>
-          <button className='cursor-pointer items-center justify-center rounded-[14px] border border-transparent bg-[#5848BC] px-5 py-[13px] text-[16px] font-bold leading-[22px] text-[#FFFFFF]'>
+          <button className='font-bold cursor-pointer items-center justify-center rounded-[14px] border border-transparent bg-[#5848BC] px-5 py-[13px] text-[16px] leading-[22px] text-[#FFFFFF]'>
             Generate
           </button>
         </div>
@@ -369,7 +489,7 @@ const VoiceNextPage = () => {
       <div className='flex flex-col gap-6'>
         <div className='flex max-h-[892px] flex-col gap-4 rounded-[14px] bg-[#121212] p-6'>
           <div className='flex justify-between'>
-            <div className='text-[18px] font-bold leading-6 text-[#FFFFFF]'>
+            <div className='font-bold text-[18px] leading-6 text-[#FFFFFF]'>
               All voice generations
             </div>
             <div className='w-5 h-5'>
@@ -385,7 +505,7 @@ const VoiceNextPage = () => {
               >
                 <div className='flex flex-col gap-[2px]'>
                   <div className='flex justify-between'>
-                    <div className='text-[18px] font-bold leading-6 text-[#FFFFFF]'>
+                    <div className='font-bold text-[18px] leading-6 text-[#FFFFFF]'>
                       {item.voice}
                     </div>
                     <div className='flex gap-4'>
@@ -397,7 +517,7 @@ const VoiceNextPage = () => {
                         />
                       </div>
                       <button
-                        className={`flex items-center justify-center rounded-[12px] px-4 py-[10px] text-[14px] font-bold leading-5 text-[#FFFFFF] ${
+                        className={`font-bold flex items-center justify-center rounded-[12px] px-4 py-[10px] text-[14px] leading-5 text-[#FFFFFF] ${
                           inUse === true && currentIndex === index
                             ? 'border border-[0.32]'
                             : 'border border-transparent bg-white/[0.08]'
@@ -426,7 +546,7 @@ const VoiceNextPage = () => {
                       />
                     ) : (
                       <>
-                        <div className='text-[14px] font-normal leading-[18px] text-[#979797]'>
+                        <div className='font-normal text-[14px] leading-[18px] text-[#979797]'>
                           {item.text}
                         </div>
                         <div
