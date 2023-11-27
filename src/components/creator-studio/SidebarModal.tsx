@@ -62,13 +62,11 @@ const SidebarModal = ({
         </div>
       </div> */}
 
-      {allCharacterData?.map((item:any, index:number) => {
-        return (
           <div
             // onClick={() => {
             //   setActiveProfile(item.name);
             // }}
-            key={index}>
+            >
             {/* {activeProfile === item.name ? ( */}
               {allCharacterData && allCharacterData?.length && allCharacterData?.map((item:any)=> {
                 return (
@@ -105,8 +103,7 @@ const SidebarModal = ({
             //   </div>
             // )} */}
           </div>
-        );
-      })}
+     
 
       {/* <div className='flex px-4 py-[6px]'>
         <div className='flex justify-between w-full mt-[5px] pl-2 pr-[14px] py-2 rounded-full bg-white/[0.08]'>
