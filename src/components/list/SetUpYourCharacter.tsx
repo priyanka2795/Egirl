@@ -19,7 +19,7 @@ interface SetUpYourCharacter {
   TourSteps: any;
   tourCount: number;
   setTourCount: React.Dispatch<React.SetStateAction<number>>;
-  SetIsTourOpen: React.Dispatch<React.SetStateAction<number>>;
+  setIsTourOpen: React.Dispatch<React.SetStateAction<number>>;
   setProfileInfoPage: any;
   btnSteps?: any;
   setBtnSteps?: any;
@@ -31,7 +31,7 @@ function SetUpYourCharacter({
   OnClose,
   TourSteps,
   tourCount,
-  SetIsTourOpen,
+  setIsTourOpen,
   setTourCount,
   setProfileInfoPage,
   btnSteps,
@@ -100,7 +100,7 @@ function SetUpYourCharacter({
                       onClose={OnClose}
                       tourSteps={TourSteps}
                       tourCount={tourCount}
-                      SetIsTourOpen={SetIsTourOpen}
+                      setIsTourOpen={setIsTourOpen}
                       setTourCount={setTourCount}
                     />
                   ) : (

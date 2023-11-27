@@ -7,10 +7,11 @@ import { getAllCharacter } from 'services/services';
 
 const creatorStudio = () => {
   const [profileInfoPage, setProfileInfoPage] = useState(false);
-  const characterId = Cookies.get('character_id') || '';
+  // const characterId = Cookies.get('character_id') || '';
   const [allCharacterData , setAllCharacterData] = useState<any>()
   const token: any = Cookies.get('accessToken');
   const [activeProfile, setActiveProfile] = useState<any>();
+  const [bannerData , setBannerData] = useState<any>()
   const [createCharacterData , setCreateCharacterData] = useState({
     username:'',
     display_name:''
@@ -19,7 +20,7 @@ const creatorStudio = () => {
   const [btnSteps, setBtnSteps] = useState<boolean>(false);
   const [activeStep, setActiveStep] = useState(0);
   const [userDetails, setUserDetails] = useState({
-    character_id : characterId,
+    character_id : activeProfile,
     username: createCharacterData?.username,
     display_name: createCharacterData?.display_name,
     bio: 'UNCHANGED',
@@ -29,6 +30,8 @@ const creatorStudio = () => {
     profile_tags: "UNCHANGED"
   });
 
+
+
   useEffect(()=>{
     getAllCharacter(token)
     .then((res:any)=>{
@@ -37,12 +40,35 @@ const creatorStudio = () => {
     .catch((err:any)=>{
       console.log(err);
     })
-  },[])
+  },[userDetails , UserGuide , activeProfile ])
 
   
   useEffect(() => {
     console.log(activeProfile, '????active');
   }, [activeProfile]);
+
+  useEffect(() => {
+    console.log(bannerData, '????banner');
+  }, [bannerData]);
+
+  useEffect(() => {
+    const selectedCharacter = allCharacterData?.find((character:any) => character.id === activeProfile);
+    setBannerData(selectedCharacter);
+    setCreateCharacterData({
+      username: selectedCharacter?.username || '',
+      display_name: selectedCharacter?.display_name || '',
+    });
+  
+    setUserDetails((prevUserDetails) => ({
+      ...prevUserDetails,
+      username: selectedCharacter?.username || '',
+      display_name: selectedCharacter?.display_name || '',
+    }));
+  }, [activeProfile]);
+
+  useEffect(()=>{
+   Cookies.set('character_id', activeProfile);
+  },[activeProfile])
 
   
 
@@ -73,6 +99,8 @@ const creatorStudio = () => {
           allCharacterData={allCharacterData}
           setActiveProfile={setActiveProfile}
           activeProfile={activeProfile}
+          bannerData={bannerData}
+          setBannerData={setBannerData}
         />
       )}
     </div>
