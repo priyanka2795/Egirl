@@ -182,7 +182,7 @@ const PosingModal = ({
                     />
                   ) : (
                     <Image
-                      src={poseImageSelect}
+                      src={poseImageSelect||''}
                       className='object-cover w-full max-h-full'
                     />
                   )}

@@ -359,7 +359,8 @@ const ImageGeneratorOption = ({
   //-------------------------------------------------
 //------------ get image generation api--------------
 const [allImgData, setAllImgData] = useState([])
-getImageGeneration(1,10,token)
+useEffect(()=>{
+  getImageGeneration(1,10,token)
 .then((res:any)=>{
   console.log("get image generation res----",res)
   setAllImgData(res?.data)
@@ -370,6 +371,7 @@ getImageGeneration(1,10,token)
 .catch((err)=>{
   console.log("get image generation err---",err)
 })
+},[])
 //---------------------------------------------------
  
 
@@ -385,7 +387,7 @@ getImageGeneration(1,10,token)
               <div className='flex gap-3'>
                 <div
                   onClick={handleOpenGenre}
-                  className='flex w-[300px] items-center justify-between rounded-[14px] bg-white/[0.08] px-4 py-3'
+                  className='flex w-[300px] items-center justify-between rounded-[14px] bg-white/[0.08] px-4 py-3 cursor-pointer'
                 >
                   <p className='font-normal text-[15px] leading-6 text-[#979797]'>
                     Genre
@@ -615,6 +617,8 @@ getImageGeneration(1,10,token)
                         dangerouslySetInnerHTML={{
                           __html: `     ${savedDrawingImage}       `
                         }}
+                        className='overflow-hidden rounded-xl'
+                        
                       />
                       {/* <img
                         src={SavedDrawingImage || ''}
@@ -781,6 +785,7 @@ getImageGeneration(1,10,token)
         <SelectImage
           CloseModal={setSelectImageModal}
           SetInpaintingModal={setInpaintingModal}
+          allImgData={allImgData}
         />
       )}
       {inpaintingModal && (
@@ -789,6 +794,7 @@ getImageGeneration(1,10,token)
           SetInpaintingCreated={setInpaintingCreated}
           EditInpainting={editInpainting}
           SavedDrawingImage={setSavedDrawingImage}
+          setSelectImageModal={setSelectImageModal}
         />
       )}
 

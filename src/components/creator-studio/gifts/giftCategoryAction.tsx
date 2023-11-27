@@ -226,6 +226,8 @@ function GiftCategoryAction({
         <CreateCategory
           CategoryClose={setCreateCategory}
           Steps={4}
+          createCategoryToggle={createCategoryToggle}
+          setCreateCategoryToggle={setCreateCategoryToggle}
           AddCategory={AddCategory}
           SetCategory={SetCategory}
           Previous

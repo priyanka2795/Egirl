@@ -44,7 +44,7 @@ const AddCardSidebar = ({ seletedAddCard }: AddCardProps) => {
           );
         })}
       </div>
-      <div className='h-full overflow-y-auto'>
+      <div className='h-[85vh] overflow-y-auto '>
         {activeTab === 'Add card' ? (
           <>
             {addedCard ? (

@@ -16,8 +16,8 @@ import EditAlbum from './editAlbum';
 import AlbumDetailsModal from './albumDetailsModal';
 import ViewImagesDropDown from './ViewImagesDropDown';
 import MoveAlbumModal from './moveAlbumModal';
-import ImageInfoModal from './ImageInfoModal';
-
+import { deleteImageGeneration } from 'services/services';
+import Cookies from 'js-cookie';
 const images = [
   {
     image: image1
@@ -49,13 +49,18 @@ interface VIMainImageBlock {
   ToggleMenu: boolean;
   SetAlbumImages: React.Dispatch<React.SetStateAction<boolean>>;
   AlbumData: any;
-  
+  allImgData: any;
+  imageUpdate: boolean;
+  setImageUpdate: any;
 }
 
 const VIMainImageBlock = ({
   ToggleMenu,
   SetAlbumImages,
-  AlbumData
+  AlbumData,
+  allImgData,
+  imageUpdate,
+  setImageUpdate
 }: VIMainImageBlock) => {
   const [allImages, setAllImages] = useState(images);
   const [showDropDown, setShowDropDown] = useState<number | null>(null);
@@ -65,6 +70,7 @@ const VIMainImageBlock = ({
   const [albumDetails, setAlbumDetails] = useState<boolean>(false);
   const [deleteImageModal, setDeleteImageModal] = useState<boolean>(false);
   const [moveAlbumModal, setMoveAlbumModal] = useState<boolean>(false);
+  const [sdImageId, setSdImageId] = useState<any>();
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [imageInfoPage, setImageInfoPage] = useState<boolean>(false);
   const [selectPrompt, setSelectPrompt] = useState<string[]>([]);
@@ -73,9 +79,25 @@ const VIMainImageBlock = ({
   const AlbumImageToggle = (index: number) => {
     setShowDropDown((prev) => (prev === index ? null : index));
   };
-  const AllImageToggle = (index: number) => {
+  const AllImageToggle = (index: number, sd_img_id: number) => {
     setAllImage((prev) => (prev === index ? null : index));
+    setSdImageId(sd_img_id);
   };
+
+  let token: any = Cookies.get('accessToken');
+  //----------- delete image generation ----------
+  const deleteImgBySdId = () => {
+    deleteImageGeneration(sdImageId, token)
+      .then((res: any) => {
+        console.log('delete image---', res);
+        setImageUpdate(!imageUpdate);
+      })
+      .catch((err: any) => {
+        console.log('delete image err---', err);
+      });
+  };
+  //----------------------------------------------
+
   const DeleteImage = (e: React.MouseEvent<HTMLElement>) => {
     const Data = (e.target as HTMLElement).innerText;
     if (Data === 'Delete') {
@@ -103,8 +125,6 @@ const VIMainImageBlock = ({
       setShowDropDown(null);
     }
   };
-
-  // SEARCH---------------
 
   return (
     <>
@@ -194,30 +214,33 @@ const VIMainImageBlock = ({
         </>
       ) : (
         <div className='grid grid-cols-3 gap-3' ref={dropdownRef}>
-          {allImages.map((item, index: number) => (
-            <div
-              className='sub-banner group relative h-full w-full rounded-[16px] bg-red-100 cursor-pointer'
-              key={index}
-              onClick={() => setImageInfoPage(true)}
-            >
-              <Image
-                className=' h-full !w-full rounded-[16px] object-cover'
-                src={item.image}
-                alt={''}
-              />
-              <div
-                className='invisible absolute right-[7px] top-[7px] flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full bg-black/[0.48] group-hover:visible group-hover:opacity-100'
-                onClick={() => AllImageToggle(index)}
-              >
-                <Image className='w-full h-full' src={threeDots} alt={''} />
-              </div>
-              {allImage === index && (
-                <div className='absolute z-50 right-3 top-12'>
-                  <ViewImagesDropDown DeleteImage={DeleteImage} />
+          {allImgData?.map((item: any, index: number) =>
+            item?.media?.map((e: any, i: number) => {
+              return (
+                <div
+                  className='sub-banner group relative h-full w-full rounded-[16px] bg-red-100'
+                  key={index}
+                >
+                  <Image
+                    className=' h-full !w-full rounded-[16px] object-cover'
+                    src={image6}
+                    alt={''}
+                  />
+                  <div
+                    className='invisible absolute right-[7px] top-[7px] flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full bg-black/[0.48] group-hover:visible group-hover:opacity-100'
+                    onClick={() => AllImageToggle(index, e.sd_image_id)}
+                  >
+                    <Image className='w-full h-full' src={threeDots} alt={''} />
+                  </div>
+                  {allImage === index && (
+                    <div className='absolute z-50 right-3 top-12'>
+                      <ViewImagesDropDown DeleteImage={DeleteImage} />
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
-          ))}
+              );
+            })
+          )}
         </div>
       )}
 
@@ -240,6 +263,7 @@ const VIMainImageBlock = ({
           Content={'Are you sure you want to delete the image?'}
           Name=''
           LastName=''
+          deleteImgBySdId={deleteImgBySdId}
         />
       )}
       {moveAlbumModal && <MoveAlbumModal MoveModalClose={setMoveAlbumModal} />}

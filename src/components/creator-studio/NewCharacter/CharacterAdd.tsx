@@ -57,6 +57,8 @@ const CharacterAdd: React.FC<CharacterAddProps> = ({
 
     postCharacter(createData , token)
     .then((res:any)=>{
+      const character_id = res.data?.character_id;
+      Cookies.set('character_id', character_id);
       console.log(res);
     })
     .catch((err:any)=>{

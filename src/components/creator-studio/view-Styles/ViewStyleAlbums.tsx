@@ -34,6 +34,7 @@ const ViewStyleAlbums = ({
   setPostedStyle
 }: ViewStyleAlbumsProps) => {
   return (
+    <div className='flex items-center justify-center'>
     <div className='flex flex-col gap-4 mt-5'>
       <div className='text-[18px] font-bold leading-6 text-white'>Albums</div>
       <div className='grid grid-cols-3 gap-3'>
@@ -112,6 +113,7 @@ const ViewStyleAlbums = ({
         })}
       </div>
     </div>
+    </div> 
   );
 };
 

@@ -41,7 +41,7 @@ const EditCollectionModal = ({closeEditModal , closeDropdown}: EditModalProp) =>
 
         <div className='w-full px-6 pt-3 pb-6'>
             <div className='w-full text-[#979797] text-[13px] font-semibold'>Name of List</div>
-            <div className='px-4 py-3 w-full mt-[6px] w-full bg-white/[0.05] rounded-[14px] text-[#FFFFFF] text-[15px] font-normal'>Cat girls</div>
+            <input type="text" name="" id=""  className='px-4 py-3 w-full mt-[6px] bg-white/[0.05] rounded-[14px] text-[#FFFFFF] text-[15px] font-normal' placeholder='Cat girls'/>
             <div className='flex gap-[12px] w-full mt-[24px]'>
                 <button className='rounded-[14px] w-1/2 px-[20px] py-[13px] border border-white/[0.32] text-[16px] font-bold' onClick={() => {closeEditModal(false),closeDropdown('')}}>Cancel</button>
                 <button className='rounded-[14px] w-1/2 px-[20px] py-[13px] bg-[#5848BC] text-[16px] text-[#FFFFFF] font-bold' onClick={() => {closeEditModal(false),closeDropdown('')}}>Save</button>

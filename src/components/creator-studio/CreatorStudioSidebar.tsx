@@ -46,6 +46,9 @@ interface CreatorStudioNavbarPropProp {
   SetUserGuide: any;
   SetIsTourOpen: any;
   UserGuide: any;
+  allCharacterData:any;
+  activeProfile:any;
+  setActiveProfile:any
 }
 
 interface CreateCharacter {
@@ -63,7 +66,10 @@ const CreatorStudioSidebar = ({
   SetUserGuide,
   SetIsTourOpen,
   UserGuide,
-  setUserDetails
+  setUserDetails,
+  allCharacterData,
+  activeProfile,
+  setActiveProfile
 }: CreatorStudioNavbarPropProp) => {
   const [sidebarModal, setSidebarModal] = useState<boolean>(false);
   const [moreOptionsModal, setMoreOptionsModal] = useState<boolean>(false);
@@ -88,7 +94,7 @@ const CreatorStudioSidebar = ({
             shrinkSideBar !== true ? 'mx-3 max-w-[276px] ' : 'mx-2'
           }`}
         >
-          {/* <div
+          <div
             className='flex cursor-pointer items-center justify-between py-[14px] pl-3 pr-4'
             onClick={() => setSidebarModal(!sidebarModal)}
           >
@@ -105,7 +111,7 @@ const CreatorStudioSidebar = ({
                   shrinkSideBar === true ? '!hidden' : ''
                 }`}
               >
-                Mika-chan
+                {activeProfile ? activeProfile?.username : "Select Character"}
               </div>
             </div>
             <div className='h-full mt-2'>
@@ -115,9 +121,12 @@ const CreatorStudioSidebar = ({
               <SidebarModal
                 setSidebarModal={setSidebarModal}
                 setNewCharacter={setNewCharacter}
+                allCharacterData={allCharacterData}
+                setActiveProfile={setActiveProfile}
+          activeProfile={activeProfile}
               />
             )}
-          </div> */}
+          </div>
           {/*  */}
 
           {shrinkSideBar ? (

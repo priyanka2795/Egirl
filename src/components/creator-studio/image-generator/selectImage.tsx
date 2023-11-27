@@ -11,6 +11,7 @@ import InpaintingModals from './inpaintingModals';
 interface SelectImage {
   CloseModal: React.Dispatch<React.SetStateAction<boolean>>;
   SetInpaintingModal: React.Dispatch<React.SetStateAction<boolean>>;
+  allImgData:any
 }
 
 const albumdata = [
@@ -39,7 +40,7 @@ const allImages = [
     img: AlbumFirst
   }
 ];
-function SelectImage({ CloseModal, SetInpaintingModal }: SelectImage) {
+function SelectImage({ CloseModal, SetInpaintingModal, allImgData }: SelectImage) {
   const [toggle, setToggle] = useState<boolean>(true);
 
   const SelectImg = () => {
@@ -67,10 +68,11 @@ function SelectImage({ CloseModal, SetInpaintingModal }: SelectImage) {
         <div className='flex flex-col gap-3 p-6 overflow-y-auto '>
           <p className='font-semibold'>Albums</p>
           <div className='grid grid-cols-2 gap-2 '>
-            {albumdata.map((item) => (
+            {albumdata.map((item, index) => (
               <div
                 className='relative h-[300px] w-[300px] cursor-pointer overflow-hidden rounded-xl'
                 onClick={() => SelectImg()}
+                key={index}
               >
                 <Image
                   className='object-cover w-full h-full'
@@ -99,13 +101,21 @@ function SelectImage({ CloseModal, SetInpaintingModal }: SelectImage) {
                 className='grid grid-cols-2 gap-2'
                 onClick={() => SelectImg()}
               >
-                {allImages.map((item) => (
-                  <div className='relative overflow-hidden cursor-pointer rounded-xl'>
-                    <Image
-                      className='object-cover w-full h-full'
-                      src={item.img}
-                      alt={''}
-                    />
+                {allImgData?.map((item:any, index:number) => (
+                  <div className='relative overflow-hidden cursor-pointer rounded-xl' key={index}>
+                    {
+                      item?.media?.map((e:any,i:number)=>{
+                        return(
+                          <Image
+                          className='object-cover w-full h-full'
+                          src={Images2}
+                          alt={''}
+                          key={i}
+                        />
+                        )
+                      })
+                    }
+                    
                   </div>
                 ))}
               </div>

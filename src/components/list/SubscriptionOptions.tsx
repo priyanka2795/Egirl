@@ -44,7 +44,9 @@ const SubscriptionOptions = ({ showProfile, component }: SubscriptionOptionsProp
     .catch((err)=>{
       console.log("err----",err)
     })
-  },[refreshTokenData, router.pathname])
+  },[refreshTokenData, router.pathname]);
+  const sidebarCollapse =  sessionStorage.getItem('sideBarCollapse');
+  
   return (
     <div className={`flex flex-col items-start self-stretch ${component === 'RealisticPage' ? 'gap-6' : 'gap-4'}`}>
       {/* <div className='flex items-center gap-[33rem] justify-between'>
@@ -60,7 +62,7 @@ const SubscriptionOptions = ({ showProfile, component }: SubscriptionOptionsProp
             </div>
         </div> */}
       <ListFilter />
-      <div className='grid grid-cols-3 gap-4 '>
+      <div className={`grid w-full ${sidebarCollapse? 'grid-cols-4':'grid-cols-3'} gap-4`}>
         <div onClick={() => showProfile(true)} className='max-h-[390px]'>
           <Card
             cardMainImg={subscriptionImage1}

@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from 'react';
 // import { Database } from '../../types/database';
 import { useRouter } from 'next/router';
-import bgImage from '../../../public/assets/sign-in-bg-img.png';
-import logo from '../../../public/assets/Logo-white.png';
 import Image from 'next/image';
-import googleIcon from '../../../public/assets/google-icon.png';
-import discordIcon from '../../../public/assets/discord-icon.png';
-import facebookIcon from '../../../public/assets/facebook-icon.png';
 import vector1 from '../../public/assets/Vector_1.png';
 import vector2 from '../../public/assets/Vector_2.png';
 import RotateIcon from '../../public/assets/rotate-cw.png';
@@ -65,7 +60,6 @@ export default function SignIn({ SetFormStep }: SignIn) {
 
   const handleSubmit = (values: any) => {
     setErrorMsg('');
-    console.log('login form data---', values);
     userLogin(values)
       .then((res: any) => {
         console.log('login res--', res);
@@ -129,6 +123,7 @@ export default function SignIn({ SetFormStep }: SignIn) {
                   <button
                     className='font-bold flex w-full items-center justify-center gap-2 rounded-2xl bg-[#5848BC] px-5 py-4 text-center text-lg'
                     onClick={() => setVerifyCode(true)}
+                    type="button"
                   >
                     Continue
                   </button>
@@ -176,7 +171,6 @@ export default function SignIn({ SetFormStep }: SignIn) {
                             name='email'
                             placeholder='example@gmail.com'
                             className='font-normal flex rounded-[14px] border-none bg-transparent bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
-                            // onChange={onEmailChange}
                           />
                           <ErrorMessage
                             className='font-normal Input-error text-[14px] leading-[18px] text-[#FF5336]'
@@ -194,7 +188,6 @@ export default function SignIn({ SetFormStep }: SignIn) {
                               placeholder='Password'
                               name='password'
                               id='password'
-                              // onChange={onPasswordChange}
                               className='font-normal flex rounded-[14px] border-none bg-transparent bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
                             />
                             <ErrorMessage
@@ -235,31 +228,3 @@ export default function SignIn({ SetFormStep }: SignIn) {
   );
 }
 
-{
-  /* <div className='grid h-screen place-items-center'>
-        <div className='flex flex-col gap-4 p-4 py-4 border-2'>
-          <h1 className='text-3xl font-bold underline'>Login Form</h1>
-          <input
-            type='email'
-            value={email}
-            onChange={onEmailChange}
-            placeholder='email'
-            className='p-4 border-2'
-          />
-          <input
-            type='password'
-            value={password}
-            onChange={onPasswordChange}
-            placeholder='password'
-            className='p-4 border-2'
-          />
-          <button onClick={loginHandler} className='p-4 border-2'>
-            Login
-          </button>
-          <button onClick={loginGoogleHandler} className='p-4 border-2'>
-            Google Login
-          </button>
-          <p className='text-red-400'>{errorMsg}</p>
-        </div>
-</div> */
-}

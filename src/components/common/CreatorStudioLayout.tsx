@@ -19,7 +19,11 @@ interface CreatorStudioLayoutProps {
   UserGuide?: any;
   setUserGuide?: any;
   setCreateCharacterData:any;
-  createCharacterData:any
+  createCharacterData:any;
+  allCharacterData:any;
+  setActiveProfile:any;
+  activeProfile:any
+
 }
 
 const CreatorStudioLayout = ({
@@ -34,7 +38,10 @@ const CreatorStudioLayout = ({
   UserGuide,
   setUserGuide,
   setCreateCharacterData,
-  createCharacterData
+  createCharacterData,
+  allCharacterData,
+  setActiveProfile,
+  activeProfile
 }: CreatorStudioLayoutProps) => {
   const [shrinkSideBar, setShrinkSideBar] = useState<boolean>(false);
   const [styleGenNext, setStyleGenNext] = useState<boolean>(false);
@@ -105,6 +112,9 @@ const CreatorStudioLayout = ({
             TourSteps={tourSteps}
             tourCount={tourCount}
             setTourCount={setTourCount}
+            allCharacterData={allCharacterData}
+            setActiveProfile={setActiveProfile}
+          activeProfile={activeProfile}
           />
           <div className='creator-studio-components main-content-scroller relative mt-8 h-[calc(100vh-104px)] flex-grow overflow-y-auto overflow-x-hidden bg-main-background pb-5 pr-4 lg:min-w-[600px]'>
             {styleGenNext ? (
@@ -136,6 +146,7 @@ const CreatorStudioLayout = ({
                     createCharacterData={createCharacterData}
                     setCreateCharacterData={setCreateCharacterData}
                     setUserDetails={setUserDetails}
+                    activeProfile={activeProfile}
                   />
                 )}
               </>
