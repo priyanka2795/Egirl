@@ -15,15 +15,15 @@ const initialValues = {
 };
 
 interface CharacterAddProps {
-  setCreateCharacterData: any;
+  setCreateCharacterData?: any;
   NewCharacterClose?: React.Dispatch<React.SetStateAction<boolean>>;
   setUserGuide?: (value: boolean) => void;
   setIsTourOpen?: (value: boolean) => void;
   UserGuide?: any;
   setTourCount?: React.Dispatch<React.SetStateAction<number>> | any;
-  setUserDetails:any;
-  createCharacterData:any;
-  setActiveProfile:any
+  setUserDetails?:any;
+  createCharacterData?:any;
+  setActiveProfile?:any
 }
 
 const validationSchema = Yup.object().shape({
@@ -95,7 +95,7 @@ const CharacterAdd: React.FC<CharacterAddProps> = ({
         <div className='w-full gap-1 text-lg font-bold leading-6'>
           Add New Character
         </div>
-        <div className='w-6 h-6'>
+        <div className='w-6 h-6 cursor-pointer' >
           <Cross onClick={() => NewCharacterClose?.(false)} />
         </div>
       </div>
@@ -151,7 +151,7 @@ const CharacterAdd: React.FC<CharacterAddProps> = ({
               <div className='flex items-start self-stretch gap-3 '>
                 <button
                   type='button'
-                  // onClick={() => NewCharacterClose?.(false)}
+                  onClick={() => NewCharacterClose?.(false)}
                   className='font-bold h-12 w-[50%] items-center gap-2 rounded-[14px] border border-white/[0.32] px-5 py-[13px] text-base leading-[22px]'
                 >
                   Cancel
