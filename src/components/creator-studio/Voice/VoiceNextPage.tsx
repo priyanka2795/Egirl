@@ -55,13 +55,10 @@ const VoiceNextPage = () => {
   const [voiceClarityState, setVoiceClarityState] = useState<number[]>([0]);
   const [genderDropDown, setGenderDropDown] = useState<boolean>(false);
   const [genderInputText, setGenderInputText] = useState<string>('Female');
-  const genderOptions = ['Female', 'Male', 'Other'];
   const [ageDropDown, setAgeDropDown] = useState<boolean>(false);
   const [ageInputText, setAgeInputText] = useState<string>('Young');
-  const ageOptions = ['Young', 'Old', 'Child'];
   const [accentDropDown, setAccentDropDown] = useState<boolean>(false);
   const [accentInputText, setAccentInputText] = useState<string>('American');
-  const accentOptions = ['American', 'Indian', 'African'];
 
   return (
     <div className='flex flex-col gap-5'>
@@ -119,7 +116,7 @@ const VoiceNextPage = () => {
               </div>
               {genderDropDown && (
                 <div className='top-[78px] flex w-full flex-col rounded-[14px] bg-[#1A1A1A] px-0 py-1'>
-                  {genderOptions.map((item, index) => {
+                  {Genders.map((item, index) => {
                     return ( 
                       <div
                         key={index}
@@ -161,7 +158,7 @@ const VoiceNextPage = () => {
               </div>
               {ageDropDown && (
                 <div className='top-[78px] flex w-full flex-col rounded-[14px] bg-[#1A1A1A] px-0 py-1'>
-                  {ageOptions.map((item, index) => {
+                  {Ages.map((item, index) => {
                     return ( 
                       <div
                         key={index}
@@ -203,7 +200,7 @@ const VoiceNextPage = () => {
               </div>
               {accentDropDown && (
                 <div className='top-[78px] flex w-full flex-col rounded-[14px] bg-[#1A1A1A] px-0 py-1'>
-                  {accentOptions.map((item, index) => {
+                  {Accents.map((item, index) => {
                     return ( 
                       <div
                         key={index}

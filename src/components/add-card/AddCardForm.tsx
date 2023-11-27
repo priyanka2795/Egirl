@@ -1,120 +1,341 @@
-import React, { useState } from 'react'
-import Image from 'next/image'
-import discoverCard from '../../../public/assets/discover-card.png'
-import jcbCard from '../../../public/assets/jcb-card.png'
-import maestroCard from '../../../public/assets/maestro-card.png'
-import masterrCard from '../../../public/assets/master-card.png'
-import visaCard from '../../../public/assets/visa-card.png'
-import circleInformation from '../../../public/assets/circle-information2.png'
-
+import React, { useState } from 'react';
+import Image from 'next/image';
+import discoverCard from '../../../public/assets/discover-card.png';
+import jcbCard from '../../../public/assets/jcb-card.png';
+import maestroCard from '../../../public/assets/maestro-card.png';
+import masterrCard from '../../../public/assets/master-card.png';
+import visaCard from '../../../public/assets/visa-card.png';
+import circleInformation from '../../../public/assets/circle-information2.png';
+import chevronDown from '../../../public/assets/chevron-down2.png';
+import chevronUp from '../../../public/assets/chevron-up.png';
 
 interface AddCardFormProp {
-    showSucess: React.Dispatch<React.SetStateAction<boolean>> ;
-    showError: React.Dispatch<React.SetStateAction<boolean>> ;
+  showSucess: React.Dispatch<React.SetStateAction<boolean>>;
+  showError: React.Dispatch<React.SetStateAction<boolean>>;
 }
-const AddCardForm = ( {showSucess, showError} : AddCardFormProp ) => {
-
+const AddCardForm = ({ showSucess, showError }: AddCardFormProp) => {
+  const [countryDropDown, setCountryDropDown] = useState<boolean>(false);
+  const [countryInputText, setCountryInputText] = useState<string>('🇺🇸 America');
+  const genderOptions = ['🇺🇸 America', '🇺🇸 America', '🇺🇸 America'];
+  const [stateDropDown, setStateDropDown] = useState<boolean>(false);
+  const [stateInputText, setStateInputText] = useState<string>('California');
+  const stateOptions = ['California', 'California', 'California'];
   return (
-
     <form>
-        <div className='flex flex-col gap-10 p-8'>
-                <div className='flex flex-col gap-6'>
-                    <div className='text-[#FFFFFF] text-[18px] font-bold leading-6'>Billing details</div>
-                    <div className='flex flex-col gap-4'>
-                        <div className='flex gap-4'>
-                            <div className='flex flex-col gap-[6px] w-full'>
-                                <label htmlFor="country" className='text-[#979797] text-[13px] font-semibold leading-[18px]'>Country</label>
-                                <select id="country" name="countryList" className='px-4 py-3 rounded-[14px] bg-white/[0.05] w-full focus:ring-0 border-none text-[#979797] text-[15px] font-normal leading-6'>
-                                        <option value="america">🇺🇸 America</option>
-                                        <option value="america">🇺🇸 America</option>
-                                </select> 
-                            </div>
-                            <div className='flex flex-col gap-[6px] w-full'>
-                                <label htmlFor="country" className='text-[#979797] text-[13px] font-semibold leading-[18px]'>State / Province</label>
-                                <select id="country" name="countryList" className='px-4 py-3 rounded-[14px] bg-white/[0.05] w-full focus:ring-0 border-none text-[#979797] text-[15px] font-normal leading-6'>
-                                    <option value="california">California</option>
-                                    <option value="california">California</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div className='flex flex-col gap-[6px] w-full'>
-                        <label htmlFor="street" className='text-[#979797] text-[13px] font-semibold leading-[18px]'>Street</label>
-                        <input type='text' placeholder='Enter your street' className='px-4 py-3 rounded-[14px] bg-white/[0.05] w-full focus:ring-0 border-none placeholder:text-[#979797] text-[#979797] text-[15px] font-normal leading-6' />
-                        </div>
-                        <div className='flex gap-4'>
-                            <div className='flex flex-col gap-[6px] w-full'>
-                                <label htmlFor="street" className='text-[#979797] text-[13px] font-semibold leading-[18px]'>City</label>
-                                <input type='text' placeholder='Los Angeles' className='px-4 py-3 rounded-[14px] bg-white/[0.05] w-full focus:ring-0 border-none placeholder:text-[#979797] text-[#979797] text-[15px] font-normal leading-6' />
-                            </div>
-                            <div className='flex flex-col gap-[6px] w-full'>
-                                <label htmlFor="street" className='text-[#979797] text-[13px] font-semibold leading-[18px]'>ZIP / Post code</label>
-                                <input type='text' placeholder='Enter your State / Province' className='px-4 py-3 rounded-[14px] bg-white/[0.05] w-full focus:ring-0 border-none placeholder:text-[#979797] text-[#979797] text-[15px] font-normal leading-6' />
-                            </div>
-                        </div>
-                    </div>
+      <div className='flex flex-col gap-10 p-8'>
+        <div className='flex flex-col gap-6'>
+          <div className='font-bold text-[18px] leading-6 text-[#FFFFFF]'>
+            Billing details
+          </div>
+          <div className='flex flex-col gap-4'>
+            <div className='flex gap-4'>
+              <div className='relative flex w-full flex-col gap-[6px]'>
+                <h6 className='text-[13px] text-[#979797]'>Country</h6>
+                <div
+                  className={`flex cursor-pointer justify-between rounded-[14px] px-4 py-3 ${
+                    countryDropDown
+                      ? 'border border-[#515151]'
+                      : 'border border-transparent bg-white/[0.05]'
+                  }`}
+                  onClick={() => {
+                    setCountryDropDown(!countryDropDown);
+                  }}
+                >
+                  <div
+                    className={`${
+                      countryDropDown || countryInputText !== 'Country'
+                        ? 'text-white'
+                        : 'text-[#979797]'
+                    } font-normal text-[15px] leading-6`}
+                  >
+                    {countryInputText}
+                  </div>
+                  <Image
+                    src={countryDropDown ? chevronUp : chevronDown}
+                    alt={''}
+                  />
                 </div>
-                <div className='flex flex-col gap-6'>
-                    <div className='text-[#FFFFFF] text-[18px] font-bold leading-6'>Card details</div>
-                    <div className='flex flex-col gap-4'>
-                        <div className='flex gap-4'>
-                            <div className='flex flex-col gap-[6px] w-full'>
-                                <label htmlFor="street" className='text-[#979797] text-[13px] font-semibold leading-[18px]'>Card number</label>
-                                <input type='text' placeholder='xxxx xxxx xxxx xxxx' className='px-4 py-3 rounded-[14px] bg-white/[0.05] w-full focus:ring-0 border-none placeholder:text-[#979797] text-[#979797] text-[15px] font-normal leading-6' />
-                            </div>
-                            <div className='flex flex-col gap-[6px] w-full'>
-                                <label htmlFor="street" className='text-[#979797] text-[13px] font-semibold leading-[18px]'>Name on card</label>
-                                <input type='text' placeholder='Name' className='px-4 py-3 rounded-[14px] bg-white/[0.05] w-full focus:ring-0 border-none placeholder:text-[#979797] text-[#979797] text-[15px] font-normal leading-6' />
-                            </div>
+                {countryDropDown && (
+                  <div className='top-[78px] flex w-full flex-col rounded-[14px] bg-[#1A1A1A] px-0 py-1'>
+                    {genderOptions.map((item, index) => {
+                      return (
+                        <div
+                          key={index}
+                          className='font-normal mx-2 my-1 cursor-pointer bg-[#1A1A1A] px-2 py-[6px] text-[14px] leading-[18px] text-white hover:rounded-[8px] hover:bg-white/[0.05]'
+                          onClick={() => {
+                            setCountryInputText(item),
+                              setCountryDropDown(false);
+                          }}
+                        >
+                          {item}
                         </div>
-                        <div className='flex gap-4'>
-                            <div className='flex flex-col gap-[6px] w-full'>
-                                <label htmlFor="street" className='text-[#979797] text-[13px] font-semibold leading-[18px]'>Expiration</label>
-                                <input type='text' placeholder='mm / yy' className='px-4 py-3 rounded-[14px] bg-white/[0.05] w-full focus:ring-0 border-none placeholder:text-[#979797] text-[#979797] text-[15px] font-normal leading-6' />
-                            </div>
-                            <div className='flex flex-col gap-[6px] w-full'>
-                                <label htmlFor="street" className='text-[#979797] text-[13px] font-semibold leading-[18px]'>CVC</label>
-                                <input type='text' placeholder='xxx' className='px-4 py-3 rounded-[14px] bg-white/[0.05] w-full focus:ring-0 border-none placeholder:text-[#979797] text-[#979797] text-[15px] font-normal leading-6' />
-                            </div>
-                        </div>
-                    </div>
-                    <div className='block custom-checkbox custom-checkbox-circle'>
-                        <input
-                            className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727] focus:outline-transparent focus:ring-0 focus:outline-0'
-                            type='checkbox'
-                            value='age'
-                            //onChange={handleChange}
-                            id='age'
-                        />
-                        <label className='text-[#979797] text-[14px] font-normal leading-[18px]' htmlFor='age'>Tick here to confirm that you are at least 18 years old and the age of majority in your place of residence</label>
-                    </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+
+              {/* <div className='flex w-full flex-col gap-[6px]'>
+                <label
+                  htmlFor='country'
+                  className='text-[13px] font-semibold leading-[18px] text-[#979797]'
+                >
+                  Country
+                </label>
+                <select
+                  id='country'
+                  name='countryList'
+                  className='font-normal w-full rounded-[14px] border-none bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] focus:ring-0'
+                >
+                  <option value='america'>🇺🇸 America</option>
+                  <option value='america'>🇺🇸 America</option>
+                </select>
+              </div> */}
+
+              <div className='relative flex w-full flex-col gap-[6px]'>
+                <h6 className='text-[13px] text-[#979797]'>State / Province</h6>
+                <div
+                  className={`flex cursor-pointer justify-between rounded-[14px] px-4 py-3 ${
+                    stateDropDown
+                      ? 'border border-[#515151]'
+                      : 'border border-transparent bg-white/[0.05]'
+                  }`}
+                  onClick={() => {
+                    setStateDropDown(!stateDropDown);
+                  }}
+                >
+                  <div
+                    className={`${
+                        stateDropDown || stateInputText !== 'Gender'
+                        ? 'text-white'
+                        : 'text-[#979797]'
+                    } font-normal text-[15px] leading-6`}
+                  >
+                    {stateInputText}
+                  </div>
+                  <Image
+                    src={stateDropDown ? chevronUp : chevronDown}
+                    alt={''}
+                  />
                 </div>
-                <div className='flex flex-col gap-6'>
-                    <div className='flex gap-2 p-4 rounded-[14px] border border-white/[0.16]'>
-                        <div className='w-5 h-5'>
-                            <Image className='object-contain w-full h-full' src={circleInformation} alt={''} />
+                {stateDropDown && (
+                  <div className='top-[78px] flex w-full flex-col rounded-[14px] bg-[#1A1A1A] px-0 py-1'>
+                    {stateOptions.map((item, index) => {
+                      return (
+                        <div
+                          key={index}
+                          className='font-normal mx-2 my-1 cursor-pointer bg-[#1A1A1A] px-2 py-[6px] text-[14px] leading-[18px] text-white hover:rounded-[8px] hover:bg-white/[0.05]'
+                          onClick={() => {
+                            setStateInputText(item), setStateDropDown(false);
+                          }}
+                        >
+                          {item}
                         </div>
-                        <div className='text-[#FFFFFF] text-[13px] font-normal leading-[18px]'>Egirls will make a one-time charge of $0.10 when adding your payment card. The charges on your credit card statement will appear as "Egirls".</div>
-                    </div>
-                    <div className='flex flex-col gap-2'>
-                        <div className='flex items-start justify-center gap-4'>
-                            <Image className='w-[50px] h-[30px]' src={discoverCard} alt={''} />
-                            <Image className='w-[50px] h-[30px]' src={jcbCard} alt={''} />
-                            <Image className='w-[50px] h-[30px]' src={maestroCard} alt={''} />
-                            <Image className='w-[50px] h-[30px]' src={masterrCard} alt={''} />
-                            <Image className='w-[50px] h-[30px]' src={visaCard} alt={''} />
-                        </div>
-                        <div className='text-center text-[#515151] text-[14px] font-normal leading-[18px]'>Fenix International Limited, 9th Floor, 107 Cheapside, London, EC2V 6DN</div>
-                    </div>
-                </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+
+              {/* <div className='flex w-full flex-col gap-[6px]'>
+                <label
+                  htmlFor='country'
+                  className='text-[13px] font-semibold leading-[18px] text-[#979797]'
+                >
+                  State / Province
+                </label>
+                <select
+                  id='country'
+                  name='countryList'
+                  className='font-normal w-full rounded-[14px] border-none bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] focus:ring-0'
+                >
+                  <option value='california'>California</option>
+                  <option value='california'>California</option>
+                </select>
+              </div> */}
+            </div>
+            <div className='flex w-full flex-col gap-[6px]'>
+              <label
+                htmlFor='street'
+                className='text-[13px] font-semibold leading-[18px] text-[#979797]'
+              >
+                Street
+              </label>
+              <input
+                type='text'
+                placeholder='Enter your street'
+                className='font-normal w-full rounded-[14px] border-none bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
+              />
+            </div>
+            <div className='flex gap-4'>
+              <div className='flex w-full flex-col gap-[6px]'>
+                <label
+                  htmlFor='street'
+                  className='text-[13px] font-semibold leading-[18px] text-[#979797]'
+                >
+                  City
+                </label>
+                <input
+                  type='text'
+                  placeholder='Los Angeles'
+                  className='font-normal w-full rounded-[14px] border-none bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
+                />
+              </div>
+              <div className='flex w-full flex-col gap-[6px]'>
+                <label
+                  htmlFor='street'
+                  className='text-[13px] font-semibold leading-[18px] text-[#979797]'
+                >
+                  ZIP / Post code
+                </label>
+                <input
+                  type='text'
+                  placeholder='Enter your State / Province'
+                  className='font-normal w-full rounded-[14px] border-none bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
+                />
+              </div>
+            </div>
+          </div>
         </div>
-        <div className='flex items-end justify-end px-8 py-6'>
-            <button type='submit' className='px-5 py-[13px] flex justify-center items-center rounded-[14px] bg-[#5848BC] text-[#FFFFFF] text-[16px] font-bold leading-[22px]'>Add card</button>
-            <button className='px-5 py-[13px] ml-2 flex justify-center items-center rounded-[14px] bg-[#5848BC] text-[#FFFFFF] text-[16px] font-bold leading-[22px]' onClick={() => {showSucess(true)}}>Success</button>
-            <button className='px-5 py-[13px] ml-2 flex justify-center items-center rounded-[14px] bg-[#5848BC] text-[#FFFFFF] text-[16px] font-bold leading-[22px]' onClick={() => {showError(true)}}>Error</button> 
+        <div className='flex flex-col gap-6'>
+          <div className='font-bold text-[18px] leading-6 text-[#FFFFFF]'>
+            Card details
+          </div>
+          <div className='flex flex-col gap-4'>
+            <div className='flex gap-4'>
+              <div className='flex w-full flex-col gap-[6px]'>
+                <label
+                  htmlFor='street'
+                  className='text-[13px] font-semibold leading-[18px] text-[#979797]'
+                >
+                  Card number
+                </label>
+                <input
+                  type='text'
+                  placeholder='xxxx xxxx xxxx xxxx'
+                  className='font-normal w-full rounded-[14px] border-none bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
+                />
+              </div>
+              <div className='flex w-full flex-col gap-[6px]'>
+                <label
+                  htmlFor='street'
+                  className='text-[13px] font-semibold leading-[18px] text-[#979797]'
+                >
+                  Name on card
+                </label>
+                <input
+                  type='text'
+                  placeholder='Name'
+                  className='font-normal w-full rounded-[14px] border-none bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
+                />
+              </div>
+            </div>
+            <div className='flex gap-4'>
+              <div className='flex w-full flex-col gap-[6px]'>
+                <label
+                  htmlFor='street'
+                  className='text-[13px] font-semibold leading-[18px] text-[#979797]'
+                >
+                  Expiration
+                </label>
+                <input
+                  type='text'
+                  placeholder='mm / yy'
+                  className='font-normal w-full rounded-[14px] border-none bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
+                />
+              </div>
+              <div className='flex w-full flex-col gap-[6px]'>
+                <label
+                  htmlFor='street'
+                  className='text-[13px] font-semibold leading-[18px] text-[#979797]'
+                >
+                  CVC
+                </label>
+                <input
+                  type='text'
+                  placeholder='xxx'
+                  className='font-normal w-full rounded-[14px] border-none bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
+                />
+              </div>
+            </div>
+          </div>
+          <div className='custom-checkbox custom-checkbox-circle block'>
+            <input
+              className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727] focus:outline-0 focus:outline-transparent focus:ring-0'
+              type='checkbox'
+              value='age'
+              //onChange={handleChange}
+              id='age'
+            />
+            <label
+              className='font-normal text-[14px] leading-[18px] text-[#979797]'
+              htmlFor='age'
+            >
+              Tick here to confirm that you are at least 18 years old and the
+              age of majority in your place of residence
+            </label>
+          </div>
         </div>
+        <div className='flex flex-col gap-6'>
+          <div className='flex gap-2 rounded-[14px] border border-white/[0.16] p-4'>
+            <div className='h-5 w-5'>
+              <Image
+                className='h-full w-full object-contain'
+                src={circleInformation}
+                alt={''}
+              />
+            </div>
+            <div className='font-normal text-[13px] leading-[18px] text-[#FFFFFF]'>
+              Egirls will make a one-time charge of $0.10 when adding your
+              payment card. The charges on your credit card statement will
+              appear as "Egirls".
+            </div>
+          </div>
+          <div className='flex flex-col gap-2'>
+            <div className='flex items-start justify-center gap-4'>
+              <Image
+                className='h-[30px] w-[50px]'
+                src={discoverCard}
+                alt={''}
+              />
+              <Image className='h-[30px] w-[50px]' src={jcbCard} alt={''} />
+              <Image className='h-[30px] w-[50px]' src={maestroCard} alt={''} />
+              <Image className='h-[30px] w-[50px]' src={masterrCard} alt={''} />
+              <Image className='h-[30px] w-[50px]' src={visaCard} alt={''} />
+            </div>
+            <div className='font-normal text-center text-[14px] leading-[18px] text-[#515151]'>
+              Fenix International Limited, 9th Floor, 107 Cheapside, London,
+              EC2V 6DN
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className='flex items-end justify-end px-8 py-6'>
+        <button
+          type='submit'
+          className='font-bold flex items-center justify-center rounded-[14px] bg-[#5848BC] px-5 py-[13px] text-[16px] leading-[22px] text-[#FFFFFF]'
+        >
+          Add card
+        </button>
+        <button
+          className='font-bold ml-2 flex items-center justify-center rounded-[14px] bg-[#5848BC] px-5 py-[13px] text-[16px] leading-[22px] text-[#FFFFFF]'
+          onClick={() => {
+            showSucess(true);
+          }}
+        >
+          Success
+        </button>
+        <button
+          className='font-bold ml-2 flex items-center justify-center rounded-[14px] bg-[#5848BC] px-5 py-[13px] text-[16px] leading-[22px] text-[#FFFFFF]'
+          onClick={() => {
+            showError(true);
+          }}
+        >
+          Error
+        </button>
+      </div>
     </form>
-  )
-}
+  );
+};
 
-export default AddCardForm
-
+export default AddCardForm;
