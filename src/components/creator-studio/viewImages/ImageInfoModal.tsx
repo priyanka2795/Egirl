@@ -95,9 +95,7 @@ const ImageInfoModal = ({setImageInfoPage}:ImageInfoModalProp) => {
 
                 <div className='flex flex-col	items-start gap-4 self-stretch rounded-xl bg-white/[0.05] px-4 py-3.5'>
                   <div className='flex items-center self-stretch justify-between'>
-                    <b className='text-[15px] font-semibold leading-5'>
-                      Generation data
-                    </b>
+                    <b className='text-[15px] font-semibold leading-5'>Generation data</b>
                   </div>
                   <div className='flex flex-col gap-3'>
                     <div className='flex items-center justify-between'>
@@ -118,9 +116,7 @@ const ImageInfoModal = ({setImageInfoPage}:ImageInfoModalProp) => {
                           );
                         })}
                       </div>
-                      <div className='w-6 h-6 cursor-pointer '>
-                        <Copy />
-                      </div>
+                      <div className='w-6 h-6 cursor-pointer '><Copy /></div>
                     </div>
 
                     <div className='flex items-start gap-2.5 self-stretch'>

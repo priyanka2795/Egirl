@@ -189,7 +189,7 @@ const ViewStylesTab = ({
                   />
                 </div>
                 {index === 0 && isActive && (
-                  <div className='absolute -right-[1px] -top-[4px] right-2 top-2 flex w-[360px] justify-between rounded-[10px] bg-white/[0.05] px-3 py-[10px]'>
+                  <div className='absolute -right-[2px] -top-[2px] flex w-[360px] justify-between rounded-[10px] bg-white/[0.05] px-3 py-[10px]'>
                     <div className='flex items-center gap-[6px]'>
                       <Image className='' src={searchIcon} alt={''} />
                       <input

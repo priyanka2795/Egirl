@@ -195,9 +195,7 @@ const FavoriteStyleModal = ({
                     <div className='flex items-center justify-between cursor-pointer' onClick={() => {
                       setGenerationData(!generationData);
                     }}>
-                      <div className='font-normal text-[15px] leading-5 text-white'>
-                        Generation data
-                      </div>
+                      <div className='font-normal text-[15px] leading-5 text-white'>Generation data</div>
                       <Image
                         src={generationData ? arrowUp : arrowDown}
                         alt=''
@@ -261,7 +259,7 @@ const FavoriteStyleModal = ({
                                   {item.number}
                                 </div>
                               </div>
-                            );
+                            ); 
                           })}
                         </div>
                         <div></div>

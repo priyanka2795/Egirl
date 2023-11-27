@@ -29,7 +29,7 @@ const ErrorPage = ({ closeErrorPage }: errorPageProp) => {
             </div>
 
             <div className='grid grid-cols-2 gap-3 py-6'>
-                <button className='px-5 py-[13px] flex justify-center items-center rounded-[14px] bg-[#FFFFFF14] text-[#FFFFFF] text-[16px] font-bold leading-[22px]' onClick={()=>router.push('/home')} >Close</button>
+                <button className='px-5 py-[13px] flex justify-center items-center rounded-[14px] bg-[#FFFFFF14] text-[#FFFFFF] text-[16px] font-bold leading-[22px]' onClick={()=>closeErrorPage(false)} >Close</button>
                 <button className='px-5 py-[13px] flex justify-center items-center rounded-[14px] bg-[#5848BC] text-[#FFFFFF] text-[16px] font-bold leading-[22px]' onClick={() => closeErrorPage(false)}>Try again</button>
             </div>
         </div>
