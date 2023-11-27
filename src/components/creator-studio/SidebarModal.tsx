@@ -22,20 +22,7 @@ interface SidebarModals {
   activeProfile:any
 }
 
-const sidebarModal = [
-  {
-    image: avatart1,
-    name: 'Mika-chan'
-  },
-  {
-    image: avatart2,
-    name: 'Character 2'
-  },
-  {
-    image: avatart3,
-    name: 'Character 3'
-  }
-];
+
 
 const SidebarModal = ({
   // shrinkSideBar,
@@ -75,7 +62,7 @@ const SidebarModal = ({
         </div>
       </div> */}
 
-      {sidebarModal.map((item, index) => {
+      {allCharacterData?.map((item:any, index:number) => {
         return (
           <div
             // onClick={() => {
