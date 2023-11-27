@@ -12,7 +12,8 @@ interface createCharacterProps {
   setTourCount?: React.Dispatch<React.SetStateAction<number>>;
   setCreateCharacterData?: any;
   setUserDetails:any;
-  createCharacterData:any
+  createCharacterData:any;
+  setActiveProfile:any
 }
 
 function CreateCharacterModal({
@@ -23,7 +24,8 @@ function CreateCharacterModal({
   setTourCount,
   UserGuide,
   setUserDetails,
-  createCharacterData
+  createCharacterData,
+  setActiveProfile
 }: createCharacterProps) {
   const [showVoiceRequest, setShowVoiceRequest] = useState(false);
   const [showNewCharacter, setShowNewCharacter] = useState(false);
@@ -135,6 +137,7 @@ function CreateCharacterModal({
           UserGuide={UserGuide}
           setUserDetails={setUserDetails}
           createCharacterData={createCharacterData}
+          setActiveProfile={setActiveProfile}
         />
       )}
     </>

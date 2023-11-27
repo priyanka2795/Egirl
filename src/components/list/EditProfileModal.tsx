@@ -18,12 +18,14 @@ interface EditProfileModalProps {
   closeState: React.Dispatch<React.SetStateAction<boolean>>;
   setUserDetails?: any;
   userDetails?: any;
+  bannerData:any
 }
 
 const EditProfileModal = ({
   closeState,
   setUserDetails,
-  userDetails
+  userDetails,
+  bannerData
 }: EditProfileModalProps) => {
   const tabs = ['Profile view', 'Explore view'];
   const [activeTab, setActiveTab] = useState<number>(0);
@@ -42,25 +44,23 @@ const EditProfileModal = ({
   const handleSave = async () => {
     try {
       const response: any = await updateCharacter(userDetails, token);
-      
-
-      console.log('Character saved successfully!', response);
+      console.log('Character update successfully!', response);
     } catch (error) {
-      console.error('Error saving character:', error);
+      console.error('Error update character:', error);
     }
     closeState(false);
   };
 
-  const updateCharacterApi = async (data: any, token: string | null) => {
-    try {
-      const response = await updateCharacter(data, token);
-      console.log('Character updated successfully!', response);
-      return response;
-    } catch (error) {
-      console.error('Error updating character:', error);
-      throw error;
-    }
-  };
+  // const updateCharacterApi = async (data: any, token: string | null) => {
+  //   try {
+  //     const response = await updateCharacter(data, token);
+  //     console.log('Character updated successfully!', response);
+  //     return response;
+  //   } catch (error) {
+  //     console.error('Error updating character:', error);
+  //     throw error;
+  //   }
+  // };
 
   return (
     <>
@@ -151,7 +151,7 @@ const EditProfileModal = ({
               labelName='Name'
               inputType='text'
               inputPlaceholder='Mika-chan'
-              value={userDetails?.display_name}
+              value={ userDetails?.display_name}
               onChange={(value: any) =>
                 setUserDetails((prev: any) => ({
                   ...prev,

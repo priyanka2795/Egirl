@@ -27,7 +27,9 @@ interface CreatorStudio {
   setUserGuide?: any;
   setCreateCharacterData:any;
   createCharacterData:any;
-  activeProfile:any
+  activeProfile:any;
+  setActiveProfile:any;
+  bannerData:any
 }
 const CreatorStudio = ({
   IsOpen,
@@ -47,7 +49,9 @@ const CreatorStudio = ({
   setUserGuide,
   setCreateCharacterData,
   createCharacterData,
-  activeProfile
+  activeProfile,
+  setActiveProfile,
+  bannerData
 }: CreatorStudio) => {
   // const [UserGuide, setUserGuide] = useState(true);
 
@@ -66,6 +70,7 @@ const CreatorStudio = ({
           setTourCount={setTourCount}
           UserGuide={UserGuide}
           setUserDetails={setUserDetails}
+          setActiveProfile={setActiveProfile}
         />
       ) : (
         <div className='mb-5'>
@@ -80,6 +85,7 @@ const CreatorStudio = ({
             userDetails={userDetails}
             setUserDetails={setUserDetails}
             activeProfile={activeProfile}
+            bannerData={bannerData}
             // setEditProfileModal={setEditProfileModal}
           />
           <div>

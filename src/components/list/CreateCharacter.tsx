@@ -10,7 +10,8 @@ interface CreateCharacter {
   UserGuide: any;
   setTourCount: React.Dispatch<React.SetStateAction<number>>;
   setCreateCharacterData: any;
-  setUserDetails:any
+  setUserDetails:any;
+  setActiveProfile:any
 }
 
 function CreateCharacter({
@@ -19,7 +20,8 @@ function CreateCharacter({
   setTourCount,
   setCreateCharacterData,
   UserGuide,
-  setUserDetails
+  setUserDetails,
+  setActiveProfile
 }: CreateCharacter) {
   const [createCharacter, setCreateCharacter] = useState<boolean>(false);
   return (
@@ -51,6 +53,7 @@ function CreateCharacter({
           setCreateCharacterData={setCreateCharacterData}
           UserGuide={UserGuide}
           setUserDetails={setUserDetails}
+          setActiveProfile={setActiveProfile}
         />
       )}
     </>

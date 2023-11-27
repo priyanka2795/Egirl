@@ -22,7 +22,8 @@ interface CharacterAddProps {
   UserGuide?: any;
   setTourCount?: React.Dispatch<React.SetStateAction<number>> | any;
   setUserDetails:any;
-  createCharacterData:any
+  createCharacterData:any;
+  setActiveProfile:any
 }
 
 const validationSchema = Yup.object().shape({
@@ -38,12 +39,11 @@ const CharacterAdd: React.FC<CharacterAddProps> = ({
   setCreateCharacterData,
   UserGuide,
   setUserDetails,
-  createCharacterData
+  createCharacterData,
+  setActiveProfile
 }) => {
   const token: any = Cookies.get('accessToken');
-  useEffect(()=>{
-    console.log(createCharacterData , "createCharacterData");
-  },[createCharacterData])
+
   const onSubmit = (values: any, { resetForm }: any) => {
     
     // setCreateCharacterData((prevState: any) => ({
@@ -68,9 +68,10 @@ const CharacterAdd: React.FC<CharacterAddProps> = ({
 
     postCharacter(createData , token)
     .then((res:any)=>{
-      const character_id = res.data?.character_id;
-      Cookies.set('character_id', character_id);
-      console.log(res);
+      // const character_id = res.data?.character_id;
+      // Cookies.set('character_id', character_id);
+      // console.log(res);
+      setActiveProfile(res?.data?.character_id)
     })
     .catch((err:any)=>{
       console.log(err);

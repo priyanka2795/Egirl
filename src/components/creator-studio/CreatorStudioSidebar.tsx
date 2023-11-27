@@ -51,7 +51,8 @@ interface CreatorStudioNavbarPropProp {
   setActiveProfile:any;
   setCreateCharacterData:any;
   setUserDetails:any;
-  createCharacterData:any
+  createCharacterData:any;
+  bannerData:any
 }
 
 interface CreateCharacter {
@@ -74,7 +75,8 @@ const CreatorStudioSidebar = ({
   activeProfile,
   setActiveProfile,
   setCreateCharacterData,
-  createCharacterData
+  createCharacterData,
+  bannerData
 }: CreatorStudioNavbarPropProp) => {
   const [sidebarModal, setSidebarModal] = useState<boolean>(false);
   const [moreOptionsModal, setMoreOptionsModal] = useState<boolean>(false);
@@ -117,7 +119,7 @@ const CreatorStudioSidebar = ({
                   shrinkSideBar === true ? '!hidden' : ''
                 }`}
               >
-                {activeProfile ? activeProfile?.username : "Select Character"}
+                {bannerData ? bannerData?.username : "Select Character"}
               </div>
             </div>
             <div className='h-full mt-2'>
