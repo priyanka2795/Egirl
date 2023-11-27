@@ -112,9 +112,15 @@ const CreatorStudioLayout = ({
             TourSteps={tourSteps}
             tourCount={tourCount}
             setTourCount={setTourCount}
+            setIsTourOpen={setIsTourOpen}
             allCharacterData={allCharacterData}
             setActiveProfile={setActiveProfile}
           activeProfile={activeProfile}
+          setCreateCharacterData={setCreateCharacterData}
+          setUserDetails={setUserDetails}
+          createCharacterData={createCharacterData}
+          UserGuide={UserGuide}
+          setUserGuide={setUserGuide}
           />
           <div className='creator-studio-components main-content-scroller relative mt-8 h-[calc(100vh-104px)] flex-grow overflow-y-auto overflow-x-hidden bg-main-background pb-5 pr-4 lg:min-w-[600px]'>
             {styleGenNext ? (
@@ -132,7 +138,7 @@ const CreatorStudioLayout = ({
                     setUserDetails={setUserDetails}
                     OnClose={closeTour}
                     TourSteps={tourSteps}
-                    SetIsTourOpen={setIsTourOpen}
+                    setIsTourOpen={setIsTourOpen}
                     tourCount={tourCount}
                     setTourCount={setTourCount}
                     setProfileInfoPage={setProfileInfoPage}

@@ -5,8 +5,8 @@ import userAddIcon from '../../../public/assets/user-plus.png';
 import CreateCharacterModal from './CreateCharacterModal';
 
 interface CreateCharacter {
-  SetUserGuide: any;
-  SetIsTourOpen: any;
+  setUserGuide: any;
+  setIsTourOpen: any;
   UserGuide: any;
   setTourCount: React.Dispatch<React.SetStateAction<number>>;
   setCreateCharacterData: any;
@@ -14,8 +14,8 @@ interface CreateCharacter {
 }
 
 function CreateCharacter({
-  SetUserGuide,
-  SetIsTourOpen,
+  setUserGuide,
+  setIsTourOpen,
   setTourCount,
   setCreateCharacterData,
   UserGuide,
@@ -45,8 +45,8 @@ function CreateCharacter({
       {createCharacter && (
         <CreateCharacterModal
           closeState={setCreateCharacter}
-          SetUserGuide={SetUserGuide}
-          SetIsTourOpen={SetIsTourOpen}
+          setUserGuide={setUserGuide}
+          setIsTourOpen={setIsTourOpen}
           setTourCount={setTourCount}
           setCreateCharacterData={setCreateCharacterData}
           UserGuide={UserGuide}

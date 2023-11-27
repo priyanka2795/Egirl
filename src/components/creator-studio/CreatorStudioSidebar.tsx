@@ -43,12 +43,15 @@ interface CreatorStudioNavbarPropProp {
   TourSteps: any;
   tourCount: number;
   setTourCount: React.Dispatch<React.SetStateAction<number>>;
-  SetUserGuide: any;
-  SetIsTourOpen: any;
+  setUserGuide: any;
+  setIsTourOpen: any;
   UserGuide: any;
   allCharacterData:any;
   activeProfile:any;
-  setActiveProfile:any
+  setActiveProfile:any;
+  setCreateCharacterData:any;
+  setUserDetails:any;
+  createCharacterData:any
 }
 
 interface CreateCharacter {
@@ -63,13 +66,15 @@ const CreatorStudioSidebar = ({
   TourSteps,
   tourCount,
   setTourCount,
-  SetUserGuide,
-  SetIsTourOpen,
+  setUserGuide,
+  setIsTourOpen,
   UserGuide,
   setUserDetails,
   allCharacterData,
   activeProfile,
-  setActiveProfile
+  setActiveProfile,
+  setCreateCharacterData,
+  createCharacterData
 }: CreatorStudioNavbarPropProp) => {
   const [sidebarModal, setSidebarModal] = useState<boolean>(false);
   const [moreOptionsModal, setMoreOptionsModal] = useState<boolean>(false);
@@ -94,7 +99,8 @@ const CreatorStudioSidebar = ({
             shrinkSideBar !== true ? 'mx-3 max-w-[276px] ' : 'mx-2'
           }`}
         >
-          <div
+          {
+            allCharacterData && allCharacterData?.length && <div
             className='flex cursor-pointer items-center justify-between py-[14px] pl-3 pr-4'
             onClick={() => setSidebarModal(!sidebarModal)}
           >
@@ -127,38 +133,43 @@ const CreatorStudioSidebar = ({
               />
             )}
           </div>
+          }
           {/*  */}
 
-          {shrinkSideBar ? (
-            <div className='flex flex-col items-start self-stretch gap-2 pt-6 pb-2'>
-              <button
-                onClick={() => setCreateCharacter(true)}
-                className='flex h-[42px] w-[45px] items-center justify-center gap-1.5 self-stretch rounded-xl bg-[#5848BC] px-2 py-2.5'
-              >
-                <Image src={userAdd} alt='' className='h-[25px] w-[25px]' />
-              </button>
-            </div>
-          ) : (
-            <div className='flex flex-col items-start self-stretch gap-2 px-6 pt-6 pb-2 '>
-              <button
-                onClick={() => setCreateCharacter(true)}
-                className='flex h-auto w-full items-center justify-center gap-1.5 self-stretch rounded-xl bg-[#5848BC] px-4 py-2.5'
-              >
-                <Image src={userAdd} alt='' className='h-[18px] w-[18px]' />
-                <span className='text-sm font-semibold leading-5 normal'>
-                  Create character
-                </span>
-              </button>
-            </div>
-          )}
+          {
+            !allCharacterData && !allCharacterData?.length && (shrinkSideBar ? (
+              <div className='flex flex-col items-start self-stretch gap-2 pt-6 pb-2'>
+                <button
+                  onClick={() => setCreateCharacter(true)}
+                  className='flex h-[42px] w-[45px] items-center justify-center gap-1.5 self-stretch rounded-xl bg-[#5848BC] px-2 py-2.5'
+                >
+                  <Image src={userAdd} alt='' className='h-[25px] w-[25px]' />
+                </button>
+              </div>
+            ) : (
+              <div className='flex flex-col items-start self-stretch gap-2 px-6 pt-6 pb-2 '>
+                <button
+                  onClick={() => setCreateCharacter(true)}
+                  className='flex h-auto w-full items-center justify-center gap-1.5 self-stretch rounded-xl bg-[#5848BC] px-4 py-2.5'
+                >
+                  <Image src={userAdd} alt='' className='h-[18px] w-[18px]' />
+                  <span className='text-sm font-semibold leading-5 normal'>
+                    Create character
+                  </span>
+                </button>
+              </div>
+            ))
+          }
           {createCharacter && (
             <CreateCharacterModal
               closeState={setCreateCharacter}
-              SetUserGuide={SetUserGuide}
-              SetIsTourOpen={SetIsTourOpen}
+              setUserGuide={setUserGuide}
+              setIsTourOpen={setIsTourOpen}
               setTourCount={setTourCount}
               setUserDetails={setUserDetails}
               UserGuide={UserGuide}
+              setCreateCharacterData={setCreateCharacterData}
+              createCharacterData={createCharacterData}
             />
           )}
 

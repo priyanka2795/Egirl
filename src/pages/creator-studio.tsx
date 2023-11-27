@@ -37,7 +37,7 @@ const creatorStudio = () => {
     .catch((err:any)=>{
       console.log(err);
     })
-  },[])
+  },[userDetails , UserGuide])
 
   
   useEffect(() => {

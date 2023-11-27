@@ -402,9 +402,9 @@ BannerProp) => {
             <div className=''>
               <div className='flex items-center gap-[2px]'>
                 <div className='font-bold text-[22px] text-[#FFFFFF]'>
-                  {userDetails?.display_name
-                    ? userDetails?.display_name
-                    : (activeProfile ? activeProfile?.username : 'Mika-chan')}
+                  {activeProfile
+                    ? activeProfile?.display_name
+                    : (userDetails ? userDetails?.username : 'Mika-chan')}
                 </div>
                 <div className='h-[24px] w-[24px]'>
                   <VerifiedIcon />
@@ -413,12 +413,12 @@ BannerProp) => {
               </div>
 
               <div className='font-normal text-[15px] text-[#979797]'>
-                {userDetails?.username ? userDetails?.username : (activeProfile ? activeProfile?.display_name : '@mikachan')}
+                {activeProfile ? activeProfile?.username : (userDetails ? userDetails?.display_name : '@mikachan')}
               </div>
               <div className='font-normal mt-3 w-full max-w-[73%] text-[15px] leading-[20px] text-white/[0.8]'>
-                {userDetails?.bio
-                  ? userDetails?.bio
-                  : ( activeProfile ? activeProfile?.bio : ` Shy fox girl looking for adventure
+                {activeProfile
+                  ? activeProfile?.bio
+                  : ( userDetails ? userDetails?.bio : ` Shy fox girl looking for adventure
                 ·冒険を探している恥ずかしがり屋のキツ I have a personality and
                 emotions. I can experience joy, sadness, anger, and everything
                 in between. I express myself through my voice, facial

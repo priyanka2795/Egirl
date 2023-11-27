@@ -13,7 +13,7 @@ interface CreatorStudio {
   IsOpen: any;
   OnClose: any;
   TourSteps: any;
-  SetIsTourOpen: any;
+  setIsTourOpen: any;
   tourCount: number;
   setTourCount: React.Dispatch<React.SetStateAction<number>>;
   setProfileInfoPage: any;
@@ -34,7 +34,7 @@ const CreatorStudio = ({
   OnClose,
   TourSteps,
   tourCount,
-  SetIsTourOpen,
+  setIsTourOpen,
   setTourCount,
   setProfileInfoPage,
   setUserDetails,
@@ -56,13 +56,13 @@ const CreatorStudio = ({
   return (
     <>
       {
-      // UserGuide
+      UserGuide &&
       !activeProfile
        ? (
         <CreateCharacter
-          SetUserGuide={setUserGuide}
+          setUserGuide={setUserGuide}
           setCreateCharacterData={setCreateCharacterData}
-          SetIsTourOpen={SetIsTourOpen}
+          setIsTourOpen={setIsTourOpen}
           setTourCount={setTourCount}
           UserGuide={UserGuide}
           setUserDetails={setUserDetails}
@@ -88,7 +88,7 @@ const CreatorStudio = ({
               OnClose={OnClose}
               TourSteps={TourSteps}
               tourCount={tourCount}
-              SetIsTourOpen={SetIsTourOpen}
+              setIsTourOpen={setIsTourOpen}
               setTourCount={setTourCount}
               setProfileInfoPage={setProfileInfoPage}
               btnSteps={btnSteps}
