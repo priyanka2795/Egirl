@@ -359,11 +359,16 @@ const FavoriteStyleModal = ({
               </div>
             </div>
             <div className='flex w-full border-t border-white/[0.08] bg-[#1A1A1A] p-6'>
-              <div className='flex w-full justify-between rounded-[14px] bg-white/[0.05] px-5 py-4'>
-                <div className='font-normal text-[15px] leading-6 text-[#979797]'>
+              <div className='flex w-full justify-between items-center rounded-[14px] bg-white/[0.05] px-5 py-4'>
+                {/* <div className='font-normal text-[15px] leading-6 text-[#979797]'>
                   Type your comment ...
-                </div>
-                <Image src={smiley} alt='' />
+                </div> */}
+                <input
+              type='text'
+              className='text-white w-full rounded-[14px] border-none bg-transparent  text-[15px]  placeholder:text-[#979797] focus:ring-0'
+              placeholder='Type your comment ...'
+            />
+                <Image src={smiley} alt='' className='w-full h-full'/>
               </div>
             </div>
           </div>
