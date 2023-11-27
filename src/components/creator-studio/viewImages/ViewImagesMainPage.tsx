@@ -121,7 +121,7 @@ const toggleImages = [
     image: deleteIcon,
     text: 'Delete'
   }
-];
+]; 
 const ViewImagesMainPage = () => {
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -225,7 +225,7 @@ const ViewImagesMainPage = () => {
             {images.map((items, index: number) => (
               <div className='sub-banner group relative h-full w-full rounded-[16px]'>
                 <Image
-                  className='w-full rounded-[16px] object-cover'
+                  className='w-full rounded-[16px] object-cover cursor-pointer'
                   src={items.image}
                   alt={''}
                 />

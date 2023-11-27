@@ -27,7 +27,7 @@ const PromptTags = [
 ];
 const ImageGallery = () => {
   const [viewModal, setviewModal] = React.useState<boolean>(false);
-  const handleviewModal = (name: string) => {
+  const handleviewModal = (name: string) => {  
     setviewModal(true);
     if (name === 'None') {
       setDefaultModal(true);

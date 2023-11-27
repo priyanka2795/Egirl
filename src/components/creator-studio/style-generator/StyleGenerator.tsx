@@ -89,7 +89,7 @@ const StyleGenerator = ({ setStyleGeneratorNext }: StyleGeneratorProps) => {
               {showDropDown && (
                 <div className='absolute top-[78px] flex w-full flex-col rounded-[14px] bg-[#1A1A1A] px-0 py-1'>
                   {options.map((item, index) => {
-                    return (
+                    return ( 
                       <div
                         key={index}
                         className='mx-2 my-1 cursor-pointer bg-[#1A1A1A] px-2 py-[6px] text-[14px] font-normal leading-[18px] text-white hover:rounded-[8px] hover:bg-white/[0.05]'

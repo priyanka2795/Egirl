@@ -1,4 +1,4 @@
-import React, { Children, useState } from 'react';
+import React, { Children, useState, useEffect, useRef } from 'react';
 import Sidebar from './Sidebar';
 import NotificationModal from './Sidebar/NotificationModal';
 import AddCardSidebar from './Sidebar/AddCards/AddCard';
