@@ -50,7 +50,6 @@ interface CreatorStudioNavbarPropProp {
   activeProfile:any;
   setActiveProfile:any;
   setCreateCharacterData:any;
-  setUserDetails:any;
   createCharacterData:any;
   bannerData:any
 }
@@ -70,7 +69,6 @@ const CreatorStudioSidebar = ({
   setUserGuide,
   setIsTourOpen,
   UserGuide,
-  setUserDetails,
   allCharacterData,
   activeProfile,
   setActiveProfile,
@@ -102,7 +100,7 @@ const CreatorStudioSidebar = ({
           }`}
         >
           {
-            allCharacterData && allCharacterData?.length && <div
+            allCharacterData && allCharacterData?.length > 0 ? <div
             className='flex cursor-pointer items-center justify-between py-[14px] pl-3 pr-4'
             onClick={() => setSidebarModal(!sidebarModal)}
           >
@@ -134,12 +132,7 @@ const CreatorStudioSidebar = ({
           activeProfile={activeProfile}
               />
             )}
-          </div>
-          }
-          {/*  */}
-
-          {
-            !allCharacterData && !allCharacterData?.length && (shrinkSideBar ? (
+          </div> : (shrinkSideBar ? (
               <div className='flex flex-col items-start self-stretch gap-2 pt-6 pb-2'>
                 <button
                   onClick={() => setCreateCharacter(true)}
@@ -162,16 +155,19 @@ const CreatorStudioSidebar = ({
               </div>
             ))
           }
+          {/*  */}
+
+          {/* {
+            !allCharacterData && !allCharacterData?.length && 
+          } */}
           {createCharacter && (
             <CreateCharacterModal
               closeState={setCreateCharacter}
               setUserGuide={setUserGuide}
               setIsTourOpen={setIsTourOpen}
               setTourCount={setTourCount}
-              setUserDetails={setUserDetails}
               UserGuide={UserGuide}
               setCreateCharacterData={setCreateCharacterData}
-              createCharacterData={createCharacterData}
             />
           )}
 

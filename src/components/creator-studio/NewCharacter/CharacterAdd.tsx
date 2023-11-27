@@ -21,8 +21,6 @@ interface CharacterAddProps {
   setIsTourOpen?: (value: boolean) => void;
   UserGuide?: any;
   setTourCount?: React.Dispatch<React.SetStateAction<number>> | any;
-  setUserDetails:any;
-  createCharacterData:any;
   setActiveProfile:any
 }
 
@@ -38,8 +36,6 @@ const CharacterAdd: React.FC<CharacterAddProps> = ({
   setTourCount,
   setCreateCharacterData,
   UserGuide,
-  setUserDetails,
-  createCharacterData,
   setActiveProfile
 }) => {
   const token: any = Cookies.get('accessToken');
@@ -56,11 +52,7 @@ const CharacterAdd: React.FC<CharacterAddProps> = ({
       display_name: values?.name,
       username: values?.username
     }));
-    setUserDetails?.((prevState: any) => ({
-      ...prevState,
-      display_name: values?.name,
-      username: values?.username
-    }));
+
     const createData = {
       display_name:values?.name,
       username: values?.username
