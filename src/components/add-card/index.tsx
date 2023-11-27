@@ -64,8 +64,8 @@ const AddCard = () => {
         }
       </div>
 
-      <p onClick={() => setDeleteCardState(true)}>delete card</p>
-      {deleteCardState && <DeleteModal closeDeleteModal={setDeleteCardState} />}
+      {/* <p onClick={() => setDeleteCardState(true)}>delete card</p>
+      {deleteCardState && <DeleteModal closeDeleteModal={setDeleteCardState} />} */}
     </>
   );
 };

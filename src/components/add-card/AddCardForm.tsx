@@ -7,7 +7,6 @@ import masterrCard from '../../../public/assets/master-card.png'
 import visaCard from '../../../public/assets/visa-card.png'
 import circleInformation from '../../../public/assets/circle-information2.png'
 
-
 interface AddCardFormProp {
     showSucess: React.Dispatch<React.SetStateAction<boolean>> ;
     showError: React.Dispatch<React.SetStateAction<boolean>> ;
@@ -15,7 +14,6 @@ interface AddCardFormProp {
 const AddCardForm = ( {showSucess, showError} : AddCardFormProp ) => {
 
   return (
-
     <form>
         <div className='flex flex-col gap-10 p-8'>
                 <div className='flex flex-col gap-6'>
@@ -93,7 +91,7 @@ const AddCardForm = ( {showSucess, showError} : AddCardFormProp ) => {
                         <div className='w-5 h-5'>
                             <Image className='object-contain w-full h-full' src={circleInformation} alt={''} />
                         </div>
-                        <div className='text-[#FFFFFF] text-[13px] font-normal leading-[18px]'>Egirls will make a one-time charge of $0.10 when adding your payment card. The charges on your credit card statement will appear as "Egirls".</div>
+                        <div className='text-[#FFFFFF] text-[13px] font-normal leading-[18px]'>The charges on your credit card and banking statements will appear as "Persona Enterprises Inc."</div>
                     </div>
                     <div className='flex flex-col gap-2'>
                         <div className='flex items-start justify-center gap-4'>
@@ -103,14 +101,14 @@ const AddCardForm = ( {showSucess, showError} : AddCardFormProp ) => {
                             <Image className='w-[50px] h-[30px]' src={masterrCard} alt={''} />
                             <Image className='w-[50px] h-[30px]' src={visaCard} alt={''} />
                         </div>
-                        <div className='text-center text-[#515151] text-[14px] font-normal leading-[18px]'>Fenix International Limited, 9th Floor, 107 Cheapside, London, EC2V 6DN</div>
+                        {/* <div className='text-center text-[#515151] text-[14px] font-normal leading-[18px]'>Fenix International Limited, 9th Floor, 107 Cheapside, London, EC2V 6DN</div> */}
                     </div>
                 </div>
         </div>
         <div className='flex items-end justify-end px-8 py-6'>
             <button type='submit' className='px-5 py-[13px] flex justify-center items-center rounded-[14px] bg-[#5848BC] text-[#FFFFFF] text-[16px] font-bold leading-[22px]'>Add card</button>
-            <button className='px-5 py-[13px] ml-2 flex justify-center items-center rounded-[14px] bg-[#5848BC] text-[#FFFFFF] text-[16px] font-bold leading-[22px]' onClick={() => {showSucess(true)}}>Success</button>
-            <button className='px-5 py-[13px] ml-2 flex justify-center items-center rounded-[14px] bg-[#5848BC] text-[#FFFFFF] text-[16px] font-bold leading-[22px]' onClick={() => {showError(true)}}>Error</button> 
+            {/* <button className='px-5 py-[13px] ml-2 flex justify-center items-center rounded-[14px] bg-[#5848BC] text-[#FFFFFF] text-[16px] font-bold leading-[22px]' onClick={() => {showSucess(true)}}>Success</button>
+            <button className='px-5 py-[13px] ml-2 flex justify-center items-center rounded-[14px] bg-[#5848BC] text-[#FFFFFF] text-[16px] font-bold leading-[22px]' onClick={() => {showError(true)}}>Error</button>  */}
         </div>
     </form>
   )
