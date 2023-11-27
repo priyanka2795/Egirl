@@ -117,7 +117,9 @@ interface BannerProp {
   setUserDetails?: any;
   userDetails?: any;
   activeProfile:any;
-  bannerData:any
+  bannerData:any;
+  updateCharacterToggle:boolean;
+  setUpdateCharacterToggle:React.Dispatch<React.SetStateAction<boolean>>
   // setEditProfileModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const Banner: React.FC<BannerProp> = ({
@@ -129,7 +131,9 @@ const Banner: React.FC<BannerProp> = ({
   setUserDetails,
   userDetails,
   activeProfile,
-  bannerData
+  bannerData,
+  updateCharacterToggle,
+  setUpdateCharacterToggle
 }: // setEditProfileModal
 BannerProp) => {
   const [actionDivShow, setActionDivShow] = useState(false);
@@ -440,7 +444,7 @@ BannerProp) => {
               </div>
 
               <div className='mt-[8px] flex gap-[10px]'>
-                {userDetails?.location
+                {bannerData?.location
                   ? location.map((item, index) => {
                       return (
                         <div key={index} className='flex gap-[6px]'>
@@ -517,6 +521,8 @@ BannerProp) => {
           setUserDetails={setUserDetails}
           userDetails={userDetails}
           bannerData={bannerData}
+          setUpdateCharacterToggle={setUpdateCharacterToggle}
+          updateCharacterToggle={updateCharacterToggle}
         />
       )}
     </div>
