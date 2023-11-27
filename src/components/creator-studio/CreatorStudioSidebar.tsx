@@ -1,6 +1,6 @@
 //@ts-nocheck
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import avtar from '../../../public/assets/mica-chan-avatar-image.png';
 import arrowDown from '../../../public/assets/chevron-down24.png';
 // import ChartIcon from '../../../public/assets/Chart.svg';
@@ -34,6 +34,8 @@ import arrowLeftTooltip from '../../../public/assets/arrow-left-tooltip.png';
 import HoverModal from '@components/list/HoverModal';
 import userAdd from '../../../public/assets/user-plus1.png';
 import CreateCharacterModal from '@components/list/CreateCharacterModal';
+import Cookies from 'js-cookie';
+import { getAllCharacter } from 'services/services';
 
 interface CreatorStudioNavbarPropProp {
   shrinkSideBar: boolean;
@@ -46,7 +48,6 @@ interface CreatorStudioNavbarPropProp {
   setUserGuide: any;
   setIsTourOpen: any;
   UserGuide: any;
-  allCharacterData: any;
   activeProfile: any;
   setActiveProfile: any;
   setCreateCharacterData: any;
@@ -69,7 +70,6 @@ const CreatorStudioSidebar = ({
   setUserGuide,
   setIsTourOpen,
   UserGuide,
-  allCharacterData,
   activeProfile,
   setActiveProfile,
   setCreateCharacterData,
@@ -79,12 +79,23 @@ const CreatorStudioSidebar = ({
   const [sidebarModal, setSidebarModal] = useState<boolean>(false);
   const [moreOptionsModal, setMoreOptionsModal] = useState<boolean>(false);
   const [newCharacter, setNewCharacter] = useState<boolean>(false);
+  const [allCharacterData , setAllCharacterData] = useState<any>()
   const [createCharacter, setCreateCharacter] = useState<boolean>(false);
+  const token: any = Cookies.get('accessToken');
   // const [sideBarShrink, setSideBarShrink] = useState(false);
   const GuideStep1 = TourSteps[1].id;
   const GuideStep2 = TourSteps[2].id;
   const GuideStep3 = TourSteps[3].id;
   const GuideStep4 = TourSteps[4].id;
+  useEffect(()=>{
+    getAllCharacter(token)
+    .then((res:any)=>{
+      setAllCharacterData(res?.data)
+    })
+    .catch((err:any)=>{
+      console.log(err);
+    })
+  },[ UserGuide , activeProfile , createCharacterData ])
 
   // window.screenY()
   return (
@@ -117,7 +128,7 @@ const CreatorStudioSidebar = ({
                     shrinkSideBar === true ? '!hidden' : ''
                   }`}
                 >
-                  {bannerData ? bannerData?.username : 'Select Character'}
+                  {bannerData ? bannerData?.display_name : 'Select Character'}
                 </div>
               </div>
               <div className='mt-2 h-full'>
