@@ -104,12 +104,14 @@ const ImageGeneratorOption = ({
   const [tagState, setTagState] = useState<boolean>(false);
   const [openGenre, setOpenGenre] = React.useState<boolean>(false);
   const [openStyle, setOpenStyle] = React.useState<boolean>(false);
+  const [updateImgState, setUpdateImgState] = useState<boolean>(false)
   // Inpainting Modal
   const [inpaintingExample, setInpaintingExample] = useState<boolean>(false);
   const [selectImageModal, setSelectImageModal] = useState<boolean>(false);
   const [inpaintingModal, setInpaintingModal] = useState<boolean>(false);
   const [inpaintingCreated, setInpaintingCreated] = useState<boolean>(false);
   const [editInpainting, setEditInpainting] = useState<boolean>(false);
+  const [selectInPaintImg, setSelectInPaintImg] = useState<any>({media_id:"", media_url:""})
   // Posing Modal
   const [posing, setPosing] = useState<boolean>(false);
   const [poseExample, setPoseExample] = useState<boolean>(false);
@@ -130,7 +132,7 @@ const ImageGeneratorOption = ({
   const [promptHint, setPromptHint] = useState<string>('');
   const [negativePrompt, setNegativePrompt] = useState<string>('');
   const [savedDrawingImage, setSavedDrawingImage] = useState();
-
+console.log("promptTags0----",promptTags)
   const DeletePromptMenu = (item: string) => {
     setEditPromptMenu(
       editPromptMenu.filter((el: string, i: number) => el !== item)
@@ -143,7 +145,7 @@ const ImageGeneratorOption = ({
     if (e.key === 'Enter') {
       const value = e.target.value;
       if (!value.trim()) return;
-      setPromptTags([...promptTags, value]);
+      setPromptTags([...promptTags, {prompt_type:value, prompt_value:editPromptMenuIndex}]);
       setPromptHint('');
     } else if (e.key === 'Backspace' && promptHint === '') {
       // Backspace key pressed and promptHint is empty, edit the last tag
@@ -154,10 +156,16 @@ const ImageGeneratorOption = ({
       setPromptHint(lastTag);
     }
   }
-
-  const EditPromptData = (item: null) => {
+const [promptIndex,setPromptIndex] = useState<any>()
+  const EditPromptData = (item: null, index:number) => {
     setEditPrompt((prev) => (prev === item ? null : item));
+    setPromptIndex(index)
   };
+
+  const handleEditPromptMenu = (item:any)=>{
+    promptTags.filter((e:any, i:any)=> i === promptIndex )
+    setEditPromptMenuIndex(item)
+  }
 
   function removeTag(index: number) {
     setPromptTags(promptTags.filter((el: string, i: number) => i !== index));
@@ -233,19 +241,15 @@ const ImageGeneratorOption = ({
     }
   };
 
-  let promptValueObj: { promptType: string; promptValue: string };
-  const [promptValArr, setPromptValArr] = useState([] as any);
+  
+  console.log('selectInPaintImg---', selectInPaintImg,savedDrawingImage);
+  const svgString = `${savedDrawingImage}`;
+// Encode the SVG string to base64
+const base64SVG = btoa(svgString);
+// Create a base64 URL
+const base64URL = `data:image/svg+xml;base64,${base64SVG}`;
 
-  if (editPrompt && editPromptMenuIndex) {
-    promptValueObj = {
-      promptType: editPrompt,
-      promptValue: editPromptMenuIndex
-    };
-  }
-  useEffect(() => {
-    setPromptValArr([...promptValArr, promptValueObj]);
-  }, [editPromptMenuIndex]);
-  console.log('promptValArr---', promptValArr);
+console.log(base64URL);
   //====== prompt image api for image generation ========
   const token: any = Cookies.get('accessToken');
   const refreshTokenData: any = useAppSelector(
@@ -263,10 +267,10 @@ const ImageGeneratorOption = ({
       //------ inPainting image api ----
       const inPaintData = {
         base_image: {
-          media_id: 0,
-          media_url: 'string'
+          media_id: selectInPaintImg.media_id,
+          media_url: selectInPaintImg.media_url
         },
-        mask_image_base64_str: 'string',
+        mask_image_base64_str: savedDrawingImage ?  base64URL : "",
         prompt: promptTags.map((ele: string, index: number) => {
           return {
             prompt_id: index,
@@ -285,6 +289,7 @@ const ImageGeneratorOption = ({
       postInpaintImage(inPaintData, token)
         .then((res: any) => {
           console.log('inPaintImage res---', res);
+          setUpdateImgState(!updateImgState)
           if (res?.response?.status === 401) {
             dispatch(tokenRefresh());
           }
@@ -318,6 +323,7 @@ const ImageGeneratorOption = ({
       postPoseImage(poseData, token)
         .then((res: any) => {
           console.log('pose image res---', res);
+          setUpdateImgState(!updateImgState)
           if (res?.response?.status === 401) {
             dispatch(tokenRefresh());
           }
@@ -346,6 +352,7 @@ const ImageGeneratorOption = ({
       postPromptImage(promptData, token)
         .then((res: any) => {
           console.log('prompt image res---', res);
+          setUpdateImgState(!updateImgState)
           if (res?.response?.status === 401) {
             dispatch(tokenRefresh());
           }
@@ -371,7 +378,7 @@ useEffect(()=>{
 .catch((err)=>{
   console.log("get image generation err---",err)
 })
-},[])
+},[updateImgState,refreshTokenData])
 //---------------------------------------------------
  
 
@@ -434,24 +441,24 @@ useEffect(()=>{
                     <p className='text-[14px]'>Mika-chan</p>
                   </div>
                 )}
-                {promptTags.map((tag: null, index: number) => (
+                {promptTags.map((tag: any, index: number) => (
                   <div className='relative bg-transparent' key={index}>
                     <div
                       className={`flex items-center ${
-                        editPrompt === tag ? 'bg-[#403BAC]' : 'bg-[#FFFFFF29]'
+                        editPrompt === tag.prompt_type ? 'bg-[#403BAC]' : 'bg-[#FFFFFF29]'
                       } cursor-pointer gap-2 rounded-xl px-[10px] py-2`}
                       key={index}
-                      onClick={() => EditPromptData(tag)}
+                      onClick={() => EditPromptData(tag,index)}
                       onDragStart={(e) => dragStart(e, index)}
                       onDragEnter={(e) => dragEnter(e, index)}
                       onDragEnd={drop}
                       draggable
                     >
                       <Image src={Grid} className='w-full h-full' />
-                      <span className='text'>{tag}</span>
+                      <span className='text'>{tag.prompt_type}</span>
                       {/* <span className="cursor-pointer" onClick={() => removeTag(index)}>&times;</span> */}
                     </div>
-                    {editPrompt === tag && (
+                    {editPrompt === tag.prompt_type && (
                       <div className='absolute left-0 top-12 z-50 h-auto w-[243px] rounded-[14px] bg-[#1A1A1A]'>
                         <div className='m-4 flex items-center justify-between gap-[6px] rounded-[10px] bg-[#FFFFFF0D] px-3'>
                           <Image
@@ -477,7 +484,7 @@ useEffect(()=>{
                                     : ''
                                 } flex cursor-pointer items-center justify-between px-4 py-[10px]`}
                                 onClick={() => {
-                                  setEditPromptMenuIndex(items);
+                                  handleEditPromptMenu(items);
                                 }}
                               >
                                 <p>{items}</p>
@@ -786,6 +793,7 @@ useEffect(()=>{
           CloseModal={setSelectImageModal}
           SetInpaintingModal={setInpaintingModal}
           allImgData={allImgData}
+          setSelectInPaintImg = {setSelectInPaintImg}
         />
       )}
       {inpaintingModal && (

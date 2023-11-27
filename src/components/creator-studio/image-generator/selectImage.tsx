@@ -11,7 +11,8 @@ import InpaintingModals from './inpaintingModals';
 interface SelectImage {
   CloseModal: React.Dispatch<React.SetStateAction<boolean>>;
   SetInpaintingModal: React.Dispatch<React.SetStateAction<boolean>>;
-  allImgData:any
+  allImgData: any;
+  setSelectInPaintImg:any
 }
 
 const albumdata = [
@@ -40,10 +41,16 @@ const allImages = [
     img: AlbumFirst
   }
 ];
-function SelectImage({ CloseModal, SetInpaintingModal, allImgData }: SelectImage) {
+function SelectImage({
+  CloseModal,
+  SetInpaintingModal,
+  allImgData,
+  setSelectInPaintImg
+}: SelectImage) {
   const [toggle, setToggle] = useState<boolean>(true);
 
-  const SelectImg = () => {
+  const SelectImg = (media_id:string,media_url:string) => {
+    setSelectInPaintImg({media_id:media_id, media_url:media_url})
     SetInpaintingModal(true);
     CloseModal(false);
   };
@@ -71,7 +78,7 @@ function SelectImage({ CloseModal, SetInpaintingModal, allImgData }: SelectImage
             {albumdata.map((item, index) => (
               <div
                 className='relative h-[300px] w-[300px] cursor-pointer overflow-hidden rounded-xl'
-                onClick={() => SelectImg()}
+                // onClick={() => SelectImg("","")}
                 key={index}
               >
                 <Image
@@ -89,7 +96,7 @@ function SelectImage({ CloseModal, SetInpaintingModal, allImgData }: SelectImage
             ))}
           </div>
           <button
-            className='w-full rounded-xl bg-[#FFFFFF14] px-4 py-[10px] font-bold'
+            className='font-bold w-full rounded-xl bg-[#FFFFFF14] px-4 py-[10px]'
             onClick={() => setToggle(!toggle)}
           >
             Show all albums
@@ -99,25 +106,26 @@ function SelectImage({ CloseModal, SetInpaintingModal, allImgData }: SelectImage
               <p className='pb-3 font-semibold'>All photos</p>
               <div
                 className='grid grid-cols-2 gap-2'
-                onClick={() => SelectImg()}
+                // onClick={() => SelectImg()}
               >
-                {allImgData?.map((item:any, index:number) => (
-                  <div className='relative overflow-hidden cursor-pointer rounded-xl' key={index}>
-                    {
-                      item?.media?.map((e:any,i:number)=>{
-                        return(
-                          <Image
+                {allImgData?.map((item: any, index: number) =>
+                  item?.media?.map((e: any, i: number) => {
+                    return (
+                      <div
+                        className='relative overflow-hidden cursor-pointer rounded-xl'
+                        key={index}
+                      >
+                        <Image
                           className='object-cover w-full h-full'
                           src={Images2}
                           alt={''}
                           key={i}
+                          onClick={()=> SelectImg(e.media_id, e.media_url)}
                         />
-                        )
-                      })
-                    }
-                    
-                  </div>
-                ))}
+                      </div>
+                    );
+                  })
+                )}
               </div>
             </div>
           )}

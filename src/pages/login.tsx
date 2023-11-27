@@ -58,7 +58,7 @@ export default function SignIn({ SetFormStep }: SignIn) {
     setOtp(value);
   };
 
-  const handleSubmit = (values: any) => {
+  const handleSubmit = (values: any, { setSubmitting }: any) => {
     setErrorMsg('');
     userLogin(values)
       .then((res: any) => {
@@ -77,6 +77,9 @@ export default function SignIn({ SetFormStep }: SignIn) {
       })
       .catch((err) => {
         console.log('err----', err);
+      })
+      .finally(() => {
+        setSubmitting(false); // Set submitting to false to enable the button
       });
     // setSignInSteps(1);
     // let notify = {type:"ERROR", message:"response error"}
@@ -216,7 +219,7 @@ export default function SignIn({ SetFormStep }: SignIn) {
           )}
         </div>
       </SigninTemplate>
-      {isVisible && <Toast />}
+      {/* {isVisible && <Toast />} */}
       <ToastContainer
         position='bottom-center'
         pauseOnHover
