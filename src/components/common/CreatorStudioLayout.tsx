@@ -25,6 +25,8 @@ interface CreatorStudioLayoutProps {
   activeProfile: any;
   setBannerData: any;
   bannerData: any;
+  updateCharacterToggle:boolean;
+  setUpdateCharacterToggle:React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const CreatorStudioLayout = ({
@@ -44,7 +46,9 @@ const CreatorStudioLayout = ({
   setActiveProfile,
   activeProfile,
   setBannerData,
-  bannerData
+  bannerData,
+  updateCharacterToggle,
+  setUpdateCharacterToggle
 }: CreatorStudioLayoutProps) => {
   const [shrinkSideBar, setShrinkSideBar] = useState<boolean>(false);
   const [styleGenNext, setStyleGenNext] = useState<boolean>(false);
@@ -121,8 +125,6 @@ const CreatorStudioLayout = ({
             bannerData={bannerData}
             activeProfile={activeProfile}
             setCreateCharacterData={setCreateCharacterData}
-            setUserDetails={setUserDetails}
-            createCharacterData={createCharacterData}
             UserGuide={UserGuide}
             setUserGuide={setUserGuide}
           />
@@ -159,6 +161,8 @@ const CreatorStudioLayout = ({
                     activeProfile={activeProfile}
                     setActiveProfile={setActiveProfile}
                     bannerData={bannerData}
+                    setUpdateCharacterToggle={setUpdateCharacterToggle}
+                    updateCharacterToggle={updateCharacterToggle}
                   />
                 )}
               </>

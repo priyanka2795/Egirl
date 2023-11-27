@@ -23,7 +23,6 @@ function CreateCharacter({
   createCharacterData,
   setCreateCharacterData,
   UserGuide,
-  setUserDetails,
   setActiveProfile
 }: CreateCharacter) {
   const [createCharacter, setCreateCharacter] = useState<boolean>(false);
@@ -63,7 +62,6 @@ function CreateCharacter({
           setIsTourOpen={setIsTourOpen}
           setTourCount={setTourCount}
           UserGuide={UserGuide}
-          setUserDetails={setUserDetails}
           createCharacterData={createCharacterData}
           setActiveProfile={setActiveProfile}
         />

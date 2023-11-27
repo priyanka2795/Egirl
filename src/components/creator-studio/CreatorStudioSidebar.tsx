@@ -84,11 +84,12 @@ const CreatorStudioSidebar = ({
 
   const [createCharacter, setCreateCharacter] = useState<boolean>(false);
   const [welcomeModal, setWelcomeModal] = useState<boolean>(false);
+
+
   const handleNewCharacter = () => {
     setWelcomeModal(false)
     setCreateCharacter(true)
   }
-
   // const [sideBarShrink, setSideBarShrink] = useState(false);
   const GuideStep1 = TourSteps[1].id;
   const GuideStep2 = TourSteps[2].id;
@@ -145,9 +146,7 @@ const CreatorStudioSidebar = ({
           )}
           {/*  */}
           <div>
-            {!allCharacterData &&
-              !allCharacterData?.length &&
-              (shrinkSideBar ? (
+            {shrinkSideBar ? (
                 <div className='flex flex-col items-start self-stretch gap-2 pt-6 pb-2'>
                   <button
                     onClick={() => setWelcomeModal(true)}
@@ -168,7 +167,7 @@ const CreatorStudioSidebar = ({
                     </span>
                   </button>
                 </div>
-              ))}
+              )}
 
             {welcomeModal && (
               <CreateCharacterModal

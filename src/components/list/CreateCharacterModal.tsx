@@ -110,7 +110,6 @@ function CreateCharacterModal({
           </div>
         </div>
       </Modal>
-
     </>
   );
 }
