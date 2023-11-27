@@ -11,6 +11,7 @@ import AnalyticsIcon from './svg/AnalyticsIcon';
 import HomeActiveIcon from './svg/HomeActiveIcon';
 import blank from '../../components/creator-studio/svg/blank.svg';
 import CharacterAdd from './NewCharacter/CharacterAdd';
+import Cookies from 'js-cookie';
 
 interface SidebarModals {
   // shrinkSideBar: boolean;
@@ -22,20 +23,7 @@ interface SidebarModals {
   activeProfile:any
 }
 
-const sidebarModal = [
-  {
-    image: avatart1,
-    name: 'Mika-chan'
-  },
-  {
-    image: avatart2,
-    name: 'Character 2'
-  },
-  {
-    image: avatart3,
-    name: 'Character 3'
-  }
-];
+
 
 const SidebarModal = ({
   // shrinkSideBar,
@@ -44,6 +32,10 @@ const SidebarModal = ({
   setNewCharacter,allCharacterData,setActiveProfile,activeProfile
 }: SidebarModals) => {
   
+  const handleChange =(item:any)=>{
+    setActiveProfile?.(item?.id)
+    Cookies.set('character_id', item?.id)
+  }
   
 
   return (
@@ -75,17 +67,15 @@ const SidebarModal = ({
         </div>
       </div> */}
 
-      {sidebarModal.map((item, index) => {
-        return (
           <div
             // onClick={() => {
             //   setActiveProfile(item.name);
             // }}
-            key={index}>
+            >
             {/* {activeProfile === item.name ? ( */}
               {allCharacterData && allCharacterData?.length && allCharacterData?.map((item:any)=> {
                 return (
-                  <div onClick={()=>setActiveProfile(item)} className='flex px-4 py-[6px]'>
+                  <div onClick={()=> handleChange(item)} className='flex px-4 py-[6px]'>
                   <div className={`mt-[5px] flex w-full items-center justify-between ${activeProfile?.id === item?.id && 'rounded-full  bg-white/[0.08]'} py-2 pl-2 pr-[14px]`}>
                     <div className='flex gap-[10px]'>
                       <div className='w-8 h-8'>
@@ -96,7 +86,7 @@ const SidebarModal = ({
                         />
                       </div>
                       <div className='flex items-center text-[14px] font-normal leading-[18px] text-[#FFFFFF] '>
-                        {item?.username}
+                        {item?.display_name}
                       </div>
                     </div>
                     {activeProfile?.id == item?.id && <div className='w-4 h-4'>
@@ -118,8 +108,7 @@ const SidebarModal = ({
             //   </div>
             // )} */}
           </div>
-        );
-      })}
+     
 
       {/* <div className='flex px-4 py-[6px]'>
         <div className='flex justify-between w-full mt-[5px] pl-2 pr-[14px] py-2 rounded-full bg-white/[0.08]'>

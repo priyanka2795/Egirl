@@ -5,21 +5,21 @@ import userAddIcon from '../../../public/assets/user-plus.png';
 import CreateCharacterModal from './CreateCharacterModal';
 
 interface CreateCharacter {
-  SetUserGuide: any;
-  SetIsTourOpen: any;
+  setUserGuide: any;
+  setIsTourOpen: any;
   UserGuide: any;
   setTourCount: React.Dispatch<React.SetStateAction<number>>;
   setCreateCharacterData: any;
-  setUserDetails:any
+  setActiveProfile:any
 }
 
 function CreateCharacter({
-  SetUserGuide,
-  SetIsTourOpen,
+  setUserGuide,
+  setIsTourOpen,
   setTourCount,
   setCreateCharacterData,
   UserGuide,
-  setUserDetails
+  setActiveProfile
 }: CreateCharacter) {
   const [createCharacter, setCreateCharacter] = useState<boolean>(false);
   return (
@@ -45,12 +45,12 @@ function CreateCharacter({
       {createCharacter && (
         <CreateCharacterModal
           closeState={setCreateCharacter}
-          SetUserGuide={SetUserGuide}
-          SetIsTourOpen={SetIsTourOpen}
+          setUserGuide={setUserGuide}
+          setIsTourOpen={setIsTourOpen}
           setTourCount={setTourCount}
           setCreateCharacterData={setCreateCharacterData}
           UserGuide={UserGuide}
-          setUserDetails={setUserDetails}
+          setActiveProfile={setActiveProfile}
         />
       )}
     </>

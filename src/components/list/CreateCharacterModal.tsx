@@ -5,23 +5,23 @@ import CharacterAdd from '@components/creator-studio/NewCharacter/CharacterAdd';
 
 interface createCharacterProps {
   closeState?: React.Dispatch<React.SetStateAction<boolean>>|any;
-  SetUserGuide?: any;
-  SetIsTourOpen?: any;
+  setUserGuide?: any;
+  setIsTourOpen?: any;
   UserGuide?: any;
   // SetIsTourOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setTourCount?: React.Dispatch<React.SetStateAction<number>>;
   setCreateCharacterData?: any;
-  setUserDetails:any
+  setActiveProfile:any
 }
 
 function CreateCharacterModal({
   closeState,
-  SetUserGuide,
-  SetIsTourOpen,
+  setUserGuide,
+  setIsTourOpen,
   setCreateCharacterData,
   setTourCount,
   UserGuide,
-  setUserDetails
+  setActiveProfile
 }: createCharacterProps) {
   const [showVoiceRequest, setShowVoiceRequest] = useState(false);
   const [showNewCharacter, setShowNewCharacter] = useState(false);
@@ -127,11 +127,11 @@ function CreateCharacterModal({
         <CharacterAdd
           NewCharacterClose={setCreateCharacter}
           setCreateCharacterData={setCreateCharacterData}
-          SetUserGuide={SetUserGuide}
-          SetIsTourOpen={SetIsTourOpen}
+          setUserGuide={setUserGuide}
+          setIsTourOpen={setIsTourOpen}
           setTourCount={setTourCount}
           UserGuide={UserGuide}
-          setUserDetails={setUserDetails}
+          setActiveProfile={setActiveProfile}
         />
       )}
     </>

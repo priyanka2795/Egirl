@@ -13,7 +13,7 @@ interface CreatorStudio {
   IsOpen: any;
   OnClose: any;
   TourSteps: any;
-  SetIsTourOpen: any;
+  setIsTourOpen: any;
   tourCount: number;
   setTourCount: React.Dispatch<React.SetStateAction<number>>;
   setProfileInfoPage: any;
@@ -27,14 +27,18 @@ interface CreatorStudio {
   setUserGuide?: any;
   setCreateCharacterData:any;
   createCharacterData:any;
-  activeProfile:any
+  activeProfile:any;
+  setActiveProfile:any;
+  bannerData:any;
+  updateCharacterToggle:boolean;
+  setUpdateCharacterToggle:React.Dispatch<React.SetStateAction<boolean>>
 }
 const CreatorStudio = ({
   IsOpen,
   OnClose,
   TourSteps,
   tourCount,
-  SetIsTourOpen,
+  setIsTourOpen,
   setTourCount,
   setProfileInfoPage,
   setUserDetails,
@@ -47,7 +51,11 @@ const CreatorStudio = ({
   setUserGuide,
   setCreateCharacterData,
   createCharacterData,
-  activeProfile
+  activeProfile,
+  setActiveProfile,
+  bannerData,
+  updateCharacterToggle,
+  setUpdateCharacterToggle
 }: CreatorStudio) => {
   // const [UserGuide, setUserGuide] = useState(true);
 
@@ -56,16 +64,16 @@ const CreatorStudio = ({
   return (
     <>
       {
-      // UserGuide
+      UserGuide &&
       !activeProfile
        ? (
         <CreateCharacter
-          SetUserGuide={setUserGuide}
+          setUserGuide={setUserGuide}
           setCreateCharacterData={setCreateCharacterData}
-          SetIsTourOpen={SetIsTourOpen}
+          setIsTourOpen={setIsTourOpen}
           setTourCount={setTourCount}
           UserGuide={UserGuide}
-          setUserDetails={setUserDetails}
+          setActiveProfile={setActiveProfile}
         />
       ) : (
         <div className='mb-5'>
@@ -80,6 +88,9 @@ const CreatorStudio = ({
             userDetails={userDetails}
             setUserDetails={setUserDetails}
             activeProfile={activeProfile}
+            bannerData={bannerData}
+            setUpdateCharacterToggle={setUpdateCharacterToggle}
+            updateCharacterToggle={updateCharacterToggle}
             // setEditProfileModal={setEditProfileModal}
           />
           <div>
@@ -88,7 +99,7 @@ const CreatorStudio = ({
               OnClose={OnClose}
               TourSteps={TourSteps}
               tourCount={tourCount}
-              SetIsTourOpen={SetIsTourOpen}
+              setIsTourOpen={setIsTourOpen}
               setTourCount={setTourCount}
               setProfileInfoPage={setProfileInfoPage}
               btnSteps={btnSteps}
