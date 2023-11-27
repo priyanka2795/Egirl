@@ -1,6 +1,7 @@
 import CreatorStudioLayout from '@components/common/CreatorStudioLayout';
 import CreatorStudio from '@components/creator-studio';
 import ProfileInfoModal from '@components/list/ProfileInfoModal';
+import { all } from 'axios';
 import Cookies from 'js-cookie';
 import React, { useEffect, useState } from 'react';
 import { getAllCharacter, profileCharacter } from 'services/services';
@@ -22,7 +23,11 @@ const creatorStudio = () => {
   const [userDetails, setUserDetails] = useState();
   const [updateCharacterToggle , setUpdateCharacterToggle] = useState<boolean>(false)
 
-
+useEffect(()=>{
+  if(!activeProfile && allCharacterData){
+    setActiveProfile(allCharacterData[0]?.id)
+  }
+},[allCharacterData])
 
   useEffect(()=>{
     getAllCharacter(token)
@@ -45,9 +50,9 @@ const creatorStudio = () => {
     })
   },[activeProfile , updateCharacterToggle])
 
-  useEffect(()=>{
-   Cookies.set('character_id', activeProfile);
-  },[activeProfile])
+  // useEffect(()=>{
+  //  Cookies.set('character_id', activeProfile);
+  // },[activeProfile])
 
   return (
     <div>
