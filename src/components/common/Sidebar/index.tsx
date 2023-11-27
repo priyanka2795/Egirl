@@ -28,6 +28,7 @@ import AddCardActiveIcon from './svg/AddCardActiveIcon';
 import UserImg from './svg/user-img.svg';
 import MoreMenuOption from './MoreMenuOption';
 import UserDetailModal from './UserDetailModal';
+import Link from 'next/link';
 
 // sideBarClasses={'!w-[88px]'}
 // sideBarLogoClasses={'!hidden'}
@@ -39,7 +40,7 @@ type sideBarProp = {
   sideBarMenuText?: string;
   sideBarLogoClasses?: string;
   sideBarMenuArrowClasses?: string;
-  moreOptionItem?: React.Dispatch<React.SetStateAction<string>>;
+  moreOptionItem?: any;
   activeMoreOption?: string;
   activeItem?: any;
   // shrinkSidebar?: boolean;
@@ -83,6 +84,9 @@ sideBarProp) {
       sessionStorage.setItem('sideBarCollapse', 'true');
     }
   };
+
+
+  
   return (
     // border: border-r border-[#2F2F2F]
     <div
@@ -107,6 +111,7 @@ sideBarProp) {
           }`}
         >
           {/* <NavMenuIcon /> */}
+          <Link href={'#'}>
           <NavMenuArrow
             className={`${sideBarMenuArrowClasses} ${
               shrinkSidebar === 'true' ? 'rotate-180' : ''
@@ -114,6 +119,8 @@ sideBarProp) {
             onClick={handleSidebarWidth}
             // onClick={sideBarWidth}
           />
+          </Link>
+
         </div>
       </div>
 
@@ -165,7 +172,7 @@ sideBarProp) {
         />
         <div
           onClick={() => {
-            activeItem('Add Card'), moreOptionItem('');
+            activeItem('Add Card'); moreOptionItem('')
           }}
         >
           <SidebarMenuItem

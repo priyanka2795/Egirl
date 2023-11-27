@@ -12,7 +12,7 @@ import DotsHorizontal from '../../../../public/assets/dots-horizontal-white.png'
 import GiftCardEditModal from './giftCardEditModal';
 import GiftCategoryAction from './giftCategoryAction';
 import GiftCardDelete from './giftCardDelete';
-import { getGiftCategory, getGifts } from 'services/services';
+import { deleteGift, getGiftCategory, getGifts } from 'services/services';
 import Cookies from 'js-cookie';
 import { useAppDispatch, useAppSelector } from 'redux/hooks';
 import { tokenRefresh } from 'redux/api/RefreshTokenApi';
@@ -43,6 +43,8 @@ function Gifts() {
   const [selectedCategoryGifts, setSelectedCategoryGifts] = useState<any>();
   const [selectedGiftData, setSelectedGiftData] = useState<any>();
   const [updateGift, setUpdateGift] = useState(false);
+  const [deleteGiftToggle , setDeleteGiftToggle] = useState<boolean>(false)
+
 
   const EditGift = (val: number, data: any) => {
     setSelectedGiftData(data);
@@ -50,15 +52,19 @@ function Gifts() {
     setGiftEditPopup(val);
   };
 
-  useEffect(() => {
-    console.log(selectedGiftData, '????giftData');
-  }, [selectedGiftData]);
-
   const DeleteGiftCardModal = (
     index: number,
     num: number,
-    giftName: string
+    data: any
   ) => {
+ deleteGift(characterId , [data?.gift_id] , token)
+ .then((res:any)=>{
+  console.log(res);
+  setDeleteGiftToggle(!deleteGiftToggle)
+ })
+ .then((err:any)=>{
+  console.log(err);
+ })
     setGiftCard(true);
     setGiftEditPopup(num);
     setDeleteBtnStep(1);
@@ -126,7 +132,7 @@ function Gifts() {
       .catch((err: any) => {
         console.log(err);
       });
-  }, [selectedCategoryId, updateGift]);
+  }, [selectedCategoryId, updateGift , deleteGiftToggle]);
 
   return (
     <>
@@ -141,7 +147,11 @@ function Gifts() {
         </button>
       </div>
 
-      {giftsView ? (
+      {
+      // giftsView
+     ( giftCategory && giftCategory?.length)
+
+       ? (
         <>
           <GiftCategoryAction
             AddCategory={addCategory}

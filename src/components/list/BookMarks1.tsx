@@ -108,7 +108,11 @@ const BookMarks = () => {
     .catch((err)=>{
       console.log("bookmarked err---", err)
     })
-  },[refreshTokenData, router.pathname])
+  },[refreshTokenData, router.pathname]);
+
+
+  const sidebarCollapse =  sessionStorage.getItem('sideBarCollapse');
+
   return (
     <>
       <div className='flex flex-col gap-6'>
@@ -139,7 +143,7 @@ const BookMarks = () => {
             />
           </div>
         </div>
-        <div className='grid w-full grid-cols-3 gap-4'>
+        <div className={`grid w-full ${sidebarCollapse? 'grid-cols-4':'grid-cols-3'} gap-4`}>
           {userFrame.map((item,index) => {
             return (
               

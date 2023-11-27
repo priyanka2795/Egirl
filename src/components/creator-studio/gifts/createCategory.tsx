@@ -11,9 +11,9 @@ interface CreateCategory {
   CategoryClose: React.Dispatch<React.SetStateAction<boolean>>;
   Steps?: any;
   Previous?: any;
-  AddCategory?: string[];
-  SetCategory?: React.Dispatch<React.SetStateAction<string[]>>;
-  setCreateCategoryToggle?:React.Dispatch<React.SetStateAction<boolean>>,
+  AddCategory?: string[]|any;
+  SetCategory?: React.Dispatch<React.SetStateAction<string[]>>|any;
+  setCreateCategoryToggle?:React.Dispatch<React.SetStateAction<boolean>>|any,
   createCategoryToggle?:boolean
 }
 const CreateCategory = ({
@@ -35,7 +35,7 @@ const CreateCategory = ({
   };
 
 
-  const FindData = AddCategory.find((items) => items === inputvalue);
+  const FindData = AddCategory.find((items:any) => items === inputvalue);
 
   const onSubmit = async () => {
     if (inputvalue === '') {

@@ -67,7 +67,7 @@ const Nav = ({ setBetaAccess, setSideNav }: Props) => {
 
             <button className='justify-center rounded-[12px] bg-[#5848BC] px-[10px] py-[10px] transition duration-100 hover:bg-[#4D37DA] xs:hidden sm:hidden md:flex md:items-center lg:flex lg:w-[80px] lg:items-center'>
               <Link href='/login'>
-                <span className='text-[32px] font-[500] text-white hover:text-[#5848BC] hover:underline hover:decoration-[#5848BC] hover:underline-offset-8 lg:text-[16px]'>
+                <span className='text-[32px] font-[500] text-white lg:text-[16px]'>
                   Login
                 </span>
               </Link>
@@ -75,7 +75,7 @@ const Nav = ({ setBetaAccess, setSideNav }: Props) => {
 
             <button className='justify-center rounded-[12px] bg-[#5848BC] px-[10px] py-[10px] transition duration-100 hover:bg-[#4D37DA] xs:hidden sm:hidden md:flex md:items-center lg:flex lg:w-[80px] lg:items-center'>
               <Link href='/signup'>
-                <span className='text-[32px] font-[500] text-white hover:text-[#5848BC] hover:underline hover:decoration-[#5848BC] hover:underline-offset-8 lg:text-[16px]'>
+                <span className='text-[32px] font-[500] text-white lg:text-[16px]'>
                   Sign Up
                 </span>
               </Link>

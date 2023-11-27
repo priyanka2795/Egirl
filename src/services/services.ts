@@ -65,23 +65,25 @@ export const getBookMarked = (page:number, count:number, token:string | null) =>
 
 // creator studio api
 
-export const updateCharacter = (data:any , token : string | null)=> putApiWithToken('/studio/character' , data , token )
+export const getAllCharacter = (token:string|null) => getApiWithToken('/studio/character/get_all_characters' , token)
 
-export const postCharacter = (data:any , token:any) => postApiWithToken('/studio/character' , data , token)
+export const updateCharacter = (data:any , token : string | null)=> putApiWithToken('/studio/character/update_character' , data , token )
+
+export const postCharacter = (data:any , token:any) => postApiWithToken('/studio/character/create_character' , data , token)
 
 export const updateCharacterPersonality = (data:any , token : string | null)=> putApiWithToken('/studio/character/personality' , data , token)
 
-export const postCharacterPersonality = (data:any) => postApi('/studio/character/personality' , data)
+export const postCharacterPersonality = (data:any , token:string|null) => postApiWithToken('/studio/character/create_personality' , data , token)
 
-export const getGifts = (token:string|null)=> getApiWithToken('/studio/gift'  , token) 
+export const getGifts = (gift_category_id:any , token:string|null)=> getApiWithToken(`/studio/gift/fetch_gifts/${gift_category_id}`  , token) 
 
-export const updateGifts = (data:any , token : string | null) => putApiWithToken('/studio/gift' , data , token)
+export const updateGifts = (data:any , token : string | null) => putApiWithToken('/studio/gift/update_gift' , data , token)
 
-export const postGifts = (data:any , token : string|null) => postApiWithToken('/studio/gift' , data , token)
+export const postGifts = (data:any , token : string|null) => postApiWithToken('/studio/gift/create_gift' , data , token)
 
-export const deleteGift = (data:any)=> deleteApi('/studio/gift' , data)
+export const deleteGift = (character_id:string , data:any , token:any)=> postApiWithToken(`/studio/gift/delete_gift/${character_id}` , data , token)
 
-export const getGiftCategory = (token:string|null) => getApiWithToken('/studio/gift/category'  , token)
+export const getGiftCategory = (character_id:string|null , token:string|null) => getApiWithToken(`/studio/gift/category/${character_id}`  , token)
 
 export const updateGiftCategory = (data:any , token : string | null) => putApiWithToken('/studio/gift/category' , data , token)
 

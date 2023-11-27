@@ -21,48 +21,52 @@ const galleryArray = [
   {
     id: 1,
     filterText: 'All',
-    filterImg: userProfileImg
+    userProfileImg
   },
   {
     id: 2,
-    filterText: 'Anime',
-    filterImg: filterImg1
+    filterText: 'Anime'
   },
   {
     id: 3,
-    filterText: 'Furry',
-    filterImg: filterImg2
+    filterText: 'Furry'
   },
   {
     id: 4,
-    filterText: 'Pokemon',
-    filterImg: filterImg1
+    filterText: ' AI Character'
   },
   {
     id: 5,
-    filterText: 'Catgirl',
-    filterImg: filterImg2
+    filterText: 'Catgirl'
   },
   {
     id: 6,
-    filterText: 'Jacket',
-    filterImg: filterImg3
+    filterText: 'Jacket'
   },
   {
     id: 7,
-    filterText: 'AI Character',
-    filterImg: filterImg2
+    filterText: 'Pokemon'
   },
   {
     id: 8,
-    filterText: 'AI Character',
-    filterImg: filterImg2
+    filterText: 'AI Character'
   },
   {
     id: 9,
-    filterText: 'Furry',
-    filterImg: filterImg3
-  }
+    filterText: 'Furry'
+  },
+  {
+    id: 10,
+    filterText: 'All'
+  },
+  {
+    id: 11,
+    filterText: 'Pokemon'
+  },
+  {
+    id: 12,
+    filterText: 'Catgirl'
+  },
 ];
 
 interface GalleryTabFilterProps {
@@ -99,6 +103,7 @@ const GalleryTabFilter = ({
     })
   },[])
 
+  
   const settings = {
     dots: true,
     infinite: false,
@@ -120,29 +125,26 @@ const GalleryTabFilter = ({
     });
   }, []);
 
-
-
   return (
     <>
       {singleProfileState === false ? (
         <>
-          <div className='flex w-full px-8 mt-8 mb-8'>
+          <div className='flex w-full px-8 my-8'>
             <Slider
               {...settings}
               ref={sliderRef}
-              className='flex w-full explore-gallery-filter'
+              className='flex w-full explore-gallery-filter marketplace-slider'
             >
               {galleryArray.map((items, index) => {
                 return (
                   <div
                     onClick={(e) => handleSelectedFilter(items.filterText)}
-                    // onWheel={(e) => sliderScroll(e)}
                     key={index}
-                    className={`list-last-item relative z-10 !flex w-max cursor-pointer items-center justify-start gap-2 rounded-full last:mr-0 px-4 py-3  ${
-              selectedFilter === items.filterText
-                ? '!bg-[#5848BC]'
-                : 'bg-white bg-opacity-10 '
-            } ${items.id === 7 && 'filter-bg-gradient'}`}
+                    className={`list-last-item relative z-10 !flex w-max cursor-pointer items-center justify-start gap-2 rounded-full px-4 py-3 last:mr-0  ${
+                      selectedFilter === items.filterText
+                        ? '!bg-[#5848BC]'
+                        : 'bg-white bg-opacity-10 '
+                    } ${items.id === 7 && 'filter-bg-gradient'}`}
                   >
                     
 

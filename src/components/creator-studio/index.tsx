@@ -25,6 +25,9 @@ interface CreatorStudio {
   setActiveStep?: any;
   UserGuide?: any;
   setUserGuide?: any;
+  setCreateCharacterData:any;
+  createCharacterData:any;
+  activeProfile:any
 }
 const CreatorStudio = ({
   IsOpen,
@@ -41,19 +44,28 @@ const CreatorStudio = ({
   activeStep,
   setActiveStep,
   UserGuide,
-  setUserGuide
+  setUserGuide,
+  setCreateCharacterData,
+  createCharacterData,
+  activeProfile
 }: CreatorStudio) => {
   // const [UserGuide, setUserGuide] = useState(true);
 
+  
+
   return (
     <>
-      {UserGuide ? (
+      {
+      // UserGuide
+      !activeProfile
+       ? (
         <CreateCharacter
           SetUserGuide={setUserGuide}
-          setUserDetails={setUserDetails}
+          setCreateCharacterData={setCreateCharacterData}
           SetIsTourOpen={SetIsTourOpen}
           setTourCount={setTourCount}
           UserGuide={UserGuide}
+          setUserDetails={setUserDetails}
         />
       ) : (
         <div className='mb-5'>
@@ -67,6 +79,7 @@ const CreatorStudio = ({
             component={'CreatorStudioProfile'}
             userDetails={userDetails}
             setUserDetails={setUserDetails}
+            activeProfile={activeProfile}
             // setEditProfileModal={setEditProfileModal}
           />
           <div>

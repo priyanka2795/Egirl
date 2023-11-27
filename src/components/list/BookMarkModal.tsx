@@ -40,15 +40,15 @@ const settings = {
 
 interface BookMarkModalProp {
   closeModalState: any;
-  postId: number;
-  postUpdate: boolean;
-  setPostUpdate: any;
-  commentsNumber: string;
-  heartsNumber: string;
-  bookmarksActive: boolean;
-  name: string;
-  username: string;
-  postText: string;
+  postId?: number;
+  postUpdate?: boolean;
+  setPostUpdate?: any;
+  commentsNumber?: string;
+  heartsNumber?: string;
+  bookmarksActive?: boolean;
+  name?: string;
+  username?: string;
+  postText?: string;
 }
 const BookMarkModal = ({
   closeModalState,
@@ -370,8 +370,8 @@ const BookMarkModal = ({
               <textarea
                 name=''
                 id=''
-                cols='36'
-                rows='2'
+                cols={36}
+                rows={2}
                 value={textAreaCount}
                 maxLength={160}
                 onChange={(e) => setTextAreaTotal(e.target.value)}

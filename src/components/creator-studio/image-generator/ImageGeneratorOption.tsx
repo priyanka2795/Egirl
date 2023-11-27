@@ -387,7 +387,7 @@ useEffect(()=>{
               <div className='flex gap-3'>
                 <div
                   onClick={handleOpenGenre}
-                  className='flex w-[300px] items-center justify-between rounded-[14px] bg-white/[0.08] px-4 py-3'
+                  className='flex w-[300px] items-center justify-between rounded-[14px] bg-white/[0.08] px-4 py-3 cursor-pointer'
                 >
                   <p className='font-normal text-[15px] leading-6 text-[#979797]'>
                     Genre
@@ -617,6 +617,8 @@ useEffect(()=>{
                         dangerouslySetInnerHTML={{
                           __html: `     ${savedDrawingImage}       `
                         }}
+                        className='overflow-hidden rounded-xl'
+                        
                       />
                       {/* <img
                         src={SavedDrawingImage || ''}
@@ -792,6 +794,7 @@ useEffect(()=>{
           SetInpaintingCreated={setInpaintingCreated}
           EditInpainting={editInpainting}
           SavedDrawingImage={setSavedDrawingImage}
+          setSelectImageModal={setSelectImageModal}
         />
       )}
 

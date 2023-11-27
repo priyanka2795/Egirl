@@ -4,22 +4,24 @@ import CloseIcon from '../../../public/assets/svgImages/close-icon.svg';
 import CharacterAdd from '@components/creator-studio/NewCharacter/CharacterAdd';
 
 interface createCharacterProps {
-  closeState?: React.Dispatch<React.SetStateAction<boolean>>;
+  closeState?: React.Dispatch<React.SetStateAction<boolean>>|any;
   SetUserGuide?: any;
   SetIsTourOpen?: any;
   UserGuide?: any;
   // SetIsTourOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setTourCount?: React.Dispatch<React.SetStateAction<number>>;
-  setUserDetails?: any;
+  setCreateCharacterData?: any;
+  setUserDetails:any
 }
 
 function CreateCharacterModal({
   closeState,
   SetUserGuide,
   SetIsTourOpen,
-  setUserDetails,
+  setCreateCharacterData,
   setTourCount,
-  UserGuide
+  UserGuide,
+  setUserDetails
 }: createCharacterProps) {
   const [showVoiceRequest, setShowVoiceRequest] = useState(false);
   const [showNewCharacter, setShowNewCharacter] = useState(false);
@@ -124,11 +126,12 @@ function CreateCharacterModal({
       {createCharacter && (
         <CharacterAdd
           NewCharacterClose={setCreateCharacter}
-          setUserDetails={setUserDetails}
+          setCreateCharacterData={setCreateCharacterData}
           SetUserGuide={SetUserGuide}
           SetIsTourOpen={SetIsTourOpen}
           setTourCount={setTourCount}
           UserGuide={UserGuide}
+          setUserDetails={setUserDetails}
         />
       )}
     </>
