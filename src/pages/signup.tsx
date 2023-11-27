@@ -33,7 +33,6 @@ const initialValues = {
   email: '',
   verifyemail: '',
   password: '',
-  // phoneNumber: ''
 };
 export default function SignUp() {
   const router = useRouter();
@@ -64,14 +63,13 @@ export default function SignUp() {
     );
   };
 
-  const handleSubmit = (values: any) => {
+  const handleSubmit = (values: any, { setSubmitting }: any) => {
     setErrorMsg('');
     // You can handle the form data submission here
     let data = {
       username: values.username,
       email: values.email,
       password: values.password,
-      // phone: '1234567890'
     };
     userSignUp(data)
       .then((res: any) => {
@@ -90,6 +88,9 @@ export default function SignUp() {
       })
       .catch((err) => {
         console.log('sign up err---', err);
+      })
+      .finally(() => {
+        setSubmitting(false); // Set submitting to false to enable the button
       });
   };
 
@@ -211,9 +212,13 @@ export default function SignUp() {
                             {errors.password ? <CrossIcon /> : <CheckedIcon />}
                             contains at least 8 characters
                           </li>
+                          <li className='flex items-center mb-2'>
+                            {errors.password ? <CrossIcon /> : <CheckedIcon />}
+                            contains at least one uppercase letter
+                          </li>
                           <li className='flex items-center'>
                             {errors.password ? <CrossIcon /> : <CheckedIcon />}
-                            contains at least one number (0-9) or a symbol
+                            contains at least one symbol
                           </li>
                         </ul>
                       </div>

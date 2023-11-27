@@ -30,6 +30,7 @@ interface InpaintingModals {
   EditInpainting: boolean;
   SavedDrawingImage: any;
   setSelectImageModal?:React.Dispatch<React.SetStateAction<boolean>>;
+  selectInPaintImg:any
 }
 interface CustomCanvasRect extends CanvasRect {
   eraseAll(): void;
@@ -38,7 +39,7 @@ const InpaintingModals = ({
   CloseInpaintingModal,
   SetInpaintingCreated,
   EditInpainting,
-  SavedDrawingImage,setSelectImageModal
+  SavedDrawingImage,setSelectImageModal,selectInPaintImg
 }: InpaintingModals) => {
   const [brushSize, setBrushSize] = useState<number[]>([10]);
   const [brushSizeToggle, setBrushSizeToggle] = useState<boolean>(false);
