@@ -84,11 +84,11 @@ const MarketPlaceSlider = () => {
   }, []);
 
   return (
-    <div className='px-3 my-6 '>
+    <div className='w-full px-3 my-6'>
       <Slider
         {...settings}
         ref={sliderRef}
-        className='explore-gallery-filter marketplace-slider flex w-[993px]'
+        className='explore-gallery-filter marketplace-slider flex w-[993px] w-full'
       >
         {galleryArray.map((items) => {
           return (
