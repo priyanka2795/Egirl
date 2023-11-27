@@ -22,20 +22,7 @@ interface SidebarModals {
   activeProfile:any
 }
 
-const sidebarModal = [
-  {
-    image: avatart1,
-    name: 'Mika-chan'
-  },
-  {
-    image: avatart2,
-    name: 'Character 2'
-  },
-  {
-    image: avatart3,
-    name: 'Character 3'
-  }
-];
+
 
 const SidebarModal = ({
   // shrinkSideBar,
@@ -75,13 +62,11 @@ const SidebarModal = ({
         </div>
       </div> */}
 
-      {sidebarModal.map((item, index) => {
-        return (
           <div
             // onClick={() => {
             //   setActiveProfile(item.name);
             // }}
-            key={index}>
+            >
             {/* {activeProfile === item.name ? ( */}
               {allCharacterData && allCharacterData?.length && allCharacterData?.map((item:any)=> {
                 return (
@@ -118,8 +103,7 @@ const SidebarModal = ({
             //   </div>
             // )} */}
           </div>
-        );
-      })}
+     
 
       {/* <div className='flex px-4 py-[6px]'>
         <div className='flex justify-between w-full mt-[5px] pl-2 pr-[14px] py-2 rounded-full bg-white/[0.08]'>

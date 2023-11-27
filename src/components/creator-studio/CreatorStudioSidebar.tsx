@@ -46,13 +46,12 @@ interface CreatorStudioNavbarPropProp {
   setUserGuide: any;
   setIsTourOpen: any;
   UserGuide: any;
-  allCharacterData:any;
-  activeProfile:any;
-  setActiveProfile:any;
-  setCreateCharacterData:any;
-  setUserDetails:any;
-  createCharacterData:any;
-  bannerData:any
+  allCharacterData: any;
+  activeProfile: any;
+  setActiveProfile: any;
+  setCreateCharacterData: any;
+  createCharacterData: any;
+  bannerData: any;
 }
 
 interface CreateCharacter {
@@ -70,7 +69,6 @@ const CreatorStudioSidebar = ({
   setUserGuide,
   setIsTourOpen,
   UserGuide,
-  setUserDetails,
   allCharacterData,
   activeProfile,
   setActiveProfile,
@@ -101,77 +99,75 @@ const CreatorStudioSidebar = ({
             shrinkSideBar !== true ? 'mx-3 max-w-[276px] ' : 'mx-2'
           }`}
         >
-          {
-            allCharacterData && allCharacterData?.length && <div
-            className='flex cursor-pointer items-center justify-between py-[14px] pl-3 pr-4'
-            onClick={() => setSidebarModal(!sidebarModal)}
-          >
-            <div className='relative flex items-center w-full gap-2'>
-              <div className='h-[32px] w-[32px]'>
-                <Image
-                  src={avtar}
-                  alt=''
-                  className='h-[32px] w-[32px] rounded-[100px] object-cover'
+          {allCharacterData && allCharacterData?.length > 0 ? (
+            <div
+              className='flex cursor-pointer items-center justify-between py-[14px] pl-3 pr-4'
+              onClick={() => setSidebarModal(!sidebarModal)}
+            >
+              <div className='relative flex w-full items-center gap-2'>
+                <div className='h-[32px] w-[32px]'>
+                  <Image
+                    src={avtar}
+                    alt=''
+                    className='h-[32px] w-[32px] rounded-[100px] object-cover'
+                  />
+                </div>
+                <div
+                  className={`text-[15px] font-semibold leading-5 text-white max-[1279px]:!hidden ${
+                    shrinkSideBar === true ? '!hidden' : ''
+                  }`}
+                >
+                  {bannerData ? bannerData?.username : 'Select Character'}
+                </div>
+              </div>
+              <div className='mt-2 h-full'>
+                <Image src={arrowDown} alt='' />
+              </div>
+              {sidebarModal && (
+                <SidebarModal
+                  setSidebarModal={setSidebarModal}
+                  setNewCharacter={setNewCharacter}
+                  allCharacterData={allCharacterData}
+                  setActiveProfile={setActiveProfile}
+                  activeProfile={activeProfile}
                 />
-              </div>
-              <div
-                className={`text-[15px] font-semibold leading-5 text-white max-[1279px]:!hidden ${
-                  shrinkSideBar === true ? '!hidden' : ''
-                }`}
+              )}
+            </div>
+          ) : shrinkSideBar ? (
+            <div className='flex flex-col items-start gap-2 self-stretch pb-2 pt-6'>
+              <button
+                onClick={() => setCreateCharacter(true)}
+                className='flex h-[42px] w-[45px] items-center justify-center gap-1.5 self-stretch rounded-xl bg-[#5848BC] px-2 py-2.5'
               >
-                {bannerData ? bannerData?.username : "Select Character"}
-              </div>
+                <Image src={userAdd} alt='' className='h-[25px] w-[25px]' />
+              </button>
             </div>
-            <div className='h-full mt-2'>
-              <Image src={arrowDown} alt='' />
+          ) : (
+            <div className='flex flex-col items-start gap-2 self-stretch px-6 pb-2 pt-6 '>
+              <button
+                onClick={() => setCreateCharacter(true)}
+                className='flex h-auto w-full items-center justify-center gap-1.5 self-stretch rounded-xl bg-[#5848BC] px-4 py-2.5'
+              >
+                <Image src={userAdd} alt='' className='h-[18px] w-[18px]' />
+                <span className='normal text-sm font-semibold leading-5'>
+                  Create character
+                </span>
+              </button>
             </div>
-            {sidebarModal && (
-              <SidebarModal
-                setSidebarModal={setSidebarModal}
-                setNewCharacter={setNewCharacter}
-                allCharacterData={allCharacterData}
-                setActiveProfile={setActiveProfile}
-          activeProfile={activeProfile}
-              />
-            )}
-          </div>
-          }
+          )}
           {/*  */}
 
-          {
-            !allCharacterData && !allCharacterData?.length && (shrinkSideBar ? (
-              <div className='flex flex-col items-start self-stretch gap-2 pt-6 pb-2'>
-                <button
-                  onClick={() => setCreateCharacter(true)}
-                  className='flex h-[42px] w-[45px] items-center justify-center gap-1.5 self-stretch rounded-xl bg-[#5848BC] px-2 py-2.5'
-                >
-                  <Image src={userAdd} alt='' className='h-[25px] w-[25px]' />
-                </button>
-              </div>
-            ) : (
-              <div className='flex flex-col items-start self-stretch gap-2 px-6 pt-6 pb-2 '>
-                <button
-                  onClick={() => setCreateCharacter(true)}
-                  className='flex h-auto w-full items-center justify-center gap-1.5 self-stretch rounded-xl bg-[#5848BC] px-4 py-2.5'
-                >
-                  <Image src={userAdd} alt='' className='h-[18px] w-[18px]' />
-                  <span className='text-sm font-semibold leading-5 normal'>
-                    Create character
-                  </span>
-                </button>
-              </div>
-            ))
-          }
+          {/* {
+            !allCharacterData && !allCharacterData?.length && 
+          } */}
           {createCharacter && (
             <CreateCharacterModal
               closeState={setCreateCharacter}
               setUserGuide={setUserGuide}
               setIsTourOpen={setIsTourOpen}
               setTourCount={setTourCount}
-              setUserDetails={setUserDetails}
               UserGuide={UserGuide}
               setCreateCharacterData={setCreateCharacterData}
-              createCharacterData={createCharacterData}
             />
           )}
 

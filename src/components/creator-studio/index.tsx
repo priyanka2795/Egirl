@@ -29,7 +29,9 @@ interface CreatorStudio {
   createCharacterData:any;
   activeProfile:any;
   setActiveProfile:any;
-  bannerData:any
+  bannerData:any;
+  updateCharacterToggle:boolean;
+  setUpdateCharacterToggle:React.Dispatch<React.SetStateAction<boolean>>
 }
 const CreatorStudio = ({
   IsOpen,
@@ -51,7 +53,9 @@ const CreatorStudio = ({
   createCharacterData,
   activeProfile,
   setActiveProfile,
-  bannerData
+  bannerData,
+  updateCharacterToggle,
+  setUpdateCharacterToggle
 }: CreatorStudio) => {
   // const [UserGuide, setUserGuide] = useState(true);
 
@@ -69,7 +73,6 @@ const CreatorStudio = ({
           setIsTourOpen={setIsTourOpen}
           setTourCount={setTourCount}
           UserGuide={UserGuide}
-          setUserDetails={setUserDetails}
           setActiveProfile={setActiveProfile}
         />
       ) : (
@@ -86,6 +89,8 @@ const CreatorStudio = ({
             setUserDetails={setUserDetails}
             activeProfile={activeProfile}
             bannerData={bannerData}
+            setUpdateCharacterToggle={setUpdateCharacterToggle}
+            updateCharacterToggle={updateCharacterToggle}
             // setEditProfileModal={setEditProfileModal}
           />
           <div>
