@@ -10,7 +10,7 @@ interface HoverModalProp {
   onClose: any;
   tourSteps: any;
   tourCount: number;
-  SetIsTourOpen?: any;
+  setIsTourOpen?: any;
   setTourCount: React.Dispatch<React.SetStateAction<number>>;
 }
 
@@ -19,7 +19,7 @@ const HoverModal = ({
   onClose,
   tourSteps,
   tourCount,
-  SetIsTourOpen,
+  setIsTourOpen,
   setTourCount
 }: HoverModalProp) => {
   const handleNextStep = () => {
