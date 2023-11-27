@@ -14,7 +14,7 @@ const ErrorPage = ({ closeErrorPage }: errorPageProp) => {
 
         <div className=''>
             <div className='flex flex-col items-center justify-center gap-10 p-8 grow'>
-                <div className='flex flex-col items-center justify-center gap-4'>
+                <div className='flex flex-col items-center justify-center gap-4'  style={{height: 'calc(100vh - 165px)'}}>
                     <div className='flex justify-center items-center pt-[26px] pb-6 px-6 rounded-full bg-[#FF5336]/[0.16]'>
                         <Image className='w-8 h-8' src={crossIconRed} alt={''} />
                     </div>
@@ -28,8 +28,8 @@ const ErrorPage = ({ closeErrorPage }: errorPageProp) => {
                 </div>
             </div>
 
-            <div className='grid grid-cols-2 gap-3 py-6'>
-                <button className='px-5 py-[13px] flex justify-center items-center rounded-[14px] bg-[#FFFFFF14] text-[#FFFFFF] text-[16px] font-bold leading-[22px]' onClick={()=>router.push('/home')} >Close</button>
+            <div className='flex items-end justify-end gap-5 pl-5 pr-5'>
+                <button className='px-5 py-[13px] flex justify-center items-center rounded-[14px] bg-[#FFFFFF14] text-[#FFFFFF] text-[16px] font-bold leading-[22px]' onClick={()=> closeErrorPage(false)} >Close</button>
                 <button className='px-5 py-[13px] flex justify-center items-center rounded-[14px] bg-[#5848BC] text-[#FFFFFF] text-[16px] font-bold leading-[22px]' onClick={() => closeErrorPage(false)}>Try again</button>
             </div>
         </div>

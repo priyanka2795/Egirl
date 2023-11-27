@@ -17,7 +17,7 @@ const SuccessPage = (
   return (
 
     <div className='flex flex-col bg-[#121212] w-full h-inherit'>
-      <div className='flex flex-col items-center justify-center gap-10 p-8 grow'>
+      <div className='flex flex-col items-center justify-center gap-10 p-8 grow' style={{height: 'calc(100vh - 162px)'}}>
         <div className='flex flex-col items-center gap-4'>
           <div className='flex items-center justify-center pt-[26px] pb-6 px-6 rounded-full bg-[#5AD02E]/[0.16]'>
             <Image className='w-8 h-8' src={greenCheck} alt={''} />
@@ -31,10 +31,10 @@ const SuccessPage = (
         </div>
       </div>
 
-      <div className=''>
+      <div className='flex items-end justify-end px-8 py-6'>
         {/* flex items-end justify-end px-8 py-6 */}
-        {/* <button className='px-5 py-[13px] flex justify-center items-center rounded-[14px] bg-[#5848BC] text-[#FFFFFF] text-[16px] font-bold leading-[22px]' onClick={() => closeSuccessPage(false)}>Go back</button> */}
-        <button className='px-5 py-[13px] w-full rounded-[14px] bg-[#FFFFFF14] text-white text-[16px] font-bold leading-[22px]' onClick={() => router.push('/home')}>Close</button>
+        <button className='px-5 py-[13px] flex justify-center items-center rounded-[14px] bg-[#5848BC] text-[#FFFFFF] text-[16px] font-bold leading-[22px]' onClick={() => closeSuccessPage(false)}>Close</button>
+        {/* <button className='px-5 py-[13px] w-full rounded-[14px] bg-[#FFFFFF14] text-white text-[16px] font-bold leading-[22px]' onClick={() => router.push('/home')}>Close</button> */}
         
       </div>
     </div>
