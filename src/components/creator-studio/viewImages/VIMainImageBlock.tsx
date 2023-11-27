@@ -18,6 +18,7 @@ import ViewImagesDropDown from './ViewImagesDropDown';
 import MoveAlbumModal from './moveAlbumModal';
 import { deleteImageGeneration } from 'services/services';
 import Cookies from 'js-cookie';
+import ImageInfoModal from '@components/common/ImageInfoModal';
 const images = [
   {
     image: image1
@@ -75,6 +76,8 @@ const VIMainImageBlock = ({
   const [imageInfoPage, setImageInfoPage] = useState<boolean>(false);
   const [selectPrompt, setSelectPrompt] = useState<string[]>([]);
  
+
+  const [imageInfoModal, setImageInfoModal] = useState(false);
 
   const AlbumImageToggle = (index: number) => {
     setShowDropDown((prev) => (prev === index ? null : index));
@@ -137,7 +140,7 @@ const VIMainImageBlock = ({
                 className='relative w-full h-full sub-banner group'
               >
                 <Image
-                  className='object-cover w-full '
+                  className='object-cover w-full h-full rounded-2xl '
                   src={item.image}
                   alt={''}
                 />
@@ -222,9 +225,10 @@ const VIMainImageBlock = ({
                   key={index}
                 >
                   <Image
-                    className=' h-full !w-full rounded-[16px] object-cover'
+                    className=' h-full !w-full rounded-2xl object-cover cursor-pointer'
                     src={image6}
                     alt={''}
+                    onClick={()=>setImageInfoModal(true)}
                   />
                   <div
                     className='invisible absolute right-[7px] top-[7px] flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full bg-black/[0.48] group-hover:visible group-hover:opacity-100'
@@ -242,6 +246,13 @@ const VIMainImageBlock = ({
             })
           )}
         </div>
+      )}
+
+      {imageInfoModal && (
+        <ImageInfoModal
+          ImageInfoModal={imageInfoModal}
+          setImageInfoModal={setImageInfoModal}
+        />
       )}
 
       {deleteModal && (

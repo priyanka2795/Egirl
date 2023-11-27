@@ -31,7 +31,7 @@ const Layout = ({ children }: any) => {
         >
           <NotificationModal selectedMoreOption={activeMoreMenuItem} />
           {activeItem === 'Add Card' && (
-            <AddCardSidebar seletedAddCard={activeItem} />
+            <AddCardSidebar seletedAddCard={activeItem}  SetseletedAddCard ={setActiveItem}/>
           )}
 
           {children}
