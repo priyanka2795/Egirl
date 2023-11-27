@@ -32,31 +32,35 @@ const PostStyleModal = ({ setPostStyleModal }: PostStyleModalProp) => {
       <div className='flex gap-5 p-6'>
         <div className='w-[38%]'>
           <Image
-            className='h-full w-full object-contain'
+            className='object-contain w-full h-full'
             src={modalImg}
             alt={''}
           />
         </div>
         <div className='flex w-[62%] flex-col gap-4'>
-          <div className='gap-6px flex flex-col'>
+          <div className='flex flex-col gap-6px'>
             <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
               Style Name
             </div>
-            <div className='rounded-[14px] bg-white/[0.05] px-4 py-3 text-[15px] font-normal leading-6 text-white'>
-              Anime
-            </div>
+            <input
+              type='text'
+              className='rounded-[14px] border-none bg-white/[0.05] px-4 py-3 text-[15px] font-normal leading-6 text-white placeholder:text-[#979797] focus:ring-0'
+              placeholder='Enter your price'
+              // value={"Anime"}
+            />
+            
           </div>
-          <div className='gap-6px flex flex-col'>
+          <div className='flex flex-col gap-6px'>
             <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
               Pricing
             </div>
             <input
               type='text'
-              className='rounded-[14px] border-none bg-white/[0.05] px-4 py-3 text-[15px] font-normal leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
+              className='text-white rounded-[14px] border-none bg-white/[0.05] px-4 py-3 text-[15px] font-normal leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
               placeholder='Enter your price'
             />
           </div>
-          <div className='gap-6px flex flex-col'>
+          <div className='flex flex-col gap-6px'>
             <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
               Description
             </div>

@@ -10,8 +10,9 @@ import volume from '../../../../public/assets/volume-max.png';
 import pencil from '../../../../public/assets/pencil.png';
 import TextEdit from './TextEdit';
 import RangePicker from '../common/RangePicker';
-import arrowDown from '../../../../public/assets/arrow-down.png';
-import arrowUp from '../../../../public/assets/arrow-up.png';
+import chevronDown from '../../../../public/assets/chevron-down2.png';
+import chevronUp from '../../../../public/assets/chevron-up.png';
+
 const voiceGenerations = [
   {
     voice: 'Melodious voice',
@@ -52,12 +53,12 @@ const VoiceNextPage = () => {
   const [accentState, setAccentState] = useState<number[]>([0]);
   const [voiceStabilityState, setVoiceStabilityState] = useState<number[]>([0]);
   const [voiceClarityState, setVoiceClarityState] = useState<number[]>([0]);
-  const [Gender, setGender] = useState<boolean>(false);
-  const [selectGender, setSelectGender] = useState('Male');
-  const [age, setAge] = useState<boolean>(false);
-  const [selectAge, setSelectAge] = useState('Young');
-  const [accent, setAccent] = useState<boolean>(false);
-  const [selectAccent, setSelectAccent] = useState('Indian');
+  const [genderDropDown, setGenderDropDown] = useState<boolean>(false);
+  const [genderInputText, setGenderInputText] = useState<string>('Female');
+  const [ageDropDown, setAgeDropDown] = useState<boolean>(false);
+  const [ageInputText, setAgeInputText] = useState<string>('Young');
+  const [accentDropDown, setAccentDropDown] = useState<boolean>(false);
+  const [accentInputText, setAccentInputText] = useState<string>('American');
 
   return (
     <div className='flex flex-col gap-5'>
@@ -90,169 +91,131 @@ const VoiceNextPage = () => {
                   />
                 </div>
 
+                <div className='relative flex flex-col gap-[6px]'>
+              <h6 className='text-[13px] text-[#979797]'>Gender</h6>
+              <div
+                className={`flex cursor-pointer justify-between rounded-[14px] px-4 py-3 ${
+                  genderDropDown
+                    ? 'border border-[#515151]'
+                    : 'border border-transparent bg-white/[0.05]'
+                }`}
+                onClick={() => {
+                  setGenderDropDown(!genderDropDown);
+                }}
+              >
                 <div
-                  className='relative flex flex-col cursor-pointer '
-                  onClick={() => setGender(!Gender)}
+                  className={`${
+                    genderDropDown || genderInputText !== 'Gender'
+                      ? 'text-white'
+                      : 'text-[#979797]'
+                  } text-[15px] font-normal leading-6`}
                 >
-                  <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
-                    Gender
-                  </div>
-                  <div
-                    className={`mt-2 flex justify-between rounded-xl p-3  ${
-                      Gender
-                        ? 'border border-[#515151] bg-transparent'
-                        : 'border border-transparent bg-white/[0.05]'
-                    }`}
-                  >
-                    <div className='text-[15px] text-[#FFF]'>
-                      {selectGender}
-                    </div>
-                    <Image
-                      src={Gender ? arrowUp : arrowDown}
-                      alt=''
-                      className='object-cover'
-                    />
-                  </div>
-                  {Gender && (
-                    <div className='absolute right-0 top-[90px] z-50 w-full rounded-xl bg-[#1E1E1E] px-2 py-3'>
-                      {Genders.map((gender, index) => {
-                        return (
-                          <div
-                            key={index}
-                            className={`bg-opacity-10' cursor-pointer rounded-md px-2 py-1 ${
-                              selectGender === gender
-                                ? 'rounded-md bg-white bg-opacity-10'
-                                : ''
-                            }`}
-                            onClick={() => setSelectGender(gender)}
-                          >
-                            {gender}
-                          </div>
-                        );
-                      })}
-                    </div>
-                  )}
+                  {genderInputText}
                 </div>
-                <div
-                  className='relative flex flex-col cursor-pointer '
-                  onClick={() => setAge(!age)}
-                >
-                  <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
-                    Age
-                  </div>
-                  <div
-                    className={`mt-2 flex justify-between rounded-xl p-3  ${
-                      age
-                        ? 'border border-[#515151] bg-transparent'
-                        : 'border border-transparent bg-white/[0.05]'
-                    }`}
-                  >
-                    <div className='text-[15px] text-[#FFF]'>{selectAge}</div>
-                    <Image
-                      src={age ? arrowUp : arrowDown}
-                      alt=''
-                      className='object-cover'
-                    />
-                  </div>
-                  {age && (
-                    <div className='absolute right-0 top-[90px] z-50 w-full rounded-xl bg-[#1E1E1E] px-2 py-3'>
-                      {Ages.map((age, index) => {
-                        return (
-                          <div
-                            key={index}
-                            className={`bg-opacity-10' cursor-pointer rounded-md px-2 py-1 ${
-                              selectAge === age
-                                ? 'rounded-md bg-white bg-opacity-10'
-                                : ''
-                            }`}
-                            onClick={() => setSelectAge(age)}
-                          >
-                            {age}
-                          </div>
-                        );
-                      })}
-                    </div>
-                  )}
+                <Image src={genderDropDown ? chevronUp : chevronDown} alt={''} />
+              </div>
+              {genderDropDown && (
+                <div className='top-[78px] flex w-full flex-col rounded-[14px] bg-[#1A1A1A] px-0 py-1'>
+                  {Genders.map((item, index) => {
+                    return ( 
+                      <div
+                        key={index}
+                        className='mx-2 my-1 cursor-pointer bg-[#1A1A1A] px-2 py-[6px] text-[14px] font-normal leading-[18px] text-white hover:rounded-[8px] hover:bg-white/[0.05]'
+                        onClick={() => {
+                          setGenderInputText(item), setGenderDropDown(false);
+                        }}
+                      >
+                        {item}
+                      </div>
+                    );
+                  })}
                 </div>
-                <div
-                  className='relative flex flex-col cursor-pointer '
-                  onClick={() => setAccent(!accent)}
-                >
-                  <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
-                    Accent
-                  </div>
-                  <div
-                    className={`mt-2 flex justify-between rounded-xl p-3  ${
-                      accent
-                        ? 'border border-[#515151] bg-transparent'
-                        : 'border border-transparent bg-white/[0.05]'
-                    }`}
-                  >
-                    <div className='text-[15px] text-[#FFF]'>
-                      {selectAccent}
-                    </div>
-                    <Image
-                      src={accent ? arrowUp : arrowDown}
-                      alt=''
-                      className='object-cover'
-                    />
-                  </div>
-                  {accent && (
-                    <div className='absolute right-0 top-[90px] z-50 w-full rounded-xl bg-[#1E1E1E] px-2 py-3'>
-                      {Accents.map((accent, index) => {
-                        return (
-                          <div
-                            key={index}
-                            className={`bg-opacity-10' cursor-pointer rounded-md px-2 py-1 ${
-                              selectAccent === accent
-                                ? 'rounded-md bg-white bg-opacity-10'
-                                : ''
-                            }`}
-                            onClick={() => setSelectAccent(accent)}
-                          >
-                            {accent}
-                          </div>
-                        );
-                      })}
-                    </div>
-                  )}
+              )}
                 </div>
 
-                {/* <div className='flex flex-col gap-[6px]'>
-                  <label
-                    htmlFor='age'
-                    className='text-[13px] font-semibold leading-[18px] text-[#979797]'
-                  >
-                    Age
-                  </label>
-                  <select
-                    id='age'
-                    name='age'
-                    className='font-normal rounded-[14px] border-none bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] focus:ring-0'
-                  >
-                    <option value='Young'>Young</option>
-                    <option value='Old'>Old</option>
-                    <option value='Child'>Child</option>
-                  </select>
-                </div> */}
+                <div className='relative flex flex-col gap-[6px]'>
+              <h6 className='text-[13px] text-[#979797]'>Age</h6>
+              <div
+                className={`flex cursor-pointer justify-between rounded-[14px] px-4 py-3 ${
+                  ageDropDown
+                    ? 'border border-[#515151]'
+                    : 'border border-transparent bg-white/[0.05]'
+                }`}
+                onClick={() => {
+                  setAgeDropDown(!ageDropDown);
+                }}
+              >
+                <div
+                  className={`${
+                    ageDropDown || ageInputText !== 'Age'
+                      ? 'text-white'
+                      : 'text-[#979797]'
+                  } text-[15px] font-normal leading-6`}
+                >
+                  {ageInputText}
+                </div>
+                <Image src={ageDropDown ? chevronUp : chevronDown} alt={''} />
+              </div>
+              {ageDropDown && (
+                <div className='top-[78px] flex w-full flex-col rounded-[14px] bg-[#1A1A1A] px-0 py-1'>
+                  {Ages.map((item, index) => {
+                    return ( 
+                      <div
+                        key={index}
+                        className='mx-2 my-1 cursor-pointer bg-[#1A1A1A] px-2 py-[6px] text-[14px] font-normal leading-[18px] text-white hover:rounded-[8px] hover:bg-white/[0.05]'
+                        onClick={() => {
+                          setAgeInputText(item), setAgeDropDown(false);
+                        }}
+                      >
+                        {item}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+                </div>
 
-                {/* <div className='flex flex-col gap-[6px]'>
-                  <label
-                    htmlFor='accent'
-                    className='text-[13px] font-semibold leading-[18px] text-[#979797]'
-                  >
-                    Accent
-                  </label>
-                  <select
-                    id='accent'
-                    name='accent'
-                    className='font-normal rounded-[14px] border-none bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] focus:ring-0'
-                  >
-                    <option value='American'>American</option>
-                    <option value='Indian'>Indian</option>
-                    <option value='African'>African</option>
-                  </select>
-                </div> */}
+                <div className='relative flex flex-col gap-[6px]'>
+              <h6 className='text-[13px] text-[#979797]'>Accent</h6>
+              <div
+                className={`flex cursor-pointer justify-between rounded-[14px] px-4 py-3 ${
+                  accentDropDown
+                    ? 'border border-[#515151]'
+                    : 'border border-transparent bg-white/[0.05]'
+                }`}
+                onClick={() => {
+                  setAccentDropDown(!accentDropDown);
+                }}
+              >
+                <div
+                  className={`${
+                    accentDropDown || accentInputText !== 'Accent'
+                      ? 'text-white'
+                      : 'text-[#979797]'
+                  } text-[15px] font-normal leading-6`}
+                >
+                  {accentInputText}
+                </div>
+                <Image src={accentDropDown ? chevronUp : chevronDown} alt={''} />
+              </div>
+              {accentDropDown && (
+                <div className='top-[78px] flex w-full flex-col rounded-[14px] bg-[#1A1A1A] px-0 py-1'>
+                  {Accents.map((item, index) => {
+                    return ( 
+                      <div
+                        key={index}
+                        className='mx-2 my-1 cursor-pointer bg-[#1A1A1A] px-2 py-[6px] text-[14px] font-normal leading-[18px] text-white hover:rounded-[8px] hover:bg-white/[0.05]'
+                        onClick={() => {
+                          setAccentInputText(item), setAccentDropDown(false);
+                        }}
+                      >
+                        {item}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+                </div>
 
                 <div className='flex flex-col gap-[6px]'>
                   <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>

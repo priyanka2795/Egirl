@@ -4,12 +4,23 @@ import Link from 'next/link';
 import { Router, useRouter } from 'next/router';
 
 const optionList = [
-  'Partner Program',
-  'Learning Center',
-  'Settings',
-  'Notifications'
+  {
+    link: '#',
+    name: 'Partner Program'
+  },
+  {
+    link: 'learning-center',
+    name: 'Learning Center'
+  },
+  {
+    link: '#',
+    name: 'Settings'
+  },
+  {
+    link: '#',
+    name: 'Notifications'
+  }
 ];
-
 interface MoreMenuProps {
   activeMoreOption: string | undefined;
   moreOptionItem: any;
@@ -33,28 +44,27 @@ const MoreMenuOption = ({
         {optionList.map((items) => {
           return (
             <>
-             
-                <div
-                  className={`flex w-full grow cursor-pointer items-center px-4 py-2.5 hover:bg-neutral-800 ${
-                    activeMoreOption === items
-                      ? 'justify-between bg-neutral-800'
-                      : 'bg-zinc-900 '
-                  }`}
-                  onClick={() => {
-                    moreOptionItem(items), activeItem('')
-                    {activeMoreOption == 'Learning Center' ?route.push('learning-center') :''}
-                    
-                  }}
-                >
-                  <div className='font-normal w-max text-sm leading-[18px] text-white'>
-                    {items}
-                  </div>
-                  {/* {activeMoreOption === items && (
+              <div
+                className={`flex w-full grow cursor-pointer items-center px-4 py-2.5 hover:bg-neutral-800 ${
+                  activeMoreOption === items.name
+                    ? 'justify-between bg-neutral-800'
+                    : 'bg-zinc-900 '
+                }`}
+                onClick={() => {
+                  moreOptionItem(items.name), activeItem('');
+                }}
+              >
+                <Link href={items.link}>
+                <div className='font-normal w-max text-sm leading-[18px] text-white'>
+                  {items.name}
+                </div>
+                </Link>
+                {/* {activeMoreOption === items && (
                   <div className='relative w-2 h-2'>
                     <div className='absolute top-0 left-0 w-2 h-2 bg-red-500 border rounded-full border-neutral-800'></div>
                   </div>
                 )} */}
-                </div>
+              </div>
             </>
           );
         })}

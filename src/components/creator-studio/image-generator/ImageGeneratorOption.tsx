@@ -132,7 +132,7 @@ const ImageGeneratorOption = ({
   const [promptHint, setPromptHint] = useState<string>('');
   const [negativePrompt, setNegativePrompt] = useState<string>('');
   const [savedDrawingImage, setSavedDrawingImage] = useState();
-console.log("promptTags0----",promptTags)
+
   const DeletePromptMenu = (item: string) => {
     setEditPromptMenu(
       editPromptMenu.filter((el: string, i: number) => el !== item)
@@ -145,7 +145,7 @@ console.log("promptTags0----",promptTags)
     if (e.key === 'Enter') {
       const value = e.target.value;
       if (!value.trim()) return;
-      setPromptTags([...promptTags, {prompt_type:value, prompt_value:editPromptMenuIndex}]);
+      setPromptTags([...promptTags, value]);
       setPromptHint('');
     } else if (e.key === 'Backspace' && promptHint === '') {
       // Backspace key pressed and promptHint is empty, edit the last tag
@@ -156,16 +156,10 @@ console.log("promptTags0----",promptTags)
       setPromptHint(lastTag);
     }
   }
-const [promptIndex,setPromptIndex] = useState<any>()
-  const EditPromptData = (item: null, index:number) => {
-    setEditPrompt((prev) => (prev === item ? null : item));
-    setPromptIndex(index)
-  };
 
-  const handleEditPromptMenu = (item:any)=>{
-    promptTags.filter((e:any, i:any)=> i === promptIndex )
-    setEditPromptMenuIndex(item)
-  }
+  const EditPromptData = (item: null) => {
+    setEditPrompt((prev) => (prev === item ? null : item));
+  };
 
   function removeTag(index: number) {
     setPromptTags(promptTags.filter((el: string, i: number) => i !== index));
@@ -244,8 +238,10 @@ const [promptIndex,setPromptIndex] = useState<any>()
   
   console.log('selectInPaintImg---', selectInPaintImg,savedDrawingImage);
   const svgString = `${savedDrawingImage}`;
+
 // Encode the SVG string to base64
 const base64SVG = btoa(svgString);
+
 // Create a base64 URL
 const base64URL = `data:image/svg+xml;base64,${base64SVG}`;
 
@@ -441,24 +437,24 @@ useEffect(()=>{
                     <p className='text-[14px]'>Mika-chan</p>
                   </div>
                 )}
-                {promptTags.map((tag: any, index: number) => (
+                {promptTags.map((tag: null, index: number) => (
                   <div className='relative bg-transparent' key={index}>
                     <div
                       className={`flex items-center ${
-                        editPrompt === tag.prompt_type ? 'bg-[#403BAC]' : 'bg-[#FFFFFF29]'
+                        editPrompt === tag ? 'bg-[#403BAC]' : 'bg-[#FFFFFF29]'
                       } cursor-pointer gap-2 rounded-xl px-[10px] py-2`}
                       key={index}
-                      onClick={() => EditPromptData(tag,index)}
+                      onClick={() => EditPromptData(tag)}
                       onDragStart={(e) => dragStart(e, index)}
                       onDragEnter={(e) => dragEnter(e, index)}
                       onDragEnd={drop}
                       draggable
                     >
                       <Image src={Grid} className='w-full h-full' />
-                      <span className='text'>{tag.prompt_type}</span>
+                      <span className='text'>{tag}</span>
                       {/* <span className="cursor-pointer" onClick={() => removeTag(index)}>&times;</span> */}
                     </div>
-                    {editPrompt === tag.prompt_type && (
+                    {editPrompt === tag && (
                       <div className='absolute left-0 top-12 z-50 h-auto w-[243px] rounded-[14px] bg-[#1A1A1A]'>
                         <div className='m-4 flex items-center justify-between gap-[6px] rounded-[10px] bg-[#FFFFFF0D] px-3'>
                           <Image
@@ -484,7 +480,7 @@ useEffect(()=>{
                                     : ''
                                 } flex cursor-pointer items-center justify-between px-4 py-[10px]`}
                                 onClick={() => {
-                                  handleEditPromptMenu(items);
+                                  setEditPromptMenuIndex(items);
                                 }}
                               >
                                 <p>{items}</p>
@@ -803,6 +799,7 @@ useEffect(()=>{
           EditInpainting={editInpainting}
           SavedDrawingImage={setSavedDrawingImage}
           setSelectImageModal={setSelectImageModal}
+          selectInPaintImg={selectInPaintImg}
         />
       )}
 

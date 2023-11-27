@@ -53,6 +53,7 @@ interface VIMainImageBlock {
   imageUpdate: boolean;
   setImageUpdate: any;
 }
+
 const VIMainImageBlock = ({
   ToggleMenu,
   SetAlbumImages,
@@ -71,6 +72,9 @@ const VIMainImageBlock = ({
   const [moveAlbumModal, setMoveAlbumModal] = useState<boolean>(false);
   const [sdImageId, setSdImageId] = useState<any>();
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const [imageInfoPage, setImageInfoPage] = useState<boolean>(false);
+  const [selectPrompt, setSelectPrompt] = useState<string[]>([]);
+ 
 
   const AlbumImageToggle = (index: number) => {
     setShowDropDown((prev) => (prev === index ? null : index));
@@ -263,6 +267,10 @@ const VIMainImageBlock = ({
         />
       )}
       {moveAlbumModal && <MoveAlbumModal MoveModalClose={setMoveAlbumModal} />}
+      
+      {imageInfoPage && (
+        <ImageInfoModal setImageInfoPage={setImageInfoPage} />
+      )}
     </>
   );
 };

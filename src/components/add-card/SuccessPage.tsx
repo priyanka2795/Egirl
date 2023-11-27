@@ -34,7 +34,7 @@ const SuccessPage = (
       <div className=''>
         {/* flex items-end justify-end px-8 py-6 */}
         {/* <button className='px-5 py-[13px] flex justify-center items-center rounded-[14px] bg-[#5848BC] text-[#FFFFFF] text-[16px] font-bold leading-[22px]' onClick={() => closeSuccessPage(false)}>Go back</button> */}
-        <button className='px-5 py-[13px] w-full rounded-[14px] bg-[#FFFFFF14] text-white text-[16px] font-bold leading-[22px]' onClick={() => router.push('/home')}>Close</button>
+        <button className='px-5 py-[13px] w-full rounded-[14px] bg-[#FFFFFF14] text-white text-[16px] font-bold leading-[22px]' onClick={() => closeSuccessPage(false)}>Close</button>
         
       </div>
     </div>
