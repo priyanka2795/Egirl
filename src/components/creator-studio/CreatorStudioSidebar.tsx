@@ -129,7 +129,7 @@ const CreatorStudioSidebar = ({
               className='flex cursor-pointer items-center justify-between py-[14px] pl-3 pr-4'
               onClick={() => setSidebarModal(!sidebarModal)}
             >
-              <div className='relative flex w-full items-center gap-2'>
+              <div className='relative flex items-center w-full gap-2'>
                 <div className='h-[32px] w-[32px]'>
                   <Image
                     src={avtar}
@@ -145,7 +145,7 @@ const CreatorStudioSidebar = ({
                   {bannerData ? bannerData?.display_name : 'Select Character'}
                 </div>
               </div>
-              <div className='mt-2 h-full'>
+              <div className='h-full mt-2'>
                 <Image src={arrowDown} alt='' />
               </div>
               {sidebarModal && (
@@ -159,7 +159,7 @@ const CreatorStudioSidebar = ({
               )}
             </div>
           ) : shrinkSideBar ? (
-            <div className='flex flex-col items-start gap-2 self-stretch pb-2 pt-6'>
+            <div className='flex flex-col items-start self-stretch gap-2 pt-6 pb-2'>
               <button
                 onClick={() => setWelcomeModal(true)}
                 className='flex h-[42px] w-[45px] items-center justify-center gap-1.5 self-stretch rounded-xl bg-[#5848BC] px-2 py-2.5'
@@ -168,13 +168,13 @@ const CreatorStudioSidebar = ({
               </button>
             </div>
           ) : (
-            <div className='flex flex-col items-start gap-2 self-stretch px-6 pb-2 pt-6 '>
+            <div className='flex flex-col items-start self-stretch gap-2 px-6 pt-6 pb-2 '>
               <button
                 onClick={() => setWelcomeModal(true)}
                 className='flex h-auto w-full items-center justify-center gap-1.5 self-stretch rounded-xl bg-[#5848BC] px-4 py-2.5'
               >
                 <Image src={userAdd} alt='' className='h-[18px] w-[18px]' />
-                <span className='normal text-sm font-semibold leading-5'>
+                <span className='text-sm font-semibold leading-5 normal'>
                   Create character
                 </span>
               </button>
