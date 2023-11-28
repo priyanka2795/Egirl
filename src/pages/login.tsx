@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 // import { Database } from '../../types/database';
-import Router,{ useRouter } from 'next/router';
+import Router, { useRouter } from 'next/router';
 import Image from 'next/image';
 import vector1 from '../../public/assets/Vector_1.png';
 import vector2 from '../../public/assets/Vector_2.png';
@@ -81,7 +81,7 @@ export default function SignIn({ SetFormStep }: SignIn) {
       .finally(() => {
         setSubmitting(false); // Set submitting to false to enable the button
       });
-     
+
     // setSignInSteps(1);
     // let notify = {type:"ERROR", message:"response error"}
     // dispatch(setToastVisible())
@@ -127,7 +127,7 @@ export default function SignIn({ SetFormStep }: SignIn) {
                   <button
                     className='font-bold flex w-full items-center justify-center gap-2 rounded-2xl bg-[#5848BC] px-5 py-4 text-center text-lg'
                     onClick={() => setVerifyCode(true)}
-                    type="button"
+                    type='button'
                   >
                     Continue
                   </button>
@@ -231,4 +231,3 @@ export default function SignIn({ SetFormStep }: SignIn) {
     </>
   );
 }
-

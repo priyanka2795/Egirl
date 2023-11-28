@@ -1,24 +1,45 @@
 import HomeContent from '@components/home';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { GetServerSidePropsContext } from 'next';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
+import WelcomeStepsModal from './auth/welcomeSteps';
 export default function Home() {
   const router = useRouter();
-  const accessToken = Cookies.get("accessToken")
-  const refreshToken = Cookies.get("refreshToken")
-useEffect(()=>{
-  if(!accessToken){
-    router.push('/auth/signin')
-  }
-},[accessToken])
+  const accessToken = Cookies.get('accessToken');
+  const refreshToken = Cookies.get('refreshToken');
+  const signUpCompleted = sessionStorage.getItem('true');
 
-return (
+  const [signupCompletedState, setSignupCompletedState] = useState(
+    signUpCompleted ? true : false
+  );
+  useEffect(() => {
+    setSignupCompletedState(signUpCompleted ? true : false);
+  }, [signUpCompleted]);
+
+  console.log('sdff');
+  useEffect(() => {
+    if (!accessToken) {
+      router.push('/auth/signin');
+    }
+  }, [accessToken]);
+
+  console.log(signupCompletedState, 'signUpCompleted');
+  return (
     <>
       <div>
-        <HomeContent />
+        {signupCompletedState && (
+          <>
+            <p>Hello</p>
+            <WelcomeStepsModal
+              welcomeStepsModal={signupCompletedState}
+              setWelcomeStepsModal={setSignupCompletedState}
+              signUpCompleted={setSignupCompletedState}
+            />
+          </>
+        )}
+        {signupCompletedState === false && <HomeContent />}
       </div>
     </>
   );
 }
-
