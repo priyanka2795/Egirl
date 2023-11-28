@@ -106,4 +106,5 @@ export const deleteImageGeneration = (id:number, token:any) => deleteApi(`/studi
 export const logout = ()=>{
     Cookies.remove("accessToken")
     Cookies.remove("refreshToken")
+    Cookies.remove("character_id")
 }
