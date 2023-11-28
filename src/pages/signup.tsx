@@ -19,7 +19,7 @@ const validationSchema = Yup.object().shape({
   username: Yup.string().required('Username is required'),
   email: Yup.string().email('Invalid email').required('Email is required'),
   verifyemail: Yup.string()
-    .required()
+    .required("Verify email is a required")
     .oneOf([Yup.ref('email')], "That's an invalid email"),
   password: Yup.string()
     .required('Password is required')
@@ -202,24 +202,24 @@ export default function SignUp() {
                       `}
                       />
 
-                      <ErrorMessage
+                      {/* <ErrorMessage
                         name='password'
                         component='div'
                         className='text-red-500'
-                      />
+                      /> */}
                       <div>
                         <ul>
                           <li className='mb-3'>Create a password that:</li>
-                          <li className='mb-2 flex items-center'>
+                          <li className='flex items-center mb-2'>
                             {errors.password ? <CrossIcon /> : <CheckedIcon />}
                             contains at least 8 characters
                           </li>
-                          <li className='mb-2 flex items-center'>
+                          <li className='flex items-center mb-2'>
                             {errors.password ? <CrossIcon /> : <CheckedIcon />}
                             contains at least one uppercase letter
                           </li>
                           <li className='flex items-center'>
-                            {errors.password ? <CrossIcon /> : <CheckedIcon />}
+                            {touched.password ? errors.password ? <CrossIcon /> : <CheckedIcon /> : ""}
                             contains at least one symbol
                           </li>
                         </ul>
@@ -228,7 +228,7 @@ export default function SignUp() {
                   </div>
                 </div>
 
-                <div className='w-full px-10 pb-10 pt-5'>
+                <div className='w-full px-10 pt-5 pb-10'>
                   <button
                     type='submit'
                     className='font-bold flex w-full items-center justify-center rounded-[16px] bg-[#5848BC] px-6 py-4 text-[18px] leading-6 text-white'
