@@ -24,8 +24,8 @@ interface CharacterAddProps {
   setUserDetails?:any;
   createCharacterData?:any;
   setActiveProfile?:any;
-  setCreateCharacterToggle: React.Dispatch<React.SetStateAction<boolean>>;
-  createCharacterToggle:boolean
+  setCreateCharacterToggle?: React.Dispatch<React.SetStateAction<boolean>>;
+  createCharacterToggle?:boolean
 }
 
 const validationSchema = Yup.object().shape({

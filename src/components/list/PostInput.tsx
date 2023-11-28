@@ -11,7 +11,7 @@ const PostInput = () => {
       <div className='flex items-center gap-3'>
         {/* <Image className='object-contain rounded-[100px]' src={avatar} alt={''} />
          */}
-         <div className='bg-[#202020] rounded-[100px] p-2 flex items-center justify-center'><Image className='!w-[20px] object-cover !h-[20px]' src={userAvatar}/></div>
+         <div className='bg-[#202020] rounded-[100px] p-2 flex items-center justify-center w-10 h-10'><Image className='!w-[20px] object-cover !h-[20px]' src={userAvatar}/></div>
         <input type='text' className='text-[#979797] text-[15px] font-normal leading-6 h-0 border-none bg-transparent focus:ring-0 placeholder:text-[#979797] pl-0' placeholder={`What's happening?`} />
       </div>
       <div className='flex items-center gap-3'>
