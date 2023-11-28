@@ -1,9 +1,7 @@
-//@ts-nocheck
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import avtar from '../../../public/assets/mica-chan-avatar-image.png';
 import arrowDown from '../../../public/assets/chevron-down24.png';
-// import ChartIcon from '../../../public/assets/Chart.svg';
 import SidebarMenuItem from '@components/common/Sidebar/SidebarMenuItem';
 import AnalyticsIcon from './svg/AnalyticsIcon';
 import ImageGeneratorIcon from './svg/ImageGeneratorIcon';
@@ -35,6 +33,8 @@ import HoverModal from '@components/list/HoverModal';
 import userAdd from '../../../public/assets/user-plus1.png';
 import CreateCharacterModal from '@components/list/CreateCharacterModal';
 
+import Cookies from 'js-cookie';
+import { getAllCharacter } from 'services/services';
 interface CreatorStudioNavbarPropProp {
   shrinkSideBar: boolean;
   setShrinkSideBar: React.Dispatch<React.SetStateAction<boolean>>;
@@ -54,7 +54,7 @@ interface CreatorStudioNavbarPropProp {
   createCharacterData: any;
   bannerData: any;
   setCreateCharacterToggle: React.Dispatch<React.SetStateAction<boolean>>;
-  createCharacterToggle:boolean
+  createCharacterToggle: boolean;
 }
 
 interface CreateCharacter {
@@ -73,7 +73,7 @@ const CreatorStudioSidebar = ({
   setIsTourOpen,
   UserGuide,
   setUserDetails,
-  allCharacterData,
+  // allCharacterData,
   activeProfile,
   setActiveProfile,
   setCreateCharacterData,
@@ -81,7 +81,6 @@ const CreatorStudioSidebar = ({
   bannerData,
   setCreateCharacterToggle,
   createCharacterToggle
-  
 }: CreatorStudioNavbarPropProp) => {
   const [sidebarModal, setSidebarModal] = useState<boolean>(false);
   const [moreOptionsModal, setMoreOptionsModal] = useState<boolean>(false);
@@ -89,19 +88,30 @@ const CreatorStudioSidebar = ({
 
   const [createCharacter, setCreateCharacter] = useState<boolean>(false);
   const [welcomeModal, setWelcomeModal] = useState<boolean>(false);
+  const [allCharacterData , setAllCharacterData] = useState<any>()
+
+  const token: any = Cookies.get('accessToken');
 
 
   const handleNewCharacter = () => {
-    setWelcomeModal(false)
-    setCreateCharacter(true)
-  }
-  // const [sideBarShrink, setSideBarShrink] = useState(false);
+    setWelcomeModal(false);
+    setCreateCharacter(true);
+  };
   const GuideStep1 = TourSteps[1].id;
   const GuideStep2 = TourSteps[2].id;
   const GuideStep3 = TourSteps[3].id;
   const GuideStep4 = TourSteps[4].id;
 
-  // window.screenY()
+  useEffect(()=>{
+    getAllCharacter(token)
+    .then((res:any)=>{
+      setAllCharacterData(res?.data)
+    })
+    .catch((err:any)=>{
+      console.log(err);
+    })
+  },[ UserGuide , activeProfile , createCharacterData ])
+
   return (
     <>
       <div
@@ -132,7 +142,7 @@ const CreatorStudioSidebar = ({
                     shrinkSideBar === true ? '!hidden' : ''
                   }`}
                 >
-                  {bannerData ? bannerData?.username : 'Select Character'}
+                  {bannerData ? bannerData?.display_name  : 'Select Character'}
                 </div>
               </div>
               <div className='h-full mt-2'>
@@ -148,7 +158,7 @@ const CreatorStudioSidebar = ({
                 />
               )}
             </div>
-          ) : (shrinkSideBar ? (
+          ) : shrinkSideBar ? (
             <div className='flex flex-col items-start self-stretch gap-2 pt-6 pb-2'>
               <button
                 onClick={() => setWelcomeModal(true)}
@@ -169,17 +179,26 @@ const CreatorStudioSidebar = ({
                 </span>
               </button>
             </div>
-          ))}
-      
-          <div>
-            
+          )}
 
+          <div>
             {welcomeModal && (
               <CreateCharacterModal
                 closeState={setWelcomeModal}
                 setCreateCharacter={handleNewCharacter}
               />
             )}
+
+{/* {createCharacter && (
+            <CreateCharacterModal
+              closeState={setCreateCharacter}
+              setUserGuide={setUserGuide}
+              setIsTourOpen={setIsTourOpen}
+              setTourCount={setTourCount}
+              UserGuide={UserGuide}
+              setCreateCharacterData={setCreateCharacterData}
+            />
+          )} */}
 
             {createCharacter && (
               <CharacterAdd
@@ -193,7 +212,7 @@ const CreatorStudioSidebar = ({
                 createCharacterData={createCharacterData}
                 setActiveProfile={setActiveProfile}
                 setCreateCharacterToggle={setCreateCharacterToggle}
-            createCharacterToggle={createCharacterToggle}
+                createCharacterToggle={createCharacterToggle}
               />
             )}
           </div>
@@ -268,11 +287,6 @@ const CreatorStudioSidebar = ({
               <>
                 {console.log('hererwr')}
                 <HoverModal
-                  // name={'Generate images'}
-                  // text={
-                  //   "Edit your character's profile and personalize to find more followers."
-                  // }
-                  // step={'Step 3/5'}
                   isOpen={IsOpen}
                   onClose={OnClose}
                   tourSteps={TourSteps}
@@ -281,21 +295,6 @@ const CreatorStudioSidebar = ({
                 />
               </>
             )}
-            {/* <div
-            className={`max-[1279px]:mb-2 max-[1279px]:border-b-2 max-[1279px]:border-[#252525] ${
-              shrinkSideBar === true
-                ? 'mb-2 border-b-2 border-[#252525]'
-                : 'min-[1280px]:inline-flex min-[1280px]:h-10 min-[1280px]:items-start min-[1280px]:justify-start min-[1280px]:gap-2.5 min-[1280px]:px-3 min-[1280px]:py-2.5'
-            }`}
-          >
-            <div
-              className={`text-[13px] font-semibold uppercase leading-5 tracking-tight text-neutral-600 max-[1279px]:hidden ${
-                shrinkSideBar === true ? 'hidden' : ''
-              }`}
-            >
-              Chatbot
-            </div>
-          </div> */}
           </div>
           <div
             className={`max-[1279px]:mb-2 max-[1279px]:border-b-2 max-[1279px]:border-[#252525] ${
@@ -337,11 +336,6 @@ const CreatorStudioSidebar = ({
               <>
                 {console.log('hello 1')}
                 <HoverModal
-                  // name={'Personality'}
-                  // text={
-                  //   "Edit your character's profile and personalize to find more followers."
-                  // }
-                  // step={'Step 2/5'}
                   isOpen={IsOpen}
                   onClose={OnClose}
                   tourSteps={TourSteps}
@@ -388,11 +382,6 @@ const CreatorStudioSidebar = ({
             />
             {GuideStep4 === tourCount && (
               <HoverModal
-                // name={'Create own gifts'}
-                // text={
-                //   "Edit your character's profile and personalize to find more followers."
-                // }
-                // step={'Step 5/5'}
                 isOpen={IsOpen}
                 onClose={OnClose}
                 tourSteps={TourSteps}
@@ -400,24 +389,6 @@ const CreatorStudioSidebar = ({
                 setTourCount={setTourCount}
               />
             )}
-
-            {/* <div
-            className={`max-[1279px]:mb-2 max-[1279px]:border-b-2 max-[1279px]:border-[#252525] ${
-              shrinkSideBar === true
-                ? 'mb-2 border-b-2 border-[#252525]'
-                : 'min-[1280px]:inline-flex min-[1280px]:h-10 min-[1280px]:items-start min-[1280px]:justify-start min-[1280px]:gap-2.5 min-[1280px]:px-3 min-[1280px]:py-2.5 '
-            }`}
-          >
-            <div
-              className={`max-[1279px]:hidden ${
-                shrinkSideBar === true
-                  ? 'hidden'
-                  : 'text-[13px] font-semibold uppercase leading-tight tracking-tight text-neutral-600'
-              }`}
-            >
-              Styles
-            </div>
-          </div> */}
           </div>
 
           <div
@@ -471,11 +442,6 @@ const CreatorStudioSidebar = ({
             />
             {GuideStep3 === tourCount && (
               <HoverModal
-                // name={'Create style'}
-                // text={
-                //   'Select character from style dropdown, upload your characters images, and generate character style!'
-                // }
-                // step={'Step 4/5'}
                 isOpen={IsOpen}
                 onClose={OnClose}
                 tourSteps={TourSteps}

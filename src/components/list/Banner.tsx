@@ -220,7 +220,7 @@ BannerProp) => {
         ''
       ) : (
         <div
-          className='font-bold my-4 flex cursor-pointer gap-2 text-lg'
+          className='flex gap-2 my-4 text-lg font-bold cursor-pointer'
           onClick={() => {
             backFromProfile(false);
           }}
@@ -232,14 +232,14 @@ BannerProp) => {
 
       <div>
         <div className='h-max w-full overflow-hidden rounded-[16px] bg-[#121212]'>
-          <div className='sub-banner relative block w-full'>
+          <div className='relative block w-full sub-banner'>
             {removeCover ? (
               <div className='h-[200px] w-[1092px] bg-[#121212]'></div>
             ) : updatedProfile ? (
               <img className='h-[200px] w-[1092px] ' src={cropData} alt='' />
             ) : (
-              // <Image className='h-full w-full ' src={Cover} alt='' />
-              <div className='bg-[#1A1A1A] h-[200px] w-[1092px]'></div>
+              // <Image className='w-full h-full ' src={Cover} alt='' />
+              <div className='bg-[#1A1A1A] h-[200px] w-[1092px] mb-2'></div>
             )}
             <div
               className='absolute right-[20px] top-[20px] cursor-pointer'
@@ -286,7 +286,7 @@ BannerProp) => {
               }`}
             >
               <div className='relative h-[120px]  w-[120px] overflow-hidden rounded-full'>
-                {/* <Image className='h-full w-full border border-white' src={avatar} alt='' /> */}
+                {/* <Image className='w-full h-full border border-white' src={avatar} alt='' /> */}
                 <div className='bg-[#202020] h-full w-full flex items-center justify-center'><Image className='' src={userAvatar}/></div>
               </div>
               <div className={'flex gap-3 self-end'}>
@@ -329,7 +329,7 @@ BannerProp) => {
                     </div>
                     <div className='absolute -right-[2px] -top-[20px] h-[24px] w-10'>
                       <Image
-                        className='h-full w-full'
+                        className='w-full h-full'
                         src={downArrow}
                         alt={''}
                       />
