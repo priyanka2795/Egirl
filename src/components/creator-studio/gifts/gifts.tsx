@@ -18,7 +18,7 @@ import { useAppDispatch, useAppSelector } from 'redux/hooks';
 import { tokenRefresh } from 'redux/api/RefreshTokenApi';
 
 function Gifts() {
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   const [giftModal, setGiftModal] = useState<boolean>(false);
   const [giftCard, setGiftCard] = useState<boolean>(false);
   const [toggle, setToggle] = useState<boolean>(false);
@@ -38,13 +38,15 @@ function Gifts() {
     useState<boolean>(false);
   const [selectedCategoryId, setSelectedCategoryId] = useState<any>();
   const characterId = Cookies.get('character_id') || '';
-  const token:any = Cookies.get('accessToken');
-  const refreshTokenData:any = useAppSelector((state)=> state.tokenRefresh?.tokenData)
+  const token: any = Cookies.get('accessToken');
+  const refreshTokenData: any = useAppSelector(
+    (state) => state.tokenRefresh?.tokenData
+  );
   const [selectedCategoryGifts, setSelectedCategoryGifts] = useState<any>();
   const [selectedGiftData, setSelectedGiftData] = useState<any>();
   const [updateGift, setUpdateGift] = useState(false);
-  const [deleteGiftToggle , setDeleteGiftToggle] = useState<boolean>(false)
-
+  const [deleteGiftToggle, setDeleteGiftToggle] = useState<boolean>(false);
+  const [createGiftToggle, setCreateGiftToggle] = useState<any>();
 
   const EditGift = (val: number, data: any) => {
     setSelectedGiftData(data);
@@ -52,19 +54,15 @@ function Gifts() {
     setGiftEditPopup(val);
   };
 
-  const DeleteGiftCardModal = (
-    index: number,
-    num: number,
-    data: any
-  ) => {
- deleteGift(characterId , [data?.gift_id] , token)
- .then((res:any)=>{
-  console.log(res);
-  setDeleteGiftToggle(!deleteGiftToggle)
- })
- .then((err:any)=>{
-  console.log(err);
- })
+  const DeleteGiftCardModal = (index: number, num: number, data: any) => {
+    deleteGift(characterId, [data?.gift_id], token)
+      .then((res: any) => {
+        console.log(res);
+        setDeleteGiftToggle(!deleteGiftToggle);
+      })
+      .then((err: any) => {
+        console.log(err);
+      });
     setGiftCard(true);
     setGiftEditPopup(num);
     setDeleteBtnStep(1);
@@ -88,19 +86,19 @@ function Gifts() {
     setToggle(!toggle);
   };
 
-  useEffect(()=>{
-    if(refreshTokenData){
-      Cookies.set("accessToken", refreshTokenData)
+  useEffect(() => {
+    if (refreshTokenData) {
+      Cookies.set('accessToken', refreshTokenData);
     }
-  },[refreshTokenData])
+  }, [refreshTokenData]);
   const getAllCategory = () => {
     getGiftCategory(characterId, token)
       .then((response: any) => {
         if (response && response.data) {
           setGiftCategory(response?.data);
           console.log(response.data, 'res????');
-          if(response?.response?.status === 401){
-            dispatch(tokenRefresh())
+          if (response?.response?.status === 401) {
+            dispatch(tokenRefresh());
           }
         } else {
           console.error('Invalid response structure:', response);
@@ -115,7 +113,14 @@ function Gifts() {
     getAllCategory();
   }, [createCategoryToggle]);
 
+  useEffect(()=>{
+    if(giftCategory && giftCategory?.length > 0){
+      setSelectedCategoryId(giftCategory?.[0]?.gift_category_id)
+    }
+  },[giftCategory])
+
   useEffect(() => {
+    console.log(giftCategory?.[0]?.gift_category_id, 'LLLLSSSS');
     getGifts(
       selectedCategoryId
         ? selectedCategoryId
@@ -124,15 +129,23 @@ function Gifts() {
     )
       .then((res: any) => {
         console.log(res);
+
         setSelectedCategoryGifts(res?.data);
-        if(res?.response?.status === 401){
-          dispatch(tokenRefresh())
+        if (res?.response?.status === 401) {
+          dispatch(tokenRefresh());
         }
       })
       .catch((err: any) => {
         console.log(err);
       });
-  }, [selectedCategoryId, updateGift , deleteGiftToggle , giftCategory]);
+  }, [
+    selectedCategoryId,
+    updateGift,
+    deleteGiftToggle,
+    giftCategory,
+    createCategoryToggle,
+    createGiftToggle
+  ]);
 
   return (
     <>
@@ -148,158 +161,159 @@ function Gifts() {
       </div>
 
       {
-      // giftsView
-     ( giftCategory && giftCategory?.length)
+        // giftsView
+        giftCategory && giftCategory?.length ? (
+          <>
+            <GiftCategoryAction
+              AddCategory={addCategory}
+              SetCategory={setAddCategory}
+              giftCategory={giftCategory}
+              characterId={characterId}
+              token={token}
+              setSelectedCategoryId={setSelectedCategoryId}
+              setCreateCategoryToggle={setCreateCategoryToggle}
+              createCategoryToggle={createCategoryToggle}
+            />
 
-       ? (
-        <>
-          <GiftCategoryAction
-            AddCategory={addCategory}
-            SetCategory={setAddCategory}
-            giftCategory={giftCategory}
-            characterId={characterId}
-            token={token}
-            setSelectedCategoryId={setSelectedCategoryId}
-            setCreateCategoryToggle={setCreateCategoryToggle}
-            createCategoryToggle={createCategoryToggle}
-          />
-
-          <div className='flex items-center justify-between mt-4'>
-            <p className='text-[#979797]'>
-              {`${selectedCategoryGifts?.length}/9`} gifts
-            </p>
-            <button
-              className='flex items-center justify-center gap-1'
-              onClick={() => DeleteAllGiftCard()}
-            >
-              <Image className='h-[18px] w-[18px]' src={Delete} alt={''} />
-              <p>Clear all</p>
-            </button>
-          </div>
-
-          <div className='grid items-center grid-cols-1 mt-4 gap-9 md:grid-cols-2 lg:grid-cols-3'>
-            {selectedCategoryGifts?.map((item: any, index: number) => (
-              <div
-                className='relative h-[300px] w-[300px] overflow-hidden rounded-xl'
-                key={item?.gift_id}
+            <div className='mt-4 flex items-center justify-between'>
+              <p className='text-[#979797]'>
+                {`${selectedCategoryGifts?.length}/9`} gifts
+              </p>
+              <button
+                className='flex items-center justify-center gap-1'
+                onClick={() => DeleteAllGiftCard()}
               >
-                {/* <Image
+                <Image className='h-[18px] w-[18px]' src={Delete} alt={''} />
+                <p>Clear all</p>
+              </button>
+            </div>
+
+            <div className='mt-4 grid grid-cols-1 items-center gap-9 md:grid-cols-2 lg:grid-cols-3'>
+              {selectedCategoryGifts?.map((item: any, index: number) => (
+                <div
+                  className='relative h-[300px] w-[300px] overflow-hidden rounded-xl'
+                  key={item?.gift_id}
+                >
+                  {/* <Image
                   src={item?.media_url}
                   className='object-cover w-full h-full'
                 /> */}
-                <img
-                  src={item?.media_url}
-                  className='object-cover w-full h-full'
-                />
+                  <img
+                    src={item?.media_url}
+                    className='h-full w-full object-cover'
+                  />
 
-                <div className='absolute right-2 top-2'>
-                  <button
-                    className='h-[30px] w-[30px] rounded-full bg-[#0000007A] p-1'
-                    onClick={() => ActiveTab(item)}
-                  >
-                    <Image
-                      src={DotsHorizontal}
-                      className='object-cover w-full h-full'
-                      alt=''
-                    />
-                  </button>
-                  {toggle ? (
-                    <>
-                      {tabs === item && (
-                        <div className='absolute right-0 top-8 flex h-[130px] w-[251px] flex-col gap-3 rounded-[14px] bg-[#1A1A1A] p-4'>
-                          <button
-                            className='flex items-center gap-2'
-                            onClick={() => EditGift(1, item)}
-                          >
-                            <Image
-                              src={Pencil}
-                              className='w-full h-full'
-                              alt=''
-                            />
-                            <p>Edit name</p>
-                          </button>
+                  <div className='absolute right-2 top-2'>
+                    <button
+                      className='h-[30px] w-[30px] rounded-full bg-[#0000007A] p-1'
+                      onClick={() => ActiveTab(item)}
+                    >
+                      <Image
+                        src={DotsHorizontal}
+                        className='h-full w-full object-cover'
+                        alt=''
+                      />
+                    </button>
+                    {toggle ? (
+                      <>
+                        {tabs === item && (
+                          <div className='absolute right-0 top-8 flex h-[130px] w-[251px] flex-col gap-3 rounded-[14px] bg-[#1A1A1A] p-4'>
+                            <button
+                              className='flex items-center gap-2'
+                              onClick={() => EditGift(1, item)}
+                            >
+                              <Image
+                                src={Pencil}
+                                className='h-full w-full'
+                                alt=''
+                              />
+                              <p>Edit name</p>
+                            </button>
 
-                          <button
-                            className='flex items-center gap-2'
-                            onClick={() => EditGift(2)}
-                          >
-                            <div>
-                              <RightUp className='w-full h-full' alt={''} />
-                            </div>
-                            <p>Move to another category</p>
-                          </button>
+                            <button
+                              className='flex items-center gap-2'
+                              onClick={() => EditGift(2)}
+                            >
+                              <div>
+                                <RightUp className='h-full w-full' alt={''} />
+                              </div>
+                              <p>Move to another category</p>
+                            </button>
 
-                          <button
-                            className='flex items-center gap-2'
-                            onClick={() => DeleteGiftCardModal(index, 3, item)}
-                          >
-                            <Image
-                              src={Delete}
-                              className='w-full h-full'
-                              alt={''}
-                            />
-                            <p>Delete</p>
-                          </button>
-                        </div>
-                      )}
-                    </>
-                  ) : (
-                    ''
-                  )}
+                            <button
+                              className='flex items-center gap-2'
+                              onClick={() =>
+                                DeleteGiftCardModal(index, 3, item)
+                              }
+                            >
+                              <Image
+                                src={Delete}
+                                className='h-full w-full'
+                                alt={''}
+                              />
+                              <p>Delete</p>
+                            </button>
+                          </div>
+                        )}
+                      </>
+                    ) : (
+                      ''
+                    )}
+                  </div>
+                  <div className='absolute bottom-0 w-full bg-[#000000A3] p-3 text-center'>
+                    {item?.name}
+                  </div>
                 </div>
-                <div className='absolute bottom-0 w-full bg-[#000000A3] p-3 text-center'>
-                  {item?.name}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {giftCard && (
-            <GiftCardEditModal
-              closeModal={setGiftCard}
-              GiftEditModal={giftEditPopup}
-              DeleteGift={DeleteGift}
-              DeleteIndex={deleteIndex}
-              DeleteBtnStep={deleteBtnStep}
-              giftImageSet={giftImageSet}
-              giftName={giftName}
-              selectedGiftData={selectedGiftData}
-              characterId={characterId}
-              token={token}
-              setUpdateGift={setUpdateGift}
-              updateGift={updateGift}
-            />
-          )}
-
-          {deleteModal && (
-            <GiftCardDelete
-              DeleteModal={setDeleteModal}
-              Heading={'Delete all gifts'}
-              Content={
-                'Are you sure you want to delete all gifts from the Date category?'
-              }
-              Img={true}
-              DeleteGift
-              DeleteIndex
-              DeleteAllGift={setGiftCardName}
-              DeleteBtnStep={deleteBtnStep}
-              DeleteActionCategory
-            />
-          )}
-        </>
-      ) : (
-        <div className='m-auto flex h-[514px] flex-col items-center justify-center'>
-          <div className='flex w-[243px] flex-col items-center justify-center gap-3 text-center'>
-            <div className='flex items-center justify-center rounded-full bg-[#FFFFFF0D] p-4 '>
-              <ImagePlusIcon />
+              ))}
             </div>
-            <p className='font-normal text-[13px] leading-[18px] text-[#979797]'>
-              You don’t have any categories and gifts. Click on the button to
-              create it.
-            </p>
+
+            {giftCard && (
+              <GiftCardEditModal
+                closeModal={setGiftCard}
+                GiftEditModal={giftEditPopup}
+                DeleteGift={DeleteGift}
+                DeleteIndex={deleteIndex}
+                DeleteBtnStep={deleteBtnStep}
+                giftImageSet={giftImageSet}
+                giftName={giftName}
+                selectedGiftData={selectedGiftData}
+                characterId={characterId}
+                token={token}
+                setUpdateGift={setUpdateGift}
+                updateGift={updateGift}
+              />
+            )}
+
+            {deleteModal && (
+              <GiftCardDelete
+                DeleteModal={setDeleteModal}
+                Heading={'Delete all gifts'}
+                Content={
+                  'Are you sure you want to delete all gifts from the Date category?'
+                }
+                Img={true}
+                DeleteGift
+                DeleteIndex
+                DeleteAllGift={setGiftCardName}
+                DeleteBtnStep={deleteBtnStep}
+                DeleteActionCategory
+              />
+            )}
+          </>
+        ) : (
+          <div className='m-auto flex h-[514px] flex-col items-center justify-center'>
+            <div className='flex w-[243px] flex-col items-center justify-center gap-3 text-center'>
+              <div className='flex items-center justify-center rounded-full bg-[#FFFFFF0D] p-4 '>
+                <ImagePlusIcon />
+              </div>
+              <p className='font-normal text-[13px] leading-[18px] text-[#979797]'>
+                You don’t have any categories and gifts. Click on the button to
+                create it.
+              </p>
+            </div>
           </div>
-        </div>
-      )}
+        )
+      }
 
       {giftModal && (
         <GiftCreateModal
@@ -316,6 +330,8 @@ function Gifts() {
           createCategory={createCategory}
           setCreateCategoryToggle={setCreateCategoryToggle}
           createCategoryToggle={createCategoryToggle}
+          createGiftToggle={createGiftToggle}
+          setCreateGiftToggle={setCreateGiftToggle}
         />
       )}
     </>
