@@ -13,6 +13,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SigninTemplate from './auth/signinTemplate';
 import SigninLoginOpt from './auth/SigninLoginOpt';
+import WelcomeStepsModal from './auth/welcomeSteps';
 
 const validationSchema = Yup.object().shape({
   username: Yup.string().required('Username is required'),
@@ -77,7 +78,7 @@ export default function SignUp() {
         if (res.status === 200) {
           Cookies.set('accessToken', res.data.access_token);
           Cookies.set('refreshToken', res.data.refresh_token);
-          toast.success('User login successful');
+          toast.success('signup successful');
           setTimeout(() => {
             router.push('/home');
           }, 1000);
@@ -242,13 +243,7 @@ export default function SignUp() {
           )}
         </Formik>
       </SigninTemplate>
-
-      {/* {welcomeStepsModal && (
-        <WelcomeStepsModal
-          welcomeStepsModal={welcomeStepsModal}
-          setWelcomeStepsModal={setWelcomeStepsModal}
-        />
-      )} */}
+      
       <ToastContainer
         position='bottom-center'
         pauseOnHover
@@ -256,6 +251,13 @@ export default function SignUp() {
         hideProgressBar={true}
         autoClose={2000}
       />
+{/*       
+            {welcomeStepsModal && (
+              <WelcomeStepsModal
+                welcomeStepsModal={welcomeStepsModal}
+                setWelcomeStepsModal={setWelcomeStepsModal}
+              />
+            )} */}
     </>
   );
 }
