@@ -18,7 +18,15 @@ import ImageInfoModal from '@components/common/ImageInfoModal';
 const ImageGallery = () => {
   const [viewModal, setviewModal] = React.useState<boolean>(false);
   const [defaultModal, setDefaultModal] = useState(false);
-
+  const handleviewModal = (name: string) => {  
+    setviewModal(true);
+    if (name === 'None') {
+      setDefaultModal(true);
+    }else{
+      setDefaultModal(false);
+    }
+  };
+  const handlecloseModal = () => setviewModal(false);
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 
   const data: any = [

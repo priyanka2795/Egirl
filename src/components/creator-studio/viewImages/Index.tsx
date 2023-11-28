@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import ViewImagesMainPage from './ViewImagesMainPage';
 import Image from 'next/image';
 import plusIcon from '../../../../public/assets/plus-large.png';
+import EditImageGeneration from '../image-generator/editImagegeneration';
 
 const ViewImagesIndex = () => {
+  
   return (
     <>
       <div className='flex justify-between'>

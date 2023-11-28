@@ -150,7 +150,8 @@ const InpaintingModals = ({
               >
                 Reset
               </p>
-            </div>
+            </div> 
+            
           </div>
           <div className='absolute bottom-3 left-3 flex items-center justify-center gap-3 rounded-[100px] bg-[#000000CC] px-5 py-3'>
             <Image
