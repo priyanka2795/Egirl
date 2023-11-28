@@ -33,7 +33,7 @@ const initialValues = {
   username: '',
   email: '',
   verifyemail: '',
-  password: '',
+  password: ''
 };
 export default function SignUp() {
   const router = useRouter();
@@ -65,12 +65,13 @@ export default function SignUp() {
   };
 
   const handleSubmit = (values: any, { setSubmitting }: any) => {
+    sessionStorage.setItem('true', 'signupcompleted');
     setErrorMsg('');
     // You can handle the form data submission here
     let data = {
       username: values.username,
       email: values.email,
-      password: values.password,
+      password: values.password
     };
     userSignUp(data)
       .then((res: any) => {
@@ -209,11 +210,11 @@ export default function SignUp() {
                       <div>
                         <ul>
                           <li className='mb-3'>Create a password that:</li>
-                          <li className='flex items-center mb-2'>
+                          <li className='mb-2 flex items-center'>
                             {errors.password ? <CrossIcon /> : <CheckedIcon />}
                             contains at least 8 characters
                           </li>
-                          <li className='flex items-center mb-2'>
+                          <li className='mb-2 flex items-center'>
                             {errors.password ? <CrossIcon /> : <CheckedIcon />}
                             contains at least one uppercase letter
                           </li>
@@ -227,7 +228,7 @@ export default function SignUp() {
                   </div>
                 </div>
 
-                <div className='w-full px-10 pt-5 pb-10'>
+                <div className='w-full px-10 pb-10 pt-5'>
                   <button
                     type='submit'
                     className='font-bold flex w-full items-center justify-center rounded-[16px] bg-[#5848BC] px-6 py-4 text-[18px] leading-6 text-white'
@@ -243,7 +244,7 @@ export default function SignUp() {
           )}
         </Formik>
       </SigninTemplate>
-      
+
       <ToastContainer
         position='bottom-center'
         pauseOnHover
@@ -251,7 +252,7 @@ export default function SignUp() {
         hideProgressBar={true}
         autoClose={2000}
       />
-{/*       
+      {/*       
             {welcomeStepsModal && (
               <WelcomeStepsModal
                 welcomeStepsModal={welcomeStepsModal}
