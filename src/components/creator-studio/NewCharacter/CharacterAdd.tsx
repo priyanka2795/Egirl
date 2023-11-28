@@ -23,7 +23,9 @@ interface CharacterAddProps {
   setTourCount?: React.Dispatch<React.SetStateAction<number>> | any;
   setUserDetails?:any;
   createCharacterData?:any;
-  setActiveProfile?:any
+  setActiveProfile?:any;
+  setCreateCharacterToggle: React.Dispatch<React.SetStateAction<boolean>>;
+  createCharacterToggle:boolean
 }
 
 const validationSchema = Yup.object().shape({
@@ -38,7 +40,9 @@ const CharacterAdd: React.FC<CharacterAddProps> = ({
   setTourCount,
   setCreateCharacterData,
   UserGuide,
-  setActiveProfile
+  setActiveProfile,
+  setCreateCharacterToggle,
+  createCharacterToggle
 }) => {
   const token: any = Cookies.get('accessToken');
 
@@ -66,6 +70,7 @@ const CharacterAdd: React.FC<CharacterAddProps> = ({
       // Cookies.set('character_id', character_id);
       // console.log(res);
       setActiveProfile(res?.data?.character_id)
+      setCreateCharacterToggle(!createCharacterToggle)
     })
     .catch((err:any)=>{
       console.log(err);

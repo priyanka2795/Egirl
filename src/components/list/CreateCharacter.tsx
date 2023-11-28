@@ -13,7 +13,9 @@ interface CreateCharacter {
   setCreateCharacterData?: any;
   setUserDetails?: any;
   setActiveProfile?: any;
-  createCharacterData?:any
+  createCharacterData?:any;
+  setCreateCharacterToggle:React.Dispatch<React.SetStateAction<boolean>>
+  createCharacterToggle:boolean
 }
 
 function CreateCharacter({
@@ -23,7 +25,9 @@ function CreateCharacter({
   createCharacterData,
   setCreateCharacterData,
   UserGuide,
-  setActiveProfile
+  setActiveProfile,
+  setCreateCharacterToggle,
+  createCharacterToggle
 }: CreateCharacter) {
   const [createCharacter, setCreateCharacter] = useState<boolean>(false);
   const [welcomeModal, setWelcomeModal] = useState<boolean>(false);
@@ -64,6 +68,8 @@ function CreateCharacter({
           UserGuide={UserGuide}
           createCharacterData={createCharacterData}
           setActiveProfile={setActiveProfile}
+          setCreateCharacterToggle={setCreateCharacterToggle}
+          createCharacterToggle={createCharacterToggle}
         />
       )}
     </>

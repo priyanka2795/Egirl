@@ -53,6 +53,8 @@ interface CreatorStudioNavbarPropProp {
   setUserDetails: any;
   createCharacterData: any;
   bannerData: any;
+  setCreateCharacterToggle: React.Dispatch<React.SetStateAction<boolean>>;
+  createCharacterToggle:boolean
 }
 
 interface CreateCharacter {
@@ -76,7 +78,10 @@ const CreatorStudioSidebar = ({
   setActiveProfile,
   setCreateCharacterData,
   createCharacterData,
-  bannerData
+  bannerData,
+  setCreateCharacterToggle,
+  createCharacterToggle
+  
 }: CreatorStudioNavbarPropProp) => {
   const [sidebarModal, setSidebarModal] = useState<boolean>(false);
   const [moreOptionsModal, setMoreOptionsModal] = useState<boolean>(false);
@@ -109,7 +114,7 @@ const CreatorStudioSidebar = ({
             shrinkSideBar !== true ? 'mx-3 max-w-[276px] ' : 'mx-2'
           }`}
         >
-          {allCharacterData && allCharacterData?.length && (
+          {allCharacterData && allCharacterData?.length > 0 ? (
             <div
               className='flex cursor-pointer items-center justify-between py-[14px] pl-3 pr-4'
               onClick={() => setSidebarModal(!sidebarModal)}
@@ -143,31 +148,31 @@ const CreatorStudioSidebar = ({
                 />
               )}
             </div>
-          )}
-          {/*  */}
+          ) : (shrinkSideBar ? (
+            <div className='flex flex-col items-start self-stretch gap-2 pt-6 pb-2'>
+              <button
+                onClick={() => setWelcomeModal(true)}
+                className='flex h-[42px] w-[45px] items-center justify-center gap-1.5 self-stretch rounded-xl bg-[#5848BC] px-2 py-2.5'
+              >
+                <Image src={userAdd} alt='' className='h-[25px] w-[25px]' />
+              </button>
+            </div>
+          ) : (
+            <div className='flex flex-col items-start self-stretch gap-2 px-6 pt-6 pb-2 '>
+              <button
+                onClick={() => setWelcomeModal(true)}
+                className='flex h-auto w-full items-center justify-center gap-1.5 self-stretch rounded-xl bg-[#5848BC] px-4 py-2.5'
+              >
+                <Image src={userAdd} alt='' className='h-[18px] w-[18px]' />
+                <span className='text-sm font-semibold leading-5 normal'>
+                  Create character
+                </span>
+              </button>
+            </div>
+          ))}
+      
           <div>
-            {shrinkSideBar ? (
-                <div className='flex flex-col items-start self-stretch gap-2 pt-6 pb-2'>
-                  <button
-                    onClick={() => setWelcomeModal(true)}
-                    className='flex h-[42px] w-[45px] items-center justify-center gap-1.5 self-stretch rounded-xl bg-[#5848BC] px-2 py-2.5'
-                  >
-                    <Image src={userAdd} alt='' className='h-[25px] w-[25px]' />
-                  </button>
-                </div>
-              ) : (
-                <div className='flex flex-col items-start self-stretch gap-2 px-6 pt-6 pb-2 '>
-                  <button
-                    onClick={() => setWelcomeModal(true)}
-                    className='flex h-auto w-full items-center justify-center gap-1.5 self-stretch rounded-xl bg-[#5848BC] px-4 py-2.5'
-                  >
-                    <Image src={userAdd} alt='' className='h-[18px] w-[18px]' />
-                    <span className='text-sm font-semibold leading-5 normal'>
-                      Create character
-                    </span>
-                  </button>
-                </div>
-              )}
+            
 
             {welcomeModal && (
               <CreateCharacterModal
@@ -187,6 +192,8 @@ const CreatorStudioSidebar = ({
                 setUserDetails={setUserDetails}
                 createCharacterData={createCharacterData}
                 setActiveProfile={setActiveProfile}
+                setCreateCharacterToggle={setCreateCharacterToggle}
+            createCharacterToggle={createCharacterToggle}
               />
             )}
           </div>
