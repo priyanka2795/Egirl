@@ -132,7 +132,7 @@ function Gifts() {
       .catch((err: any) => {
         console.log(err);
       });
-  }, [selectedCategoryId, updateGift , deleteGiftToggle]);
+  }, [selectedCategoryId, updateGift , deleteGiftToggle , giftCategory]);
 
   return (
     <>

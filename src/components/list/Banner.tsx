@@ -43,10 +43,10 @@ const posts = [
 ];
 
 const location = [
-  {
-    icon: locationIcon,
-    name: 'Tokyo'
-  },
+  // {
+  //   icon: locationIcon,
+  //   name: 'Tokyo'
+  // },
   {
     icon: calendarIcon,
     name: 'Joined March 2023'
@@ -479,7 +479,7 @@ BannerProp) => {
               </div>
 
               <div className='mt-[12px] flex'>
-                {bottomButtons.map((item, index) => {
+                {/* {bottomButtons.map((item, index) => {
                   return (
                     <div key={index} className='mr-2'>
                       <button className='font-normal rounded-[6px] bg-white/[0.08] px-[8px] py-[3px] text-[12px] text-[#FFFFFF]'>
@@ -487,7 +487,7 @@ BannerProp) => {
                       </button>
                     </div>
                   );
-                })}
+                })} */}
               </div>
             </div>
           </div>
