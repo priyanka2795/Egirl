@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
 import threeDotsIcon from '../../../public/assets/three-dots-icon.png';
 import avatar from '../../../public/assets/avatar.png';
 import micaChanFullImg from '../../../public/assets/mica-chan-full-img.png';
@@ -19,9 +19,10 @@ const settings = {
 };
 
 const PreviewContent = () => {
+  const [previewData , setPreviewData] = useState<any>()
   return (
     <div className='p-6'>
-      <div className='flex justify-between'>
+     {previewData && previewData?.length ? <> <div className='flex justify-between'>
         <div className='flex gap-3'>
           <div className='h-[40px] w-[40px]'>
             <Image src={avatar} alt={''} />
@@ -78,7 +79,7 @@ const PreviewContent = () => {
             <Image className='object-contain' src={shareIcon} alt={''} />
           </div>
         </div>
-      </div>
+      </div></> : <div className='w-full text-[#616161] h-full flex justify-center items-center py-4'>No preview post yet</div>}
     </div>
   );
 };
