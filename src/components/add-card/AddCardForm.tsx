@@ -6,20 +6,12 @@ import maestroCard from '../../../public/assets/maestro-card.png';
 import masterrCard from '../../../public/assets/master-card.png';
 import visaCard from '../../../public/assets/visa-card.png';
 import circleInformation from '../../../public/assets/circle-information2.png';
-import chevronDown from '../../../public/assets/chevron-down2.png';
-import chevronUp from '../../../public/assets/chevron-up.png';
 
 interface AddCardFormProp {
   showSucess: React.Dispatch<React.SetStateAction<boolean>>;
   showError: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const AddCardForm = ({ showSucess, showError }: AddCardFormProp) => {
-  const [countryDropDown, setCountryDropDown] = useState<boolean>(false);
-  const [countryInputText, setCountryInputText] = useState<string>('🇺🇸 America');
-  const genderOptions = ['🇺🇸 America', '🇺🇸 America', '🇺🇸 America'];
-  const [stateDropDown, setStateDropDown] = useState<boolean>(false);
-  const [stateInputText, setStateInputText] = useState<string>('California');
-  const stateOptions = ['California', 'California', 'California'];
   return (
     <form>
       <div className='flex flex-col gap-10 p-8'>
@@ -29,53 +21,7 @@ const AddCardForm = ({ showSucess, showError }: AddCardFormProp) => {
           </div>
           <div className='flex flex-col gap-4'>
             <div className='flex gap-4'>
-              <div className='relative flex w-full flex-col gap-[6px]'>
-                <h6 className='text-[13px] text-[#979797]'>Country</h6>
-                <div
-                  className={`flex cursor-pointer justify-between rounded-[14px] px-4 py-3 ${
-                    countryDropDown
-                      ? 'border border-[#515151]'
-                      : 'border border-transparent bg-white/[0.05]'
-                  }`}
-                  onClick={() => {
-                    setCountryDropDown(!countryDropDown);
-                  }}
-                >
-                  <div
-                    className={`${
-                      countryDropDown || countryInputText !== 'Country'
-                        ? 'text-white'
-                        : 'text-[#979797]'
-                    } font-normal text-[15px] leading-6`}
-                  >
-                    {countryInputText}
-                  </div>
-                  <Image
-                    src={countryDropDown ? chevronUp : chevronDown}
-                    alt={''}
-                  />
-                </div>
-                {countryDropDown && (
-                  <div className='top-[78px] flex w-full flex-col rounded-[14px] bg-[#1A1A1A] px-0 py-1'>
-                    {genderOptions.map((item, index) => {
-                      return (
-                        <div
-                          key={index}
-                          className='font-normal mx-2 my-1 cursor-pointer bg-[#1A1A1A] px-2 py-[6px] text-[14px] leading-[18px] text-white hover:rounded-[8px] hover:bg-white/[0.05]'
-                          onClick={() => {
-                            setCountryInputText(item),
-                              setCountryDropDown(false);
-                          }}
-                        >
-                          {item}
-                        </div>
-                      );
-                    })}
-                  </div>
-                )}
-              </div>
-
-              {/* <div className='flex w-full flex-col gap-[6px]'>
+              <div className='flex w-full flex-col gap-[6px]'>
                 <label
                   htmlFor='country'
                   className='text-[13px] font-semibold leading-[18px] text-[#979797]'
@@ -90,54 +36,8 @@ const AddCardForm = ({ showSucess, showError }: AddCardFormProp) => {
                   <option value='america'>🇺🇸 America</option>
                   <option value='america'>🇺🇸 America</option>
                 </select>
-              </div> */}
-
-              <div className='relative flex w-full flex-col gap-[6px]'>
-                <h6 className='text-[13px] text-[#979797]'>State / Province</h6>
-                <div
-                  className={`flex cursor-pointer justify-between rounded-[14px] px-4 py-3 ${
-                    stateDropDown
-                      ? 'border border-[#515151]'
-                      : 'border border-transparent bg-white/[0.05]'
-                  }`}
-                  onClick={() => {
-                    setStateDropDown(!stateDropDown);
-                  }}
-                >
-                  <div
-                    className={`${
-                        stateDropDown || stateInputText !== 'Gender'
-                        ? 'text-white'
-                        : 'text-[#979797]'
-                    } font-normal text-[15px] leading-6`}
-                  >
-                    {stateInputText}
-                  </div>
-                  <Image
-                    src={stateDropDown ? chevronUp : chevronDown}
-                    alt={''}
-                  />
-                </div>
-                {stateDropDown && (
-                  <div className='top-[78px] flex w-full flex-col rounded-[14px] bg-[#1A1A1A] px-0 py-1'>
-                    {stateOptions.map((item, index) => {
-                      return (
-                        <div
-                          key={index}
-                          className='font-normal mx-2 my-1 cursor-pointer bg-[#1A1A1A] px-2 py-[6px] text-[14px] leading-[18px] text-white hover:rounded-[8px] hover:bg-white/[0.05]'
-                          onClick={() => {
-                            setStateInputText(item), setStateDropDown(false);
-                          }}
-                        >
-                          {item}
-                        </div>
-                      );
-                    })}
-                  </div>
-                )}
               </div>
-
-              {/* <div className='flex w-full flex-col gap-[6px]'>
+              <div className='flex w-full flex-col gap-[6px]'>
                 <label
                   htmlFor='country'
                   className='text-[13px] font-semibold leading-[18px] text-[#979797]'
@@ -152,7 +52,7 @@ const AddCardForm = ({ showSucess, showError }: AddCardFormProp) => {
                   <option value='california'>California</option>
                   <option value='california'>California</option>
                 </select>
-              </div> */}
+              </div>
             </div>
             <div className='flex w-full flex-col gap-[6px]'>
               <label
@@ -286,9 +186,8 @@ const AddCardForm = ({ showSucess, showError }: AddCardFormProp) => {
               />
             </div>
             <div className='font-normal text-[13px] leading-[18px] text-[#FFFFFF]'>
-              Egirls will make a one-time charge of $0.10 when adding your
-              payment card. The charges on your credit card statement will
-              appear as "Egirls".
+              The charges on your credit card and banking statements will appear
+              as "Persona Enterprises Inc."
             </div>
           </div>
           <div className='flex flex-col gap-2'>
@@ -303,36 +202,19 @@ const AddCardForm = ({ showSucess, showError }: AddCardFormProp) => {
               <Image className='h-[30px] w-[50px]' src={masterrCard} alt={''} />
               <Image className='h-[30px] w-[50px]' src={visaCard} alt={''} />
             </div>
-            <div className='font-normal text-center text-[14px] leading-[18px] text-[#515151]'>
-              Fenix International Limited, 9th Floor, 107 Cheapside, London,
-              EC2V 6DN
-            </div>
+            {/* <div className='text-center text-[#515151] text-[14px] font-normal leading-[18px]'>Fenix International Limited, 9th Floor, 107 Cheapside, London, EC2V 6DN</div> */}
           </div>
         </div>
       </div>
       <div className='flex items-end justify-end px-8 py-6'>
         <button
-          type='submit'
+          onClick={() => showError(true)}
           className='font-bold flex items-center justify-center rounded-[14px] bg-[#5848BC] px-5 py-[13px] text-[16px] leading-[22px] text-[#FFFFFF]'
         >
           Add card
         </button>
-        <button
-          className='font-bold ml-2 flex items-center justify-center rounded-[14px] bg-[#5848BC] px-5 py-[13px] text-[16px] leading-[22px] text-[#FFFFFF]'
-          onClick={() => {
-            showSucess(true);
-          }}
-        >
-          Success
-        </button>
-        <button
-          className='font-bold ml-2 flex items-center justify-center rounded-[14px] bg-[#5848BC] px-5 py-[13px] text-[16px] leading-[22px] text-[#FFFFFF]'
-          onClick={() => {
-            showError(true);
-          }}
-        >
-          Error
-        </button>
+        {/* <button className='px-5 py-[13px] ml-2 flex justify-center items-center rounded-[14px] bg-[#5848BC] text-[#FFFFFF] text-[16px] font-bold leading-[22px]' onClick={() => {showSucess(true)}}>Success</button>
+            <button className='px-5 py-[13px] ml-2 flex justify-center items-center rounded-[14px] bg-[#5848BC] text-[#FFFFFF] text-[16px] font-bold leading-[22px]' onClick={() => {showError(true)}}>Error</button>  */}
       </div>
     </form>
   );
