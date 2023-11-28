@@ -34,6 +34,9 @@ useEffect(()=>{
     getAllCharacter(token)
     .then((res:any)=>{
       setAllCharacterData(res?.data)
+      if(res?.data.length === 1){
+        Cookies.set("character_id" , res?.data[0]?.id)
+      }
     })
     .catch((err:any)=>{
       console.log(err);
