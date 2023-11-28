@@ -80,7 +80,7 @@ const CharacterAdd: React.FC<CharacterAddProps> = ({
     setUserGuide?.(false);
     setIsTourOpen?.(true);
     setTourCount?.(0);
-    NewCharacterClose?.(false)
+    NewCharacterClose?.(false) 
   };
 
   return (
