@@ -72,7 +72,7 @@ const InputFieldDesign = ({
               />
             </div>
             {fruit && (
-              <div className='absolute right-0 top-[90px] z-50 w-full rounded-xl bg-[#1E1E1E] px-2 py-3'>
+              <div className='absolute right-0 top-[60px] z-50 w-full rounded-xl bg-[#1E1E1E] px-2 py-3'>
                 {Fruits.map((fruits, index) => {
                   return (
                     <div
