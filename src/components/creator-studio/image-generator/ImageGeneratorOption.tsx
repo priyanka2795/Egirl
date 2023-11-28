@@ -104,12 +104,14 @@ const ImageGeneratorOption = ({
   const [tagState, setTagState] = useState<boolean>(false);
   const [openGenre, setOpenGenre] = React.useState<boolean>(false);
   const [openStyle, setOpenStyle] = React.useState<boolean>(false);
+  const [updateImgState, setUpdateImgState] = useState<boolean>(false)
   // Inpainting Modal
   const [inpaintingExample, setInpaintingExample] = useState<boolean>(false);
   const [selectImageModal, setSelectImageModal] = useState<boolean>(false);
   const [inpaintingModal, setInpaintingModal] = useState<boolean>(false);
   const [inpaintingCreated, setInpaintingCreated] = useState<boolean>(false);
   const [editInpainting, setEditInpainting] = useState<boolean>(false);
+  const [selectInPaintImg, setSelectInPaintImg] = useState<any>({media_id:"", media_url:""})
   // Posing Modal
   const [posing, setPosing] = useState<boolean>(false);
   const [poseExample, setPoseExample] = useState<boolean>(false);
@@ -233,19 +235,17 @@ const ImageGeneratorOption = ({
     }
   };
 
-  let promptValueObj: { promptType: string; promptValue: string };
-  const [promptValArr, setPromptValArr] = useState([] as any);
+  
+  console.log('selectInPaintImg---', selectInPaintImg,savedDrawingImage);
+  const svgString = `${savedDrawingImage}`;
 
-  if (editPrompt && editPromptMenuIndex) {
-    promptValueObj = {
-      promptType: editPrompt,
-      promptValue: editPromptMenuIndex
-    };
-  }
-  useEffect(() => {
-    setPromptValArr([...promptValArr, promptValueObj]);
-  }, [editPromptMenuIndex]);
-  console.log('promptValArr---', promptValArr);
+// Encode the SVG string to base64
+const base64SVG = btoa(svgString);
+
+// Create a base64 URL
+const base64URL = `data:image/svg+xml;base64,${base64SVG}`;
+
+console.log(base64URL);
   //====== prompt image api for image generation ========
   const token: any = Cookies.get('accessToken');
   const refreshTokenData: any = useAppSelector(
@@ -263,10 +263,10 @@ const ImageGeneratorOption = ({
       //------ inPainting image api ----
       const inPaintData = {
         base_image: {
-          media_id: 0,
-          media_url: 'string'
+          media_id: selectInPaintImg.media_id,
+          media_url: selectInPaintImg.media_url
         },
-        mask_image_base64_str: 'string',
+        mask_image_base64_str: savedDrawingImage ?  base64URL : "",
         prompt: promptTags.map((ele: string, index: number) => {
           return {
             prompt_id: index,
@@ -285,6 +285,7 @@ const ImageGeneratorOption = ({
       postInpaintImage(inPaintData, token)
         .then((res: any) => {
           console.log('inPaintImage res---', res);
+          setUpdateImgState(!updateImgState)
           if (res?.response?.status === 401) {
             dispatch(tokenRefresh());
           }
@@ -318,6 +319,7 @@ const ImageGeneratorOption = ({
       postPoseImage(poseData, token)
         .then((res: any) => {
           console.log('pose image res---', res);
+          setUpdateImgState(!updateImgState)
           if (res?.response?.status === 401) {
             dispatch(tokenRefresh());
           }
@@ -346,6 +348,7 @@ const ImageGeneratorOption = ({
       postPromptImage(promptData, token)
         .then((res: any) => {
           console.log('prompt image res---', res);
+          setUpdateImgState(!updateImgState)
           if (res?.response?.status === 401) {
             dispatch(tokenRefresh());
           }
@@ -371,7 +374,7 @@ useEffect(()=>{
 .catch((err)=>{
   console.log("get image generation err---",err)
 })
-},[])
+},[updateImgState,refreshTokenData])
 //---------------------------------------------------
  
 
@@ -786,6 +789,7 @@ useEffect(()=>{
           CloseModal={setSelectImageModal}
           SetInpaintingModal={setInpaintingModal}
           allImgData={allImgData}
+          setSelectInPaintImg = {setSelectInPaintImg}
         />
       )}
       {inpaintingModal && (
@@ -795,6 +799,7 @@ useEffect(()=>{
           EditInpainting={editInpainting}
           SavedDrawingImage={setSavedDrawingImage}
           setSelectImageModal={setSelectImageModal}
+          selectInPaintImg={selectInPaintImg}
         />
       )}
 
