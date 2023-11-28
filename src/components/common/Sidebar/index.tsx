@@ -1,29 +1,34 @@
+import Image from 'next/image';
 import SidebarMenuItem from './SidebarMenuItem';
+import TestIcon from './TestIcon';
 import Logo from './svg/logo.svg';
+import BellMenuIcon from './svg/bell-menu-icon.svg';
 
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import SubscriptionModal from '../SubscriptionModal';
-import MoreMenuOption from './MoreMenuOption';
-import UserDetailModal from './UserDetailModal';
-import AddCardActiveIcon from './svg/AddCardActiveIcon';
+import NavMenuIcon from './svg/nav-menu-icon.svg';
+import NavMenuArrow from './svg/nav-menu-arrow.svg';
+import ExploreIcon from './svg/ExploreIcon';
 import AddCardIcon from './svg/AddCardIcon';
 import CreatorStudioIcon from './svg/CreatorStudioIcon';
-import EgirlsPlusIcon from './svg/EgirlsPlusIcon';
-import ExploreActiveIcon from './svg/ExploreActiveIcon';
-import ExploreIcon from './svg/ExploreIcon';
-import HomeActiveIcon from './svg/HomeActiveIcon';
-import HomeIcon from './svg/HomeIcon';
-import ListsIconActive from './svg/ListIconActive';
-import ListsIcon from './svg/ListsIcon';
-import MessageActiveIcon from './svg/MessageActiveIcon';
 import MessagesIcon from './svg/MessagesIcon';
-import MoreIcon from './svg/MoreIcon';
-import ReferalWhiteIcon from './svg/ReferalWhiteIcon';
+import ListsIcon from './svg/ListsIcon';
 import ReferralsIcon from './svg/ReferralsIcon';
+import MoreIcon from './svg/MoreIcon';
+import HomeIcon from './svg/HomeIcon';
 import DotsVerticalIcon from './svg/dots-vertical-icon.svg';
-import NavMenuArrow from './svg/nav-menu-arrow.svg';
+import EgirlsPlusIcon from './svg/EgirlsPlusIcon';
+import EyeIcon from '../../home/Post/svg/eye.svg';
+import { useEffect, useState } from 'react';
+import SubscriptionModal from '../SubscriptionModal';
+import ReferalWhiteIcon from './svg/ReferalWhiteIcon';
+import HomeActiveIcon from './svg/HomeActiveIcon';
+import ExploreActiveIcon from './svg/ExploreActiveIcon';
+import MessageActiveIcon from './svg/MessageActiveIcon';
+import ListsIconActive from './svg/ListIconActive';
+import AddCardActiveIcon from './svg/AddCardActiveIcon';
 import UserImg from './svg/user-img.svg';
+import MoreMenuOption from './MoreMenuOption';
+import UserDetailModal from './UserDetailModal';
+import Link from 'next/link';
 
 // sideBarClasses={'!w-[88px]'}
 // sideBarLogoClasses={'!hidden'}
@@ -50,8 +55,8 @@ export default function Sidebar({
   activeMoreOption,
   activeItem
 }: // sideBarWidth,
-  // shrinkSidebar
-  sideBarProp) {
+// shrinkSidebar
+sideBarProp) {
   // const [shrinkSidebar, setShrinkSidebar] = useState(false);
   // console.log(shrinkSidebar, 'shrinkSidebar');
   const [subscribeModal, setSubscribeModal] = useState(false);
@@ -81,34 +86,39 @@ export default function Sidebar({
   };
 
 
-
+  
   return (
     // border: border-r border-[#2F2F2F]
     <div
-      className={`h-full w-[88px] flex-col overflow-y-auto border-r-[2px] border-[rgb(37,37,37)] bg-[#070707] sm:flex xl:w-[300px] xl:items-start ${sideBarClasses} ${shrinkSidebar === 'true' ? '!w-[88px]' : ''
-        }`}
+      className={`h-full w-[88px] flex-col overflow-y-auto border-r-[2px] border-[rgb(37,37,37)] bg-[#070707] sm:flex xl:w-[300px] xl:items-start ${sideBarClasses} ${
+        shrinkSidebar === 'true' ? '!w-[88px]' : ''
+      }`}
     >
       <div
-        className={`flex h-[72px] w-full items-center  px-6 ${shrinkSidebar ? 'justify-center' : 'justify-between'
-          }`}
+        className={`flex h-[72px] w-full items-center  px-6 ${
+          shrinkSidebar ? 'justify-center' : 'justify-between'
+        }`}
       >
         <Logo
-          className={`hidden xl:inline ${sideBarLogoClasses} ${shrinkSidebar === 'true' ? '!hidden' : ''
-            }`}
+          className={`hidden xl:inline ${sideBarLogoClasses} ${
+            shrinkSidebar === 'true' ? '!hidden' : ''
+          }`}
         />
 
         <div
-          className={`flex cursor-pointer  items-center ${sideBarMenuArrowClasses ? 'w-full justify-center' : ''
-            }`}
+          className={`flex cursor-pointer  items-center ${
+            sideBarMenuArrowClasses ? 'w-full justify-center' : ''
+          }`}
         >
           {/* <NavMenuIcon /> */}
           <Link href={'#'}>
-            <NavMenuArrow
-              className={`${sideBarMenuArrowClasses} ${shrinkSidebar === 'true' ? 'rotate-180' : ''
-                }`}
-              onClick={handleSidebarWidth}
+          <NavMenuArrow
+            className={`${sideBarMenuArrowClasses} ${
+              shrinkSidebar === 'true' ? 'rotate-180' : ''
+            }`}
+            onClick={handleSidebarWidth}
             // onClick={sideBarWidth}
-            />
+          />
           </Link>
 
         </div>
@@ -122,16 +132,18 @@ export default function Sidebar({
           href='/home'
           Icon={HomeIcon}
           IconActive={HomeActiveIcon}
-          sideBarMenuText={`${sideBarMenuText} ${shrinkSidebar === 'true' ? '!hidden' : 'w-full'
-            }`}
+          sideBarMenuText={`${sideBarMenuText} ${
+            shrinkSidebar === 'true' ? '!hidden' : 'w-full'
+          }`}
         />
         <SidebarMenuItem
           text='Explore'
           href='/explore'
           Icon={ExploreIcon}
           IconActive={ExploreActiveIcon}
-          sideBarMenuText={`${sideBarMenuText} ${shrinkSidebar === 'true' ? '!hidden' : 'w-full'
-            }`}
+          sideBarMenuText={`${sideBarMenuText} ${
+            shrinkSidebar === 'true' ? '!hidden' : 'w-full'
+          }`}
         />
         <div
           onClick={() => {
@@ -143,8 +155,9 @@ export default function Sidebar({
             href='/messages'
             Icon={MessagesIcon}
             IconActive={MessageActiveIcon}
-            sideBarMenuText={`${sideBarMenuText} ${shrinkSidebar === 'true' ? '!hidden' : 'w-full'
-              }`}
+            sideBarMenuText={`${sideBarMenuText} ${
+              shrinkSidebar === 'true' ? '!hidden' : 'w-full'
+            }`}
           />
         </div>
 
@@ -153,22 +166,23 @@ export default function Sidebar({
           href='/lists'
           Icon={ListsIcon}
           IconActive={ListsIconActive}
-          sideBarMenuText={`${sideBarMenuText} ${shrinkSidebar === 'true' ? '!hidden' : 'w-full'
-            }`}
+          sideBarMenuText={`${sideBarMenuText} ${
+            shrinkSidebar === 'true' ? '!hidden' : 'w-full'
+          }`}
         />
         <div
           onClick={() => {
-            activeItem('Add Card')
-            // moreOptionItem('')
+            activeItem('Add Card'); moreOptionItem('')
           }}
         >
           <SidebarMenuItem
             text='Add Card'
-            href='/add-card'
+            // href='/add-card'
             Icon={AddCardIcon}
             IconActive={AddCardActiveIcon}
-            sideBarMenuText={`${sideBarMenuText} ${shrinkSidebar === 'true' ? '!hidden' : 'w-full'
-              }`}
+            sideBarMenuText={`${sideBarMenuText} ${
+              shrinkSidebar === 'true' ? '!hidden' : 'w-full'
+            }`}
           />
         </div>
         <SidebarMenuItem
@@ -176,16 +190,18 @@ export default function Sidebar({
           href='/referrals'
           Icon={ReferralsIcon}
           IconActive={ReferalWhiteIcon}
-          sideBarMenuText={`${sideBarMenuText} ${shrinkSidebar === 'true' ? '!hidden' : 'w-full'
-            }`}
+          sideBarMenuText={`${sideBarMenuText} ${
+            shrinkSidebar === 'true' ? '!hidden' : 'w-full'
+          }`}
         />
         <div onClick={() => setSubscribeModal(true)}>
           <SidebarMenuItem
             IconActive={ReferalWhiteIcon}
             text='Egirls+'
             Icon={EgirlsPlusIcon}
-            sideBarMenuText={`${sideBarMenuText} ${shrinkSidebar === 'true' ? '!hidden' : 'w-full'
-              }`}
+            sideBarMenuText={`${sideBarMenuText} ${
+              shrinkSidebar === 'true' ? '!hidden' : 'w-full'
+            }`}
           />
         </div>
         <SidebarMenuItem
@@ -193,8 +209,9 @@ export default function Sidebar({
           text='Creator Studio'
           href='/creator-studio'
           Icon={CreatorStudioIcon}
-          sideBarMenuText={`${sideBarMenuText} ${shrinkSidebar === 'true' ? '!hidden' : 'w-full'
-            }`}
+          sideBarMenuText={`${sideBarMenuText} ${
+            shrinkSidebar === 'true' ? '!hidden' : 'w-full'
+          }`}
           changeTab={'CreatorStudioActive'}
         />
 
@@ -205,14 +222,16 @@ export default function Sidebar({
               // text='More'
               text={moreOption ? 'Show Less' : 'More'}
               Icon={MoreIcon}
-              sideBarMenuText={`${sideBarMenuText} ${shrinkSidebar === 'true' ? '!hidden' : 'w-full'
-                }`}
+              sideBarMenuText={`${sideBarMenuText} ${
+                shrinkSidebar === 'true' ? '!hidden' : 'w-full'
+              }`}
             />
           </div>
           {moreOption && (
             <MoreMenuOption
-              classes={`${sideBarCollapse ? 'fixed bottom-5 left-[90px]' : 'absolute '
-                }`}
+              classes={`${
+                sideBarCollapse ? 'fixed bottom-5 left-[90px]' : 'absolute '
+              }`}
               activeMoreOption={activeMoreOption}
               moreOptionItem={moreOptionItem}
               activeItem={activeItem}
@@ -260,8 +279,9 @@ export default function Sidebar({
             <UserImg />
           </div>
           <div
-            className={`hidden leading-5 xl:inline ${sideBarLogoClasses} ${shrinkSidebar ? '!hidden' : ''
-              }`}
+            className={`hidden leading-5 xl:inline ${sideBarLogoClasses} ${
+              shrinkSidebar ? '!hidden' : ''
+            }`}
           >
             <h4 className='font-bold text-sm leading-[18px]'>Username</h4>
             <p className='font-light text-[13px] leading-[18px] text-[#979797]'>
@@ -271,17 +291,19 @@ export default function Sidebar({
         </div>
         <div>
           <DotsVerticalIcon
-            className={`hidden h-5 xl:inline ${sideBarLogoClasses} ${shrinkSidebar ? '!hidden' : ''
-              }`}
+            className={`hidden h-5 xl:inline ${sideBarLogoClasses} ${
+              shrinkSidebar ? '!hidden' : ''
+            }`}
           />
           {userAccountMenu && (
             <UserDetailModal
               setUserAccountMenu={setUserAccountMenu}
               userAccountMenu={userAccountMenu}
-              styleClasses={`${shrinkSidebar === 'true'
-                ? 'fixed left-[18px]'
-                : 'absolute  right-[34px] '
-                }`}
+              styleClasses={`${
+                shrinkSidebar === 'true'
+                  ? 'fixed left-[18px]'
+                  : 'absolute  right-[34px] '
+              }`}
             />
           )}
         </div>

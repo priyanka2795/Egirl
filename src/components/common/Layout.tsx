@@ -3,18 +3,14 @@ import Sidebar from './Sidebar';
 import NotificationModal from './Sidebar/NotificationModal';
 import AddCardSidebar from './Sidebar/AddCards/AddCard';
 import { useRouter } from 'next/router';
-import { log } from 'console';
 
 const Layout = ({ children }: any) => {
   const [activeMoreMenuItem, setActiveMoreMenuItem] = useState('');
   const [activeItem, setActiveItem] = useState('');
   const router = useRouter();
-  console.log({activeItem});
-  
+
   const activeRoute = router.pathname;
-  const handleActiveItem = (item: string) => {    
-    setActiveItem(item)
-  }
+
   return (
     <React.Fragment>
       <main className='mx-auto flex h-screen min-h-screen max-w-[1320px] overflow-hidden'>
@@ -22,7 +18,7 @@ const Layout = ({ children }: any) => {
           <Sidebar
             activeMoreOption={activeMoreMenuItem}
             moreOptionItem={setActiveMoreMenuItem}
-            activeItem={handleActiveItem}
+            activeItem={setActiveItem}
           />
         </div>
 
@@ -37,7 +33,7 @@ const Layout = ({ children }: any) => {
           {activeItem === 'Add Card' && (
             <AddCardSidebar seletedAddCard={activeItem}  SetseletedAddCard ={setActiveItem}/>
           )}
-          {/* {activeItem === 'Add Card' && (
+           {/* {activeItem === 'Add Card' && (
             <AddCardSidebar seletedAddCard={activeItem} />
           )} */}
 

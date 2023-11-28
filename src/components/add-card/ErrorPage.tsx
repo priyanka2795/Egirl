@@ -11,13 +11,13 @@ const ErrorPage = ({ closeErrorPage }: errorPageProp) => {
   const router = useRouter();
   return (
     <div className=''>
-      <div className='flex grow flex-col items-center justify-center gap-10 p-8'>
+      <div className='flex flex-col items-center justify-center gap-10 p-8 grow'>
         <div
           className='flex flex-col items-center justify-center gap-4'
           style={{ height: 'calc(100vh - 165px)' }}
         >
           <div className='flex items-center justify-center rounded-full bg-[#FF5336]/[0.16] px-6 pb-6 pt-[26px]'>
-            <Image className='h-8 w-8' src={crossIconRed} alt={''} />
+            <Image className='w-8 h-8' src={crossIconRed} alt={''} />
           </div>
           <div className='flex flex-col gap-2'>
             <div className='font-bold text-center text-[22px] leading-8 text-[#FFFFFF]'>

@@ -41,7 +41,7 @@ const AddCard = () => {
             </div>
           </div>
           {showSuccessPage ? (
-            <SuccessPage closeSuccessPage={setShowSuccessPage} message={'Your credit card was successfully added'} />
+            <SuccessPage closeSuccessPage={setShowSuccessPage} message={'The payment was successfully completed'} />
           ) : showErrorPage ? (
             <ErrorPage closeErrorPage={setShowErrorPage} />
           ) : activeListTab === 'Add card' ? (
@@ -64,8 +64,8 @@ const AddCard = () => {
         }
       </div>
 
-      {/* <p onClick={() => setDeleteCardState(true)}>delete card</p>
-      {deleteCardState && <DeleteModal closeDeleteModal={setDeleteCardState} />} */}
+      <p onClick={() => setDeleteCardState(true)}>delete card</p>
+      {deleteCardState && <DeleteModal closeDeleteModal={setDeleteCardState} />}
     </>
   );
 };

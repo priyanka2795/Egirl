@@ -159,7 +159,7 @@ const AddCardForm = ({ showSucess, showError }: AddCardFormProp) => {
               </div>
             </div>
           </div>
-          <div className='custom-checkbox custom-checkbox-circle block'>
+          <div className='block custom-checkbox custom-checkbox-circle'>
             <input
               className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727] focus:outline-0 focus:outline-transparent focus:ring-0'
               type='checkbox'
@@ -178,9 +178,9 @@ const AddCardForm = ({ showSucess, showError }: AddCardFormProp) => {
         </div>
         <div className='flex flex-col gap-6'>
           <div className='flex gap-2 rounded-[14px] border border-white/[0.16] p-4'>
-            <div className='h-5 w-5'>
+            <div className='w-5 h-5'>
               <Image
-                className='h-full w-full object-contain'
+                className='object-contain w-full h-full'
                 src={circleInformation}
                 alt={''}
               />
