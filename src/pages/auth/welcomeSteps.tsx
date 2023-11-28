@@ -81,10 +81,12 @@ const settings = {
 interface WelcomeStepsModal {
   welcomeStepsModal: boolean;
   setWelcomeStepsModal: React.Dispatch<React.SetStateAction<boolean>>;
+  signUpCompleted?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const WelcomeStepsModal = ({
   welcomeStepsModal,
-  setWelcomeStepsModal
+  setWelcomeStepsModal,
+  signUpCompleted
 }: WelcomeStepsModal) => {
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const [nextBtn, setNextBtn] = useState(false);
@@ -119,7 +121,10 @@ const WelcomeStepsModal = ({
       <div className='flex flex-col justify-center gap-11 px-12 pb-12 pt-8'>
         <div className='flex items-center justify-between text-[#979797]'>
           {signUpStep === 1 ? (
-            <button onClick={() => setWelcomeStepsModal(false)}>
+            <button
+              className='border-0'
+              onClick={() => setWelcomeStepsModal(false)}
+            >
               <Image src={ArrowLeft} className='h-full w-full object-cover' />
             </button>
           ) : (
@@ -227,7 +232,10 @@ const WelcomeStepsModal = ({
               )}
             </>
           ) : (
-            <button className='font-bold flex w-full items-center justify-center gap-2 rounded-2xl bg-[#FFFFFF14] px-5 py-4 text-center text-lg'>
+            <button
+              className='font-bold flex w-full items-center justify-center gap-2 rounded-2xl bg-[#FFFFFF14] px-5 py-4 text-center text-lg'
+              onClick={() => signUpCompleted(false)}
+            >
               <Image src={RightIcon} /> Done
             </button>
           )}

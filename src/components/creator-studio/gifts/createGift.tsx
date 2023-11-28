@@ -182,7 +182,7 @@ function CreateGift({
                   key={index}
                   className={`cursor-pointer rounded-[14px] border px-4 py-3 
                                 ${
-                                  tabSelectedOpt === items
+                                  tabSelectedOpt === items?.gift_category_id
                                     ? 'border-[#5848BC] bg-[#5848BC29]'
                                     : 'border-[#FFFFFF29] bg-[#ffffff00]'
                                 }

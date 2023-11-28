@@ -43,10 +43,10 @@ const posts = [
 ];
 
 const location = [
-  {
-    icon: locationIcon,
-    name: 'Tokyo'
-  },
+  // {
+  //   icon: locationIcon,
+  //   name: 'Tokyo'
+  // },
   {
     icon: calendarIcon,
     name: 'Joined March 2023'
@@ -234,12 +234,12 @@ BannerProp) => {
         <div className='h-max w-full overflow-hidden rounded-[16px] bg-[#121212]'>
           <div className='relative block w-full sub-banner'>
             {removeCover ? (
-              <div className='h-[200px] w-[1092px] bg-[#121212]'></div>
+              <div className='h-[200px] w-full bg-[#121212]'></div>
             ) : updatedProfile ? (
-              <img className='h-[200px] w-[1092px] ' src={cropData} alt='' />
+              <img className='h-[200px] w-full ' src={cropData} alt='' />
             ) : (
               // <Image className='w-full h-full ' src={Cover} alt='' />
-              <div className='bg-[#1A1A1A] h-[200px] w-[1092px] mb-2'></div>
+              <div className='bg-[#1A1A1A] h-[200px] w-full mb-2'></div>
             )}
             <div
               className='absolute right-[20px] top-[20px] cursor-pointer'
@@ -479,7 +479,7 @@ BannerProp) => {
               </div>
 
               <div className='mt-[12px] flex'>
-                {bottomButtons.map((item, index) => {
+                {/* {bottomButtons.map((item, index) => {
                   return (
                     <div key={index} className='mr-2'>
                       <button className='font-normal rounded-[6px] bg-white/[0.08] px-[8px] py-[3px] text-[12px] text-[#FFFFFF]'>
@@ -487,7 +487,7 @@ BannerProp) => {
                       </button>
                     </div>
                   );
-                })}
+                })} */}
               </div>
             </div>
           </div>
