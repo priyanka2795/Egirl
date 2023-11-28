@@ -25,18 +25,19 @@ import eye from '../../../public/assets/eye.png';
 import trashBlank from '../../../public/assets/trash-blank-alt.png';
 import downArrow from '../../../public/assets/down-arrow-img.png';
 import EditProfileModal from '@components/list/EditProfileModal';
+import userAvatar from '../../../public/assets/user-alt-1.png'
 
 const posts = [
   {
-    number: '89',
+    number: '0',
     name: 'Posts'
   },
   {
-    number: '2.17K',
+    number: '0',
     name: 'Followers'
   },
   {
-    number: '569',
+    number: '0',
     name: 'Subscribers'
   }
 ];
@@ -237,7 +238,8 @@ BannerProp) => {
             ) : updatedProfile ? (
               <img className='h-[200px] w-[1092px] ' src={cropData} alt='' />
             ) : (
-              <Image className='h-full w-full ' src={Cover} alt='' />
+              // <Image className='h-full w-full ' src={Cover} alt='' />
+              <div className='bg-[#1A1A1A] h-[200px] w-[1092px]'></div>
             )}
             <div
               className='absolute right-[20px] top-[20px] cursor-pointer'
@@ -283,8 +285,9 @@ BannerProp) => {
                 updatedProfile ? 'mt-[-56px]' : 'mt-[-62px]'
               }`}
             >
-              <div className='relative h-[120px] w-[120px] overflow-hidden rounded-full'>
-                <Image className='h-full w-full' src={avatar} alt='' />
+              <div className='relative h-[120px]  w-[120px] overflow-hidden rounded-full'>
+                {/* <Image className='h-full w-full border border-white' src={avatar} alt='' /> */}
+                <div className='bg-[#202020] h-full w-full flex items-center justify-center'><Image className='' src={userAvatar}/></div>
               </div>
               <div className={'flex gap-3 self-end'}>
                 {/* <button
