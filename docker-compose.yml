@@ -1,0 +1,12 @@
+version: '3'
+services:
+  web:
+    container_name: egirls_frontend_container
+    image: egirls_frontend_image
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules # TODO: Possible Bug, it becomes a anonymous volume which doesnt get deleted even after spinning down, need to map it some host folder
+      - /usr/src/app/.next # TODO: Possible Bug, it becomes a anonymous volume,which doesnt get deleted even after spinning down, need to map it some host folder
