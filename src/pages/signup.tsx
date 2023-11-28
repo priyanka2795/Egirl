@@ -200,16 +200,16 @@ export default function SignUp() {
                       `}
                       />
 
-                      <ErrorMessage
+                      {/* <ErrorMessage
                         name='password'
                         component='div'
                         className='text-red-500'
-                      />
+                      /> */}
                       <div>
                         <ul>
                           <li className='mb-3'>Create a password that:</li>
                           <li className='flex items-center mb-2'>
-                            {touched.password ? errors.password ? <CrossIcon /> : <CheckedIcon /> : ""}
+                            {touched.password ?  errors.password ? <CrossIcon /> : <CheckedIcon /> : ""}
                             contains at least 8 characters
                           </li>
                           <li className='flex items-center mb-2'>
