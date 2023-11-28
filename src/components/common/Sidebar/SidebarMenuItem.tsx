@@ -56,7 +56,7 @@ export default function SidebarMenuItem({
               <span
                 className={`${
                   active ? 'font-black' : 'font-semibold'
-                } ${sideBarMenuText} hidden text-[18px] leading-8 xl:inline`}
+                } ${sideBarMenuText} hidden text-[16px] leading-8 xl:inline`}
               >
                 {text}
               </span>
@@ -79,7 +79,7 @@ export default function SidebarMenuItem({
               <span
                 className={`${
                   active ? 'font-bold' : 'font-medium'
-                } ${sideBarMenuText} hidden text-[15px] leading-8 xl:inline`}
+                } ${sideBarMenuText} hidden text-[16px] leading-8 xl:inline`}
               >
                 {text}
               </span>
