@@ -7,11 +7,11 @@ export default function Home() {
   const router = useRouter();
   const accessToken = Cookies.get("accessToken")
   const refreshToken = Cookies.get("refreshToken")
-useEffect(()=>{
-  if(!accessToken){
-    router.push('/auth/signin')
-  }
-},[accessToken])
+// useEffect(()=>{
+//   if(!accessToken){
+//     router.push('/login')
+//   }
+// },[accessToken])
 
 return (
     <>

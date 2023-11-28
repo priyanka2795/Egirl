@@ -246,6 +246,7 @@ const base64SVG = btoa(svgString);
 const base64URL = `data:image/svg+xml;base64,${base64SVG}`;
 
 console.log(base64URL);
+
   //====== prompt image api for image generation ========
   const token: any = Cookies.get('accessToken');
   const refreshTokenData: any = useAppSelector(
@@ -278,8 +279,8 @@ console.log(base64URL);
         sd_image_model: 'SemiRealMix',
         height: imageDimension?.height,
         width: imageDimension?.width,
-        guidance_scale: guidanceScale[0],
-        inference_steps: stepScale[0],
+        guidance_scale: guidanceScale[0].toString(),
+        inference_steps: stepScale[0].toString(),
         num_of_images: numOfImages
       };
       postInpaintImage(inPaintData, token)
@@ -312,8 +313,8 @@ console.log(base64URL);
         sd_image_model: 'SemiRealMix',
         height: imageDimension?.height,
         width: imageDimension?.width,
-        guidance_scale: guidanceScale[0],
-        inference_steps: stepScale[0],
+        guidance_scale: guidanceScale[0].toString(),
+        inference_steps: stepScale[0].toString(),
         num_of_images: numOfImages
       };
       postPoseImage(poseData, token)
@@ -341,8 +342,8 @@ console.log(base64URL);
         sd_image_model: 'SemiRealMix',
         height: imageDimension?.height,
         width: imageDimension?.width,
-        guidance_scale: guidanceScale[0],
-        inference_steps: stepScale[0],
+        guidance_scale: guidanceScale[0].toString(),
+        inference_steps: stepScale[0].toString(),
         num_of_images: numOfImages
       };
       postPromptImage(promptData, token)

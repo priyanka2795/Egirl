@@ -18,7 +18,7 @@ const validationSchema = Yup.object().shape({
   username: Yup.string().required('Username is required'),
   email: Yup.string().email('Invalid email').required('Email is required'),
   verifyemail: Yup.string()
-    .required()
+    .required("Verify email is a required")
     .oneOf([Yup.ref('email')], "That's an invalid email"),
   password: Yup.string()
     .required('Password is required')
@@ -209,15 +209,15 @@ export default function SignUp() {
                         <ul>
                           <li className='mb-3'>Create a password that:</li>
                           <li className='flex items-center mb-2'>
-                            {errors.password ? <CrossIcon /> : <CheckedIcon />}
+                            {touched.password ? errors.password ? <CrossIcon /> : <CheckedIcon /> : ""}
                             contains at least 8 characters
                           </li>
                           <li className='flex items-center mb-2'>
-                            {errors.password ? <CrossIcon /> : <CheckedIcon />}
+                            {touched.password ? errors.password ? <CrossIcon /> : <CheckedIcon /> : ""}
                             contains at least one uppercase letter
                           </li>
                           <li className='flex items-center'>
-                            {errors.password ? <CrossIcon /> : <CheckedIcon />}
+                            {touched.password ? errors.password ? <CrossIcon /> : <CheckedIcon /> : ""}
                             contains at least one symbol
                           </li>
                         </ul>
