@@ -22,6 +22,7 @@ const creatorStudio = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [userDetails, setUserDetails] = useState();
   const [updateCharacterToggle , setUpdateCharacterToggle] = useState<boolean>(false)
+  const [createCharacterToggle , setCreateCharacterToggle] = useState<boolean>(false)
 
 useEffect(()=>{
   if(!activeProfile && allCharacterData){
@@ -37,7 +38,7 @@ useEffect(()=>{
     .catch((err:any)=>{
       console.log(err);
     })
-  },[ UserGuide , activeProfile , createCharacterData ])
+  },[ UserGuide , activeProfile , createCharacterData , createCharacterToggle ])
 
 
   useEffect(()=>{
@@ -85,6 +86,8 @@ useEffect(()=>{
           setBannerData={setBannerData}
           setUpdateCharacterToggle={setUpdateCharacterToggle}
           updateCharacterToggle={updateCharacterToggle}
+          setCreateCharacterToggle={setCreateCharacterToggle}
+          createCharacterToggle={createCharacterToggle}
         />
       )}
     </div>

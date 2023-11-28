@@ -31,7 +31,9 @@ interface CreatorStudio {
   setActiveProfile:any;
   bannerData:any;
   updateCharacterToggle:boolean;
-  setUpdateCharacterToggle:React.Dispatch<React.SetStateAction<boolean>>
+  setUpdateCharacterToggle:React.Dispatch<React.SetStateAction<boolean>>;
+  setCreateCharacterToggle:React.Dispatch<React.SetStateAction<boolean>>
+  createCharacterToggle:boolean
 }
 const CreatorStudio = ({
   IsOpen,
@@ -55,7 +57,9 @@ const CreatorStudio = ({
   setActiveProfile,
   bannerData,
   updateCharacterToggle,
-  setUpdateCharacterToggle
+  setUpdateCharacterToggle,
+  setCreateCharacterToggle,
+  createCharacterToggle
 }: CreatorStudio) => {
   // const [UserGuide, setUserGuide] = useState(true);
 
@@ -74,6 +78,8 @@ const CreatorStudio = ({
           setTourCount={setTourCount}
           UserGuide={UserGuide}
           setActiveProfile={setActiveProfile}
+          setCreateCharacterToggle={setCreateCharacterToggle}
+          createCharacterToggle={createCharacterToggle}
         />
       ) : (
         <div className='mb-5'>
