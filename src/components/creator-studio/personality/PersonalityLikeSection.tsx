@@ -75,7 +75,6 @@ const PersonalityLikeSection = ({
       <div className='flex h-auto w-full max-w-full flex-col rounded-lg bg-[#121212]'>
         <div className='flex items-center justify-between max-w-full p-6'>
           <div className='flex flex-col gap-[2px] '>
-            {showHoverModal && <PersonalityHoverModal />}
             <h2 className='font-bold flex items-center gap-[6px] text-lg'>
               Likes
               <div

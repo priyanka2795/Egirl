@@ -8,6 +8,7 @@ import AddImagesModal from './AddImagesModal';
 import GoToGeneratorModal from './GoToGeneratorModal';
 import downArrow from '../../../../public/assets/down-arrow-img.png';
 import CompleteGeneration from './CompleteGeneration';
+import AddStyleImagesModal from './addStyleImagesModal';
 
 interface StyleGeneratorProps {
   setStyleGeneratorNext: React.Dispatch<React.SetStateAction<boolean>>;
@@ -122,6 +123,7 @@ const StyleGenerator = ({ setStyleGeneratorNext }: StyleGeneratorProps) => {
               </div>
             </div>
           </div>
+          
           <div className='flex h-[320px] flex-col items-center justify-center gap-5'>
             <div className='flex flex-col items-center justify-center gap-3'>
               <div className='flex rounded-[100px] bg-white/[0.05] p-4'>
@@ -173,12 +175,19 @@ const StyleGenerator = ({ setStyleGeneratorNext }: StyleGeneratorProps) => {
         />
       )} */}
       {addImagesModal && (
-        <AddImagesModal
+        <AddStyleImagesModal
         addImagesModal={addImagesModal}
           setAddImagesModal={setAddImagesModal}
           setStyleGeneratorNext={setStyleGeneratorNext}
         />
       )}
+      {/* {addImagesModal && (
+        <AddImagesModal
+        addImagesModal={addImagesModal}
+          setAddImagesModal={setAddImagesModal}
+          setStyleGeneratorNext={setStyleGeneratorNext}
+        />
+      )} */}
     </>
   );
 };
