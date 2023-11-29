@@ -23,6 +23,8 @@ const ImageGeneratorIndex = () => {
           EditTooltip={true}
           numOfImages={numOfImages}
           imageDimension={imageDimension}
+          setImageDimension={setImageDimension}
+          setNumOfImages={setNumOfImages}
           guidanceScale={guidanceScale}
           stepScale={stepScale}
         />

@@ -13,7 +13,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SigninTemplate from './auth/signinTemplate';
 import SigninLoginOpt from './auth/SigninLoginOpt';
-import WelcomeStepsModal from './auth/welcomeSteps';
 
 const validationSchema = Yup.object().shape({
   username: Yup.string().required('Username is required'),
@@ -33,12 +32,12 @@ const initialValues = {
   username: '',
   email: '',
   verifyemail: '',
-  password: ''
+  password: '',
 };
 export default function SignUp() {
   const router = useRouter();
 
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState<any>('');
   const [isMinLength, setIsMinLength] = useState<boolean>(false);
   const [hasNumberOrSpecialChar, setHasNumberOrSpecialChar] =
     useState<boolean>(false);
@@ -65,13 +64,12 @@ export default function SignUp() {
   };
 
   const handleSubmit = (values: any, { setSubmitting }: any) => {
-    sessionStorage.setItem('true', 'signupcompleted');
     setErrorMsg('');
     // You can handle the form data submission here
     let data = {
       username: values.username,
       email: values.email,
-      password: values.password
+      password: values.password,
     };
     userSignUp(data)
       .then((res: any) => {
@@ -79,7 +77,7 @@ export default function SignUp() {
         if (res.status === 200) {
           Cookies.set('accessToken', res.data.access_token);
           Cookies.set('refreshToken', res.data.refresh_token);
-          toast.success('signup successful');
+          toast.success('User login successful');
           setTimeout(() => {
             router.push('/home');
           }, 1000);
@@ -96,6 +94,8 @@ export default function SignUp() {
       });
   };
 
+ 
+
   return (
     <>
       <SigninTemplate>
@@ -104,8 +104,9 @@ export default function SignUp() {
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >
-          {({ errors, touched }) => (
+          {({ errors, touched, values}) => (
             <Form>
+             
               <div className='flex h-[inherit] max-h-[692px] w-[500px] flex-col rounded-[40px] bg-[#070707] '>
                 <div className='flex max-h-[600px] flex-col gap-8 overflow-y-auto px-10 pt-10'>
                   <SigninLoginOpt heading={'Sign up'} pageName={'login'} />
@@ -193,6 +194,7 @@ export default function SignUp() {
                         id='password'
                         name='password'
                         placeholder='password'
+                        
                         className={`font-normal // flex rounded-[14px] bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-white placeholder:text-[#979797] 
                      focus:ring-0 ${
                        errors.password
@@ -211,15 +213,15 @@ export default function SignUp() {
                         <ul>
                           <li className='mb-3'>Create a password that:</li>
                           <li className='flex items-center mb-2'>
-                            {errors.password ? <CrossIcon /> : <CheckedIcon />}
+                            { values.password ? errors.password ? <CrossIcon /> : <CheckedIcon /> : ""}
                             contains at least 8 characters
                           </li>
                           <li className='flex items-center mb-2'>
-                            {errors.password ? <CrossIcon /> : <CheckedIcon />}
+                            { values.password ? errors.password ? <CrossIcon /> : <CheckedIcon /> : "" }
                             contains at least one uppercase letter
                           </li>
                           <li className='flex items-center'>
-                            {touched.password ? errors.password ? <CrossIcon /> : <CheckedIcon /> : ""}
+                            { values.password ? errors.password ? <CrossIcon /> : <CheckedIcon /> : ""}
                             contains at least one symbol
                           </li>
                         </ul>
@@ -245,6 +247,12 @@ export default function SignUp() {
         </Formik>
       </SigninTemplate>
 
+      {/* {welcomeStepsModal && (
+        <WelcomeStepsModal
+          welcomeStepsModal={welcomeStepsModal}
+          setWelcomeStepsModal={setWelcomeStepsModal}
+        />
+      )} */}
       <ToastContainer
         position='bottom-center'
         pauseOnHover
@@ -252,13 +260,6 @@ export default function SignUp() {
         hideProgressBar={true}
         autoClose={2000}
       />
-      {/*       
-            {welcomeStepsModal && (
-              <WelcomeStepsModal
-                welcomeStepsModal={welcomeStepsModal}
-                setWelcomeStepsModal={setWelcomeStepsModal}
-              />
-            )} */}
     </>
   );
 }

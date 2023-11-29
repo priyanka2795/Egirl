@@ -144,9 +144,9 @@ const GalleryTabFilter = ({
                       selectedFilter === items.filterText
                         ? '!bg-[#5848BC]'
                         : 'bg-white bg-opacity-10 '
-                    } ${items.id === 7 && 'filter-bg-gradient'}`}
-                  >
-                    
+                    }`}
+                    // ${items.id === 7 && 'filter-bg-gradient'}
+                  >                   
 
                     <div className='text-[15px] font-semibold leading-tight text-white'>
                       <p>{items.filterText}</p>

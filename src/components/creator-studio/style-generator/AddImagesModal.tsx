@@ -12,7 +12,7 @@ interface AddImagesModalProps {
   setAddImagesModal?: any;
   setStyleGeneratorNext?: any;
   setCroppedImage?: any;
-  AddImagesModal?: any;
+  addImagesModal?: any;
 }
 
 const albums = [
@@ -48,8 +48,8 @@ const allPhotos = [
 ];
 
 const AddImagesModal = ({
+  addImagesModal,
   setAddImagesModal,
-  AddImagesModal,
   setStyleGeneratorNext,
   setCroppedImage
 }: AddImagesModalProps) => {
@@ -71,7 +71,7 @@ const AddImagesModal = ({
 
   return (
     <>
-      {AddImagesModal && (
+      {addImagesModal && (
         <>
           {updateProfileImg ? (
             <Modal

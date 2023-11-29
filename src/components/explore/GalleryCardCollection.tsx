@@ -76,7 +76,7 @@ const GalleryCardCollection = ({
     <RemoveProfile backFromProfile={setSingleProfileState} />
   ) : (
     <div className='flex items-center justify-center'>
-    <div className='grid grid-cols-2 gap-4'>
+    <div className={`grid  ${sideBarCollapses?'grid-cols-3':'grid-cols-2'} gap-4`}>
       {exploreGallery.map((items, index) => {
         return (
           <div
