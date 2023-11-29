@@ -374,7 +374,7 @@ console.log(base64URL);
         });
     }
   };
-
+console.log("")
 //---------------------------------------------------
 //------------ get image generation api--------------
 const [allImgData, setAllImgData] = useState([])

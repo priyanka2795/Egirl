@@ -9,8 +9,7 @@ const ImageNumber = ({setNumOfImages}:imageNumber) => {
   const handleImageNumbers =(item:number)=>{
     setSelectedItem(item)
     setNumOfImages(item)
-    
-  }
+   }
   return (
     <div className='px-5 pt-5 pb-6'>
       <h6 className='text-[13px] font-semibold text-[#979797]'>

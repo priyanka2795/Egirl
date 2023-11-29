@@ -169,7 +169,7 @@ export default function ChatScreen({
     updatedImages.splice(index, 1);
     setImageUploaded(updatedImages);
   };
-
+  
   const chatUrl =
     'wss://65.21.65.49:8000/ws/user/a89df75b-4356-4118-9c9b-15dfa6e0123b/room/6/character/f47ac10b-58cc-4372-a567-0e02b2c3d510/text_chat';
   let socket = new WebSocket(chatUrl);
@@ -182,6 +182,7 @@ export default function ChatScreen({
   socket.onmessage = function (event) {
     alert(`[message] Data received from server: ${event.data}`);
   };
+
 
   return (
     <div
