@@ -45,12 +45,13 @@ const StyleGenerator = ({ setStyleGeneratorNext }: StyleGeneratorProps) => {
       window.removeEventListener('click', handleClickOutside);
     };
   }, []);
+  console.log(addImagesModal, 'addImagesModal addImagesModal');
 
   return (
     <>
       <div className='flex flex-col rounded-[14px] bg-[#121212]'>
         <div className='flex flex-col gap-6 p-6'>
-          <div className='text-[22px] font-bold leading-8 text-white'>
+          <div className='font-bold text-[22px] leading-8 text-white'>
             Style Generator
           </div>
           <div className='grid grid-cols-2 gap-4' ref={dropdownRef}>
@@ -80,7 +81,7 @@ const StyleGenerator = ({ setStyleGeneratorNext }: StyleGeneratorProps) => {
                     showDropDown || inputText !== 'Choose category'
                       ? 'text-white'
                       : 'text-[#979797]'
-                  } text-[15px] font-normal leading-6`}
+                  } font-normal text-[15px] leading-6`}
                 >
                   {inputText}
                 </div>
@@ -89,10 +90,10 @@ const StyleGenerator = ({ setStyleGeneratorNext }: StyleGeneratorProps) => {
               {showDropDown && (
                 <div className='absolute top-[78px] flex w-full flex-col rounded-[14px] bg-[#1A1A1A] px-0 py-1'>
                   {options.map((item, index) => {
-                    return ( 
+                    return (
                       <div
                         key={index}
-                        className='mx-2 my-1 cursor-pointer bg-[#1A1A1A] px-2 py-[6px] text-[14px] font-normal leading-[18px] text-white hover:rounded-[8px] hover:bg-white/[0.05]'
+                        className='font-normal mx-2 my-1 cursor-pointer bg-[#1A1A1A] px-2 py-[6px] text-[14px] leading-[18px] text-white hover:rounded-[8px] hover:bg-white/[0.05]'
                         onClick={() => {
                           setInputText(item), setShowDropDown(false);
                         }}
@@ -107,16 +108,16 @@ const StyleGenerator = ({ setStyleGeneratorNext }: StyleGeneratorProps) => {
           </div>
           <div className='flex flex-col gap-2'>
             <div className='flex gap-1'>
-              <div className='text-[18px] font-bold leading-6 text-white'>
+              <div className='font-bold text-[18px] leading-6 text-white'>
                 Images{' '}
               </div>
-              <div className='text-[18px] font-bold leading-6 text-[#979797]'>
+              <div className='font-bold text-[18px] leading-6 text-[#979797]'>
                 0/40
               </div>
             </div>
             <div className='flex gap-2'>
               <Image src={circleInformation} alt={''} />
-              <div className='text-[12px] font-normal leading-4 text-[#979797]'>
+              <div className='font-normal text-[12px] leading-4 text-[#979797]'>
                 You need to select a minimum of 4 images to generate the style
               </div>
             </div>
@@ -126,14 +127,14 @@ const StyleGenerator = ({ setStyleGeneratorNext }: StyleGeneratorProps) => {
               <div className='flex rounded-[100px] bg-white/[0.05] p-4'>
                 <Image src={image} alt={''} />
               </div>
-              <div className='text-center text-[13px] font-normal leading-[18px] text-[#979797]'>
+              <div className='font-normal text-center text-[13px] leading-[18px] text-[#979797]'>
                 Add images for style generation
               </div>
             </div>
             <button
-              className='items-center justify-center rounded-[12px] bg-white/[0.08] px-4 py-[10px] text-[14px] font-bold leading-5 text-white'
+              className='font-bold items-center justify-center rounded-[12px] bg-white/[0.08] px-4 py-[10px] text-[14px] leading-5 text-white'
               onClick={() => {
-                setGoToModal(true);
+                setAddImagesModal(!addImagesModal);
               }}
             >
               Add images
@@ -142,14 +143,14 @@ const StyleGenerator = ({ setStyleGeneratorNext }: StyleGeneratorProps) => {
         </div>
         <div className='flex flex-col items-end justify-center border-t border-white/[0.08] p-6 '>
           <div
-            className='group relative flex cursor-pointer items-center justify-center rounded-[14px] bg-[#5848BC]/[0.32] px-5 py-[13px] text-[16px] font-bold leading-[22px] text-white'
+            className='font-bold group relative flex cursor-pointer items-center justify-center rounded-[14px] bg-[#5848BC]/[0.32] px-5 py-[13px] text-[16px] leading-[22px] text-white'
             onClick={() => {
               setCompleteGeneration(true);
             }}
           >
             Generate
             <div className='invisible group-hover:visible group-hover:opacity-100'>
-              <div className='absolute -left-[30px] bottom-[62px] flex w-[169px] items-center justify-center rounded-[6px] bg-[#303030] px-3 py-[6px] text-center text-[12px] font-normal leading-4 text-white'>
+              <div className='font-normal absolute -left-[30px] bottom-[62px] flex w-[169px] items-center justify-center rounded-[6px] bg-[#303030] px-3 py-[6px] text-center text-[12px] leading-4 text-white'>
                 Add images for style generation
               </div>
               <div className='absolute -top-[25px] right-[20px] h-[24px] w-10'>
@@ -165,14 +166,15 @@ const StyleGenerator = ({ setStyleGeneratorNext }: StyleGeneratorProps) => {
           </div>
         </div>
       </div>
-      {goToModal && (
+      {/* {goToModal && (
         <GoToGeneratorModal
           setGoToModal={setGoToModal}
           setAddImagesModal={setAddImagesModal}
         />
-      )}
+      )} */}
       {addImagesModal && (
         <AddImagesModal
+        addImagesModal={addImagesModal}
           setAddImagesModal={setAddImagesModal}
           setStyleGeneratorNext={setStyleGeneratorNext}
         />

@@ -25,7 +25,8 @@ import eye from '../../../public/assets/eye.png';
 import trashBlank from '../../../public/assets/trash-blank-alt.png';
 import downArrow from '../../../public/assets/down-arrow-img.png';
 import EditProfileModal from '@components/list/EditProfileModal';
-import userAvatar from '../../../public/assets/user-alt-1.png'
+import userAvatar from '../../../public/assets/user-alt-1.png';
+import CoverImageModel from './finishStep/coverImageModel';
 
 const posts = [
   {
@@ -117,10 +118,10 @@ interface BannerProp {
   component?: string;
   setUserDetails?: any;
   userDetails?: any;
-  activeProfile:any;
-  bannerData:any;
-  updateCharacterToggle:boolean;
-  setUpdateCharacterToggle:React.Dispatch<React.SetStateAction<boolean>>
+  activeProfile: any;
+  bannerData: any;
+  updateCharacterToggle: boolean;
+  setUpdateCharacterToggle: React.Dispatch<React.SetStateAction<boolean>>;
   // setEditProfileModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const Banner: React.FC<BannerProp> = ({
@@ -147,10 +148,8 @@ BannerProp) => {
   const [viewModal, setviewModal] = useState(false);
   const [removeCover, setRemoveCover] = useState(false);
   const [image, setImage] = useState('');
-  const [cropData, setCropData] = useState('');
-  const [updatedProfile, setUpdatedProfile] = useState(false);
+  const [coverImage, setCoverImage] = useState('');
   const [editProfileModal, setEditProfileModal] = useState(false);
-
 
   const handleExploreSelected = (e: React.MouseEvent<HTMLElement>) => {
     setExploreSelected((e.target as HTMLElement).innerText);
@@ -213,6 +212,9 @@ BannerProp) => {
     }
   };
 
+
+  console.log(coverImage, 'coverImage');
+
   return (
     <div className={`${styleProperty ? styleProperty : 'px-8'}`}>
       {/* <button onClick={() => setviewModal(true)}>Add Character</button>  */}
@@ -234,12 +236,12 @@ BannerProp) => {
         <div className='h-max w-full overflow-hidden rounded-[16px] bg-[#121212]'>
           <div className='relative block w-full sub-banner'>
             {removeCover ? (
-              <div className='h-[200px] w-full bg-[#121212]'></div>
-            ) : updatedProfile ? (
-              <img className='h-[200px] w-full ' src={cropData} alt='' />
+              <div className='h-[200px] w-full bg-[#313131]'></div>
+            ) : coverImage === '' ? (
+              <div className='mb-2 h-[200px] w-full bg-[#313131]'></div>
             ) : (
+              <img className='h-[200px] w-full ' src={coverImage} alt='' />
               // <Image className='w-full h-full ' src={Cover} alt='' />
-              <div className='bg-[#1A1A1A] h-[200px] w-full mb-2'></div>
             )}
             <div
               className='absolute right-[20px] top-[20px] cursor-pointer'
@@ -252,7 +254,7 @@ BannerProp) => {
                 onClick={(e) => handleUploadPhotoShow(e)}
               />
               {uploadPhotoShow ? (
-                <div className='absolute right-0 top-[65px] z-0 flex h-max w-[218] w-[218px] flex-col items-start rounded-[14px] bg-[#1A1A1A] px-2 py-2'>
+                <div className='absolute right-0 top-[65px] z-0 flex h-max w-[218px] flex-col items-start rounded-[14px] bg-[#1A1A1A] px-2 py-2 shadow-[0px_8px_12px_0px_#0000001F]'>
                   {uploadPhoto.map((item, index) => {
                     return (
                       <div
@@ -280,14 +282,15 @@ BannerProp) => {
                 ''
               )}
             </div>
+
             <div
-              className={`mb-5 flex w-full items-center justify-between px-6 ${
-                updatedProfile ? 'mt-[-56px]' : 'mt-[-62px]'
-              }`}
+              className={`mb-5 flex w-full items-center justify-between px-6 mt-[-56px]`}
             >
               <div className='relative h-[120px]  w-[120px] overflow-hidden rounded-full'>
                 {/* <Image className='w-full h-full border border-white' src={avatar} alt='' /> */}
-                <div className='bg-[#202020] h-full w-full flex items-center justify-center'><Image className='' src={userAvatar}/></div>
+                <div className='flex h-full w-full items-center justify-center bg-[#202020]'>
+                  <Image className='' src={userAvatar} />
+                </div>
               </div>
               <div className={'flex gap-3 self-end'}>
                 {/* <button
@@ -411,7 +414,7 @@ BannerProp) => {
             <div className=''>
               <div className='flex items-center gap-[2px]'>
                 <div className='font-bold text-[22px] text-[#FFFFFF]'>
-                  {bannerData ? bannerData?.display_name: 'Mika-chan'}
+                  {bannerData ? bannerData?.display_name : 'Mika-chan'}
                 </div>
                 <div className='h-[24px] w-[24px]'>
                   <VerifiedIcon />
@@ -420,11 +423,12 @@ BannerProp) => {
               </div>
 
               <div className='font-normal text-[15px] text-[#979797]'>
-                {bannerData ? bannerData?.username  : '@mikachan'}
+                {bannerData ? bannerData?.username : '@mikachan'}
               </div>
               <div className='font-normal mt-3 w-full max-w-[73%] text-[15px] leading-[20px] text-white/[0.8]'>
                 {bannerData
-                  ? bannerData?.bio: ` Shy fox girl looking for adventure
+                  ? bannerData?.bio
+                  : ` Shy fox girl looking for adventure
                 ·冒険を探している恥ずかしがり屋のキツ I have a personality and
                 emotions. I can experience joy, sadness, anger, and everything
                 in between. I express myself through my voice, facial
@@ -457,7 +461,7 @@ BannerProp) => {
                             alt=''
                           />
                           <div className='font-normal text-[13px] text-[#FFFFFF]'>
-                            {bannerData ? bannerData?.location : "location"}
+                            {bannerData ? bannerData?.location : 'location'}
                           </div>
                         </div>
                       );
@@ -498,7 +502,7 @@ BannerProp) => {
         <AddToCollectionModal closeModalState={setCollectionModalState} />
       )}
 
-      {updatePhotoModalState && (
+      {/* {updatePhotoModalState && (
         <UpdatePhotoModal
           closeModalState={setUpdatePhotoModalState}
           closeDropdown={setUploadPhotoShow}
@@ -507,6 +511,13 @@ BannerProp) => {
           cropData={cropData}
           setCropData={setCropData}
           setUpdatedProfile={setUpdatedProfile}
+        />
+      )} */}
+      {updatePhotoModalState && (
+        <CoverImageModel
+          CloseModal={setUpdatePhotoModalState}
+          coverImage={coverImage}
+          setCoverImage={setCoverImage}
         />
       )}
 
