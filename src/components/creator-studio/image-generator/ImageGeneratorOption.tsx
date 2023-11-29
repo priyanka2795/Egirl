@@ -82,7 +82,9 @@ interface ImageGeneratorOption {
   EditGeneration: boolean;
   EditTooltip: boolean;
   numOfImages?: number;
+  setNumOfImages?:any;
   imageDimension?: any;
+  setImageDimension?:any
   guidanceScale: number[];
   stepScale: number[];
 }
@@ -93,7 +95,9 @@ const ImageGeneratorOption = ({
   EditGeneration,
   EditTooltip,
   numOfImages,
+  setNumOfImages,
   imageDimension,
+  setImageDimension,
   guidanceScale,
   stepScale
 }: ImageGeneratorOption) => {
@@ -235,7 +239,6 @@ const ImageGeneratorOption = ({
     }
   };
 
-  
   console.log('selectInPaintImg---', selectInPaintImg,savedDrawingImage);
   const svgString = `${savedDrawingImage}`;
 
@@ -287,6 +290,10 @@ console.log(base64URL);
         .then((res: any) => {
           console.log('inPaintImage res---', res);
           setUpdateImgState(!updateImgState)
+          setNegativePrompt(" ")
+          setPromptTags([])
+          setNumOfImages()
+          setImageDimension()
           if (res?.response?.status === 401) {
             dispatch(tokenRefresh());
           }
@@ -295,7 +302,7 @@ console.log(base64URL);
           console.log('inPaintImage err---', err);
         });
     } else if (PosingToggle === true) {
-      //----------- pose image api -------
+      //----------- pose image api ---------
       const poseData = {
         preset_pose_image: {
           media_id: 0,
@@ -318,16 +325,20 @@ console.log(base64URL);
         num_of_images: numOfImages
       };
       postPoseImage(poseData, token)
-        .then((res: any) => {
-          console.log('pose image res---', res);
-          setUpdateImgState(!updateImgState)
-          if (res?.response?.status === 401) {
-            dispatch(tokenRefresh());
-          }
-        })
-        .catch((err) => {
-          console.log('pose image err---', err);
-        });
+      .then((res:any)=>{
+        console.log("pose image res---", res)
+        setUpdateImgState(!updateImgState)
+        setNegativePrompt(" ")
+        setPromptTags([])
+        setNumOfImages()
+        setImageDimension()
+        if (res?.response?.status === 401) {
+          dispatch(tokenRefresh());
+        }
+      })
+      .catch((err)=>{
+        console.log("pose image err---", err)
+      })
     } else {
       //------- prompt image api ------
       const promptData = {
@@ -350,6 +361,10 @@ console.log(base64URL);
         .then((res: any) => {
           console.log('prompt image res---', res);
           setUpdateImgState(!updateImgState)
+          setNegativePrompt(" ")
+          setPromptTags([])
+          setNumOfImages()
+          setImageDimension()
           if (res?.response?.status === 401) {
             dispatch(tokenRefresh());
           }
@@ -360,7 +375,7 @@ console.log(base64URL);
     }
   };
 
-  //-------------------------------------------------
+//---------------------------------------------------
 //------------ get image generation api--------------
 const [allImgData, setAllImgData] = useState([])
 useEffect(()=>{
@@ -378,8 +393,7 @@ useEffect(()=>{
 },[updateImgState,refreshTokenData])
 //---------------------------------------------------
  
-
-  return (
+return (
     <>
       <div className='flex flex-col rounded-[14px] bg-[#121212]'>
         <div className='flex flex-col gap-6 p-6'>

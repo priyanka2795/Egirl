@@ -12,9 +12,9 @@ import { useAppDispatch, useAppSelector } from 'redux/hooks';
 import { tokenRefresh } from 'redux/api/RefreshTokenApi';
 
 const Messages = () => {
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   const [chartScreenView, setChartScreenView] = useState('Default view');
-  const [chatViewStyle ,setChatViewStyle] = useState('Inline chat');
+  const [chatViewStyle, setChatViewStyle] = useState('Inline chat');
   const [modalView, setModalView] = useState(false);
   const [startConversationModal, setStartConversationModal] = useState(false);
   const [selectUserState, setSelectUserState] = useState('');
@@ -32,25 +32,27 @@ const Messages = () => {
     setShrinkSidebar(!shrinkSidebar);
   };
   //========= get rooms api ==========
-  const token:any = Cookies.get('accessToken')
-  const refreshTokenData:any = useAppSelector((state)=> state.tokenRefresh?.tokenData)
-  const [roomData, setRoomData] = useState([])
-  useEffect(()=>{
-    if(refreshTokenData){
-      Cookies.set("accessToken", refreshTokenData)
+  const token: any = Cookies.get('accessToken');
+  const refreshTokenData: any = useAppSelector(
+    (state) => state.tokenRefresh?.tokenData
+  );
+  const [roomData, setRoomData] = useState([]);
+  useEffect(() => {
+    if (refreshTokenData) {
+      Cookies.set('accessToken', refreshTokenData);
     }
     getRooms(token)
-    .then((res:any)=>{
-      console.log("get rooms res--", res)
-      setRoomData(res?.data)
-      if(res?.response?.status === 401){
-        dispatch(tokenRefresh())
-      }
-    })
-    .catch((err)=>{
-      console.log("get rooms err---", err)
-    })
-  },[refreshTokenData])
+      .then((res: any) => {
+        console.log('get rooms res--', res);
+        setRoomData(res?.data);
+        if (res?.response?.status === 401) {
+          dispatch(tokenRefresh());
+        }
+      })
+      .catch((err) => {
+        console.log('get rooms err---', err);
+      });
+  }, [refreshTokenData]);
   //========= get rooms api ==========
   // console.log(chatViewStyle,':chatViewStyle',chartScreenView,': chartScreenView')
   return (
@@ -58,7 +60,6 @@ const Messages = () => {
       <main className='flex max-w-full min-h-screen mx-auto'>
         {selectUserState === '' ? (
           <>
-         
             <Characters
               shrinkSidebar={shrinkSidebar}
               selectUserState={selectUserState}
@@ -70,25 +71,23 @@ const Messages = () => {
               userSelected={setSelectUserState}
             />
           </>
-        ) :
-        selectUserState === 'One More Mika' ? 
-        <>
-        <Characters /> 
-        <ChatScreen 
-        selectUserState={selectUserState}
-        chatViewStyle={chatViewStyle}
-        setChatViewStyle={setChatViewStyle}
-                chartScreenView={chartScreenView}
-                setChartScreenView={setChartScreenView}
-              />
-        </>
-        :
-        (
+        ) : selectUserState === 'One More Mika' ? (
           <>
-            {chartScreenView === 'FullScreen view' ? (            
-              sessionStorage.setItem("sideBarCollapse" , "true")
-            ) : (         
-                <Characters />             
+            <Characters roomData={roomData} />
+            <ChatScreen
+              selectUserState={selectUserState}
+              chatViewStyle={chatViewStyle}
+              setChatViewStyle={setChatViewStyle}
+              chartScreenView={chartScreenView}
+              setChartScreenView={setChartScreenView}
+            />
+          </>
+        ) : (
+          <>
+            {chartScreenView === 'FullScreen view' ? (
+              sessionStorage.setItem('sideBarCollapse', 'true')
+            ) : (
+              <Characters />
             )}
 
             {chartScreenView === 'Default view' ? (
@@ -113,7 +112,7 @@ const Messages = () => {
                   chatViewStyle={chatViewStyle}
                   setChatViewStyle={setChatViewStyle}
                 />
-              </Modal> 
+              </Modal>
             ) : (
               <ChatScreen
                 // chatScreenClassName={`ml-[80px]`}
@@ -124,10 +123,7 @@ const Messages = () => {
               />
             )}
           </>
-        )
-        
-      
-      }
+        )}
       </main>
     </>
   );
