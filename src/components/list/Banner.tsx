@@ -281,7 +281,7 @@ BannerProp) => {
               )}
             </div>
             <div
-              className={`mb-5 flex w-full items-center justify-between px-[24px]  ${
+              className={`mb-5 flex w-full items-center justify-between px-6 ${
                 updatedProfile ? 'mt-[-56px]' : 'mt-[-62px]'
               }`}
             >

@@ -3,24 +3,33 @@ import plusIcon from '../../../public/assets/plus-large.png';
 import userIcon from '../../../public/assets/user-alt-1.png';
 import imageSquare from '../../../public/assets/image-square3.png';
 import palette from '../../../public/assets/palette2.png';
+import EditIcon from '../../../public/assets/pen.png';
+import ShareIcon from '../../../public/assets/arrow-up-from-bracket.png';
+import DeleteIcon from '../../../public/assets/trash-blank-alt3.png';
 import threeDots from '../../../public/assets/dots-horizontal (3).png';
 import Image from 'next/image';
 import { getAllCharacter } from 'services/services';
 import Cookies from 'js-cookie';
 
-const card = [
+const CharactersMenu = [
   {
-    icon: imageSquare,
-    text: '0'
+    icon: EditIcon,
+    text: 'Edit'
   },
   {
-    icon: palette,
-    text: 'None'
+    icon: ShareIcon,
+    text: 'Share'
+  },
+  {
+    icon: DeleteIcon,
+    text: 'Delete'
   }
 ];
 
 const AllCharactersCards = () => {
   const [allCharacterData, setAllCharacterData] = useState<any>();
+  const [openCharactersMenu, setOpenCharactersMenu] = useState<number | null>(null);
+  const [selectCharactersMenu, setSelectCharactersMenu] = useState<any>('');
   const token: any = Cookies.get('accessToken');
 
   useEffect(() => {
@@ -34,7 +43,11 @@ const AllCharactersCards = () => {
       .catch((err: any) => {
         console.log(err);
       });
-  }, [ ]);
+  }, []);
+
+  const handleCharactersMenu = (index: number) => {
+    setOpenCharactersMenu(openCharactersMenu === index ? null : index);
+  };
 
   return (
     <div className='flex flex-col gap-6'>
@@ -54,47 +67,90 @@ const AllCharactersCards = () => {
           </div>
         </button>
       </div>
-      <div className='grid grid-cols-4 '>
-      {allCharacterData &&
-        allCharacterData?.length &&
-        allCharacterData?.map((CharacterData: any) => {            
-        <div className='flex h-[300px] w-[257px] flex-col overflow-hidden rounded-[16px] bg-[#121212]'>
-          <div className='flex h-full max-h-[198px] items-center justify-center bg-[#1A1A1A]'>
-            <Image src={userIcon} alt={''} />
-          </div>
-          <div className='flex flex-col gap-[6px] px-5 py-4'>
-            <div className='flex flex-col gap-[2px]'>
-              <div className='font-bold text-[15px] leading-5 text-white'>
-                Sarah Scarlet {CharacterData?.display_name}
-              </div>
-              <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
-                @Sarahscarlet {CharacterData?.username}
-              </div>
-            </div>
-            <div className='flex justify-between'>
-              <div className='flex items-center justify-between gap-[30px]'>
-                <div className='flex items-center gap-1'>
-                  <Image
-                    className='object-contain'
-                    src={imageSquare}
-                    alt={''}
-                  />
-                  <div className='font-normal text-[13px] leading-[18px] text-white'>
-                    0
+
+      <div className='grid grid-cols-4 gap-4 '>
+        {allCharacterData &&
+          allCharacterData?.length &&
+          allCharacterData?.map((CharacterData: any,index:number) => {
+            return (
+              <div className='flex h-full w-full flex-col rounded-[16px] bg-[#121212] overflow-hidden'>
+                <div className='flex h-[198px] items-center justify-center bg-[#1A1A1A] ovh'>
+                  <Image src={userIcon} alt={''} />
+                </div>
+                <div className='flex flex-col gap-[6px] px-5 py-4'>
+                  <div className='flex flex-col gap-[2px]'>
+                    <div className='font-bold text-[15px] leading-5 text-white'>
+                      {CharacterData?.display_name}
+                    </div>
+                    <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
+                      {CharacterData?.username}
+                    </div>
+                  </div>
+                  <div className='flex justify-between'>
+                    <div className='flex items-center justify-between gap-[30px]'>
+                      <div className='flex items-center gap-1'>
+                        <Image
+                          className='object-contain'
+                          src={imageSquare}
+                          alt={''}
+                        />
+                        <div className='font-normal text-[13px] leading-[18px] text-white'>
+                          0
+                        </div>
+                      </div>
+                      <div className='flex items-center gap-1'>
+                        <Image
+                          className='object-contain'
+                          src={palette}
+                          alt={''}
+                        />
+                        <div className='font-normal text-[13px] leading-[18px] text-white'>
+                          None
+                        </div>
+                      </div>
+                    </div>
+                    <div className='relative '>
+                      <button onClick={() => handleCharactersMenu(index)}>
+                        <Image src={threeDots} alt={''} />
+                      </button>
+                      {openCharactersMenu === index && (
+                        <div className='absolute bottom-9 -right-3 z-0 flex h-max w-[218px] flex-col items-start rounded-[14px] bg-[#272727] p-2'>
+                          {CharactersMenu.map((items: any, index: number) => (
+                            <div
+                              key={index}
+                              className={`flex w-full cursor-pointer items-center gap-2 rounded-[8px] ${
+                                selectCharactersMenu === items.text
+                                  ? 'bg-[#FFFFFF0D]'
+                                  : 'bg-transparent'
+                              }  px-2 py-[6px]`}
+                              onClick={() =>
+                                setSelectCharactersMenu(items.text)
+                              }
+                            >
+                              <Image
+                                className='object-contain'
+                                src={items.icon}
+                                alt={''}
+                              />
+                              <div
+                                className={`font-normal text-[14px] ${
+                                  items.text === 'Delete'
+                                    ? 'text-[#FF5336]'
+                                    : 'text-[#FFFFFF]'
+                                }`}
+                              >
+                                {items.text}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
-                <div className='flex items-center gap-1'>
-                  <Image className='object-contain' src={palette} alt={''} />
-                  <div className='font-normal text-[13px] leading-[18px] text-white'>
-                    None
-                  </div>
-                </div>
               </div>
-              <Image src={threeDots} alt={''} />
-            </div>
-          </div>
-        </div> 
-        })}
+            );
+          })}
       </div>
     </div>
   );
