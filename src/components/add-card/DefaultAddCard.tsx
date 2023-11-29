@@ -44,14 +44,14 @@ const DefaultAddCard = ({showSuccessPage , showErrorPage}:defaultAddCardProps) =
                         <div className='flex p-5 bg-white/[0.05] rounded-full'>
                             <Image className='w-6 h-6' src={creditCard} alt={''} />
                         </div>
-                        <div className='text-[creditCard] text-center text-[14px] font-semibold leading-[18px]'>Added cards will be displayed here</div>
+                        <div className=' text-center text-[14px] font-semibold leading-[18px]  text-main-grey-text-light'>Added cards will be displayed here</div>
                     </div>
                 ) : (
                     <div className='flex flex-col items-center justify-center gap-3 px-6 py-14 rounded-[16px] bg-white/[0.05]'>
                         <div className='flex p-5 bg-white/[0.05] rounded-full'>
                             <Image className='w-6 h-6' src={creditCard} alt={''} />
                         </div>
-                        <div className='text-[creditCard] text-center text-[14px] font-semibold leading-[18px]'>Added cards will be displayed here</div>
+                        <div className=' text-center text-[14px] font-semibold leading-[18px] text-main-grey-text-light'>Added cards will be displayed here</div>
                     </div>
                 ))
             }

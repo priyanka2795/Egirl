@@ -54,9 +54,10 @@ export default function SidebarMenuItem({
 
             <div className='flex flex-col'>
               <span
+               style={active ? {fontWeight: '800'} : {fontWeight: '500'}}
                 className={`${
-                  active ? 'font-black' : 'font-semibold'
-                } ${sideBarMenuText} hidden text-[16px] leading-8 xl:inline`}
+                  active ? 'font-extrabold ' : 'font-medium '
+                } ${sideBarMenuText} hidden text-[18px] leading-8 xl:inline font-medium`}
               >
                 {text}
               </span>
@@ -78,8 +79,8 @@ export default function SidebarMenuItem({
             <div className='flex flex-col'>
               <span
                 className={`${
-                  active ? 'font-bold' : 'font-medium'
-                } ${sideBarMenuText} hidden text-[16px] leading-8 xl:inline`}
+                  active ? 'font-extrabold ' : 'font-medium '
+                } ${sideBarMenuText} hidden text-[18px] leading-8 xl:inline`}
               >
                 {text}
               </span>

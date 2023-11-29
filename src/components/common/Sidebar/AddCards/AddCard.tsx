@@ -30,7 +30,7 @@ const AddCardSidebar = ({ seletedAddCard }: AddCardProps) => {
         {tab.map((item) => {
           return (
             <div
-              className={`font-bold cursor-pointer items-center justify-center rounded-[12px] px-4 py-2 text-[15px] leading-5 ${
+              className={`cursor-pointer items-center justify-center rounded-[12px] px-4 py-2 text-[15px] leading-5 ${
                 activeTab === item
                   ? 'bg-white/[0.16] text-[#FFFFFF]'
                   : 'text-[#979797]'
@@ -38,6 +38,7 @@ const AddCardSidebar = ({ seletedAddCard }: AddCardProps) => {
               onClick={() => {
                 setActiveTab(item);
               }}
+              style={ activeTab === item ? {fontWeight: '700'} : {fontWeight: '500'}}
             >
               {item}
             </div>

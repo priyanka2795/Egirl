@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
-import SuccessPage from './SuccessPage';
-import ErrorPage from './ErrorPage';
-import DeleteModal from './DeleteModal';
+import { useState } from 'react';
 import AddCardForm from './AddCardForm';
 import DefaultAddCard from './DefaultAddCard';
+import ErrorPage from './ErrorPage';
 import LatestTransactions from './LatestTransactions';
+import SuccessPage from './SuccessPage';
 
 const AddCard = () => {
   const tabContent = ['Add card', 'Latest transactions'];
@@ -33,6 +32,7 @@ const AddCard = () => {
                         ? ' bg-white bg-opacity-20 text-white  '
                         : 'text-neutral-400'
                     }`}
+                    style={ activeListTab === items ? {fontWeight: '700'} : {fontWeight: '500'}}
                   >
                     {items}
                   </div>
