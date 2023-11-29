@@ -28,7 +28,9 @@ interface CreateGiftPopup {
   setCreateCategory: React.Dispatch<React.SetStateAction<boolean>>;
   createCategory : boolean;
   setCreateCategoryToggle:React.Dispatch<React.SetStateAction<boolean>>;
-  createCategoryToggle:boolean
+  createCategoryToggle:boolean;
+  createGiftToggle: boolean;
+  setCreateGiftToggle: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function CreateGift({
@@ -44,7 +46,9 @@ function CreateGift({
   setCreateCategory,
   createCategory,
   setCreateCategoryToggle,
-  createCategoryToggle
+  createCategoryToggle,
+  createGiftToggle,
+  setCreateGiftToggle
 }: CreateGiftPopup) {
   
   const [tabSelectedOpt, setTabSelectedOpt] = useState<any>('');
@@ -86,6 +90,7 @@ function CreateGift({
       postGifts(createGiftData, token)
         .then((res: any) => {
           console.log(res, '????giftCreated');
+          setCreateGiftToggle(!createGiftToggle)
         })
         .catch((err: any) => {
           console.log(err, '????createGiftError');
@@ -182,7 +187,7 @@ function CreateGift({
                   key={index}
                   className={`cursor-pointer rounded-[14px] border px-4 py-3 
                                 ${
-                                  tabSelectedOpt === items
+                                  tabSelectedOpt === items?.gift_category_id
                                     ? 'border-[#5848BC] bg-[#5848BC29]'
                                     : 'border-[#FFFFFF29] bg-[#ffffff00]'
                                 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 // import { Database } from '../../types/database';
-import { useRouter } from 'next/router';
+import Router, { useRouter } from 'next/router';
 import Image from 'next/image';
 import vector1 from '../../public/assets/Vector_1.png';
 import vector2 from '../../public/assets/Vector_2.png';
@@ -58,7 +58,7 @@ export default function SignIn({ SetFormStep }: SignIn) {
     setOtp(value);
   };
 
-  const handleSubmit = (values: any) => {
+  const handleSubmit = (values: any, { setSubmitting }: any) => {
     setErrorMsg('');
     userLogin(values)
       .then((res: any) => {
@@ -77,7 +77,11 @@ export default function SignIn({ SetFormStep }: SignIn) {
       })
       .catch((err) => {
         console.log('err----', err);
+      })
+      .finally(() => {
+        setSubmitting(false); 
       });
+
     // setSignInSteps(1);
     // let notify = {type:"ERROR", message:"response error"}
     // dispatch(setToastVisible())
@@ -123,7 +127,7 @@ export default function SignIn({ SetFormStep }: SignIn) {
                   <button
                     className='font-bold flex w-full items-center justify-center gap-2 rounded-2xl bg-[#5848BC] px-5 py-4 text-center text-lg'
                     onClick={() => setVerifyCode(true)}
-                    type="button"
+                    type='button'
                   >
                     Continue
                   </button>
@@ -216,7 +220,7 @@ export default function SignIn({ SetFormStep }: SignIn) {
           )}
         </div>
       </SigninTemplate>
-      {isVisible && <Toast />}
+      {/* {isVisible && <Toast />} */}
       <ToastContainer
         position='bottom-center'
         pauseOnHover
@@ -227,4 +231,3 @@ export default function SignIn({ SetFormStep }: SignIn) {
     </>
   );
 }
-

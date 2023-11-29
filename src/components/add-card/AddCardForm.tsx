@@ -210,5 +210,4 @@ const AddCardForm = ({ showSucess, showError }: AddCardFormProp) => {
     )
 }
 
-export default AddCardForm
-
+export default AddCardForm;

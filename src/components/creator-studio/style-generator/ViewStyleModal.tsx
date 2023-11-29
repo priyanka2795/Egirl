@@ -1,11 +1,14 @@
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
-import React from 'react';
+import React, {useState} from 'react';
 import pen from '../../../../public/assets/pen.png';
 import heart from '../../../../public/assets/heart-alt.png';
 import circleInformation from '../../../../public/assets/circle-information8.png';
 import arrowDown from '../../../../public/assets/chevron-down2.png';
 import shop from '../../../../public/assets/shop.png';
+import arrowUp from '../../../../public/assets/chevron-up.png';
+import copy from '../../../../public/assets/file-copy.png';
+import downArrow from '../../../../public/assets/down-arrow-img.png';
 
 interface ViewStyleModalProps {
   setViewStyleModal?: any;
@@ -36,6 +39,29 @@ const list = [
   }
 ];
 
+const generationDataItem = [
+  {
+    text: 'CFG scale',
+    number: '7'
+  },
+  {
+    text: 'Steps',
+    number: '40'
+  },
+  {
+    text: 'Sampler',
+    number: 'Euler a'
+  },
+  {
+    text: 'Seed',
+    number: '13145374738'
+  },
+  {
+    text: 'Clip Skip',
+    number: '2'
+  }
+];
+
 const ViewStyleModal = ({
   setViewStyleModal,
   setStyleGenNext,
@@ -45,6 +71,9 @@ const ViewStyleModal = ({
   setPostStyleModal,
   component
 }: ViewStyleModalProps) => {
+  const [generationData, setGenerationData] = useState<boolean>(false);
+  const generationDataTab = ['Prompt', 'Negative prompt'];
+  const [activeIndex, setActiveIndex] = useState<number>(0);
   const handlePostStyleButton = () => {
     if (component === 'GeneratedStyle') {
       setPostStyleModal(true);
@@ -123,12 +152,90 @@ const ViewStyleModal = ({
                     );
                   })}
                 </div>
-                <div className='flex justify-between rounded-[12px] bg-white/[0.05] px-4 py-[14px]'>
-                  <div className='text-[15px] font-normal leading-5 text-white'>
-                    Generation data
+                <div
+                    className='flex flex-col gap-4 rounded-[12px] bg-white/[0.05] px-4 py-[14px]'
+                    
+                  >
+                    <div className='flex items-center justify-between cursor-pointer' onClick={() => {
+                      setGenerationData(!generationData);
+                    }}>
+                      <div className='font-normal text-[15px] leading-5 text-white'>Generation data</div>
+                      <Image
+                        src={generationData ? arrowUp : arrowDown}
+                        alt=''
+                      />
+                    </div>
+                    {generationData ? (
+                      <div className='flex flex-col gap-3'>
+                        <div className='flex items-center justify-between'>
+                          <div className='flex'>
+                            {generationDataTab.map((item, index) => {
+                              return (
+                                <div
+                                  key={index}
+                                  className={`flex cursor-pointer items-center justify-center rounded-[12px] px-3 py-2 text-[14px] leading-[18px] ${
+                                    activeIndex === index
+                                      ? 'font-bold bg-white/[0.16] text-white'
+                                      : 'font-semibold text-[#979797]'
+                                  }`}
+                                  onClick={() => {
+                                    setActiveIndex(index);
+                                  }}
+                                >
+                                  {item}
+                                </div>
+                              );
+                            })}
+                          </div>
+                          <div className='relative group'>
+                            <Image
+                              className='object-contain cursor-pointer'
+                              src={copy}
+                              alt=''
+                            />
+                            <div className='invisible group-hover:visible group-hover:opacity-100'>
+                              <div className='font-normal absolute -right-[16px] -top-[38px] flex items-center justify-center rounded-[6px] bg-[#303030] px-3 py-[6px] text-[12px] leading-4 text-white'>
+                                Copy
+                              </div>
+                              <div className='absolute -right-[26px] -top-[22px] h-[24px] w-10'>
+                                <Image
+                                  className='w-full h-full'
+                                  src={downArrow}
+                                  alt=''
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div className='font-normal text-[14px] leading-[18px] text-white'>
+                          Best quality, masterpiece, ultra high res,
+                          (photorealistic), raw photo, 1girl, offshoulder, in
+                          the dark, deep shadow, low key,
+                        </div>
+                        <div className='grid grid-cols-3 gap-x-[51px] gap-y-3'>
+                          {generationDataItem.map((item, index) => {
+                            return (
+                              <div key={index} className='flex flex-col gap-1'>
+                                <div className='text-[14px] font-semibold leading-[18px] text-white'>
+                                  {item.text}
+                                </div>
+                                <div className='font-normal text-[14px] leading-[18px] text-[#979797]'>
+                                  {item.number}
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                        <div></div>
+                      </div>
+                    ) : (
+                      <></>
+                    )}
                   </div>
-                  <Image src={arrowDown} alt={''} />
-                </div>
+                {/* <div className='flex justify-between rounded-[12px] bg-white/[0.05] px-4 py-[14px]' onClick={() => {setGenerationData(!generationData)}}>
+                  <div className='text-[15px] font-normal leading-5 text-white'>Generation data</div>
+                  <Image src={generationData ? arrowUp : arrowDown} alt={''} /> 
+                </div> */}
               </div>
             </div>
             <div

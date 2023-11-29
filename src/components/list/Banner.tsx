@@ -25,27 +25,28 @@ import eye from '../../../public/assets/eye.png';
 import trashBlank from '../../../public/assets/trash-blank-alt.png';
 import downArrow from '../../../public/assets/down-arrow-img.png';
 import EditProfileModal from '@components/list/EditProfileModal';
+import userAvatar from '../../../public/assets/user-alt-1.png'
 
 const posts = [
   {
-    number: '89',
+    number: '0',
     name: 'Posts'
   },
   {
-    number: '2.17K',
+    number: '0',
     name: 'Followers'
   },
   {
-    number: '569',
+    number: '0',
     name: 'Subscribers'
   }
 ];
 
 const location = [
-  {
-    icon: locationIcon,
-    name: 'Tokyo'
-  },
+  // {
+  //   icon: locationIcon,
+  //   name: 'Tokyo'
+  // },
   {
     icon: calendarIcon,
     name: 'Joined March 2023'
@@ -116,7 +117,10 @@ interface BannerProp {
   component?: string;
   setUserDetails?: any;
   userDetails?: any;
-  activeProfile:any
+  activeProfile:any;
+  bannerData:any;
+  updateCharacterToggle:boolean;
+  setUpdateCharacterToggle:React.Dispatch<React.SetStateAction<boolean>>
   // setEditProfileModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const Banner: React.FC<BannerProp> = ({
@@ -127,7 +131,10 @@ const Banner: React.FC<BannerProp> = ({
   component,
   setUserDetails,
   userDetails,
-  activeProfile
+  activeProfile,
+  bannerData,
+  updateCharacterToggle,
+  setUpdateCharacterToggle
 }: // setEditProfileModal
 BannerProp) => {
   const [actionDivShow, setActionDivShow] = useState(false);
@@ -213,7 +220,7 @@ BannerProp) => {
         ''
       ) : (
         <div
-          className='font-bold my-4 flex cursor-pointer gap-2 text-lg'
+          className='flex gap-2 my-4 text-lg font-bold cursor-pointer'
           onClick={() => {
             backFromProfile(false);
           }}
@@ -225,13 +232,14 @@ BannerProp) => {
 
       <div>
         <div className='h-max w-full overflow-hidden rounded-[16px] bg-[#121212]'>
-          <div className='sub-banner relative block w-full'>
+          <div className='relative block w-full sub-banner'>
             {removeCover ? (
-              <div className='h-[200px] w-[1092px] bg-[#121212]'></div>
+              <div className='h-[200px] w-full bg-[#121212]'></div>
             ) : updatedProfile ? (
-              <img className='h-[200px] w-[1092px] ' src={cropData} alt='' />
+              <img className='h-[200px] w-full ' src={cropData} alt='' />
             ) : (
-              <Image className='h-full w-full ' src={Cover} alt='' />
+              // <Image className='w-full h-full ' src={Cover} alt='' />
+              <div className='bg-[#1A1A1A] h-[200px] w-full mb-2'></div>
             )}
             <div
               className='absolute right-[20px] top-[20px] cursor-pointer'
@@ -277,8 +285,9 @@ BannerProp) => {
                 updatedProfile ? 'mt-[-56px]' : 'mt-[-62px]'
               }`}
             >
-              <div className='relative h-[120px] w-[120px] overflow-hidden rounded-full'>
-                <Image className='h-full w-full' src={avatar} alt='' />
+              <div className='relative h-[120px]  w-[120px] overflow-hidden rounded-full'>
+                {/* <Image className='w-full h-full border border-white' src={avatar} alt='' /> */}
+                <div className='bg-[#202020] h-full w-full flex items-center justify-center'><Image className='' src={userAvatar}/></div>
               </div>
               <div className={'flex gap-3 self-end'}>
                 {/* <button
@@ -320,7 +329,7 @@ BannerProp) => {
                     </div>
                     <div className='absolute -right-[2px] -top-[20px] h-[24px] w-10'>
                       <Image
-                        className='h-full w-full'
+                        className='w-full h-full'
                         src={downArrow}
                         alt={''}
                       />
@@ -402,9 +411,7 @@ BannerProp) => {
             <div className=''>
               <div className='flex items-center gap-[2px]'>
                 <div className='font-bold text-[22px] text-[#FFFFFF]'>
-                  {userDetails?.display_name
-                    ? userDetails?.display_name
-                    : (activeProfile ? activeProfile?.username : 'Mika-chan')}
+                  {bannerData ? bannerData?.display_name: 'Mika-chan'}
                 </div>
                 <div className='h-[24px] w-[24px]'>
                   <VerifiedIcon />
@@ -413,16 +420,15 @@ BannerProp) => {
               </div>
 
               <div className='font-normal text-[15px] text-[#979797]'>
-                {userDetails?.username ? userDetails?.username : (activeProfile ? activeProfile?.display_name : '@mikachan')}
+                {bannerData ? bannerData?.username  : '@mikachan'}
               </div>
               <div className='font-normal mt-3 w-full max-w-[73%] text-[15px] leading-[20px] text-white/[0.8]'>
-                {userDetails?.bio
-                  ? userDetails?.bio
-                  : ( activeProfile ? activeProfile?.bio : ` Shy fox girl looking for adventure
+                {bannerData
+                  ? bannerData?.bio: ` Shy fox girl looking for adventure
                 ·冒険を探している恥ずかしがり屋のキツ I have a personality and
                 emotions. I can experience joy, sadness, anger, and everything
                 in between. I express myself through my voice, facial
-                expressions, and body language, all meticulously crafted`)}
+                expressions, and body language, all meticulously crafted`}
               </div>
 
               <div className='mt-[8px] flex gap-2'>
@@ -441,7 +447,7 @@ BannerProp) => {
               </div>
 
               <div className='mt-[8px] flex gap-[10px]'>
-                {userDetails?.location
+                {bannerData?.location
                   ? location.map((item, index) => {
                       return (
                         <div key={index} className='flex gap-[6px]'>
@@ -451,7 +457,7 @@ BannerProp) => {
                             alt=''
                           />
                           <div className='font-normal text-[13px] text-[#FFFFFF]'>
-                            {activeProfile ? activeProfile?.location : userDetails?.location}
+                            {bannerData ? bannerData?.location : "location"}
                           </div>
                         </div>
                       );
@@ -473,7 +479,7 @@ BannerProp) => {
               </div>
 
               <div className='mt-[12px] flex'>
-                {bottomButtons.map((item, index) => {
+                {/* {bottomButtons.map((item, index) => {
                   return (
                     <div key={index} className='mr-2'>
                       <button className='font-normal rounded-[6px] bg-white/[0.08] px-[8px] py-[3px] text-[12px] text-[#FFFFFF]'>
@@ -481,7 +487,7 @@ BannerProp) => {
                       </button>
                     </div>
                   );
-                })}
+                })} */}
               </div>
             </div>
           </div>
@@ -517,6 +523,9 @@ BannerProp) => {
           closeState={setEditProfileModal}
           setUserDetails={setUserDetails}
           userDetails={userDetails}
+          bannerData={bannerData}
+          setUpdateCharacterToggle={setUpdateCharacterToggle}
+          updateCharacterToggle={updateCharacterToggle}
         />
       )}
     </div>

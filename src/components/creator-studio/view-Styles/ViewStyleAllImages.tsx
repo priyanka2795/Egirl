@@ -62,7 +62,8 @@ const allImages = [
 
 const ViewStyleAllImages = ({option} : ViewStyleAllImagesProps) => {
   return (
-    <div className={`flex flex-col gap-4 ${option === 'option' ? '' : 'mt-5'}`}>
+    <div className='flex items-center justify-center'>
+    <div className={`flex flex-col gap-4 w-full ${option === 'option' ? '' : 'mt-5'}`}>
       <div className='flex gap-[4px]'>
         <div className='text-white text-[18px] font-bold leading-6'>All models </div>
         <div className='text-[#979797] text-[18px] font-bold leading-6'>124</div>
@@ -93,6 +94,7 @@ const ViewStyleAllImages = ({option} : ViewStyleAllImagesProps) => {
         </div>
         <div></div>
       </div>
+    </div>
     </div>
   )
 }

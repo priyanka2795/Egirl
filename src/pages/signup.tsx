@@ -13,12 +13,13 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SigninTemplate from './auth/signinTemplate';
 import SigninLoginOpt from './auth/SigninLoginOpt';
+import WelcomeStepsModal from './auth/welcomeSteps';
 
 const validationSchema = Yup.object().shape({
   username: Yup.string().required('Username is required'),
   email: Yup.string().email('Invalid email').required('Email is required'),
   verifyemail: Yup.string()
-    .required()
+    .required("Verify email is a required")
     .oneOf([Yup.ref('email')], "That's an invalid email"),
   password: Yup.string()
     .required('Password is required')
@@ -32,8 +33,7 @@ const initialValues = {
   username: '',
   email: '',
   verifyemail: '',
-  password: '',
-  // phoneNumber: ''
+  password: ''
 };
 export default function SignUp() {
   const router = useRouter();
@@ -64,14 +64,14 @@ export default function SignUp() {
     );
   };
 
-  const handleSubmit = (values: any) => {
+  const handleSubmit = (values: any, { setSubmitting }: any) => {
+    sessionStorage.setItem('true', 'signupcompleted');
     setErrorMsg('');
     // You can handle the form data submission here
     let data = {
       username: values.username,
       email: values.email,
-      password: values.password,
-      // phone: '1234567890'
+      password: values.password
     };
     userSignUp(data)
       .then((res: any) => {
@@ -79,7 +79,7 @@ export default function SignUp() {
         if (res.status === 200) {
           Cookies.set('accessToken', res.data.access_token);
           Cookies.set('refreshToken', res.data.refresh_token);
-          toast.success('User login successful');
+          toast.success('signup successful');
           setTimeout(() => {
             router.push('/home');
           }, 1000);
@@ -90,6 +90,9 @@ export default function SignUp() {
       })
       .catch((err) => {
         console.log('sign up err---', err);
+      })
+      .finally(() => {
+        setSubmitting(false); // Set submitting to false to enable the button
       });
   };
 
@@ -199,11 +202,11 @@ export default function SignUp() {
                       `}
                       />
 
-                      <ErrorMessage
+                      {/* <ErrorMessage
                         name='password'
                         component='div'
                         className='text-red-500'
-                      />
+                      /> */}
                       <div>
                         <ul>
                           <li className='mb-3'>Create a password that:</li>
@@ -211,9 +214,13 @@ export default function SignUp() {
                             {errors.password ? <CrossIcon /> : <CheckedIcon />}
                             contains at least 8 characters
                           </li>
-                          <li className='flex items-center'>
+                          <li className='flex items-center mb-2'>
                             {errors.password ? <CrossIcon /> : <CheckedIcon />}
-                            contains at least one number (0-9) or a symbol
+                            contains at least one uppercase letter
+                          </li>
+                          <li className='flex items-center'>
+                            {touched.password ? errors.password ? <CrossIcon /> : <CheckedIcon /> : ""}
+                            contains at least one symbol
                           </li>
                         </ul>
                       </div>
@@ -238,12 +245,6 @@ export default function SignUp() {
         </Formik>
       </SigninTemplate>
 
-      {/* {welcomeStepsModal && (
-        <WelcomeStepsModal
-          welcomeStepsModal={welcomeStepsModal}
-          setWelcomeStepsModal={setWelcomeStepsModal}
-        />
-      )} */}
       <ToastContainer
         position='bottom-center'
         pauseOnHover
@@ -251,6 +252,13 @@ export default function SignUp() {
         hideProgressBar={true}
         autoClose={2000}
       />
+      {/*       
+            {welcomeStepsModal && (
+              <WelcomeStepsModal
+                welcomeStepsModal={welcomeStepsModal}
+                setWelcomeStepsModal={setWelcomeStepsModal}
+              />
+            )} */}
     </>
   );
 }

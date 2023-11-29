@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Cross from '../../../../public/assets/svgImages/close-icon.svg';
 import Image from 'next/image';
 import { Modal } from '@components/modal/modal';
@@ -15,13 +15,17 @@ const initialValues = {
 };
 
 interface CharacterAddProps {
-  setCreateCharacterData: any;
+  setCreateCharacterData?: any;
   NewCharacterClose?: React.Dispatch<React.SetStateAction<boolean>>;
-  SetUserGuide?: (value: boolean) => void;
-  SetIsTourOpen?: (value: boolean) => void;
+  setUserGuide?: (value: boolean) => void;
+  setIsTourOpen?: (value: boolean) => void;
   UserGuide?: any;
   setTourCount?: React.Dispatch<React.SetStateAction<number>> | any;
-  setUserDetails:any
+  setUserDetails?:any;
+  createCharacterData?:any;
+  setActiveProfile?:any;
+  setCreateCharacterToggle?: React.Dispatch<React.SetStateAction<boolean>>;
+  createCharacterToggle?:boolean
 }
 
 const validationSchema = Yup.object().shape({
@@ -31,25 +35,30 @@ const validationSchema = Yup.object().shape({
 
 const CharacterAdd: React.FC<CharacterAddProps> = ({
   NewCharacterClose,
-  SetUserGuide,
-  SetIsTourOpen,
+  setUserGuide,
+  setIsTourOpen,
   setTourCount,
   setCreateCharacterData,
   UserGuide,
-  setUserDetails
+  setActiveProfile,
+  setCreateCharacterToggle,
+  createCharacterToggle
 }) => {
   const token: any = Cookies.get('accessToken');
+
   const onSubmit = (values: any, { resetForm }: any) => {
-    setCreateCharacterData((prevState: any) => ({
+    
+    // setCreateCharacterData((prevState: any) => ({
+    //   ...prevState,
+    //   display_name: values?.name,
+    //   username: values?.username
+    // }));
+    setCreateCharacterData?.((prevState: any) => ({
       ...prevState,
       display_name: values?.name,
       username: values?.username
     }));
-    setUserDetails((prevState: any) => ({
-      ...prevState,
-      display_name: values?.name,
-      username: values?.username
-    }));
+
     const createData = {
       display_name:values?.name,
       username: values?.username
@@ -57,18 +66,21 @@ const CharacterAdd: React.FC<CharacterAddProps> = ({
 
     postCharacter(createData , token)
     .then((res:any)=>{
-      const character_id = res.data?.character_id;
-      Cookies.set('character_id', character_id);
-      console.log(res);
+      // const character_id = res.data?.character_id;
+      // Cookies.set('character_id', character_id);
+      // console.log(res);
+      setActiveProfile(res?.data?.character_id)
+      setCreateCharacterToggle(!createCharacterToggle)
     })
     .catch((err:any)=>{
       console.log(err);
     })
 
     resetForm();
-    SetUserGuide?.(false);
-    SetIsTourOpen?.(true);
+    setUserGuide?.(false);
+    setIsTourOpen?.(true);
     setTourCount?.(0);
+    NewCharacterClose?.(false) 
   };
 
   return (
@@ -82,7 +94,7 @@ const CharacterAdd: React.FC<CharacterAddProps> = ({
         <div className='w-full gap-1 text-lg font-bold leading-6'>
           Add New Character
         </div>
-        <div className='w-6 h-6'>
+        <div className='w-6 h-6 cursor-pointer' >
           <Cross onClick={() => NewCharacterClose?.(false)} />
         </div>
       </div>
@@ -90,6 +102,7 @@ const CharacterAdd: React.FC<CharacterAddProps> = ({
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={onSubmit}
+        enableReinitialize={true}
       >
         <Form>
           <div className='inline-flex flex-col items-start rounded-[20px] bg-[1A1A1A] '>
@@ -145,20 +158,21 @@ const CharacterAdd: React.FC<CharacterAddProps> = ({
                 {UserGuide ? (
                   <button
                     type='submit'
+                    // onClick={() => NewCharacterClose?.(false)}
                     className='font-bold h-12 w-[50%] items-center gap-2 rounded-[14px]  bg-[#5848BC] px-5 py-[13px] text-base leading-[22px]'
                   >
                     Create
                   </button>
-                ) 
-                : (
-                  <button
+           ) 
+                 : (
+                   <button
                     type='submit'
                     className='font-bold h-12 w-[50%] items-center gap-2 rounded-[14px]  bg-[#5848BC] px-5 py-[13px] text-base leading-[22px]'
-                    onClick={() => NewCharacterClose?.(false)}
-                  >
+                    // onClick={() => NewCharacterClose?.(false)}
+                >
                     Create
-                  </button>
-                )}
+                 </button>
+                 )}
               </div>
             </div>
           </div>

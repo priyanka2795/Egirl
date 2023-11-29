@@ -95,6 +95,7 @@ const Card = ({ data, onLike, onHate , zIndex , isActive ,showSingleProfile}: an
         setInfoModalCard={setInfoModal}
         showSingleProfile={showSingleProfile}
       />
+      
       <div className={`is-like ${moveX > 0 || animation === "animation-added-right" ? 'like' : moveX < 0 || animation === "animation-added-left" ? 'nope': ''} ${Math.abs((moveX / innerWidth * 2.1))}`}
        ></div>
       <div className='relative w-full h-[84px] mb-6'>

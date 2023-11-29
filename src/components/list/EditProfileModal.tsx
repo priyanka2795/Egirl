@@ -1,6 +1,6 @@
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import xMark from '../../../public/assets/xmark (1).png';
 import avatar from '../../../public/assets/image 69.png';
 import cameraOverlay from '../../../public/assets/white-camera.png';
@@ -18,12 +18,18 @@ interface EditProfileModalProps {
   closeState: React.Dispatch<React.SetStateAction<boolean>>;
   setUserDetails?: any;
   userDetails?: any;
+  bannerData:any;
+  updateCharacterToggle:boolean;
+  setUpdateCharacterToggle:React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const EditProfileModal = ({
   closeState,
   setUserDetails,
-  userDetails
+  userDetails,
+  bannerData,
+  updateCharacterToggle,
+  setUpdateCharacterToggle
 }: EditProfileModalProps) => {
   const tabs = ['Profile view', 'Explore view'];
   const [activeTab, setActiveTab] = useState<number>(0);
@@ -42,25 +48,40 @@ const EditProfileModal = ({
   const handleSave = async () => {
     try {
       const response: any = await updateCharacter(userDetails, token);
-      
-
-      console.log('Character saved successfully!', response);
+      console.log('Character update successfully!', response);
+      setUpdateCharacterToggle(!updateCharacterToggle)
     } catch (error) {
-      console.error('Error saving character:', error);
+      console.error('Error update character:', error);
     }
     closeState(false);
   };
 
-  const updateCharacterApi = async (data: any, token: string | null) => {
-    try {
-      const response = await updateCharacter(data, token);
-      console.log('Character updated successfully!', response);
-      return response;
-    } catch (error) {
-      console.error('Error updating character:', error);
-      throw error;
+  useEffect(() => {
+    if (bannerData) {
+      const {
+        id: character_id,
+        username,
+        display_name,
+        bio,
+        location,
+        profile_picture_media_id,
+        profile_banner_media_id,
+        profile_tags,
+      } = bannerData;
+  
+      setUserDetails({
+        character_id,
+        username,
+        display_name,
+        bio,
+        location,
+        profile_picture_media_id,
+        profile_banner_media_id,
+        profile_tags,
+      });
     }
-  };
+  }, [bannerData]);
+
 
   return (
     <>
@@ -151,7 +172,7 @@ const EditProfileModal = ({
               labelName='Name'
               inputType='text'
               inputPlaceholder='Mika-chan'
-              value={userDetails?.display_name}
+              value={ userDetails?.display_name}
               onChange={(value: any) =>
                 setUserDetails((prev: any) => ({
                   ...prev,

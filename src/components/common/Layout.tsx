@@ -1,4 +1,4 @@
-import React, { Children, useState } from 'react';
+import React, { Children, useState, useEffect, useRef } from 'react';
 import Sidebar from './Sidebar';
 import NotificationModal from './Sidebar/NotificationModal';
 import AddCardSidebar from './Sidebar/AddCards/AddCard';
@@ -34,6 +34,9 @@ const Layout = ({ children }: any) => {
           } overflow-x-hidden bg-main-background lg:min-w-[600px] `}
         >
           <NotificationModal selectedMoreOption={activeMoreMenuItem} />
+          {activeItem === 'Add Card' && (
+            <AddCardSidebar seletedAddCard={activeItem}  SetseletedAddCard ={setActiveItem}/>
+          )}
           {/* {activeItem === 'Add Card' && (
             <AddCardSidebar seletedAddCard={activeItem} />
           )} */}

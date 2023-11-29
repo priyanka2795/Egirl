@@ -1,31 +1,18 @@
 import { Modal } from '@components/modal/modal';
 import React, { useState } from 'react';
 import CloseIcon from '../../../public/assets/svgImages/close-icon.svg';
-import CharacterAdd from '@components/creator-studio/NewCharacter/CharacterAdd';
 
 interface createCharacterProps {
-  closeState?: React.Dispatch<React.SetStateAction<boolean>>|any;
-  SetUserGuide?: any;
-  SetIsTourOpen?: any;
-  UserGuide?: any;
-  // SetIsTourOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  setTourCount?: React.Dispatch<React.SetStateAction<number>>;
-  setCreateCharacterData?: any;
-  setUserDetails:any
+  closeState?: React.Dispatch<React.SetStateAction<boolean>> | any;
+  setCreateCharacter?: any;
 }
 
 function CreateCharacterModal({
   closeState,
-  SetUserGuide,
-  SetIsTourOpen,
-  setCreateCharacterData,
-  setTourCount,
-  UserGuide,
-  setUserDetails
+  setCreateCharacter
 }: createCharacterProps) {
   const [showVoiceRequest, setShowVoiceRequest] = useState(false);
   const [showNewCharacter, setShowNewCharacter] = useState(false);
-  const [createCharacter, setCreateCharacter] = useState(false);
 
   const handleVoiceRequest = () => {
     closeState(true);
@@ -40,7 +27,7 @@ function CreateCharacterModal({
     <>
       <Modal
         open={true}
-        modalClassName='flex flex-col gap-6 w-full  rounded-2xl h-max bg-[#121212] max-w-[470px] relative'
+        modalClassName='flex flex-col gap-6 w-full rounded-2xl h-max bg-[#121212] max-w-[470px] relative'
         closeModal={() => closeState(false)}
         modalOverlayStyle='!bg-black/80'
       >
@@ -100,7 +87,7 @@ function CreateCharacterModal({
               <button
                 className=' font-bold mt-6 rounded-xl bg-[#5848BC] px-5 py-2.5 text-lg leading-[22px]'
                 onClick={() => {
-                  setCreateCharacter(true);
+                  setCreateCharacter();
                 }}
               >
                 Create character
@@ -123,17 +110,6 @@ function CreateCharacterModal({
           </div>
         </div>
       </Modal>
-      {createCharacter && (
-        <CharacterAdd
-          NewCharacterClose={setCreateCharacter}
-          setCreateCharacterData={setCreateCharacterData}
-          SetUserGuide={SetUserGuide}
-          SetIsTourOpen={SetIsTourOpen}
-          setTourCount={setTourCount}
-          UserGuide={UserGuide}
-          setUserDetails={setUserDetails}
-        />
-      )}
     </>
   );
 }

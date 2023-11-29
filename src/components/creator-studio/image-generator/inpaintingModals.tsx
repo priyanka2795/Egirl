@@ -11,6 +11,7 @@ import BrushWhite from '../../../../public/assets/paintbrush-alt-white.png';
 import ArrowDown from '../../../../public/assets/chevron-down.png';
 import Backward from '../../../../public/assets/flip-backward-white.png';
 import Forward from '../../../../public/assets/flip-forward.png';
+import ForwardWhite from '../../../../public/assets/flip-forward-white.png';
 import RangePicker from '../common/RangePicker';
 import Tooltip from '@components/common/tooltip';
 import RestWhite from '../../../../public/assets/rotate-cw-white.png';
@@ -30,6 +31,7 @@ interface InpaintingModals {
   EditInpainting: boolean;
   SavedDrawingImage: any;
   setSelectImageModal?:React.Dispatch<React.SetStateAction<boolean>>;
+  selectInPaintImg:any
 }
 interface CustomCanvasRect extends CanvasRect {
   eraseAll(): void;
@@ -38,7 +40,7 @@ const InpaintingModals = ({
   CloseInpaintingModal,
   SetInpaintingCreated,
   EditInpainting,
-  SavedDrawingImage,setSelectImageModal
+  SavedDrawingImage,setSelectImageModal,selectInPaintImg
 }: InpaintingModals) => {
   const [brushSize, setBrushSize] = useState<number[]>([10]);
   const [brushSizeToggle, setBrushSizeToggle] = useState<boolean>(false);
@@ -149,7 +151,8 @@ const InpaintingModals = ({
               >
                 Reset
               </p>
-            </div>
+            </div> 
+            
           </div>
           <div className='absolute bottom-3 left-3 flex items-center justify-center gap-3 rounded-[100px] bg-[#000000CC] px-5 py-3'>
             <Image
@@ -161,7 +164,7 @@ const InpaintingModals = ({
             />
             <p className='h-[16px] w-[10px] border-r border-[#FFFFFF3D]'></p>
             <Image
-              src={Forward}
+              src={ForwardWhite }
               className='object-cover w-full h-full text-white cursor-pointer '
               onClick={() => {
                 canvasRef.current?.redo()

@@ -61,7 +61,7 @@ const FavoriteStyles = () => {
     const [favoriteStyleModal, setFavoriteStyleModal] = useState<boolean>(false);
   return (
     <>
-    <div className='flex flex-col gap-4 mt-5'>
+    <div className='flex flex-col w-full gap-4 mt-5'>
       <div className='flex flex-col gap-3'>
         <div className='grid grid-cols-3 gap-3'>
             {allImages.map((item,index) => {

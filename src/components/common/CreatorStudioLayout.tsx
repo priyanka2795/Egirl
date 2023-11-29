@@ -18,12 +18,17 @@ interface CreatorStudioLayoutProps {
   setActiveStep?: any;
   UserGuide?: any;
   setUserGuide?: any;
-  setCreateCharacterData:any;
-  createCharacterData:any;
-  allCharacterData:any;
-  setActiveProfile:any;
-  activeProfile:any
-
+  setCreateCharacterData: any;
+  createCharacterData: any;
+  allCharacterData: any;
+  setActiveProfile: any;
+  activeProfile: any;
+  setBannerData: any;
+  bannerData: any;
+  updateCharacterToggle:boolean;
+  setUpdateCharacterToggle:React.Dispatch<React.SetStateAction<boolean>>
+  setCreateCharacterToggle:React.Dispatch<React.SetStateAction<boolean>>
+  createCharacterToggle:boolean
 }
 
 const CreatorStudioLayout = ({
@@ -41,7 +46,13 @@ const CreatorStudioLayout = ({
   createCharacterData,
   allCharacterData,
   setActiveProfile,
-  activeProfile
+  activeProfile,
+  setBannerData,
+  bannerData,
+  updateCharacterToggle,
+  setUpdateCharacterToggle,
+  setCreateCharacterToggle,
+  createCharacterToggle
 }: CreatorStudioLayoutProps) => {
   const [shrinkSideBar, setShrinkSideBar] = useState<boolean>(false);
   const [styleGenNext, setStyleGenNext] = useState<boolean>(false);
@@ -112,9 +123,16 @@ const CreatorStudioLayout = ({
             TourSteps={tourSteps}
             tourCount={tourCount}
             setTourCount={setTourCount}
+            setIsTourOpen={setIsTourOpen}
             allCharacterData={allCharacterData}
             setActiveProfile={setActiveProfile}
-          activeProfile={activeProfile}
+            bannerData={bannerData}
+            activeProfile={activeProfile}
+            setCreateCharacterData={setCreateCharacterData}
+            UserGuide={UserGuide}
+            setUserGuide={setUserGuide}
+            setCreateCharacterToggle={setCreateCharacterToggle}
+            createCharacterToggle={createCharacterToggle}
           />
           <div className='creator-studio-components main-content-scroller relative mt-8 h-[calc(100vh-104px)] flex-grow overflow-y-auto overflow-x-hidden bg-main-background pb-5 pr-4 lg:min-w-[600px]'>
             {styleGenNext ? (
@@ -132,7 +150,7 @@ const CreatorStudioLayout = ({
                     setUserDetails={setUserDetails}
                     OnClose={closeTour}
                     TourSteps={tourSteps}
-                    SetIsTourOpen={setIsTourOpen}
+                    setIsTourOpen={setIsTourOpen}
                     tourCount={tourCount}
                     setTourCount={setTourCount}
                     setProfileInfoPage={setProfileInfoPage}
@@ -147,6 +165,12 @@ const CreatorStudioLayout = ({
                     setCreateCharacterData={setCreateCharacterData}
                     setUserDetails={setUserDetails}
                     activeProfile={activeProfile}
+                    setActiveProfile={setActiveProfile}
+                    bannerData={bannerData}
+                    setUpdateCharacterToggle={setUpdateCharacterToggle}
+                    updateCharacterToggle={updateCharacterToggle}
+                    setCreateCharacterToggle={setCreateCharacterToggle}
+                    createCharacterToggle={createCharacterToggle}
                   />
                 )}
               </>

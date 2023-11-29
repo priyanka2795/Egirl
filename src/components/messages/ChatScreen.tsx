@@ -171,7 +171,7 @@ export default function ChatScreen({
   };
 
   const chatUrl =
-    'wss://api.egirls.ai/docs/ws/user/a89df75b-4356-4118-9c9b-15dfa6e0123b/room/6/character/f47ac10b-58cc-4372-a567-0e02b2c3d510/text_chat';
+    'wss://65.21.65.49:8000/ws/user/a89df75b-4356-4118-9c9b-15dfa6e0123b/room/6/character/f47ac10b-58cc-4372-a567-0e02b2c3d510/text_chat';
   let socket = new WebSocket(chatUrl);
 
   socket.onopen = function (e) {
