@@ -65,26 +65,23 @@ const exploreOptions = [
 ];
 
 const ExploreIndex = () => {
-  const token:any = Cookies.get('accessToken');
-  // const token = `${accessToken}`;
-  // const decodedToken = jwt.decode(token);
-  // const userId : any = decodedToken?.sub
+  const token: any = Cookies.get('accessToken');
   const [filterOptionShow, setFilterOptionShow] = useState(true);
   const [exploreSelectedTab, setExploreSelected] = useState('Swipe');
   const [defaultModal, setDefaultModal] = useState(false);
   const [singleProfileState, setSingleProfileState] = useState(false);
-  const [swipeData , setSwipeData] = useState<any>()
+  const [swipeData, setSwipeData] = useState<any>();
 
-  useEffect(()=>{
+  useEffect(() => {
     exploreSwipe(1, 10, token)
-    .then((res:any)=>{
-      setSwipeData(res?.data)
-      console.log(res , "exploreSwiperes????");
-    })
-    .catch((err)=>{
-      console.log(err , "exploreSwipeErr????");
-    })
-  },[])
+      .then((res: any) => {
+        setSwipeData(res?.data);
+        console.log(res, 'exploreSwiperes????');
+      })
+      .catch((err) => {
+        console.log(err, 'exploreSwipeErr????');
+      });
+  }, []);
 
   return (
     <>
@@ -96,25 +93,12 @@ const ExploreIndex = () => {
             exploreTab={exploreSelectedTab}
             setExploreSelectedTab={setExploreSelected}
           />
-          {/* <p onClick={() => setDefaultModal(true)}>Default Modal</p> */}
-          {/* {defaultModal && (
-          <SubscriptionPlan closeDefaulModal={setDefaultModal} />
-        )} */}
-
           {exploreSelectedTab === 'Swipe' ? (
             <>
-              {/* <div className='explore-slider'>
-              <Slider {...settings}>
-                <CardSlider />
-                <CardSlider /> 
-                <CardSlider />
-              </Slider>
-            </div> */}
-              {/* <TinderCardSlider /> */}
               <CardStack showSingleProfile={setSingleProfileState} />
               <div className='mb-[32px] mt-[77px] flex items-start justify-center gap-2'>
                 <div
-                  className='flex cursor-pointer gap-2 rounded-[10px] bg-white/10 px-4 py-[7px] font-bold text-white'
+                  className='font-bold flex cursor-pointer gap-2 rounded-[10px] bg-white/10 px-4 py-[7px] text-white'
                   onClick={() => setFilterOptionShow(!filterOptionShow)}
                 >
                   <p>Hide</p>
@@ -122,7 +106,7 @@ const ExploreIndex = () => {
                 {exploreOptions.map((item, index) => {
                   return (
                     <div
-                    key={index}
+                      key={index}
                       className={`${
                         filterOptionShow === true
                           ? 'opacity-100'
@@ -145,7 +129,7 @@ const ExploreIndex = () => {
               <GalleryTabFilter
                 singleProfileState={singleProfileState}
                 setSingleProfileState={setSingleProfileState}
-                userId="57713333-24df-4eaf-8070-ff4599b6061c"
+                userId='57713333-24df-4eaf-8070-ff4599b6061c'
               />
             </div>
           )}
