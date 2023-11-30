@@ -34,7 +34,7 @@ import userAdd from '../../../public/assets/user-plus1.png';
 import CreateCharacterModal from '@components/list/CreateCharacterModal';
 
 import Cookies from 'js-cookie';
-import { getAllCharacter } from 'services/services';
+import { getAllCharacter, profileCharacter } from 'services/services';
 interface CreatorStudioNavbarPropProp {
   shrinkSideBar: boolean;
   setShrinkSideBar: React.Dispatch<React.SetStateAction<boolean>>;
@@ -46,7 +46,7 @@ interface CreatorStudioNavbarPropProp {
   setUserGuide: any;
   setIsTourOpen: any;
   UserGuide: any;
-  allCharacterData: any;
+  // allCharacterData: any;
   activeProfile: any;
   setActiveProfile: any;
   setCreateCharacterData: any;
@@ -55,6 +55,7 @@ interface CreatorStudioNavbarPropProp {
   bannerData: any;
   setCreateCharacterToggle: React.Dispatch<React.SetStateAction<boolean>>;
   createCharacterToggle: boolean;
+  setBannerData:any
 }
 
 interface CreateCharacter {
@@ -79,6 +80,7 @@ const CreatorStudioSidebar = ({
   setCreateCharacterData,
   createCharacterData,
   bannerData,
+  setBannerData,
   setCreateCharacterToggle,
   createCharacterToggle
 }: CreatorStudioNavbarPropProp) => {
@@ -89,6 +91,9 @@ const CreatorStudioSidebar = ({
   const [welcomeModal, setWelcomeModal] = useState<boolean>(false);
   const [allCharacterData, setAllCharacterData] = useState<any>();
   const [createToggle, setCreateToggle] = useState<boolean>(false);
+  const [activeProfileId , setActiveProfileId] = useState<any>()
+  const [activeProfileData , setActiveProfileData] = useState<any>()
+  let character = Cookies.get('character_id')
 
   const token: any = Cookies.get('accessToken');
 
@@ -113,7 +118,38 @@ const CreatorStudioSidebar = ({
       .catch((err: any) => {
         console.log(err);
       });
-  }, [UserGuide, activeProfile, createCharacterData, createToggle]);
+  }, [UserGuide, createCharacterData, createToggle]);
+  
+  useEffect(()=>{
+    if(!activeProfileId){
+      setActiveProfileId(allCharacterData?.[0]?.id)
+    }
+  },[allCharacterData])
+
+  useEffect(()=>{
+   const characterId = Cookies.get('character_id')
+   setActiveProfileId(characterId)
+  },[activeProfile])
+
+  useEffect(()=>{
+   
+   if(!character){
+    Cookies.set('character_id' , allCharacterData?.[0]?.id)
+    setActiveProfileId(allCharacterData?.[0]?.id)
+   }
+  },[allCharacterData , UserGuide])
+
+  useEffect(()=>{
+    profileCharacter(activeProfileId , token)
+    .then((res:any)=>{
+      setActiveProfileData(res?.data[0])
+      setBannerData(res?.data[0])
+    })
+    .catch((err:any)=>{
+      console.log(err);
+    })
+  },[activeProfileId ])
+
 
   return (
     <>
@@ -145,7 +181,8 @@ const CreatorStudioSidebar = ({
                     shrinkSideBar === true ? '!hidden' : ''
                   }`}
                 >
-                  {bannerData ? bannerData?.display_name : 'Select Character'}
+                  {/* {bannerData ? bannerData?.display_name : 'Select Character'} */}
+                  {activeProfileData ? activeProfileData?.display_name : 'Select Character'}
                 </div>
               </div>
               <div className='mt-2 h-full'>
@@ -158,6 +195,7 @@ const CreatorStudioSidebar = ({
                   allCharacterData={allCharacterData}
                   setActiveProfile={setActiveProfile}
                   activeProfile={activeProfile}
+                  setActiveProfileId={setActiveProfileId}
                 />
               )}
             </div>
