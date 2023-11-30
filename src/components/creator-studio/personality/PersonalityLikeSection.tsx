@@ -5,6 +5,7 @@ import CloseIcon from '../../../../public/assets/svgImages/close-icon.svg';
 import searchIcon from '../../../../public/assets/search-alt.png';
 import Image from 'next/image';
 import PersonalityHoverModal from './PersonalityHoverModal';
+import downArrow from '../../../../public/assets/down-arrow-img.png';
 
 interface PersonalityLikesInterface {
   setPersonalityData?: any;
@@ -54,80 +55,6 @@ const PersonalityLikeSection = ({
     });
   }, [selectedOptions]);
 
-  const data = [
-    {
-      name: 'Anime'
-    },
-    {
-      name: 'Animal Crossing'
-    },
-    {
-      name: 'Artistic Photography'
-    },
-    {
-      name: 'ASMR Content'
-    },
-    {
-      name: 'Aesthetically'
-    },
-    {
-      name: 'Astrology'
-    }
-  ];
-
-  const dataB = [
-    {
-      name: 'Body Modification',
-      id: 'b1'
-    },
-    {
-      name: 'Book Clubs',
-      id: 'b2'
-    }
-  ];
-
-  const dataC = [
-    {
-      name: 'Camping'
-    },
-    {
-      name: 'Cat Videos'
-    },
-    {
-      name: 'Collectables'
-    },
-    {
-      name: 'Cosplaying'
-    },
-    {
-      name: 'Cute plushies'
-    },
-    {
-      name: 'Cute pots and plants'
-    }
-  ];
-
-  const dataD = [
-    {
-      name: 'Dream'
-    },
-    {
-      name: 'Drama Movies'
-    },
-    {
-      name: 'Design'
-    },
-    {
-      name: 'Drawings'
-    },
-    {
-      name: 'Dancing'
-    },
-    {
-      name: 'Dling'
-    }
-  ];
-  //========== alphabetic scroll functionality =========
   const handleClick = (id: string) => {
     setSelectChar(id);
     const element: any = document.querySelector(id);
@@ -147,7 +74,7 @@ const PersonalityLikeSection = ({
     <>
       <div className='flex h-auto w-full max-w-full flex-col rounded-lg bg-[#121212]'>
         <div className='flex items-center justify-between max-w-full p-6'>
-          <div className='flex flex-col gap-[2px]'>
+          <div className='flex flex-col gap-[2px] '>
             {showHoverModal && <PersonalityHoverModal />}
             <h2 className='font-bold flex items-center gap-[6px] text-lg'>
               Likes
@@ -155,8 +82,16 @@ const PersonalityLikeSection = ({
                 onClick={() => {
                   setShowHoverModal(!showHoverModal);
                 }}
+                className='relative group'
               >
                 <InfoIcon />
+                <div className='absolute -left-[70px] -top-7 z-50 hidden w-[238px] -translate-x-0 -translate-y-2/3 transform rounded-lg bg-[#303030] px-3 py-1.5 text-center text-xs transition-all group-hover:block'>
+                  Likes are an essential aspect of your AI character's identity
+                  within the social media app.
+                  <div className='absolute bottom-0 left-[76px] h-[6px] w-3'>
+                    <Image className='w-full h-full' src={downArrow} alt={''} />
+                  </div>
+                </div>
               </div>
             </h2>
             <p className='text-stone-700'>{selectedOptions.length}/10</p>

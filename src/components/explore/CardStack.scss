@@ -147,8 +147,13 @@
 }
 
 .card.animation-added-right{
-    transition: all .9s ease-in;
+  transition: all .9s ease-in;
   transform: translate3d(2629.78px, 356.17px, 0px) rotate(58.5deg) !important; 
 }
+.card.animation-added-top{
+  transition: all .9s ease-in;
+  transform: translate3d(0px, -1006.17px, 0px) rotate(0) !important; 
+}
+
 
 

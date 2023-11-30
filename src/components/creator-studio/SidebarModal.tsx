@@ -40,6 +40,7 @@ const router =useRouter();
     setActiveProfile?.(item?.id);
     Cookies.set('character_id', item?.id);
   };
+console.log(activeProfile,'activeProfile');
 
   return (
     <div
@@ -65,6 +66,8 @@ const router =useRouter();
         {allCharacterData &&
           allCharacterData?.length &&
           allCharacterData?.map((item: any) => {
+            console.log(item,'item item');
+            
             return (
               <>
                 <div
@@ -73,7 +76,7 @@ const router =useRouter();
                 >
                   <div
                     className={`mt-[5px] flex w-full items-center justify-between ${
-                      activeProfile?.id === item?.id &&
+                      activeProfile === item?.id &&
                       'rounded-full  bg-white/[0.08]'
                     } py-2 pl-2 pr-[14px]`}
                   >
@@ -89,7 +92,7 @@ const router =useRouter();
                         {item?.display_name}
                       </div>
                     </div>
-                    {activeProfile?.id == item?.id && (
+                    {activeProfile == item?.id && (
                       <div className='w-4 h-4'>
                         <Image className='w-full h-full' src={check} alt={''} />
                       </div>
