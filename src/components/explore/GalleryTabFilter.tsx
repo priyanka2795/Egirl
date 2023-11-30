@@ -16,6 +16,7 @@ import GalleryFilterCheckbox from './GalleryFilterCheckbox';
 import GalleryCardCollection from './GalleryCardCollection';
 import { exploreGallery } from 'services/services';
 import Cookies from 'js-cookie';
+import SearchBar from '@components/common/Search/SearchBar';
 
 const galleryArray = [
   {
@@ -55,18 +56,7 @@ const galleryArray = [
     id: 9,
     filterText: 'Furry'
   },
-  {
-    id: 10,
-    filterText: 'All'
-  },
-  {
-    id: 11,
-    filterText: 'Pokemon'
-  },
-  {
-    id: 12,
-    filterText: 'Catgirl'
-  },
+
 ];
 
 interface GalleryTabFilterProps {
@@ -83,6 +73,7 @@ const GalleryTabFilter = ({
   const [selectedFilter, setSelectedFilter] = useState('All');
   const [filterForm, setFilterForm] = useState(false);
   const [galleryData , setGalleryData] = useState<any>() 
+  const [searchBy,setSearchBy]=useState<string>("")
 
   if (selectedFilter === undefined || selectedFilter.length < 1) {
     setSelectedFilter('All');
@@ -129,6 +120,9 @@ const GalleryTabFilter = ({
     <>
       {singleProfileState === false ? (
         <>
+        <div className='w-full block'>
+              <SearchBar searchBy={searchBy} setSearchBy={setSearchBy} placeholder="Search"/>
+              </div>
           <div className='flex w-full px-8 my-8'>
             <Slider
               {...settings}
@@ -144,7 +138,7 @@ const GalleryTabFilter = ({
                       selectedFilter === items.filterText
                         ? '!bg-[#5848BC]'
                         : 'bg-white bg-opacity-10 '
-                    } ${items.id === 7 && 'filter-bg-gradient'}`}
+                    } ${items.id === 9 && 'filter-bg-gradient'}`}
                   >
                     
 
