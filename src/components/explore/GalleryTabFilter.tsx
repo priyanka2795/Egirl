@@ -83,6 +83,23 @@ const GalleryTabFilter = ({
   const [filterForm, setFilterForm] = useState(false);
   const [galleryData , setGalleryData] = useState<any>() 
   const [searchBy,setSearchBy]=useState<string>("");
+  const [showAllTags,setShowAllTags]=useState<boolean>(false);
+  const [selectedTags,setSelectedTags]=useState([]);
+  const [appliedFilter,setAppliedFilter]=useState([])
+
+  const [Tags]=useState([
+    "Furry",
+    "Ahegao",
+    "NSFW",
+    "Roleplay",
+    "Fashion Model",
+    "Furry2",
+    "Ahegao2",
+    "NSFW2",
+    "Roleplay2",
+    "Fashion Model2",
+    
+  ])
 
 
   if (selectedFilter === undefined || selectedFilter.length < 1) {
@@ -104,6 +121,12 @@ const GalleryTabFilter = ({
     })
   },[])
 
+  useEffect(()=>{
+    if(selectedTags?.length >=4){
+      closeAllTagsModal()
+    }
+  },[JSON.stringify(selectedTags)])
+
   
   const settings = {
     dots: true,
@@ -116,6 +139,7 @@ const GalleryTabFilter = ({
   };
 
   const sliderRef = createRef<any>();
+
   useEffect(() => {
     let slickListDiv = document.getElementsByClassName('slick-list')[0];
     slickListDiv.addEventListener('wheel', (event: any) => {
@@ -126,15 +150,54 @@ const GalleryTabFilter = ({
     });
   }, []);
 
+  const openAllTagsModal=()=>{
+    setFilterForm(false);
+    setShowAllTags(true)
+  }
+
+  const closeAllTagsModal=()=>{
+    setFilterForm(true);
+    setShowAllTags(false)
+  }
+
+  const closeFilterModal=()=>{
+    setFilterForm(false);
+    setShowAllTags(false)
+  }
+
+  const getSelectedTagOnClick=(item:any)=>{
+    console.log({item})
+    if(selectedTags.includes(item)){
+      let data=selectedTags?.filter((i)=>i!==item);
+      setSelectedTags(data);
+      return;
+    }
+    setSelectedTags([...selectedTags,item])
+  }
+
+  const applyAllFilters=()=>{
+    closeFilterModal();
+    setAppliedFilter([...appliedFilter,...selectedTags]);
+  }
+
+  const removeAppliedFilters=(item)=>{
+    let data=appliedFilter?.filter((i)=>i!==item);
+    setSelectedTags(data);
+    setAppliedFilter(data)
+  }
+
+
+
   return (
     <>
-    <ViewAllTags/>
+    {showAllTags && <ViewAllTags getSelectedTagOnClick={getSelectedTagOnClick} selectedTags={selectedTags} Tags={Tags}/>}
       {singleProfileState === false ? (
         <>
-        <div className='w-full block'>
+        <div className='w-full h-fit'>
+        <div className='w-full block -translate-x-7'>
               <SearchBar searchBy={searchBy} setSearchBy={setSearchBy} placeholder="Search"/>
               </div>
-          <div className='flex w-full px-8 my-8'>
+          <div className='flex w-full my-8'>
             <Slider
               {...settings}
               ref={sliderRef}
@@ -161,23 +224,32 @@ const GalleryTabFilter = ({
               })}
             </Slider>
           </div>
+        </div>
 
-          <div className='mb-[23px] flex justify-between gap-10'>
-            <div
-              className={`flex cursor-pointer items-center gap-1 rounded-lg bg-white/10 px-[10px] py-1 text-xs font-normal leading-none text-white ${
-                selectedFilter === 'All' ? '' : 'py-3'
-              }`}
-            >
-              {selectedFilter === 'All' && <UserProfile />}
-              <div className='text-[13px]'>{selectedFilter}</div>
-              {selectedFilter !== 'All' && (
+          <div className='mb-[23px] flex justify-between gap-2'>
+            <div className='w-full h-fit flex justify-start gap-2'>
+            {appliedFilter.length ? appliedFilter?.map((item)=>(
+                <div
+                className={`flex cursor-pointer items-center gap-1 rounded-lg bg-white/10 px-[10px] py-1 text-xs font-normal leading-none text-white flex-shrink-0 ${
+                  selectedFilter === 'All' ? '' : 'py-3'
+                }`}
+              >
+                <UserProfile />
+                <div className='text-[13px]'>{item}</div>
                 <Image
-                  src={xMark}
-                  alt=''
-                  className='object-cover'
-                  onClick={() => setSelectedFilter('All')}
-                />
-              )}
+                    src={xMark}
+                    alt=''
+                    className='object-cover'
+                    onClick={() => removeAppliedFilters(item)}
+                  />
+              </div>
+            )) : (
+              <div
+              className="flex cursor-pointer items-center gap-1 rounded-lg  px-[10px] py-1 text-xs font-normal leading-none text-white All"
+            >
+              
+            </div>
+            )}
             </div>
             <div className='flex items-center gap-3'>
               <SearchIcon />
@@ -187,7 +259,7 @@ const GalleryTabFilter = ({
                   className={`${filterForm && 'white-stroke'}`}
                 />
                 {filterForm && (
-                  <GalleryFilterCheckbox filterCloseForm={setFilterForm} />
+                  <GalleryFilterCheckbox applyAllFilters={applyAllFilters}  openAllTagsModal={openAllTagsModal} Tags={Tags} filterCloseForm={setFilterForm} selectedTags={selectedTags} getSelectedTagOnClick={getSelectedTagOnClick}/>
                 )}
               </div>
               <div className='flex gap-2 pl-2 border-l border-white/10'>

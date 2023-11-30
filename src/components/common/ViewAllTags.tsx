@@ -25,19 +25,19 @@ const filterOptions=[
 
 const alphabets=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
 
-const ViewAllTags = () => {
+const ViewAllTags = ({selectedTags,getSelectedTagOnClick,Tags}:any) => {
     const [filterTagsBy,setFilterTagsBy]=useState<string>("A");
     const [searchTagBy,setSearchTagBy]=useState<string>("");
     const [filteredData,setFilteredData]= useState<any>([]);
 
     useEffect(()=>{
-        let data=filterOptions?.filter(i=>String(i.tag).startsWith(filterTagsBy));
+        let data=Tags?.filter(i=>String(i.tag).startsWith(filterTagsBy));
         setFilteredData(data)
     },[filterTagsBy]);
 
 
   return (
-    <div className='absolute right-0 top-12 z-50 flex w-[392px] flex-col rounded-[14px] border border-white/[0.05] bg-[#1A1A1A]'>
+    <div className='absolute right-8 top-12 z-50 flex w-[346px] flex-col rounded-[14px] border border-white/[0.05] bg-[#1A1A1A] mt-64'>
       <form>
         <div className='flex flex-col border-b border-white/[0.08]'>
           <div className='flex items-center justify-between px-6 py-5'>
@@ -66,16 +66,16 @@ const ViewAllTags = () => {
             <p style={filterTagsBy===letter ? {transform:'scale(3)',color:'white',pointerEvents:'none'} : {}} onClick={()=>setFilterTagsBy(letter)} className='hover:text-white hover:scale-[3] transition-all'>{letter}</p>
         ))}
        </div>
-       {filteredData?.map((item)=>(
+       {Tags?.map((item)=>(
         <div
-        onClick={(e) => {}}
-       
-        className="m-2 h-fit list-last-item relative z-10 !flex w-max cursor-pointer items-center justify-start gap-2 rounded-full px-4 py-3 last:mr-0 !bg-[#5848BC]"
+        onClick={(e) => getSelectedTagOnClick(item)}
+        style={selectedTags?.includes(item) ? {backgroundColor:"#5848BC"} : {backgroundColor:""}}
+        className="m-2 h-fit list-last-item relative z-10 !flex w-max cursor-pointer items-center justify-start gap-2 rounded-full px-4 py-3 last:mr-0"
       >
         
 
         <div className='text-[15px] font-semibold leading-tight text-white'>
-          <p>{item.tag}</p>
+          <p>{item}</p>
         </div>
       </div>
        ))}

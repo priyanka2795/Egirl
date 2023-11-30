@@ -3,14 +3,20 @@ import React, { useState } from 'react';
 import circleInformation from '../../../public/assets/circle-information.png';
 
 interface prop{
-  filterCloseForm:any
+  filterCloseForm:any,
+  Tags:any,
+  openAllTagsModal:()=>void,
+  selectedTags:any,
+  getSelectedTagOnClick:any,
+  applyAllFilters:any
 }
-const GalleryFilterCheckbox = ({filterCloseForm}:prop) => {
+const GalleryFilterCheckbox = ({filterCloseForm,Tags,openAllTagsModal,selectedTags,getSelectedTagOnClick,applyAllFilters}:prop) => {
   const [viewAllTags, setViewAllTags] = useState(false);
   const [filterValues, setFilterValues] = useState({});
 
   const handleClick = (event: any) => {
-    setViewAllTags((current) => !current);
+    // setViewAllTags((current) => !current);
+    openAllTagsModal();
   };
 
   const handleChange = (e:any) => {
@@ -159,193 +165,40 @@ const GalleryFilterCheckbox = ({filterCloseForm}:prop) => {
               TAGS
             </div>
             <div>
-              {viewAllTags ? (
-                <div className='flex flex-col items-start self-stretch gap-4 mb-5'>
-                  <div className='block custom-checkbox custom-checkbox-circle'>
+              
+            <div className='flex flex-col items-start self-stretch gap-4 mb-5'>
+                  {selectedTags?.length ? selectedTags?.slice(0,5)?.map((tag)=>(
+                    <div className='block custom-checkbox custom-checkbox-circle'>
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727] focus:outline-none'
                       type='checkbox'
-                      value='Furry'
-                      onChange={handleChange}
-                      id='Furry'
+                      value={tag}
+                      onChange={()=>getSelectedTagOnClick(tag)}
+                      id={tag}
+                      checked={selectedTags?.includes(tag)}
                     /> 
-                    <label className='text-[14px] font-normal text-[#FFFFFF]' htmlFor="Furry">
-                      Furry
+                    <label className='text-[14px] font-normal text-[#FFFFFF]' htmlFor={tag}>
+                      {tag}
                     </label>
                   </div>
-                  <div className='block custom-checkbox custom-checkbox-circle'>
-                    <input
-                      className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
-                      type='checkbox'
-                      value='Ahegao'
-                      onChange={handleChange}
-                      id='Ahegao'
-                    />
-                    <label className='text-[14px] font-normal text-[#FFFFFF]' htmlFor="Ahegao">
-                      Ahegao
-                    </label>
-                  </div>
-                  <div className='block custom-checkbox custom-checkbox-circle'>
-                    <input
-                      className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
-                      type='checkbox'
-                      value='NSFW'
-                      onChange={handleChange}
-                      id='NSFW'
-                    />
-                    <label className='text-[14px] font-normal text-[#FFFFFF]' htmlFor="NSFW">
-                      NSFW
-                    </label>
-                  </div>
-                  <div className='block custom-checkbox custom-checkbox-circle'>
-                    <input
-                      className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
-                      type='checkbox'
-                      value='Roleplay'
-                      onChange={handleChange}
-                      id='Roleplay'
-                    />
-                    <label className='text-[14px] font-normal text-[#FFFFFF]' htmlFor="Roleplay">
-                      Roleplay
-                    </label>
-                  </div>
-                  <div className='block custom-checkbox custom-checkbox-circle'>
-                    <input
-                      className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
-                      type='checkbox'
-                      value='Fashion Model'
-                      onChange={handleChange}
-                      id='Fashion Model'
-                    />
-                    <label className='text-[14px] font-normal text-[#FFFFFF]' htmlFor="Fashion Model">
-                      Fashion Model
-                    </label>
-                  </div>
-                  <div className='block custom-checkbox custom-checkbox-circle'>
-                    <input
-                      className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727] focus:outline-none'
-                      type='Fashion Model'
-                      value='Furry'
-                      onChange={handleChange}
-                      id='Furry'
-                    />
-                    <label className='text-[14px] font-normal text-[#FFFFFF]' htmlFor="Fashion Model">
-                      Furry
-                    </label>
-                  </div>
-                  <div className='block custom-checkbox custom-checkbox-circle'>
-                    <input
-                      className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
-                      type='checkbox'
-                      value='Ahegao'
-                      onChange={handleChange}
-                      id='Ahegao'
-                    />
-                    <label className='text-[14px] font-normal text-[#FFFFFF]' htmlFor="Ahegao">
-                      Ahegao
-                    </label>
-                  </div>
-                  <div className='block custom-checkbox custom-checkbox-circle'>
-                    <input
-                      className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
-                      type='checkbox'
-                      value='NSFW'
-                      onChange={handleChange}
-                      id='NSFW'
-                    />
-                    <label className='text-[14px] font-normal text-[#FFFFFF]' htmlFor="NSFW">
-                      NSFW
-                    </label>
-                  </div>
-                  <div className='block custom-checkbox custom-checkbox-circle'>
-                    <input
-                      className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
-                      type='checkbox'
-                      value='Roleplay'
-                      onChange={handleChange}
-                      id='Roleplay'
-                    />
-                    <label className='text-[14px] font-normal text-[#FFFFFF]' htmlFor="Roleplay">
-                      Roleplay
-                    </label>
-                  </div>
-                  <div className='block custom-checkbox custom-checkbox-circle'>
-                    <input
-                      className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
-                      type='checkbox'
-                      value='Fashion Model'
-                      onChange={handleChange}
-                      id='Fashion Model'
-                    />
-                    <label className='text-[14px] font-normal text-[#FFFFFF]' htmlFor="Fashion Model">
-                      Fashion Model
-                    </label>
-                  </div>
-                </div>
-              ) : (
-                <div className='flex flex-col items-start self-stretch gap-4 mb-5'>
-                  <div className='block custom-checkbox custom-checkbox-circle'>
+                  )) : (
+                    Tags?.length && Tags?.slice(5)?.map((tag)=>(
+                    <div className='block custom-checkbox custom-checkbox-circle'>
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727] focus:outline-none'
                       type='checkbox'
-                      value='Furry'
-                      onChange={handleChange}
-                      id='Furry'
-                    />
-                    <label className='text-[14px] font-normal text-[#FFFFFF]' htmlFor="Furry">
-                      Furry
+                      value={tag}
+                      onChange={()=>getSelectedTagOnClick(tag)}
+                      id={tag}
+                      checked={selectedTags?.includes(tag)}
+                    /> 
+                    <label className='text-[14px] font-normal text-[#FFFFFF]' htmlFor={tag}>
+                      {tag}
                     </label>
                   </div>
-                  <div className='block custom-checkbox custom-checkbox-circle'>
-                    <input
-                      className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
-                      type='checkbox'
-                      value='Ahegao'
-                      onChange={handleChange}
-                      id='Ahegao'
-                    />
-                    <label className='text-[14px] font-normal text-[#FFFFFF]' htmlFor="Ahegao">
-                      Ahegao
-                    </label>
+                    ))
+                  )}
                   </div>
-                  <div className='block custom-checkbox custom-checkbox-circle'>
-                    <input
-                      className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
-                      type='checkbox'
-                      value='NSFW'
-                      onChange={handleChange}
-                      id='NSFW'
-                    />
-                    <label className='text-[14px] font-normal text-[#FFFFFF]' htmlFor="NSFW">
-                      NSFW
-                    </label>
-                  </div>
-                  <div className='block custom-checkbox custom-checkbox-circle'>
-                    <input
-                      className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
-                      type='checkbox'
-                      value='Roleplay'
-                      onChange={handleChange}
-                      id='Roleplay'
-                    />
-                    <label className='text-[14px] font-normal text-[#FFFFFF]' htmlFor="Roleplay">
-                      Roleplay
-                    </label>
-                  </div>
-                  <div className='block custom-checkbox custom-checkbox-circle'>
-                    <input
-                      className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727]'
-                      type='checkbox'
-                      value='Fashion Model'
-                      onChange = {handleChange}
-                      id='Fashion Model'
-                    />
-                    <label className='text-[14px] font-normal text-[#FFFFFF]' htmlFor="Fashion Model">
-                      Fashion Model
-                    </label>
-                  </div>
-                </div>
-              )}
               {!viewAllTags ? (
                 <div
                   onClick={handleClick}
@@ -363,7 +216,7 @@ const GalleryFilterCheckbox = ({filterCloseForm}:prop) => {
       </form>
 
       <div className='flex flex-col items-start gap-[10px] self-stretch border-t border-[#ffffff14] p-6'>
-        <button onClick={onSubmit} className='text-[#FFFFFF ] flex h-[40px] items-center justify-center self-stretch rounded-xl bg-[#5848BC] text-sm  font-bold'>
+        <button onClick={applyAllFilters} className='text-[#FFFFFF ] flex h-[40px] items-center justify-center self-stretch rounded-xl bg-[#5848BC] text-sm  font-bold'>
           Apply
         </button>
       </div>
