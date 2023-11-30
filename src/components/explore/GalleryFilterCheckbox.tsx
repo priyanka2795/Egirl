@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
 import circleInformation from '../../../public/assets/circle-information.png';
+import { log } from 'console';
 
 interface prop{
   filterCloseForm:any,
@@ -8,9 +9,10 @@ interface prop{
   openAllTagsModal:()=>void,
   selectedTags:any,
   getSelectedTagOnClick:any,
-  applyAllFilters:any
+  applyAllFilters:any,
+  clearAll: () => void
 }
-const GalleryFilterCheckbox = ({filterCloseForm,Tags,openAllTagsModal,selectedTags,getSelectedTagOnClick,applyAllFilters}:prop) => {
+const GalleryFilterCheckbox = ({filterCloseForm,Tags,openAllTagsModal,selectedTags,getSelectedTagOnClick,applyAllFilters, clearAll}:prop) => {
   const [viewAllTags, setViewAllTags] = useState(false);
   const [filterValues, setFilterValues] = useState({});
 
@@ -49,6 +51,7 @@ const GalleryFilterCheckbox = ({filterCloseForm,Tags,openAllTagsModal,selectedTa
     setFilterValues({});
   }
 
+  console.log({selectedTags, Tags})
 
   return (
     <div className='absolute -right-[103px] z-[3] mt-2 flex flex-col items-center rounded-[14px] bg-[#272727] pb-5'>
@@ -58,7 +61,7 @@ const GalleryFilterCheckbox = ({filterCloseForm,Tags,openAllTagsModal,selectedTa
         
           <div className='text-lg font-bold'>Filters</div>
           
-          <button onClick={handleReset} type="reset" className='text-sm font-normal text-[#979797]'>Clear all</button>
+          <button onClick={clearAll} type="reset" className='text-sm font-normal text-[#979797]'>Clear all</button>
         </div>
         <div className='flex items-start gap-1'>
           <div>
@@ -70,7 +73,7 @@ const GalleryFilterCheckbox = ({filterCloseForm,Tags,openAllTagsModal,selectedTa
         </div>
       </div>
 
-      <div className='flex flex-col items-start self-stretch gap-5 px-6'>
+      <div className='flex flex-col items-start self-stretch gap-5 px-6 max-h-[420px] overflow-auto'>
         
           <div className='flex w-full flex-col items-start gap-3 self-stretch border-b border-[#ffffff14]'>
             <div className='self-stretch text-[11px] font-semibold text-[#979797]'>
@@ -175,28 +178,29 @@ const GalleryFilterCheckbox = ({filterCloseForm,Tags,openAllTagsModal,selectedTa
                       value={tag}
                       onChange={()=>getSelectedTagOnClick(tag)}
                       id={tag}
-                      checked={selectedTags?.includes(tag)}
+                      checked={true}
                     /> 
                     <label className='text-[14px] font-normal text-[#FFFFFF]' htmlFor={tag}>
                       {tag}
                     </label>
                   </div>
                   )) : (
-                    Tags?.length && Tags?.slice(5)?.map((tag)=>(
-                    <div className='block custom-checkbox custom-checkbox-circle'>
+                    Tags?.length && Tags?.slice(5)?.map((tag: string)=>
+                    {
+                    return <div className='block custom-checkbox custom-checkbox-circle'>
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727] focus:outline-none'
                       type='checkbox'
                       value={tag}
                       onChange={()=>getSelectedTagOnClick(tag)}
                       id={tag}
-                      checked={selectedTags?.includes(tag)}
+                      checked={false}
                     /> 
                     <label className='text-[14px] font-normal text-[#FFFFFF]' htmlFor={tag}>
                       {tag}
                     </label>
-                  </div>
-                    ))
+                  </div>}
+                    )
                   )}
                   </div>
               {!viewAllTags ? (
