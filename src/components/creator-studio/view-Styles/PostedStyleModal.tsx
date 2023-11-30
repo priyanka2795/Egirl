@@ -86,7 +86,7 @@ const PostedStyleModal = ({ setPostedStyleModal }: PostedStyleModalprops) => {
           <div className='w-[67%]'>
             <Image className='object-contain' src={modalImg} alt={''} />
           </div>
-          <div className='flex h-[inherit] w-[33%] flex-col justify-between px-6 pb-[13px]'>
+          <div className='flex h-ful w-[33%] flex-col justify-between px-6 pb-[13px] gap-8 content-between'>
             <div>
               <div className='flex flex-col gap-4 pt-6 pb-5'>
                 <div className='flex flex-col gap-[2px]'>
@@ -205,12 +205,14 @@ const PostedStyleModal = ({ setPostedStyleModal }: PostedStyleModalprops) => {
                 </div>
               </div>
             </div>
+            
             <div className='flex h-max cursor-pointer items-center justify-center gap-2 rounded-[14px] bg-[#FFFFFF14] px-6 py-[13px]'>
               <Image className='object-contain' src={Delete} alt={''} />
               <div className='text-[16px] font-bold leading-[22px] text-white'>
               Delete
               </div>
             </div>
+            
           </div>
         </Modal>
       </div>

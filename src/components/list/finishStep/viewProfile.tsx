@@ -124,7 +124,7 @@ function ViewProfile() {
       </div>
 
       {selectProfilePhoto && (
-        <AddImagesModal
+        <AddImagesModal    
           setAddImagesModal={setSelectProfilePhoto}
           setCroppedImage={setCroppedImage}
           AddImagesModal={selectProfilePhoto}
