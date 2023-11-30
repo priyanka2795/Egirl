@@ -17,6 +17,7 @@ import GalleryCardCollection from './GalleryCardCollection';
 import { exploreGallery } from 'services/services';
 import Cookies from 'js-cookie';
 import SearchBar from '@components/common/Search/SearchBar';
+import ViewAllTags from '@components/common/ViewAllTags';
 
 const galleryArray = [
   {
@@ -56,6 +57,14 @@ const galleryArray = [
     id: 9,
     filterText: 'Furry'
   },
+  {
+    id: 10,
+    filterText: 'Furry2'
+  },
+  {
+    id: 11,
+    filterText: 'Furry3'
+  },
 
 ];
 
@@ -73,7 +82,8 @@ const GalleryTabFilter = ({
   const [selectedFilter, setSelectedFilter] = useState('All');
   const [filterForm, setFilterForm] = useState(false);
   const [galleryData , setGalleryData] = useState<any>() 
-  const [searchBy,setSearchBy]=useState<string>("")
+  const [searchBy,setSearchBy]=useState<string>("");
+
 
   if (selectedFilter === undefined || selectedFilter.length < 1) {
     setSelectedFilter('All');
@@ -118,6 +128,7 @@ const GalleryTabFilter = ({
 
   return (
     <>
+    <ViewAllTags/>
       {singleProfileState === false ? (
         <>
         <div className='w-full block'>
@@ -138,7 +149,7 @@ const GalleryTabFilter = ({
                       selectedFilter === items.filterText
                         ? '!bg-[#5848BC]'
                         : 'bg-white bg-opacity-10 '
-                    } ${items.id === 9 && 'filter-bg-gradient'}`}
+                    } `}
                   >
                     
 
