@@ -102,10 +102,10 @@ const AddCardForm = ({ showSucess, showError }: AddCardFormProp) => {
                         <div className='flex gap-4'>
                             <div className='flex flex-col gap-[6px] w-full'>
                                 <label htmlFor="country" className='text-[#979797] text-[13px] font-semibold leading-[18px]'>Country</label>
-                                <select id="country" name="countryList" className='px-4 py-3 rounded-[14px] bg-white/[0.05] w-full focus:ring-0 border-none text-[#979797] text-[15px] font-normal leading-6' onChange={(e) => setCountry(e.target.value)}>
+                                <select id="country" name="countryList" className='bg-[#1E1E1E] px-4 py-3 rounded-[14px] bg-white/[0.05] w-full focus:ring-0 border-none text-[#979797] text-[15px] font-normal leading-6' onChange={(e) => setCountry(e.target.value)}>
                                     {objectEntries.map(([key, value]: any) => {
                                         return (
-                                            <option value={key}>{value?.name}</option>
+                                            <option value={key} className='absolute right-0 top-[90px] z-50 w-full rounded-xl bg-[#1E1E1E] px-2 py-3'>{value?.name}</option>                                    
                                         )
                                     })
                                     }
@@ -116,7 +116,7 @@ const AddCardForm = ({ showSucess, showError }: AddCardFormProp) => {
                                 <select id="country" name="countryList" className='px-4 py-3 rounded-[14px] bg-white/[0.05] w-full focus:ring-0 border-none text-[#979797] text-[15px] font-normal leading-6' onChange={(e) => setSelectedState(e.target.value)}>
                                     {states.map((data, key) => {
                                         return (
-                                            <option value={data?.isoCode}>{data?.name}</option>
+                                            <option value={data?.isoCode} className='absolute right-0 top-[90px] z-50 w-full rounded-xl bg-[#1E1E1E] px-2 py-3'>{data?.name}</option>
                                         )
                                     })
                                     }
@@ -134,7 +134,7 @@ const AddCardForm = ({ showSucess, showError }: AddCardFormProp) => {
                                 <select id="country" name="countryList" className='px-4 py-3 rounded-[14px] bg-white/[0.05] w-full focus:ring-0 border-none text-[#979797] text-[15px] font-normal leading-6' onChange={(e) => setSelectedState(e.target.value)}>
                                     {cities.map((data, key) => {
                                         return (
-                                            <option value={data?.name}>{data?.name}</option>
+                                            <option value={data?.name} className='absolute right-0 top-[90px] z-50 w-full rounded-xl bg-[#1E1E1E] px-2 py-3'>{data?.name}</option>
                                         )
                                     })
                                     }

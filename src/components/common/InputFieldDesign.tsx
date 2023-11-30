@@ -17,7 +17,7 @@ const InputFieldDesign = ({
   value,
   onChange
 }: InputFieldProp) => {
-  const Fruits = ['Apple', 'Orange', 'Banana'];
+  const Fruits = ['American', 'Indian', 'African'];
   const [fruit, setFruit] = useState<boolean>(false);
   const [selectFruit, setSelectFruit] = useState('Apple');
   return (
