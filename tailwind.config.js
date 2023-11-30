@@ -29,6 +29,7 @@ module.exports = {
       colors: {
         'main-purple': '#6E00FF',
         'main-gray': '#E7E9EA',
+        'main-grey-text-light' : '#979797',
         'main-gray-text': '#71767B',
         'main-background': '#070707',
         'main-bar': "#121212",
