@@ -108,7 +108,6 @@ export default function ChatScreen({
     setShowMessge(true);
   };
   const handleViews = (e: any) => {
-    console.log(e);
     if (e === 'chatView') {
       if (moreOptionDropdown) {
         setChatView(!chatView);
@@ -131,8 +130,6 @@ export default function ChatScreen({
     }
   };
 
-  // console.log(uploadedItemState, 'uploadedItemState');
-  // console.log(imageUploaded, 'imageUploaded');
   const [imageUploaded, setImageUploaded] = useState<any[]>([]);
 
   const {
@@ -171,7 +168,7 @@ export default function ChatScreen({
   };
   
   const chatUrl =
-    'wss://65.21.65.49:8000/ws/user/a89df75b-4356-4118-9c9b-15dfa6e0123b/room/6/character/f47ac10b-58cc-4372-a567-0e02b2c3d510/text_chat';
+    'wss://api.egirls.ai/ws/user/f8ee29cd-c1b9-4022-8fa3-c3b19822a1f3/room/6/character/f47ac10b-58cc-4372-a567-0e02b2c3d510/text_chat';
   let socket = new WebSocket(chatUrl);
 
   socket.onopen = function (e) {
