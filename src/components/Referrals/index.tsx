@@ -66,7 +66,7 @@ const ReferralsIndex = () => {
   };
   return (
     <>
-      <div className='flex w-[1020px] flex-col items-center gap-20 px-40 py-20'>
+      <div className='flex w-[1020px] flex-col items-center gap-20 px-40 py-20 justify-center m-auto'>
         <div className='flex flex-col items-center w-full gap-10'>
           <div className='flex flex-col gap-3'>
             <div className='text-center text-[32px] font-bold leading-10 text-[#FFFFFF]'>

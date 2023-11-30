@@ -146,10 +146,11 @@ BannerProp) => {
   const [updatePhotoModalState, setUpdatePhotoModalState] = useState(false);
   const [deleteProfileModalState, setDeleteProfileModalState] = useState(false);
   const [viewModal, setviewModal] = useState(false);
-  const [removeCover, setRemoveCover] = useState(false);
-  const [image, setImage] = useState('');
   const [coverImage, setCoverImage] = useState('');
   const [editProfileModal, setEditProfileModal] = useState(false);
+  const [cropData, setCropData] = useState('');
+  const [updatedProfile, setUpdatedProfile] = useState(false)
+
 
   const handleExploreSelected = (e: React.MouseEvent<HTMLElement>) => {
     setExploreSelected((e.target as HTMLElement).innerText);
@@ -213,7 +214,6 @@ BannerProp) => {
   };
 
 
-  console.log(coverImage, 'coverImage');
 
   return (
     <div className={`${styleProperty ? styleProperty : 'px-8'}`}>
@@ -235,9 +235,7 @@ BannerProp) => {
       <div>
         <div className='h-max w-full overflow-hidden rounded-[16px] bg-[#121212]'>
           <div className='relative block w-full sub-banner'>
-            {removeCover ? (
-              <div className='h-[200px] w-full bg-[#313131]'></div>
-            ) : coverImage === '' ? (
+            { coverImage === '' ? (
               <div className='mb-2 h-[200px] w-full bg-[#313131]'></div>
             ) : (
               <img className='h-[200px] w-full ' src={coverImage} alt='' />
@@ -525,7 +523,7 @@ BannerProp) => {
         <DeleteProfileCover
           closeDeleteModal={setDeleteProfileModalState}
           closeDropdown={setUploadPhotoShow}
-          setRemoveCover={setRemoveCover}
+          setRemoveCover={setCoverImage}
         />
       )}
 

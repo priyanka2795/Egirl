@@ -9,7 +9,11 @@ import ProfileDropdown from '@components/common/ProfileDropdown';
 import DeleteProfileModal from '@components/common/DeleteProfileModal';
 import AddImagesModal from '@components/creator-studio/style-generator/AddImagesModal';
 import ProfileCropper from '@components/common/ProfileCropper';
-import { postCharacter, updateCharacter, updateCharacterPersonality } from 'services/services';
+import {
+  postCharacter,
+  updateCharacter,
+  updateCharacterPersonality
+} from 'services/services';
 import Cookies from 'js-cookie';
 import EditProfileThumbnail from '@components/home/EditProfileThumbnail';
 import { putApiWithToken } from 'services/apis';
@@ -18,9 +22,9 @@ interface EditProfileModalProps {
   closeState: React.Dispatch<React.SetStateAction<boolean>>;
   setUserDetails?: any;
   userDetails?: any;
-  bannerData:any;
-  updateCharacterToggle:boolean;
-  setUpdateCharacterToggle:React.Dispatch<React.SetStateAction<boolean>>
+  bannerData: any;
+  updateCharacterToggle: boolean;
+  setUpdateCharacterToggle: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const EditProfileModal = ({
@@ -44,12 +48,11 @@ const EditProfileModal = ({
     useState<boolean>(false);
   const [croppedImage, setCroppedImage] = useState<string | null>(null);
 
-
   const handleSave = async () => {
     try {
       const response: any = await updateCharacter(userDetails, token);
       console.log('Character update successfully!', response);
-      setUpdateCharacterToggle(!updateCharacterToggle)
+      setUpdateCharacterToggle(!updateCharacterToggle);
     } catch (error) {
       console.error('Error update character:', error);
     }
@@ -66,9 +69,9 @@ const EditProfileModal = ({
         location,
         profile_picture_media_id,
         profile_banner_media_id,
-        profile_tags,
+        profile_tags
       } = bannerData;
-  
+
       setUserDetails({
         character_id,
         username,
@@ -77,7 +80,7 @@ const EditProfileModal = ({
         location,
         profile_picture_media_id,
         profile_banner_media_id,
-        profile_tags,
+        profile_tags
       });
     }
   }, [bannerData]);
@@ -172,7 +175,7 @@ const EditProfileModal = ({
               labelName='Name'
               inputType='text'
               inputPlaceholder='Mika-chan'
-              value={ userDetails?.display_name}
+              value={userDetails?.display_name}
               onChange={(value: any) =>
                 setUserDetails((prev: any) => ({
                   ...prev,
@@ -258,6 +261,7 @@ const EditProfileModal = ({
           </div>
         </div>
       </Modal>
+
       {deleteProfileState && (
         <Modal
           open={true}
@@ -274,9 +278,9 @@ const EditProfileModal = ({
       )}
       {updateProfileState && (
         <AddImagesModal
-          setAddImagesModal={setUpdateProfileState}
+          setUpdateProfileState={setUpdateProfileState}
           setCroppedImage={setCroppedImage}
-          AddImagesModal={updateProfileState}
+          updateProfileState={updateProfileState}
         />
       )}
       {updateProfileThumbnail && (

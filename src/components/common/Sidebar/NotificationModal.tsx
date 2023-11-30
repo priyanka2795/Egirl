@@ -67,14 +67,15 @@ const notificationMessage = [
 ];
 interface NotificationModal {
   selectedMoreOption: string;
+  setActiveMoreMenuItem: React.Dispatch<React.SetStateAction<string>>;
 }
-const NotificationModal = ({ selectedMoreOption }: NotificationModal) => {
+const NotificationModal = ({ selectedMoreOption,setActiveMoreMenuItem }: NotificationModal) => {
   const [activeListTab, setActiveListTab] = useState('All');
   return (
     <>
       {selectedMoreOption === 'Notifications' ? (
         <div
-          className={`transitions z-[80] ${
+          className={`transitions z-[80] flex ${
             selectedMoreOption === 'Notifications'
               ? 'fixed h-full  w-full !bg-black/80'
               : 'absolute w-0'
@@ -100,7 +101,7 @@ const NotificationModal = ({ selectedMoreOption }: NotificationModal) => {
                       <div className='h-7 w-7 min-w-[28px]'>
                         <Image
                           className='rounded-full'
-                          src={items.reviewuserImg}
+                          src={items?.reviewuserImg}
                           alt=''
                         />
                       </div>
@@ -171,7 +172,12 @@ const NotificationModal = ({ selectedMoreOption }: NotificationModal) => {
                 })}
               </div>
             </div>
+           
           </div>
+          <div
+              className='w-full h-full'
+              onClick={() => setActiveMoreMenuItem('')}
+            ></div>
         </div>
       ) : (
         ''

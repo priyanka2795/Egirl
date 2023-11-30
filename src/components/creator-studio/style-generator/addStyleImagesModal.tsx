@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
 import xMark from '../../../../public/assets/xmark (1).png';
@@ -46,14 +46,16 @@ const allPhotos = [
   }
 ];
 interface AddStyleImagesModalProps {
-  addImagesModal: any;
-  setAddImagesModal: any;
-  setStyleGeneratorNext: any;
+  addImagesModal: boolean;
+  setAddImagesModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setSelectStyleGenerator: React.Dispatch<React.SetStateAction<any[]>>;
+  selectStyleGenerator: any[];
 }
 const AddStyleImagesModal = ({
   addImagesModal,
   setAddImagesModal,
-  setStyleGeneratorNext
+  setSelectStyleGenerator,
+  selectStyleGenerator
 }: AddStyleImagesModalProps) => {
   const [toggle, setToggle] = useState<boolean>(false);
   const [selectExploreImage, setSelectExploreImage] = useState<any>([]);
@@ -74,11 +76,17 @@ const AddStyleImagesModal = ({
 
     setSelectExploreImage(updatedSelectedImages);
   };
+
   const handleExploreImageSet = () => {
     setAddImagesModal(false);
-    // setExploreImages(selectExploreImage);
+    setSelectStyleGenerator(selectExploreImage);
   };
-console.log(selectExploreImage,'selectExploreImage');
+  useEffect(() => {
+    if (selectStyleGenerator.length === 0) {
+      setSelectExploreImage([]);
+    }
+  }, [selectStyleGenerator]);
+
 
   return (
     <Modal
@@ -90,7 +98,7 @@ console.log(selectExploreImage,'selectExploreImage');
       <div className='flex justify-between border-b border-white/[0.08] p-6'>
         <div className='flex gap-1'>
           <div className='font-bold text-[18px] leading-6 text-white'>
-          Add images 0/40
+            Add images {selectExploreImage.length}/40
           </div>
         </div>
         <Image
@@ -111,10 +119,7 @@ console.log(selectExploreImage,'selectExploreImage');
               return (
                 <div key={index} className='relative'>
                   <Image src={item.image} alt={''} />
-                  <div
-                    className='absolute right-0 flex justify-between w-full px-4 cursor-pointer bottom-5'
-                    onClick={() => setSelectAlbumImages(true)}
-                  >
+                  <div className='absolute right-0 flex justify-between w-full px-4 cursor-pointer bottom-5'>
                     <div className='text-[15px] font-semibold leading-5 text-white'>
                       {item.text}
                     </div>
@@ -177,11 +182,13 @@ console.log(selectExploreImage,'selectExploreImage');
           Cancel
         </button>
         <button
-          className='font-bold w-1/2 items-center justify-center rounded-[14px] border border-transparent bg-[#5848BC] px-5 py-[13px] text-[16px] leading-[22px] text-white'
-          onClick={() => handleExploreImageSet()}
+          className={`font-bold w-1/2 items-center justify-center rounded-[14px] border border-transparent bg-[#5848BC] px-5 py-[13px] cursor-pointer text-[16px] leading-[22px] text-white ${selectExploreImage.length >= 4 ?'opacity-100':'opacity-70'}`}
+          onClick={() => {selectExploreImage.length >= 4 ?handleExploreImageSet():''}}
+          disabled={selectExploreImage.length >= 4 ?false:true}
         >
           Save
         </button>
+
       </div>
     </Modal>
   );
