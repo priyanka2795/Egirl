@@ -54,7 +54,31 @@ function Gifts() {
     setGiftEditPopup(val);
   };
 
-  const DeleteGiftCardModal = (index: number, num: number, data: any) => {
+  // const DeleteGiftCardModal = (index: number, num: number, data: any) => {
+  //   deleteGift(characterId, [data?.gift_id], token)
+  //     .then((res: any) => {
+  //       console.log(res);
+  //       setDeleteGiftToggle(!deleteGiftToggle);
+  //     })
+  //     .then((err: any) => {
+  //       console.log(err);
+  //     });
+  //   setGiftCard(true);
+  //   setGiftEditPopup(num);
+  //   setDeleteBtnStep(1);
+  //   setGiftName('giftName');
+  // };
+
+  const DeleteGiftCardModal = (index: number, step: number, data: any) => {
+    setGiftEditPopup(step);
+    setGiftCard(true);
+    setGiftName('giftName');
+    setSelectedGiftData(data);
+    setDeleteBtnStep(1);
+    
+  };
+
+  const DeleteGift = (data: any) => {
     deleteGift(characterId, [data?.gift_id], token)
       .then((res: any) => {
         console.log(res);
@@ -63,18 +87,14 @@ function Gifts() {
       .then((err: any) => {
         console.log(err);
       });
-    setGiftCard(true);
-    setGiftEditPopup(num);
-    setDeleteBtnStep(1);
-    setGiftName('giftName');
   };
 
-  const DeleteGift = (ind: number) => {
-    setGiftCard(false);
-    setGiftCardName((oldValue) => {
-      return oldValue.filter((item: string, index: number) => index !== ind);
-    });
-  };
+  // const DeleteGift = (ind: number) => {
+  //   setGiftCard(false);
+  //   setGiftCardName((oldValue) => {
+  //     return oldValue.filter((item: string, index: number) => index !== ind);
+  //   });
+  // };
 
   const DeleteAllGiftCard = () => {
     setDeleteModal(true);
@@ -113,11 +133,11 @@ function Gifts() {
     getAllCategory();
   }, [createCategoryToggle]);
 
-  useEffect(()=>{
-    if(giftCategory && giftCategory?.length > 0){
-      setSelectedCategoryId(giftCategory?.[0]?.gift_category_id)
+  useEffect(() => {
+    if (giftCategory && giftCategory?.length > 0) {
+      setSelectedCategoryId(giftCategory?.[0]?.gift_category_id);
     }
-  },[giftCategory])
+  }, [giftCategory]);
 
   useEffect(() => {
     console.log(giftCategory?.[0]?.gift_category_id, 'LLLLSSSS');
@@ -232,7 +252,7 @@ function Gifts() {
 
                             <button
                               className='flex items-center gap-2'
-                              onClick={() => EditGift(2,item)}
+                              onClick={() => EditGift(2, item)}
                             >
                               <div>
                                 <RightUp className='w-full h-full' alt={''} />
