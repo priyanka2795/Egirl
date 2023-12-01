@@ -177,19 +177,20 @@ export default function ChatScreen({
     setImageUploaded(updatedImages);
   };
 
-  useEffect(() => {
+  // useEffect(() => {
     const chatUrl =
-      'wss://api.egirls.ai/ws/user/f8ee29cd-c1b9-4022-8fa3-c3b19822a1f3/room/6/character/f47ac10b-58cc-4372-a567-0e02b2c3d510/text_chat';
+      'wss://api.egirls.ai/room/ws/user/f47ac10b-58cc-4372-a567-0e02b2c3d479/room/1/character/a89df75b-4356-4118-9c9b-15dfa6e0123b/text_chat';
     let socket = new WebSocket(chatUrl);
 
     socket.onopen = function (e) {
       console.log('[open] Connection established');
+      socket.send("My name is John");
     };
     socket.onmessage = function (event) {
-      alert(`[message] Data received from server: ${event.data}`);
+      console.log(`[message] Data received from server: ${event.data}`);
     };
-  }, []);
-
+  // }, []);
+                                            
   return (
     <div
       className={`w-full border-r-[2px] border-[#252525] bg-[#121212] pb-3 lg:inline ${chatScreenClassName}`}
@@ -440,13 +441,21 @@ export default function ChatScreen({
                     <SendIcon />
                   </button>
                 ) : (
-                  <button
-                    onClick={() => {
-                      setShowInput(false);
-                    }}
-                  >
-                    <VoiceIcon />
-                  </button>
+                  <>
+                    {voiceMode ? (
+                      <button
+                        onClick={() => {
+                          setShowInput(false);
+                        }}
+                      >
+                        <VoiceIcon />
+                      </button>
+                    ) : (
+                      <button onClick={handleMessage}>
+                        <SendIcon />
+                      </button>
+                    )}
+                  </>
                 )}
               </div>
             </div>

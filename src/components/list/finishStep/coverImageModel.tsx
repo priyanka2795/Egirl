@@ -21,6 +21,7 @@ const CoverImageModel = ({
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const onChange = (e: any) => {
+    console.log("priyanka", e.target.files[0])
     e.preventDefault();
     let files;
     if (e.dataTransfer) {
