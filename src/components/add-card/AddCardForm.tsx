@@ -1,17 +1,95 @@
-import React, { useState } from 'react';
 import Image from 'next/image';
+import React, { useEffect, useState } from 'react';
+import circleInformation from '../../../public/assets/circle-information2.png';
 import discoverCard from '../../../public/assets/discover-card.png';
 import jcbCard from '../../../public/assets/jcb-card.png';
 import maestroCard from '../../../public/assets/maestro-card.png';
 import masterrCard from '../../../public/assets/master-card.png';
 import visaCard from '../../../public/assets/visa-card.png';
-import circleInformation from '../../../public/assets/circle-information2.png';
+// Interfaces and types
+
+// Main data and utils
+import { countries } from 'countries-list';
+import { City, ICity, IState, State } from 'country-state-city';
 
 interface AddCardFormProp {
   showSucess: React.Dispatch<React.SetStateAction<boolean>>;
   showError: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const AddCardForm = ({ showSucess, showError }: AddCardFormProp) => {
+  const objectEntries = Object.entries(countries);
+  const [selectedCountry, setCountry] = useState<string>('AD');
+  const [states, setStates] = useState<IState[]>([]);
+  const [cities, setCities] = useState<ICity[]>([]);
+  const [selectedState, setSelectedState] = useState<string>('07');
+  const [cardValue, setCardValue] = useState<string>('');
+  const [cardValuetoEnter, setCardValuetoEnter] = useState<string>('');
+  const [expiryValue, setExpiryValue] = useState<string>('');
+  const [expiryValuetoEnter, setExpiryValuetoEnter] = useState<string>('');
+  const [cvv, setCvv] = useState<string>('');
+  
+  const formatCardNumber = (input: string) => {
+    // Remove all non-digit characters
+    if (!input) {
+      setCardValue('');
+      return;
+    }
+    const digitsOnly = input.replace(/\D/g, '');
+
+    // Add a space after every 4 digits using regex and trim the resulting string
+    const formatted = digitsOnly.replace(/(\d{4})/g, '$1 ').trim();
+
+    // Limit to 16 characters (16-digit card number)
+    setCardValue(formatted.substr(0, 19));
+  };
+
+  const formatExpiration = (input: string) => {
+    // Remove all non-digit characters
+    const digitsOnly = input.replace(/\D/g, '');
+
+    // Add a slash after two digits for month and limit to 4 characters (MM/YY)
+    const formatted = digitsOnly
+      .replace(/^(\d{2})(\d{0,2})/, (match, month, year) => {
+        // Ensure month is between 01 and 12
+        const validMonth = Math.min(12, Math.max(1, parseInt(month, 10)));
+        return `${validMonth.toString().padStart(2, '0')}${
+          year ? `/${year}` : ''
+        }`;
+      })
+      .substr(0, 5);
+
+    setExpiryValue(formatted);
+  }
+
+  const formatCVC = (input: string) => {
+    // Remove all non-digit characters
+    const digitsOnly = input.replace(/\D/g, '');
+
+    // Limit to maximum 3 digits
+    const formatted = digitsOnly.substr(0, 3);
+
+    setCvv(formatted);
+  };
+
+  useEffect(() => {
+    formatCardNumber(cardValuetoEnter);
+  }, [cardValuetoEnter]);
+
+  useEffect(() => {
+    formatExpiration(expiryValuetoEnter);
+  }, [expiryValuetoEnter]);
+
+  useEffect(() => {
+    const st = State.getStatesOfCountry(selectedCountry);
+    setStates(st);
+    setSelectedState(st[0]?.isoCode)
+  }, [selectedCountry]);
+
+  useEffect(() => {
+    const ct = City.getCitiesOfState(selectedCountry, selectedState);
+    setCities(ct);
+  }, [selectedState]);
+
   return (
     <form>
       <div className='flex flex-col gap-10 p-8'>
@@ -32,9 +110,11 @@ const AddCardForm = ({ showSucess, showError }: AddCardFormProp) => {
                   id='country'
                   name='countryList'
                   className='font-normal w-full rounded-[14px] border-none bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] focus:ring-0'
+                  onChange={(e) => setCountry(e.target.value)}
                 >
-                  <option value='america'>🇺🇸 America</option>
-                  <option value='america'>🇺🇸 America</option>
+                  {objectEntries.map(([key, value]: any) => {
+                    return <option value={key}>{value?.name}</option>;
+                  })}
                 </select>
               </div>
               <div className='flex w-full flex-col gap-[6px]'>
@@ -48,9 +128,11 @@ const AddCardForm = ({ showSucess, showError }: AddCardFormProp) => {
                   id='country'
                   name='countryList'
                   className='font-normal w-full rounded-[14px] border-none bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] focus:ring-0'
+                  onChange={(e) => setSelectedState(e.target.value)}
                 >
-                  <option value='california'>California</option>
-                  <option value='california'>California</option>
+                  {states.map((data, key) => {
+                    return <option value={data?.isoCode}>{data?.name}</option>;
+                  })}
                 </select>
               </div>
             </div>
@@ -75,11 +157,17 @@ const AddCardForm = ({ showSucess, showError }: AddCardFormProp) => {
                 >
                   City
                 </label>
-                <input
-                  type='text'
-                  placeholder='Los Angeles'
-                  className='font-normal w-full rounded-[14px] border-none bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
-                />
+                {/* <input type='text' placeholder='Los Angeles' className='px-4 py-3 rounded-[14px] bg-white/[0.05] w-full focus:ring-0 border-none placeholder:text-[#979797] text-[#979797] text-[15px] font-normal leading-6' /> */}
+                <select
+                  id='country'
+                  name='countryList'
+                  className='font-normal w-full rounded-[14px] border-none bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] focus:ring-0'
+                  onChange={(e) => setSelectedState(e.target.value)}
+                >
+                  {cities.map((data, key) => {
+                    return <option value={data?.name}>{data?.name}</option>;
+                  })}
+                </select>
               </div>
               <div className='flex w-full flex-col gap-[6px]'>
                 <label
@@ -89,7 +177,7 @@ const AddCardForm = ({ showSucess, showError }: AddCardFormProp) => {
                   ZIP / Post code
                 </label>
                 <input
-                  type='text'
+                  type='number'
                   placeholder='Enter your State / Province'
                   className='font-normal w-full rounded-[14px] border-none bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
                 />
@@ -114,6 +202,8 @@ const AddCardForm = ({ showSucess, showError }: AddCardFormProp) => {
                   type='text'
                   placeholder='xxxx xxxx xxxx xxxx'
                   className='font-normal w-full rounded-[14px] border-none bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
+                  value={cardValue}
+                  onChange={(e) => setCardValuetoEnter(e.target.value)}
                 />
               </div>
               <div className='flex w-full flex-col gap-[6px]'>
@@ -142,6 +232,8 @@ const AddCardForm = ({ showSucess, showError }: AddCardFormProp) => {
                   type='text'
                   placeholder='mm / yy'
                   className='font-normal w-full rounded-[14px] border-none bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
+                  value={expiryValue}
+                  onChange={(e) => setExpiryValuetoEnter(e.target.value)}
                 />
               </div>
               <div className='flex w-full flex-col gap-[6px]'>
@@ -155,6 +247,8 @@ const AddCardForm = ({ showSucess, showError }: AddCardFormProp) => {
                   type='text'
                   placeholder='xxx'
                   className='font-normal w-full rounded-[14px] border-none bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-[#979797] placeholder:text-[#979797] focus:ring-0'
+                  value={cvv}
+                  onChange={(e) => formatCVC(e.target.value)}
                 />
               </div>
             </div>

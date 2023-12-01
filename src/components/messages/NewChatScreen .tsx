@@ -81,6 +81,17 @@ export default function ChatScreen({
     }
   }, []);
 
+  const handleKeyPress = (e: any) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault(); // Prevents the default behavior (form submission, new line)
+      // Update state, perform any necessary action with the current value in the input
+      handleMessage()
+    } else if (e.key === 'Enter' && e.shiftKey) {
+      // Insert a newline character when Shift + Enter is pressed
+      setMessage(message + '\n');
+    }
+  }
+
   const handleMessage = () => {
     setShowMessge(true)
     // console.log(message , "test the target")
@@ -103,6 +114,7 @@ export default function ChatScreen({
       }
     }
   };
+
   return (
     <div
       className={`w-full border-r-[2px] border-[#252525] bg-[#121212] lg:inline ${chatScreenClassName}`}
@@ -260,6 +272,7 @@ export default function ChatScreen({
               // onChange={(event) => setMessage(event.target.value)}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
+              onKeyDown={handleKeyPress}
               style={{ outline: 'none' }}
             />
 
