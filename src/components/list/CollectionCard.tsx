@@ -9,9 +9,9 @@ interface CollectionCardProps {
   cardMainImg: any;
   characterName: string;
   cardImgClasses?: string;
-  dropdownCardId?: any;
-  getCardId?: any;
-  cardId?: string;
+  imageDropdownId?: any;
+  setImageDropdownId?: any;
+  cardId?: number | undefined;
   filterFunction?: any;
   subscription?: string;
   setShowRealistic: any;
@@ -21,8 +21,8 @@ const CollectionCard = ({
   cardMainImg,
   characterName,
   cardImgClasses,
-  getCardId,
-  dropdownCardId,
+  setImageDropdownId,
+  imageDropdownId,
   cardId,
   filterFunction,
   setShowRealistic,
@@ -33,6 +33,10 @@ const CollectionCard = ({
   const handleFilterContent = (e:any) =>{
     setFilterByType(true);
     filterTitle= e.target.innerHTML;
+  }
+
+  const handleDropDownId = (cardId:number | undefined)=>{
+    setImageDropdownId((prev :any) => (prev === cardId ? null : cardId))
   }
   
   return (<>
@@ -45,16 +49,14 @@ const CollectionCard = ({
           <div
             id={`${cardId}`}
             className='${cardId} invisible absolute right-[15px] top-3 flex h-10 w-10 cursor-pointer items-start justify-start gap-3.5 rounded-full bg-black bg-opacity-40 p-2 opacity-0 group-hover:visible group-hover:opacity-100'
-            onClick={(e) => {
-              getCardId(e.currentTarget.id);             
-            }}
+            onClick={()=>handleDropDownId(cardId)}
           >
             <ThreeDotsIcon />
           </div>
         )}
-        {dropdownCardId === cardId ? (
+        {imageDropdownId === cardId ? (
           <>
-            <CardDropdown closeDropdown={getCardId} collectionId={collectionId} />
+            <CardDropdown closeDropdown={setImageDropdownId} collectionId={collectionId} />
           </>
         ) :  null}
       </div>

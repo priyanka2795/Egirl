@@ -20,7 +20,7 @@ export default function Home() {
   console.log('sdff');
   useEffect(() => {
     if (!accessToken) {
-      router.push('/auth/signin');
+      router.push('/login');
     }
   }, [accessToken]);
 

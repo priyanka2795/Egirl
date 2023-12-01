@@ -33,13 +33,10 @@ const PersonalityIndex = () => {
     })
   }
 
-  useEffect(() => {
-    console.log(personalityData, 'personality data');
-  }, [personalityData]);
+
 
   return (
     <PersonalityContent
-      SetBtnSteps
       personalityData={personalityData}
       setPersonalityData={setPersonalityData}
       handleSavePersonality={handleSavePersonality}

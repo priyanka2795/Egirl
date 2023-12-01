@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { Dialog } from '@headlessui/react';
 import cn from 'clsx';
-import type { ReactNode } from 'react';
+import { useEffect, type ReactNode, useRef } from 'react';
 import type { Variants } from 'framer-motion';
 
 type ModalProps = {
@@ -44,13 +44,16 @@ export function Modal({
   modalOverlayStyle,
   closeModal
 }: ModalProps): JSX.Element {
+
+
   return (
     <AnimatePresence>
       {open && (
         <Dialog
           className='relative z-[100]'
           open={open}
-          onClose={closeModal}
+          // onClose={closeModal}
+          onClose={() => console.log('open')}
           static
         >
           <motion.div
@@ -63,6 +66,7 @@ export function Modal({
               'fixed inset-0 overflow-y-auto p-4',
               className ?? 'flex items-center justify-center '
             )}
+            onClick={closeModal}
           >
             <Dialog.Panel
               className={`${modalClassName} max-h-[86vh] overflow-y-auto `}

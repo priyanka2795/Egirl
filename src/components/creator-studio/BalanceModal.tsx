@@ -8,6 +8,7 @@ import Link from 'next/link';
 const token: any = Cookies.get('accessToken');
 const BalanceModal = () => {
   const router = useRouter()
+  const token:string|undefined = Cookies.get('accessToken')
   return (
     <>
       {
