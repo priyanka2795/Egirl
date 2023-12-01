@@ -27,7 +27,7 @@ const AddCardForm = ({ showSucess, showError }: AddCardFormProp) => {
   const [expiryValue, setExpiryValue] = useState<string>('');
   const [expiryValuetoEnter, setExpiryValuetoEnter] = useState<string>('');
   const [cvv, setCvv] = useState<string>('');
-  
+
   const formatCardNumber = (input: string) => {
     // Remove all non-digit characters
     if (!input) {
@@ -59,7 +59,7 @@ const AddCardForm = ({ showSucess, showError }: AddCardFormProp) => {
       .substr(0, 5);
 
     setExpiryValue(formatted);
-  }
+  };
 
   const formatCVC = (input: string) => {
     // Remove all non-digit characters
@@ -82,7 +82,7 @@ const AddCardForm = ({ showSucess, showError }: AddCardFormProp) => {
   useEffect(() => {
     const st = State.getStatesOfCountry(selectedCountry);
     setStates(st);
-    setSelectedState(st[0]?.isoCode)
+    setSelectedState(st[0]?.isoCode);
   }, [selectedCountry]);
 
   useEffect(() => {

@@ -9,10 +9,10 @@ import img4 from '../../../../public/assets/style-gen-img4.png';
 import ProfileCropper from '@components/common/ProfileCropper';
 
 interface AddImagesModalProps {
-  setAddImagesModal?: any;
+  updateProfileState?: boolean;
+  setUpdateProfileState: React.Dispatch<React.SetStateAction<boolean>>;
   setStyleGeneratorNext?: any;
-  setCroppedImage?: any;
-  addImagesModal?: any;
+  setCroppedImage?: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 const albums = [
@@ -48,8 +48,8 @@ const allPhotos = [
 ];
 
 const AddImagesModal = ({
-  addImagesModal,
-  setAddImagesModal,
+  updateProfileState,
+  setUpdateProfileState,
   setStyleGeneratorNext,
   setCroppedImage
 }: AddImagesModalProps) => {
@@ -71,13 +71,13 @@ const AddImagesModal = ({
 
   return (
     <>
-      {addImagesModal && (
+      {updateProfileState && (
         <>
           {updateProfileImg ? (
             <Modal
               open={true}
               modalClassName='flex flex-col max-w-xl w-full rounded-2xl h-max bg-[#1A1A1A] max-w-[656px]'
-              closeModal={() => setAddImagesModal(false)}
+              closeModal={() => setUpdateProfileState(false)}
               modalOverlayStyle='!bg-black/80'
             >
               <div className='flex justify-between border-b border-white/[0.08] p-6'>
@@ -91,7 +91,7 @@ const AddImagesModal = ({
                 </div>
                 <Image
                   className='object-contain cursor-pointer'
-                  onClick={() => setAddImagesModal(false)}
+                  onClick={() => setUpdateProfileState(false)}
                   src={xMark}
                   alt={''}
                 />
@@ -162,7 +162,7 @@ const AddImagesModal = ({
               <div className='flex gap-3 p-6'>
                 <button
                   className='font-bold w-1/2 items-center justify-center rounded-[14px] border border-white/[0.32] px-5 py-[13px] text-[16px] leading-[22px] text-white'
-                  onClick={() => setAddImagesModal(false)}
+                  onClick={() => setUpdateProfileState(false)}
                 >
                   Cancel
                 </button>
@@ -188,7 +188,7 @@ const AddImagesModal = ({
             >
               <ProfileCropper
                 setUpdateProfileImg={setUpdateProfileImg}
-                setAddImagesModal={setAddImagesModal}
+                setAddImagesModal={setUpdateProfileState}
                 selectProfileImage={selectProfileImage}
                 setCroppedImage={setCroppedImage}
               />

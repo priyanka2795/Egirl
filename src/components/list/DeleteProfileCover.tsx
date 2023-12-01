@@ -56,7 +56,7 @@ const DeleteProfileCover = ({
             <button
               className='w-1/2 rounded-[14px] bg-[#5848BC] px-[20px] py-[11px] text-base font-bold text-white'
               onClick={() => {
-                closeDeleteModal(false), closeDropdown(false), setRemoveCover(true);
+                closeDeleteModal(false), closeDropdown(false), setRemoveCover('');
               }}
             >
               Delete

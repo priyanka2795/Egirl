@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import ClearBookMarkModal from '@components/list/ClearBookMarkModal';
 
 interface DefaultTabProp {
-  activeListTab: string;
-  setActiveTab: any;
-  tabContentArray: string[];
+  activeListTab?: string;
+  setActiveTab?: any;
+  tabContentArray?: string[];
   component?:any;
   setShowSubscriptionOption?: any;
   setShowFollowing?: any;

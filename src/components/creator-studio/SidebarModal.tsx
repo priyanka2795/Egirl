@@ -47,7 +47,8 @@ console.log(activeProfile,'activeProfile');
 
   return (
     <div
-      className={`fixed top-[131px] z-10 -ml-1 mt-2 flex h-[200px] w-[260px] flex-col overflow-auto rounded-[14px] bg-[#1A1A1A] px-0 pb-3 pt-2`}
+      className={`absolute top-14 left-0 z-10 -ml-1 mt-2 flex h-[200px] w-[270px] flex-col overflow-auto rounded-[14px] bg-[#1A1A1A] px-0 pb-3 pt-2`}
+      
     >
       <Link href={'/allCharacters'}>
         <div className='flex items-center gap-2 px-6 py-[6px]'>

@@ -8,7 +8,7 @@ import Generatedstyle from '../view-Styles/Generatedstyle';
 const StyleGeneratorIndex = () => {
   const [generatedStyle, setGeneratedStyle] = useState<boolean>(false);
   const [viewStyleGenerated, setViewStyleGenerated] = useState<boolean>(false);
-  const [styleGeneratorNext, setStyleGeneratorNext] = useState<boolean>(false);
+  const [styleGeneratorNext, setStyleGeneratorNext] = useState<boolean>(true);
   return (
     <div>
       {generatedStyle ? (
@@ -36,11 +36,8 @@ const StyleGeneratorIndex = () => {
       ) : (
         <div className='flex flex-col gap-5'>
           <StyleBeingGenerated setGeneratedStyle={setGeneratedStyle} />
-          {styleGeneratorNext ? (
             <StyleGeneratorNext setStyleGeneratorNext={setStyleGeneratorNext} />
-          ) : (
-            <StyleGenerator setStyleGeneratorNext={setStyleGeneratorNext} />
-          )}
+            {/* // <StyleGenerator setStyleGeneratorNext={setStyleGeneratorNext} /> */}
         </div>
       )}
     </div>
