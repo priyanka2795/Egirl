@@ -114,6 +114,14 @@ const CreatorStudioSidebar = ({
         if (res?.data.length === 1) {
           Cookies.set('character_id', res?.data[0]?.id);
         }
+        const characterIdFromCookies = Cookies.get('character_id');
+console.log(characterIdFromCookies , "????characterIdFromCookies");
+console.log(res?.data[0]?.id , "res?.data[0]?.id????");
+        // Set character_id in cookies if not present
+        if (!characterIdFromCookies || (characterIdFromCookies == undefined) || (characterIdFromCookies == null) || (characterIdFromCookies == "")) {
+          Cookies.set('character_id', res?.data[0]?.id);
+          setActiveProfileId(res?.data[0]?.id); // Set active profile ID
+        }
       })
       .catch((err: any) => {
         console.log(err);
@@ -121,23 +129,10 @@ const CreatorStudioSidebar = ({
   }, [UserGuide, createCharacterData, createToggle]);
   
   useEffect(()=>{
-    if(!activeProfileId){
-      setActiveProfileId(allCharacterData?.[0]?.id)
-    }
-  },[allCharacterData])
-
-  useEffect(()=>{
    const characterId = Cookies.get('character_id')
    setActiveProfileId(characterId)
   },[activeProfile])
 
-  useEffect(()=>{
-   
-   if(!character){
-    Cookies.set('character_id' , allCharacterData?.[0]?.id)
-    setActiveProfileId(allCharacterData?.[0]?.id)
-   }
-  },[allCharacterData , UserGuide])
 
   useEffect(()=>{
     profileCharacter(activeProfileId , token)
