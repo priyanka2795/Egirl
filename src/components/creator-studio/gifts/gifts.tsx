@@ -120,7 +120,6 @@ function Gifts() {
   },[giftCategory])
 
   useEffect(() => {
-    console.log(giftCategory?.[0]?.gift_category_id, 'LLLLSSSS');
     getGifts(
       selectedCategoryId
         ? selectedCategoryId
@@ -232,7 +231,7 @@ function Gifts() {
 
                             <button
                               className='flex items-center gap-2'
-                              onClick={() => EditGift(2)}
+                              onClick={() => EditGift(2 , item)}
                             >
                               <div>
                                 <RightUp className='h-full w-full' alt={''} />
@@ -281,6 +280,7 @@ function Gifts() {
                 token={token}
                 setUpdateGift={setUpdateGift}
                 updateGift={updateGift}
+                giftCategory={giftCategory}
               />
             )}
 
