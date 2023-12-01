@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 import { logout } from 'services/services';
 import Cookies from 'js-cookie';
 import Link from 'next/link';
-const token: any = Cookies.get('accessToken');
 const BalanceModal = () => {
   const router = useRouter()
   const token:string|undefined = Cookies.get('accessToken')
