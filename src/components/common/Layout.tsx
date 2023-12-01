@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { log } from 'console';
 
 const Layout = ({ children }: any) => {
-  const [activeMoreMenuItem, setActiveMoreMenuItem] = useState('');
+  const [activeMoreMenuItem, setActiveMoreMenuItem] = useState<string>('');
   const [activeItem, setActiveItem] = useState('');
   const router = useRouter();
   console.log({activeItem});
@@ -33,13 +33,14 @@ const Layout = ({ children }: any) => {
               : 'overflow-y-auto'
           } overflow-x-hidden bg-main-background lg:min-w-[600px] `}
         >
-          <NotificationModal selectedMoreOption={activeMoreMenuItem} />
+          <NotificationModal selectedMoreOption={activeMoreMenuItem} setActiveMoreMenuItem={setActiveMoreMenuItem} />
           {activeItem === 'Add Card' && (
             <AddCardSidebar seletedAddCard={activeItem}  SetseletedAddCard ={setActiveItem}/>
           )}
           {/* {activeItem === 'Add Card' && (
-            <AddCardSidebar seletedAddCard={activeItem} />
+            <AddCardSidebar seletedAddCard={activItem} />
           )} */}
+    
 
           {children}
         </div>

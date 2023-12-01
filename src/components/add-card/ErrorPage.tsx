@@ -10,11 +10,11 @@ interface errorPageProp {
 const ErrorPage = ({ closeErrorPage }: errorPageProp) => {
   const router = useRouter();
   return (
-    <div className=''>
+    < >
       <div className='flex flex-col items-center justify-center gap-10 p-8 grow'>
         <div
           className='flex flex-col items-center justify-center gap-4'
-          style={{ height: 'calc(100vh - 165px)' }}
+          // style={{ height: 'calc(100vh - 165px)' }}
         >
           <div className='flex items-center justify-center rounded-full bg-[#FF5336]/[0.16] px-6 pb-6 pt-[26px]'>
             <Image className='w-8 h-8' src={crossIconRed} alt={''} />
@@ -45,7 +45,7 @@ const ErrorPage = ({ closeErrorPage }: errorPageProp) => {
           Try again
         </button>
       </div>
-    </div>
+    </>
   );
 };
 

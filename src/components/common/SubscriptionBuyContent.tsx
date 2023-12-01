@@ -53,7 +53,7 @@ const SubscriptionBuyContent = ({ closeErrorPage ,closeSuccessPage }: subscripti
             return (
               <div className={`gap-6 rounded-[14px] bg-[#1A1A1A] p-5 items-center cursor-pointer border-2 hover:border-[#5848BC]
             ${tokenPrice === items.price ? 'border-[#5848BC]' : 'border-transparent'}`} onClick={() => { setTokenPrice(items.price) }}>
-                <div className='flex justify-between items-center '>
+                <div className='flex items-center justify-between '>
                   <p className='text-[15px] text-[#979797]'>{items.price}</p>
                   {items.price === '$9.99' ? <div className='bg-[#5848BC3D] text-xs text-white py-1 px-2 rounded-full flex items-center gap-1'><Star />Popular</div> : ''
                   }
@@ -73,7 +73,7 @@ const SubscriptionBuyContent = ({ closeErrorPage ,closeSuccessPage }: subscripti
         <button className='mt-4 w-full rounded-[14px] bg-[#5848BC] py-[13px] font-bold' onClick={() => closeErrorPage(true)}>
           Buy Tokens {tokenPrice}
         </button>
-        <button onClick={() => closeSuccessPage(true)} >Success</button>
+        {/* <button onClick={() => closeSuccessPage(true)} >Success</button> */}
       </div>
 
     </>

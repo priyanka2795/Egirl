@@ -9,11 +9,11 @@ interface DeletePopup {
   Content: string;
   Name?: string;
   LastName?: string;
-  setShowCards?: any;
   component?: string;
   deleteImageGenerationIndex?: number;
   DeleteGeneration?: any;
-  deleteImgBySdId?:any
+  deleteImgBySdId?:any;
+  setSelectStyleGenerator?:any
 }
 function AlbumDelete({
   DeleteModal,
@@ -21,16 +21,16 @@ function AlbumDelete({
   Content,
   Name,
   LastName,
-  setShowCards,
   component,
   deleteImageGenerationIndex,
   DeleteGeneration,
-  deleteImgBySdId
+  deleteImgBySdId,
+  setSelectStyleGenerator
 }: DeletePopup) {
   const handleDeleteButton = () => {
     if (component === 'StyleGeneration') {
       DeleteModal(false);
-      setShowCards(false);
+      setSelectStyleGenerator([]); 
     } else if (component === 'ImageAndIdeaGeneratorTab') {
       DeleteGeneration(deleteImageGenerationIndex);
     } else {
