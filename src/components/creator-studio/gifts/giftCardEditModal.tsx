@@ -130,17 +130,18 @@ function GiftCardEditModal({
             <div className='flex items-center justify-between border-b border-[#FFFFFF14] p-6'>
               <h5 className='text-lg font-semibold'>Edit name</h5>
               <div
-                className='h-6 w-6 cursor-pointer'
+                className='w-6 h-6 cursor-pointer'
                 onClick={() => closeModal(false)}
               >
-                <Image className='h-full w-full' src={crossIcon} alt={''} />
+                <Image className='w-full h-full' src={crossIcon} alt={''} />
               </div>
             </div>
             <div className='p-6'>
-              <div className='m-auto mb-5 max-h-[156px] max-w-[156px] overflow-hidden rounded-xl'>
-                <Image
-                  className='h-full w-full object-cover'
-                  src={giftImageSet}
+              <div className='m-auto mb-5 h-[156px] w-full max-w-[156px] overflow-hidden rounded-xl'>
+                <img
+                  className='object-cover w-full h-full'
+                  src={selectedGiftData?.media_url}
+                  alt=''
                 />
               </div>
               <div className=' flex flex-col text-[#979797]'>
@@ -156,7 +157,7 @@ function GiftCardEditModal({
                   onChange={(e) => handleChange(e)}
                 />
               </div>
-              <div className='mt-6 grid grid-cols-2 gap-3 font-semibold text-white'>
+              <div className='grid grid-cols-2 gap-3 mt-6 font-semibold text-white'>
                 <button
                   className='rounded-[14px] border border-[#FFFFFF52] px-5 py-3'
                   onClick={() => closeModal(false)}
@@ -177,17 +178,18 @@ function GiftCardEditModal({
             <div className='flex items-center justify-between border-b border-[#FFFFFF14] p-6'>
               <h5 className='text-lg font-semibold'>Select Category</h5>
               <div
-                className='h-6 w-6 cursor-pointer'
+                className='w-6 h-6 cursor-pointer'
                 onClick={() => closeModal(false)}
               >
-                <Image className='h-full w-full' src={crossIcon} alt={''} />
+                <Image className='w-full h-full' src={crossIcon} alt={''} />
               </div>
             </div>
             <div className='p-6'>
-              <div className='m-auto mb-5 max-h-[156px] max-w-[156px] overflow-hidden rounded-xl'>
-                <Image
-                  className='h-full w-full object-cover'
-                  src={giftImageSet}
+              <div className='m-auto mb-5 h-[156px] w-full max-w-[156px] overflow-hidden rounded-xl'>
+                <img
+                  src={selectedGiftData?.media_url}
+                  className='object-cover w-full h-full'
+                  alt=''
                 />
               </div>
               <div className='flex flex-col gap-3 pb-4 '>
@@ -207,7 +209,7 @@ function GiftCardEditModal({
                         <div className='flex h-[40px] w-[40px] items-center justify-center rounded-lg bg-[#FFFFFF0D]'>
                           <Image
                             src={items.media_url}
-                            className='m-auto h-full w-full'
+                            className='w-full h-full m-auto'
                           />
                         </div>
                         <div className=''>
@@ -223,11 +225,11 @@ function GiftCardEditModal({
                 ))}
               </div>
               {/* <button className='flex items-center gap-2 pb-3 font-semibold'>
-                <Image className='h-full w-full' src={plusIcon} alt={''} />
+                <Image className='w-full h-full' src={plusIcon} alt={''} />
                 <p>New Category</p>
               </button> */}
 
-              <div className='mt-6 grid grid-cols-2 gap-3 font-semibold text-white'>
+              <div className='grid grid-cols-2 gap-3 mt-6 font-semibold text-white'>
                 <button
                   className='rounded-[14px] border border-[#FFFFFF52] px-5 py-3'
                   onClick={() => closeModal(false)}
