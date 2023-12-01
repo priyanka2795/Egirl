@@ -85,7 +85,7 @@ export default function Sidebar({
   return (
     // border: border-r border-[#2F2F2F]
     <div
-      className={`h-full w-[88px] flex-col overflow-y-auto border-r-[2px] border-[rgb(37,37,37)] bg-[#070707] sm:flex xl:w-[300px] xl:items-start ${sideBarClasses} ${shrinkSidebar === 'true' ? '!w-[88px]' : ''
+      className={`h-full w-[88px] flex-col border-r-[2px] border-[rgb(37,37,37)] bg-[#070707] sm:flex xl:w-[300px] xl:items-start ${sideBarClasses} ${shrinkSidebar === 'true' ? '!w-[88px]' : ''
         }`}
     >
       <div
@@ -211,7 +211,7 @@ export default function Sidebar({
           </div>
           {moreOption && (
             <MoreMenuOption
-              classes={`${sideBarCollapse ? 'fixed bottom-5 left-[90px]' : 'absolute '
+              classes={`${sideBarCollapse ? ' absolute bottom-5 left-[90px]' : 'absolute '
                 }`}
               activeMoreOption={activeMoreOption}
               moreOptionItem={moreOptionItem}
