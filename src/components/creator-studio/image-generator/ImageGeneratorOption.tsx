@@ -241,15 +241,11 @@ const ImageGeneratorOption = ({
 
   console.log('selectInPaintImg---', selectInPaintImg,savedDrawingImage);
   const svgString = `${savedDrawingImage}`;
-
-// Encode the SVG string to base64
-const base64SVG = btoa(svgString);
-
-// Create a base64 URL
-const base64URL = `data:image/svg+xml;base64,${base64SVG}`;
-
-console.log(base64URL);
-
+  // Encode the SVG string to base64
+  const base64SVG = btoa(svgString);
+  // Create a base64 URL
+  const base64URL = `data:image/svg+xml;base64,${base64SVG}`;
+  console.log(base64URL);
   //====== prompt image api for image generation ========
   const token: any = Cookies.get('accessToken');
   const refreshTokenData: any = useAppSelector(
@@ -376,6 +372,7 @@ console.log(base64URL);
   };
 
 //---------------------------------------------------
+
 //------------ get image generation api--------------
 const [allImgData, setAllImgData] = useState([])
 useEffect(()=>{
@@ -392,7 +389,7 @@ useEffect(()=>{
 })
 },[updateImgState,refreshTokenData])
 //---------------------------------------------------
- 
+
 return (
     <>
       <div className='flex flex-col rounded-[14px] bg-[#121212]'>
@@ -400,6 +397,8 @@ return (
           <div className='font-bold text-[22px] leading-8 text-white'>
             Image generator
           </div>
+         
+          
           <div className='flex flex-col gap-4'>
             <div className='flex justify-between'>
               <div className='flex gap-3'>

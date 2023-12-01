@@ -133,6 +133,7 @@ const CreatorStudioLayout = ({
             setUserGuide={setUserGuide}
             setCreateCharacterToggle={setCreateCharacterToggle}
             createCharacterToggle={createCharacterToggle}
+            setBannerData={setBannerData}
           />
           <div className='creator-studio-components main-content-scroller relative mt-8 h-[calc(100vh-104px)] flex-grow overflow-y-auto overflow-x-hidden bg-main-background pb-5 pr-4 lg:min-w-[600px]'>
             {styleGenNext ? (

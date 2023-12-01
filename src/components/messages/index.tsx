@@ -19,7 +19,7 @@ const Messages = () => {
   const [startConversationModal, setStartConversationModal] = useState(false);
   const [selectUserState, setSelectUserState] = useState('');
   const [shrinkSidebar, setShrinkSidebar] = useState(false);
-  // console.log(chartScreenView, 'chartScreenView');
+  
   const handleCloseModal = () => {
     setModalView(!modalView);
     setChartScreenView('Default view');
@@ -54,6 +54,7 @@ const Messages = () => {
       });
   }, [refreshTokenData]);
   //========= get rooms api ==========
+  
   // console.log(chatViewStyle,':chatViewStyle',chartScreenView,': chartScreenView')
   return (
     <>
@@ -87,7 +88,7 @@ const Messages = () => {
             {chartScreenView === 'FullScreen view' ? (
               sessionStorage.setItem('sideBarCollapse', 'true')
             ) : (
-              <Characters />
+              <Characters roomData={roomData} />
             )}
 
             {chartScreenView === 'Default view' ? (
