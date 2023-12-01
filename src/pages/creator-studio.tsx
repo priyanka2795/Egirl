@@ -23,25 +23,30 @@ const creatorStudio = () => {
   const [userDetails, setUserDetails] = useState();
   const [updateCharacterToggle , setUpdateCharacterToggle] = useState<boolean>(false)
   const [createCharacterToggle , setCreateCharacterToggle] = useState<boolean>(false)
+  const [character , setCharacter] = useState<any>()
 
-useEffect(()=>{
-  if(!activeProfile && allCharacterData){
-    setActiveProfile(allCharacterData[0]?.id)
-  }
-},[allCharacterData])
+
+  useEffect(()=>{
+    const characterId = Cookies.get('character_id')
+    setActiveProfile(characterId)
+ },[createCharacterToggle , allCharacterData ])
+
+// useEffect(()=>{
+//   if(!activeProfile && allCharacterData){
+//     setActiveProfile(allCharacterData[0]?.id)
+//   }
+// },[allCharacterData])
+
 
   useEffect(()=>{
     getAllCharacter(token)
     .then((res:any)=>{
       setAllCharacterData(res?.data)
-      if(res?.data.length === 1){
-        Cookies.set("character_id" , res?.data[0]?.id)
-      }
     })
     .catch((err:any)=>{
       console.log(err);
     })
-  },[ UserGuide , activeProfile , createCharacterData , createCharacterToggle ])
+  },[])
 
 
   useEffect(()=>{
@@ -52,11 +57,30 @@ useEffect(()=>{
     .catch((err:any)=>{
       console.log(err);
     })
-  },[activeProfile , updateCharacterToggle])
+  },[activeProfile , updateCharacterToggle , allCharacterData ])
+
+
+  useEffect(()=>{
+    if(!activeProfile){
+      setActiveProfile(allCharacterData?.[0]?.id)
+      // Cookies.set('character_id' , allCharacterData?.[0]?.id)
+    }
+  },[allCharacterData])
 
   // useEffect(()=>{
-  //  Cookies.set('character_id', activeProfile);
-  // },[activeProfile])
+  //   let character = Cookies.get('character_id')
+  //   if(!character){
+  //     setActiveProfile(allCharacterData?.[0]?.id)
+  //   }
+  // })
+
+
+  // useEffect(()=>{
+  //   if(!activeProfile){
+  //     setActiveProfile(allCharacterData?.[0]?.id)
+  //     console.log(allCharacterData?.[0]?.id , "????>>>>....");
+  //   }
+  // },[allCharacterData])
 
   return (
     <div>
