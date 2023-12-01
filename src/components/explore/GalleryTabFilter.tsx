@@ -185,9 +185,9 @@ const GalleryTabFilter = ({
     setAppliedFilter(data);
   };
 
-  const clearAll = () =>{
-    setSelectedTags([])
-  }
+  const clearAll = () => {
+    setSelectedTags([]);
+  };
 
   return (
     <>
@@ -201,19 +201,19 @@ const GalleryTabFilter = ({
       )}
       {singleProfileState === false ? (
         <>
-          <div className='flex flex-col items-center justify-center w-full h-fit'>
-            <div className='block w-full mt-8'>
+          <div className='flex h-fit w-full flex-col items-center justify-center'>
+            <div className='mt-8 block w-full'>
               <SearchBar
                 searchBy={searchBy}
                 setSearchBy={setSearchBy}
                 placeholder='Search'
               />
             </div>
-            <div className='flex w-full mt-6 mb-7'>
+            <div className='mb-7 mt-6 flex w-full'>
               <Slider
                 {...settings}
                 ref={sliderRef}
-                className='flex w-full explore-gallery-filter marketplace-slider'
+                className='explore-gallery-filter marketplace-slider flex w-full'
               >
                 {galleryArray.map((items, index) => {
                   return (
@@ -237,7 +237,7 @@ const GalleryTabFilter = ({
           </div>
 
           <div className='mb-[23px] flex justify-between gap-2'>
-            <div className='flex justify-start w-full gap-2 h-fit'>
+            <div className='flex h-fit w-full justify-start gap-2'>
               {appliedFilter.length ? (
                 appliedFilter?.map((item) => (
                   <div
@@ -276,11 +276,11 @@ const GalleryTabFilter = ({
                     filterCloseForm={setFilterForm}
                     selectedTags={selectedTags}
                     getSelectedTagOnClick={getSelectedTagOnClick}
-                    clearAll= {clearAll}
+                    clearAll={clearAll}
                   />
                 )}
               </div>
-              <div className='flex gap-2 pl-2 border-l border-white/10'>
+              <div className='flex gap-2 border-l border-white/10 pl-2'>
                 <p>Newest</p>
                 <Image src={arrowDown} alt='' className='object-cover' />
               </div>
