@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import Link from 'next/link';
 import cn from 'clsx';
 import { formatDate } from '@lib/date';

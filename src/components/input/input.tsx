@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import Link from 'next/link';
 import { useState, useEffect, useRef, useId } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';

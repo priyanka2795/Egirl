@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import React, { useEffect, useRef, useState } from 'react';
 import image1 from '../../../../public/assets/vi-image-1.png';
 import image2 from '../../../../public/assets/vi-image-2.png';

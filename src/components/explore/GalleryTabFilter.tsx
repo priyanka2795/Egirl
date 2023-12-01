@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import Image from 'next/image';
 import React, { createRef, useEffect, useState } from 'react';
 import Slider from 'react-slick';

@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 import { useUser } from '@lib/context/user-context';

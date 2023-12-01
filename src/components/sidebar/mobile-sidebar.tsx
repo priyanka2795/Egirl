@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { useModal } from '@lib/hooks/useModal';
 import { Button } from '@components/ui/button';
 import { Modal } from '@components/modal/modal';

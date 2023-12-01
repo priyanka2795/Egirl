@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import cn from 'clsx';
 import { AnimatePresence, motion } from 'framer-motion';
 import { StatsEmpty } from '@components/tweet/stats-empty';

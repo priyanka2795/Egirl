@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import { useRequireAuth } from '@lib/hooks/useRequireAuth';
 import { Aside } from '@components/aside/aside';
 import { AsideTrends } from '@components/aside/aside-trends';

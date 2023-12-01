@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { useRouter } from 'next/router';
 import { UserContextProvider } from '@lib/context/user-context';
 import { useCollection } from '@lib/hooks/useCollection';

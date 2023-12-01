@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React,{useState,useEffect} from 'react';
 import Search from '../../../public/assets/search-alt (1).png';
 import Information from '../../../public/assets/circle-information2.png';

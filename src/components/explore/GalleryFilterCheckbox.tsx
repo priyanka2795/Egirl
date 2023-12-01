@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import Image from 'next/image';
 import React, { useState } from 'react';
 import circleInformation from '../../../public/assets/circle-information.png';

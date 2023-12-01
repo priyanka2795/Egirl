@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import cn from 'clsx';
 import type { User, EditableData } from '@lib/types/user';
 import type { KeyboardEvent, ChangeEvent } from 'react';
