@@ -88,7 +88,6 @@ export default function ChatScreen({
   const [imageRequestMsg, setImageRequestMsg] = useState(false);
   const [typingState, setTypingState] = useState(false);
   // const [uploadedItemState, setUploadedItemState] = useState<any>();
-
   const handleChatViewModal = () => {
     setChatViewOption(!chatViewOption);
     setSendUploadImgState(false);
@@ -103,6 +102,17 @@ export default function ChatScreen({
       containerRef.current.scrollTop = containerRef.current.scrollHeight;
     }
   }, []);
+
+  const handleKeyPress = (e: any) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault(); // Prevents the default behavior (form submission, new line)
+      // Update state, perform any necessary action with the current value in the input
+      handleMessage()
+    } else if (e.key === 'Enter' && e.shiftKey) {
+      // Insert a newline character when Shift + Enter is pressed
+      setMessage(message + '\n');
+    }
+  }
 
   const handleMessage = () => {
     setShowMessge(true);
@@ -406,6 +416,7 @@ export default function ChatScreen({
                       onChange={(e) => setMessage(e.target.value)}
                       onFocus={() => setTypingState(true)}
                       onBlur={(e) => handleTypingIndicator(e)}
+                      onKeyDown={handleKeyPress}
                       style={{ outline: 'none' }}
                       maxRows={5}
                     />

@@ -66,6 +66,7 @@ const GalleryCardCollection = ({
 
   const SideBarCollapse = sessionStorage.getItem('sideBarCollapse');
   const [sideBarCollapses, setSideBarCollapses] = useState(SideBarCollapse);
+  const [showUserInfo,setShowUserInfo]=useState(false)
   useEffect(() => {
     setSideBarCollapses(SideBarCollapse);
   }, [SideBarCollapse]);
@@ -80,11 +81,10 @@ const GalleryCardCollection = ({
       {exploreGallery.map((items, index) => {
         return (
           <div
-          className='gallery-card-collection group relative cursor-pointer overflow-hidden rounded-[14px]'
-            onClick={() => setSingleProfileState(true)}
+          className='gallery-card-collection group relative cursor-pointer overflow-hidden rounded-[14px] w-full h-full'
+            
             key={index}
           >
-
             <Image
               src={items.mainImg}
               alt=''
