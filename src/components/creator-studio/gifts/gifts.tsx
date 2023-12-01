@@ -175,7 +175,7 @@ function Gifts() {
               createCategoryToggle={createCategoryToggle}
             />
 
-            <div className='mt-4 flex items-center justify-between'>
+            <div className='flex items-center justify-between mt-4'>
               <p className='text-[#979797]'>
                 {`${selectedCategoryGifts?.length}/9`} gifts
               </p>
@@ -188,7 +188,7 @@ function Gifts() {
               </button>
             </div>
 
-            <div className='mt-4 grid grid-cols-1 items-center gap-9 md:grid-cols-2 lg:grid-cols-3'>
+            <div className='grid items-center grid-cols-1 mt-4 gap-9 md:grid-cols-2 lg:grid-cols-3'>
               {selectedCategoryGifts?.map((item: any, index: number) => (
                 <div
                   className='relative h-[300px] w-[300px] overflow-hidden rounded-xl'
@@ -200,7 +200,7 @@ function Gifts() {
                 /> */}
                   <img
                     src={item?.media_url}
-                    className='h-full w-full object-cover'
+                    className='object-cover w-full h-full'
                   />
 
                   <div className='absolute right-2 top-2'>
@@ -210,7 +210,7 @@ function Gifts() {
                     >
                       <Image
                         src={DotsHorizontal}
-                        className='h-full w-full object-cover'
+                        className='object-cover w-full h-full'
                         alt=''
                       />
                     </button>
@@ -224,7 +224,7 @@ function Gifts() {
                             >
                               <Image
                                 src={Pencil}
-                                className='h-full w-full'
+                                className='w-full h-full'
                                 alt=''
                               />
                               <p>Edit name</p>
@@ -232,10 +232,10 @@ function Gifts() {
 
                             <button
                               className='flex items-center gap-2'
-                              onClick={() => EditGift(2)}
+                              onClick={() => EditGift(2,item)}
                             >
                               <div>
-                                <RightUp className='h-full w-full' alt={''} />
+                                <RightUp className='w-full h-full' alt={''} />
                               </div>
                               <p>Move to another category</p>
                             </button>
@@ -248,7 +248,7 @@ function Gifts() {
                             >
                               <Image
                                 src={Delete}
-                                className='h-full w-full'
+                                className='w-full h-full'
                                 alt={''}
                               />
                               <p>Delete</p>

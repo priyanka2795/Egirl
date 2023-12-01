@@ -23,6 +23,7 @@ interface SidebarModals {
   allCharacterData: any;
   setActiveProfile: any;
   activeProfile: any;
+  setActiveProfileId:any
 }
 
 const SidebarModal = ({
@@ -32,12 +33,14 @@ const SidebarModal = ({
   setNewCharacter,
   allCharacterData,
   setActiveProfile,
-  activeProfile
+  activeProfile,
+  setActiveProfileId
 }: SidebarModals) => {
 const router =useRouter();
   const handleChange = (item: any) => {
     router.push('/creator-studio')
     setActiveProfile?.(item?.id);
+    setActiveProfileId?.(item?.id)
     Cookies.set('character_id', item?.id);
   };
 console.log(activeProfile,'activeProfile');
