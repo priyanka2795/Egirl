@@ -63,7 +63,7 @@ const creatorStudio = () => {
   useEffect(()=>{
     if(!activeProfile){
       setActiveProfile(allCharacterData?.[0]?.id)
-      // Cookies.set('character_id' , allCharacterData?.[0]?.id)
+      Cookies.set('character_id' , allCharacterData?.[0]?.id)
     }
   },[allCharacterData])
 
