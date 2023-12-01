@@ -176,20 +176,19 @@ export default function ChatScreen({
     updatedImages.splice(index, 1);
     setImageUploaded(updatedImages);
   };
-  
-  const chatUrl =
-    'wss://api.egirls.ai/ws/user/f8ee29cd-c1b9-4022-8fa3-c3b19822a1f3/room/6/character/f47ac10b-58cc-4372-a567-0e02b2c3d510/text_chat';
-  let socket = new WebSocket(chatUrl);
 
-  socket.onopen = function (e) {
-    console.log('[open] Connection established');
-    socket.send('My name is John');
-  };
+  useEffect(() => {
+    const chatUrl =
+      'wss://api.egirls.ai/ws/user/f8ee29cd-c1b9-4022-8fa3-c3b19822a1f3/room/6/character/f47ac10b-58cc-4372-a567-0e02b2c3d510/text_chat';
+    let socket = new WebSocket(chatUrl);
 
-  socket.onmessage = function (event) {
-    alert(`[message] Data received from server: ${event.data}`);
-  };
-
+    socket.onopen = function (e) {
+      console.log('[open] Connection established');
+    };
+    socket.onmessage = function (event) {
+      alert(`[message] Data received from server: ${event.data}`);
+    };
+  }, []);
 
   return (
     <div
