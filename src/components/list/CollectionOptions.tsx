@@ -111,9 +111,9 @@ const CollectionOptions = ({ setShowRealistic }: CollectionOptionsProps) => {
                     cardMainImg={collectionImg[i]}
                     characterName={e?.collection_name}
                     cardImgClasses='relative !max-h-[308px]'
-                    cardId='card-1'
-                    getCardId={setImageDropdownId}
-                    dropdownCardId={imageDropdownId}
+                    cardId={i}
+                    setImageDropdownId={setImageDropdownId}
+                    imageDropdownId={imageDropdownId}
                     filterFunction={(e: any) => handleFilterContent(e)}
                     setShowRealistic={setShowRealistic}
                     key={i}

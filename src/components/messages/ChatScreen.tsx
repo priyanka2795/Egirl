@@ -88,7 +88,6 @@ export default function ChatScreen({
   const [imageRequestMsg, setImageRequestMsg] = useState(false);
   const [typingState, setTypingState] = useState(false);
   // const [uploadedItemState, setUploadedItemState] = useState<any>();
-
   const handleChatViewModal = () => {
     setChatViewOption(!chatViewOption);
     setSendUploadImgState(false);
@@ -104,11 +103,21 @@ export default function ChatScreen({
     }
   }, []);
 
+  const handleKeyPress = (e: any) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault(); // Prevents the default behavior (form submission, new line)
+      // Update state, perform any necessary action with the current value in the input
+      handleMessage()
+    } else if (e.key === 'Enter' && e.shiftKey) {
+      // Insert a newline character when Shift + Enter is pressed
+      setMessage(message + '\n');
+    }
+  }
+
   const handleMessage = () => {
     setShowMessge(true);
   };
   const handleViews = (e: any) => {
-    console.log(e);
     if (e === 'chatView') {
       if (moreOptionDropdown) {
         setChatView(!chatView);
@@ -131,8 +140,6 @@ export default function ChatScreen({
     }
   };
 
-  // console.log(uploadedItemState, 'uploadedItemState');
-  // console.log(imageUploaded, 'imageUploaded');
   const [imageUploaded, setImageUploaded] = useState<any[]>([]);
 
   const {
@@ -170,19 +177,20 @@ export default function ChatScreen({
     setImageUploaded(updatedImages);
   };
 
-  const chatUrl =
-    'wss://65.21.65.49:8000/ws/user/a89df75b-4356-4118-9c9b-15dfa6e0123b/room/6/character/f47ac10b-58cc-4372-a567-0e02b2c3d510/text_chat';
-  let socket = new WebSocket(chatUrl);
+  // useEffect(() => {
+    const chatUrl =
+      'wss://api.egirls.ai/room/ws/user/f47ac10b-58cc-4372-a567-0e02b2c3d479/room/1/character/a89df75b-4356-4118-9c9b-15dfa6e0123b/text_chat';
+    let socket = new WebSocket(chatUrl);
 
-  socket.onopen = function (e) {
-    console.log('[open] Connection established');
-    socket.send('My name is John');
-  };
-
-  socket.onmessage = function (event) {
-    alert(`[message] Data received from server: ${event.data}`);
-  };
-
+    socket.onopen = function (e) {
+      console.log('[open] Connection established');
+      socket.send("My name is John");
+    };
+    socket.onmessage = function (event) {
+      console.log(`[message] Data received from server: ${event.data}`);
+    };
+  // }, []);
+                                            
   return (
     <div
       className={`w-full border-r-[2px] border-[#252525] bg-[#121212] pb-3 lg:inline ${chatScreenClassName}`}
@@ -409,6 +417,7 @@ export default function ChatScreen({
                       onChange={(e) => setMessage(e.target.value)}
                       onFocus={() => setTypingState(true)}
                       onBlur={(e) => handleTypingIndicator(e)}
+                      onKeyDown={handleKeyPress}
                       style={{ outline: 'none' }}
                       maxRows={5}
                     />

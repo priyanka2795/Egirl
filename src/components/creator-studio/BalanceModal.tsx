@@ -3,9 +3,11 @@ import Image from 'next/image';
 import arrowLeft from '../../../public/assets/arrow-left-orange.png';
 import { useRouter } from 'next/router';
 import { logout } from 'services/services';
+import Cookies from 'js-cookie';
 
 const BalanceModal = () => {
   const router = useRouter()
+  const token:string|undefined = Cookies.get('accessToken')
   return (
     <div className='absolute top-[49px] right-0 flex w-[218px] px-0 py-2 rounded-[14px] bg-[#1A1A1A] flex-col z-[1]'>
       <div className='flex px-4 pt-1 pb-3 border-b border-white/[0.08] flex-col'>
@@ -22,7 +24,7 @@ const BalanceModal = () => {
         <div className='w-[18px] h-[18px]'>
             <Image className='w-full h-full' src={arrowLeft} alt={''} />
         </div>
-        <div className='text-[#FF5336] text-[14px] font-normal leading-[18px]'>Log out</div>
+        <div className='text-[#FF5336] text-[14px] font-normal leading-[18px]'>{token ? "Log out" : "Login" }</div>
       </div>
     </div>
   )

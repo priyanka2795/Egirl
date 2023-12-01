@@ -3,6 +3,7 @@ import LogOut from "./svg/log-out.svg"
 import SubscriptionModal from '../SubscriptionModal';
 import { logout } from 'services/services';
 import { useRouter } from 'next/router';
+import Cookies from 'js-cookie';
 
 
 interface UserDetailModalProps{
@@ -12,6 +13,8 @@ interface UserDetailModalProps{
 }
 const UserDetailModal = ({styleClasses, setUserAccountMenu, userAccountMenu} : UserDetailModalProps) => {
   const router = useRouter()
+  const token:string|undefined = Cookies.get('accessToken')
+
   const [showSubscription, setshowSubscription] = useState(false);
   const closeState = () => {
     setUserAccountMenu(false);
@@ -30,7 +33,7 @@ const UserDetailModal = ({styleClasses, setUserAccountMenu, userAccountMenu} : U
       </div>
         <div className="px-4 py-[10px] flex gap-2" onClick={()=>{ logout(),router.push("/login")}}>
           <LogOut/>
-             <p className="text-[#FF5336] text-sm font-normal leading-[18px]" >Log out</p>
+             <p className="text-[#FF5336] text-sm font-normal leading-[18px]" >{token ? "Log out" : "Login" }</p>
         </div>
 
         {
