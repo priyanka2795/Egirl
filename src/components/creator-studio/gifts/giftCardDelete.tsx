@@ -9,10 +9,11 @@ interface DeletePopup {
   Heading: string;
   Content: string;
   Img: boolean;
-  DeleteGift: any;
-  DeleteIndex: any;
+  DeleteGift?: any;
+  DeleteIndex?: any;
   DeleteAllGift?: any;
-  DeleteBtnStep: number;
+  selectedGiftData?:any,
+  DeleteBtnStep?: number;
   DeleteActionCategory?: any;
   CategoryActionIndex?: number;
   DeleteGiftImage?: string;
@@ -26,6 +27,7 @@ function GiftCardDelete({
   DeleteGift,
   DeleteIndex,
   DeleteAllGift,
+  selectedGiftData,
   DeleteBtnStep,
   DeleteActionCategory,
   CategoryActionIndex,
@@ -78,7 +80,7 @@ function GiftCardDelete({
               {DeleteBtnStep === 1 ? (
                 <button
                   className='rounded-[14px] bg-[#FF5336] px-5 py-3'
-                  onClick={() => DeleteGift(DeleteIndex)}
+                  onClick={() => DeleteGift(selectedGiftData)}
                 >
                   Delete
                 </button>

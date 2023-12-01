@@ -54,7 +54,30 @@ function Gifts() {
     setGiftEditPopup(val);
   };
 
-  const DeleteGiftCardModal = (index: number, num: number, data: any) => {
+  // const DeleteGiftCardModal = (index: number, num: number, data: any) => {
+  //   deleteGift(characterId, [data?.gift_id], token)
+  //     .then((res: any) => {
+  //       console.log(res);
+  //       setDeleteGiftToggle(!deleteGiftToggle);
+  //     })
+  //     .then((err: any) => {
+  //       console.log(err);
+  //     });
+  //   setGiftCard(true);
+  //   setGiftEditPopup(num);
+  //   setDeleteBtnStep(1);
+  //   setGiftName('giftName');
+  // };
+
+  const DeleteGiftCardModal = (index: number, step: number, data: any) => {
+    setGiftEditPopup(step);
+    setGiftCard(true);
+    setGiftName('giftName');
+    setSelectedGiftData(data);
+    setDeleteBtnStep(1);
+  };
+
+  const DeleteGift = (data: any) => {
     deleteGift(characterId, [data?.gift_id], token)
       .then((res: any) => {
         console.log(res);
@@ -63,18 +86,14 @@ function Gifts() {
       .then((err: any) => {
         console.log(err);
       });
-    setGiftCard(true);
-    setGiftEditPopup(num);
-    setDeleteBtnStep(1);
-    setGiftName('giftName');
   };
 
-  const DeleteGift = (ind: number) => {
-    setGiftCard(false);
-    setGiftCardName((oldValue) => {
-      return oldValue.filter((item: string, index: number) => index !== ind);
-    });
-  };
+  // const DeleteGift = (ind: number) => {
+  //   setGiftCard(false);
+  //   setGiftCardName((oldValue) => {
+  //     return oldValue.filter((item: string, index: number) => index !== ind);
+  //   });
+  // };
 
   const DeleteAllGiftCard = () => {
     setDeleteModal(true);
@@ -113,11 +132,11 @@ function Gifts() {
     getAllCategory();
   }, [createCategoryToggle]);
 
-  useEffect(()=>{
-    if(giftCategory && giftCategory?.length > 0){
-      setSelectedCategoryId(giftCategory?.[0]?.gift_category_id)
+  useEffect(() => {
+    if (giftCategory && giftCategory?.length > 0) {
+      setSelectedCategoryId(giftCategory?.[0]?.gift_category_id);
     }
-  },[giftCategory])
+  }, [giftCategory]);
 
   useEffect(() => {
     getGifts(
@@ -174,7 +193,7 @@ function Gifts() {
               createCategoryToggle={createCategoryToggle}
             />
 
-            <div className='flex items-center justify-between mt-4'>
+            <div className='mt-4 flex items-center justify-between'>
               <p className='text-[#979797]'>
                 {`${selectedCategoryGifts?.length}/9`} gifts
               </p>
@@ -187,7 +206,7 @@ function Gifts() {
               </button>
             </div>
 
-            <div className='grid items-center grid-cols-1 mt-4 gap-9 md:grid-cols-2 lg:grid-cols-3'>
+            <div className='mt-4 grid grid-cols-1 items-center gap-9 md:grid-cols-2 lg:grid-cols-3'>
               {selectedCategoryGifts?.map((item: any, index: number) => (
                 <div
                   className='relative h-[300px] w-[300px] overflow-hidden rounded-xl'
@@ -199,7 +218,7 @@ function Gifts() {
                 /> */}
                   <img
                     src={item?.media_url}
-                    className='object-cover w-full h-full'
+                    className='h-full w-full object-cover'
                   />
 
                   <div className='absolute right-2 top-2'>
@@ -209,7 +228,7 @@ function Gifts() {
                     >
                       <Image
                         src={DotsHorizontal}
-                        className='object-cover w-full h-full'
+                        className='h-full w-full object-cover'
                         alt=''
                       />
                     </button>
@@ -223,7 +242,7 @@ function Gifts() {
                             >
                               <Image
                                 src={Pencil}
-                                className='w-full h-full'
+                                className='h-full w-full'
                                 alt=''
                               />
                               <p>Edit name</p>
@@ -231,10 +250,10 @@ function Gifts() {
 
                             <button
                               className='flex items-center gap-2'
-                              onClick={() => EditGift(2 , item)}
+                              onClick={() => EditGift(2, item)}
                             >
                               <div>
-                                <RightUp className='w-full h-full' alt={''} />
+                                <RightUp className='h-full w-full' alt={''} />
                               </div>
                               <p>Move to another category</p>
                             </button>
@@ -247,7 +266,7 @@ function Gifts() {
                             >
                               <Image
                                 src={Delete}
-                                className='w-full h-full'
+                                className='h-full w-full'
                                 alt={''}
                               />
                               <p>Delete</p>

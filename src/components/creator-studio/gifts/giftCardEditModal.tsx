@@ -257,6 +257,7 @@ function GiftCardEditModal({
           GiftName={giftName}
           DeleteGiftImage={giftImageSet}
           Img={false}
+          selectedGiftData={selectedGiftData}
           DeleteGift={DeleteGift}
           DeleteIndex={DeleteIndex}
           DeleteBtnStep={DeleteBtnStep}
