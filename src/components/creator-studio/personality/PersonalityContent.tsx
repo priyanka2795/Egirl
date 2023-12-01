@@ -7,10 +7,10 @@ import circleInformation from '../../../../public/assets/circle-information5.png
 import {  updateCharacterPersonality } from 'services/services';
 
 interface PersonalityContent {
-  SetBtnSteps: any;
+  SetBtnSteps?: any;
   personalityData?: any;
   setPersonalityData?: any;
-  handleSavePersonality:any
+  handleSavePersonality?:any
 }
 const PersonalityContent = ({
   SetBtnSteps,
@@ -49,6 +49,7 @@ const PersonalityContent = ({
   //     SetBtnSteps(false);
   //   }
   // }, [personalityData]);
+  
 
   return (
     <>
@@ -88,15 +89,14 @@ const PersonalityContent = ({
                   Description
                 </div>
                 <div className='font-normal text-[14px] leading-[18px] text-[#515151]'>
-                  {/* {personalityData.description.length}/2000 */}
-                  0/2000
+                  {personalityData?.general_description?.length}/2000
                 </div>
               </div>
               <textarea
                 className='font-normal h-[135px] resize-none rounded-[14px] border-none bg-white/[0.05] py-3 pl-4 pr-3 text-[15px] leading-6 text-white placeholder-[#979797] focus:ring-0'
                 placeholder='Enter a description here...'
                 name='general_description'
-                // value={personalityData.description}
+                value={personalityData.general_description}
                 onChange={HandleChange}
                 maxLength={2000}
               ></textarea>
@@ -107,15 +107,14 @@ const PersonalityContent = ({
                   World Description
                 </div>
                 <div className='font-normal text-[14px] leading-[18px] text-[#515151]'>
-                  {/* {personalityData.worldDescription.length}/2000   */}
-                  0/2000
+                  {personalityData?.world_description?.length}/2000  
                 </div>
               </div>
               <textarea
                 className='font-normal h-[135px] resize-none rounded-[14px] border-none bg-white/[0.05] py-3 pl-4 pr-3 text-[15px] leading-6 text-white placeholder-[#979797] focus:ring-0'
                 placeholder='Enter a world description here...'
                 name='world_description'
-                // value={personalityData.worldDescription}
+                value={personalityData.world_description}
                 onChange={HandleChange}
                 maxLength={2000}
               ></textarea>

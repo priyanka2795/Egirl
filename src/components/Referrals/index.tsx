@@ -66,13 +66,13 @@ const ReferralsIndex = () => {
   };
   return (
     <>
-      <div className='flex w-[1020px] flex-col items-center gap-20 px-40 py-20 justify-center m-auto'>
+      <div className='m-auto flex w-[1020px] flex-col items-center justify-center gap-20 px-40 py-20'>
         <div className='flex flex-col items-center w-full gap-10'>
           <div className='flex flex-col gap-3'>
-            <div className='text-center text-[32px] font-bold leading-10 text-[#FFFFFF]'>
+            <div className='font-bold text-center text-[32px] leading-10 text-[#FFFFFF]'>
               Referral Program
             </div>
-            <div className='text-center text-[15px] font-normal leading-5 text-[#979797]'>
+            <div className='font-normal text-center text-[15px] leading-5 text-[#979797]'>
               Earn up to 15% of your referrals spending on Egirls.ai
             </div>
           </div>
@@ -92,14 +92,14 @@ const ReferralsIndex = () => {
                   </div>
                   <div className='flex flex-col items-center gap-[10px]'>
                     <div className='flex w-[181px] flex-col items-center'>
-                      <div className='text-center text-[14px] font-bold leading-6 text-[#979797]'>
+                      <div className='font-bold text-center text-[14px] leading-6 text-[#979797]'>
                         {item.step}
                       </div>
-                      <div className='text-center text-[18px] font-bold leading-6 text-[#FFFFFF]'>
+                      <div className='font-bold text-center text-[18px] leading-6 text-[#FFFFFF]'>
                         {item.action}
                       </div>
                     </div>
-                    <div className='text-center text-[14px] font-normal leading-[18px] text-[#979797]'>
+                    <div className='font-normal text-center text-[14px] leading-[18px] text-[#979797]'>
                       {item.work}
                     </div>
                   </div>
@@ -116,7 +116,7 @@ const ReferralsIndex = () => {
         </div>
 
         <div className='flex flex-col w-full gap-6'>
-          <div className='items-center text-center text-[32px] font-bold leading-10 text-[#FFFFFF]'>
+          <div className='font-bold items-center text-center text-[32px] leading-10 text-[#FFFFFF]'>
             Referral Link
           </div>
           <div className='flex items-start w-full gap-2 '>
@@ -124,30 +124,31 @@ const ReferralsIndex = () => {
               <div className='w-6 h-6'>
                 <Image className='w-full h-full' src={linkIcon} alt={''} />
               </div>
-              <input type="text" name="" id="" placeholder='egirls.com/qwert1234'
-                className='font-light font-normal border-none bg-transparent p-0 text-[14px] leading-6 placeholder:text-[#979797] text-white focus:ring-0 w-full ' />
+              <div className='font-normal w-full bg-transparent text-[14px] text-white placeholder:text-[#979797] '>
+                egirls.com/qwert1234
+              </div>
             </div>
-            <button className='flex w-max items-center justify-center rounded-[16px] bg-[#5848BC] px-6 py-4 text-[18px] font-bold leading-6 text-[#FFFFFF]'>
+            <button className='font-bold flex w-max items-center justify-center rounded-[16px] bg-[#5848BC] px-6 py-4 text-[18px] leading-6 text-[#FFFFFF]'>
               Copy link
             </button>
           </div>
         </div>
 
         <div className='flex flex-col w-full gap-6'>
-          <div className='text-center text-[32px] font-bold leading-10 text-[#FFFFFF]'>
+          <div className='font-bold text-center text-[32px] leading-10 text-[#FFFFFF]'>
             Your earnings
           </div>
           <div className='flex flex-col w-full gap-2'>
             <div className='flex items-center justify-center gap-12 rounded-[20px] bg-white/[0.05] px-14 py-8'>
               <div className='relative h-[144px] w-[49%] '>
                 <div className='absolute bottom-[10px] left-[1px] top-[39px] mt-2 flex h-full w-full flex-col items-center gap-2'>
-                  <div className='text-center text-[26px] font-bold leading-8 text-[#FFFFFF]'>
+                  <div className='font-bold text-center text-[26px] leading-8 text-[#FFFFFF]'>
                     5%
                   </div>
-                  <div className='text-center text-[26px] font-bold leading-8 text-[#FFFFFF]'>
+                  <div className='font-bold text-center text-[26px] leading-8 text-[#FFFFFF]'>
                     Earnings
                   </div>
-                  <div className='text-[14px] font-normal leading-[18px] text-[#979797]'>
+                  <div className='font-normal text-[14px] leading-[18px] text-[#979797]'>
                     0/100 people referred
                   </div>
                 </div>
@@ -155,15 +156,15 @@ const ReferralsIndex = () => {
                 <Chart />
               </div>
               <div className='flex w-[49%] flex-col items-start gap-1'>
-                <div className='leading-12 text-[36px] font-bold text-[#FFFFFF]'>
+                <div className='leading-12 font-bold text-[36px] text-[#FFFFFF]'>
                   $0
                 </div>
-                <div className='text-[18px] font-bold leading-6 text-[#FFFFFF]'>
+                <div className='font-bold text-[18px] leading-6 text-[#FFFFFF]'>
                   Available to cash out
                 </div>
                 <div className='flex gap-1'>
                   <div
-                    className='cursor-pointer text-[14px] font-normal leading-[18px] text-[#979797]'
+                    className='font-normal cursor-pointer text-[14px] leading-[18px] text-[#979797]'
                     onClick={() => {
                       setShowModal(true);
                     }}
@@ -185,10 +186,10 @@ const ReferralsIndex = () => {
               {array2.map((item) => {
                 return (
                   <div className='flex flex-col items-center justify-center gap-1 rounded-[14px] bg-white/[0.05] py-6 pl-6 pr-10'>
-                    <div className='text-center text-[30px] font-bold leading-10 text-[#FFFFFF]'>
+                    <div className='font-bold text-center text-[30px] leading-10 text-[#FFFFFF]'>
                       {item.number}
                     </div>
-                    <div className='text-center text-[13px] font-normal leading-[18px] text-[#979797]'>
+                    <div className='font-normal text-center text-[13px] leading-[18px] text-[#979797]'>
                       {item.name}
                     </div>
                   </div>
@@ -198,14 +199,14 @@ const ReferralsIndex = () => {
 
             <div className='grid grid-cols-2 gap-2'>
               <button
-                className='flex items-center justify-center rounded-[16px] bg-[#5848BC] px-6 py-4 text-[18px] font-bold leading-6 text-[#FFFFFF]'
+                className='font-bold flex items-center justify-center rounded-[16px] bg-[#5848BC] px-6 py-4 text-[18px] leading-6 text-[#FFFFFF]'
                 onClick={() => {
                   setshowConvertCredits(true);
                 }}
               >
                 Convert to tokens
               </button>
-              <button className='flex items-center justify-center rounded-[16px] bg-[#5848BC] px-6 py-4 text-[18px] font-bold leading-6 text-[#FFFFFF]'>
+              <button className='font-bold flex items-center justify-center rounded-[16px] bg-[#5848BC] px-6 py-4 text-[18px] leading-6 text-[#FFFFFF]'>
                 Cash out
               </button>
             </div>
@@ -227,7 +228,7 @@ const ReferralsIndex = () => {
         <ConfirmConversionModal
           closeConfirmModal={setConfirmModal}
           convertCredits={setshowConvertCredits}
-          setShowErrorModal={()=>false}
+          setShowErrorModal={() => false}
           notify={notify}
           converting={`You're converting`}
           credits={'$250 into 1000 credits'}
@@ -236,7 +237,7 @@ const ReferralsIndex = () => {
           }
         />
       )}
-       <ToastContainer
+      <ToastContainer
         position='bottom-center'
         pauseOnHover
         theme='colored'
