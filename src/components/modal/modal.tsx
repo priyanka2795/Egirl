@@ -52,8 +52,7 @@ export function Modal({
         <Dialog
           className='relative z-[100]'
           open={open}
-          // onClose={closeModal}
-          onClose={() => console.log('open')}
+          onClose={()=> console.log('closeModal')}
           static
         >
           <motion.div
