@@ -19,7 +19,7 @@ const InputFieldDesign = ({
 }: InputFieldProp) => {
   const Fruits = ['American', 'Indian', 'African'];
   const [fruit, setFruit] = useState<boolean>(false);
-  const [selectFruit, setSelectFruit] = useState('Apple');
+  const [selectFruit, setSelectFruit] = useState('American');
   return (
     <div className='flex flex-col gap-[6px]'>
       <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
