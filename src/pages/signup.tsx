@@ -94,8 +94,6 @@ export default function SignUp() {
       });
   };
 
- 
-
   return (
     <>
       <SigninTemplate>

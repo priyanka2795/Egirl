@@ -19,7 +19,7 @@ export const googleCallback = () => getApi('/google/callback')
 
 // app (room) api
 export const getRooms = (token:string | null) => getApiWithToken(`/room/`, token)
-export const createRoom = (data:any, token:string ) => postApiWithToken(`/room/`, data, token)
+export const createRoom = (data:any, token:string | null ) => postApiWithToken(`/room/`, data, token)
 export const getRoomMessageById = (roomId:number, offset:number, limit:number, token:string | null) => getApiWithToken(`/room/${roomId}/messages?last_offset=${offset}&limit=${limit}`, token)
 export const getMessageReactions = (token:string | null) => getApiWithToken(`/room/messages/reactions`, token)
 export const updateMessageReaction = (data:any, token:string ) => postApiWithToken(`/room/message/reaction`, data, token)
