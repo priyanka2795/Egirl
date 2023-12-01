@@ -4,7 +4,7 @@ import searchIcon from '../../../../public/assets/search-alt.png';
 
 const SearchBar = ({searchBy,setSearchBy,placeholder}:any) => {
   return (
-    <div className="px-7 py-4 border- border-white/[0.08]">
+    <div className="py-7 py-4 border- border-white/[0.08]">
     <div className='flex w-full gap-[10px] rounded-[14px] bg-white/[0.05] px-4 py-3'>
        <div className='h-6 w-6'>
          <Image className='h-full w-full' src={searchIcon} alt={''} />
