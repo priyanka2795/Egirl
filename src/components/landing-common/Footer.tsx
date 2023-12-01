@@ -97,16 +97,16 @@ const Footer = () => {
           <p>302-636-5401</p>
         </div>
         <div className='flex gap-x-4'>
-          <Link href="/terms-of-service">
+          <Link href="/legal/terms-of-service">
             <a className='hover:underline'>Terms of Service</a>
           </Link>
-          <Link href="/privacy-policy">
+          <Link href="/legal/privacy-policy">
             <a className='hover:underline'>Privacy Policy</a>
           </Link>
-          <Link href="/content-conduct-policy">
+          <Link href="/legal/content-conduct-policy">
             <a className='hover:underline'>Content & Conduct Policy</a>
           </Link>
-          <Link href="/products-services-policy">
+          <Link href="/legal/products-services-policy">
             <a className='hover:underline'>Products & Services Policy</a>
           </Link>
         </div>
