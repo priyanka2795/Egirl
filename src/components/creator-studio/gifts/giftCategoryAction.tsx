@@ -53,6 +53,9 @@ function GiftCategoryAction({
   const ActiveTab = (index: number, categoryId: number) => {
     setTabs(index);
     setSelectedCategoryId(categoryId);
+    if (tabs !== index) {
+      setToggle(false);
+    }
   };
 
   const EditCategoryName = (name: string, id: number, step: number) => {
@@ -125,47 +128,52 @@ function GiftCategoryAction({
               <span className={tabs == index ? 'text-white' : 'text-[#979797]'}>
                 {items?.name}
               </span>
-              <button className='' onClick={() => handleToggle(index)}>
-                {tabs === index ? <VerticalDots /> : ''}
-              </button>
+              <div className='relative h-4 '>
+                <button className='' onClick={() => handleToggle(index)}>
+                  {tabs === index ? <VerticalDots /> : ''}
+                </button>
+                {toggle && toggledItemIndex === index ? (
+                  <>
+                    {/* {tabs === items && ( */}
+                    <div className='absolute left-0 top-12 z-50 flex h-[92px] w-[190px] flex-col gap-3 rounded-[14px] bg-[#1A1A1A] p-4'>
+                      <button
+                        className='flex items-center gap-2'
+                        onClick={() =>
+                          EditCategoryName(
+                            items?.name,
+                            items?.gift_category_id,
+                            1
+                          )
+                        }
+                      >
+                        <Image src={Pencil} className='w-full h-full' alt='' />
+                        <p>Edit name</p>
+                      </button>
 
-              {toggle && toggledItemIndex === index ? (
-                <>
-                  {/* {tabs === items && ( */}
-                  <div className='absolute left-0 top-12 z-50 flex h-[92px] w-[251px] flex-col gap-3 rounded-[14px] bg-[#1A1A1A] p-4'>
-                    <button
-                      className='flex items-center gap-2'
-                      onClick={() =>
-                        EditCategoryName(
-                          items?.name,
-                          items?.gift_category_id,
-                          1
-                        )
-                      }
-                    >
-                      <Image src={Pencil} className='w-full h-full' alt='' />
-                      <p>Edit name</p>
-                    </button>
-
-                    <button
-                      className='flex items-center gap-2'
-                      onClick={() =>
-                        DeleteActionCategoryModal(
-                          index,
-                          2,
-                          items?.gift_category_id
-                        )
-                      }
-                    >
-                      <Image src={Delete} className='w-full h-full' alt={''} />
-                      <p>Delete</p>
-                    </button>
-                  </div>
-                  {/* )} */}
-                </>
-              ) : (
-                ''
-              )}
+                      <button
+                        className='flex items-center gap-2'
+                        onClick={() =>
+                          DeleteActionCategoryModal(
+                            index,
+                            2,
+                            items?.gift_category_id
+                          )
+                        }
+                      >
+                        <Image
+                          src={Delete}
+                          className='w-full h-full'
+                          alt={''}
+                        />
+                        <p>Delete</p>
+                      </button>
+                    </div>
+                    {/* )} */}
+                  </>
+                ) : (
+                  ''
+                )}
+              </div>
             </div>
           ))}
 

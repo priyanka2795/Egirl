@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Range } from 'react-range';
 import crossIcon from '../../../../public/assets/xmark (1).png';
 import circleInformation from '../../../../public/assets/circle-information4.png';
@@ -38,12 +38,9 @@ const voiceGenerations = [
 ];
 
 const Genders = ['Female', 'Male', 'Other'];
-const Ages = ['Young', 'Old', 'Child,'];
+const Ages = ['Young', 'Old', 'Child'];
 const Accents = ['American', '  Indian', 'African'];
 const VoiceNextPage = () => {
-  const [state1, setState1] = useState<number[]>([50]);
-  const [state2, setState2] = useState<number[]>([50]);
-  const [state3, setState3] = useState<number[]>([50]);
   const [inUse, setInUse] = useState<boolean>(false);
   const [textEdit, setTextEdit] = useState<boolean>(false);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -59,6 +56,44 @@ const VoiceNextPage = () => {
   const [ageInputText, setAgeInputText] = useState<string>('Young');
   const [accentDropDown, setAccentDropDown] = useState<boolean>(false);
   const [accentInputText, setAccentInputText] = useState<string>('American');
+
+  // ................................................
+
+  const genderDropdownRef = useRef(null);
+  const ageDropdownRef = useRef(null);
+  const accentDropdownRef = useRef(null);
+  useEffect(() => {
+    const handleClickOutside = (event:any) => {
+      if (
+        genderDropdownRef.current &&
+        !genderDropdownRef.current.contains(event.target)
+      ) {
+        setGenderDropDown(false);
+      }
+
+      if (
+        ageDropdownRef.current &&
+        !ageDropdownRef.current.contains(event.target)
+      ) {
+        setAgeDropDown(false);
+      }
+
+      if (
+        accentDropdownRef.current &&
+        !accentDropdownRef.current.contains(event.target)
+      ) {
+        setAccentDropDown(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [genderDropDown, ageDropDown, accentDropDown]);
+
+  // ................................................
 
   return (
     <div className='flex flex-col gap-5'>
@@ -91,130 +126,162 @@ const VoiceNextPage = () => {
                   />
                 </div>
 
-                <div className='relative flex flex-col gap-[6px]'>
-              <h6 className='text-[13px] text-[#979797]'>Gender</h6>
-              <div
-                className={`flex cursor-pointer justify-between rounded-[14px] px-4 py-3 ${
-                  genderDropDown
-                    ? 'border border-[#515151]'
-                    : 'border border-transparent bg-white/[0.05]'
-                }`}
-                onClick={() => {
-                  setGenderDropDown(!genderDropDown);
-                }}
-              >
                 <div
-                  className={`${
-                    genderDropDown || genderInputText !== 'Gender'
-                      ? 'text-white'
-                      : 'text-[#979797]'
-                  } text-[15px] font-normal leading-6`}
+                  className='relative flex flex-col gap-[6px]'
+                  ref={genderDropdownRef}
                 >
-                  {genderInputText}
-                </div>
-                <Image src={genderDropDown ? chevronUp : chevronDown} alt={''} />
-              </div>
-              {genderDropDown && (
-                <div className='top-[78px] flex w-full flex-col rounded-[14px] bg-[#1A1A1A] px-0 py-1'>
-                  {Genders.map((item, index) => {
-                    return ( 
-                      <div
-                        key={index}
-                        className='mx-2 my-1 cursor-pointer bg-[#1A1A1A] px-2 py-[6px] text-[14px] font-normal leading-[18px] text-white hover:rounded-[8px] hover:bg-white/[0.05]'
-                        onClick={() => {
-                          setGenderInputText(item), setGenderDropDown(false);
-                        }}
-                      >
-                        {item}
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
+                  <h6 className='text-[13px] text-[#979797]'>Gender</h6>
+                  <div
+                    className={`flex cursor-pointer justify-between rounded-[14px] px-4 py-3 ${
+                      genderDropDown
+                        ? 'border border-[#515151]'
+                        : 'border border-transparent bg-white/[0.05]'
+                    }`}
+                    onClick={() => {
+                      setGenderDropDown(!genderDropDown);
+                    }}
+                  >
+                    <div
+                      className={`${
+                        genderDropDown || genderInputText !== 'Gender'
+                          ? 'text-white'
+                          : 'text-[#979797]'
+                      } font-normal text-[15px] leading-6`}
+                    >
+                      {genderInputText}
+                    </div>
+                    <Image
+                      src={genderDropDown ? chevronUp : chevronDown}
+                      alt={''}
+                    />
+                  </div>
+                  {genderDropDown && (
+                    <div className='absolute top-[80px] z-50 flex w-full flex-col rounded-[14px] bg-[#1A1A1A] px-0 py-1'>
+                      {Genders.map((item, index) => {
+                        return (
+                          <div
+                            key={index}
+                            className={`font-normal mx-2 my-1 cursor-pointer rounded-[8px] bg-[#1A1A1A] px-2 py-[6px] text-[14px] leading-[18px] text-white hover:bg-white/[0.05] ${
+                              genderInputText === item
+                                ? 'bg-white/[0.05]'
+                                : 'bg-transparent'
+                            }`}
+                            onClick={() => {
+                              setGenderInputText(item),
+                                setGenderDropDown(false);
+                            }}
+                          >
+                            {item}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
                 </div>
 
-                <div className='relative flex flex-col gap-[6px]'>
-              <h6 className='text-[13px] text-[#979797]'>Age</h6>
-              <div
-                className={`flex cursor-pointer justify-between rounded-[14px] px-4 py-3 ${
-                  ageDropDown
-                    ? 'border border-[#515151]'
-                    : 'border border-transparent bg-white/[0.05]'
-                }`}
-                onClick={() => {
-                  setAgeDropDown(!ageDropDown);
-                }}
-              >
                 <div
-                  className={`${
-                    ageDropDown || ageInputText !== 'Age'
-                      ? 'text-white'
-                      : 'text-[#979797]'
-                  } text-[15px] font-normal leading-6`}
+                  className='relative flex flex-col gap-[6px]'
+                  ref={ageDropdownRef}
                 >
-                  {ageInputText}
-                </div>
-                <Image src={ageDropDown ? chevronUp : chevronDown} alt={''} />
-              </div>
-              {ageDropDown && (
-                <div className='top-[78px] flex w-full flex-col rounded-[14px] bg-[#1A1A1A] px-0 py-1'>
-                  {Ages.map((item, index) => {
-                    return ( 
-                      <div
-                        key={index}
-                        className='mx-2 my-1 cursor-pointer bg-[#1A1A1A] px-2 py-[6px] text-[14px] font-normal leading-[18px] text-white hover:rounded-[8px] hover:bg-white/[0.05]'
-                        onClick={() => {
-                          setAgeInputText(item), setAgeDropDown(false);
-                        }}
-                      >
-                        {item}
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
+                  <h6 className='text-[13px] text-[#979797]'>Age</h6>
+                  <div
+                    className={`flex cursor-pointer justify-between rounded-[14px] px-4 py-3 ${
+                      ageDropDown
+                        ? 'border border-[#515151]'
+                        : 'border border-transparent bg-white/[0.05]'
+                    }`}
+                    onClick={() => {
+                      setAgeDropDown(!ageDropDown);
+                    }}
+                  >
+                    <div
+                      className={`${
+                        ageDropDown || ageInputText !== 'Age'
+                          ? 'text-white'
+                          : 'text-[#979797]'
+                      } font-normal text-[15px] leading-6`}
+                    >
+                      {ageInputText}
+                    </div>
+                    <Image
+                      src={ageDropDown ? chevronUp : chevronDown}
+                      alt={''}
+                    />
+                  </div>
+                  {ageDropDown && (
+                    <div className=' absolute top-[80px] z-50 flex w-full flex-col rounded-[14px] bg-[#1A1A1A] px-0 py-1'>
+                      {Ages.map((item, index) => {
+                        return (
+                          <div
+                            key={index}
+                            className={`font-normal mx-2 my-1 cursor-pointer bg-[#1A1A1A] px-2 py-[6px] text-[14px] leading-[18px] text-white rounded-[8px] hover:bg-white/[0.05] ${
+                              ageInputText === item
+                                ? 'bg-white/[0.05]'
+                                : 'bg-transparent'
+                            } `}
+                            onClick={() => {
+                              setAgeInputText(item), setAgeDropDown(false);
+                            }}
+                          >
+                            {item}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
                 </div>
 
-                <div className='relative flex flex-col gap-[6px]'>
-              <h6 className='text-[13px] text-[#979797]'>Accent</h6>
-              <div
-                className={`flex cursor-pointer justify-between rounded-[14px] px-4 py-3 ${
-                  accentDropDown
-                    ? 'border border-[#515151]'
-                    : 'border border-transparent bg-white/[0.05]'
-                }`}
-                onClick={() => {
-                  setAccentDropDown(!accentDropDown);
-                }}
-              >
                 <div
-                  className={`${
-                    accentDropDown || accentInputText !== 'Accent'
-                      ? 'text-white'
-                      : 'text-[#979797]'
-                  } text-[15px] font-normal leading-6`}
+                  className='relative flex flex-col gap-[6px]'
+                  ref={accentDropdownRef}
                 >
-                  {accentInputText}
-                </div>
-                <Image src={accentDropDown ? chevronUp : chevronDown} alt={''} />
-              </div>
-              {accentDropDown && (
-                <div className='top-[78px] flex w-full flex-col rounded-[14px] bg-[#1A1A1A] px-0 py-1'>
-                  {Accents.map((item, index) => {
-                    return ( 
-                      <div
-                        key={index}
-                        className='mx-2 my-1 cursor-pointer bg-[#1A1A1A] px-2 py-[6px] text-[14px] font-normal leading-[18px] text-white hover:rounded-[8px] hover:bg-white/[0.05]'
-                        onClick={() => {
-                          setAccentInputText(item), setAccentDropDown(false);
-                        }}
-                      >
-                        {item}
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
+                  <h6 className='text-[13px] text-[#979797]'>Accent</h6>
+                  <div
+                    className={`flex cursor-pointer justify-between rounded-[14px] px-4 py-3 ${
+                      accentDropDown
+                        ? 'border border-[#515151]'
+                        : 'border border-transparent bg-white/[0.05]'
+                    }`}
+                    onClick={() => {
+                      setAccentDropDown(!accentDropDown);
+                    }}
+                  >
+                    <div
+                      className={`${
+                        accentDropDown || accentInputText !== 'Accent'
+                          ? 'text-white'
+                          : 'text-[#979797]'
+                      } font-normal text-[15px] leading-6`}
+                    >
+                      {accentInputText}
+                    </div>
+                    <Image
+                      src={accentDropDown ? chevronUp : chevronDown}
+                      alt={''}
+                    />
+                  </div>
+                  {accentDropDown && (
+                    <div className='absolute top-[80px] z-50 flex w-full flex-col rounded-[14px] bg-[#1A1A1A] px-0 py-1'>
+                      {Accents.map((item, index) => {
+                        return (
+                          <div
+                            key={index}
+                            className={`font-normal mx-2 my-1 cursor-pointer bg-[#1A1A1A] px-2 py-[6px] text-[14px] leading-[18px] text-white rounded-[8px] hover:bg-white/[0.05] ${
+                              accentInputText === item
+                                ? 'bg-white/[0.05]'
+                                : 'bg-transparent'
+                            } `}
+                            onClick={() => {
+                              setAccentInputText(item),
+                                setAccentDropDown(false);
+                            }}
+                          >
+                            {item}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
                 </div>
 
                 <div className='flex flex-col gap-[6px]'>

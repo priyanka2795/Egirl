@@ -432,13 +432,21 @@ export default function ChatScreen({
                     <SendIcon />
                   </button>
                 ) : (
-                  <button
-                    onClick={() => {
-                      setShowInput(false);
-                    }}
-                  >
-                    <VoiceIcon />
-                  </button>
+                  <>
+                    {voiceMode ? (
+                      <button
+                        onClick={() => {
+                          setShowInput(false);
+                        }}
+                      >
+                        <VoiceIcon />
+                      </button>
+                    ) : (
+                      <button onClick={handleMessage}>
+                        <SendIcon />
+                      </button>
+                    )}
+                  </>
                 )}
               </div>
             </div>
