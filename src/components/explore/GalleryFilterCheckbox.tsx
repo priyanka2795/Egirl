@@ -1,13 +1,13 @@
 //@ts-nocheck
 
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import circleInformation from '../../../public/assets/circle-information.png';
 import { log } from 'console';
 
 interface prop{
   filterCloseForm:any,
-  Tags:any,
+  Tags:string [],
   openAllTagsModal:()=>void,
   selectedTags:any,
   getSelectedTagOnClick:any,
@@ -17,6 +17,17 @@ interface prop{
 const GalleryFilterCheckbox = ({filterCloseForm,Tags,openAllTagsModal,selectedTags,getSelectedTagOnClick,applyAllFilters, clearAll}:prop) => {
   const [viewAllTags, setViewAllTags] = useState(false);
   const [filterValues, setFilterValues] = useState({});
+  const [allTags,setAllTags]=useState([]);
+  const [allSelectedTags,setAllSelectedTags]=useState({})
+
+
+  useEffect(()=>{
+    setAllTags(Tags)
+  },[Tags]);
+
+  useEffect(()=>{
+    setAllSelectedTags(selectedTags)
+  },[selectedTags])
 
   const handleClick = (event: any) => {
     // setViewAllTags((current) => !current);
@@ -24,24 +35,24 @@ const GalleryFilterCheckbox = ({filterCloseForm,Tags,openAllTagsModal,selectedTa
   };
 
   const handleChange = (e:any) => {
-    const { value, checked } = e.target;
+    // const { value, checked } = e.target;
       
-    //console.log(`${value} is ${checked}`);
+    // //console.log(`${value} is ${checked}`);
 
-    if (checked) {
-      setFilterValues({
-        ...filterValues,
-        [value]: true
-      });
-    }
+    // if (checked) {
+    //   setFilterValues({
+    //     ...filterValues,
+    //     [value]: true
+    //   });
+    // }
   
-    // Case 2  : The user unchecks the box
-    else {
-      setFilterValues({
-        ...filterValues,
-        [value]: false
-      });
-    }
+    // // Case 2  : The user unchecks the box
+    // else {
+    //   setFilterValues({
+    //     ...filterValues,
+    //     [value]: false
+    //   });
+    // }
   };
 
   const onSubmit = (e:any) => {
@@ -172,38 +183,25 @@ const GalleryFilterCheckbox = ({filterCloseForm,Tags,openAllTagsModal,selectedTa
             <div>
               
             <div className='flex flex-col items-start self-stretch gap-4 mb-5'>
-                  {selectedTags?.length ? selectedTags?.slice(0,5)?.map((tag)=>(
-                    <div className='block custom-checkbox custom-checkbox-circle'>
-                    <input
-                      className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727] focus:outline-none'
-                      type='checkbox'
-                      value={tag}
-                      onChange={()=>getSelectedTagOnClick(tag)}
-                      id={tag}
-                      checked={true}
-                    /> 
-                    <label className='text-[14px] font-normal text-[#FFFFFF]' htmlFor={tag}>
-                      {tag}
-                    </label>
-                  </div>
-                  )) : (
-                    Tags?.length && Tags?.slice(5)?.map((tag: string)=>
+                  {
+                    allTags?.slice(0,4)?.map((tag: string)=>
                     {
+                      console.log({istrue:selectedTags[tag],selectedTags})
                     return <div className='block custom-checkbox custom-checkbox-circle'>
                     <input
                       className='flex h-[20px] w-[20px] items-center gap-[10px] rounded bg-[#272727] focus:outline-none'
                       type='checkbox'
-                      value={tag}
+                      value={tag || ""}
                       onChange={()=>getSelectedTagOnClick(tag)}
                       id={tag}
-                      checked={false}
+                      checked={selectedTags[tag] || false}
                     /> 
                     <label className='text-[14px] font-normal text-[#FFFFFF]' htmlFor={tag}>
                       {tag}
                     </label>
                   </div>}
                     )
-                  )}
+                  }
                   </div>
               {!viewAllTags ? (
                 <div
