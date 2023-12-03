@@ -6,35 +6,16 @@ import Image from 'next/image';
 import SearchBar from '@components/common/Search/SearchBar';
 import arroeLeft from '../../../public/assets/arrow-left.png'
 
-const filterOptions=[
-    {tag:'Adaptable',id:1},
-    {tag:'Adeventurous',id:2},
-    {tag:'Aggressive',id:3},
-    {tag:'Ambitious',id:4},
-    {tag:'Ambitious',id:5},
-    {tag:'Ambitious',id:6},
-    {tag:'Ambitious',id:7},
-    {tag:'Ambitious',id:8},
-    {tag:'Ambitious',id:9},
-    {tag:'Ambitious',id:10},
-    {tag:'Ambitious',id:11},
-    {tag:'Ambitious',id:12},
-    {tag:'Bravo',id:13},
-
-
-]
 
 const alphabets=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
 
-const ViewAllTags = ({selectedTags,getSelectedTagOnClick,Tags, closeAllTagsModal}:any) => {
-    const [filterTagsBy,setFilterTagsBy]=useState<string>("A");
+const ViewAllTags = ({selectedTags,getSelectedTagOnClick,filteredTags, closeAllTagsModal,filterTagsBy,setFilterTagsBy}:any) => {
     const [searchTagBy,setSearchTagBy]=useState<string>("");
     const [filteredData,setFilteredData]= useState<any>([]);
 
-    useEffect(()=>{
-        let data=Tags?.filter(i=>String(i.tag).startsWith(filterTagsBy));
-        setFilteredData(data)
-    },[filterTagsBy]);
+
+
+    
 
 
   return (
@@ -62,17 +43,17 @@ const ViewAllTags = ({selectedTags,getSelectedTagOnClick,Tags, closeAllTagsModal
           </div>
         </div>
         
-       <div className='w-full h-full min-h-[22rem] flex flex-wrap space-x-3 p-5 relative'>
-       <div className='w-3 h-72 absolute right-0 top-0 my-5 flex flex-col items-center text-[8px] opacity-40 mr-1 text-[#979797]'>
+       <div className='w-full h-full min-h-[22rem] flex flex-wrap content-baseline space-x-3 p-5 relative'>
+       <div className='w-3 h-72 absolute right-0 top-0 my-5 flex flex-col items-center justify-start text-[8px] opacity-40 mr-1 text-[#979797]'>
         {alphabets?.map((letter)=>(
             <p style={filterTagsBy===letter ? {transform:'scale(3)',color:'white',pointerEvents:'none'} : {}} onClick={()=>setFilterTagsBy(letter)} className='hover:text-white hover:scale-[3] transition-all'>{letter}</p>
         ))}
        </div>
-       {Tags?.map((item)=>(
+       {filteredTags?.map((item)=>(
         <div
         onClick={(e) => getSelectedTagOnClick(item)}
-        style={selectedTags?.includes(item) ? {backgroundColor:"#5848BC"} : {backgroundColor:'rgba(255, 255, 255, 0.05)',}}
-        className="m-2 h-fit list-last-item relative z-10 !flex w-max cursor-pointer items-center justify-start gap-2 rounded-full px-4 py-3 last:mr-0"
+        style={selectedTags[item] ? {backgroundColor:"#5848BC"} : {backgroundColor:'rgba(255, 255, 255, 0.05)',}}
+        className=" h-fit list-last-item z-10 !flex w-max cursor-pointer  justify-start rounded-full px-4 py-3 last:mr-0 mb-3"
       >
         
 
