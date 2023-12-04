@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
-import arrowDown from '../../../../public/assets/arrow-down.webp';
-import arrowUp from '../../../../public/assets/arrow-up.webp';
+import arrowDown from '@/assets/arrow-down.webp';
+import arrowUp from '@/assets/arrow-up.webp';
 import MarketPlaceCards from './MarketPlaceCards';
-import checkIcon from '../../../../public/assets/check-cs.webp';
+import checkIcon from '@/assets/check-cs.webp';
 const AllStylesCollection = () => {
   const [showNewest, setShowNewest] = useState<boolean>(false);
   const [showDuration, setShowDuration] = useState<boolean>(false);

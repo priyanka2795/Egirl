@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import React from 'react'
-import creditCard from '../../../public/assets/credit-card.webp'
-import cardCircles from '../../../public/assets/card-circles.webp';
-import threeDotsIcon from '../../../public/assets/dots-horizontal.webp';
+import creditCard from '@/assets/credit-card.webp'
+import cardCircles from '@/assets/card-circles.webp';
+import threeDotsIcon from '@/assets/dots-horizontal.webp';
 
 interface defaultAddCardProps{
     showSuccessPage:boolean,

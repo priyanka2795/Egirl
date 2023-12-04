@@ -3,18 +3,18 @@
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
-import CloseIcon from '../../../../public/assets/xmark (1).webp';
-import Image1 from '../../../../public/assets/inpaint-Image.webp';
-import Rest from '../../../../public/assets/rotate-cw.webp';
-import ImageSquare from '../../../../public/assets/image-square-white.webp';
-import BrushWhite from '../../../../public/assets/paintbrush-alt-white.webp';
-import ArrowDown from '../../../../public/assets/arrow-down.webp';
-import Backward from '../../../../public/assets/flip-backward-white.webp';
-import Forward from '../../../../public/assets/flip-forward.webp';
-import ForwardWhite from '../../../../public/assets/flip-forward-white.webp';
+import CloseIcon from '@/assets/xmark (1).webp';
+import Image1 from '@/assets/inpaint-Image.webp';
+import Rest from '@/assets/rotate-cw.webp';
+import ImageSquare from '@/assets/image-square-white.webp';
+import BrushWhite from '@/assets/paintbrush-alt-white.webp';
+import ArrowDown from '@/assets/arrow-down.webp';
+import Backward from '@/assets/flip-backward-white.webp';
+import Forward from '@/assets/flip-forward.webp';
+import ForwardWhite from '@/assets/flip-forward-white.webp';
 import RangePicker from '../common/RangePicker';
 import Tooltip from '@components/common/tooltip';
-import RestWhite from '../../../../public/assets/rotate-cw-white.webp';
+import RestWhite from '@/assets/rotate-cw-white.webp';
 import { ReactSketchCanvas } from 'react-sketch-canvas';
 import Chart from "../svg/Chart.svg";
 

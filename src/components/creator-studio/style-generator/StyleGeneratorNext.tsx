@@ -1,14 +1,14 @@
 import Image from 'next/image';
 import React, { useState, useRef, useEffect } from 'react';
-import circleInformation from '../../../../public/assets/circle-information.webp';
-import deleteIcon from '../../../../public/assets/trash-blank2.webp';
-import plus from '../../../../public/assets/plus-gray.webp';
-import crossIcon from '../../../../public/assets/xmark-style.webp';
-import image from '../../../../public/assets/image-plus.webp';
-import downArrow from '../../../../public/assets/down-arrow-img.webp';
+import circleInformation from '@/assets/circle-information.webp';
+import deleteIcon from '@/assets/trash-blank2.webp';
+import plus from '@/assets/plus-gray.webp';
+import crossIcon from '@/assets/xmark-style.webp';
+import image from '@/assets/image-plus.webp';
+import downArrow from '@/assets/down-arrow-img.webp';
 import AlbumDelete from '../viewImages/albumDelete';
-import chevronDown from '../../../../public/assets/chevron-down2.webp';
-import chevronUp from '../../../../public/assets/chevron-up.webp';
+import chevronDown from '@/assets/chevron-down2.webp';
+import chevronUp from '@/assets/chevron-up.webp';
 import AddStyleImagesModal from './addStyleImagesModal';
 
 const options = [

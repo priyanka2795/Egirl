@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import ImageDimension from './ImageDimension';
 import ImageNumber from './ImageNumber';
 import Toggle from '@components/common/Toggler';
-import PlusIcon from '../../../../public/assets/svgImages/plus-icon.svg';
-import RegenerateIcon from '../../../../public/assets/svgImages/regenerate-icon.svg';
-import Information from '../../../../public/assets/circle-information4.webp';
+import PlusIcon from '@/assets/svgImages/plus-icon.svg';
+import RegenerateIcon from '@/assets/svgImages/regenerate-icon.svg';
+import Information from '@/assets/circle-information4.webp';
 import Image from 'next/image';
 import RangePicker from '../common/RangePicker';
 

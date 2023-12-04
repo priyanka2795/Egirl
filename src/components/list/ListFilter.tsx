@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import React from 'react'
-import star from '../../../public/assets/star-blank.webp'
-import arrowDown from '../../../public/assets/arrow-down.webp'
-import filterIcon from '../../../public/assets/filter.webp'
-import Search from '../../../public/assets/search-alt (1).webp';
+import star from '@/assets/star-blank.webp'
+import arrowDown from '@/assets/arrow-down.webp'
+import filterIcon from '@/assets/filter.webp'
+import Search from '@/assets/search-alt (1).webp';
 
 const ListFilter = () => {
   return (

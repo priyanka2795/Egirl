@@ -1,6 +1,6 @@
 import { Modal } from '@components/modal/modal';
 import React, { useState,useEffect } from 'react';
-import CloseIcon from '../../../public/assets/svgImages/close-icon.svg';
+import CloseIcon from '@/assets/svgImages/close-icon.svg';
 import Cookies from 'js-cookie';
 import jwt from 'jsonwebtoken';
 import { createCollection } from 'services/services';

@@ -5,12 +5,12 @@ import React, { createRef, useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import userProfileImg from '../../../public/assets/user-profile.webp';
-import filterImg1 from '../../../public/assets/filter-img-1.webp';
-import filterImg2 from '../../../public/assets/filter-img-3.webp';
-import filterImg3 from '../../../public/assets/filter-img-2.webp';
-import arrowDown from '../../../public/assets/arrow-down.webp';
-import xMark from '../../../public/assets/xmark.webp';
+import userProfileImg from '@/assets/user-profile.webp';
+import filterImg1 from '@/assets/filter-img-1.webp';
+import filterImg2 from '@/assets/filter-img-3.webp';
+import filterImg3 from '@/assets/filter-img-2.webp';
+import arrowDown from '@/assets/arrow-down.webp';
+import xMark from '@/assets/xmark.webp';
 import UserProfile from './svg/user-profile.svg';
 import SearchIcon from './svg/search.svg';
 import FilterIcon from './svg/filter.svg';
@@ -255,14 +255,14 @@ const GalleryTabFilter = ({
       {singleProfileState === false ? (
         <>
           <div className='flex h-fit w-full flex-col items-center justify-center'>
-            <div className='mt-2 block w-full'>
+            <div className='mt-8 block w-full'>
               <SearchBar
                 searchBy={searchBy}
                 setSearchBy={setSearchBy}
                 placeholder='Search'
               />
             </div>
-            <div className='mb-6 flex w-full'>
+            <div className='mb-7 mt-6 flex w-full'>
               <Slider
                 {...settings}
                 ref={sliderRef}
@@ -290,7 +290,7 @@ const GalleryTabFilter = ({
           </div>
 
           <div className='mb-[23px] flex justify-between gap-2'>
-            <div className='flex h-fit w-full justify-start gap-2'>
+            <div className='flex h-fit justify-start gap-2'>
               {Object.keys(appliedFilter).length ? (
                 Object.keys(appliedFilter)?.map((item) => {
                   return appliedFilter[item]?.map((i) => (
@@ -339,6 +339,10 @@ const GalleryTabFilter = ({
               </div>
 
               <Dropdown buttonTitle='Newest' options={Tags} />
+              {/* <div className='flex gap-2 pl-2 border-l border-white/10'>
+                <p>Newest</p>
+                <Image src={arrowDown} alt='' className='object-cover' />
+              </div> */}
             </div>
           </div>
         </>

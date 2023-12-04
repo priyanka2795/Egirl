@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Modal } from '@components/modal/modal';
-import CloseIcon from '../../../../public/assets/xmark-large.webp';
+import CloseIcon from '@/assets/xmark-large.webp';
 import Image from 'next/image';
 import SearchBar from '@components/common/Search/SearchBar';
-import searchIcon from '../../../../public/assets/search-alt.webp';
+import searchIcon from '@/assets/search-alt.webp';
 
 interface AddTagModalProp {
   closeDeleteModal: React.Dispatch<React.SetStateAction<boolean>>;

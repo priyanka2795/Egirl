@@ -1,5 +1,5 @@
 import React from 'react';
-import greenCheck from '../../../public/assets/check-green.webp';
+import greenCheck from '@/assets/check-green.webp';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 

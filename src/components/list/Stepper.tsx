@@ -1,20 +1,20 @@
 //@ts-nocheck
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
-import userPenIcon from '../../../public/assets/user-pen.webp';
-import personalityIcon from '../../../public/assets/user.webp';
-import personalityWhiteIcon from '../../../public/assets/user-white.webp';
-import imagePlusIcon from '../../../public/assets/image-plus.webp
+import userPenIcon from '@/assets/user-pen.webp';
+import personalityIcon from '@/assets/user.webp';
+import personalityWhiteIcon from '@/assets/user-white.webp';
+import imagePlusIcon from '@/assets/image-plus.webp
 ';
-import imagePlusWhiteIcon from '../../../public/assets/image-plus-white.webp
+import imagePlusWhiteIcon from '@/assets/image-plus-white.webp
 ';
-import palette from '../../../public/assets/palette.webp';
-import paletteWhiteIcon from '../../../public/assets/palette-white.webp';
-import flag from '../../../public/assets/flag.webp';
-import flagWhite from '../../../public/assets/flag-white.webp';
-import circleInformation from '../../../public/assets/circle-information-blue.webp';
-import RightIcon from '../../../public/assets/check-cs.webp';
-import leftArrowIcon from '../../../public/assets/left-arrow-grey.webp';
+import palette from '@/assets/palette.webp';
+import paletteWhiteIcon from '@/assets/palette-white.webp';
+import flag from '@/assets/flag.webp';
+import flagWhite from '@/assets/flag-white.webp';
+import circleInformation from '@/assets/circle-information-blue.webp';
+import RightIcon from '@/assets/check-cs.webp';
+import leftArrowIcon from '@/assets/left-arrow-grey.webp';
 import PersonalityContent from '@components/creator-studio/personality/PersonalityContent';
 import ImageGeneratorIndex from '@components/creator-studio/image-generator';
 import StyleGeneratorIndex from '@components/creator-studio/style-generator';

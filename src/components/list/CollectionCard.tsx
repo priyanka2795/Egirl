@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import blueTick from '../../../public/assets/badge-check.webp';
-import ThreeDotsIcon from '../../../public/assets/svgImages/three-dots.svg';
+import blueTick from '@/assets/badge-check.webp';
+import ThreeDotsIcon from '@/assets/svgImages/three-dots.svg';
 import Image from 'next/image';
 import CardDropdown from './CardDropdown';
 import CollectionFilterContent from './CollectionFilterContent';

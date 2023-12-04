@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
-import crossIcon from '../../../public/assets/xmark (1).webp';
+import crossIcon from '@/assets/xmark (1).webp';
 // import { Button } from "./Button";
 
 interface DeleteProfileProp {

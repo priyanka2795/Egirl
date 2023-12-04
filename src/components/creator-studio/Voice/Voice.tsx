@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import plusIcon from '../../../../public/assets/plus-large.webp';
-import searchIcon from '../../../../public/assets/search-alt (1).webp';
-import threeDots from '../../../../public/assets/dots-horizontal.webp';
-import volume from '../../../../public/assets/volume-max.webp';
+import plusIcon from '@/assets/plus-large.webp';
+import searchIcon from '@/assets/search-alt (1).webp';
+import threeDots from '@/assets/dots-horizontal.webp';
+import volume from '@/assets/volume-max.webp';
 import VoiceGeneratorModal from './VoiceGeneratorModal';
 
 const voiceGenerations = [

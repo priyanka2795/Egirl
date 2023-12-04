@@ -1,5 +1,5 @@
 import React from 'react';
-import InfoIcon from '../../../public/assets/svgImages/info-icon.svg';
+import InfoIcon from '@/assets/svgImages/info-icon.svg';
 interface Props {
   handleToggleState: () => void;
   toggleState: boolean;

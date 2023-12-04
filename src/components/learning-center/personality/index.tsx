@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import BreadCrumbs from '../BreadCrumbs';
 import Image from 'next/image';
-import DemoImg from '../../../../public/assets/learning-center/blank_img.png';
-import personalityBanner from '../../../../public/assets/learning-center/personalityBanner.png';
+import DemoImg from '@/assets/learning-center/blank_img.png';
+import personalityBanner from '@/assets/learning-center/personalityBanner.png';
 import PrevNextStep from '../PrevNextStep';
 import PersonalityContentSec from './PersonalityContentSec';
 function PersonalityIndex() {

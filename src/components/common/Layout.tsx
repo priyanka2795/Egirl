@@ -34,9 +34,9 @@ const Layout = ({ children }: any) => {
           } overflow-x-hidden bg-main-background lg:min-w-[600px] `}
         >
           <NotificationModal selectedMoreOption={activeMoreMenuItem} setActiveMoreMenuItem={setActiveMoreMenuItem} />
-          {activeItem === 'Add Card' && (
+          {/* {activeItem === 'Add Card' && (
             <AddCardSidebar seletedAddCard={activeItem}  SetseletedAddCard ={setActiveItem}/>
-          )}
+          )} */}
           {/* {activeItem === 'Add Card' && (
             <AddCardSidebar seletedAddCard={activItem} />
           )} */}

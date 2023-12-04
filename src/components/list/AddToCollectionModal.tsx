@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import CloseIcon from '../../../public/assets/svgImages/close-icon.svg';
-import searchIcon from '../../../public/assets/search-icon.webp';
-import plusIcon from '../../../public/assets/plus-block-icon.webp';
-import MainImage from '../../../public/assets/gallery-tab-img-3.webp';
-import pinkMobGirl from '../../../public/assets/gallery-tab-img-2.webp';
+import CloseIcon from '@/assets/svgImages/close-icon.svg';
+import searchIcon from '@/assets/search-icon.webp';
+import plusIcon from '@/assets/plus-block-icon.webp';
+import MainImage from '@/assets/gallery-tab-img-3.webp';
+import pinkMobGirl from '@/assets/gallery-tab-img-2.webp';
 import { Modal } from '@components/modal/modal';
 
 const collectionFrame = [

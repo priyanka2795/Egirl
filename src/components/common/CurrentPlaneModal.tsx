@@ -3,11 +3,11 @@ import HeartIcon from './svg/heart-icon.svg';
 import StarIcon from './svg/star-icon.svg';
 import PointedStarIcon from './svg/pointed-star-icon.svg';
 import { Modal } from '@components/modal/modal';
-import CloseIcon from '../../../public/assets/svgImages/close-icon.svg';
+import CloseIcon from '@/assets/svgImages/close-icon.svg';
 import Token from './svg/token2.svg';
 import TokenPrimary from './svg/tokenprimary.svg';
 import Image from 'next/image';
-import downArrow from '../../../public/assets/down-arrow-img.webp';
+import downArrow from '@/assets/down-arrow-img.webp';
 const featureOpt = [
   '2000 tokens per month',
   '2 free subs per month ',

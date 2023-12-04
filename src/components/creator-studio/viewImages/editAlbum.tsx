@@ -1,22 +1,22 @@
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
 import React, { useState } from 'react';
-import crossIcon from '../../../../public/assets/xmark (1).webp';
+import crossIcon from '@/assets/xmark (1).webp';
 import Star from '../svg/star.svg';
-import AlbumFirst from '../../../../public/assets/gallery-tab-img.webp';
-import Pencil from '../../../../public/assets/pen.svg';
-import image1 from '../../../../public/assets/vi-image-1.webp';
-import user from '../../../../public/assets/circle-user.webp';
-import imageSquare from '../../../../public/assets/image-square.webp';
-import image from '../../../../public/assets/image.webp';
-import undo from '../../../../public/assets/Undo.webp';
-import deleteIcon from '../../../../public/assets/trash-blank-alt.webp';
-import image2 from '../../../../public/assets/vi-image-2.webp';
-import image3 from '../../../../public/assets/vi-image-3.webp';
-import image4 from '../../../../public/assets/vi-image-4.webp';
-import image5 from '../../../../public/assets/vi-image-5.webp';
-import image6 from '../../../../public/assets/vi-image-6.webp';
-import image7 from '../../../../public/assets/vi-image-7.webp';
+import AlbumFirst from '@/assets/gallery-tab-img.webp';
+import Pencil from '@/assets/pen.svg';
+import image1 from '@/assets/vi-image-1.webp';
+import user from '@/assets/circle-user.webp';
+import imageSquare from '@/assets/image-square.webp';
+import image from '@/assets/image.webp';
+import undo from '@/assets/Undo.webp';
+import deleteIcon from '@/assets/trash-blank-alt.webp';
+import image2 from '@/assets/vi-image-2.webp';
+import image3 from '@/assets/vi-image-3.webp';
+import image4 from '@/assets/vi-image-4.webp';
+import image5 from '@/assets/vi-image-5.webp';
+import image6 from '@/assets/vi-image-6.webp';
+import image7 from '@/assets/vi-image-7.webp';
 
 const CoverImage = [
   {

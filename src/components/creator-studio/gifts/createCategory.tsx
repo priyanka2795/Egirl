@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
-import crossIcon from '../../../../public/assets/xmark (1).webp';
+import crossIcon from '@/assets/xmark (1).webp';
 import { Modal } from '@components/modal/modal';
 import SelectImage from './selectImage';
 import NotFound from 'pages/404';

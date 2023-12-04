@@ -1,8 +1,8 @@
 import React from 'react';
-import aiImg1 from '../../../../public/assets/vs-all-images-img1.webp';
-import aiImg2 from '../../../../public/assets/vs-all-images-img2.webp';
-import aiImg3 from '../../../../public/assets/vs-all-images-img3.webp';
-import star from '../../../../public/assets/star.webp';
+import aiImg1 from '@/assets/vs-all-images-img1.webp';
+import aiImg2 from '@/assets/vs-all-images-img2.webp';
+import aiImg3 from '@/assets/vs-all-images-img3.webp';
+import star from '@/assets/star.webp';
 import Image from 'next/image';
 
 interface ViewStyleAllImagesProps {

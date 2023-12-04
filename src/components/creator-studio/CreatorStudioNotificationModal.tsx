@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ViewStyleModal from './style-generator/ViewStyleModal';
 import StyleGeneratorNext from './style-generator/StyleGeneratorNext';
-import modalImg from '../../../public/assets/style-modal-img.webp';
+import modalImg from '@/assets/style-modal-img.webp';
 
 interface NotificationModalProp {
   setNotificationModal: React.Dispatch<React.SetStateAction<boolean>>;

@@ -1,7 +1,7 @@
 import React from 'react';
-import googleIcon from '../../../public/assets/google-icon.png';
-import discordIcon from '../../../public/assets/discord-icon.webp';
-import facebookIcon from '../../../public/assets/facebook-icon.webp';
+import googleIcon from '@/assets/google-icon.webp';
+import discordIcon from '@/assets/discord-icon.webp';
+import facebookIcon from '@/assets/facebook-icon.webp';
 import Image from 'next/image';
 import Link from 'next/link';
 import { discordCallback, discordLogin } from 'services/services';

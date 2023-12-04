@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import SearchIcon from '../svg/search.svg';
-import crossIcon from '../../../../public/assets/xmark4.webp';
+import crossIcon from '@/assets/xmark4.webp';
 
 const TagData = [
   'Anime',

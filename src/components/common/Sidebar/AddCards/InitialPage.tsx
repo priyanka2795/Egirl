@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
-import card from '../../../../../public/assets/credit-card-plus.webp';
+import card from '@/assets/credit-card-plus.webp';
 
 interface InitialPageProps {
     setAddedCard: React.Dispatch<React.SetStateAction<boolean>>;
