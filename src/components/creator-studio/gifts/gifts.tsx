@@ -86,6 +86,7 @@ function Gifts() {
       .then((err: any) => {
         console.log(err);
       });
+      setGiftCard(false); 
   };
 
   // const DeleteGift = (ind: number) => {
