@@ -16,7 +16,6 @@ interface CardEditModal {
   closeModal: React.Dispatch<React.SetStateAction<boolean>>;
   GiftEditModal: number | undefined;
   DeleteGift: any;
-  DeleteIndex: number | undefined;
   DeleteBtnStep: number;
   giftImageSet: string;
   giftName?: string;
@@ -48,7 +47,6 @@ function GiftCardEditModal({
   closeModal,
   GiftEditModal,
   DeleteGift,
-  DeleteIndex,
   DeleteBtnStep,
   giftImageSet,
   giftName,
@@ -259,7 +257,6 @@ function GiftCardEditModal({
           Img={false}
           selectedGiftData={selectedGiftData}
           DeleteGift={DeleteGift}
-          DeleteIndex={DeleteIndex}
           DeleteBtnStep={DeleteBtnStep}
         />
       ) : (

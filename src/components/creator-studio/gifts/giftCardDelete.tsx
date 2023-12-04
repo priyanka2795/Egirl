@@ -9,10 +9,9 @@ interface DeletePopup {
   Heading: string;
   Content: string;
   Img: boolean;
-  DeleteGift?: any;
-  DeleteIndex?: any;
+  DeleteGift: any;
   DeleteAllGift?: any;
-  selectedGiftData?:any,
+  selectedGiftData?: any;
   DeleteBtnStep?: number;
   DeleteActionCategory?: any;
   CategoryActionIndex?: number;
@@ -25,7 +24,6 @@ function GiftCardDelete({
   Content,
   Img,
   DeleteGift,
-  DeleteIndex,
   DeleteAllGift,
   selectedGiftData,
   DeleteBtnStep,
@@ -46,10 +44,10 @@ function GiftCardDelete({
           <div className='flex items-center justify-between border-b border-[#FFFFFF14] p-6'>
             <h5 className='text-lg font-semibold'>{Heading}</h5>
             <div
-              className='w-6 h-6 cursor-pointer'
+              className='h-6 w-6 cursor-pointer'
               onClick={() => DeleteModal(false)}
             >
-              <Image className='w-full h-full' src={crossIcon} alt={''} />
+              <Image className='h-full w-full' src={crossIcon} alt={''} />
             </div>
           </div>
           <div className='p-6'>
@@ -59,7 +57,7 @@ function GiftCardDelete({
               ) : (
                 <div className='m-auto mb-4 max-h-[100px] max-w-[100px] overflow-hidden rounded-xl'>
                   <Image
-                    className='object-cover w-full h-full'
+                    className='h-full w-full object-cover'
                     src={DeleteGiftImage || ''}
                   />
                 </div>
@@ -70,7 +68,7 @@ function GiftCardDelete({
                 {GiftName ? 'gift?' : ''}
               </p>
             </div>
-            <div className='grid grid-cols-2 gap-3 mt-6 font-semibold text-white'>
+            <div className='mt-6 grid grid-cols-2 gap-3 font-semibold text-white'>
               <button
                 className='rounded-[14px] border border-[#FFFFFF52] px-5 py-3'
                 onClick={() => DeleteModal(false)}

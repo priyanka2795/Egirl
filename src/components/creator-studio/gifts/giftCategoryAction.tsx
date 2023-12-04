@@ -21,6 +21,9 @@ interface GiftCategoryAction {
   createCategoryToggle: boolean;
   setCreateCategoryToggle: React.Dispatch<React.SetStateAction<boolean>>;
   setSelectedCategoryId: React.Dispatch<React.SetStateAction<number>>;
+  selectedCategoryGifts:any;
+  searchQuery:any;
+  setSearchQuery:any
 }
 function GiftCategoryAction({
   AddCategory,
@@ -30,7 +33,10 @@ function GiftCategoryAction({
   token,
   createCategoryToggle,
   setCreateCategoryToggle,
-  setSelectedCategoryId
+  setSelectedCategoryId,
+  selectedCategoryGifts,
+  searchQuery,
+  setSearchQuery
 }: GiftCategoryAction) {
   const [toggle, setToggle] = useState<boolean>(false);
   const [closeState, setCloseState] = useState<boolean>(false);
@@ -75,6 +81,10 @@ function GiftCategoryAction({
     setCreateCategoryToggle(!createCategoryToggle);
     setCloseState(false);
   };
+
+  useEffect(()=>{
+    console.log(selectedCategoryGifts , "????selectedCategoryGifts");
+  },[selectedCategoryGifts])
 
   const DeleteActionCategoryModal = (
     index: number,
@@ -197,6 +207,8 @@ function GiftCategoryAction({
             </span>
             <input
               type='text'
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               className={`h-10 w-full rounded-[14px] border border-[#FFFFFF52] bg-transparent px-4 pl-10 text-[14px] placeholder:text-white focus:border-[#FFFFFF52] focus:ring-transparent active:border-[#FFFFFF52] ${
                 isActive ? 'border' : 'border-none'
               }`}

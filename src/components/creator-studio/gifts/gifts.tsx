@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import plusIcon from '@/assets/plus-large.webp';
 import ImagePlusIcon from '../svg/image-plus.svg';
-import MoreIcon from '../svg/MoreIcon.svg';
 import RightUp from '../svg/arrow-up-right.svg';
 import GiftCreateModal from './giftCreateModal';
 // import Delete from '@/assets/delete-icon.webp';
@@ -25,10 +24,8 @@ function Gifts() {
   const [toggle, setToggle] = useState<boolean>(false);
   const [giftEditPopup, setGiftEditPopup] = useState<number | undefined>();
   const [tabs, setTabs] = useState<string>('');
-  const [giftsView, setGiftsView] = useState<boolean>(false);
   const [GiftCardName, setGiftCardName] = useState<string[]>([]);
   const [deleteModal, setDeleteModal] = useState<boolean>(false);
-  const [deleteIndex, setDeleteIndex] = useState<number | undefined>();
   const [deleteBtnStep, setDeleteBtnStep] = useState<number>(0);
   const [addCategory, setAddCategory] = useState<string[]>([]);
   const [giftImageSet, setGiftImageSet] = useState('');
@@ -48,6 +45,7 @@ function Gifts() {
   const [updateGift, setUpdateGift] = useState(false);
   const [deleteGiftToggle, setDeleteGiftToggle] = useState<boolean>(false);
   const [createGiftToggle, setCreateGiftToggle] = useState<any>();
+  const [searchQuery, setSearchQuery] = useState<string>('');
 
   const EditGift = (val: number, data: any) => {
     setSelectedGiftData(data);
@@ -87,7 +85,7 @@ function Gifts() {
       .then((err: any) => {
         console.log(err);
       });
-      setGiftCard(false); 
+    setGiftCard(false);
   };
 
   // const DeleteGift = (ind: number) => {
@@ -150,7 +148,13 @@ function Gifts() {
       .then((res: any) => {
         console.log(res);
 
-        setSelectedCategoryGifts(res?.data);
+        const filteredGifts = res?.data?.filter((gift: any) =>
+          gift.name.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+
+        setSelectedCategoryGifts(filteredGifts);
+
+        // setSelectedCategoryGifts(res?.data);
         if (res?.response?.status === 401) {
           dispatch(tokenRefresh());
         }
@@ -164,7 +168,8 @@ function Gifts() {
     deleteGiftToggle,
     giftCategory,
     createCategoryToggle,
-    createGiftToggle
+    createGiftToggle,
+    searchQuery
   ]);
 
   return (
@@ -193,6 +198,9 @@ function Gifts() {
               setSelectedCategoryId={setSelectedCategoryId}
               setCreateCategoryToggle={setCreateCategoryToggle}
               createCategoryToggle={createCategoryToggle}
+              selectedCategoryGifts={selectedCategoryGifts}
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
             />
 
             <div className='mt-4 flex items-center justify-between'>
@@ -292,7 +300,6 @@ function Gifts() {
                 closeModal={setGiftCard}
                 GiftEditModal={giftEditPopup}
                 DeleteGift={DeleteGift}
-                DeleteIndex={deleteIndex}
                 DeleteBtnStep={deleteBtnStep}
                 giftImageSet={giftImageSet}
                 giftName={giftName}
@@ -314,7 +321,6 @@ function Gifts() {
                 }
                 Img={true}
                 DeleteGift
-                DeleteIndex
                 DeleteAllGift={setGiftCardName}
                 DeleteBtnStep={deleteBtnStep}
                 DeleteActionCategory
@@ -339,7 +345,6 @@ function Gifts() {
       {giftModal && (
         <GiftCreateModal
           closeModal={setGiftModal}
-          GiftsView={setGiftsView}
           GiftName={GiftCardName}
           SetGiftName={setGiftCardName}
           AddCategory={addCategory}

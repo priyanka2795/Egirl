@@ -104,7 +104,6 @@ function EditCategoryAction({
           Img={true}
           DeleteActionCategory={DeleteActionCategory}
           DeleteGift
-          DeleteIndex
           DeleteAllGift
           DeleteBtnStep={3}
           CategoryActionIndex={CategoryActionIndex}
