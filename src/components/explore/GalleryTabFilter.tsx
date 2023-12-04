@@ -20,7 +20,7 @@ import { exploreGallery } from 'services/services';
 import Cookies from 'js-cookie';
 import SearchBar from '@components/common/Search/SearchBar';
 import ViewAllTags from '@components/common/ViewAllTags';
-
+import useClickOutside from '../../api/utils/useClickOutside'
 const galleryArray = [
   {
     id: 1,
@@ -89,6 +89,17 @@ const GalleryTabFilter = ({
   const [appliedFilter, setAppliedFilter] = useState({});
   const [filterTagsBy,setFilterTagsBy]=useState("A");
   const [filteredTags,setFilteredTags]=useState([]);
+  const { ref, isOpen, setIsOpen } = useClickOutside<HTMLDivElement>(false); // Initialize isOpen as false
+  const { ref: filterRef, isOpen: filterOpen, setIsOpen: filterIsopen } = useClickOutside<HTMLDivElement>(false);
+  
+  const toggleModal = () => {
+    if (filterOpen) {
+      filterIsopen(false);
+    } else {
+      filterIsopen(true);
+    }
+    setIsOpen(false);
+  }
 
   const [Tags,setTags] = useState([
     'Furry',
@@ -110,7 +121,6 @@ const GalleryTabFilter = ({
     setSelectedFilter(item);
   };
 
-
   useEffect(()=>{
     let data=Tags?.filter(i=>String(i).startsWith(filterTagsBy));
     console.log({data})
@@ -129,7 +139,7 @@ const GalleryTabFilter = ({
   }, []);
 
   useEffect(() => {
-    if(!showAllTags && Object.keys(selectedTags)?.length){
+    if(!isOpen && Object.keys(selectedTags)?.length){
       let TagsOrder=[];
       for(let item of Tags){
         if(selectedTags[item]){
@@ -140,7 +150,7 @@ const GalleryTabFilter = ({
       }
       setTags([...TagsOrder]);
     }
-  }, [showAllTags]);
+  }, [isOpen]);
 
   const settings = {
     dots: true,
@@ -165,22 +175,14 @@ const GalleryTabFilter = ({
   }, []);
 
   const openAllTagsModal = () => {
-    setFilterForm(false);
-    setShowAllTags(true);
+    filterIsopen(false);
+    setIsOpen(true);
   };
 
-  const closeAllTagsModal = () => {
-    if (filterForm) {
-      setFilterForm(false);
-    } else {
-      setFilterForm(true);
-    }
-    setShowAllTags(false);
-  };
 
   const closeFilterModal = () => {
-    setFilterForm(false);
-    setShowAllTags(false);
+    filterIsopen(false);
+    setIsOpen(false);
   };
 
   const getSelectedTagOnClick = (item: any) => {
@@ -232,11 +234,11 @@ const GalleryTabFilter = ({
 
   return (
     <>
-      {showAllTags && (
+      {isOpen && (
         <ViewAllTags
           getSelectedTagOnClick={getSelectedTagOnClick}
           selectedTags={selectedTags}
-          closeAllTagsModal={closeAllTagsModal}
+          closeAllTagsModal={toggleModal}
           setSelectedTags={setSelectedTags}
           setFilterTagsBy={setFilterTagsBy}
           filterTagsBy={filterTagsBy}
@@ -246,14 +248,14 @@ const GalleryTabFilter = ({
       {singleProfileState === false ? (
         <>
           <div className='flex h-fit w-full flex-col items-center justify-center'>
-            <div className='mt-8 block w-full'>
+            <div className='mt-2 block w-full'>
               <SearchBar
                 searchBy={searchBy}
                 setSearchBy={setSearchBy}
                 placeholder='Search'
               />
             </div>
-            <div className='mb-7 mt-6 flex w-full'>
+            <div className='mb-6 flex w-full'>
               <Slider
                 {...settings}
                 ref={sliderRef}
@@ -285,8 +287,7 @@ const GalleryTabFilter = ({
               {Object.keys(appliedFilter).length ? (
                 Object.keys(appliedFilter)?.map((item) => {
                   return appliedFilter[item]?.map((i)=>
-                  
-                      <div
+                    <div
                     className="font-normal flex flex-shrink-0 cursor-pointer items-center gap-1 rounded-lg bg-white/10 px-[10px] py-1 text-xs leading-none text-white"
                   >
                     <UserProfile />
@@ -297,36 +298,34 @@ const GalleryTabFilter = ({
                       className='object-cover'
                       onClick={() => removeAppliedFilters(item,i)}
                     />
-                  </div>
-                  
-                  )
+                  </div>)
                 })
               ) : (
                 <div className='font-normal All flex cursor-pointer items-center  gap-1 rounded-lg px-[10px] py-1 text-xs leading-none text-white'></div>
               )}
             </div>
-            <div className='flex items-center gap-3'>
-              <SearchIcon />
-              <div className='relative'>
+            <div className='flex items-center gap-3' ref={ref}>
+              {/* <SearchIcon /> */}
+              <div className='relative' ref={filterRef}>
                 <FilterIcon
                   onClick={() => {
-                    closeAllTagsModal();
+                    toggleModal();
                   }}
-                  className={`${filterForm && 'white-stroke'} cursor-pointer`}
+                  className={`${filterOpen && 'white-stroke'} cursor-pointer`}
                 />
-                {(filterForm && Tags?.length) && (
+                {(filterOpen && Tags?.length) && (
                   <GalleryFilterCheckbox
                     applyAllFilters={applyAllFilters}
                     openAllTagsModal={openAllTagsModal}
                     Tags={Tags}
-                    filterCloseForm={setFilterForm}
+                    filterCloseForm={filterIsopen}
                     selectedTags={selectedTags}
                     getSelectedTagOnClick={getSelectedTagOnClick}
                     clearAll={clearAll}
                   />
                 )}
               </div>
-              <div className='flex gap-2 border-l border-white/10 pl-2'>
+              <div className='flex gap-2 border-l border-white/10 pl-2 cursor-pointer'>
                 <p>Newest</p>
                 <Image src={arrowDown} alt='' className='object-cover' />
               </div>

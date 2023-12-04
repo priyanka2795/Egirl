@@ -13,13 +13,8 @@ const ViewAllTags = ({selectedTags,getSelectedTagOnClick,filteredTags, closeAllT
     const [searchTagBy,setSearchTagBy]=useState<string>("");
     const [filteredData,setFilteredData]= useState<any>([]);
 
-
-
-    
-
-
   return (
-    <div className='absolute right-8 top-12 z-50 flex w-[346px] flex-col rounded-[14px] border border-white/[0.05] bg-[#1A1A1A] mt-64'>
+    <div className='absolute right-8 top-5 z-50 flex w-[346px] flex-col rounded-[14px] border border-white/[0.05] bg-[#1A1A1A] mt-64'>
       <form>
         <div className='flex flex-col border-b border-white/[0.08] px-6'>
           <div className='flex items-center justify-between  py-5'>
@@ -55,8 +50,6 @@ const ViewAllTags = ({selectedTags,getSelectedTagOnClick,filteredTags, closeAllT
         style={selectedTags[item] ? {backgroundColor:"#5848BC"} : {backgroundColor:'rgba(255, 255, 255, 0.05)',}}
         className=" h-fit list-last-item z-10 !flex w-max cursor-pointer  justify-start rounded-full px-4 py-3 last:mr-0 mb-3"
       >
-        
-
         <div className='text-[15px] font-semibold leading-tight text-white'>
           <p>{item}</p>
         </div>
