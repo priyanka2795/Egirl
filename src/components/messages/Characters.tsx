@@ -47,13 +47,15 @@ type props = {
   shrinkSidebar?: boolean;
   selectUserState?: string;
   handleSeletedUser?: () => void;
-  roomData?:any
+  roomData?:any;
+  setSelectedRoom?:any;
 };
 
 export default function Characters({
   shrinkSidebar,
   handleSeletedUser,
-  roomData
+  roomData,
+  setSelectedRoom
 }: props) {
   
   // active character state
@@ -61,8 +63,9 @@ export default function Characters({
     messages[0].username
   );
 
-  const handleUpdateUsername = (username: string) => {
+  const handleUpdateUsername = (username: string, char_id:string) => {
     setActiveUsername(username);
+    setSelectedRoom("One More Mika")
   };
 
   // search state
@@ -205,7 +208,7 @@ export default function Characters({
               // messagePreview={message.messagePreview}
               // newMessages={message.newMessages}
               // timeLastSeen={message.timeLastSeen}
-              onClick={handleUpdateUsername}
+              onClick={()=>handleUpdateUsername(ele.character_id,ele.character_id)}
               // currentlyActive={message.currentlyActive}
             />
           ))}
@@ -215,7 +218,7 @@ export default function Characters({
               key={index}
               username={ele.character_id}
               isActive={ele.character_id === activeUsername}
-              onClick={handleUpdateUsername}
+              onClick={()=>handleUpdateUsername(ele.character_id,ele.character_id)}
             />
           ))}
       </div>

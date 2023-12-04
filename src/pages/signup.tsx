@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import * as Yup from 'yup';
 import Image from 'next/image';
@@ -13,6 +13,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SigninTemplate from './auth/signinTemplate';
 import SigninLoginOpt from './auth/SigninLoginOpt';
+import WelcomeStepsModal from './auth/WelcomeSteps';
 
 const validationSchema = Yup.object().shape({
   username: Yup.string().required('Username is required'),
@@ -43,6 +44,15 @@ export default function SignUp() {
     useState<boolean>(false);
 
   const [welcomeStepsModal, setWelcomeStepsModal] = useState<boolean>(false);
+  const [updateState, setUpdateState] = useState(false)
+
+  useEffect(()=>{
+    let signUpUser = Cookies.get('signUpUserId')
+    if(signUpUser){
+      setWelcomeStepsModal(true) 
+    }
+  },[updateState])
+  
 
   const [errorMsg, setErrorMsg] = useState('');
 
@@ -76,12 +86,15 @@ export default function SignUp() {
         console.log('sign up res---', res);
         sessionStorage.setItem('SignUpCompleted', 'true');
         if (res.status === 200) {
-          Cookies.set('accessToken', res.data.access_token);
-          Cookies.set('refreshToken', res.data.refresh_token);
-          toast.success('User login successful');
-          setTimeout(() => {
-            router.push('/home');
-          }, 1000);
+          
+          Cookies.set('accessToken', res?.data?.access_token);
+          Cookies.set('refreshToken', res?.data?.refresh_token);
+          Cookies.set('signUpUserId', res?.data?.user_id);
+          setUpdateState(!updateState)
+          // toast.success('User login successful');
+          // setTimeout(() => {
+          //   router.push('/home');
+          // }, 1000);
         }
         if (res.response?.status === 400) {
           setErrorMsg(res.response?.data?.detail);
@@ -268,12 +281,13 @@ export default function SignUp() {
         </Formik>
       </SigninTemplate>
 
-      {/* {welcomeStepsModal && (
+      {welcomeStepsModal && (
         <WelcomeStepsModal
           welcomeStepsModal={welcomeStepsModal}
           setWelcomeStepsModal={setWelcomeStepsModal}
         />
-      )} */}
+       
+      )}
       <ToastContainer
         position='bottom-center'
         pauseOnHover

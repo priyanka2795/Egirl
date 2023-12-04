@@ -37,6 +37,7 @@ const Messages = () => {
     (state) => state.tokenRefresh?.tokenData
   );
   const [roomData, setRoomData] = useState([]);
+  const  [selectedRoom, setSelectedRoom] = useState('')
   useEffect(() => {
     if (refreshTokenData) {
       Cookies.set('accessToken', refreshTokenData);
@@ -55,6 +56,7 @@ const Messages = () => {
   }, [refreshTokenData]);
   //========= get rooms api ==========
   
+  
   // console.log(chatViewStyle,':chatViewStyle',chartScreenView,': chartScreenView')
   return (
     <>
@@ -65,16 +67,29 @@ const Messages = () => {
               shrinkSidebar={shrinkSidebar}
               selectUserState={selectUserState}
               roomData={roomData}
+              setSelectedRoom={setSelectedRoom}
             />
-            <StartConversation
+            {
+              selectedRoom === '' ?  
+              <StartConversation
               startConversationModal={startConversationModal}
               handleCloseConversationModal={handleCloseConversationModal}
               userSelected={setSelectUserState}
             />
+            : selectedRoom === 'One More Mika' &&
+            <ChatScreen
+              selectUserState={selectUserState}
+              chatViewStyle={chatViewStyle}
+              setChatViewStyle={setChatViewStyle}
+              chartScreenView={chartScreenView}
+              setChartScreenView={setChartScreenView}
+            />
+            }
+           
           </>
         ) : selectUserState === 'One More Mika' ? (
           <>
-            <Characters roomData={roomData} />
+            <Characters roomData={roomData} setSelectedRoom={setSelectedRoom} />
             <ChatScreen
               selectUserState={selectUserState}
               chatViewStyle={chatViewStyle}

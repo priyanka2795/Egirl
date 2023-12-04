@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import useScroll from '../../../hooks/useScroll';
 import Post from './Post';
+import SubscriptionPost from './Post/SubscriptionPost';
 
 
 interface Feed {
@@ -11,6 +12,8 @@ interface Feed {
   postUpdate:boolean;
   setPostUpdate:any;
   setBookMarkToast : any;
+  subscriptionData?:any;
+  showForYou:boolean
 }
 export default function Feed({
   bookmarksActive,
@@ -19,18 +22,20 @@ export default function Feed({
   forYouData,
   postUpdate,
   setPostUpdate,
-  setBookMarkToast
+  setBookMarkToast,
+  subscriptionData,
+  showForYou
 }: Feed) {
-  const [showForYou, setShowForYou] = useState(true);
+  // const [showForYou, setShowForYou] = useState(true);
   const [sticky, animate] = useScroll();
 
-  const handleFeedSwitch = (feedType: string) => {
-    if (feedType === 'forYou' && !showForYou) {
-      setShowForYou(true);
-    } else if (feedType === 'subscribed' && showForYou) {
-      setShowForYou(false);
-    }
-  };
+  // const handleFeedSwitch = (feedType: string) => {
+  //   if (feedType === 'forYou' && !showForYou) {
+  //     setShowForYou(true);
+  //   } else if (feedType === 'subscribed' && showForYou) {
+  //     setShowForYou(false);
+  //   }
+  // };
 
   return (
     <div className='max-w-[600px] flex-grow bg-main-background lg:min-w-[600px]'>
@@ -71,7 +76,8 @@ export default function Feed({
           .map((_, i) => (
             <p key={i}>Main content line {i + 1}</p>
           ))} */}
-        {forYouData?.map((ele: any, index: number) => {
+        {showForYou ? 
+        forYouData?.map((ele: any, index: number) => {
           return (
            <div className='mb-5' key={index}>
              <Post
@@ -97,10 +103,40 @@ export default function Feed({
             />
            </div>
           );
-        })}
+        })
+        :
+        // subscriptionData?.map((ele: any, index: number) => {
+        //   return (
+          <div className='mb-5' >
+            <SubscriptionPost
+             imageUrl='https://media.istockphoto.com/id/638756792/photo/beautiful-woman-posing-against-dark-background.jpg?s=612x612&w=0&k=20&c=AanwEr0pmrS-zhkVJEgAwxHKwnx14ywNh5dmzwbpyLk='
+             altText='Character Profile Picture'
+             name= "Mika-chain"
+             username={`@abc`}
+             postText={'this is a character profile picture'}
+             commentsNumber={'7'}
+             heartsNumber={'2'}
+             viewsNumber='1.8k'
+             tags={['#girl', '#mood', '#relaxtime']}
+             location={'Indore'}
+             hours='6h'
+             bookmarksActive={true}
+             BookmarksActive={BookmarksActive}
+             handleShare={handleShare}
+             postId={1}
+             postUpdate = {postUpdate}
+             setPostUpdate={setPostUpdate}
+             setBookMarkToast = {setBookMarkToast}
+             is_liked_by_user={false}
+            />
+           </div>
+          //   );
+          // })
+        }
+         
       </div>
     </div>
   );
 }
 
-// 'https://media.istockphoto.com/id/638756792/photo/beautiful-woman-posing-against-dark-background.jpg?s=612x612&w=0&k=20&c=AanwEr0pmrS-zhkVJEgAwxHKwnx14ywNh5dmzwbpyLk='
+// 

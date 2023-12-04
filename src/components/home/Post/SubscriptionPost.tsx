@@ -37,7 +37,7 @@ interface PostProps {
   is_liked_by_user:boolean;
 }
 
-const Post: React.FC<PostProps> = ({
+const SubscriptionPost: React.FC<PostProps> = ({
   imageUrl,
   altText,
   name,
@@ -223,10 +223,7 @@ const Post: React.FC<PostProps> = ({
                 <Tooltip Text={'Share'} />
               </div>
             </button>
-            <button className='transition-duration-100 ml-auto flex items-center rounded-full bg-[#FFFFFF14] px-3 py-2 hover:bg-[#FFFFFF1F]'>
-              <EyeIcon className='text-[#979797]' />
-              <span className='ml-[6px]'>{viewsNumber}</span>
-            </button>
+         
           </div>
         </div>
       </div>
@@ -248,4 +245,5 @@ const Post: React.FC<PostProps> = ({
   );
 };
 
-export default Post;
+export default SubscriptionPost;
+
