@@ -11,6 +11,9 @@ import userFrameImg1 from '../../../public/assets/messages/grid-img-4.png';
 import userFrameImg2 from '../../../public/assets/messages/grid-img-2.png';
 import userFrameImg3 from '../../../public/assets/messages/grid-img-15.png';
 import userFrameImg4 from '../../../public/assets/messages/grid-img-3.png';
+import { useRouter } from 'next/router';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const data = [
   {
     id: 1,
@@ -81,18 +84,19 @@ const settings = {
 interface WelcomeStepsModal {
   welcomeStepsModal: boolean;
   setWelcomeStepsModal: React.Dispatch<React.SetStateAction<boolean>>;
-  signUpCompleted?: React.Dispatch<React.SetStateAction<boolean>>;
+  // signUpCompleted?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const WelcomeStepsModal = ({
   welcomeStepsModal,
   setWelcomeStepsModal,
-  signUpCompleted
+  // signUpCompleted
 }: WelcomeStepsModal) => {
-  const [selectedItems, setSelectedItems] = useState<string[]>([]);
+  const router = useRouter();
+  const [selectedItems, setSelectedItems] = useState<number[]>([]);
   const [nextBtn, setNextBtn] = useState(false);
   const [signUpStep, setSignUpStep] = useState(1);
 
-  const handleItemClick = (itemId: string) => {
+  const handleItemClick = (itemId: number) => {
     if (selectedItems.includes(itemId)) {
       setSelectedItems(
         selectedItems.filter((selectedItemId) => selectedItemId !== itemId)
@@ -111,6 +115,13 @@ const WelcomeStepsModal = ({
     }
   }, [selectedItems]);
 
+  const gotoHome = ()=>{
+     toast.success('User signup successful');
+          setTimeout(() => {
+            router.push('/home');
+          }, 1000);
+  }
+
   return (
     <Modal
       open={welcomeStepsModal}
@@ -118,18 +129,18 @@ const WelcomeStepsModal = ({
       modalOverlayStyle='!bg-black/80 '
       modalClassName='bg-[#121212] flex w-[539px] flex-col flex-start rounded-[20px]'
     >
-      <div className='flex flex-col justify-center gap-11 px-12 pb-12 pt-8'>
+      <div className='flex flex-col justify-center px-12 pt-8 pb-12 gap-11'>
         <div className='flex items-center justify-between text-[#979797]'>
           {signUpStep === 1 ? (
             <button
               className='border-0'
               onClick={() => setWelcomeStepsModal(false)}
             >
-              <Image src={ArrowLeft} className='h-full w-full object-cover' />
+              <Image src={ArrowLeft} className='object-cover w-full h-full' />
             </button>
           ) : (
             <button onClick={() => setSignUpStep(1)}>
-              <Image src={ArrowLeft} className='h-full w-full object-cover' />
+              <Image src={ArrowLeft} className='object-cover w-full h-full' />
             </button>
           )}
           <p>{signUpStep}/2</p>
@@ -171,7 +182,7 @@ const WelcomeStepsModal = ({
             ))}
           </div>
         ) : (
-          <div className='user-follow-slider relative flex flex-col gap-5 overflow-hidden'>
+          <div className='relative flex flex-col gap-5 overflow-hidden user-follow-slider'>
             <div className='flex justify-between '>
               <div className='text-[18px] font-semibold text-[#FFFFFF]'>
                 Users
@@ -234,7 +245,7 @@ const WelcomeStepsModal = ({
           ) : (
             <button
               className='font-bold flex w-full items-center justify-center gap-2 rounded-2xl bg-[#FFFFFF14] px-5 py-4 text-center text-lg'
-              onClick={() => signUpCompleted(false)}
+              onClick={gotoHome}
             >
               <Image src={RightIcon} /> Done
             </button>
@@ -245,6 +256,13 @@ const WelcomeStepsModal = ({
           </button> */}
         </div>
       </div>
+      <ToastContainer
+        position='bottom-center'
+        pauseOnHover
+        theme='colored'
+        hideProgressBar={true}
+        autoClose={2000}
+      />
     </Modal>
   );
 };

@@ -114,9 +114,7 @@ export default function ChatScreen({
     }
   }
 
-  const handleMessage = () => {
-    setShowMessge(true);
-  };
+  
   const handleViews = (e: any) => {
     if (e === 'chatView') {
       if (moreOptionDropdown) {
@@ -190,6 +188,14 @@ export default function ChatScreen({
       console.log(`[message] Data received from server: ${event.data}`);
     };
   // }, []);
+
+  const handleMessage = () => {
+    setShowMessge(true);
+    console.log("message---",message)
+
+    let data:any = {"message":message}
+    socket.send(data);
+  };
                                             
   return (
     <div

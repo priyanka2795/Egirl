@@ -35,7 +35,7 @@ export const forYouPost = (page:number, limit:number, token:string | null) => ge
 export const postLike = (data:any, token:string ) => postApiWithToken(`/posts/like/`, data, token)
 export const postComment = (data:any, token:string ) => postApiWithToken(`/posts/comment/`, data, token)
 export const getPostComments = (postId:number, page:number, pageSize:number, token:string | null) => getApiWithToken(`/posts/post/${postId}/comments?page=${page}&page_size=${pageSize}`, token)
-export const getPostSubscription = (page:number, token:string | null) => getApiWithToken(`/posts/subscriptions/${page}`, token)
+export const getPostSubscription = (page:number, limit:number, token:string | null) => getApiWithToken(`/posts/subscriptions/${page}/${limit}`, token)
 // (will not use) export const getPostDetails = (postId:number, token:string | null) => getApiWithToken(`/posts/post/${postId}/details`, token)
 export const postAddBookMark = (postId:number, token: string | null) => postWithParams(`/posts/post/${postId}/bookmark`, token)
 export const postRemoveBookMark = (postId:number, token: string | null) => deleteApi(`/posts/post/${postId}/bookmark`, token)
@@ -107,4 +107,5 @@ export const logout = ()=>{
     Cookies.remove("accessToken")
     Cookies.remove("refreshToken")
     Cookies.remove("character_id")
+    Cookies.remove('signUpUserId')
 }
