@@ -29,6 +29,7 @@ function GiftCardDelete({
   DeleteActionCategory,
   CategoryActionIndex,
   DeleteGiftImage,
+  DeleteGift,
   GiftName
 }: DeletePopup) {
   return (
