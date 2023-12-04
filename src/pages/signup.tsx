@@ -300,6 +300,7 @@ export default function SignUp() {
           welcomeStepsModal={welcomeStepsModal}
           setWelcomeStepsModal={setWelcomeStepsModal}
         />
+       
       )} */}
       <ToastContainer
         position='bottom-center'
