@@ -68,10 +68,7 @@ const creatorStudio = () => {
       ) : (
         <CreatorStudioLayout
           setProfileInfoPage={setProfileInfoPage}
-          btnSteps={btnSteps}
-          setBtnSteps={setBtnSteps}
           activeStep={activeStep}
-          setActiveStep={setActiveStep}
           userDetails={userDetails}
           setUserDetails={setUserDetails}
           UserGuide={UserGuide}

@@ -32,6 +32,23 @@ export const postApiWithToken = async (url: string, data: any, token: string|nul
   }
 };
 
+export const postApiWithTokenMultipart = async (url: string, formData: FormData, token: string | null) => {
+  try {
+    let apiUrl = `${config.serverURL}${url}`;
+    const response = await axios.post(apiUrl, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        'accept': 'application/json',
+        'Authorization': `Bearer ${token}`, // Add the Authorization header with the token
+      },
+    });
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
+
+
 
 
 export const postWithParams = async (url: string, token: string | null) => {

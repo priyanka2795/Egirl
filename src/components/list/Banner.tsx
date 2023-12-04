@@ -27,6 +27,8 @@ import downArrow from '@/assets/down-arrow-img.webp';
 import EditProfileModal from '@components/list/EditProfileModal';
 import userAvatar from '@/assets/user-alt-1.webp';
 import CoverImageModel from './finishStep/coverImageModel';
+import { postUploadMedia } from 'services/services';
+import Cookies from 'js-cookie';
 
 const posts = [
   {
@@ -44,10 +46,6 @@ const posts = [
 ];
 
 const location = [
-  // {
-  //   icon: locationIcon,
-  //   name: 'Tokyo'
-  // },
   {
     icon: calendarIcon,
     name: 'Joined March 2023'
@@ -147,8 +145,9 @@ BannerProp) => {
   const [coverImage, setCoverImage] = useState('');
   const [editProfileModal, setEditProfileModal] = useState(false);
   const [cropData, setCropData] = useState('');
-  const [updatedProfile, setUpdatedProfile] = useState(false)
-
+  const [updatedProfile, setUpdatedProfile] = useState(false);
+  const [image, setImage] = useState('');
+  const token = Cookies.get('accessToken');
 
   const handleExploreSelected = (e: React.MouseEvent<HTMLElement>) => {
     setExploreSelected((e.target as HTMLElement).innerText);
@@ -211,7 +210,32 @@ BannerProp) => {
     }
   };
 
+  const handleCoverImage = () => {
+    const formData = new FormData();
+    formData.append('file', dataURLtoFile(image, 'uploaded_image.jpg'));
+    console.log(formData, '????formdata');
+    postUploadMedia(formData, token)
+      .then((res: any) => {
+        console.log(res, 'res????upload');
+        setCoverImage(image);
+        setUpdatePhotoModalState(false);
+      })
+      .catch((err: any) => {
+        console.log(err, 'err????upload');
+      });
+  };
 
+  const dataURLtoFile = (dataurl: string, filename: string) => {
+    const arr = dataurl.split(',');
+    const mime = arr[0].match(/:(.*?);/)![1];
+    const bstr = atob(arr[1]);
+    let n = bstr.length;
+    const u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new File([u8arr], filename, { type: mime });
+  };
 
   return (
     <div className={`${styleProperty ? styleProperty : 'px-8'}`}>
@@ -220,7 +244,7 @@ BannerProp) => {
         ''
       ) : (
         <div
-          className='flex gap-2 my-4 text-lg font-bold cursor-pointer'
+          className='font-bold my-4 flex cursor-pointer gap-2 text-lg'
           onClick={() => {
             backFromProfile(false);
           }}
@@ -232,8 +256,8 @@ BannerProp) => {
 
       <div>
         <div className='h-max w-full overflow-hidden rounded-[16px] bg-[#121212]'>
-          <div className='relative block w-full sub-banner'>
-            { coverImage === '' ? (
+          <div className='sub-banner relative block w-full'>
+            {coverImage === '' ? (
               <div className='mb-2 h-[200px] w-full bg-[#313131]'></div>
             ) : (
               <img className='h-[200px] w-full ' src={coverImage} alt='' />
@@ -280,7 +304,7 @@ BannerProp) => {
             </div>
 
             <div
-              className={`mb-5 flex w-full items-center justify-between px-6 mt-[-56px]`}
+              className={`mb-5 mt-[-56px] flex w-full items-center justify-between px-6`}
             >
               <div className='relative h-[120px]  w-[120px] overflow-hidden rounded-full'>
                 {/* <Image className='w-full h-full border border-white' src={avatar} alt='' /> */}
@@ -328,7 +352,7 @@ BannerProp) => {
                     </div>
                     <div className='absolute -right-[2px] -top-[20px] h-[24px] w-10'>
                       <Image
-                        className='w-full h-full'
+                        className='h-full w-full'
                         src={downArrow}
                         alt={''}
                       />
@@ -514,6 +538,9 @@ BannerProp) => {
           CloseModal={setUpdatePhotoModalState}
           coverImage={coverImage}
           setCoverImage={setCoverImage}
+          image={image}
+          setImage={setImage}
+          handleCoverImage={handleCoverImage}
         />
       )}
 
