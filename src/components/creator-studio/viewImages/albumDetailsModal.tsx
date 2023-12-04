@@ -1,16 +1,16 @@
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
 import React from 'react';
-import crossIcon from '../../../../public/assets/xmark (1).webp';
-import Pencil from '../../../../public/assets/pen.webp';
-import Image1 from '../../../../public/assets/media-1.webp';
-import Image2 from '../../../../public/assets/jennieYoon.webp';
-import Image3 from '../../../../public/assets/jennieContent.webp';
-import Image4 from '../../../../public/assets/media-3.webp';
-import Image5 from '../../../../public/assets/mirandaContent.webp';
-import Image6 from '../../../../public/assets/mirandalImg.webp';
-import Image7 from '../../../../public/assets/sarahScarlet.webp';
-import Image8 from '../../../../public/assets/style-gen-img6.webp';
+import crossIcon from '@/assets/xmark (1).webp';
+import Pencil from '@/assets/pen.webp';
+import Image1 from '@/assets/media-1.webp';
+import Image2 from '@/assets/jennieYoon.webp';
+import Image3 from '@/assets/jennieContent.webp';
+import Image4 from '@/assets/media-3.webp';
+import Image5 from '@/assets/mirandaContent.webp';
+import Image6 from '@/assets/mirandalImg.webp';
+import Image7 from '@/assets/sarahScarlet.webp';
+import Image8 from '@/assets/style-gen-img6.webp';
 
 const detailsImages = [
   Image1,

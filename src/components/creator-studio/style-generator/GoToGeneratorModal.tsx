@@ -1,8 +1,8 @@
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
 import React, { useState } from 'react';
-import xMark from '../../../../public/assets/xmark (1).webp';
-import image from '../../../../public/assets/image-plus.webp
+import xMark from '@/assets/xmark (1).webp';
+import image from '@/assets/image-plus.webp
 ';
 
 interface GoToGeneratorModalProp {

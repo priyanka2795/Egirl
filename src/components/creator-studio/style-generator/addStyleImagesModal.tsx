@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
-import xMark from '../../../../public/assets/xmark (1).webp';
-import img1 from '../../../../public/assets/style-gen-img1.webp';
-import img2 from '../../../../public/assets/style-gen-img2.webp';
-import img3 from '../../../../public/assets/style-gen-img3.webp';
-import img4 from '../../../../public/assets/style-gen-img4.webp';
-import img5 from '../../../../public/assets/vi-image-1.webp';
-import img6 from '../../../../public/assets/vi-image.webp';
-import img7 from '../../../../public/assets/vi-image-2.webp';
+import xMark from '@/assets/xmark (1).webp';
+import img1 from '@/assets/style-gen-img1.webp';
+import img2 from '@/assets/style-gen-img2.webp';
+import img3 from '@/assets/style-gen-img3.webp';
+import img4 from '@/assets/style-gen-img4.webp';
+import img5 from '@/assets/vi-image-1.webp';
+import img6 from '@/assets/vi-image.webp';
+import img7 from '@/assets/vi-image-2.webp';
 
 const albums = [
   {

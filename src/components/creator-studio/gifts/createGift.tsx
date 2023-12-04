@@ -2,14 +2,14 @@
 
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
-import AlbumFirst from '../../../../public/assets/gallery-tab-img.webp';
-import ImagePlus from '../../../../public/assets/image-plus2.webp';
-import Edit from '../../../../public/assets/pen.svg';
+import AlbumFirst from '@/assets/gallery-tab-img.webp';
+import ImagePlus from '@/assets/image-plus2.webp';
+import Edit from '@/assets/pen.svg';
 import ImageSquare from '../svg/image-square.svg';
 import ImageSquareGray from '../svg/image-square-gray.svg';
 import Check from '../svg/check.svg';
-import plusIcon from '../../../../public/assets/plus-large.webp';
-import crossIcon from '../../../../public/assets/xmark (1).webp';
+import plusIcon from '@/assets/plus-large.webp';
+import crossIcon from '@/assets/xmark (1).webp';
 import CreateCategory from './createCategory';
 import Tooltip from './tooltip';
 import Cookies from 'js-cookie';

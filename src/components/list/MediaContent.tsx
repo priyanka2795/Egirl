@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import img1 from '../../../public/assets/media-1.webp';
-import img2 from '../../../public/assets/media-2.webp';
-import img3 from '../../../public/assets/media-3.webp';
-import img4 from '../../../public/assets/media-4.webp';
-import img5 from '../../../public/assets/media-5.webp';
-import img6 from '../../../public/assets/media-6.webp';
-import fullImgMicaChan from '../../../public/assets/media-full-img.webp';
+import img1 from '@/assets/media-1.webp';
+import img2 from '@/assets/media-2.webp';
+import img3 from '@/assets/media-3.webp';
+import img4 from '@/assets/media-4.webp';
+import img5 from '@/assets/media-5.webp';
+import img6 from '@/assets/media-6.webp';
+import fullImgMicaChan from '@/assets/media-full-img.webp';
 import Image from 'next/image';
 import { Modal } from '@components/modal/modal';
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import plusIcon from '../../../public/assets/plus-white.webp';
-import userAddIcon from '../../../public/assets/user-plus.webp';
+import plusIcon from '@/assets/plus-white.webp';
+import userAddIcon from '@/assets/user-plus.webp';
 import CreateCharacterModal from './CreateCharacterModal';
 import CharacterAdd from '@components/creator-studio/NewCharacter/CharacterAdd';
 

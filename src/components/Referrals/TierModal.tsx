@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
-import crossIcon from '../../../public/assets/xmark (1).webp'
+import crossIcon from '@/assets/xmark (1).webp'
 
 const tierInfo = [
     {

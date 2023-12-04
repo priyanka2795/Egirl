@@ -1,11 +1,11 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
-import mikaChanImg from '../../../../public/assets/mikaChan.webp';
-import sarahScarlet from '../../../../public/assets/sarahScarlet.webp';
-import galleryTabImg3 from '../../../../public/assets/gallery-tab-img.webp';
-import galleryTabImg4 from '../../../../public/assets/mirandalImg.webp';
-import galleryTabImg5 from '../../../../public/assets/gallery-tab-img-2.webp';
-import galleryTabImg6 from '../../../../public/assets/gallery-tab-img-3.webp';
+import mikaChanImg from '@/assets/mikaChan.webp';
+import sarahScarlet from '@/assets/sarahScarlet.webp';
+import galleryTabImg3 from '@/assets/gallery-tab-img.webp';
+import galleryTabImg4 from '@/assets/mirandalImg.webp';
+import galleryTabImg5 from '@/assets/gallery-tab-img-2.webp';
+import galleryTabImg6 from '@/assets/gallery-tab-img-3.webp';
 import HeartIcon from '../svg/heart-white.svg';
 import FavoriteStyleModal from '../view-Styles/FavoriteStyleModal';
 

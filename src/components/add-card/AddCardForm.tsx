@@ -1,11 +1,11 @@
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
-import circleInformation from '../../../public/assets/circle-information2.webp';
-import discoverCard from '../../../public/assets/discover-card.webp';
-import jcbCard from '../../../public/assets/jcb-card.webp';
-import maestroCard from '../../../public/assets/maestro-card.webp';
-import masterrCard from '../../../public/assets/master-card.webp';
-import visaCard from '../../../public/assets/visa-card.webp';
+import circleInformation from '@/assets/circle-information2.webp';
+import discoverCard from '@/assets/discover-card.webp';
+import jcbCard from '@/assets/jcb-card.webp';
+import maestroCard from '@/assets/maestro-card.webp';
+import masterrCard from '@/assets/master-card.webp';
+import visaCard from '@/assets/visa-card.webp';
 // Interfaces and types
 
 // Main data and utils

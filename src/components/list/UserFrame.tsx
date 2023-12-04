@@ -1,7 +1,7 @@
 import React from 'react';
-import userFrameImg1 from '../../../public/assets/messages/grid-img-4.png';
-import userFrameImg2 from '../../../public/assets/messages/grid-img-2.png';
-import userFrameImg3 from '../../../public/assets/messages/grid-img-15.png';
+import userFrameImg1 from '@/assets/messages/grid-img-4.png';
+import userFrameImg2 from '@/assets/messages/grid-img-2.png';
+import userFrameImg3 from '@/assets/messages/grid-img-15.png';
 import Image from 'next/image';
 
 const userFrame = [

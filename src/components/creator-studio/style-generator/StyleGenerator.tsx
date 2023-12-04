@@ -2,14 +2,14 @@
 
 import Image from 'next/image';
 import React, { useState, useRef, useEffect } from 'react';
-import circleInformation from '../../../../public/assets/circle-information.webp';
-import chevronDown from '../../../../public/assets/chevron-down2.webp';
-import chevronUp from '../../../../public/assets/chevron-up.webp';
-import image from '../../../../public/assets/image-plus.webp
+import circleInformation from '@/assets/circle-information.webp';
+import chevronDown from '@/assets/chevron-down2.webp';
+import chevronUp from '@/assets/chevron-up.webp';
+import image from '@/assets/image-plus.webp
 ';
 import AddImagesModal from './AddImagesModal';
 import GoToGeneratorModal from './GoToGeneratorModal';
-import downArrow from '../../../../public/assets/down-arrow-img.webp';
+import downArrow from '@/assets/down-arrow-img.webp';
 import CompleteGeneration from './CompleteGeneration';
 import AddStyleImagesModal from './addStyleImagesModal';
 

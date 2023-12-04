@@ -3,8 +3,8 @@ import { Modal, modal } from '@components/modal/modal';
 import { useRouter } from 'next/router';
 import Isymbol from '../svg/Isymbol';
 import AdvanceArrow from '../svg/AdvanceArrow';
-import InfoIcon from '../../../../public/assets/svgImages/info-icon.svg';
-import CloseIcon from '../../../../public/assets/svgImages/close-icon.svg';
+import InfoIcon from '@/assets/svgImages/info-icon.svg';
+import CloseIcon from '@/assets/svgImages/close-icon.svg';
 import MultiStepRangeSlider from '../common/MultiStepRangeSlider';
 
 // const router = useRouter();

@@ -5,12 +5,12 @@ import CollectionOptions from './CollectionOptions';
 import RemoveProfile from './RemoveProfile';
 import BookMarks from './BookMarks1';
 import Following from './Following';
-import heartIcon from '../../../public/assets/heart-with-plus.webp';
+import heartIcon from '@/assets/heart-with-plus.webp';
 import SubscriptionInitialPage from './SubscriptionInitialPage';
-import heartIconSubscription from '../../../public/assets/heart-with-plus-grey.webp';
-import userCheck from '../../../public/assets/user-check (1).webp';
-import bookmark from '../../../public/assets/bookmark (2).webp';
-import folderImage from '../../../public/assets/folder-image.webp';
+import heartIconSubscription from '@/assets/heart-with-plus-grey.webp';
+import userCheck from '@/assets/user-check (1).webp';
+import bookmark from '@/assets/bookmark (2).webp';
+import folderImage from '@/assets/folder-image.webp';
 import RealisticPage from './RealisticPage';
 const ListIndex = () => {
   const [activeListTab, setActiveListTab] = useState('Subscriptions');

@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
-import arrowDown from '../../../public/assets/arrow-down.webp';
-import arrowUp from '../../../public/assets/arrow-up.webp';
+import arrowDown from '@/assets/arrow-down.webp';
+import arrowUp from '@/assets/arrow-up.webp';
 
 interface InputFieldProp {
   labelName: string;

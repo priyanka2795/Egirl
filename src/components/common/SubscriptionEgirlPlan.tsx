@@ -2,8 +2,8 @@ import React from 'react';
 import PointedStarIcon from './svg/pointed-star-icon.svg';
 import Ellipse from './svg/ellipse.svg';
 import Star from './svg/star.svg';
-import heartIcon from '../../../public/assets/heart-icon.webp';
-import starIcon from '../../../public/assets/blue-start-icon.webp';
+import heartIcon from '@/assets/heart-icon.webp';
+import starIcon from '@/assets/blue-start-icon.webp';
 import Image from 'next/image';
 
 const egirlPlan = [

@@ -1,10 +1,10 @@
 //@ts-nocheck
 import React,{useState,useEffect} from 'react';
-import Search from '../../../public/assets/search-alt (1).webp';
-import Information from '../../../public/assets/circle-information2.webp';
+import Search from '@/assets/search-alt (1).webp';
+import Information from '@/assets/circle-information2.webp';
 import Image from 'next/image';
 import SearchBar from '@components/common/Search/SearchBar';
-import arroeLeft from '../../../public/assets/arrow-left.webp'
+import arroeLeft from '@/assets/arrow-left.webp'
 
 
 const alphabets=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]

@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
-import deleteOrange from '../../../public/assets/orange-delete-icon.webp'
+import deleteOrange from '@/assets/orange-delete-icon.webp'
 import { Modal } from '@components/modal/modal'
 
 interface deleteModalProps{

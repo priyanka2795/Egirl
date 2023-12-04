@@ -1,10 +1,10 @@
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
 import React, { useState } from 'react';
-import crossIcon from '../../../../public/assets/xmark (1).webp';
-import AlbumFirst from '../../../../public/assets/gallery-tab-img.webp';
+import crossIcon from '@/assets/xmark (1).webp';
+import AlbumFirst from '@/assets/gallery-tab-img.webp';
 import ImageSquareGray from '../svg/image-square-gray.svg';
-import plusIcon from '../../../../public/assets/plus-large.webp';
+import plusIcon from '@/assets/plus-large.webp';
 import MoveImgFirst from '../svg/Image-block.png';
 import MoveImg from '../svg/Image-block2.png';
 import ImageSquare from '../svg/image-square.png';

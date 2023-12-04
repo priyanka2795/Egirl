@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
-import crossIcon from '../../../public/assets/xmark (1).webp';
-import dollarSign from '../../../public/assets/dollar-sign.webp';
-import coin from '../../../public/assets/coin.webp';
-import arrowDown from '../../../public/assets/arrow-sm-down.webp';
+import crossIcon from '@/assets/xmark (1).webp';
+import dollarSign from '@/assets/dollar-sign.webp';
+import coin from '@/assets/coin.webp';
+import arrowDown from '@/assets/arrow-sm-down.webp';
 import ConfirmConversionModal from './ConfirmConversionModal';
 import { log } from 'node:console';
 

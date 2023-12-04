@@ -1,5 +1,5 @@
 import React from 'react';
-import ClockSvg from '../../../../public/assets/svgImages/clock-img.svg';
+import ClockSvg from '@/assets/svgImages/clock-img.svg';
 
 interface StyleBeingGeneratedProps {
   setGeneratedStyle?: any;

@@ -1,16 +1,16 @@
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
 import React from 'react';
-import pen from '../../../../public/assets/pen.webp';
-import heart from '../../../../public/assets/heart-alt.webp';
-import circleInformation from '../../../../public/assets/circle-information.webp';
-import arrowDown from '../../../../public/assets/chevron-down2.webp';
-import shop from '../../../../public/assets/shop.webp';
-import Delete from '../../../../public/assets/delete-icon.webp';
-import modalImg from '../../../../public/assets/view-style-modal-img.webp';
-import star from '../../../../public/assets/star.webp';
-import avatar2 from '../../../../public/assets/viewStyle-modal-2.webp';
-import rightArrow from '../../../../public/assets/chevron-right.webp';
+import pen from '@/assets/pen.webp';
+import heart from '@/assets/heart-alt.webp';
+import circleInformation from '@/assets/circle-information.webp';
+import arrowDown from '@/assets/chevron-down2.webp';
+import shop from '@/assets/shop.webp';
+import Delete from '@/assets/delete-icon.webp';
+import modalImg from '@/assets/view-style-modal-img.webp';
+import star from '@/assets/star.webp';
+import avatar2 from '@/assets/viewStyle-modal-2.webp';
+import rightArrow from '@/assets/chevron-right.webp';
 
 interface PostedStyleModalprops {
   setPostedStyleModal: React.Dispatch<React.SetStateAction<boolean>>;

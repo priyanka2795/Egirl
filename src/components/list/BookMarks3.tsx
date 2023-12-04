@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image';
-import orangeDeleteIcon from '../../../public/assets/orange-delete-icon.webp'
+import orangeDeleteIcon from '@/assets/orange-delete-icon.webp'
 
 
 const BookMarks3 = () => {

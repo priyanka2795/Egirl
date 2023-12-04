@@ -4,7 +4,7 @@ import Bolt from './svg/boltIcon.svg';
 import BoltPrimary from './svg/bolt-primary.svg';
 import SubscriptionEgirlContent from './SubscriptionEgirlContent';
 import SubscriptionBuyContent from './SubscriptionBuyContent';
-import CloseIcon from '../../../public/assets/svgImages/close-icon.svg'
+import CloseIcon from '@/assets/svgImages/close-icon.svg'
 import SubscriptionEgirlPlan from './SubscriptionEgirlPlan';
 import CircleQuestion from './svg/circle-question.svg';
 import TokenUser from './TokenUses';

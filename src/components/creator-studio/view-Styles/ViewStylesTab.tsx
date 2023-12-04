@@ -1,13 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
-import grid2 from '../../../../public/assets/grid-horizontal.webp';
-import arrowUpArrowDown from '../../../../public/assets/arrow-down-arrow-up2.webp';
-import filter from '../../../../public/assets/filter.webp';
-import arrowLeft from '../../../../public/assets/arrow-left.webp';
-import search from '../../../../public/assets/search-alt (1).webp';
+import grid2 from '@/assets/grid-horizontal.webp';
+import arrowUpArrowDown from '@/assets/arrow-down-arrow-up2.webp';
+import filter from '@/assets/filter.webp';
+import arrowLeft from '@/assets/arrow-left.webp';
+import search from '@/assets/search-alt (1).webp';
 import Image from 'next/image';
 import Sort from './Sort';
-import crossIcon from '../../../../public/assets/xmark (1).webp';
-import searchIcon from '../../../../public/assets/search-icon.webp';
+import crossIcon from '@/assets/xmark (1).webp';
+import searchIcon from '@/assets/search-icon.webp';
 import ViewStyleFilter from './ViewStyleFilter';
 
 interface ViewStylesTabProps {

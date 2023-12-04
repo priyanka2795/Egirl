@@ -1,23 +1,23 @@
 import React, {useState} from 'react';
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
-import pen from '../../../../public/assets/pen.webp';
-import heart from '../../../../public/assets/heart-alt.webp';
-import circleInformation from '../../../../public/assets/circle-information.webp';
-import arrowDown from '../../../../public/assets/chevron-down2.webp';
-import shop from '../../../../public/assets/shop.webp';
-import modalImg from '../../../../public/assets/added-style-modal.webp';
-import arrowLeft from '../../../../public/assets/chevron-left.webp';
-import arrowRight from '../../../../public/assets/chevron-right-white.webp';
-import check from '../../../../public/assets/check-icon-grey.webp';
-import avatar from '../../../../public/assets/image-avatar.webp';
-import star from '../../../../public/assets/star.webp';
-import rightArrow from '../../../../public/assets/chevron-right.webp';
-import avatar2 from '../../../../public/assets/viewStyle-modal-2.webp';
-import smiley from '../../../../public/assets/face-smile-icon.webp';
-import arrowUp from '../../../../public/assets/chevron-up.webp';
-import copy from '../../../../public/assets/file-copy.webp';
-import downArrow from '../../../../public/assets/down-arrow-img.webp';
+import pen from '@/assets/pen.webp';
+import heart from '@/assets/heart-alt.webp';
+import circleInformation from '@/assets/circle-information.webp';
+import arrowDown from '@/assets/chevron-down2.webp';
+import shop from '@/assets/shop.webp';
+import modalImg from '@/assets/added-style-modal.webp';
+import arrowLeft from '@/assets/chevron-left.webp';
+import arrowRight from '@/assets/chevron-right-white.webp';
+import check from '@/assets/check-icon-grey.webp';
+import avatar from '@/assets/image-avatar.webp';
+import star from '@/assets/star.webp';
+import rightArrow from '@/assets/chevron-right.webp';
+import avatar2 from '@/assets/viewStyle-modal-2.webp';
+import smiley from '@/assets/face-smile-icon.webp';
+import arrowUp from '@/assets/chevron-up.webp';
+import copy from '@/assets/file-copy.webp';
+import downArrow from '@/assets/down-arrow-img.webp';
 
 
 interface AddedStyleModalProp {

@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
-import downArrow from '../../../../public/assets/down-arrow-img.webp';
+import downArrow from '@/assets/down-arrow-img.webp';
 
 const StyleGenHoverModal = () => {
   return (

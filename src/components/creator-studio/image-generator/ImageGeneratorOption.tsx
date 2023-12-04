@@ -1,33 +1,33 @@
 //@ts-nocheck
 
 import React, { useEffect, useRef, useState } from 'react';
-import ShuffleSvg from '../../../../public/assets/svgImages/shuffle.svg';
-import PlusIconSvg from '../../../../public/assets/svgImages/plus-icon.svg';
+import ShuffleSvg from '@/assets/svgImages/shuffle.svg';
+import PlusIconSvg from '@/assets/svgImages/plus-icon.svg';
 import Toggle from '@components/common/Toggler';
 import AddTagModal from './AddTagModal';
 import { Modal } from '@components/modal/modal';
 import ImageGallery from './ImageGallery';
-import CloseIcon from '../../../../public/assets/svgImages/close-icon.svg';
-import Question from '../../../../public/assets/circle-question.webp';
-import ImageSquare from '../../../../public/assets/image-square2.webp';
+import CloseIcon from '@/assets/svgImages/close-icon.svg';
+import Question from '@/assets/circle-question.webp';
+import ImageSquare from '@/assets/image-square2.webp';
 import AddStyleModal from './AddStyleModal';
 import Tooltip from '@components/common/tooltip';
 import Image from 'next/image';
 import SelectImage from './selectImage';
 import InpaintingExample from './InpaintingExample';
 import InpaintingModals from './inpaintingModals';
-import Image1 from '../../../../public/assets/inpaint-Image.png';
-import Edit from '../../../../public/assets/pen.svg';
-import People from '../../../../public/assets/body.webp';
+import Image1 from '@/assets/inpaint-Image.png';
+import Edit from '@/assets/pen.svg';
+import People from '@/assets/body.webp';
 import PoseExample from './poseExample';
 import PosingModal from './posingModal';
-import ArrowRight from '../../../../public/assets/chevron-right.webp';
-import PoseImage from '../../../../public/assets/poseimage3.webp';
-import Grid from '../../../../public/assets/dots-vertical.webp';
-import UserWhite from '../../../../public/assets/circle-user-white.webp';
-import SearchIcon from '../../../../public/assets/search-alt (1).webp';
-import RightIcon from '../../../../public/assets/check-cs.webp';
-import DeleteIcon from '../../../../public/assets/delete-icon.webp';
+import ArrowRight from '@/assets/chevron-right.webp';
+import PoseImage from '@/assets/poseimage3.webp';
+import Grid from '@/assets/dots-vertical.webp';
+import UserWhite from '@/assets/circle-user-white.webp';
+import SearchIcon from '@/assets/search-alt (1).webp';
+import RightIcon from '@/assets/check-cs.webp';
+import DeleteIcon from '@/assets/delete-icon.webp';
 import {
   getImageGeneration,
   postInpaintImage,
