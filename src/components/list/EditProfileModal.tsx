@@ -67,7 +67,7 @@ const EditProfileModal = ({
         display_name,
         bio,
         location,
-        profile_picture_media_id,
+        profile_picture_media_id ,
         profile_banner_media_id,
         profile_tags
       } = bannerData;

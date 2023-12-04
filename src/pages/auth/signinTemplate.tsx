@@ -10,7 +10,6 @@ import facebookIcon from '@/assets/facebook-icon.webp';
 import vector1 from '@/assets/Vector_1.webp';
 import Link from 'next/link';
 
-
 const SigninTemplate = ({ children }: any) => {
   return (
     <div className='mx-auto flex min-h-screen w-full max-w-[1440px] flex-col justify-center'>
@@ -22,7 +21,6 @@ const SigninTemplate = ({ children }: any) => {
         </div>
         <div className='self-center p-[54px]'>{children}</div>
       </div>
-
     </div>
   );
 };

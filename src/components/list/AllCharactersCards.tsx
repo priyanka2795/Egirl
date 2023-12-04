@@ -51,7 +51,6 @@ const AllCharactersCards = () => {
   const handleCharactersMenu = (index: number) => {
     setOpenCharactersMenu(openCharactersMenu === index ? null : index);
   };
-  
 
   return (
     <>
@@ -161,12 +160,7 @@ const AllCharactersCards = () => {
             })}
         </div>
       </div>
-      {newCharacter && (
-        <CharacterAdd
-          NewCharacterClose={setNewCharacter}
-
-        />
-      )}
+      {newCharacter && <CharacterAdd NewCharacterClose={setNewCharacter} />}
     </>
   );
 };
