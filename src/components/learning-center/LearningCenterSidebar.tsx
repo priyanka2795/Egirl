@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import arrowUp from '../../../public/assets/chevron-up-grey.png';
-import arrowDown from '../../../public/assets/chevron-down2.png';
-import homeIcon from '../../../public/assets/house-line.png';
+import arrowUp from '../../../public/assets/chevron-up-grey.webp';
+import arrowDown from '../../../public/assets/chevron-down2.webp';
+import homeIcon from '../../../public/assets/house-line.webp';
 import Palette from '../creator-studio/svg/palette-grey.svg';
 import SidebarMenuItem from '@components/common/Sidebar/SidebarMenuItem';
 import PartnerProgram from '../creator-studio/svg/users-alt.svg';

@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
-import pic from '../../../../public/assets/Collar.png';
+import pic from '../../../../public/assets/Collar.webp';
 import { Modal } from '@components/modal/modal';
-import CloseIcon from '../../../../public/assets/xmark-style.png';
-import searchIcon from '../../../../public/assets/search-alt.png';
+import CloseIcon from '../../../../public/assets/xmark-style.webp';
+import searchIcon from '../../../../public/assets/search-alt.webp';
 import Tooltip from '@components/common/tooltip';
 
 const SelfMode = [

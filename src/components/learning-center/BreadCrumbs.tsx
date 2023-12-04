@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
-import arrowRight from '../../../public/assets/chevron-right-small.png';
-import arrowLeft from '../../../public/assets/arrow-left-grey.png';
+import arrowRight from '../../../public/assets/chevron-right-small.webp';
+import arrowLeft from '../../../public/assets/arrow-left-grey.webp';
 
 interface BreadCrumbProps {
   title: string;

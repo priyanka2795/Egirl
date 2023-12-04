@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import pen from '../../../public/assets/pen.png';
-import userImg from '../../../public/assets/circle-user-white.png';
-import deleteIcon from '../../../public/assets/trash-blank.png';
+import pen from '../../../public/assets/pen.webp';
+import userImg from '../../../public/assets/circle-user-white.webp';
+import deleteIcon from '../../../public/assets/trash-blank.webp';
 import Image from 'next/image';
 import DeleteModal from '@components/add-card/DeleteModal';
 import DeleteProfileModal from './DeleteProfileModal';

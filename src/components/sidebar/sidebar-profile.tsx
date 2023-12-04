@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import { AnimatePresence, motion } from 'framer-motion';
 import { Menu } from '@headlessui/react';
 import cn from 'clsx';

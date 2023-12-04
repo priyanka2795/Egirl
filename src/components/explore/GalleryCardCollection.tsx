@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
-import mikaChanImg from '../../../public/assets/mikaChan.png';
-import galleryTabImg3 from '../../../public/assets/explore-gallery-image2.png';
-import galleryTabImg4 from '../../../public/assets/explore-gallery-Image.png';
-import galleryTabImg5 from '../../../public/assets/explore-gallery-image3.png';
-import UserPlusIcon from '../../../public/assets/user-plus-alt-1.png';
+import mikaChanImg from '../../../public/assets/mikaChan.webp';
+import galleryTabImg3 from '../../../public/assets/explore-gallery-Image2.webp';
+import galleryTabImg4 from '../../../public/assets/explore-gallery-Image.webp';
+import galleryTabImg5 from '../../../public/assets/explore-gallery-Image3.webp';
+import UserPlusIcon from '../../../public/assets/user-plus-alt-1webp';
 import RemoveProfile from '@components/list/RemoveProfile';
 
 const exploreGallery = [
@@ -91,7 +91,7 @@ const GalleryCardCollection = ({
               <div className='absolute right-3 top-3 hidden group-hover:block '>
                 <Image src={UserPlusIcon} />
               </div>
-              <div className='absolute bottom-0 right-0 w-full flex-col items-center justify-start bg-gradient-to-b from-transparent to-black px-6 pb-6 pt-[150px]'>
+              <div className='hidden group-hover:block  absolute bottom-0 right-0 w-full flex-col items-center justify-start bg-gradient-to-b from-transparent to-black px-6 pb-6 pt-[150px]'>
                 <div className='inline-flex h-6 w-[276px] items-center justify-start gap-1.5'>
                   <div className='relative flex h-6 w-6 rounded-[100px]'>
                     <Image

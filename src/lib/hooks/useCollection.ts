@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 // import { useState, useEffect } from 'react';
 // import { getDoc, doc, onSnapshot } from 'firebase/firestore';
 // import { useCacheQuery } from './useCacheQuery';

@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import bookUser from '../../../public/assets/book-user.png';
-import userPenIcon from '../../../public/assets/user-pen.png';
-import personalityIcon from '../../../public/assets/user.png';
-import imagePlusIcon from '../../../public/assets/image-plus.png';
-import palette from '../../../public/assets/palette.png';
-import flag from '../../../public/assets/flag.png';
+import bookUser from '../../../public/assets/book-user.webp';
+import userPenIcon from '../../../public/assets/user-pen.webp';
+import personalityIcon from '../../../public/assets/user.webp';
+import imagePlusIcon from '../../../public/assets/image-plus.webp';
+import palette from '../../../public/assets/palette.webp';
+import flag from '../../../public/assets/flag.webp';
 import HoverModal from './HoverModal';
-import paletteWhiteIcon from '../../../public/assets/palette-white.png';
-import RightIcon from '../../../public/assets/check-cs.png';
-import personalityWhiteIcon from '../../../public/assets/user-white.png';
-import imagePlusWhiteIcon from '../../../public/assets/image-plus-white.png';
-import flagWhite from '../../../public/assets/flag-white.png';
+import paletteWhiteIcon from '../../../public/assets/palette-white.webp';
+import RightIcon from '../../../public/assets/check-cs.webp';
+import personalityWhiteIcon from '../../../public/assets/user-white.webp';
+import imagePlusWhiteIcon from '../../../public/assets/image-plus-white.webp';
+import flagWhite from '../../../public/assets/flag-white.webp';
 
 interface SetUpYourCharacter {
   IsOpen: any;

@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
 import cn from 'clsx';

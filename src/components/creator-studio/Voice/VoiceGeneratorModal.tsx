@@ -1,12 +1,12 @@
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
 import React, { useState } from 'react';
-import crossIcon from '../../../../public/assets/xmark (1).png';
-import circleInformation from '../../../../public/assets/circle-information4.png';
+import crossIcon from '../../../../public/assets/xmark (1).webp';
+import circleInformation from '../../../../public/assets/circle-information4.webp';
 import { Range } from 'react-range';
 import RangePicker from '../common/RangePicker';
-import arrowDown from '../../../../public/assets/arrow-down.png';
-import arrowUp from '../../../../public/assets/arrow-up.png';
+import arrowDown from '../../../../public/assets/arrow-down.webp';
+import arrowUp from '../../../../public/assets/arrow-up.webp';
 
 interface VoiceGeneratorModalProp {
   closeModal: React.Dispatch<React.SetStateAction<boolean>>;

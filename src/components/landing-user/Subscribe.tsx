@@ -53,7 +53,7 @@ const Subscribe = () => {
           <div className='flex w-full flex-col items-center drop-shadow-xl md:w-auto'>
             <div className='justify-left flex w-full items-center rounded-t-2xl bg-[#E7E8E8] pb-5 pl-6 pt-6 md:w-[397px]'>
               <Image
-                src='/avatars/SarahAvatar.png'
+                src='/avatars/Sarahavatar.webp'
                 alt='Sarah Carter'
                 width={36}
                 height={36}
@@ -94,7 +94,7 @@ const Subscribe = () => {
           <div className='flex w-full flex-col items-center drop-shadow-xl md:w-auto'>
             <div className='justify-left flex w-full items-center rounded-t-2xl bg-[#E7E8E8] pb-5 pl-6 pt-6 md:w-[397px]'>
               <Image
-                src='/avatars/JennieAvatar.png'
+                src='/avatars/Jennieavatar.webp'
                 alt='Yoon Jennie'
                 width={36}
                 height={36}
@@ -135,7 +135,7 @@ const Subscribe = () => {
           <div className='flex w-full flex-col items-center drop-shadow-xl md:w-auto'>
             <div className='justify-left flex w-full items-center rounded-t-2xl bg-[#E7E8E8] pb-5 pl-6 pt-6 md:w-[397px]'>
               <Image
-                src='/avatars/MikaAvatar.png'
+                src='/avatars/Mikaavatar.webp'
                 alt='Mika-chan'
                 width={36}
                 height={36}

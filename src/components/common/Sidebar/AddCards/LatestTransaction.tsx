@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
-import model2 from '../../../../../public/assets/golden-shoulder-girl-2.png';
-import micaChan from '../../../../../public/assets/Mica-chan-2.png';
+import model2 from '../../../../../public/assets/golden-shoulder-girl-2.webp';
+import micaChan from '../../../../../public/assets/Mica-chan-2.webp';
 // import cardBlueImg from '../../../../../public/assets/latest-tans-card-img.png';
 
 

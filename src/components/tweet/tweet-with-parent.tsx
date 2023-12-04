@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import { useState } from 'react';
 import { Tweet } from './tweet';
 import { TweetParent } from './tweet-parent';

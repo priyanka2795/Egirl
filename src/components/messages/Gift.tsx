@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
-import userIcon from '../../../public/assets/user-icon.png'
-import pizza from '../../../public/assets/pizza.png';
+import userIcon from '../../../public/assets/user-icon.webp'
+import pizza from '../../../public/assets/pizza.webp';
 
 type GiftProp = {
     showGiftImg: any;

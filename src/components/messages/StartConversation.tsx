@@ -1,7 +1,7 @@
 import SearchIcon from '@components/common/Search/SearchIcon';
 import { Modal } from '@components/modal/modal';
 import React, { Dispatch, SetStateAction, useState } from 'react';
-import ChatIcon from '../../../public/assets/message-circle-lines-alt.png';
+import ChatIcon from '../../../public/assets/message-circle-lines-alt.webp';
 import UserList from './UserList';
 import CloseIcon from './svg/close-icon.svg';
 import ImageRequestModal from './ImageRequestModal';

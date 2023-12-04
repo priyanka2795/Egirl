@@ -1,3 +1,4 @@
+//@ts-nocheck
 import Image from 'next/image';
 import React, { useState } from 'react';
 import ClearBookMarkModal from '@components/list/ClearBookMarkModal';

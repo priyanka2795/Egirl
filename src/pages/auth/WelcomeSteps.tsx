@@ -1,11 +1,11 @@
 import { Modal } from '@components/modal/modal';
 import React, { useState, useEffect } from 'react';
-import ArrowLeft from '../../../public/assets/arrow-left.png';
-import ArrowNext from '../../../public/assets/arrow-next.png';
-import RightIcon from '../../../public/assets/check-icon-grey.png';
+import ArrowLeft from '../../../public/assets/arrow-left.webp';
+import ArrowNext from '../../../public/assets/arrow-next.webp';
+import RightIcon from '../../../public/assets/check-icon-grey.webp';
 import Image from 'next/image';
-import arrowLeft from '../../../public/assets/arrow-narrow-left.png';
-import arrowRight from '../../../public/assets/arrow-narrow-right.png';
+import arrowLeft from '../../../public/assets/arrow-narrow-left.webp';
+import arrowRight from '../../../public/assets/arrow-narrow-right.webp';
 import Slider from 'react-slick';
 import userFrameImg1 from '../../../public/assets/messages/grid-img-4.png';
 import userFrameImg2 from '../../../public/assets/messages/grid-img-2.png';

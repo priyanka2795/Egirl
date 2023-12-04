@@ -304,7 +304,7 @@ export default function CreatorLanding(): JSX.Element {
                 <NextImage
                   width={550}
                   height={500}
-                  src={'/assets/footerContent.png'}
+                  src={'/assets/footerContent.webp'}
                   alt={'Profile'}
                 />
               </div>

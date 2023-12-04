@@ -9,7 +9,7 @@ import AllCharactersCards from '@components/list/AllCharactersCards';
 import EditProfileModal from '@components/list/EditProfileModal';
 import FinishStepModal from '@components/list/finishStep/finishStepModal';
 import Image from 'next/image';
-import AddUser from '../../../public/assets/user-add-icon.png';
+import AddUser from '../../../public/assets/user-add-icon.webp';
 
 interface CreatorStudio {
   IsOpen: any;

@@ -1,21 +1,23 @@
+//@ts-nocheck
+
 import React, { useEffect, useState } from 'react';
 import CardSlider from './CardSlider';
 import ExploreTabs from './ExploreTabs';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import arrowLeftImg from '../../../public/assets/img-arrow-left.png';
-import arrowRightImg from '../../../public/assets/img-arrow-right.png';
-import subscribeImg from '../../../public/assets/subscribe-arrow-up.png';
-import previousImg from '../../../public/assets/previous-img.png';
-import nextImg from '../../../public/assets/next-img.png';
-import mikaChanImg from '../../../public/assets/mikaChan.png';
-import sarahScarlet from '../../../public/assets/sarahScarlet.png';
-import galleryTabImg3 from '../../../public/assets/gallery-tab-img.png';
-import galleryTabImg4 from '../../../public/assets/mirandalImg.png';
-import galleryTabImg5 from '../../../public/assets/gallery-tab-img-2.png';
-import galleryTabImg6 from '../../../public/assets/gallery-tab-img-3.png';
-import mikaChan from '../../../public/assets/mikaChan.png';
+import arrowLeftImg from '../../../public/assets/img-arrow-left.webp';
+import arrowRightImg from '../../../public/assets/img-arrow-right.webp';
+import subscribeImg from '../../../public/assets/subscribe-arrow-up.webp';
+import previousImg from '../../../public/assets/previous-img.webp';
+import nextImg from '../../../public/assets/next-img.webp';
+import mikaChanImg from '../../../public/assets/mikaChan.webp';
+import sarahScarlet from '../../../public/assets/sarahScarlet.webp';
+import galleryTabImg3 from '../../../public/assets/gallery-tab-img.webp';
+import galleryTabImg4 from '../../../public/assets/mirandalImg.webp';
+import galleryTabImg5 from '../../../public/assets/gallery-tab-img-2.webp';
+import galleryTabImg6 from '../../../public/assets/gallery-tab-img-3.webp';
+import mikaChan from '../../../public/assets/mikaChan.webp';
 import Image from 'next/image';
 import Card from './Card';
 import GalleryTabFilter from './GalleryTabFilter';

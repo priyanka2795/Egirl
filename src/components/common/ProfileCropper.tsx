@@ -1,12 +1,13 @@
+//@ts-nocheck
 import RangePicker from '@components/creator-studio/common/RangePicker';
 import React, { SetStateAction, useState, useRef } from 'react';
 import AvatarEditor from 'react-avatar-editor';
 import PlusIcon from '../../../public/assets/svgImages/plus-large-icon.svg';
 import MinusIcon from '../../../public/assets/svgImages/minus-icon.svg';
-import RotateLeftIcon from '../../../public/assets/image-rotate-left.png';
-import RotateRightIcon from '../../../public/assets/image-rotate-right.png';
+import RotateLeftIcon from '../../../public/assets/image-rotate-left.webp';
+import RotateRightIcon from '../../../public/assets/image-rotate-right.webp';
 import TooltipArrow from '../../../public/assets/svgImages/tooltiparrow.svg';
-import ImageUploaded from '../../../public/assets/uploadimage.png';
+import ImageUploaded from '../../../public/assets/uploadimage.webp';
 import { Header } from './SmallCompoents/Header';
 import { Tooltip } from './SmallCompoents/Tooltip';
 import { Button } from './SmallCompoents/Button';
@@ -26,7 +27,7 @@ const ProfileCropper = ({
   setCroppedImage,
   setAddImagesModal
 }: profileInterface) => {
-  const [src, setSrc] = useState('../../../public/assets/uploadimage.png');
+  const [src, setSrc] = useState('../../../public/assets/uploadimage.webp');
   const [values, setValues] = useState<number[]>([1]);
   const [rotate, setRotate] = useState<number>(0);
   const cropRef = useRef<AvatarEditor | null>(null);

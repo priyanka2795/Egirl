@@ -3,7 +3,7 @@ import PersonalityS1 from './PersonalityS1';
 import PersonalityLikeSection from './PersonalityLikeSection';
 import PersonalityTraitsSection from './PersonalityTraitsSection';
 import Image from 'next/image';
-import circleInformation from '../../../../public/assets/circle-information5.png';
+import circleInformation from '../../../../public/assets/circle-information.webp';
 import {  updateCharacterPersonality } from 'services/services';
 
 interface PersonalityContent {

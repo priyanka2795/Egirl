@@ -1,9 +1,9 @@
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
-import xMark from '../../../public/assets/xmark (1).png';
+import xMark from '../../../public/assets/xmark (1).webp';
 import avatar from '../../../public/assets/image 69.png';
-import cameraOverlay from '../../../public/assets/white-camera.png';
+import cameraOverlay from '../../../public/assets/white-camera.webp';
 import InputFieldDesign from '@components/common/InputFieldDesign';
 import ProfileDropdown from '@components/common/ProfileDropdown';
 import DeleteProfileModal from '@components/common/DeleteProfileModal';

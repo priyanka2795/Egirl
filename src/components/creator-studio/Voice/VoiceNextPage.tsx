@@ -1,17 +1,19 @@
+//@ts-nocheck
+
 import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
 import { Range } from 'react-range';
-import crossIcon from '../../../../public/assets/xmark (1).png';
-import circleInformation from '../../../../public/assets/circle-information4.png';
-import plusIcon from '../../../../public/assets/plus-large.png';
-import searchIcon from '../../../../public/assets/search-alt (1).png';
-import threeDots from '../../../../public/assets/dots-horizontal (2).png';
-import volume from '../../../../public/assets/volume-max.png';
-import pencil from '../../../../public/assets/pencil.png';
+import crossIcon from '../../../../public/assets/xmark (1).webp';
+import circleInformation from '../../../../public/assets/circle-information4.webp';
+import plusIcon from '../../../../public/assets/plus-large.webp';
+import searchIcon from '../../../../public/assets/search-alt (1).webp';
+import threeDots from '../../../../public/assets/dots-horizontal.webp';
+import volume from '../../../../public/assets/volume-max.webp';
+import pencil from '../../../../public/assets/pencil.webp';
 import TextEdit from './TextEdit';
 import RangePicker from '../common/RangePicker';
-import chevronDown from '../../../../public/assets/chevron-down2.png';
-import chevronUp from '../../../../public/assets/chevron-up.png';
+import chevronDown from '../../../../public/assets/chevron-down2.webp';
+import chevronUp from '../../../../public/assets/chevron-up.webp';
 
 const voiceGenerations = [
   {

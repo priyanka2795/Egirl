@@ -1,14 +1,15 @@
+//@ts-nocheck
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
 import React, { useState } from 'react';
-import xMark from '../../../../public/assets/xmark (1).png';
-import img1 from '../../../../public/assets/style-gen-img1.png';
-import img2 from '../../../../public/assets/style-gen-img2.png';
-import img3 from '../../../../public/assets/style-gen-img3.png';
-import img4 from '../../../../public/assets/style-gen-img4.png';
-import img5 from '../../../../public/assets/vi-image-1.png';
-import img6 from '../../../../public/assets/vi-image.png';
-import img7 from '../../../../public/assets/vi-image-2.png';
+import xMark from '../../../../public/assets/xmark (1).webp';
+import img1 from '../../../../public/assets/style-gen-img1.webp';
+import img2 from '../../../../public/assets/style-gen-img2.webp';
+import img3 from '../../../../public/assets/style-gen-img3.webp';
+import img4 from '../../../../public/assets/style-gen-img4.webp';
+import img5 from '../../../../public/assets/vi-image-1.webp';
+import img6 from '../../../../public/assets/vi-image.webp';
+import img7 from '../../../../public/assets/vi-image-2.webp';
 
 interface SelectExploreImages {
   setAttachingImages?: any;

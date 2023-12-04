@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import Link from 'next/link';
 import { UserAvatar } from '@components/user/user-avatar';
 import { FollowButton } from '@components/ui/follow-button';

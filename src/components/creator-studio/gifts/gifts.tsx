@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import plusIcon from '../../../../public/assets/plus-large.png';
+import plusIcon from '../../../../public/assets/plus-large.webp';
 import ImagePlusIcon from '../svg/image-plus.svg';
 import MoreIcon from '../svg/MoreIcon.svg';
 import RightUp from '../svg/arrow-up-right.svg';
 import GiftCreateModal from './giftCreateModal';
-import Delete from '../../../../public/assets/delete-icon.png';
-import AlbumFirst from '../../../../public/assets/gallery-tab-img.png';
-import Pencil from '../../../../public/assets/pencil.png';
-import DotsHorizontal from '../../../../public/assets/dots-horizontal-white.png';
+// import Delete from '../../../../public/assets/delete-icon.webp';
+import Delete from '@/assets/delete-icon.webp';
+import AlbumFirst from '../../../../public/assets/gallery-tab-img.webp';
+import Pencil from '../../../../public/assets/pencil.webp';
+import DotsHorizontal from '../../../../public/assets/dots-horizontal-white.webp';
 import GiftCardEditModal from './giftCardEditModal';
 import GiftCategoryAction from './giftCategoryAction';
 import GiftCardDelete from './giftCardDelete';
@@ -54,7 +55,31 @@ function Gifts() {
     setGiftEditPopup(val);
   };
 
-  const DeleteGiftCardModal = (index: number, num: number, data: any) => {
+  // const DeleteGiftCardModal = (index: number, num: number, data: any) => {
+  //   deleteGift(characterId, [data?.gift_id], token)
+  //     .then((res: any) => {
+  //       console.log(res);
+  //       setDeleteGiftToggle(!deleteGiftToggle);
+  //     })
+  //     .then((err: any) => {
+  //       console.log(err);
+  //     });
+  //   setGiftCard(true);
+  //   setGiftEditPopup(num);
+  //   setDeleteBtnStep(1);
+  //   setGiftName('giftName');
+  // };
+
+  const DeleteGiftCardModal = (index: number, step: number, data: any) => {
+    setGiftEditPopup(step);
+    setGiftCard(true);
+    setGiftName('giftName');
+    setSelectedGiftData(data);
+    setDeleteBtnStep(1);
+    
+  };
+
+  const DeleteGift = (data: any) => {
     deleteGift(characterId, [data?.gift_id], token)
       .then((res: any) => {
         console.log(res);
@@ -63,18 +88,15 @@ function Gifts() {
       .then((err: any) => {
         console.log(err);
       });
-    setGiftCard(true);
-    setGiftEditPopup(num);
-    setDeleteBtnStep(1);
-    setGiftName('giftName');
+      setGiftCard(false); 
   };
 
-  const DeleteGift = (ind: number) => {
-    setGiftCard(false);
-    setGiftCardName((oldValue) => {
-      return oldValue.filter((item: string, index: number) => index !== ind);
-    });
-  };
+  // const DeleteGift = (ind: number) => {
+  //   setGiftCard(false);
+  //   setGiftCardName((oldValue) => {
+  //     return oldValue.filter((item: string, index: number) => index !== ind);
+  //   });
+  // };
 
   const DeleteAllGiftCard = () => {
     setDeleteModal(true);
@@ -113,11 +135,11 @@ function Gifts() {
     getAllCategory();
   }, [createCategoryToggle]);
 
-  useEffect(()=>{
-    if(giftCategory && giftCategory?.length > 0){
-      setSelectedCategoryId(giftCategory?.[0]?.gift_category_id)
+  useEffect(() => {
+    if (giftCategory && giftCategory?.length > 0) {
+      setSelectedCategoryId(giftCategory?.[0]?.gift_category_id);
     }
-  },[giftCategory])
+  }, [giftCategory]);
 
   useEffect(() => {
     getGifts(
@@ -174,7 +196,7 @@ function Gifts() {
               createCategoryToggle={createCategoryToggle}
             />
 
-            <div className='mt-4 flex items-center justify-between'>
+            <div className='flex items-center justify-between mt-4'>
               <p className='text-[#979797]'>
                 {`${selectedCategoryGifts?.length}/9`} gifts
               </p>
@@ -187,7 +209,7 @@ function Gifts() {
               </button>
             </div>
 
-            <div className='mt-4 grid grid-cols-1 items-center gap-9 md:grid-cols-2 lg:grid-cols-3'>
+            <div className='grid items-center grid-cols-1 mt-4 gap-9 md:grid-cols-2 lg:grid-cols-3'>
               {selectedCategoryGifts?.map((item: any, index: number) => (
                 <div
                   className='relative h-[300px] w-[300px] overflow-hidden rounded-xl'
@@ -199,7 +221,7 @@ function Gifts() {
                 /> */}
                   <img
                     src={item?.media_url}
-                    className='h-full w-full object-cover'
+                    className='object-cover w-full h-full'
                   />
 
                   <div className='absolute right-2 top-2'>
@@ -209,7 +231,7 @@ function Gifts() {
                     >
                       <Image
                         src={DotsHorizontal}
-                        className='h-full w-full object-cover'
+                        className='object-cover w-full h-full'
                         alt=''
                       />
                     </button>
@@ -223,7 +245,7 @@ function Gifts() {
                             >
                               <Image
                                 src={Pencil}
-                                className='h-full w-full'
+                                className='w-full h-full'
                                 alt=''
                               />
                               <p>Edit name</p>
@@ -234,7 +256,7 @@ function Gifts() {
                               onClick={() => EditGift(2 , item)}
                             >
                               <div>
-                                <RightUp className='h-full w-full' alt={''} />
+                                <RightUp className='w-full h-full' alt={''} />
                               </div>
                               <p>Move to another category</p>
                             </button>
@@ -247,7 +269,7 @@ function Gifts() {
                             >
                               <Image
                                 src={Delete}
-                                className='h-full w-full'
+                                className='w-full h-full'
                                 alt={''}
                               />
                               <p>Delete</p>

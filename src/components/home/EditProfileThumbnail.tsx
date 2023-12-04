@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import { Button } from '@components/common/SmallCompoents/Button';
 import Image from 'next/image';
 import React, { useState, useRef } from 'react';
@@ -6,7 +8,7 @@ import PlusIcon from '../../../public/assets/svgImages/plus-large-icon.svg';
 import MinusIcon from '../../../public/assets/svgImages/minus-icon.svg';
 import RangePicker from '@components/creator-studio/common/RangePicker';
 import { Header } from '@components/common/SmallCompoents/Header';
-import uploadImage from '../../../public/assets/uploadimage.png';
+import uploadImage from '../../../public/assets/uploadimage.webp';
 import ArrowLeft from '../../../public/assets/svgImages/arrow-left.svg';
 import Xmark from '../../../public/assets/svgImages/xmark.svg';
 

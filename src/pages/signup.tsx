@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import * as Yup from 'yup';
 import Image from 'next/image';
-import vector1 from '../../public/assets/Vector_1.png';
-import vector2 from '../../public/assets/Vector_2.png';
+import vector1 from '../../public/assets/Vector_1.webp';
+import vector2 from '../../public/assets/Vector_1.webp';
 import CheckedIcon from './auth/svg/checkedIcon.svg';
 import CrossIcon from './auth/svg/xMark.svg';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
@@ -19,7 +19,7 @@ const validationSchema = Yup.object().shape({
   username: Yup.string().required('Username is required'),
   email: Yup.string().email('Invalid email').required('Email is required'),
   verifyemail: Yup.string()
-    .required("Verify email is a required")
+    .required('Verify email is a required')
     .oneOf([Yup.ref('email')], "That's an invalid email"),
   password: Yup.string()
     .required('Password is required')
@@ -33,7 +33,7 @@ const initialValues = {
   username: '',
   email: '',
   verifyemail: '',
-  password: '',
+  password: ''
 };
 export default function SignUp() {
   const router = useRouter();
@@ -79,11 +79,12 @@ export default function SignUp() {
     let data = {
       username: values.username,
       email: values.email,
-      password: values.password,
+      password: values.password
     };
     userSignUp(data)
       .then((res: any) => {
         console.log('sign up res---', res);
+        sessionStorage.setItem('SignUpCompleted', 'true');
         if (res.status === 200) {
           
           Cookies.set('accessToken', res?.data?.access_token);
@@ -115,9 +116,8 @@ export default function SignUp() {
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >
-          {({ errors, touched, values}) => (
+          {({ errors, touched, values }) => (
             <Form>
-             
               <div className='flex h-[inherit] max-h-[692px] w-[500px] flex-col rounded-[40px] bg-[#070707] '>
                 <div className='flex max-h-[600px] flex-col gap-8 overflow-y-auto px-10 pt-10'>
                   <SigninLoginOpt heading={'Sign up'} pageName={'login'} />
@@ -205,7 +205,6 @@ export default function SignUp() {
                         id='password'
                         name='password'
                         placeholder='password'
-                        
                         className={`font-normal // flex rounded-[14px] bg-white/[0.05] px-4 py-3 text-[15px] leading-6 text-white placeholder:text-[#979797] 
                      focus:ring-0 ${
                        errors.password
@@ -223,16 +222,40 @@ export default function SignUp() {
                       <div>
                         <ul>
                           <li className='mb-3'>Create a password that:</li>
-                          <li className='flex items-center mb-2'>
-                            { values.password ? errors.password ? <CrossIcon /> : <CheckedIcon /> : ""}
+                          <li className='mb-2 flex items-center'>
+                            {values.password ? (
+                              errors.password ? (
+                                <CrossIcon />
+                              ) : (
+                                <CheckedIcon />
+                              )
+                            ) : (
+                              ''
+                            )}
                             contains at least 8 characters
                           </li>
-                          <li className='flex items-center mb-2'>
-                            { values.password ? errors.password ? <CrossIcon /> : <CheckedIcon /> : "" }
+                          <li className='mb-2 flex items-center'>
+                            {values.password ? (
+                              errors.password ? (
+                                <CrossIcon />
+                              ) : (
+                                <CheckedIcon />
+                              )
+                            ) : (
+                              ''
+                            )}
                             contains at least one uppercase letter
                           </li>
                           <li className='flex items-center'>
-                            { values.password ? errors.password ? <CrossIcon /> : <CheckedIcon /> : ""}
+                            {values.password ? (
+                              errors.password ? (
+                                <CrossIcon />
+                              ) : (
+                                <CheckedIcon />
+                              )
+                            ) : (
+                              ''
+                            )}
                             contains at least one symbol
                           </li>
                         </ul>
@@ -241,7 +264,7 @@ export default function SignUp() {
                   </div>
                 </div>
 
-                <div className='w-full px-10 pt-5 pb-10'>
+                <div className='w-full px-10 pb-10 pt-5'>
                   <button
                     type='submit'
                     className='font-bold flex w-full items-center justify-center rounded-[16px] bg-[#5848BC] px-6 py-4 text-[18px] leading-6 text-white'

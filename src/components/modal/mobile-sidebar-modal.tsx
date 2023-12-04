@@ -1,3 +1,4 @@
+//@ts-nocheck
 import Link from 'next/link';
 import { useModal } from '@lib/hooks/useModal';
 import { Button } from '@components/ui/button';

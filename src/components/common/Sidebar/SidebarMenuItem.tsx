@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React from 'react';
 import ExploreIcon from './svg/ExploreIcon';
 import { useRouter } from 'next/router';

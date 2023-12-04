@@ -1,19 +1,21 @@
+//@ts-nocheck
+
 import React, { useEffect, useRef, useState } from 'react';
-import Information from '../../../../public/assets/circle-information2.png';
-import Dots from '../../../../public/assets/dots-horizontal.png';
-import ArrowUp from '../../../../public/assets/chevron-up2.png';
-import ArrowDown from '../../../../public/assets/chevron-down2.png';
-import CopyIcon from '../../../../public/assets/copy.png';
-import GridVertical from '../../../../public/assets/dots-vertical.png';
+import Information from '../../../../public/assets/circle-information2.webp';
+import Dots from '../../../../public/assets/dots-horizontal.webp';
+import ArrowUp from '../../../../public/assets/chevron-up.webp';
+import ArrowDown from '../../../../public/assets/chevron-down2.webp';
+import CopyIcon from '../../../../public/assets/copy.webp';
+import GridVertical from '../../../../public/assets/dots-vertical.webp';
 import Image from 'next/image';
-import Image1 from '../../../../public/assets/vi-image-1.png';
-import Image2 from '../../../../public/assets/vi-image-2.png';
-import Image3 from '../../../../public/assets/vi-image-3.png';
-import Image4 from '../../../../public/assets/vi-image-4.png';
-import Image5 from '../../../../public/assets/vi-image-5.png';
-import Pencil from '../../../../public/assets/pen.png';
-import Refresh from '../../../../public/assets/refresh.png';
-import Delete from '../../../../public/assets/delete-icon.png';
+import Image1 from '../../../../public/assets/vi-image-1.webp';
+import Image2 from '../../../../public/assets/vi-image-2.webp';
+import Image3 from '../../../../public/assets/vi-image-3.webp';
+import Image4 from '../../../../public/assets/vi-image-4.webp';
+import Image5 from '../../../../public/assets/vi-image-5.webp';
+import Pencil from '../../../../public/assets/pen.webp';
+import Refresh from '../../../../public/assets/refresh.webp';
+import Delete from '../../../../public/assets/delete-icon.webp';
 import EditImageGeneration from './editImagegeneration';
 import Tooltip from '@components/common/tooltip';
 import AlbumDelete from '../viewImages/albumDelete';

@@ -1,10 +1,10 @@
 import React from 'react';
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
-import CloseIcon from '../../../../public/assets/xmark (1).png';
-import Brush from '../../../../public/assets/paintbrush-alt.png';
-import Image1 from '../../../../public/assets/inpaint-Image.png';
-import CheckIcon from '../../../../public/assets/check-icon-grey.png';
+import CloseIcon from '../../../../public/assets/xmark (1).webp';
+import Brush from '../../../../public/assets/paintbrush-alt.webp';
+import Image1 from '../../../../public/assets/inpaint-Image.webp';
+import CheckIcon from '../../../../public/assets/check-icon-grey.webp';
 
 interface InpaintingExample {
   CloseModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -29,11 +29,11 @@ const InpaintingExample = ({ CloseModal }: InpaintingExample) => {
         <div className='flex items-center gap-3'>
           <div className='overflow-hidden rounded-[14px] bg-[#FFFFFF0D]'>
             <div className='h-[350px] w-[350px]'>
-              <Image src={Image1} className='h-full w-full object-cover' />
+              <Image src={Image1} className='object-cover w-full h-full' />
             </div>
             <div className='flex items-center gap-3 px-5 py-4'>
               <div className='flex h-11 w-11 items-center justify-center rounded-full bg-[#FFFFFF14]'>
-                <Image src={Brush} className='h-full w-full' />
+                <Image src={Brush} className='w-full h-full' />
               </div>
               <div>
                 <h5 className='text-[15px] font-semibold'>Inpaint</h5>
@@ -44,11 +44,11 @@ const InpaintingExample = ({ CloseModal }: InpaintingExample) => {
 
           <div className='overflow-hidden rounded-[14px] bg-[#FFFFFF0D]'>
             <div className='h-[350px] w-[350px]'>
-              <Image src={Image1} className='h-full w-full object-cover' />
+              <Image src={Image1} className='object-cover w-full h-full' />
             </div>
             <div className='flex items-center gap-3 px-5 py-4'>
               <div className='flex h-11 w-11 items-center justify-center rounded-full bg-[#FFFFFF14]'>
-                <Image src={CheckIcon} className='h-full w-full' />
+                <Image src={CheckIcon} className='w-full h-full' />
               </div>
               <div>
                 <h5 className='text-[15px] font-semibold'>Result</h5>

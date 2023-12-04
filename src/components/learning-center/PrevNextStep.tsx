@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
-import arrowLeft from '../../../public/assets/arrow-left-lightGrey.png';
-import arrowRight from '../../../public/assets/arrow-right-lightGrey.png';
+import arrowLeft from '../../../public/assets/arrow-left-lightGrey.webp';
+import arrowRight from '../../../public/assets/arrow-right-lightGrey.webp';
 function PrevNextStep() {
   return (
     <div className='grid grid-cols-2 gap-4 pt-8'>

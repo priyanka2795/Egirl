@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import React,{useState, useEffect} from 'react';
-import subscriptionImage1 from '../../../public/assets/list-subscription1.png';
-import subscriptionImage2 from '../../../public/assets/list-subscription2.png';
-import subscriptionImage3 from '../../../public/assets/list-subscription3.png';
+import subscriptionImage1 from '../../../public/assets/list-subscription1.webp';
+import subscriptionImage2 from '../../../public/assets/list-subscription2.webp';
+import subscriptionImage3 from '../../../public/assets/list-subscription3.webp';
 import Card from '../common/Card';
 import ListFilter from './ListFilter';
 import Cookies from 'js-cookie';

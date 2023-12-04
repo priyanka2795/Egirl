@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
-import heart from '../../../../public/assets/heart-alt.png';
-import circleInformation from '../../../../public/assets/circle-information8.png';
-import arrowDown from '../../../../public/assets/chevron-down2.png';
-import arrowUp from '../../../../public/assets/chevron-up.png';
-import copy from '../../../../public/assets/file-copy.png';
-import modalImg from '../../../../public/assets/view-style-modal-img.png';
-import check from '../../../../public/assets/check-white.png';
-import avatar from '../../../../public/assets/image-avatar.png';
-import star from '../../../../public/assets/star.png';
-import rightArrow from '../../../../public/assets/chevron-right-3.png';
-import avatar2 from '../../../../public/assets/viewStyle-modal-2.png';
-import smiley from '../../../../public/assets/face-smile-icon.png';
-import downArrow from '../../../../public/assets/down-arrow-img.png';
+import heart from '../../../../public/assets/heart-alt.webp';
+import circleInformation from '../../../../public/assets/circle-information.webp';
+import arrowDown from '../../../../public/assets/chevron-down2.webp';
+import arrowUp from '../../../../public/assets/chevron-up.webp';
+import copy from '../../../../public/assets/file-copy.webp';
+import modalImg from '../../../../public/assets/view-style-modal-img.webp';
+import check from '../../../../public/assets/check-icon-grey.webp';
+import avatar from '../../../../public/assets/image-avatar.webp';
+import star from '../../../../public/assets/star.webp';
+import rightArrow from '../../../../public/assets/chevron-right.webp';
+import avatar2 from '../../../../public/assets/viewStyle-modal-2.webp';
+import smiley from '../../../../public/assets/face-smile-icon.webp';
+import downArrow from '../../../../public/assets/down-arrow-img.webp';
 
 interface FavoriteStyleModalProps {
   closeModal: (value: boolean) => void;

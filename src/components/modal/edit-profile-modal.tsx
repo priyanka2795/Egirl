@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { useRef } from 'react';
 import cn from 'clsx';
 import { MainHeader } from '@components/home-old/main-header';

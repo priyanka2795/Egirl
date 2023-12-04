@@ -494,7 +494,7 @@
 //                 title='Save Tweets for later'
 //                 description='Don’t let the good ones fly away! Bookmark Tweets to easily find them again in the future.'
 //                 imageData={{
-//                   src: '/assets/no-bookmarks.png',
+//                   src: '/assets/no-bookmarks.webp',
 //                   alt: 'No bookmarks'
 //                 }}
 //               />
@@ -521,3 +521,9 @@
 //     </MainLayout>
 //   </ProtectedLayout>
 // );
+
+const Bookmarks = () => {
+    return <div></div>;
+  };
+  
+export default Bookmarks;

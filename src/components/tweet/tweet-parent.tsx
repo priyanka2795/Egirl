@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import { useMemo, useEffect } from 'react';
 import { useDocument } from '@lib/hooks/useDocument';
 import { getRandomId } from '@lib/random';

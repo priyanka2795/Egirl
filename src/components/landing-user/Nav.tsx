@@ -1,26 +1,20 @@
 import Link from 'next/link';
 import React from 'react';
-import { StarIcon, Bars2Icon, XMarkIcon } from '@heroicons/react/20/solid';
-import Logo from './assets/Logo';
+import { Bars2Icon } from '@heroicons/react/20/solid';
 import Image from 'next/image';
 
 interface Props {
-  setBetaAccess: () => void;
   setSideNav: () => void;
 }
 
-const Nav = ({ setBetaAccess, setSideNav }: Props) => {
+const Nav = ({ setSideNav }: Props) => {
   return (
-    <nav className=' fixed top-0 z-10 w-full bg-[#F6F6F6] px-[24px] md:px-[40px] lg:px-[100px] 2xl:px-[120px]'>
+    <nav className='fixed top-0 z-10 w-full bg-[#F6F6F6] px-[24px] md:px-[40px] lg:px-[100px] 2xl:px-[120px]'>
       <div className='md: py-[40px] lg:py-6'>
         <div className='flex items-center justify-between'>
           <div className='flex'>
             <Link href='/'>
-              <a className=' py-1 pr-[40px]'>
-                {/* <span className='text-[64px] font-semibold text-[#181818] lg:text-[32px]'>
-                Egirls
-              </span> */}
-                {/* <Logo /> */}
+              <a className='py-1 pr-[40px]'>
                 <Image
                   src='/assets/final/navLogo.svg'
                   width='123'
@@ -31,7 +25,7 @@ const Nav = ({ setBetaAccess, setSideNav }: Props) => {
             </Link>
             <div className='lg:flex lg:items-center lg:space-x-6'>
               <div className='hidden lg:flex lg:items-center'>
-                <button className='text-[32px] font-[500] text-[#5848BC] underline decoration-[#5848BC]  underline-offset-8 lg:text-[16px] '>
+                <button className='text-[32px] font-[500] text-[#5848BC] underline decoration-[#5848BC] underline-offset-8 lg:text-[16px]'>
                   For users
                 </button>
               </div>
@@ -45,26 +39,6 @@ const Nav = ({ setBetaAccess, setSideNav }: Props) => {
             </div>
           </div>
           <div className='gap-2 md:flex'>
-            <div className='mr-6 hidden lg:flex lg:items-center'>
-              <button>
-                <Link href='/contact-us'>
-                  <span className='text-[32px] font-[500] text-[#181818] hover:text-[#5848BC] hover:underline hover:decoration-[#5848BC] hover:underline-offset-8 lg:text-[16px]'>
-                    Contact
-                  </span>
-                </Link>
-              </button>
-            </div>
-            <button
-              onClick={() => {
-                setBetaAccess();
-              }}
-              className='justify-center rounded-[12px] bg-[#5848BC] px-[18px] py-[10px] transition duration-100 hover:bg-[#4D37DA] xs:hidden sm:hidden md:flex md:items-center lg:flex lg:w-[158px] lg:items-center '
-            >
-              <span className='text-[16px] font-[500] text-white'>
-                Get beta access
-              </span>
-            </button>
-
             <button className='justify-center rounded-[12px] bg-[#5848BC] px-[10px] py-[10px] transition duration-100 hover:bg-[#4D37DA] xs:hidden sm:hidden md:flex md:items-center lg:flex lg:w-[80px] lg:items-center'>
               <Link href='/login'>
                 <span className='text-[32px] font-[500] text-white lg:text-[16px]'>
