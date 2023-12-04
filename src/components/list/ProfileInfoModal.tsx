@@ -120,7 +120,6 @@ const ProfileInfoModal = ({
   // Step 2
   const [personalityData, setPersonalityData] = useState(personalityValue);
   const personalityLength = Object.keys(personalityData).length;
-  const personalityLength2 = Object.keys(personalityData.description).length;
   const [secondStep, setSecondStep] = useState('');
   const [threadStep, setThreadStep] = useState('');
   const [fourthStep, setFourthStep] = useState('');

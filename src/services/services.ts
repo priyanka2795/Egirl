@@ -13,7 +13,7 @@ export const discordCallback=() => getApi('/discord/callback?code=1')
 // google api
 export const googleSignup = ()=> getApi('/google/signup')
 
-export const googleLogin = ()=> getApi('/google/login')
+export const googleLogin = ()=> getApi(`/google/login?origin_url=https://api.egirls.ai`)
 
 export const googleCallback = () => getApi('/google/callback')
 

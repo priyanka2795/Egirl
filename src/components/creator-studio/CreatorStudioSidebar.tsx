@@ -5,7 +5,6 @@ import arrowDown from '@/assets/chevron-down24.webp';
 import SidebarMenuItem from '@components/common/Sidebar/SidebarMenuItem';
 import AnalyticsIcon from './svg/AnalyticsIcon';
 import ImageGeneratorIcon from './svg/ImageGeneratorIcon';
-import HomeActiveIcon from './svg/HomeActiveIcon';
 import PersonalityIcon from './svg/PersonalityIcon';
 import VoiceIcon from './svg/VoiceIcon';
 import GiftIcon from './svg/GiftIcon';
@@ -26,18 +25,13 @@ import personalityActive from './svg/user-alt-1.svg';
 import analyticsActive from './svg/Chart.svg';
 import voiceActive from './svg/microphone-alt.svg';
 import CharacterAdd from './NewCharacter/CharacterAdd';
-import arrowLeft from '@/assets/arrow-left.png';
-import CloseIcon from '@/assets/svgImages/close-icon.svg';
-import arrowLeftTooltip from '@/assets/arrow-left-tooltip.png';
 import HoverModal from '@components/list/HoverModal';
 import userAdd from '@/assets/user-plus1.webp';
 import CreateCharacterModal from '@components/list/CreateCharacterModal';
-
 import Cookies from 'js-cookie';
 import { getAllCharacter, profileCharacter } from 'services/services';
 interface CreatorStudioNavbarPropProp {
   shrinkSideBar: boolean;
-  setShrinkSideBar: React.Dispatch<React.SetStateAction<boolean>>;
   IsOpen: any;
   OnClose: any;
   TourSteps: any;
@@ -46,16 +40,14 @@ interface CreatorStudioNavbarPropProp {
   setUserGuide: any;
   setIsTourOpen: any;
   UserGuide: any;
-  // allCharacterData: any;
   activeProfile: any;
   setActiveProfile: any;
   setCreateCharacterData: any;
   setUserDetails: any;
   createCharacterData: any;
-  bannerData: any;
   setCreateCharacterToggle: React.Dispatch<React.SetStateAction<boolean>>;
   createCharacterToggle: boolean;
-  setBannerData:any
+  setBannerData: any;
 }
 
 interface CreateCharacter {
@@ -64,7 +56,6 @@ interface CreateCharacter {
 
 const CreatorStudioSidebar = ({
   shrinkSideBar,
-  setShrinkSideBar,
   IsOpen,
   OnClose,
   TourSteps,
@@ -74,12 +65,10 @@ const CreatorStudioSidebar = ({
   setIsTourOpen,
   UserGuide,
   setUserDetails,
-  // allCharacterData,
   activeProfile,
   setActiveProfile,
   setCreateCharacterData,
   createCharacterData,
-  bannerData,
   setBannerData,
   setCreateCharacterToggle,
   createCharacterToggle
@@ -91,10 +80,8 @@ const CreatorStudioSidebar = ({
   const [welcomeModal, setWelcomeModal] = useState<boolean>(false);
   const [allCharacterData, setAllCharacterData] = useState<any>();
   const [createToggle, setCreateToggle] = useState<boolean>(false);
-  const [activeProfileId , setActiveProfileId] = useState<any>()
-  const [activeProfileData , setActiveProfileData] = useState<any>()
-  let character = Cookies.get('character_id')
-
+  const [activeProfileId, setActiveProfileId] = useState<any>();
+  const [activeProfileData, setActiveProfileData] = useState<any>();
   const token: any = Cookies.get('accessToken');
 
   const handleNewCharacter = () => {
@@ -115,10 +102,12 @@ const CreatorStudioSidebar = ({
           Cookies.set('character_id', res?.data[0]?.id);
         }
         const characterIdFromCookies = Cookies.get('character_id');
-console.log(characterIdFromCookies , "????characterIdFromCookies");
-console.log(res?.data[0]?.id , "res?.data[0]?.id????");
-        // Set character_id in cookies if not present
-        if (!characterIdFromCookies || (characterIdFromCookies == undefined) || (characterIdFromCookies == null) || (characterIdFromCookies == "")) {
+        if (
+          !characterIdFromCookies ||
+          characterIdFromCookies == undefined ||
+          characterIdFromCookies == null ||
+          characterIdFromCookies == ''
+        ) {
           Cookies.set('character_id', res?.data[0]?.id);
           setActiveProfileId(res?.data[0]?.id); // Set active profile ID
         }
@@ -127,24 +116,22 @@ console.log(res?.data[0]?.id , "res?.data[0]?.id????");
         console.log(err);
       });
   }, [UserGuide, createCharacterData, createToggle]);
-  
-  useEffect(()=>{
-   const characterId = Cookies.get('character_id')
-   setActiveProfileId(characterId)
-  },[activeProfile])
 
+  useEffect(() => {
+    const characterId = Cookies.get('character_id');
+    setActiveProfileId(characterId);
+  }, [activeProfile]);
 
-  useEffect(()=>{
-    profileCharacter(activeProfileId , token)
-    .then((res:any)=>{
-      setActiveProfileData(res?.data[0])
-      setBannerData(res?.data[0])
-    })
-    .catch((err:any)=>{
-      console.log(err);
-    })
-  },[activeProfileId ])
-
+  useEffect(() => {
+    profileCharacter(activeProfileId, token)
+      .then((res: any) => {
+        setActiveProfileData(res?.data[0]);
+        setBannerData(res?.data[0]);
+      })
+      .catch((err: any) => {
+        console.log(err);
+      });
+  }, [activeProfileId]);
 
   return (
     <>
@@ -160,10 +147,10 @@ console.log(res?.data[0]?.id , "res?.data[0]?.id????");
         >
           {allCharacterData && allCharacterData?.length > 0 ? (
             <div
-              className='flex cursor-pointer items-center justify-between py-[14px] pl-3 pr-4 relative'
+              className='relative flex cursor-pointer items-center justify-between py-[14px] pl-3 pr-4'
               onClick={() => setSidebarModal(!sidebarModal)}
             >
-              <div className='relative flex items-center w-full gap-2'>
+              <div className='relative flex w-full items-center gap-2'>
                 <div className='h-[32px] w-[32px]'>
                   <Image
                     src={avtar}
@@ -176,11 +163,12 @@ console.log(res?.data[0]?.id , "res?.data[0]?.id????");
                     shrinkSideBar === true ? '!hidden' : ''
                   }`}
                 >
-                  {/* {bannerData ? bannerData?.display_name : 'Select Character'} */}
-                  {activeProfileData ? activeProfileData?.display_name : 'Select Character'}
+                  {activeProfileData
+                    ? activeProfileData?.display_name
+                    : 'Select Character'}
                 </div>
               </div>
-              <div className='h-full mt-2'>
+              <div className='mt-2 h-full'>
                 <Image src={arrowDown} alt='' />
               </div>
               {sidebarModal && (
@@ -195,7 +183,7 @@ console.log(res?.data[0]?.id , "res?.data[0]?.id????");
               )}
             </div>
           ) : shrinkSideBar ? (
-            <div className='flex flex-col items-start self-stretch gap-2 pt-6 pb-2'>
+            <div className='flex flex-col items-start gap-2 self-stretch pb-2 pt-6'>
               <button
                 onClick={() => setWelcomeModal(true)}
                 className='flex h-[42px] w-[45px] items-center justify-center gap-1.5 self-stretch rounded-xl bg-[#5848BC] px-2 py-2.5'
@@ -204,13 +192,13 @@ console.log(res?.data[0]?.id , "res?.data[0]?.id????");
               </button>
             </div>
           ) : (
-            <div className='flex flex-col items-start self-stretch gap-2 px-6 pt-6 pb-2 '>
+            <div className='flex flex-col items-start gap-2 self-stretch px-6 pb-2 pt-6 '>
               <button
                 onClick={() => setWelcomeModal(true)}
                 className='flex h-auto w-full items-center justify-center gap-1.5 self-stretch rounded-xl bg-[#5848BC] px-4 py-2.5'
               >
                 <Image src={userAdd} alt='' className='h-[18px] w-[18px]' />
-                <span className='text-sm font-semibold leading-5 normal'>
+                <span className='normal text-sm font-semibold leading-5'>
                   Create character
                 </span>
               </button>
@@ -323,7 +311,6 @@ console.log(res?.data[0]?.id , "res?.data[0]?.id????");
             />
             {GuideStep2 === tourCount && (
               <>
-                {console.log('hererwr')}
                 <HoverModal
                   isOpen={IsOpen}
                   onClose={OnClose}
@@ -372,7 +359,6 @@ console.log(res?.data[0]?.id , "res?.data[0]?.id????");
             />
             {GuideStep1 === tourCount && (
               <>
-                {console.log('hello 1')}
                 <HoverModal
                   isOpen={IsOpen}
                   onClose={OnClose}

@@ -118,7 +118,6 @@ interface BannerProp {
   component?: string;
   setUserDetails?: any;
   userDetails?: any;
-  activeProfile: any;
   bannerData: any;
   updateCharacterToggle: boolean;
   setUpdateCharacterToggle: React.Dispatch<React.SetStateAction<boolean>>;
@@ -132,7 +131,6 @@ const Banner: React.FC<BannerProp> = ({
   component,
   setUserDetails,
   userDetails,
-  activeProfile,
   bannerData,
   updateCharacterToggle,
   setUpdateCharacterToggle

@@ -26,23 +26,7 @@ interface CardEditModal {
   setUpdateGift: React.Dispatch<React.SetStateAction<boolean>>;
   giftCategory:any
 }
-const moveData = [
-  {
-    name: 'Date',
-    imgpath: MoveImgFirst,
-    gifts: '0/9gifts'
-  },
-  {
-    name: 'Summer',
-    imgpath: MoveImg,
-    gifts: '2/9 gifts'
-  },
-  {
-    name: 'Tokyo',
-    imgpath: ImageSquare,
-    gifts: '9/9gifts'
-  }
-];
+
 function GiftCardEditModal({
   closeModal,
   GiftEditModal,

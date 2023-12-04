@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PersonalityContent from './PersonalityContent';
 import { postCharacterPersonality } from 'services/services';
 import Cookies from 'js-cookie';
 
 const PersonalityIndex = () => {
-  const [shrinkSideBar, setShrinkSideBar] = useState<boolean>(false);
   const token :any = Cookies.get('accessToken');
   const characterId = Cookies.get('character_id') || '';
   const [personalityData, setPersonalityData] = useState({

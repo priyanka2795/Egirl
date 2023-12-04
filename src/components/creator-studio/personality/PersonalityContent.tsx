@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import React from 'react';
 import PersonalityS1 from './PersonalityS1';
 import PersonalityLikeSection from './PersonalityLikeSection';
 import PersonalityTraitsSection from './PersonalityTraitsSection';

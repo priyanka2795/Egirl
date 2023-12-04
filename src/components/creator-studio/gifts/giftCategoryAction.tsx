@@ -23,7 +23,8 @@ interface GiftCategoryAction {
   setSelectedCategoryId: React.Dispatch<React.SetStateAction<number>>;
   selectedCategoryGifts:any;
   searchQuery:any;
-  setSearchQuery:any
+  setSearchQuery:any;
+  categoryMaxLimit:boolean
 }
 function GiftCategoryAction({
   AddCategory,
@@ -36,7 +37,8 @@ function GiftCategoryAction({
   setSelectedCategoryId,
   selectedCategoryGifts,
   searchQuery,
-  setSearchQuery
+  setSearchQuery,
+  categoryMaxLimit
 }: GiftCategoryAction) {
   const [toggle, setToggle] = useState<boolean>(false);
   const [closeState, setCloseState] = useState<boolean>(false);
@@ -189,12 +191,14 @@ function GiftCategoryAction({
 
           <button
             className='relative pt-1 group '
-            onClick={() => setCreateCategory(true)}
+            onClick={() => !categoryMaxLimit && setCreateCategory(true)}
           >
             <Image src={plusIcon} alt='' className='h-[18px] w-[18px]' />
-            <div className='absolute -left-[119px] -top-[5px] z-50 w-max -translate-x-0 -translate-y-2/4 transform transition-all'>
+            {
+              categoryMaxLimit && <div className='absolute -left-[119px] -top-[5px] z-50 w-max -translate-x-0 -translate-y-2/4 transform transition-all'>
               <Tooltip Text={'You can create only 4 categories'} />
             </div>
+            }
           </button>
         </div>
         <button className=''>

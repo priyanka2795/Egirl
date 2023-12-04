@@ -46,6 +46,7 @@ function Gifts() {
   const [deleteGiftToggle, setDeleteGiftToggle] = useState<boolean>(false);
   const [createGiftToggle, setCreateGiftToggle] = useState<any>();
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [categoryMaxLimit , setCategoryMaxLimit] = useState(false)
 
   const EditGift = (val: number, data: any) => {
     setSelectedGiftData(data);
@@ -79,7 +80,6 @@ function Gifts() {
   const DeleteGift = (data: any) => {
     deleteGift(characterId, [data?.gift_id], token)
       .then((res: any) => {
-        console.log(res);
         setDeleteGiftToggle(!deleteGiftToggle);
       })
       .then((err: any) => {
@@ -115,7 +115,11 @@ function Gifts() {
       .then((response: any) => {
         if (response && response.data) {
           setGiftCategory(response?.data);
-          console.log(response.data, 'res????');
+          if(response?.data?.length == 4){
+            setCategoryMaxLimit(true)
+          }else{
+            setCategoryMaxLimit(false)
+          }
           if (response?.response?.status === 401) {
             dispatch(tokenRefresh());
           }
@@ -201,6 +205,7 @@ function Gifts() {
               selectedCategoryGifts={selectedCategoryGifts}
               searchQuery={searchQuery}
               setSearchQuery={setSearchQuery}
+              categoryMaxLimit={categoryMaxLimit}
             />
 
             <div className='mt-4 flex items-center justify-between'>

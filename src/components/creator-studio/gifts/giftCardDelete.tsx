@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
-import crossIcon from '@/assets/xmark (1).webp';
-import AlbumFirst from '@/assets/gallery-tab-img.webp';
+import crossIcon from '../../../../public/assets/xmark (1).png';
 import { Modal } from '@components/modal/modal';
 
 interface DeletePopup {
@@ -9,7 +8,6 @@ interface DeletePopup {
   Heading: string;
   Content: string;
   Img: boolean;
-  DeleteGift: any;
   DeleteAllGift?: any;
   selectedGiftData?: any;
   DeleteBtnStep?: number;
@@ -23,7 +21,6 @@ function GiftCardDelete({
   Heading,
   Content,
   Img,
-  DeleteGift,
   DeleteAllGift,
   selectedGiftData,
   DeleteBtnStep,
