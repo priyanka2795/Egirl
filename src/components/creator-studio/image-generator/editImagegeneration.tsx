@@ -5,10 +5,10 @@ import React, { useState } from 'react';
 import { Modal } from '@components/modal/modal';
 import ShuffleSvg from '../../../../public/assets/svgImages/shuffle.svg';
 import PlusIconSvg from '../../../../public/assets/svgImages/plus-icon.svg';
-import crossIcon from '../../../../public/assets/xmark-style.png';
+import crossIcon from '../../../../public/assets/xmark-style.webp';
 import Toggle from '@components/common/Toggler';
 import Tooltip from '@components/common/tooltip';
-import ArrowRight from '../../../../public/assets/chevron-right.png';
+import ArrowRight from '../../../../public/assets/chevron-right.webp';
 import ImageGeneratorOption from './ImageGeneratorOption';
 
 interface EditImageGeneration {

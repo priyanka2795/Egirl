@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import arrowRight from '../../../public/assets/chevron-right-small.png';
+import arrowRight from '../../../public/assets/chevron-right-small.webp';
 
 const searchData = [
   {

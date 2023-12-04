@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
-import Cover from '../../../public/assets/cover-1.png';
-import avatar from '../../../public/assets/mika-chan-sub-banner.png';
+import Cover from '../../../public/assets/cover-1.webp';
+import avatar from '../../../public/assets/mika-chan-sub-banner.webp';
 function PreviewProfile({ cropData }: any) {
   return (
     <div className='h-max w-full overflow-hidden rounded-[16px] bg-[#1c1c1c]'>

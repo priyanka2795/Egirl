@@ -1,9 +1,9 @@
 import { Modal } from '@components/modal/modal';
 import React, { useState } from 'react';
-import girlPic from '../../../../public/assets/girl.png';
+import girlPic from '../../../../public/assets/girl.webp';
 import Cross from '../../../../public/assets/svgImages/close-icon.svg';
 import Info from '../svg/info.svg';
-import Grid from '../../../../public/assets/dots-vertical.png';
+import Grid from '../../../../public/assets/dots-vertical.webp';
 import Copy from '../svg/Copy.svg';
 import Image from 'next/image';
 

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import circleInformation from '../../../../../public/assets/circle-information.png';
-import bankCard from '../../../../../public/assets/bank-card.png';
-import chip from '../../../../../public/assets/chip.png';
-import threeDots from '../../../../../public/assets/dots-horizontal-white.png';
-import deleteIcon from '../../../../../public/assets/trash-blank.png';
+import circleInformation from '../../../../../public/assets/circle-information.webp';
+import bankCard from '../../../../../public/assets/bank-card.webp';
+import chip from '../../../../../public/assets/chip.webp';
+import threeDots from '../../../../../public/assets/dots-horizontal-white.webp';
+import deleteIcon from '../../../../../public/assets/trash-blank.webp';
 import Image from 'next/image';
 
 interface AddedCardProps {

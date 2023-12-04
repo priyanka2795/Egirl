@@ -1,16 +1,16 @@
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
 import React from 'react';
-import crossIcon from '../../../../public/assets/xmark (1).png';
-import Pencil from '../../../../public/assets/pen.png';
-import Image1 from '../../../../public/assets/media-1.png';
-import Image2 from '../../../../public/assets/jennieYoon.png';
-import Image3 from '../../../../public/assets/jennieContent.png';
-import Image4 from '../../../../public/assets/media-3.png';
-import Image5 from '../../../../public/assets/mirandaContent.png';
-import Image6 from '../../../../public/assets/mirandalImg.png';
-import Image7 from '../../../../public/assets/sarahScarlet.png';
-import Image8 from '../../../../public/assets/style-gen-img6.png';
+import crossIcon from '../../../../public/assets/xmark (1).webp';
+import Pencil from '../../../../public/assets/pen.webp';
+import Image1 from '../../../../public/assets/media-1.webp';
+import Image2 from '../../../../public/assets/jennieYoon.webp';
+import Image3 from '../../../../public/assets/jennieContent.webp';
+import Image4 from '../../../../public/assets/media-3.webp';
+import Image5 from '../../../../public/assets/mirandaContent.webp';
+import Image6 from '../../../../public/assets/mirandalImg.webp';
+import Image7 from '../../../../public/assets/sarahScarlet.webp';
+import Image8 from '../../../../public/assets/style-gen-img6.webp';
 
 const detailsImages = [
   Image1,
@@ -38,10 +38,10 @@ const AlbumDetailsModal = ({ CloseModal }: AlbumDetailsModal) => {
       <div className='flex items-center justify-between border-b border-[#FFFFFF14] p-6'>
         <h5 className='text-lg font-semibold'>Album details</h5>
         <div
-          className='h-6 w-6 cursor-pointer'
+          className='w-6 h-6 cursor-pointer'
           onClick={() => CloseModal(false)}
         >
-          <Image className='h-full w-full' src={crossIcon} alt={''} />
+          <Image className='w-full h-full' src={crossIcon} alt={''} />
         </div>
       </div>
       <div className='p-6'>
@@ -51,7 +51,7 @@ const AlbumDetailsModal = ({ CloseModal }: AlbumDetailsModal) => {
               Images <span className='ml-1 text-[#515151]'>8</span>
             </p>
             <div>
-              <Image className='h-full w-full' src={Pencil} alt={''} />
+              <Image className='w-full h-full' src={Pencil} alt={''} />
             </div>
           </div>
           <div className='grid grid-cols-8 gap-2'>
@@ -60,7 +60,7 @@ const AlbumDetailsModal = ({ CloseModal }: AlbumDetailsModal) => {
                 key={index}
                 className='h-[80px] w-[80px] overflow-hidden rounded-[7px]'
               >
-                <Image className='h-full w-full' src={items} alt={''} />
+                <Image className='w-full h-full' src={items} alt={''} />
               </div>
             ))}
           </div>

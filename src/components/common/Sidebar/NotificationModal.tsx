@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import DefaultTab from '../DefaultTab';
-import avtarImg from '../../../../public/assets/avatar.png';
-import avtarImg2 from '../../../../public/assets/filter-img-2.png';
-import avtarImg3 from '../../../../public/assets/filter-img-1.png';
-import avtarImg4 from '../../../../public/assets/filter-img-3.png';
-import avtarImg5 from '../../../../public/assets/bookmark-img1.png';
-import likeIcon from '../../../../public/assets/like-icon.png';
+import avtarImg from '../../../../public/assets/avatar.webp';
+import avtarImg2 from '../../../../public/assets/filter-img-2.webp';
+import avtarImg3 from '../../../../public/assets/filter-img-1.webp';
+import avtarImg4 from '../../../../public/assets/filter-img-3.webp';
+import avtarImg5 from '../../../../public/assets/bookmark-img1.webp';
+import likeIcon from '../../../../public/assets/like-icon.webp';
 import Image from 'next/image';
 
 const tabContent = ['All', 'Likes', 'Comments', 'Followings'];

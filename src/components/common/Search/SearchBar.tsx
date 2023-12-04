@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
-import searchIcon from '../../../../public/assets/search-alt.png';
+import searchIcon from '../../../../public/assets/search-alt.webp';
 
 const SearchBar = ({searchBy,setSearchBy,placeholder}:any) => {
   return (

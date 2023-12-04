@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
-import crossIcon from '../../../public/assets/xmark (1).png';
-import avtar from '../../../public/assets/avtar-message.png';
-import userIcon from '../../../public/assets/user-icon.png';
+import crossIcon from '../../../public/assets/xmark (1).webp';
+import avtar from '../../../public/assets/avtar-message.webp';
+import userIcon from '../../../public/assets/user-icon.webp';
 
 
 interface ChatViewModalProp{

@@ -1,14 +1,14 @@
 import Image from 'next/image';
 import React, { useState, useRef, useEffect } from 'react';
-import circleInformation from '../../../../public/assets/circle-information.png';
-import deleteIcon from '../../../../public/assets/trash-blank2.png';
-import plus from '../../../../public/assets/plus-large4.png';
-import crossIcon from '../../../../public/assets/xmark-style.png';
-import image from '../../../../public/assets/image-plus.png';
-import downArrow from '../../../../public/assets/down-arrow-img.png';
+import circleInformation from '../../../../public/assets/circle-information.webp';
+import deleteIcon from '../../../../public/assets/trash-blank2.webp';
+import plus from '../../../../public/assets/plus-gray.webp';
+import crossIcon from '../../../../public/assets/xmark-style.webp';
+import image from '../../../../public/assets/image-plus.webp';
+import downArrow from '../../../../public/assets/down-arrow-img.webp';
 import AlbumDelete from '../viewImages/albumDelete';
-import chevronDown from '../../../../public/assets/chevron-down2.png';
-import chevronUp from '../../../../public/assets/chevron-up.png';
+import chevronDown from '../../../../public/assets/chevron-down2.webp';
+import chevronUp from '../../../../public/assets/chevron-up.webp';
 import AddStyleImagesModal from './addStyleImagesModal';
 
 const options = [

@@ -1,10 +1,10 @@
 import React from 'react';
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
-import CloseIcon from '../../../../public/assets/xmark (1).png';
-import Brush from '../../../../public/assets/paintbrush-alt.png';
+import CloseIcon from '../../../../public/assets/xmark (1).webp';
+import Brush from '../../../../public/assets/paintbrush-alt.webp';
 import Image1 from '../../../../public/assets/inpaint-Image.png';
-import PoseImg from '../../../../public/assets/poseimg.png';
+import PoseImg from '../../../../public/assets/poseimg.webp';
 
 interface PoseExample {
   PoseExampleClose: React.Dispatch<React.SetStateAction<boolean>>;

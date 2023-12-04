@@ -1,9 +1,9 @@
 import React from 'react'
-import avatar from '../../../public/assets/avatar 67.png'
-import camera from '../../../public/assets/cameraIcon.png'
-import smiley from '../../../public/assets/smiley-Icon.png'
+import avatar from '../../../public/assets/avatar 67.webp'
+import camera from '../../../public/assets/cameraIcon.webp'
+import smiley from '../../../public/assets/smiley-Icon.webp'
 import Image from 'next/image';
-import userAvatar from '../../../public/assets/user-alt-1.png'
+import userAvatar from '../../../public/assets/user-alt-1.webp'
 
 const PostInput = () => {
   return (

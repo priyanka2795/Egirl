@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import CreateStudioLogo from '../creator-studio/svg/creator-studio-logo.svg';
-import searchIcon from '../../../public/assets/search-icon.png';
-import arrowRight from '../../../public/assets/chevron-right-small.png';
+import searchIcon from '../../../public/assets/search-icon.webp';
+import arrowRight from '../../../public/assets/chevron-right-small.webp';
 import Link from 'next/link';
 
 interface NavbarProps {

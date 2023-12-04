@@ -8,8 +8,8 @@ import AddTagModal from './AddTagModal';
 import { Modal } from '@components/modal/modal';
 import ImageGallery from './ImageGallery';
 import CloseIcon from '../../../../public/assets/svgImages/close-icon.svg';
-import Question from '../../../../public/assets/circle-question.png';
-import ImageSquare from '../../../../public/assets/image-square2.png';
+import Question from '../../../../public/assets/circle-question.webp';
+import ImageSquare from '../../../../public/assets/image-square2.webp';
 import AddStyleModal from './AddStyleModal';
 import Tooltip from '@components/common/tooltip';
 import Image from 'next/image';
@@ -18,16 +18,16 @@ import InpaintingExample from './InpaintingExample';
 import InpaintingModals from './inpaintingModals';
 import Image1 from '../../../../public/assets/inpaint-Image.png';
 import Edit from '../../../../public/assets/pen.svg';
-import People from '../../../../public/assets/body.png';
+import People from '../../../../public/assets/body.webp';
 import PoseExample from './poseExample';
 import PosingModal from './posingModal';
-import ArrowRight from '../../../../public/assets/chevron-right.png';
-import PoseImage from '../../../../public/assets/poseimage3.png';
-import Grid from '../../../../public/assets/dots-vertical.png';
-import UserWhite from '../../../../public/assets/circle-user-white.png';
-import SearchIcon from '../../../../public/assets/search-alt (1).png';
-import RightIcon from '../../../../public/assets/check-cs.png';
-import DeleteIcon from '../../../../public/assets/delete-icon.png';
+import ArrowRight from '../../../../public/assets/chevron-right.webp';
+import PoseImage from '../../../../public/assets/poseimage3.webp';
+import Grid from '../../../../public/assets/dots-vertical.webp';
+import UserWhite from '../../../../public/assets/circle-user-white.webp';
+import SearchIcon from '../../../../public/assets/search-alt (1).webp';
+import RightIcon from '../../../../public/assets/check-cs.webp';
+import DeleteIcon from '../../../../public/assets/delete-icon.webp';
 import {
   getImageGeneration,
   postInpaintImage,

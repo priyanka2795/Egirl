@@ -1,8 +1,8 @@
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
 import React from 'react';
-import PoseImageSelect from '../../../../public/assets/poseimageselect.png';
-import CloseIcon from '../../../../public/assets/xmark-large.png';
+import PoseImageSelect from '../../../../public/assets/poseimageselect.webp';
+import CloseIcon from '../../../../public/assets/xmark-large.webp';
 
 interface PosingPreviewModal {
   PosingPreviewClose: React.Dispatch<React.SetStateAction<boolean>>;

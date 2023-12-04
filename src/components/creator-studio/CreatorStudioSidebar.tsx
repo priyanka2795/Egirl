@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
-import avtar from '../../../public/assets/mica-chan-avatar-image.png';
-import arrowDown from '../../../public/assets/chevron-down24.png';
+import avtar from '@/assets/mica-chan-avatar-image.webp';
+import arrowDown from '../../../public/assets/chevron-down24.webp';
 import SidebarMenuItem from '@components/common/Sidebar/SidebarMenuItem';
 import AnalyticsIcon from './svg/AnalyticsIcon';
 import ImageGeneratorIcon from './svg/ImageGeneratorIcon';
@@ -30,7 +30,7 @@ import arrowLeft from '../../../public/assets/arrow-left.png';
 import CloseIcon from '../../../public/assets/svgImages/close-icon.svg';
 import arrowLeftTooltip from '../../../public/assets/arrow-left-tooltip.png';
 import HoverModal from '@components/list/HoverModal';
-import userAdd from '../../../public/assets/user-plus1.png';
+import userAdd from '../../../public/assets/user-plus.1webp';
 import CreateCharacterModal from '@components/list/CreateCharacterModal';
 
 import Cookies from 'js-cookie';

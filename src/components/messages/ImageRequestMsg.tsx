@@ -1,8 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
-import userIcon from '../../../public/assets/user-icon.png';
-import imageSquareCheck from '../../../public/assets/image-square-check.png';
-import arrowUpFromRight from '../../../public/assets/arrow-up-right-from-square.png';
+import userIcon from '../../../public/assets/user-icon.webp';
+import imageSquareCheck from '../../../public/assets/image-square-check.webp';
+import arrowUpFromRight from '../../../public/assets/arrow-up-right-from-square.webp';
 
 const ImageRequestMsg = () => {
   return (

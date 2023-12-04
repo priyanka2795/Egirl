@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
-import crossIcon from '../../../../public/assets/xmark (1).png';
-import AlbumFirst from '../../../../public/assets/gallery-tab-img.png';
+import crossIcon from '../../../../public/assets/xmark (1).webp';
+import AlbumFirst from '../../../../public/assets/gallery-tab-img.webp';
 import { Modal } from '@components/modal/modal';
 
 interface DeletePopup {

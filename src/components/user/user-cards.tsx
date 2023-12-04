@@ -26,13 +26,13 @@ type NoStatsData = Record<CombinedTypes, StatsEmptyProps>;
 const allNoStatsData: Readonly<NoStatsData> = {
   retweets: {
     title: 'Amplify Tweets you like',
-    imageData: { src: '/assets/no-retweets.png', alt: 'No retweets' },
+    imageData: { src: '/assets/no-retweets.webp', alt: 'No retweets' },
     description:
       'Share someone else’s Tweet on your timeline by Retweeting it. When you do, it’ll show up here.'
   },
   likes: {
     title: 'No Tweet Likes yet',
-    imageData: { src: '/assets/no-likes.png', alt: 'No likes' },
+    imageData: { src: '/assets/no-likes.webp', alt: 'No likes' },
     description: 'When you like a Tweet, it’ll show up here.'
   },
   following: {
@@ -42,7 +42,7 @@ const allNoStatsData: Readonly<NoStatsData> = {
   },
   followers: {
     title: 'Looking for followers?',
-    imageData: { src: '/assets/no-followers.png', alt: 'No followers' },
+    imageData: { src: '/assets/no-followers.webp', alt: 'No followers' },
     description:
       'When someone follows this account, they’ll show up here. Tweeting and interacting with others helps boost followers.'
   }

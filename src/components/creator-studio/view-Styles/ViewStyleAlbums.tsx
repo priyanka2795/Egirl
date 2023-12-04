@@ -1,7 +1,7 @@
 import React from 'react';
-import albumImg1 from '../../../../public/assets/view-style-album-img1.png';
-import albumImg2 from '../../../../public/assets/view-style-album-img2.png';
-import albumImg3 from '../../../../public/assets/view-style-album-img3.png';
+import albumImg1 from '../../../../public/assets/view-style-album-img1.webp';
+import albumImg2 from '../../../../public/assets/view-style-album-img2.webp';
+import albumImg3 from '../../../../public/assets/view-style-album-img3.webp';
 import Image from 'next/image';
 
 interface ViewStyleAlbumsProps {

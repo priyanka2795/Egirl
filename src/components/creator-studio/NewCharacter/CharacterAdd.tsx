@@ -195,7 +195,7 @@ export default CharacterAdd;
 // import React from 'react';
 // import Cross from '../../../../public/assets/svgImages/close-icon.svg';
 // import Image from 'next/image';
-// import SearchIcon from '../../../../public/assets/search-alt.png';
+// import SearchIcon from '../../../../public/assets/search-alt.webp';
 // import { Modal } from '@components/modal/modal';
 // import { useFormik } from 'formik';
 // import { signUpSchema } from '../../../../src/schemas/index';

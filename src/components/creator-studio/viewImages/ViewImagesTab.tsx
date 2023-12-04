@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
-import arrowUpArrowDown from '../../../../public/assets/arrow-down-arrow-up2.png';
-import filter from '../../../../public/assets/filter.png';
+import arrowUpArrowDown from '../../../../public/assets/arrow-down-arrow-up2.webp';
+import filter from '../../../../public/assets/filter.webp';
 import Image from 'next/image';
 import UnSelectIcon from '../svg/short_border.svg';
 import SelectIcon from '../svg/short_select.svg';
-import crossIcon from '../../../../public/assets/xmark (1).png';
+import crossIcon from '../../../../public/assets/xmark (1).webp';
 import Prev from '../../../../public/assets/arrow-left.svg';
-import Search from '../../../../public/assets/search-alt (1).png';
-import Information from '../../../../public/assets/circle-information2.png';
+import Search from '../../../../public/assets/search-alt (1).webp';
+import Information from '../../../../public/assets/circle-information2.webp';
 
 interface ViewImagesTab {
   tabContent: Array<string>;

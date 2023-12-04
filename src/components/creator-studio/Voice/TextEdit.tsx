@@ -1,8 +1,8 @@
 //@ts-nocheck
 import Image from 'next/image';
 import React from 'react';
-import greenCheck from '../../../../public/assets/check-icon-green.png';
-import crossIcon from '../../../../public/assets/xmark4.png';
+import greenCheck from '../../../../public/assets/check-icon-green.webp';
+import crossIcon from '../../../../public/assets/xmark4.webp';
 import { VoiceGenerations } from './GenerationInterface';
 
 interface TextEditProp {

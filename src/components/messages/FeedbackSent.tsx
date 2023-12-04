@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import React from 'react';
-import leftArrow from '../../../public/assets/left-arrow-grey.png';
+import leftArrow from '../../../public/assets/left-arrow-grey.webp';
 import rightArrow from '../../../public/assets/right-arrow-grey.png';
-import checkIcon from '../../../public/assets/check-icon-grey.png';
+import checkIcon from '../../../public/assets/check-icon-grey.webp';
 
 const FeedbackSent = () => {
   return (

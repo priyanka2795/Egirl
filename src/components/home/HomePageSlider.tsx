@@ -2,8 +2,8 @@ import React from 'react'
 import Image from 'next/image'
 import TinderNopeBtn from '@components/explore/TinderNopeBtn';
 import TinderLikeBtn from '@components/explore/TinderLikeBtn';
-import blueDressGirl from '../../../public/assets/blue-dress-girl.png';
-import arrowNext from '../../../public/assets/arrow-next.png';
+import blueDressGirl from '../../../public/assets/blue-dress-girl.webp';
+import arrowNext from '../../../public/assets/arrow-next.webp';
 
 const HomePageSlider = () => {
   return (
