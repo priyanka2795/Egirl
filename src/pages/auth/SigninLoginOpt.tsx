@@ -5,6 +5,7 @@ import facebookIcon from '../../../public/assets/facebook-icon.png';
 import Image from 'next/image';
 import Link from 'next/link';
 import { discordCallback, discordLogin } from 'services/services';
+import axios from 'axios';
 
 const login = [
   {
@@ -14,11 +15,11 @@ const login = [
   {
     icon: discordIcon,
     text: 'Login with Discord'
-  },
-  {
-    icon: facebookIcon,
-    text: 'Login with Facebook'
   }
+  // {
+  //   icon: facebookIcon,
+  //   text: 'Login with Facebook'
+  // }
 ];
 
 interface SignInLoginOptProp {
@@ -26,7 +27,23 @@ interface SignInLoginOptProp {
   pageName: string;
 }
 const SigninLoginOpt = ({ heading, pageName }: SignInLoginOptProp) => {
-  const handleDiscordLogin = (index: number) => {
+  const handleDiscordLogin = async (index: number) => {
+    if (index === 0) {
+      try {
+        let apiUrl = `https://api.egirls.ai/google/login?origin_url=https://api.egirls.ai`;
+        const response = await axios.get(apiUrl, {
+          headers: {
+            'Content-Type': 'application/json',
+            accept: 'application/json',
+            'Access-Control-Allow-Origin': '*'
+          }
+        });
+        // return response;
+        console.log(response);
+      } catch (error) {
+        return error;
+      }
+    }
     if (index === 1) {
       discordLogin()
         .then((res: any) => {
