@@ -247,7 +247,7 @@ const Banner: React.FC<BannerProp> = ({
         ''
       ) : (
         <div
-          className='font-bold my-4 flex cursor-pointer gap-2 text-lg'
+          className='flex gap-2 my-4 text-lg font-bold cursor-pointer'
           onClick={() => {
             backFromProfile(false);
           }}
@@ -259,7 +259,7 @@ const Banner: React.FC<BannerProp> = ({
 
       <div>
         <div className='h-max w-full overflow-hidden rounded-[16px] bg-[#121212]'>
-          <div className='sub-banner relative block w-full'>
+          <div className='relative block w-full sub-banner'>
             {coverImage === '' ? (
               <div className='mb-2 h-[200px] w-full bg-[#313131]'></div>
             ) : (
@@ -355,7 +355,7 @@ const Banner: React.FC<BannerProp> = ({
                     </div>
                     <div className='absolute -right-[2px] -top-[20px] h-[24px] w-10'>
                       <Image
-                        className='h-full w-full'
+                        className='w-full h-full'
                         src={downArrow}
                         alt={''}
                       />

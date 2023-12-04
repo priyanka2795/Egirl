@@ -11,7 +11,7 @@ interface PersonalityContent {
   personalityData?: any;
   setPersonalityData?: any;
   handleSavePersonality?:any;
-  personalityAPIData:any
+  personalityAPIData?:any
 }
 const PersonalityContent = ({
   SetBtnSteps,

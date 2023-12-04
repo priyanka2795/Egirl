@@ -39,7 +39,7 @@ const CreatorStudioNotificationModal = ({
   return (
     <>
       <div className='absolute right-0 top-[31px] z-[1] flex w-[484px] flex-col overflow-hidden rounded-[14px] bg-[#1A1A1A]'>
-        <div className='flex justify-between px-6 pb-5 pt-6'>
+        <div className='flex justify-between px-6 pt-6 pb-5'>
           <div className='font-bold text-[18px] leading-6 text-[#FFFFFF]'>
             Notifications
           </div>

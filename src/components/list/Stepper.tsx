@@ -4,10 +4,8 @@ import React, { useEffect, useState } from 'react';
 import userPenIcon from '@/assets/user-pen.webp';
 import personalityIcon from '@/assets/user.webp';
 import personalityWhiteIcon from '@/assets/user-white.webp';
-import imagePlusIcon from '@/assets/image-plus.webp
-';
-import imagePlusWhiteIcon from '@/assets/image-plus-white.webp
-';
+import imagePlusIcon from '@/assets/image-plus.webp';
+import imagePlusWhiteIcon from '@/assets/image-plus-white.webp';
 import palette from '@/assets/palette.webp';
 import paletteWhiteIcon from '@/assets/palette-white.webp';
 import flag from '@/assets/flag.webp';

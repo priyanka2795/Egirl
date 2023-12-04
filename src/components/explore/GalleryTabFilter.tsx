@@ -254,19 +254,19 @@ const GalleryTabFilter = ({
       )}
       {singleProfileState === false ? (
         <>
-          <div className='flex h-fit w-full flex-col items-center justify-center'>
-            <div className='mt-2 block w-full'>
+          <div className='flex flex-col items-center justify-center w-full h-fit'>
+            <div className='block w-full mt-2'>
               <SearchBar
                 searchBy={searchBy}
                 setSearchBy={setSearchBy}
                 placeholder='Search'
               />
             </div>
-            <div className='mb-6 flex w-full'>
+            <div className='flex w-full mb-6'>
               <Slider
                 {...settings}
                 ref={sliderRef}
-                className='explore-gallery-filter marketplace-slider flex w-full'
+                className='flex w-full explore-gallery-filter marketplace-slider'
               >
                 {galleryArray.map((items, index) => {
                   return (
@@ -290,7 +290,7 @@ const GalleryTabFilter = ({
           </div>
 
           <div className='mb-[23px] flex justify-between gap-2'>
-            <div className='flex h-fit justify-start gap-2'>
+            <div className='flex justify-start gap-2 h-fit'>
               {Object.keys(appliedFilter).length ? (
                 Object.keys(appliedFilter)?.map((item) => {
                   return appliedFilter[item]?.map((i) => (

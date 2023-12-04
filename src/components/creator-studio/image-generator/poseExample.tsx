@@ -31,7 +31,7 @@ const PoseExample = ({ PoseExampleClose }: PoseExample) => {
       <div className='px-6 pt-6'>
         <div className='overflow-hidden rounded-[14px] bg-[#FFFFFF0D]'>
           <div className=''>
-            <Image src={PoseImg} className='h-full w-full object-cover' />
+            <Image src={PoseImg} className='object-cover w-full h-full' />
           </div>
           <div className='px-5 py-4'>
             <h5 className='text-[15px] font-semibold'>Pose mode</h5>

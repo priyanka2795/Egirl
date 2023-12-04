@@ -129,18 +129,18 @@ const WelcomeStepsModal = ({
       modalOverlayStyle='!bg-black/80 '
       modalClassName='bg-[#121212] flex w-[539px] flex-col flex-start rounded-[20px]'
     >
-      <div className='flex flex-col justify-center gap-11 px-12 pb-12 pt-8'>
+      <div className='flex flex-col justify-center px-12 pt-8 pb-12 gap-11'>
         <div className='flex items-center justify-between text-[#979797]'>
           {signUpStep === 1 ? (
             <button
               className='border-0'
               onClick={() => setWelcomeStepsModal(false)}
             >
-              <Image src={ArrowLeft} className='h-full w-full object-cover' />
+              <Image src={ArrowLeft} className='object-cover w-full h-full' />
             </button>
           ) : (
             <button onClick={() => setSignUpStep(1)}>
-              <Image src={ArrowLeft} className='h-full w-full object-cover' />
+              <Image src={ArrowLeft} className='object-cover w-full h-full' />
             </button>
           )}
           <p>{signUpStep}/2</p>
@@ -182,7 +182,7 @@ const WelcomeStepsModal = ({
             ))}
           </div>
         ) : (
-          <div className='user-follow-slider relative flex flex-col gap-5 overflow-hidden'>
+          <div className='relative flex flex-col gap-5 overflow-hidden user-follow-slider'>
             <div className='flex justify-between '>
               <div className='text-[18px] font-semibold text-[#FFFFFF]'>
                 Users

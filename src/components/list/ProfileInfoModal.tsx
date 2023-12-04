@@ -12,13 +12,13 @@ import flagWhite from '@/assets/flag-white.webp';
 import circleInformation from '@/assets/circle-information-blue.webp';
 import RightIcon from '@/assets/check-cs.webp';
 import leftArrowIcon from '@/assets/left-arrow-grey.webp';
-import PersonalityContent from '@components/creator-studio/personality/PersonalityContent';
 import ImageGeneratorIndex from '@components/creator-studio/image-generator';
 import StyleGeneratorIndex from '@components/creator-studio/style-generator';
 import ViewProfile from './finishStep/viewProfile';
 import FinishStepModal from './finishStep/finishStepModal';
 import CongratulationsImage from '@/assets/confetti_PNG87045 1.webp';
 import Confetti from '@components/common/Confetti';
+import PersonalityContent from '@components/creator-studio/personality/PersonalityContent';
 
 const SearchData = [
   {

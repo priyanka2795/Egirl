@@ -34,20 +34,20 @@ const TextEdit = ({
         className='w-[258px] border-none bg-transparent p-0 text-[14px] font-normal leading-[18px] text-[#979797] placeholder:text-[#979797] focus:ring-0'
       />
       <div
-        className='h-5 w-5'
+        className='w-5 h-5'
         onClick={() => {
           (voiceGenerations[activeIndex].text = editedText), setTextEdit(false);
         }}
       >
-        <Image className='h-full w-full' src={greenCheck} alt={''} />
+        <Image className='w-full h-full' src={greenCheck} alt={''} />
       </div>
       <div
-        className='h-5 w-5'
+        className='w-5 h-5'
         onClick={() => {
           setTextEdit(false);
         }}
       >
-        <Image className='h-full w-full' src={crossIcon} alt={''} />
+        <Image className='w-full h-full' src={crossIcon} alt={''} />
       </div>
     </div>
   );

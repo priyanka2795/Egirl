@@ -5,8 +5,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import circleInformation from '@/assets/circle-information.webp';
 import chevronDown from '@/assets/chevron-down2.webp';
 import chevronUp from '@/assets/chevron-up.webp';
-import image from '@/assets/image-plus.webp
-';
+import image from '@/assets/image-plus.webp';
 import AddImagesModal from './AddImagesModal';
 import GoToGeneratorModal from './GoToGeneratorModal';
 import downArrow from '@/assets/down-arrow-img.webp';

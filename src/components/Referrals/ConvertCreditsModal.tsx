@@ -98,12 +98,12 @@ const ConvertCreditsModal = ({
               {heading}
             </div>
             <div
-              className='h-6 w-6'
+              className='w-6 h-6'
               onClick={() => {
                 closeConvertCredits(false);
               }}
             >
-              <Image className='h-full w-full' src={crossIcon} alt={''} />
+              <Image className='w-full h-full' src={crossIcon} alt={''} />
             </div>
           </div>
 
@@ -126,9 +126,9 @@ const ConvertCreditsModal = ({
                   }`}
                 >
                   <div className='flex rounded-[14px] bg-white/[0.05] px-4 py-3'>
-                    <div className='h-6 w-6'>
+                    <div className='w-6 h-6'>
                       <Image
-                        className='h-full w-full'
+                        className='w-full h-full'
                         src={dollarSign}
                         alt={''}
                       />
@@ -150,9 +150,9 @@ const ConvertCreditsModal = ({
                   ) : (
                     <>
                       <div className='flex rounded-[14px] bg-white/[0.05] px-4 py-3'>
-                        <div className='h-6 w-6'>
+                        <div className='w-6 h-6'>
                           <Image
-                            className='h-full w-full'
+                            className='w-full h-full'
                             src={coin}
                             alt={''}
                           />
@@ -165,7 +165,7 @@ const ConvertCreditsModal = ({
                         />
                       </div>
                       <div className='absolute left-[149px] top-[33px] flex rounded-[100px] border-2 border-[#1A1A1A] bg-[#272727] p-[6px]'>
-                        <Image className='h-5 w-5' src={arrowDown} alt={''} />
+                        <Image className='w-5 h-5' src={arrowDown} alt={''} />
                       </div>
                     </>
                   )}
