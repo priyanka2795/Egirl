@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import coinIcon from '../../../public/assets/coin.png';
-import crossIcon from '../../../public/assets/xmark (1).png';
-import sushi from '../../../public/assets/sushi.png';
-import pizza from '../../../public/assets/pizza.png';
-import taco from '../../../public/assets/taco.png';
-import chocolate from '../../../public/assets/chocolate.png';
-import lollipop from '../../../public/assets/lollipop.png';
-import cake from '../../../public/assets/cake.png';
-import soda from '../../../public/assets/soda.png';
-import eggplant from '../../../public/assets/eggplant.png';
-import tokenIcon from '../../../public/assets/token-white-icon.png';
+import coinIcon from '../../../public/assets/coin.webp';
+import crossIcon from '../../../public/assets/xmark (1).webp';
+import sushi from '../../../public/assets/sushi.webp';
+import pizza from '../../../public/assets/pizza.webp';
+import taco from '../../../public/assets/taco.webp';
+import chocolate from '../../../public/assets/chocolate.webp';
+import lollipop from '../../../public/assets/lollipop.webp';
+import cake from '../../../public/assets/cake.webp';
+import soda from '../../../public/assets/soda.webp';
+import eggplant from '../../../public/assets/eggplant.webp';
+import tokenIcon from '../../../public/assets/token-white-icon.webp';
 
 
 type GiftModal = {

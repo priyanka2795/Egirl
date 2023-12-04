@@ -1,11 +1,12 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
-import userProfileIcon from '../../../public/assets/user-profile-grey.png';
-import avatart1 from '../../../public/assets/avatar-cs-1.png';
-import avatart2 from '../../../public/assets/avatar-cs-2.png';
-import avatart3 from '../../../public/assets/avatar-cs-3.png';
-import check from '../../../public/assets/check-cs.png';
-import plusIcon from '../../../public/assets/plus-white.png';
+import userProfileIcon from '../../../public/assets/user-profile-grey.webp';
+import avatart1 from '../../../public/assets/avatar-cs-1.webp';
+import avatart2 from '../../../public/assets/avatar-cs-2.webp';
+import avatart3 from '../../../public/assets/avatar-cs-3.webp';
+import check from '@/assets/check-cs.webp';
+// import plusIcon from '../../../public/assets/plus-white.webp';
+import plusIcon from '@/assets/plus-white.webp';
 import SidebarMenuItem from '@components/common/Sidebar/SidebarMenuItem';
 import AnalyticsIcon from './svg/AnalyticsIcon';
 import HomeActiveIcon from './svg/HomeActiveIcon';

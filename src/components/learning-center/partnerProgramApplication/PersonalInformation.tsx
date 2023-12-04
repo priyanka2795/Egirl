@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import rightArrow from '../../../../public/assets/right-arrow-grey.png';
-import downArrow from '../../../../public/assets/down-arrow-img.png';
-import rightArrowWhite from '../../../../public/assets/chevron-right-white.png';
+import downArrow from '../../../../public/assets/down-arrow-img.webp';
+import rightArrowWhite from '../../../../public/assets/chevron-right-white.webp';
 interface personalInfoProps {
   setSteps: any;
 }

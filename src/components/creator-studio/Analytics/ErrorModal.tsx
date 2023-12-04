@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import crossRed from '../../../../public/assets/xmark-red.png';
+import crossRed from '../../../../public/assets/xmark-red.webp';
 import { Modal } from '@components/modal/modal';
 
 interface ErrorModalProps{

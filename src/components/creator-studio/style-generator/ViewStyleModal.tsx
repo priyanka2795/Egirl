@@ -1,14 +1,14 @@
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
 import React, {useState} from 'react';
-import pen from '../../../../public/assets/pen.png';
-import heart from '../../../../public/assets/heart-alt.png';
-import circleInformation from '../../../../public/assets/circle-information8.png';
-import arrowDown from '../../../../public/assets/chevron-down2.png';
-import shop from '../../../../public/assets/shop.png';
-import arrowUp from '../../../../public/assets/chevron-up.png';
-import copy from '../../../../public/assets/file-copy.png';
-import downArrow from '../../../../public/assets/down-arrow-img.png';
+import pen from '../../../../public/assets/pen.webp';
+import heart from '../../../../public/assets/heart-alt.webp';
+import circleInformation from '../../../../public/assets/circle-information.webp';
+import arrowDown from '../../../../public/assets/chevron-down2.webp';
+import shop from '../../../../public/assets/shop.webp';
+import arrowUp from '../../../../public/assets/chevron-up.webp';
+import copy from '../../../../public/assets/file-copy.webp';
+import downArrow from '../../../../public/assets/down-arrow-img.webp';
 
 interface ViewStyleModalProps {
   setViewStyleModal?: any;

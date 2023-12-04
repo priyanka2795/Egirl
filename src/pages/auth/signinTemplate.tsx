@@ -1,14 +1,13 @@
 import React from 'react';
 
 import { useRouter } from 'next/router';
-import bgImage from '../../../public/assets/sign-in-bg-img.png';
+import bgImage from '../../../public/assets/sign-in-bg-img.webp';
 import logo from '../../../public/assets/Logo-white.png';
 import Image from 'next/image';
 import googleIcon from '../../../public/assets/google-icon.png';
-import discordIcon from '../../../public/assets/discord-icon.png';
-import facebookIcon from '../../../public/assets/facebook-icon.png';
-import vector1 from '../../../public/assets/Vector 1.png';
-import vector2 from '../../../public/assets/Vector 2.png';
+import discordIcon from '../../../public/assets/discord-icon.webp';
+import facebookIcon from '../../../public/assets/facebook-icon.webp';
+import vector1 from '../../../public/assets/Vector_1.webp';
 import Link from 'next/link';
 
 

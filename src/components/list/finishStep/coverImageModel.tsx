@@ -1,8 +1,8 @@
 import React, { useState, createRef, useRef } from 'react';
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
-import crossIcon from '../../../../public/assets/xmark (1).png';
-// import CoverImage1 from '../../../../public/assets/bg.png';
+import crossIcon from '../../../../public/assets/xmark (1).webp';
+// import CoverImage1 from '../../../../public/assets/bg.webp';
 import Cropper, { ReactCropperElement } from 'react-cropper';
 import 'cropperjs/dist/cropper.css';
 

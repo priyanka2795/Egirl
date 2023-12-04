@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
-import arrowLeft from '../../../public/assets/arrow-left-grey.png';
-import messageSquare from '../../../public/assets/message-square-exclamation.png';
-import leftArrow from '../../../public/assets/left-arrow-grey.png';
+import arrowLeft from '../../../public/assets/arrow-left-grey.webp';
+import messageSquare from '../../../public/assets/message-square-exclamation.webp';
+import leftArrow from '../../../public/assets/left-arrow-grey.webp';
 import rightArrow from '../../../public/assets/right-arrow-grey.png';
 import FeedbackModal from './FeedbackModal';
 

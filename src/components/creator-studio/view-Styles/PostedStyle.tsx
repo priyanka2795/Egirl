@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import ViewStylesTab from './ViewStylesTab';
 import Image from 'next/image';
-import img1 from '../../../../public/assets/view-style-img1.png';
-import img2 from '../../../../public/assets/view-style-img2.png';
-import img3 from '../../../../public/assets/view-style-img3.png';
+import img1 from '../../../../public/assets/view-style-img1.webp';
+import img2 from '../../../../public/assets/view-style-img2.webp';
+import img3 from '../../../../public/assets/view-style-img3.webp';
 import ViewStyleModal from '../style-generator/ViewStyleModal';
-import modalImg from '../../../../public/assets/view-style-modal-img.png';
-import pen from '../../../../public/assets/pen2.png';
+import modalImg from '../../../../public/assets/view-style-modal-img.webp';
+import pen from '../../../../public/assets/pen2.webp';
 import PostedStyleModal from './PostedStyleModal';
 
 interface PostedstyleProps {

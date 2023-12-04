@@ -2,13 +2,13 @@
 
 import Image from 'next/image';
 import React, { useState } from 'react';
-import crossIcon from '../../../../public/assets/xmark (1).png';
-import AlbumFirst from '../../../../public/assets/gallery-tab-img.png';
-import AlbumSecound from '../../../../public/assets/mirandalImg.png';
-import AllAlbum1 from '../../../../public/assets/gallery-tab-img-3.png';
-import AllAlbum2 from '../../../../public/assets/gallery-tab-img-2.png';
-import AllAlbum3 from '../../../../public/assets/vi-image-7.png';
-import AllAlbum4 from '../../../../public/assets/vi-image-3.png';
+import crossIcon from '../../../../public/assets/xmark (1).webp';
+import AlbumFirst from '../../../../public/assets/gallery-tab-img.webp';
+import AlbumSecound from '../../../../public/assets/mirandalImg.webp';
+import AllAlbum1 from '../../../../public/assets/gallery-tab-img-3.webp';
+import AllAlbum2 from '../../../../public/assets/gallery-tab-img-2.webp';
+import AllAlbum3 from '../../../../public/assets/vi-image-7.webp';
+import AllAlbum4 from '../../../../public/assets/vi-image-3.webp';
 
 interface CategoryPopup {
   closeState: React.Dispatch<React.SetStateAction<boolean>>;

@@ -5,11 +5,12 @@ import React, { createRef, useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import userProfileImg from '../../../public/assets/user-profile.png';
-import filterImg1 from '../../../public/assets/filter-img-1.png';
-import filterImg2 from '../../../public/assets/filter-img-3.png';
-import filterImg3 from '../../../public/assets/filter-img-2.png';
-import xMark from '../../../public/assets/xmark.png';
+import userProfileImg from '../../../public/assets/user-profile.webp';
+import filterImg1 from '../../../public/assets/filter-img-1.webp';
+import filterImg2 from '../../../public/assets/filter-img-3.webp';
+import filterImg3 from '../../../public/assets/filter-img-2.webp';
+import arrowDown from '../../../public/assets/arrow-down.webp';
+import xMark from '../../../public/assets/xmark.webp';
 import UserProfile from './svg/user-profile.svg';
 import SearchIcon from './svg/search.svg';
 import FilterIcon from './svg/filter.svg';
@@ -96,7 +97,7 @@ const GalleryTabFilter = ({
     setIsOpen: filterIsopen
   } = useClickOutside<HTMLDivElement>(false);
 
-  console.log({selectedTags})
+  console.log({ selectedTags });
 
   const toggleModal = () => {
     if (filterOpen) {
@@ -309,11 +310,7 @@ const GalleryTabFilter = ({
                 <div className='font-normal pointer-none flex flex-shrink-0 cursor-pointer items-center gap-1 rounded-lg bg-white/10 px-[10px] py-1 text-xs leading-none text-white'>
                   <UserProfile />
                   <div className='text-[13px]'>All</div>
-                  <Image
-                    src={xMark}
-                    alt=''
-                    className='object-cover'
-                  />
+                  <Image src={xMark} alt='' className='object-cover' />
                 </div>
               )}
             </div>
@@ -322,9 +319,11 @@ const GalleryTabFilter = ({
               <div className='relative'>
                 <FilterIcon
                   onClick={() => {
-                    toggleModal(); 
+                    toggleModal();
                   }}
-                  className={`${filterOpen && 'white-stroke'} cursor-pointer -translate-x-[6rem] -translate-y-1`}
+                  className={`${
+                    filterOpen && 'white-stroke'
+                  } -translate-x-[6rem] -translate-y-1 cursor-pointer`}
                 />
                 {filterOpen && Tags?.length && (
                   <GalleryFilterCheckbox
@@ -338,9 +337,8 @@ const GalleryTabFilter = ({
                   />
                 )}
               </div>
-              
-                <Dropdown buttonTitle="Newest" options={Tags}/>
-            
+
+              <Dropdown buttonTitle='Newest' options={Tags} />
             </div>
           </div>
         </>

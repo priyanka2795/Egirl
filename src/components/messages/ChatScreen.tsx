@@ -43,7 +43,7 @@ import ImageRequestMsg from './ImageRequestMsg';
 import MessageIndicator from './MessageIndicator';
 import TextareaAutosize from 'react-textarea-autosize';
 import RecordVoice from './RecordVoice';
-import CrossIcon from '../../../public/assets/xmark.png';
+import CrossIcon from '../../../public/assets/xmark.webp';
 
 type chatProps = {
   chatScreenClassName?: string;

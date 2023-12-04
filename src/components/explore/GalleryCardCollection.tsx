@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
-import mikaChanImg from '../../../public/assets/mikaChan.png';
-import galleryTabImg3 from '../../../public/assets/explore-gallery-image2.png';
-import galleryTabImg4 from '../../../public/assets/explore-gallery-Image.png';
-import galleryTabImg5 from '../../../public/assets/explore-gallery-image3.png';
-import UserPlusIcon from '../../../public/assets/user-plus-alt-1.png';
+import mikaChanImg from '../../../public/assets/mikaChan.webp';
+import galleryTabImg3 from '../../../public/assets/explore-gallery-Image2.webp';
+import galleryTabImg4 from '../../../public/assets/explore-gallery-Image.webp';
+import galleryTabImg5 from '../../../public/assets/explore-gallery-Image3.webp';
+import UserPlusIcon from '../../../public/assets/user-plus-alt-1webp';
 import RemoveProfile from '@components/list/RemoveProfile';
 
 const exploreGallery = [

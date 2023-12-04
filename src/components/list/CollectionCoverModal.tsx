@@ -2,9 +2,9 @@ import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
 import React from 'react';
 import cameraIcon from '../../../public/assets/camera-icon.png';
-import avatar from '../../../public/assets/avatar.png';
+import avatar from '../../../public/assets/avatar.webp';
 import CloseIcon from '../../../public/assets/svgImages/close-icon.svg';
-import MainImage from '../../../public/assets/gallery-tab-img-3.png';
+import MainImage from '../../../public/assets/gallery-tab-img-3.webp';
 import { addCharacterToCollection } from 'services/services';
 import Cookies from 'js-cookie';
 interface CollectionCoverModalProps {

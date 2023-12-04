@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import Image from 'next/image';
-import leftArrow from '../../../../public/assets/left-arrow-grey.png';
-import userSearch from '../../../../public/assets/user-search.png'
+import leftArrow from '../../../../public/assets/left-arrow-grey.webp';
+import userSearch from '../../../../public/assets/user-search.webp'
 import IdentityFailed from './IdentityFailed';
 import IdentityVerified from './IdentityVerified';
 

@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import crossIcon from '../../../../public/assets/xmark (1).png';
+import crossIcon from '../../../../public/assets/xmark (1).webp';
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
-import image1 from '../../../../public/assets/vi-image-1.png';
-import image2 from '../../../../public/assets/vi-image-2.png';
-import image3 from '../../../../public/assets/vi-image-3.png';
-import image4 from '../../../../public/assets/vi-image-4.png';
-import AlbumImg from '../../../../public/assets/album1.png';
-import AlbumImg1 from '../../../../public/assets/album2.png';
-import AlbumImg2 from '../../../../public/assets/album3.png';
-import AlbumImg3 from '../../../../public/assets/album4.png';
+import image1 from '../../../../public/assets/vi-image-1.webp';
+import image2 from '../../../../public/assets/vi-image-2.webp';
+import image3 from '../../../../public/assets/vi-image-3.webp';
+import image4 from '../../../../public/assets/vi-image-4.webp';
+import AlbumImg from '../../../../public/assets/album1.webp';
+import AlbumImg1 from '../../../../public/assets/album2.webp';
+import AlbumImg2 from '../../../../public/assets/album3.webp';
+import AlbumImg3 from '../../../../public/assets/album4.webp';
 import { bool } from 'yup';
 
 const MoveAlbum = [
@@ -59,19 +59,19 @@ const MoveAlbumModal = ({ MoveModalClose }: MoveAlbumModal) => {
       <div className='flex items-center justify-between border-b border-[#FFFFFF14] p-6'>
         <h5 className='text-lg font-semibold'>Move to album</h5>
         <div
-          className='h-6 w-6 cursor-pointer'
+          className='w-6 h-6 cursor-pointer'
           onClick={() => MoveModalClose(false)}
         >
-          <Image className='h-full w-full' src={crossIcon} alt={''} />
+          <Image className='w-full h-full' src={crossIcon} alt={''} />
         </div>
       </div>
 
       <div className='max-h-[700px] overflow-y-auto p-6'>
         <div className='grid grid-cols-3 gap-[10px]'>
           {MoveAlbum.map((items, index) => (
-            <div key={index} className='sub-banner group relative'>
+            <div key={index} className='relative sub-banner group'>
               <Image
-                className='h-full w-full object-cover '
+                className='object-cover w-full h-full '
                 src={items.image}
                 alt={''}
               />
