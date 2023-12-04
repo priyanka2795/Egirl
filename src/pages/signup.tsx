@@ -301,7 +301,7 @@ export default function SignUp() {
           setWelcomeStepsModal={setWelcomeStepsModal}
         />
        
-      )} */}  
+      )}  */}
       <ToastContainer
         position='bottom-center'
         pauseOnHover
