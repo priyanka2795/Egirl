@@ -87,10 +87,34 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className='mt-10 flex  select-none justify-between text-[15px] font-[400]'>
+      <div className='mt-10 flex select-none justify-between text-[15px] font-[400]'>
+        {/* <p>© 2023 Egirls Inc. All Rights Reserved</p> */}
+        <div>
+          <p>© 2023 Persona Enterprises Inc. All Rights Reserved</p>
+          <p>251 LITTLE FALLS DRIVE,</p>
+          <p>WILMINGTON, DE 19808,</p>
+          <p>United States</p>
+          <p>302-636-5401</p>
+        </div>
+        <div className='flex gap-x-4'>
+          <Link href="/legal/terms-of-service">
+            <a className='hover:underline'>Terms of Service</a>
+          </Link>
+          <Link href="/legal/privacy">
+            <a className='hover:underline'>Privacy Policy</a>
+          </Link>
+          <Link href="/legal/content-conduct-policy">
+            <a className='hover:underline'>Content & Conduct Policy</a>
+          </Link>
+          <Link href="/legal/products-services-policy">
+            <a className='hover:underline'>Products & Services Policy</a>
+          </Link>
+        </div>
+      </div>
+      {/* <div className='mt-10 flex  select-none justify-between text-[15px] font-[400]'>
         <p>© 2023 Egirls Inc. All Rights Reserved</p>
         <Link href="/privacy-policy">Privacy Policy</Link>
-      </div>
+      </div> */}
     </div>
   );
 };

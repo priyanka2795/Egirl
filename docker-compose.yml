@@ -1,0 +1,16 @@
+version: '3'
+services:
+  web:
+    container_name: egirls_frontend_container
+    image: egirls_frontend_image
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/src/app
+      - node_modules_volume:/usr/src/app/node_modules
+      - next_volume:/usr/src/app/.next
+
+volumes:
+  node_modules_volume:
+  next_volume:

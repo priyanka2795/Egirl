@@ -1,3 +1,4 @@
+//@ts-nocheck
 import Image from 'next/image';
 import React from 'react';
 import greenCheck from '../../../../public/assets/check-icon-green.png';

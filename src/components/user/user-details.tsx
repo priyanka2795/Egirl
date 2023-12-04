@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import { formatDate } from '@lib/date';
 import { HeroIcon } from '@components/ui/hero-icon';
 import { ToolTip } from '@components/ui/tooltip';

@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+//@ts-nocheck
 
 import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';

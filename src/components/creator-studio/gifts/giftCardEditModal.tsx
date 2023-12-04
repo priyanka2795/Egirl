@@ -9,7 +9,8 @@ import MoveImgFirst from '../svg/Image-block.png';
 import MoveImg from '../svg/Image-block2.png';
 import ImageSquare from '../svg/image-square.png';
 import GiftCardDelete from './giftCardDelete';
-import { updateGifts } from 'services/services';
+import { postGifts, updateGifts } from 'services/services';
+import Cookies from 'js-cookie';
 // dots-horizontal-white
 interface CardEditModal {
   closeModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -24,6 +25,7 @@ interface CardEditModal {
   token: string;
   updateGift: boolean;
   setUpdateGift: React.Dispatch<React.SetStateAction<boolean>>;
+  giftCategory:any
 }
 const moveData = [
   {
@@ -54,9 +56,12 @@ function GiftCardEditModal({
   characterId,
   token,
   setUpdateGift,
-  updateGift
+  updateGift,
+  giftCategory
 }: CardEditModal) {
   const [EditName, setEditName] = useState<any>(selectedGiftData?.name);
+  const [moveData , setMoveData] = useState<any>()
+  const [selectedMoveCategory , setSelectedMoveCategory] = useState<any>()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -82,6 +87,35 @@ function GiftCardEditModal({
       });
     closeModal(false);
   };
+
+
+
+  const handleChangeCategory=(gift_category_idL:number , name :string)=>{
+    setSelectedMoveCategory(gift_category_idL)
+    const data = {
+      character_id: characterId,
+      gift_id: selectedGiftData?.gift_id,
+      name: name,
+      price: 'UNCHANGED',
+      media_id: 'UNCHANGED',
+      gift_category_id: gift_category_idL
+    };
+    setMoveData(data)
+    
+    
+  }
+
+  const handleSaveMove=()=>{
+    updateGifts(moveData , token)
+    .then((res:any)=>{
+      console.log(res);
+      setUpdateGift(!updateGift);
+    })
+    .catch((err:any)=>{
+      console.log(err);
+    })
+    closeModal(false)
+  }
 
   return (
     <>
@@ -142,7 +176,7 @@ function GiftCardEditModal({
         ) : GiftEditModal === 2 ? (
           <div className='w-[385px] '>
             <div className='flex items-center justify-between border-b border-[#FFFFFF14] p-6'>
-              <h5 className='text-lg font-semibold'>Romantic dinner</h5>
+              <h5 className='text-lg font-semibold'>Select Category</h5>
               <div
                 className='w-6 h-6 cursor-pointer'
                 onClick={() => closeModal(false)}
@@ -162,22 +196,26 @@ function GiftCardEditModal({
                 <p className='text-[13px] font-semibold text-[#979797]'>
                   Move to
                 </p>
-                {moveData.map((items) => (
-                  <div
-                    className={`rounded-[14px] border border-[#FFFFFF29] px-4 py-3`}
+                {giftCategory?.map((items:any) => (
+                  <div onClick={()=> handleChangeCategory(items?.gift_category_id , items?.name)}
+                    className={`rounded-[14px] border border-[#FFFFFF29] px-4 py-3    ${
+                      selectedMoveCategory == items?.gift_category_id
+                        ? 'border-[#5848BC] bg-[#5848BC29]'
+                        : 'border-[#FFFFFF29] bg-[#ffffff00]'
+                    }`}
                   >
                     <div className='flex items-center justify-between'>
                       <div className='flex items-center gap-3'>
                         <div className='flex h-[40px] w-[40px] items-center justify-center rounded-lg bg-[#FFFFFF0D]'>
                           <Image
-                            src={items.imgpath}
+                            src={items.media_url}
                             className='w-full h-full m-auto'
                           />
                         </div>
                         <div className=''>
-                          <p className='font-semibold'>{items.name}</p>
+                          <p className='font-semibold'>{items?.name}</p>
                           <p className='text-xs text-[#979797]'>
-                            {items.gifts}
+                            {/* {items.gifts} */}
                           </p>
                         </div>
                       </div>
@@ -186,10 +224,10 @@ function GiftCardEditModal({
                   </div>
                 ))}
               </div>
-              <button className='flex items-center gap-2 pb-3 font-semibold'>
+              {/* <button className='flex items-center gap-2 pb-3 font-semibold'>
                 <Image className='w-full h-full' src={plusIcon} alt={''} />
                 <p>New Category</p>
-              </button>
+              </button> */}
 
               <div className='grid grid-cols-2 gap-3 mt-6 font-semibold text-white'>
                 <button
@@ -200,7 +238,7 @@ function GiftCardEditModal({
                 </button>
                 <button
                   className='rounded-[14px] bg-[#5848BC] px-5 py-3'
-                  onClick={() => closeModal(false)}
+                  onClick={ handleSaveMove}
                 >
                   Save
                 </button>

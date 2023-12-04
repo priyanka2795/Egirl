@@ -43,13 +43,13 @@ const Nav = ({ setBetaAccess, setSideNav }: Props) => {
           </div>
           <div className='md:flex'>
             <div className='mr-6 hidden lg:flex lg:items-center'>
-              <button>
+              {/* <button>
                 <Link href='/contact-us'>
                   <span className='text-[32px] font-[500] text-[white] transition duration-100 hover:text-[#5848BC] hover:underline hover:decoration-[#5848BC] hover:underline-offset-8 lg:text-[16px]'>
                     Contact
                   </span>
                 </Link>
-              </button>
+              </button> */}
             </div>
             <button
               onClick={() => {

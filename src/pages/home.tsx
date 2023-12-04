@@ -8,8 +8,9 @@ export default function Home() {
   const router = useRouter();
   const accessToken = Cookies.get('accessToken');
   const refreshToken = Cookies.get('refreshToken');
-  const signUpCompleted = sessionStorage.getItem('true');
+  const signUpCompleted = sessionStorage.getItem('SignUpCompleted');
 
+  console.log('signUpCompleted:', signUpCompleted);
   const [signupCompletedState, setSignupCompletedState] = useState(
     signUpCompleted ? true : false
   );

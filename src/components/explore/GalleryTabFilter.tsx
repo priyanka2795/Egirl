@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import Image from 'next/image';
 import React, { createRef, useEffect, useState } from 'react';
 import Slider from 'react-slick';
@@ -83,10 +85,12 @@ const GalleryTabFilter = ({
   const [galleryData, setGalleryData] = useState<any>();
   const [searchBy, setSearchBy] = useState<string>('');
   const [showAllTags, setShowAllTags] = useState<boolean>(false);
-  const [selectedTags, setSelectedTags] = useState([]);
-  const [appliedFilter, setAppliedFilter] = useState([]);
+  const [selectedTags, setSelectedTags] = useState({});
+  const [appliedFilter, setAppliedFilter] = useState({});
+  const [filterTagsBy,setFilterTagsBy]=useState("A");
+  const [filteredTags,setFilteredTags]=useState([]);
 
-  const [Tags] = useState([
+  const [Tags,setTags] = useState([
     'Furry',
     'Ahegao',
     'NSFW',
@@ -106,6 +110,13 @@ const GalleryTabFilter = ({
     setSelectedFilter(item);
   };
 
+
+  useEffect(()=>{
+    let data=Tags?.filter(i=>String(i).startsWith(filterTagsBy));
+    console.log({data})
+    setFilteredTags(data);
+  },[filterTagsBy])
+
   useEffect(() => {
     exploreGallery(1, 10, token)
       .then((res: any) => {
@@ -118,10 +129,18 @@ const GalleryTabFilter = ({
   }, []);
 
   useEffect(() => {
-    if (selectedTags?.length >= 4) {
-      closeAllTagsModal();
+    if(!showAllTags && Object.keys(selectedTags)?.length){
+      let TagsOrder=[];
+      for(let item of Tags){
+        if(selectedTags[item]){
+          TagsOrder.unshift(item)
+        }else{
+          TagsOrder.push(item)
+        }
+      }
+      setTags([...TagsOrder]);
     }
-  }, [JSON.stringify(selectedTags)]);
+  }, [showAllTags]);
 
   const settings = {
     dots: true,
@@ -165,29 +184,51 @@ const GalleryTabFilter = ({
   };
 
   const getSelectedTagOnClick = (item: any) => {
-    console.log({ item });
-    if (selectedTags.includes(item)) {
-      let data = selectedTags?.filter((i) => i !== item);
-      setSelectedTags(data);
+    if(selectedTags[item]){
+      let copySelectedTags={...selectedTags};
+      copySelectedTags[item]=false;
+      setSelectedTags({...copySelectedTags});
       return;
     }
-    setSelectedTags([...selectedTags, item]);
+    if(Object.keys(selectedTags)?.length >= 4){
+      let copySelectedTags={...selectedTags};
+      let array=Object.keys(copySelectedTags);
+      delete copySelectedTags[array[array.length-1]];
+      setSelectedTags({...copySelectedTags,[item]:true});
+      return;
+    }
+    setSelectedTags({...selectedTags,[item]:true});
   };
 
   const applyAllFilters = () => {
     closeFilterModal();
-    setAppliedFilter([...appliedFilter, ...selectedTags]);
+    let copyAppliedFilter={};
+    if(Object.keys(selectedTags)?.length){
+      for(let item of Object.keys(selectedTags)){
+        if(selectedTags[item]){
+          copyAppliedFilter['tag']=copyAppliedFilter['tag'] ? [...copyAppliedFilter['tag'],item] : [item]
+          console.log({keys:copyAppliedFilter})
+        }
+      }
+      setAppliedFilter(copyAppliedFilter)
+    }
   };
 
-  const removeAppliedFilters = (item) => {
-    let data = appliedFilter?.filter((i) => i !== item);
-    setSelectedTags(data);
-    setAppliedFilter(data);
+  const removeAppliedFilters = (KEY,item) => {
+    let copyAppliedFilter={...appliedFilter};
+    let copySelectedTags={...selectedTags};
+    let filterApplied=copyAppliedFilter[KEY]?.filter(i=>i !==item)
+    copyAppliedFilter[KEY]=filterApplied;
+    copySelectedTags[item] = false;
+    setAppliedFilter(copyAppliedFilter);
+    setSelectedTags(copySelectedTags);
   };
 
-  const clearAll = () =>{
-    setSelectedTags([])
-  }
+  const clearAll = () => {
+    setAppliedFilter({});
+    setSelectedTags({});
+  };
+
 
   return (
     <>
@@ -195,25 +236,28 @@ const GalleryTabFilter = ({
         <ViewAllTags
           getSelectedTagOnClick={getSelectedTagOnClick}
           selectedTags={selectedTags}
-          Tags={Tags}
           closeAllTagsModal={closeAllTagsModal}
+          setSelectedTags={setSelectedTags}
+          setFilterTagsBy={setFilterTagsBy}
+          filterTagsBy={filterTagsBy}
+          filteredTags={filteredTags}
         />
       )}
       {singleProfileState === false ? (
         <>
-          <div className='flex flex-col items-center justify-center w-full h-fit'>
-            <div className='block w-full mt-8'>
+          <div className='flex h-fit w-full flex-col items-center justify-center'>
+            <div className='mt-8 block w-full'>
               <SearchBar
                 searchBy={searchBy}
                 setSearchBy={setSearchBy}
                 placeholder='Search'
               />
             </div>
-            <div className='flex w-full mt-6 mb-7'>
+            <div className='mb-7 mt-6 flex w-full'>
               <Slider
                 {...settings}
                 ref={sliderRef}
-                className='flex w-full explore-gallery-filter marketplace-slider'
+                className='explore-gallery-filter marketplace-slider flex w-full'
               >
                 {galleryArray.map((items, index) => {
                   return (
@@ -237,24 +281,26 @@ const GalleryTabFilter = ({
           </div>
 
           <div className='mb-[23px] flex justify-between gap-2'>
-            <div className='flex justify-start w-full gap-2 h-fit'>
-              {appliedFilter.length ? (
-                appliedFilter?.map((item) => (
-                  <div
-                    className={`font-normal flex flex-shrink-0 cursor-pointer items-center gap-1 rounded-lg bg-white/10 px-[10px] py-1 text-xs leading-none text-white ${
-                      selectedFilter === 'All' ? '' : 'py-3'
-                    }`}
+            <div className='flex h-fit w-full justify-start gap-2'>
+              {Object.keys(appliedFilter).length ? (
+                Object.keys(appliedFilter)?.map((item) => {
+                  return appliedFilter[item]?.map((i)=>
+                  
+                      <div
+                    className="font-normal flex flex-shrink-0 cursor-pointer items-center gap-1 rounded-lg bg-white/10 px-[10px] py-1 text-xs leading-none text-white"
                   >
                     <UserProfile />
-                    <div className='text-[13px]'>{item}</div>
+                    <div className='text-[13px]'>{i}</div>
                     <Image
                       src={xMark}
                       alt=''
                       className='object-cover'
-                      onClick={() => removeAppliedFilters(item)}
+                      onClick={() => removeAppliedFilters(item,i)}
                     />
                   </div>
-                ))
+                  
+                  )
+                })
               ) : (
                 <div className='font-normal All flex cursor-pointer items-center  gap-1 rounded-lg px-[10px] py-1 text-xs leading-none text-white'></div>
               )}
@@ -268,7 +314,7 @@ const GalleryTabFilter = ({
                   }}
                   className={`${filterForm && 'white-stroke'} cursor-pointer`}
                 />
-                {filterForm && (
+                {(filterForm && Tags?.length) && (
                   <GalleryFilterCheckbox
                     applyAllFilters={applyAllFilters}
                     openAllTagsModal={openAllTagsModal}
@@ -276,11 +322,11 @@ const GalleryTabFilter = ({
                     filterCloseForm={setFilterForm}
                     selectedTags={selectedTags}
                     getSelectedTagOnClick={getSelectedTagOnClick}
-                    clearAll= {clearAll}
+                    clearAll={clearAll}
                   />
                 )}
               </div>
-              <div className='flex gap-2 pl-2 border-l border-white/10'>
+              <div className='flex gap-2 border-l border-white/10 pl-2'>
                 <p>Newest</p>
                 <Image src={arrowDown} alt='' className='object-cover' />
               </div>

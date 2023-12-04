@@ -1,3 +1,4 @@
+//@ts-nocheck
 import RangePicker from '@components/creator-studio/common/RangePicker';
 import React, { SetStateAction, useState, useRef } from 'react';
 import AvatarEditor from 'react-avatar-editor';

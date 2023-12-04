@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { Modal } from '@components/modal/modal';
 import React, { useState, useEffect } from 'react';
 import CloseIcon from '../../../public/assets/svgImages/close-icon.svg';

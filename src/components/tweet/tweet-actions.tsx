@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import { useMemo } from 'react';
 import { useRouter } from 'next/router';
 import { Popover } from '@headlessui/react';

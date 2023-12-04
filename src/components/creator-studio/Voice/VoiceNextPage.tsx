@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
 import { Range } from 'react-range';

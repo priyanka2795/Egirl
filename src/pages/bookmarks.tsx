@@ -521,3 +521,9 @@
 //     </MainLayout>
 //   </ProtectedLayout>
 // );
+
+const Bookmarks = () => {
+    return <div></div>;
+  };
+  
+export default Bookmarks;

@@ -223,3 +223,9 @@
 //     </MainLayout>
 //   </ProtectedLayout>
 // );
+
+const HomeOld = () => {
+    return <div></div>;
+  };
+  
+export default HomeOld;

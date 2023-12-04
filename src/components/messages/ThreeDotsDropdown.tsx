@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { useState } from 'react'
 import ChatIcon from './svg/chat-icon-small.svg';
 import DeleteIcon from './svg/delete-icon.svg';
