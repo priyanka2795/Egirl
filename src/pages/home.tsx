@@ -7,7 +7,7 @@ export default function Home() {
   const router = useRouter();
   const accessToken = Cookies.get('accessToken');
   const signUpUserId = Cookies.get('signUpUserId');
-  const [welcomeStepsModal, setWelcomeStepsModal] = useState<boolean>(true);
+  const [welcomeStepsModal, setWelcomeStepsModal] = useState<boolean>(false);
    useEffect(()=>{
     if(signUpUserId){
       setWelcomeStepsModal(true) 
