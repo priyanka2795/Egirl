@@ -1,10 +1,10 @@
 import React from 'react';
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
-import CloseIcon from '../../../../public/assets/xmark (1).webp';
-import Brush from '../../../../public/assets/paintbrush-alt.webp';
-import Image1 from '../../../../public/assets/inpaint-Image.webp';
-import CheckIcon from '../../../../public/assets/check-icon-grey.webp';
+import CloseIcon from '@/assets/xmark (1).webp';
+import Brush from '@/assets/paintbrush-alt.webp';
+import Image1 from '@/assets/inpaint-Image.webp';
+import CheckIcon from '@/assets/check-icon-grey.webp';
 
 interface InpaintingExample {
   CloseModal: React.Dispatch<React.SetStateAction<boolean>>;

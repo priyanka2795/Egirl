@@ -1,9 +1,9 @@
 import React from 'react'
 import BreadCrumbs from '../BreadCrumbs';
 import Image from 'next/image';
-import voiceBanner from '../../../../public/assets/learning-center/voiceBanner.png'
+import voiceBanner from '@/assets/learning-center/voiceBanner.png'
 import PrevNextStep from '../PrevNextStep';
-import DemoImg from '../../../../public/assets/learning-center/blank_img.png';
+import DemoImg from '@/assets/learning-center/blank_img.png';
 import VoiceContent from './VoiceContent';
 
 function VoiceIndex() {

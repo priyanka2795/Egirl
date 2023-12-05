@@ -1,11 +1,11 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
-import crossIcon from '../../../../public/assets/xmark (1).webp';
-import AlbumFirst from '../../../../public/assets/gallery-tab-img.webp';
-import AlbumSecound from '../../../../public/assets/mirandalImg.webp';
-import Images1 from '../../../../public/assets/vi-image-6.webp';
-import Images2 from '../../../../public/assets/vi-image-3.webp';
-import Images3 from '../../../../public/assets/vi-image.webp';
+import crossIcon from '@/assets/xmark (1).webp';
+import AlbumFirst from '@/assets/gallery-tab-img.webp';
+import AlbumSecound from '@/assets/mirandalImg.webp';
+import Images1 from '@/assets/vi-image-6.webp';
+import Images2 from '@/assets/vi-image-3.webp';
+import Images3 from '@/assets/vi-image.webp';
 import { Modal } from '@components/modal/modal';
 import InpaintingModals from './inpaintingModals';
 interface SelectImage {

@@ -1,18 +1,18 @@
 //@ts-nocheck
 
 import React, { useEffect, useRef, useState } from 'react';
-import image1 from '../../../../public/assets/vi-image-1.webp';
-import image2 from '../../../../public/assets/vi-image-2.webp';
-import image3 from '../../../../public/assets/vi-image-3.webp';
-import image4 from '../../../../public/assets/vi-image-4.webp';
-import image5 from '../../../../public/assets/vi-image-5.webp';
-import image6 from '../../../../public/assets/vi-image-6.webp';
-import image7 from '../../../../public/assets/vi-image-7.webp';
-import threeDots from '../../../../public/assets/dots-horizontal3.webp';
+import image1 from '@/assets/vi-image-1.webp';
+import image2 from '@/assets/vi-image-2.webp';
+import image3 from '@/assets/vi-image-3.webp';
+import image4 from '@/assets/vi-image-4.webp';
+import image5 from '@/assets/vi-image-5.webp';
+import image6 from '@/assets/vi-image-6.webp';
+import image7 from '@/assets/vi-image-7.webp';
+import threeDots from '@/assets/dots-horizontal3.webp';
 import Image from 'next/image';
-import Delete from '../../../../public/assets/delete-icon.webp';
-import Pencil from '../../../../public/assets/pencil.webp';
-import Information from '../../../../public/assets/circle-information.webp';
+import Delete from '@/assets/delete-icon.webp';
+import Pencil from '@/assets/pencil.webp';
+import Information from '@/assets/circle-information.webp';
 import AlbumDelete from './albumDelete';
 import EditAlbum from './editAlbum';
 import AlbumDetailsModal from './albumDetailsModal';

@@ -1,25 +1,25 @@
 //@ts-nocheck
 
 import React, { useEffect, useRef, useState } from 'react';
-import Information from '../../../../public/assets/circle-information2.webp';
-import Dots from '../../../../public/assets/dots-horizontal.webp';
-import ArrowUp from '../../../../public/assets/chevron-up.webp';
-import ArrowDown from '../../../../public/assets/chevron-down2.webp';
-import CopyIcon from '../../../../public/assets/copy.webp';
-import GridVertical from '../../../../public/assets/dots-vertical.webp';
+import Information from '@/assets/circle-information2.webp';
+import Dots from '@/assets/dots-horizontal.webp';
+import ArrowUp from '@/assets/chevron-up.webp';
+import ArrowDown from '@/assets/chevron-down2.webp';
+import CopyIcon from '@/assets/copy.webp';
+import GridVertical from '@/assets/dots-vertical.webp';
 import Image from 'next/image';
-import Image1 from '../../../../public/assets/vi-image-1.webp';
-import Image2 from '../../../../public/assets/vi-image-2.webp';
-import Image3 from '../../../../public/assets/vi-image-3.webp';
-import Image4 from '../../../../public/assets/vi-image-4.webp';
-import Image5 from '../../../../public/assets/vi-image-5.webp';
-import Pencil from '../../../../public/assets/pen.webp';
-import Refresh from '../../../../public/assets/refresh.webp';
-import Delete from '../../../../public/assets/delete-icon.webp';
+import Image1 from '@/assets/vi-image-1.webp';
+import Image2 from '@/assets/vi-image-2.webp';
+import Image3 from '@/assets/vi-image-3.webp';
+import Image4 from '@/assets/vi-image-4.webp';
+import Image5 from '@/assets/vi-image-5.webp';
+import Pencil from '@/assets/pen.webp';
+import Refresh from '@/assets/refresh.webp';
+import Delete from '@/assets/delete-icon.webp';
 import EditImageGeneration from './editImagegeneration';
 import Tooltip from '@components/common/tooltip';
 import AlbumDelete from '../viewImages/albumDelete';
-import SquareImage from '../../../../public/assets/image-square5.png';
+import SquareImage from '@/assets/image-square5.png';
 
 const images = [
   { img: Image1 },

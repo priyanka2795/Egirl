@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import React from 'react';
-import banner from '../../../../public/assets/cover-1.webp';
-import avatar from '../../../../public/assets/view-style-banner-avatar.webp';
-import blueTick from '../../../../public/assets/badge-check2.webp';
-import threeDots from '../../../../public/assets/dots-horizontal4.webp';
+import banner from '@/assets/cover-1.webp';
+import avatar from '@/assets/view-style-banner-avatar.webp';
+import blueTick from '@/assets/badge-check2.webp';
+import threeDots from '@/assets/dots-horizontal4.webp';
 
 
 

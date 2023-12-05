@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
-import ArrowLeft from "../../../../../public/assets/svgImages/arrow-left.svg";
-import Xmark from "../../../../../public/assets/svgImages/xmark.svg";
+import ArrowLeft from "@/assets/svgImages/arrow-left.svg";
+import Xmark from "@/assets/svgImages/xmark.svg";
 
 interface Props {
   showTokens?: boolean;

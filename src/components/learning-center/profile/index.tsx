@@ -1,8 +1,8 @@
 import React from 'react';
 import BreadCrumbs from '../BreadCrumbs';
 import Image from 'next/image';
-import editDemoImg from '../../../../public/assets/learning-center/learning_profile_img.png';
-import profileBanner from '../../../../public/assets/learning-center/profileBanner.png';
+import editDemoImg from '@/assets/learning-center/learning_profile_img.png';
+import profileBanner from '@/assets/learning-center/profileBanner.png';
 import ProfileContentSec from './ProfileContentSec';
 import PrevNextStep from '../PrevNextStep';
 

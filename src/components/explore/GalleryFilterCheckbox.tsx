@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
-import circleInformation from '../../../public/assets/circle-information.webp';
+import circleInformation from '@/assets/circle-information.webp';
 import { log } from 'console';
 
 interface prop{

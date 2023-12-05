@@ -1,7 +1,7 @@
 import { Modal } from '@components/modal/modal'
 import React from 'react'
 import Image from 'next/image';
-import orangeDeleteIcon from '../../../public/assets/orange-delete-icon.webp'
+import orangeDeleteIcon from '@/assets/orange-delete-icon.webp'
 
 interface clearBookMarkProp {
     closeModalItem?: any

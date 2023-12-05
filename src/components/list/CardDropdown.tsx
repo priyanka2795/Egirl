@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
-import AddIcon from '../../../public/assets/svgImages/add-icon.svg';
-import PenIcon from '../../../public/assets/svgImages/pen-icon.svg';
-import DeleteIcon from '../../../public/assets/svgImages/delete-icon.svg';
+import AddIcon from '@/assets/svgImages/add-icon.svg';
+import PenIcon from '@/assets/svgImages/pen-icon.svg';
+import DeleteIcon from '@/assets/svgImages/delete-icon.svg';
 import EditCollectionModal from './EditCollectionModal';
 import DeleteCollection from './DeleteCollection';
 import CollectionCoverModal from './CollectionCoverModal';

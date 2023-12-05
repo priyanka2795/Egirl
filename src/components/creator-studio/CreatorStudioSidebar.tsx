@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import avtar from '@/assets/mica-chan-avatar-image.webp';
-import arrowDown from '../../../public/assets/chevron-down24.webp';
+import arrowDown from '@/assets/chevron-down24.webp';
 import SidebarMenuItem from '@components/common/Sidebar/SidebarMenuItem';
 import AnalyticsIcon from './svg/AnalyticsIcon';
 import ImageGeneratorIcon from './svg/ImageGeneratorIcon';
@@ -26,11 +26,11 @@ import personalityActive from './svg/user-alt-1.svg';
 import analyticsActive from './svg/Chart.svg';
 import voiceActive from './svg/microphone-alt.svg';
 import CharacterAdd from './NewCharacter/CharacterAdd';
-import arrowLeft from '../../../public/assets/arrow-left.png';
-import CloseIcon from '../../../public/assets/svgImages/close-icon.svg';
-import arrowLeftTooltip from '../../../public/assets/arrow-left-tooltip.png';
+import arrowLeft from '@/assets/arrow-left.png';
+import CloseIcon from '@/assets/svgImages/close-icon.svg';
+import arrowLeftTooltip from '@/assets/arrow-left-tooltip.png';
 import HoverModal from '@components/list/HoverModal';
-import userAdd from '../../../public/assets/user-plus.1webp';
+import userAdd from '@/assets/user-plus1.webp';
 import CreateCharacterModal from '@components/list/CreateCharacterModal';
 
 import Cookies from 'js-cookie';

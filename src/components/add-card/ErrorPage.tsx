@@ -1,6 +1,6 @@
 import React from 'react';
-import crossIconRed from '../../../public/assets/xmark-red.webp';
-import creditCard from '../../../public/assets/credit-card.webp';
+import crossIconRed from '@/assets/xmark-red.webp';
+import creditCard from '@/assets/credit-card.webp';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 

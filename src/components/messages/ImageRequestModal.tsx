@@ -112,15 +112,15 @@ export default ImageRequestModal;
 // import CloseIcon from './svg/close-icon.svg';
 // import ImgIcon from './svg/img-icon.svg';
 // import RandomImageIcon from './svg/random-img-icon.svg';
-// import gridImg1 from '../../../public/assets/messages/grid-img-6.png';
-// import gridImg2 from '../../../public/assets/messages/grid-img-7.png';
-// import gridImg3 from '../../../public/assets/messages/grid-img-8.png';
-// import gridImg4 from '../../../public/assets/messages/grid-img-9.png';
-// import gridImg5 from '../../../public/assets/messages/grid-img-10.png';
-// import gridImg6 from '../../../public/assets/messages/grid-img-11.png';
-// import gridImg7 from '../../../public/assets/messages/grid-img-12.png';
-// import gridImg8 from '../../../public/assets/messages/grid-img-13.png';
-// import gridImg9 from '../../../public/assets/messages/grid-img-14.png';
+// import gridImg1 from '@/assets/messages/grid-img-6.png';
+// import gridImg2 from '@/assets/messages/grid-img-7.png';
+// import gridImg3 from '@/assets/messages/grid-img-8.png';
+// import gridImg4 from '@/assets/messages/grid-img-9.png';
+// import gridImg5 from '@/assets/messages/grid-img-10.png';
+// import gridImg6 from '@/assets/messages/grid-img-11.png';
+// import gridImg7 from '@/assets/messages/grid-img-12.png';
+// import gridImg8 from '@/assets/messages/grid-img-13.png';
+// import gridImg9 from '@/assets/messages/grid-img-14.png';
 // import Image from 'next/image';
 
 // type ImageRequestModal = {

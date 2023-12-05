@@ -1,14 +1,14 @@
 //@ts-nocheck
 import React, { useEffect, useState } from 'react';
 import VerticalDots from '../svg/dots-vertical.svg';
-import Search from '../../../../public/assets/search-alt (1).webp';
+import Search from '@/assets/search-alt (1).webp';
 import Image from 'next/image';
-import plusIcon from '../../../../public/assets/plus-large.webp';
-import Delete from '../../../../public/assets/delete-icon.webp';
-import Pencil from '../../../../public/assets/pencil.webp';
+import plusIcon from '@/assets/plus-large.webp';
+import Delete from '@/assets/delete-icon.webp';
+import Pencil from '@/assets/pencil.webp';
 import EditCategoryAction from './editCategoryAction';
 import CreateCategory from './createCategory';
-import crossIcon from '../../../../public/assets/xmark (1).webp';
+import crossIcon from '@/assets/xmark (1).webp';
 import Tooltip from './tooltip';
 import { deleteGiftCategory, updateGiftCategory } from 'services/services';
 

@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import crossIcon from '../../../../public/assets/xmark (1).webp';
+import crossIcon from '@/assets/xmark (1).webp';
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
-import image1 from '../../../../public/assets/vi-image-1.webp';
-import image2 from '../../../../public/assets/vi-image-2.webp';
-import image3 from '../../../../public/assets/vi-image-3.webp';
-import image4 from '../../../../public/assets/vi-image-4.webp';
-import AlbumImg from '../../../../public/assets/album1.webp';
-import AlbumImg1 from '../../../../public/assets/album2.webp';
-import AlbumImg2 from '../../../../public/assets/album3.webp';
-import AlbumImg3 from '../../../../public/assets/album4.webp';
+import image1 from '@/assets/vi-image-1.webp';
+import image2 from '@/assets/vi-image-2.webp';
+import image3 from '@/assets/vi-image-3.webp';
+import image4 from '@/assets/vi-image-4.webp';
+import AlbumImg from '@/assets/album1.webp';
+import AlbumImg1 from '@/assets/album2.webp';
+import AlbumImg2 from '@/assets/album3.webp';
+import AlbumImg3 from '@/assets/album4.webp';
 import { bool } from 'yup';
 
 const MoveAlbum = [

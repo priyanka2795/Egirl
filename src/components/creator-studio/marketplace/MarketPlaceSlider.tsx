@@ -3,9 +3,9 @@ import React, { useState, createRef, useEffect } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import filterImg1 from '../../../../public/assets/filter-img-1.webp';
-import filterImg2 from '../../../../public/assets/filter-img-3.webp';
-import filterImg3 from '../../../../public/assets/filter-img-2.webp';
+import filterImg1 from '@/assets/filter-img-1.webp';
+import filterImg2 from '@/assets/filter-img-3.webp';
+import filterImg3 from '@/assets/filter-img-2.webp';
 
 const galleryArray = [
   {

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import plusIcon from '../../../../public/assets/plus-gray.webp';
-import user from '../../../../public/assets/circle-user.webp';
-import imageSquare from '../../../../public/assets/image-square.webp';
-import image from '../../../../public/assets/image.webp';
-import undo from '../../../../public/assets/Undo.webp';
-import deleteIcon from '../../../../public/assets/trash-blank-alt.webp';
+import plusIcon from '@/assets/plus-gray.webp';
+import user from '@/assets/circle-user.webp';
+import imageSquare from '@/assets/image-square.webp';
+import image from '@/assets/image.webp';
+import undo from '@/assets/Undo.webp';
+import deleteIcon from '@/assets/trash-blank-alt.webp';
 import Image from 'next/image';
 
 

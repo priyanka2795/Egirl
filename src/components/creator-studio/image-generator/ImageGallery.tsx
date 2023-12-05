@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import pic from '../../../../public/assets/Collar.webp';
-import none from '../../../../public/assets/None.webp';
+import pic from '@/assets/Collar.webp';
+import none from '@/assets/None.webp';
 import Image from 'next/image';
-import searchIcon from '../../../../public/assets/search-alt.webp';
+import searchIcon from '@/assets/search-alt.webp';
 import { Modal } from '@components/modal/modal';
-import girlPic from '../../../../public/assets/girl.webp';
-import Cross from '../../../../public/assets/svgImages/close-icon.svg';
+import girlPic from '@/assets/girl.webp';
+import Cross from '@/assets/svgImages/close-icon.svg';
 import Correct from '../svg/correct.svg';
 import Heart from '../svg/heart-white.svg';
 import Info from '../svg/info.svg';
 import Copy from '../svg/Copy.svg';
-import avtar from '../../../../public/assets/avatar-cs-1.webp';
-import ExpandIcon from '../../../../public/assets/expand-alt.webp';
+import avtar from '@/assets/avatar-cs-1.webp';
+import ExpandIcon from '@/assets/expand-alt.webp';
 import AdvanceArrow from '../svg/AdvanceArrow';
 import ImageInfoModal from '@components/common/ImageInfoModal';
 

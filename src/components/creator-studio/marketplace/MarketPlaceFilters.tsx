@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import arrowDown from '../../../../public/assets/arrow-down.webp';
-import arrowUp from '../../../../public/assets/arrow-up.webp';
+import arrowDown from '@/assets/arrow-down.webp';
+import arrowUp from '@/assets/arrow-up.webp';
 import Image from 'next/image';
 const MarketPlaceFilters = () => {
   const [accessories, setAccessories] = useState<boolean>(false);

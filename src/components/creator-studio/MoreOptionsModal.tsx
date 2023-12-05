@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import React from 'react';
-import bookOpen from '../../../public/assets/book-open.webp';
-import messageIcon from '../../../public/assets/message-circle-question.webp';
-import settings from '../../../public/assets/settings-icon.webp';
+import bookOpen from '@/assets/book-open.webp';
+import messageIcon from '@/assets/message-circle-question.webp';
+import settings from '@/assets/settings-icon.webp';
 import Link from 'next/link';
 
 const moreDropdown = [

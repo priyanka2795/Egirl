@@ -1,8 +1,8 @@
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
 import React from 'react';
-import xMark from '../../../../public/assets/xmark (1).webp';
-import modalImg from '../../../../public/assets/post-style-modal-img.webp';
+import xMark from '@/assets/xmark (1).webp';
+import modalImg from '@/assets/post-style-modal-img.webp';
 
 interface PostStyleModalProp {
   setPostStyleModal: React.Dispatch<React.SetStateAction<boolean>>;

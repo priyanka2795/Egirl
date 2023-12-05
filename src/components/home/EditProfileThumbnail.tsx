@@ -4,13 +4,13 @@ import { Button } from '@components/common/SmallCompoents/Button';
 import Image from 'next/image';
 import React, { useState, useRef } from 'react';
 import AvatarEditor from 'react-avatar-editor';
-import PlusIcon from '../../../public/assets/svgImages/plus-large-icon.svg';
-import MinusIcon from '../../../public/assets/svgImages/minus-icon.svg';
+import PlusIcon from '@/assets/svgImages/plus-large-icon.svg';
+import MinusIcon from '@/assets/svgImages/minus-icon.svg';
 import RangePicker from '@components/creator-studio/common/RangePicker';
 import { Header } from '@components/common/SmallCompoents/Header';
-import uploadImage from '../../../public/assets/uploadimage.webp';
-import ArrowLeft from '../../../public/assets/svgImages/arrow-left.svg';
-import Xmark from '../../../public/assets/svgImages/xmark.svg';
+import uploadImage from '@/assets/uploadimage.webp';
+import ArrowLeft from '@/assets/svgImages/arrow-left.svg';
+import Xmark from '@/assets/svgImages/xmark.svg';
 
 interface editThumbnailProp {
   setUpdateProfileThumbnail: React.Dispatch<React.SetStateAction<boolean>>;

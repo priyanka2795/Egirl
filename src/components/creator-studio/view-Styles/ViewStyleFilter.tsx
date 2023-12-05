@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
-import Search from '../../../../public/assets/search-alt (1).webp';
+import Search from '@/assets/search-alt (1).webp';
 
 const ViewStyleFilter = () => {
   const filterTabText = ['Realistic', 'Semi-Realistic', 'Anime'];

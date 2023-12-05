@@ -1,9 +1,9 @@
 import React from 'react'
 import BreadCrumbs from '../BreadCrumbs';
 import Image from 'next/image';
-import styleGeneratorBanner from '../../../../public/assets/learning-center/styleGeneratorBanner.png'
+import styleGeneratorBanner from '@/assets/learning-center/styleGeneratorBanner.png'
 import PrevNextStep from '../PrevNextStep';
-import DemoImg from '../../../../public/assets/learning-center/blank_img.png';
+import DemoImg from '@/assets/learning-center/blank_img.png';
 import StyleGeneratorContent from './StyleGeneratorContent';
 function StyleGeneratorIndex() {
   return (
