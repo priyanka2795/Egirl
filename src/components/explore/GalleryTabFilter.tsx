@@ -324,7 +324,7 @@ const GalleryTabFilter = ({
                   onClick={() => {
                     toggleModal(); 
                   }}
-                  className={`${filterOpen && 'white-stroke'} cursor-pointer`}
+                  className={`${filterOpen && 'white-stroke'} cursor-pointer -translate-x-[6rem] -translate-y-1`}
                 />
                 {filterOpen && Tags?.length && (
                   <GalleryFilterCheckbox
