@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
 import mikaChanImg from '@/assets/mikaChan.webp';
-import galleryTabImg3 from '@/assets/explore-gallery-Image2.webp';
+import galleryTabImg3 from '@/assets/explore-gallery-image2.webp';
 import galleryTabImg4 from '@/assets/explore-gallery-Image.webp';
 import galleryTabImg5 from '@/assets/explore-gallery-Image3.webp';
 import UserPlusIcon from '@/assets/user-plus-alt-1.webp';

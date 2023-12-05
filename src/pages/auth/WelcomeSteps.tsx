@@ -14,6 +14,7 @@ import userFrameImg1 from '@/assets/messages/grid-img-4.png';
 import userFrameImg2 from '@/assets/messages/grid-img-2.png';
 import userFrameImg3 from '@/assets/messages/grid-img-15.png';
 import userFrameImg4 from '@/assets/messages/grid-img-3.png';
+import Cookies from 'js-cookie';
 const data = [
   {
     id: 1,
@@ -71,7 +72,7 @@ const userFrame = [
   }
 ];
 
-const settings = {
+const settings:any = {
   dots: true,
   lazyLoad: true,
   infinite: false,
@@ -84,31 +85,33 @@ const settings = {
 interface WelcomeStepsModal {
   welcomeStepsModal: boolean;
   setWelcomeStepsModal: React.Dispatch<React.SetStateAction<boolean>>;
-  // signUpCompleted?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const WelcomeStepsModal = ({
   welcomeStepsModal,
   setWelcomeStepsModal,
-  // signUpCompleted
 }: WelcomeStepsModal) => {
   const router = useRouter();
   const [selectedItems, setSelectedItems] = useState<number[]>([]);
   const [nextBtn, setNextBtn] = useState(false);
   const [signUpStep, setSignUpStep] = useState(1);
+  const [count, setCount] = useState(3)
 
   const handleItemClick = (itemId: number) => {
     if (selectedItems.includes(itemId)) {
       setSelectedItems(
         selectedItems.filter((selectedItemId) => selectedItemId !== itemId)
       );
+      setCount(()=> count+1)
     } else {
-      if (selectedItems.length < 4) {
+      if (selectedItems.length < data.length) {
         setSelectedItems([...selectedItems, itemId]);
+        setCount(()=> count-1)
       }
     }
+   
   };
   useEffect(() => {
-    if (selectedItems.length < 4) {
+    if (selectedItems.length < 3) {
       setNextBtn(false);
     } else {
       setNextBtn(true);
@@ -116,10 +119,8 @@ const WelcomeStepsModal = ({
   }, [selectedItems]);
 
   const gotoHome = ()=>{
-     toast.success('User signup successful');
-          setTimeout(() => {
-            router.push('/home');
-          }, 1000);
+    setWelcomeStepsModal(false)
+    Cookies.remove('signUpUserId')
   }
 
   return (
@@ -238,7 +239,7 @@ const WelcomeStepsModal = ({
                 </button>
               ) : (
                 <button className='font-bold w-full rounded-2xl bg-[#FFFFFF14] px-5 py-4 text-center text-lg'>
-                  Pick 3 more
+                  Pick {count} more
                 </button>
               )}
             </>

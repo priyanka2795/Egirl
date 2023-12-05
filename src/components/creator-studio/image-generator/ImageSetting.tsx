@@ -53,7 +53,7 @@ const ImageSetting = ({
               Inpainting
             </h6>
             <Toggle
-              handleToggleState={() => {PosingToggle === true || MyCharacterToggle === true ? SetInpaintingToggle(false) :  SetInpaintingToggle(!InpaintingToggle)}}
+              handleToggleState={() => {SetInpaintingToggle(!InpaintingToggle), SetPosingToggle(false)}}
               toggleState={InpaintingToggle}
               toggleText={``}
               infoIcon={'hidden'}
@@ -65,7 +65,7 @@ const ImageSetting = ({
           <div className='flex justify-between mt-6'>
             <h6 className='text-[14px] font-semibold leading-[18px] text-white'>Posing</h6>
             <Toggle
-              handleToggleState={() => {InpaintingToggle === true || MyCharacterToggle === true ? SetPosingToggle(false) : SetPosingToggle(!PosingToggle) } }
+              handleToggleState={() => {SetPosingToggle(!PosingToggle), SetInpaintingToggle(false) } }
               toggleState={PosingToggle}
               toggleText={``}
               infoIcon={'hidden'}
@@ -77,7 +77,7 @@ const ImageSetting = ({
           <div className='mt-6 flex justify-between border-b border-white/[0.08] pb-5'>
             <h6 className='text-[14px] font-semibold leading-[18px] text-white'>My character</h6>
             <Toggle
-              handleToggleState={() => {InpaintingToggle === true || PosingToggle === true ? SetMyCharacterToggle(false) : SetMyCharacterToggle(!MyCharacterToggle) } }
+              handleToggleState={() => {SetMyCharacterToggle(!MyCharacterToggle) } }
               toggleState={MyCharacterToggle}
               toggleText={``}
               infoIcon={'hidden'}
