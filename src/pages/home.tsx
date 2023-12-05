@@ -22,12 +22,17 @@ export default function Home() {
 
   return (
     <>
-      <div>{welcomeStepsModal === true ? '' : <HomeContent />}</div>
-      {welcomeStepsModal && (
-          <WelcomeStepsModal
+      <div>
+       {welcomeStepsModal === true ? ''  :
+        <HomeContent /> 
+        } 
+     </div>
+     {welcomeStepsModal && (
+        <WelcomeStepsModal
           welcomeStepsModal={welcomeStepsModal}
           setWelcomeStepsModal={setWelcomeStepsModal}
-        />)}
-        </>
-        
-        )}
+        />
+      )}
+    </>
+  );
+}
