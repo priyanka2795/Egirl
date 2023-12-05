@@ -24,11 +24,10 @@ export default function Home() {
     <>
       <div>{welcomeStepsModal === true ? '' : <HomeContent />}</div>
       {welcomeStepsModal && (
-        <WelcomeStepsModal
+          <WelcomeStepsModal
           welcomeStepsModal={welcomeStepsModal}
           setWelcomeStepsModal={setWelcomeStepsModal}
-        />
-      )}
-    </>
-  );
-}
+        />)}
+        </>
+        
+        )}
