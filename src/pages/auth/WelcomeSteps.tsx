@@ -108,6 +108,7 @@ const WelcomeStepsModal = ({
         setCount(() => count - 1);
       }
     }
+   
   };
   useEffect(() => {
     if (selectedItems.length < 3) {
