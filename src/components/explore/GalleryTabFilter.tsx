@@ -20,7 +20,7 @@ import { exploreGallery } from 'services/services';
 import Cookies from 'js-cookie';
 import SearchBar from '@components/common/Search/SearchBar';
 import ViewAllTags from '@components/common/ViewAllTags';
-import useClickOutside from '../../api/utils/useClickOutside'
+import useClickOutside from '../../api/utils/useClickOutside';
 const galleryArray = [
   {
     id: 1,
@@ -87,11 +87,15 @@ const GalleryTabFilter = ({
   const [showAllTags, setShowAllTags] = useState<boolean>(false);
   const [selectedTags, setSelectedTags] = useState({});
   const [appliedFilter, setAppliedFilter] = useState({});
-  const [filterTagsBy,setFilterTagsBy]=useState("A");
-  const [filteredTags,setFilteredTags]=useState([]);
+  const [filterTagsBy, setFilterTagsBy] = useState('A');
+  const [filteredTags, setFilteredTags] = useState([]);
   const { ref, isOpen, setIsOpen } = useClickOutside<HTMLDivElement>(false); // Initialize isOpen as false
-  const { ref: filterRef, isOpen: filterOpen, setIsOpen: filterIsopen } = useClickOutside<HTMLDivElement>(false);
-  
+  const {
+    ref: filterRef,
+    isOpen: filterOpen,
+    setIsOpen: filterIsopen
+  } = useClickOutside<HTMLDivElement>(false);
+
   const toggleModal = () => {
     if (filterOpen) {
       filterIsopen(false);
@@ -99,9 +103,9 @@ const GalleryTabFilter = ({
       filterIsopen(true);
     }
     setIsOpen(false);
-  }
+  };
 
-  const [Tags,setTags] = useState([
+  const [Tags, setTags] = useState([
     'Furry',
     'Ahegao',
     'NSFW',
@@ -121,11 +125,11 @@ const GalleryTabFilter = ({
     setSelectedFilter(item);
   };
 
-  useEffect(()=>{
-    let data=Tags?.filter(i=>String(i).startsWith(filterTagsBy));
-    console.log({data})
+  useEffect(() => {
+    let data = Tags?.filter((i) => String(i).startsWith(filterTagsBy));
+    console.log({ data });
     setFilteredTags(data);
-  },[filterTagsBy])
+  }, [filterTagsBy]);
 
   useEffect(() => {
     exploreGallery(1, 10, token)
@@ -139,13 +143,13 @@ const GalleryTabFilter = ({
   }, []);
 
   useEffect(() => {
-    if(!isOpen && Object.keys(selectedTags)?.length){
-      let TagsOrder=[];
-      for(let item of Tags){
-        if(selectedTags[item]){
-          TagsOrder.unshift(item)
-        }else{
-          TagsOrder.push(item)
+    if (!isOpen && Object.keys(selectedTags)?.length) {
+      let TagsOrder = [];
+      for (let item of Tags) {
+        if (selectedTags[item]) {
+          TagsOrder.unshift(item);
+        } else {
+          TagsOrder.push(item);
         }
       }
       setTags([...TagsOrder]);
@@ -179,48 +183,49 @@ const GalleryTabFilter = ({
     setIsOpen(true);
   };
 
-
   const closeFilterModal = () => {
     filterIsopen(false);
     setIsOpen(false);
   };
 
   const getSelectedTagOnClick = (item: any) => {
-    if(selectedTags[item]){
-      let copySelectedTags={...selectedTags};
-      copySelectedTags[item]=false;
-      setSelectedTags({...copySelectedTags});
+    if (selectedTags[item]) {
+      let copySelectedTags = { ...selectedTags };
+      copySelectedTags[item] = false;
+      setSelectedTags({ ...copySelectedTags });
       return;
     }
-    if(Object.keys(selectedTags)?.length >= 4){
-      let copySelectedTags={...selectedTags};
-      let array=Object.keys(copySelectedTags);
-      delete copySelectedTags[array[array.length-1]];
-      setSelectedTags({...copySelectedTags,[item]:true});
+    if (Object.keys(selectedTags)?.length >= 4) {
+      let copySelectedTags = { ...selectedTags };
+      let array = Object.keys(copySelectedTags);
+      delete copySelectedTags[array[array.length - 1]];
+      setSelectedTags({ ...copySelectedTags, [item]: true });
       return;
     }
-    setSelectedTags({...selectedTags,[item]:true});
+    setSelectedTags({ ...selectedTags, [item]: true });
   };
 
   const applyAllFilters = () => {
     closeFilterModal();
-    let copyAppliedFilter={};
-    if(Object.keys(selectedTags)?.length){
-      for(let item of Object.keys(selectedTags)){
-        if(selectedTags[item]){
-          copyAppliedFilter['tag']=copyAppliedFilter['tag'] ? [...copyAppliedFilter['tag'],item] : [item]
-          console.log({keys:copyAppliedFilter})
+    let copyAppliedFilter = {};
+    if (Object.keys(selectedTags)?.length) {
+      for (let item of Object.keys(selectedTags)) {
+        if (selectedTags[item]) {
+          copyAppliedFilter['tag'] = copyAppliedFilter['tag']
+            ? [...copyAppliedFilter['tag'], item]
+            : [item];
+          console.log({ keys: copyAppliedFilter });
         }
       }
-      setAppliedFilter(copyAppliedFilter)
+      setAppliedFilter(copyAppliedFilter);
     }
   };
 
-  const removeAppliedFilters = (KEY,item) => {
-    let copyAppliedFilter={...appliedFilter};
-    let copySelectedTags={...selectedTags};
-    let filterApplied=copyAppliedFilter[KEY]?.filter(i=>i !==item)
-    copyAppliedFilter[KEY]=filterApplied;
+  const removeAppliedFilters = (KEY, item) => {
+    let copyAppliedFilter = { ...appliedFilter };
+    let copySelectedTags = { ...selectedTags };
+    let filterApplied = copyAppliedFilter[KEY]?.filter((i) => i !== item);
+    copyAppliedFilter[KEY] = filterApplied;
     copySelectedTags[item] = false;
     setAppliedFilter(copyAppliedFilter);
     setSelectedTags(copySelectedTags);
@@ -230,7 +235,6 @@ const GalleryTabFilter = ({
     setAppliedFilter({});
     setSelectedTags({});
   };
-
 
   return (
     <>
@@ -286,34 +290,41 @@ const GalleryTabFilter = ({
             <div className='flex h-fit w-full justify-start gap-2'>
               {Object.keys(appliedFilter).length ? (
                 Object.keys(appliedFilter)?.map((item) => {
-                  return appliedFilter[item]?.map((i)=>
-                    <div
-                    className="font-normal flex flex-shrink-0 cursor-pointer items-center gap-1 rounded-lg bg-white/10 px-[10px] py-1 text-xs leading-none text-white"
-                  >
-                    <UserProfile />
-                    <div className='text-[13px]'>{i}</div>
-                    <Image
-                      src={xMark}
-                      alt=''
-                      className='object-cover'
-                      onClick={() => removeAppliedFilters(item,i)}
-                    />
-                  </div>)
+                  return appliedFilter[item]?.map((i) => (
+                    <div className='font-normal flex flex-shrink-0 cursor-pointer items-center gap-1 rounded-lg bg-white/10 px-[10px] py-1 text-xs leading-none text-white'>
+                      <UserProfile />
+                      <div className='text-[13px]'>{i}</div>
+                      <Image
+                        src={xMark}
+                        alt=''
+                        className='object-cover'
+                        onClick={() => removeAppliedFilters(item, i)}
+                      />
+                    </div>
+                  ));
                 })
               ) : (
-                <div className='font-normal All flex cursor-pointer items-center  gap-1 rounded-lg px-[10px] py-1 text-xs leading-none text-white'></div>
+                <div className='font-normal pointer-none flex flex-shrink-0 cursor-pointer items-center gap-1 rounded-lg bg-white/10 px-[10px] py-1 text-xs leading-none text-white'>
+                  <UserProfile />
+                  <div className='text-[13px]'>All</div>
+                  <Image
+                    src={xMark}
+                    alt=''
+                    className='object-cover'
+                  />
+                </div>
               )}
             </div>
-            <div className='flex items-center gap-3' ref={ref}>
+            <div className='flex items-center gap-3'>
               {/* <SearchIcon /> */}
-              <div className='relative' ref={filterRef}>
+              <div className='relative'>
                 <FilterIcon
                   onClick={() => {
-                    toggleModal();
+                    toggleModal(); 
                   }}
                   className={`${filterOpen && 'white-stroke'} cursor-pointer`}
                 />
-                {(filterOpen && Tags?.length) && (
+                {filterOpen && Tags?.length && (
                   <GalleryFilterCheckbox
                     applyAllFilters={applyAllFilters}
                     openAllTagsModal={openAllTagsModal}
@@ -325,7 +336,7 @@ const GalleryTabFilter = ({
                   />
                 )}
               </div>
-              <div className='flex gap-2 border-l border-white/10 pl-2 cursor-pointer'>
+              <div className='flex cursor-pointer gap-2 border-l border-white/10 pl-2'>
                 <p>Newest</p>
                 <Image src={arrowDown} alt='' className='object-cover' />
               </div>

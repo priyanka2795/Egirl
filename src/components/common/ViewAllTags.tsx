@@ -14,7 +14,7 @@ const ViewAllTags = ({selectedTags,getSelectedTagOnClick,filteredTags, closeAllT
     const [filteredData,setFilteredData]= useState<any>([]);
 
   return (
-    <div className='absolute right-8 top-5 z-50 flex w-[346px] flex-col rounded-[14px] border border-white/[0.05] bg-[#1A1A1A] mt-64'>
+    <div className='absolute right-8 top-5 z-50 flex w-[346px] flex-col rounded-[14px] border border-white/[0.05] bg-[#1A1A1A] mt-64' onClick={(e) => e.stopPropagation()}>
       <form>
         <div className='flex flex-col border-b border-white/[0.08] px-6'>
           <div className='flex items-center justify-between  py-5'>
