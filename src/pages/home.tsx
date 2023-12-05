@@ -2,21 +2,18 @@ import HomeContent from '@components/home';
 import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
+import WelcomeStepsModal from './auth/WelcomeSteps';
 export default function Home() {
   const router = useRouter();
   const accessToken = Cookies.get('accessToken');
-  const refreshToken = Cookies.get('refreshToken');
-  const signUpCompleted = sessionStorage.getItem('SignUpCompleted');
-
-  console.log('signUpCompleted:', signUpCompleted);
-  const [signupCompletedState, setSignupCompletedState] = useState(
-    signUpCompleted ? true : false
-  );
+  const signUpUserId = Cookies.get('signUpUserId');
+  const [welcomeStepsModal, setWelcomeStepsModal] = useState<boolean>(true);
   useEffect(() => {
-    setSignupCompletedState(signUpCompleted ? true : false);
-  }, [signUpCompleted]);
+    if (signUpUserId) {
+      setWelcomeStepsModal(true);
+    }
+  }, [signUpUserId]);
 
-  console.log('sdff');
   useEffect(() => {
     if (!accessToken) {
       router.push('/login');
@@ -25,9 +22,13 @@ export default function Home() {
 
   return (
     <>
-      <div>
-        <HomeContent />
-      </div>
+      <div>{welcomeStepsModal === true ? '' : <HomeContent />}</div>
+      {welcomeStepsModal && (
+        <WelcomeStepsModal
+          welcomeStepsModal={welcomeStepsModal}
+          setWelcomeStepsModal={setWelcomeStepsModal}
+        />
+      )}
     </>
   );
 }
