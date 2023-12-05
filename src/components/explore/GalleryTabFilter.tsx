@@ -9,7 +9,6 @@ import userProfileImg from '../../../public/assets/user-profile.png';
 import filterImg1 from '../../../public/assets/filter-img-1.png';
 import filterImg2 from '../../../public/assets/filter-img-3.png';
 import filterImg3 from '../../../public/assets/filter-img-2.png';
-import arrowDown from '../../../public/assets/arrow-down.png';
 import xMark from '../../../public/assets/xmark.png';
 import UserProfile from './svg/user-profile.svg';
 import SearchIcon from './svg/search.svg';
@@ -21,6 +20,7 @@ import Cookies from 'js-cookie';
 import SearchBar from '@components/common/Search/SearchBar';
 import ViewAllTags from '@components/common/ViewAllTags';
 import useClickOutside from '../../api/utils/useClickOutside';
+import Dropdown from '@components/common/Dropdown';
 const galleryArray = [
   {
     id: 1,
@@ -95,6 +95,8 @@ const GalleryTabFilter = ({
     isOpen: filterOpen,
     setIsOpen: filterIsopen
   } = useClickOutside<HTMLDivElement>(false);
+
+  console.log({selectedTags})
 
   const toggleModal = () => {
     if (filterOpen) {
@@ -195,7 +197,7 @@ const GalleryTabFilter = ({
       setSelectedTags({ ...copySelectedTags });
       return;
     }
-    if (Object.keys(selectedTags)?.length >= 4) {
+    if (Object.keys(selectedTags)?.length === 4) {
       let copySelectedTags = { ...selectedTags };
       let array = Object.keys(copySelectedTags);
       delete copySelectedTags[array[array.length - 1]];
@@ -336,10 +338,9 @@ const GalleryTabFilter = ({
                   />
                 )}
               </div>
-              <div className='flex cursor-pointer gap-2 border-l border-white/10 pl-2'>
-                <p>Newest</p>
-                <Image src={arrowDown} alt='' className='object-cover' />
-              </div>
+              
+                <Dropdown buttonTitle="Newest" options={Tags}/>
+            
             </div>
           </div>
         </>
