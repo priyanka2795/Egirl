@@ -15,6 +15,9 @@ import userFrameImg2 from '@/assets/messages/grid-img-2.png';
 import userFrameImg3 from '@/assets/messages/grid-img-15.png';
 import userFrameImg4 from '@/assets/messages/grid-img-3.png';
 import Cookies from 'js-cookie';
+import { getUserInterest } from 'services/services';
+import { tokenRefresh } from 'redux/api/RefreshTokenApi';
+import { useAppDispatch, useAppSelector } from 'redux/hooks';
 const data = [
   {
     id: 1,
@@ -70,7 +73,8 @@ const userFrame = [
     name: 'Mika-chan',
     userName: '@sheisannaquigley'
   }
-];
+];0
+
 
 const settings:any = {
   dots: true,
@@ -91,10 +95,15 @@ const WelcomeStepsModal = ({
   setWelcomeStepsModal,
 }: WelcomeStepsModal) => {
   const router = useRouter();
+  const dispatch = useAppDispatch()
+  const token:any = Cookies.get('accessToken')
+  const refreshTokenData:any = useAppSelector((state)=> state.tokenRefresh?.tokenData)
+  
   const [selectedItems, setSelectedItems] = useState<number[]>([]);
   const [nextBtn, setNextBtn] = useState(false);
   const [signUpStep, setSignUpStep] = useState(1);
   const [count, setCount] = useState(3)
+  const [userInterestData, setUserInterestData] = useState([])
 
   const handleItemClick = (itemId: number) => {
     if (selectedItems.includes(itemId)) {
@@ -122,6 +131,27 @@ const WelcomeStepsModal = ({
     setWelcomeStepsModal(false)
     Cookies.remove('signUpUserId')
   }
+
+  //--------- get user interest api -------
+  useEffect(()=>{
+    if(refreshTokenData){
+      Cookies.set("accessToken", refreshTokenData)
+    }
+
+    getUserInterest(token)
+    .then((res:any)=>{
+      console.log("get user interest res---", res)
+      setUserInterestData(res?.data)
+      if(res?.response?.status === 401){
+        dispatch(tokenRefresh())
+      }
+    })
+    .catch(()=>{
+      console.log("get user")
+    })
+
+  },[refreshTokenData])
+  //---------------------------------------
 
   return (
     <Modal
@@ -168,15 +198,15 @@ const WelcomeStepsModal = ({
 
         {signUpStep === 1 ? (
           <div className='flex flex-wrap gap-3'>
-            {data.map((item) => (
+            {userInterestData?.map((item:any, index) => (
               <div
-                key={item.id}
+                key={index}
                 className={`font-normal cursor-pointer rounded-[100px] px-5 py-4 ${
-                  selectedItems.includes(item.id)
+                  selectedItems.includes(index)
                     ? 'bg-[#5848BC]'
                     : 'bg-[#FFFFFF14]'
                 }`}
-                onClick={() => handleItemClick(item.id)}
+                onClick={() => handleItemClick(index)}
               >
                 {item.name}
               </div>

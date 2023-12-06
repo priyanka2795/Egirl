@@ -30,6 +30,8 @@ import BookmarkIcon from '../home/Post/svg/bookmark.svg';
 import BookmarkFillIcon from '../home/Post/svg/bookmark-fill.svg';
 import { useAppDispatch, useAppSelector } from 'redux/hooks';
 import { tokenRefresh } from 'redux/api/RefreshTokenApi';
+import HeartIcon from '../home/Post/svg/heart.svg';
+import HeartRed from '../home/Post/svg/heart-filled.svg';
 
 const settings = {
   dots: true,
@@ -50,6 +52,7 @@ interface BookMarkModalProp {
   name?: string;
   username?: string;
   postText?: string;
+  is_liked_by_user?:boolean;
 }
 const BookMarkModal = ({
   closeModalState,
@@ -61,7 +64,8 @@ const BookMarkModal = ({
   bookmarksActive,
   name,
   username,
-  postText
+  postText,
+  is_liked_by_user
 }: BookMarkModalProp) => {
   const dispatch = useAppDispatch();
   const token: any = Cookies.get('accessToken');
@@ -177,13 +181,17 @@ const BookMarkModal = ({
             </div>
           
             <div className='flex gap-3 p-2'>
-              <div className='flex gap-[6px] rounded-[100px] bg-[#FF5336]/[0.16] px-3 py-2'>
-                <Image
-                  className='h-[20px] w-[20px] object-contain'
-                  src={orangeHeart}
-                  alt={''}
-                />
-                <div className='font-normal text-[15px] text-[#F44E32]'>
+              <div className={`flex gap-[6px] rounded-[100px] px-3 py-2 ${
+                is_liked_by_user
+                  ? 'bg-[#FF533629]'
+                  : 'bg-[#FFFFFF14] hover:bg-[#FFFFFF1F]'
+              }`}>
+                {is_liked_by_user ? (
+                <HeartRed />
+              ) : (
+                <HeartIcon className='text-[#979797]' />
+              )}
+                <div className='font-normal text-[15px] text-[#FFFFFF]'>
                   {heartsNumber}
                 </div>
               </div>

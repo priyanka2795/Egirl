@@ -40,7 +40,7 @@ const initialState: TokenState = {
 export const tokenRefresh = createAsyncThunk(
   "tokenRefresh",
   async (data) => {
-    const response = await axios.post("http://65.21.65.49:8000/api/token/refresh", {
+    const response = await axios.post("https://devapi.egirls.ai/api/token/refresh", {
       "refresh_token": "string"
     }, {
       headers: {

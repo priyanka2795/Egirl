@@ -101,6 +101,9 @@ export const getImageGeneration = (offset:number , limit:number, token:any) => g
 
 export const deleteImageGeneration = (id:number, token:any) => deleteApi(`/studio/image_generation/${id}`, token)
 
+// user interest api for welcome modal
+export const getUserInterest = (token:string | null) => getApiWithToken('/posts/user_interests', token)
+
 
 //logout function 
 export const logout = ()=>{

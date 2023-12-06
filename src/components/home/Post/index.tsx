@@ -182,7 +182,7 @@ const Post: React.FC<PostProps> = ({
                 <HeartIcon className='text-[#979797]' />
               )}
               <span
-                className={`ml-[6px] ${likeActive ? 'text-[#F44E32]' : ''}`}
+                className={`ml-[6px] text-[#ffff]`}
               >
                 {heartsNumber}
               </span>
@@ -242,6 +242,7 @@ const Post: React.FC<PostProps> = ({
           name = {name}
           username = {username}
           postText = {postText}
+          is_liked_by_user={is_liked_by_user}
         />
       )}
     </>
