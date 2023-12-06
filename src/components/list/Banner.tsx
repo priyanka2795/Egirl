@@ -9,7 +9,7 @@ import avatar from '@/assets/mika-chan-sub-banner.webp';
 import userCheckIcon from '@/assets/user-check-icon.webp';
 import threeDotsIcon from '@/assets/three-dots-icon.webp';
 import blueTickIcon from '@/assets/badge-check.webp';
-import locationIcon from '@/assets/location-icon.png';
+import locationIcon from '@/assets/location-icon.webp';
 import calendarIcon from '@/assets/calendar-icon.webp';
 import VerifiedIcon from '@/assets/svgImages/verified-icon.svg';
 import CollectionCoverModal from './CollectionCoverModal';
@@ -42,13 +42,6 @@ const posts = [
   {
     number: '0',
     name: 'Subscribers'
-  }
-];
-
-const location = [
-  {
-    icon: calendarIcon,
-    name: 'Joined March 2023'
   }
 ];
 
@@ -119,7 +112,6 @@ interface BannerProp {
   bannerData: any;
   updateCharacterToggle: boolean;
   setUpdateCharacterToggle: React.Dispatch<React.SetStateAction<boolean>>;
-  // setEditProfileModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const Banner: React.FC<BannerProp> = ({
   backFromProfile,
@@ -132,8 +124,7 @@ const Banner: React.FC<BannerProp> = ({
   bannerData,
   updateCharacterToggle,
   setUpdateCharacterToggle
-}: // setEditProfileModal
-BannerProp) => {
+}: BannerProp) => {
   const [actionDivShow, setActionDivShow] = useState(false);
   const [exploreSelectedTab, setExploreSelected] = useState('');
   const [collectionModalState, setCollectionModalState] = useState(false);
@@ -148,6 +139,7 @@ BannerProp) => {
   const [updatedProfile, setUpdatedProfile] = useState(false);
   const [image, setImage] = useState('');
   const token = Cookies.get('accessToken');
+  const [joinedDate, setJoinedDate] = useState<any>();
 
   const handleExploreSelected = (e: React.MouseEvent<HTMLElement>) => {
     setExploreSelected((e.target as HTMLElement).innerText);
@@ -236,6 +228,17 @@ BannerProp) => {
     }
     return new File([u8arr], filename, { type: mime });
   };
+
+  const formatDate = (dateString: string) => {
+    const options: any = { month: 'long', year: 'numeric' };
+    const date = new Date(dateString);
+    const formattedDate = date.toLocaleString('en-US', options);
+    return formattedDate;
+  };
+
+  useEffect(() => {
+    setJoinedDate(formatDate(bannerData?.created_at));
+  }, [bannerData]);
 
   return (
     <div className={`${styleProperty ? styleProperty : 'px-8'}`}>
@@ -471,35 +474,24 @@ BannerProp) => {
               </div>
 
               <div className='mt-[8px] flex gap-[10px]'>
-                {bannerData?.location
-                  ? location.map((item, index) => {
-                      return (
-                        <div key={index} className='flex gap-[6px]'>
-                          <Image
-                            className='object-contain'
-                            src={item.icon}
-                            alt=''
-                          />
-                          <div className='font-normal text-[13px] text-[#FFFFFF]'>
-                            {bannerData ? bannerData?.location : 'location'}
-                          </div>
-                        </div>
-                      );
-                    })
-                  : location.map((item, index) => {
-                      return (
-                        <div key={index} className='flex gap-[6px]'>
-                          <Image
-                            className='object-contain'
-                            src={item.icon}
-                            alt=''
-                          />
-                          <div className='font-normal text-[13px] text-[#FFFFFF]'>
-                            {item.name}
-                          </div>
-                        </div>
-                      );
-                    })}
+                {bannerData?.location && (
+                  <div className='flex gap-[6px]'>
+                    <Image
+                      className='object-contain'
+                      src={locationIcon}
+                      alt=''
+                    />
+                    <div className='font-normal text-[13px] text-[#FFFFFF]'>
+                      {bannerData ? bannerData?.location : 'location'}
+                    </div>
+                  </div>
+                )}
+                <div className='flex gap-[6px]'>
+                  <Image className='object-contain' src={calendarIcon} alt='' />
+                  <div className='font-normal text-[13px] text-[#FFFFFF]'>
+                    {`Joined ${joinedDate}`}
+                  </div>
+                </div>
               </div>
 
               <div className='mt-[12px] flex'>

@@ -6,6 +6,7 @@ import Cookies from 'js-cookie';
 const PersonalityIndex = () => {
   const token :any = Cookies.get('accessToken');
   const characterId = Cookies.get('character_id') || '';
+  const [personalityAPIData , setPersonalityAPIData] = useState<any>()
   const [personalityData, setPersonalityData] = useState({
     character_id: characterId,
     base_type: '',
@@ -21,7 +22,6 @@ const PersonalityIndex = () => {
     ]
   });
 
-
   const handleSavePersonality=()=>{
     postCharacterPersonality(personalityData , token)
     .then((res:any)=>{
@@ -32,13 +32,12 @@ const PersonalityIndex = () => {
     })
   }
 
-
-
   return (
     <PersonalityContent
       personalityData={personalityData}
       setPersonalityData={setPersonalityData}
       handleSavePersonality={handleSavePersonality}
+      personalityAPIData={personalityAPIData}
     />
   );
 };

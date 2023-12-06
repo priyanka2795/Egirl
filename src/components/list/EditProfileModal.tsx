@@ -2,21 +2,16 @@ import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import xMark from '@/assets/xmark (1).webp';
-import avatar from '@/assets/image 69.png';
 import cameraOverlay from '@/assets/white-camera.webp';
 import InputFieldDesign from '@components/common/InputFieldDesign';
 import ProfileDropdown from '@components/common/ProfileDropdown';
 import DeleteProfileModal from '@components/common/DeleteProfileModal';
 import AddImagesModal from '@components/creator-studio/style-generator/AddImagesModal';
-import ProfileCropper from '@components/common/ProfileCropper';
 import {
-  postCharacter,
-  updateCharacter,
-  updateCharacterPersonality
+  updateCharacter
 } from 'services/services';
 import Cookies from 'js-cookie';
 import EditProfileThumbnail from '@components/home/EditProfileThumbnail';
-import { putApiWithToken } from 'services/apis';
 
 interface EditProfileModalProps {
   closeState: React.Dispatch<React.SetStateAction<boolean>>;
@@ -40,7 +35,6 @@ const EditProfileModal = ({
   const [profileEdit, setProfileEdit] = useState<boolean>(false);
   const [deleteProfileState, setDeleteProfileState] = useState<boolean>(false);
   const [updateProfileState, setUpdateProfileState] = useState<boolean>(false);
-  const [updateProfileImg, setUpdateProfileImg] = useState<boolean>(false);
   const accessToken = Cookies.get('accessToken');
   const token = `${accessToken}`;
 
@@ -78,8 +72,8 @@ const EditProfileModal = ({
         display_name,
         bio,
         location,
-        profile_picture_media_id,
-        profile_banner_media_id,
+        profile_picture_media_id : 2,
+        profile_banner_media_id : 2,
         profile_tags
       });
     }
@@ -130,7 +124,6 @@ const EditProfileModal = ({
             <div className='absolute'>
               {profileEdit && (
                 <ProfileDropdown
-                  profileEdit={profileEdit}
                   setProfileEdit={setProfileEdit}
                   deleteProfileState={deleteProfileState}
                   setDeleteProfileState={setDeleteProfileState}

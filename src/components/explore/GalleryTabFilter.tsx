@@ -255,14 +255,14 @@ const GalleryTabFilter = ({
       {singleProfileState === false ? (
         <>
           <div className='flex h-fit w-full flex-col items-center justify-center'>
-            <div className='mt-8 block w-full'>
+            <div className='mt-2 block w-full'>
               <SearchBar
                 searchBy={searchBy}
                 setSearchBy={setSearchBy}
                 placeholder='Search'
               />
             </div>
-            <div className='mb-7 mt-6 flex w-full'>
+            <div className='mb-6 flex w-full'>
               <Slider
                 {...settings}
                 ref={sliderRef}
@@ -339,10 +339,6 @@ const GalleryTabFilter = ({
               </div>
 
               <Dropdown buttonTitle='Newest' options={Tags} />
-              {/* <div className='flex gap-2 pl-2 border-l border-white/10'>
-                <p>Newest</p>
-                <Image src={arrowDown} alt='' className='object-cover' />
-              </div> */}
             </div>
           </div>
         </>

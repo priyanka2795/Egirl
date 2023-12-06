@@ -4,7 +4,6 @@ import InfoIcon from '@/assets/svgImages/info-icon.svg';
 import CloseIcon from '@/assets/svgImages/close-icon.svg';
 import searchIcon from '@/assets/search-alt.webp';
 import Image from 'next/image';
-import PersonalityHoverModal from './PersonalityHoverModal';
 import downArrow from '@/assets/down-arrow-img.webp';
 
 interface PersonalityLikesInterface {

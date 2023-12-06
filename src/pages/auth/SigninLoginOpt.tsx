@@ -4,7 +4,7 @@ import discordIcon from '@/assets/discord-icon.webp';
 import facebookIcon from '@/assets/facebook-icon.webp';
 import Image from 'next/image';
 import Link from 'next/link';
-import { discordCallback, discordLogin, googleLogin } from 'services/services';
+import { discordLogin, googleLogin } from 'services/services';
 import axios from 'axios';
 
 const login = [

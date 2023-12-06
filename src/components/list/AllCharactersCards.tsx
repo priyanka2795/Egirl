@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import plusIcon from '@/assets/plus-large.webp';
 import userIcon from '@/assets/user-alt-1.webp';
-import imageSquare from '@/assets/image-square3.png';
+import imageSquare from '@/assets/image-square3.webp';
 import palette from '@/assets/palette.webp';
 import EditIcon from '@/assets/pen.webp';
 import ShareIcon from '@/assets/arrow-up-from-bracket.webp';

@@ -30,11 +30,17 @@ const creatorStudio = () => {
     getAllCharacter(token)
     .then((res:any)=>{
       setAllCharacterData(res?.data)
+      const characterIdFromCookies = Cookies.get('character_id');
+        if (!characterIdFromCookies || (characterIdFromCookies == undefined) || (characterIdFromCookies == null) || (characterIdFromCookies == "")) {
+          Cookies.set('character_id', res?.data[0]?.id);
+          setActiveProfile(res?.data[0]?.id); 
+        }
+
     })
     .catch((err:any)=>{
       console.log(err);
     })
-  },[])
+  },[createCharacterToggle])
 
 
   useEffect(()=>{
