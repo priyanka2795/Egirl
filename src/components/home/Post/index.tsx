@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import HeartIcon from './svg/heart.svg';
 import HeartRed from './svg/heart-filled.svg';
 import BookmarkIcon from './svg/bookmark.svg';
@@ -17,6 +16,7 @@ import Cookies from 'js-cookie';
 
 interface PostProps {
   imageUrl: string;
+  bannerUrl:string;
   altText: string;
   name: string;
   username: string;
@@ -39,6 +39,7 @@ interface PostProps {
 
 const Post: React.FC<PostProps> = ({
   imageUrl,
+  bannerUrl,
   altText,
   name,
   username,
@@ -116,7 +117,6 @@ const Post: React.FC<PostProps> = ({
         console.log("remove bookmark err---", err)
       })
     }
-   
   }
 
   return (
@@ -124,14 +124,12 @@ const Post: React.FC<PostProps> = ({
       <div className='flex w-full flex-col gap-y-4 rounded-[14px] bg-main-bar p-6'>
         {/* Profile Section */}
         <div className='flex items-center'>
-          <img
+        <img
             src={imageUrl} 
             alt={altText}
-            width={48}
-            height={48}
-            className='rounded-full'
+            className='rounded-full w-[48px] h-[48px] object-cover'
           />
-          <div className='flex items-center ml-4'>
+       <div className='flex items-center ml-4'>
             <h3 className='mr-2 text-lg font-bold leading-6'>{name}</h3>
             <p className='size-[15px] font-light leading-5 text-[#979797]'>
               {username + ' • ' + hours}
@@ -155,8 +153,8 @@ const Post: React.FC<PostProps> = ({
           </div>
         </div>
         <div className='flex flex-col w-full h-auto gap-y-4'>
-          <Image
-            src='/dummy-img.png'
+          <img
+            src={bannerUrl}
             alt='Locked Post' 
             width={512}
             height={512}
@@ -249,3 +247,4 @@ const Post: React.FC<PostProps> = ({
 };
 
 export default Post;
+

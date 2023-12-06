@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import useScroll from '../../../hooks/useScroll';
+import React from 'react';
 import Post from './Post';
 import SubscriptionPost from './Post/SubscriptionPost';
 
@@ -27,41 +26,37 @@ export default function Feed({
   showForYou
 }: Feed) {
   
-  const [sticky, animate] = useScroll();
+  
 
 
   return (
     <div className='max-w-[600px] flex-grow bg-main-background lg:min-w-[600px]'>
       <div className='px-[20px]'>
-        {/* {Array(100)
-          .fill(0)
-          .map((_, i) => (
-            <p key={i}>Main content line {i + 1}</p>
-          ))} */}
         {showForYou ? 
         forYouData?.map((ele: any, index: number) => {
           return (
            <div className='mb-5' key={index}>
              <Post
-              imageUrl={ele.character_image_url}
+              imageUrl={ele?.profile_picture_url}
+              bannerUrl = {ele?.profile_picture_url}
               altText='Character Profile Picture'
-              name={ele.character_display_name}
-              username={`@${ele.character_username}`}
-              postText={ele.description}
-              commentsNumber={ele.comments_count}
-              heartsNumber={ele.likes_count}
+              name={ele?.character_display_name}
+              username={`@${ele?.character_username}`}
+              postText={ele?.description}
+              commentsNumber={ele?.comments_count}
+              heartsNumber={ele?.likes_count}
               viewsNumber='1.8k'
               tags={['#girl', '#mood', '#relaxtime']}
-              location={ele.character_location}
+              location={ele?.character_location}
               hours='6h'
-              bookmarksActive={ele.is_bookmarked}
+              bookmarksActive={ele?.is_bookmarked}
               BookmarksActive={BookmarksActive}
               handleShare={handleShare}
-              postId={ele.id}
+              postId={ele?.id}
               postUpdate = {postUpdate}
               setPostUpdate={setPostUpdate}
               setBookMarkToast = {setBookMarkToast}
-              is_liked_by_user={ele.is_liked_by_user}
+              is_liked_by_user={ele?.is_liked_by_user}
             />
            </div>
           );
