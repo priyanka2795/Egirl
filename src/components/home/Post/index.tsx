@@ -125,8 +125,8 @@ const Post: React.FC<PostProps> = ({
         {/* Profile Section */}
         <div className='flex items-center'>
           <img
-            src={imageUrl} // Change to your image path
-            alt={altText} // Change to your alt text
+            src={imageUrl} 
+            alt={altText}
             width={48}
             height={48}
             className='rounded-full'
@@ -156,7 +156,6 @@ const Post: React.FC<PostProps> = ({
         </div>
         <div className='flex flex-col w-full h-auto gap-y-4'>
           <Image
-            // src='https://www.shutterstock.com/image-vector/lock-glass-morphism-trendy-style-260nw-2047414109.jpg' // Change to your image path
             src='/dummy-img.png'
             alt='Locked Post' 
             width={512}

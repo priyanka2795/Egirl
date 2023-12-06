@@ -80,6 +80,7 @@ const BookMarkModal = ({
   const [commentUpdate, setCommentUpdate] = useState(false);
   const [commentsData, setCommentsData] = useState([]);
   const [showMoreComment, setShowMoreComment] = useState(false)
+  const [commentLength, setCommentLength] = useState(1)
   // ===== post comment function ====
   const handlePostComment = () => {
     setTextArea(true), setTextAreaTotal('');
@@ -113,7 +114,17 @@ const BookMarkModal = ({
       });
   }, [commentUpdate]);
 
-  return (
+  const handleComments = ()=>{
+   if(showMoreComment === false){
+    setShowMoreComment(true)
+    setCommentLength(commentsData.length)
+   }else{
+    setShowMoreComment(false)
+    setCommentLength(1)
+   }  
+  }
+
+   return (
     <Modal
       open={true}
       modalClassName='flex flex-col h-max  w-[1248px] rounded-[20px] bg-[#121212] overflow-hidden mt-10 mb-10 ml-5 bookmark-img-text'
@@ -287,7 +298,7 @@ const BookMarkModal = ({
                   </div>
                 </div>
               </div>
-              {commentsData?.map((ele: any, index: number) => {
+              {commentsData?.slice(0, commentLength).map((ele: any, index: number) => {
                 return (
                   <div className='flex flex-col gap-2 rounded-[14px] bg-[#1A1A1A] px-5 py-4' key={index}>
                     <div className='flex justify-between'>
@@ -362,7 +373,7 @@ const BookMarkModal = ({
               })}
             </div>
             <button className='rounded-[12px] bg-white/[0.08] px-4 py-[10px] text-[14px] font-[700] text-[#979797]'
-            onClick={()=> setShowMoreComment(!showMoreComment)}
+            onClick={handleComments}
             >
               Show more comments
             </button>
