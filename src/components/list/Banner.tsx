@@ -45,13 +45,6 @@ const posts = [
   }
 ];
 
-const location = [
-  {
-    icon: calendarIcon,
-    name: 'Joined March 2023'
-  }
-];
-
 const bottomButtons = [
   {
     name: 'Ahegao'
