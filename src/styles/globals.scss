@@ -1045,3 +1045,12 @@ fill: transparent !important;
 // .slick-active .slick-current:last-child{
 //   opacity:0.1
 // }
+
+.dropdown_list li{
+  border-bottom: 1px solid white;
+
+}
+
+.dropdown_list li:last-child{
+  border-bottom: none;
+}

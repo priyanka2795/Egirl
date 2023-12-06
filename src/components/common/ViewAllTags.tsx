@@ -11,10 +11,13 @@ const alphabets=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P"
 
 const ViewAllTags = ({selectedTags,getSelectedTagOnClick,filteredTags, closeAllTagsModal,filterTagsBy,setFilterTagsBy}:any) => {
     const [searchTagBy,setSearchTagBy]=useState<string>("");
-    const [filteredData,setFilteredData]= useState<any>([]);
+
+    const letterToFilterBy=(letter)=>{
+      setFilterTagsBy(letter);
+    }
 
   return (
-    <div className='absolute right-8 top-5 z-50 flex w-[346px] flex-col rounded-[14px] border border-white/[0.05] bg-[#1A1A1A] mt-64'>
+    <div className='absolute right-8 top-5 z-50 flex w-[346px] flex-col rounded-[14px] border border-white/[0.05] bg-[#1A1A1A] mt-64' onClick={(e) => e.stopPropagation()}>
       <form>
         <div className='flex flex-col border-b border-white/[0.08] px-6'>
           <div className='flex items-center justify-between  py-5'>
@@ -41,10 +44,10 @@ const ViewAllTags = ({selectedTags,getSelectedTagOnClick,filteredTags, closeAllT
        <div className='w-full h-full min-h-[22rem] flex flex-wrap content-baseline space-x-3 p-5 relative'>
        <div className='w-3 h-72 absolute right-0 top-0 my-5 flex flex-col items-center justify-start text-[8px] opacity-40 mr-1 text-[#979797]'>
         {alphabets?.map((letter)=>(
-            <p style={filterTagsBy===letter ? {transform:'scale(3)',color:'white',pointerEvents:'none'} : {}} onClick={()=>setFilterTagsBy(letter)} className='hover:text-white hover:scale-[3] transition-all'>{letter}</p>
+            <p style={filterTagsBy===letter ? {transform:'scale(3)',color:'white',pointerEvents:'none'} : {}} onClick={()=>letterToFilterBy(letter)} className='hover:text-white hover:scale-[3] transition-all cursor-pointer'>{letter}</p>
         ))}
        </div>
-       {filteredTags?.map((item)=>(
+       {filteredTags?.filter((item)=> String(item)?.toLowerCase().includes(searchTagBy?.toLowerCase()))?.map((item)=>(
         <div
         onClick={(e) => getSelectedTagOnClick(item)}
         style={selectedTags[item] ? {backgroundColor:"#5848BC"} : {backgroundColor:'rgba(255, 255, 255, 0.05)',}}
