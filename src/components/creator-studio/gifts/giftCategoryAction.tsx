@@ -21,6 +21,10 @@ interface GiftCategoryAction {
   createCategoryToggle: boolean;
   setCreateCategoryToggle: React.Dispatch<React.SetStateAction<boolean>>;
   setSelectedCategoryId: React.Dispatch<React.SetStateAction<number>>;
+  selectedCategoryGifts:any;
+  searchQuery:any;
+  setSearchQuery:any;
+  categoryMaxLimit:boolean
 }
 function GiftCategoryAction({
   AddCategory,
@@ -30,7 +34,11 @@ function GiftCategoryAction({
   token,
   createCategoryToggle,
   setCreateCategoryToggle,
-  setSelectedCategoryId
+  setSelectedCategoryId,
+  selectedCategoryGifts,
+  searchQuery,
+  setSearchQuery,
+  categoryMaxLimit
 }: GiftCategoryAction) {
   const [toggle, setToggle] = useState<boolean>(false);
   const [closeState, setCloseState] = useState<boolean>(false);
@@ -75,6 +83,10 @@ function GiftCategoryAction({
     setCreateCategoryToggle(!createCategoryToggle);
     setCloseState(false);
   };
+
+  useEffect(()=>{
+    console.log(selectedCategoryGifts , "????selectedCategoryGifts");
+  },[selectedCategoryGifts])
 
   const DeleteActionCategoryModal = (
     index: number,
@@ -179,12 +191,14 @@ function GiftCategoryAction({
 
           <button
             className='relative pt-1 group '
-            onClick={() => setCreateCategory(true)}
+            onClick={() => !categoryMaxLimit && setCreateCategory(true)}
           >
             <Image src={plusIcon} alt='' className='h-[18px] w-[18px]' />
-            <div className='absolute -left-[119px] -top-[5px] z-50 w-max -translate-x-0 -translate-y-2/4 transform transition-all'>
+            {
+              categoryMaxLimit && <div className='absolute -left-[119px] -top-[5px] z-50 w-max -translate-x-0 -translate-y-2/4 transform transition-all'>
               <Tooltip Text={'You can create only 4 categories'} />
             </div>
+            }
           </button>
         </div>
         <button className=''>
@@ -197,6 +211,8 @@ function GiftCategoryAction({
             </span>
             <input
               type='text'
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               className={`h-10 w-full rounded-[14px] border border-[#FFFFFF52] bg-transparent px-4 pl-10 text-[14px] placeholder:text-white focus:border-[#FFFFFF52] focus:ring-transparent active:border-[#FFFFFF52] ${
                 isActive ? 'border' : 'border-none'
               }`}

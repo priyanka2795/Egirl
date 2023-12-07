@@ -24,14 +24,13 @@ function GiftCardDelete({
   Heading,
   Content,
   Img,
-  DeleteGift,
-  DeleteIndex,
   DeleteAllGift,
   selectedGiftData,
   DeleteBtnStep,
   DeleteActionCategory,
   CategoryActionIndex,
   DeleteGiftImage,
+  DeleteGift,
   GiftName
 }: DeletePopup) {
   return (

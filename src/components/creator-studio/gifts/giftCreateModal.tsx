@@ -7,7 +7,6 @@ import CreateGift from './createGift';
 
 interface giftCreateModalProp {
   closeModal: React.Dispatch<React.SetStateAction<boolean>>;
-  GiftsView: React.Dispatch<React.SetStateAction<boolean>>;
   GiftName: string[];
   SetGiftName: React.Dispatch<React.SetStateAction<string[]>>;
   AddCategory: string[];
@@ -24,7 +23,6 @@ interface giftCreateModalProp {
 }
 function giftCreateModal({
   closeModal,
-  GiftsView,
   GiftName,
   SetGiftName,
   AddCategory,
@@ -56,7 +54,6 @@ function giftCreateModal({
           {steps === 2 ? (
             <CreateGift
               createGiftClose={closeModal}
-              GiftsView={GiftsView}
               AddCategory={AddCategory}
               SetCategory={SetCategory}
               giftCategory={giftCategory}

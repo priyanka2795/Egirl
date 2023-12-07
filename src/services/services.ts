@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-import { deleteApi, getApi, getApiWithToken, postApi, postApiWithToken, postWithParams, putApi, putApiWithToken } from "./apis";
+import { deleteApi, getApi, getApiWithToken, postApi, postApiWithToken, postApiWithTokenMultipart, postWithParams, putApi, putApiWithToken } from "./apis";
 
 
 // Post Login data
@@ -13,7 +13,7 @@ export const discordCallback=() => getApi('/discord/callback?code=1')
 // google api
 export const googleSignup = ()=> getApi('/google/signup')
 
-export const googleLogin = ()=> getApi('/google/login')
+export const googleLogin = ()=> getApi(`/google/login?origin_url=https://api.egirls.ai`)
 
 export const googleCallback = () => getApi('/google/callback')
 
@@ -70,6 +70,8 @@ export const getAllCharacter = (token:string|null) => getApiWithToken('/studio/c
 export const updateCharacter = (data:any , token : string | null)=> putApiWithToken('/studio/character/update_character' , data , token )
 
 export const postCharacter = (data:any , token:any) => postApiWithToken('/studio/character/create_character' , data , token)
+
+export const postUploadMedia = (data:any , token:any) => postApiWithTokenMultipart('/studio/character/upload_media' , data , token)
 
 export const updateCharacterPersonality = (data:any , token : string | null)=> putApiWithToken('/studio/character/personality' , data , token)
 

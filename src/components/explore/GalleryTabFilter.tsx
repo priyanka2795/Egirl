@@ -97,7 +97,7 @@ const GalleryTabFilter = ({
     setIsOpen: filterIsopen
   } = useClickOutside<HTMLDivElement>(false);
 
-  console.log({selectedTags})
+  console.log({ selectedTags });
 
   const toggleModal = () => {
     if (filterOpen) {
@@ -310,11 +310,7 @@ const GalleryTabFilter = ({
                 <div className='font-normal pointer-none flex flex-shrink-0 cursor-pointer items-center gap-1 rounded-lg bg-white/10 px-[10px] py-1 text-xs leading-none text-white'>
                   <UserProfile />
                   <div className='text-[13px]'>All</div>
-                  <Image
-                    src={xMark}
-                    alt=''
-                    className='object-cover'
-                  />
+                  <Image src={xMark} alt='' className='object-cover' />
                 </div>
               )}
             </div>
@@ -323,9 +319,11 @@ const GalleryTabFilter = ({
               <div className='relative'>
                 <FilterIcon
                   onClick={() => {
-                    toggleModal(); 
+                    toggleModal();
                   }}
-                  className={`${filterOpen && 'white-stroke'} cursor-pointer -translate-x-[6rem] -translate-y-1`}
+                  className={`${
+                    filterOpen && 'white-stroke'
+                  } -translate-x-[6rem] -translate-y-1 cursor-pointer`}
                 />
                 {filterOpen && Tags?.length && (
                   <GalleryFilterCheckbox

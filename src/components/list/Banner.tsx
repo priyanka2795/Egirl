@@ -9,7 +9,7 @@ import avatar from '@/assets/mika-chan-sub-banner.webp';
 import userCheckIcon from '@/assets/user-check-icon.webp';
 import threeDotsIcon from '@/assets/three-dots-icon.webp';
 import blueTickIcon from '@/assets/badge-check.webp';
-import locationIcon from '@/assets/location-icon.png';
+import locationIcon from '@/assets/location-icon.webp';
 import calendarIcon from '@/assets/calendar-icon.webp';
 import VerifiedIcon from '@/assets/svgImages/verified-icon.svg';
 import CollectionCoverModal from './CollectionCoverModal';
@@ -27,6 +27,8 @@ import downArrow from '@/assets/down-arrow-img.webp';
 import EditProfileModal from '@components/list/EditProfileModal';
 import userAvatar from '@/assets/user-alt-1.webp';
 import CoverImageModel from './finishStep/coverImageModel';
+import { postUploadMedia } from 'services/services';
+import Cookies from 'js-cookie';
 
 const posts = [
   {
@@ -40,17 +42,6 @@ const posts = [
   {
     number: '0',
     name: 'Subscribers'
-  }
-];
-
-const location = [
-  // {
-  //   icon: locationIcon,
-  //   name: 'Tokyo'
-  // },
-  {
-    icon: calendarIcon,
-    name: 'Joined March 2023'
   }
 ];
 
@@ -118,11 +109,9 @@ interface BannerProp {
   component?: string;
   setUserDetails?: any;
   userDetails?: any;
-  activeProfile: any;
   bannerData: any;
   updateCharacterToggle: boolean;
   setUpdateCharacterToggle: React.Dispatch<React.SetStateAction<boolean>>;
-  // setEditProfileModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const Banner: React.FC<BannerProp> = ({
   backFromProfile,
@@ -132,12 +121,10 @@ const Banner: React.FC<BannerProp> = ({
   component,
   setUserDetails,
   userDetails,
-  activeProfile,
   bannerData,
   updateCharacterToggle,
   setUpdateCharacterToggle
-}: // setEditProfileModal
-BannerProp) => {
+}: BannerProp) => {
   const [actionDivShow, setActionDivShow] = useState(false);
   const [exploreSelectedTab, setExploreSelected] = useState('');
   const [collectionModalState, setCollectionModalState] = useState(false);
@@ -149,8 +136,10 @@ BannerProp) => {
   const [coverImage, setCoverImage] = useState('');
   const [editProfileModal, setEditProfileModal] = useState(false);
   const [cropData, setCropData] = useState('');
-  const [updatedProfile, setUpdatedProfile] = useState(false)
-
+  const [updatedProfile, setUpdatedProfile] = useState(false);
+  const [image, setImage] = useState('');
+  const token = Cookies.get('accessToken');
+  const [joinedDate, setJoinedDate] = useState<any>();
 
   const handleExploreSelected = (e: React.MouseEvent<HTMLElement>) => {
     setExploreSelected((e.target as HTMLElement).innerText);
@@ -213,7 +202,43 @@ BannerProp) => {
     }
   };
 
+  const handleCoverImage = () => {
+    const formData = new FormData();
+    formData.append('file', dataURLtoFile(image, 'uploaded_image.jpg'));
+    console.log(formData, '????formdata');
+    postUploadMedia(formData, token)
+      .then((res: any) => {
+        console.log(res, 'res????upload');
+        setCoverImage(image);
+        setUpdatePhotoModalState(false);
+      })
+      .catch((err: any) => {
+        console.log(err, 'err????upload');
+      });
+  };
 
+  const dataURLtoFile = (dataurl: string, filename: string) => {
+    const arr = dataurl.split(',');
+    const mime = arr[0].match(/:(.*?);/)![1];
+    const bstr = atob(arr[1]);
+    let n = bstr.length;
+    const u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new File([u8arr], filename, { type: mime });
+  };
+
+  const formatDate = (dateString: string) => {
+    const options: any = { month: 'long', year: 'numeric' };
+    const date = new Date(dateString);
+    const formattedDate = date.toLocaleString('en-US', options);
+    return formattedDate;
+  };
+
+  useEffect(() => {
+    setJoinedDate(formatDate(bannerData?.created_at));
+  }, [bannerData]);
 
   return (
     <div className={`${styleProperty ? styleProperty : 'px-8'}`}>
@@ -235,7 +260,7 @@ BannerProp) => {
       <div>
         <div className='h-max w-full overflow-hidden rounded-[16px] bg-[#121212]'>
           <div className='relative block w-full sub-banner'>
-            { coverImage === '' ? (
+            {coverImage === '' ? (
               <div className='mb-2 h-[200px] w-full bg-[#313131]'></div>
             ) : (
               <img className='h-[200px] w-full ' src={coverImage} alt='' />
@@ -282,7 +307,7 @@ BannerProp) => {
             </div>
 
             <div
-              className={`mb-5 flex w-full items-center justify-between px-6 mt-[-56px]`}
+              className={`mb-5 mt-[-56px] flex w-full items-center justify-between px-6`}
             >
               <div className='relative h-[120px]  w-[120px] overflow-hidden rounded-full'>
                 {/* <Image className='w-full h-full border border-white' src={avatar} alt='' /> */}
@@ -449,35 +474,24 @@ BannerProp) => {
               </div>
 
               <div className='mt-[8px] flex gap-[10px]'>
-                {bannerData?.location
-                  ? location.map((item, index) => {
-                      return (
-                        <div key={index} className='flex gap-[6px]'>
-                          <Image
-                            className='object-contain'
-                            src={item.icon}
-                            alt=''
-                          />
-                          <div className='font-normal text-[13px] text-[#FFFFFF]'>
-                            {bannerData ? bannerData?.location : 'location'}
-                          </div>
-                        </div>
-                      );
-                    })
-                  : location.map((item, index) => {
-                      return (
-                        <div key={index} className='flex gap-[6px]'>
-                          <Image
-                            className='object-contain'
-                            src={item.icon}
-                            alt=''
-                          />
-                          <div className='font-normal text-[13px] text-[#FFFFFF]'>
-                            {item.name}
-                          </div>
-                        </div>
-                      );
-                    })}
+                {bannerData?.location && (
+                  <div className='flex gap-[6px]'>
+                    <Image
+                      className='object-contain'
+                      src={locationIcon}
+                      alt=''
+                    />
+                    <div className='font-normal text-[13px] text-[#FFFFFF]'>
+                      {bannerData ? bannerData?.location : 'location'}
+                    </div>
+                  </div>
+                )}
+                <div className='flex gap-[6px]'>
+                  <Image className='object-contain' src={calendarIcon} alt='' />
+                  <div className='font-normal text-[13px] text-[#FFFFFF]'>
+                    {`Joined ${joinedDate}`}
+                  </div>
+                </div>
               </div>
 
               <div className='mt-[12px] flex'>
@@ -516,6 +530,9 @@ BannerProp) => {
           CloseModal={setUpdatePhotoModalState}
           coverImage={coverImage}
           setCoverImage={setCoverImage}
+          image={image}
+          setImage={setImage}
+          handleCoverImage={handleCoverImage}
         />
       )}
 

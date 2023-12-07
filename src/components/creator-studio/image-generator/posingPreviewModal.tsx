@@ -19,7 +19,7 @@ const PosingPreviewModal = ({
       closeModal={() => PosingPreviewClose(false)}
       modalOverlayStyle='!bg-black/80'
     >
-      <Image src={PoseImageSelect} className='h-full w-full ' />
+      <Image src={PoseImageSelect} className='w-full h-full ' />
       <div className='absolute right-6 top-6'>
         <button
           className='h-[24px] w-[24px]'

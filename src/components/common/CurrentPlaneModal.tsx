@@ -100,16 +100,16 @@ const CurrentPlaneModal = ({ closeState }: CurrentPlaneProp) => {
         >
           $14.99 per month
         </button> */}
-        <div className='pb-8 pt-6 '>
+        <div className='pt-6 pb-8 '>
           <div className='flex justify-between border-b-[1px] border-zinc-800 px-7 pb-4'>
             <h3 className='text-[18px] font-bold leading-loose text-white '>
               Token uses
             </h3>
             <div className='flex items-center gap-5 '>
               <div className='flex items-center gap-1 '>
-                <div className='group relative flex flex-col items-center'>
+                <div className='relative flex flex-col items-center group'>
                   <Token className='cursor-pointer' />
-                  <div className='absolute bottom-0 mb-6 flex hidden flex-col items-center group-hover:flex'>
+                  <div className='absolute bottom-0 flex flex-col items-center hidden mb-6 group-hover:flex'>
                     <span className='whitespace-no-wrap relative z-10  rounded-sm bg-[#303030] p-2 text-xs font-normal leading-none text-white shadow-lg'>
                       Token
                     </span>
@@ -130,7 +130,7 @@ const CurrentPlaneModal = ({ closeState }: CurrentPlaneProp) => {
             </div>
           </div>
 
-          <div className='px-8 pb-2 pt-5'>
+          <div className='px-8 pt-5 pb-2'>
             {tokenData.map((items, index) => {
               return (
                 <div
@@ -142,9 +142,9 @@ const CurrentPlaneModal = ({ closeState }: CurrentPlaneProp) => {
                       {items.title}
                     </h5>
                     <div className='flex h-[30px] w-[50px] items-center justify-center gap-1 rounded-[8px] bg-[#26233f]'>
-                      <div className='group relative flex flex-col items-center'>
+                      <div className='relative flex flex-col items-center group'>
                         <TokenPrimary className='cursor-pointer' />
-                        <div className='absolute bottom-0 mb-6 flex hidden flex-col items-center group-hover:flex'>
+                        <div className='absolute bottom-0 flex flex-col items-center hidden mb-6 group-hover:flex'>
                           <span className='whitespace-no-wrap relative z-10 rounded-md bg-[#303030] p-2 text-xs font-normal leading-none text-white shadow-lg'>
                             Token
                           </span>

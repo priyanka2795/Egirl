@@ -1,13 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import pen from '@/assets/pen.webp';
 import userImg from '@/assets/circle-user-white.webp';
 import deleteIcon from '@/assets/trash-blank.webp';
 import Image from 'next/image';
-import DeleteModal from '@components/add-card/DeleteModal';
-import DeleteProfileModal from './DeleteProfileModal';
 
 interface profileDropdowProp {
-  profileEdit: boolean;
   deleteProfileState: boolean;
   setProfileEdit: React.Dispatch<React.SetStateAction<boolean>>;
   setDeleteProfileState: React.Dispatch<React.SetStateAction<boolean>>;
@@ -16,7 +13,6 @@ interface profileDropdowProp {
   setUpdateProfileThumbnail: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const ProfileDropdown = ({
-  profileEdit,
   deleteProfileState,
   setProfileEdit,
   setDeleteProfileState,

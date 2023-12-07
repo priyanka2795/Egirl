@@ -20,13 +20,13 @@ const ViewAllTags = ({selectedTags,getSelectedTagOnClick,filteredTags, closeAllT
     <div className='absolute right-8 top-5 z-50 flex w-[346px] flex-col rounded-[14px] border border-white/[0.05] bg-[#1A1A1A] mt-64' onClick={(e) => e.stopPropagation()}>
       <form>
         <div className='flex flex-col border-b border-white/[0.08] px-6'>
-          <div className='flex items-center justify-between  py-5'>
+          <div className='flex items-center justify-between py-5'>
             <div className='font-bold text-[18px] leading-6 text-white flex justify-start items-center gap-1'>
               <Image src={arroeLeft} onClick={closeAllTagsModal} className='cursor-pointer'/>
               Tags
             </div>
           </div>
-          <div className='flex items-center gap-1  pb-3'>
+          <div className='flex items-center gap-1 pb-3'>
             <Image src={Information} />{' '}
             <p className='text-xs text-[#979797]'>
               The maximum number of filters is 4

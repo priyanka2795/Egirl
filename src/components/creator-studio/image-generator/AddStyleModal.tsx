@@ -70,7 +70,7 @@ const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
       <div className='rounded-[20px] bg-[#121212] '>
         {/* Header */}
         <div className='flex items-center justify-between border-b border-white/[0.08] border-b-white/[0.08] p-8'>
-          <h5 className='font-bold text-lg'>Style</h5>
+          <h5 className='text-lg font-bold'>Style</h5>
           <button
             className='h-[24px] w-[24px]'
             onClick={() => SetOpenStyle(false)}
@@ -117,7 +117,7 @@ const AddStyleModal = ({ SetOpenStyle }: AddStyleModal) => {
         <div className=''>
           <div className='flex flex-col gap-4 px-8 mt-4 '>
             {/* self made */}
-            <h6 className='font-bold text-lg leading-6 text-white'>
+            <h6 className='text-lg font-bold leading-6 text-white'>
               Self Made
             </h6>
             {selfImageSearch ? (

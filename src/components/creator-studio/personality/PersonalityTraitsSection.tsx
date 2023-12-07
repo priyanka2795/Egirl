@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Modal, modal } from '@components/modal/modal';
+import { Modal } from '@components/modal/modal';
 import Isymbol from '../svg/Isymbol';
 import AdvanceArrow from '../svg/AdvanceArrow';
 import InfoIcon from '@/assets/svgImages/info-icon.svg';

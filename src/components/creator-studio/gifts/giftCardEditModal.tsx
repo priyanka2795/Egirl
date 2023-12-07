@@ -16,7 +16,6 @@ interface CardEditModal {
   closeModal: React.Dispatch<React.SetStateAction<boolean>>;
   GiftEditModal: number | undefined;
   DeleteGift: any;
-  DeleteIndex: number | undefined;
   DeleteBtnStep: number;
   giftImageSet: string;
   giftName?: string;
@@ -27,28 +26,11 @@ interface CardEditModal {
   setUpdateGift: React.Dispatch<React.SetStateAction<boolean>>;
   giftCategory:any
 }
-const moveData = [
-  {
-    name: 'Date',
-    imgpath: MoveImgFirst,
-    gifts: '0/9gifts'
-  },
-  {
-    name: 'Summer',
-    imgpath: MoveImg,
-    gifts: '2/9 gifts'
-  },
-  {
-    name: 'Tokyo',
-    imgpath: ImageSquare,
-    gifts: '9/9gifts'
-  }
-];
+
 function GiftCardEditModal({
   closeModal,
   GiftEditModal,
   DeleteGift,
-  DeleteIndex,
   DeleteBtnStep,
   giftImageSet,
   giftName,
@@ -259,7 +241,6 @@ function GiftCardEditModal({
           Img={false}
           selectedGiftData={selectedGiftData}
           DeleteGift={DeleteGift}
-          DeleteIndex={DeleteIndex}
           DeleteBtnStep={DeleteBtnStep}
         />
       ) : (

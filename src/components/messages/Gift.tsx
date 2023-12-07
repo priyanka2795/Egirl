@@ -10,7 +10,7 @@ type GiftProp = {
 
 const Gift = ({showGiftImg, showGiftName} : GiftProp) => {
   return (
-    <div className='flex gap-2 py-4 pr-6 w-full'>
+    <div className='flex w-full gap-2 py-4 pr-6'>
         <div className='px-3 py-2 rounded-full h-max bg-white/[0.08]'>
             <Image className='w-4 h-4' src={userIcon} alt={''} />
         </div>

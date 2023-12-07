@@ -17,7 +17,6 @@ import { postGifts } from 'services/services';
 
 interface CreateGiftPopup {
   createGiftClose: React.Dispatch<React.SetStateAction<boolean>>;
-  GiftsView: React.Dispatch<React.SetStateAction<boolean>>;
   Steps?: React.Dispatch<React.SetStateAction<number>>;
   AddCategory: string[];
   SetCategory: React.Dispatch<React.SetStateAction<string[]>>;
@@ -35,7 +34,6 @@ interface CreateGiftPopup {
 
 function CreateGift({
   createGiftClose,
-  GiftsView,
   Steps,
   AddCategory,
   SetCategory,
@@ -96,7 +94,6 @@ function CreateGift({
           console.log(err, '????createGiftError');
         });
       createGiftClose(false);
-      GiftsView(true);
     }
   };
   const closeGifts = () => {
