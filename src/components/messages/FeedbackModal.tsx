@@ -1,7 +1,7 @@
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
 import React from 'react';
-import xMark from '../../../public/assets/xmark (1).png'
+import xMark from '@/assets/xmark (1).webp'
 
 interface FeedbackModalProps {
     showFeedText: boolean;

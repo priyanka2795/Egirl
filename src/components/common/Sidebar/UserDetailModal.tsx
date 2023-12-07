@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import Cookies from 'js-cookie';
 import Link from 'next/link';
 import Image from 'next/image';
-import arrowLeft from '../../../../public/assets/arrow-left-orange.png';
+import arrowLeft from '@/assets/arrow-left-orange.webp';
 
 interface UserDetailModalProps{
   styleClasses: string;

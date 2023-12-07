@@ -211,7 +211,7 @@ export default function Sidebar({
           </div>
           {moreOption && (
             <MoreMenuOption
-              classes={`${sideBarCollapse ? ' absolute bottom-5 left-[90px]' : 'absolute '
+              classes={`${sideBarCollapse ? ' absolute bottom-5 left-[90px]' : 'absolute bottom-16 left-10'
                 }`}
               activeMoreOption={activeMoreOption}
               moreOptionItem={moreOptionItem}

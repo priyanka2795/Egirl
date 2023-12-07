@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import CloseIcon from '../../../public/assets/svgImages/close-icon.svg';
-import searchIcon from '../../../public/assets/search-icon.png';
-import plusIcon from '../../../public/assets/plus-block-icon.png';
-import MainImage from '../../../public/assets/gallery-tab-img-3.png';
-import pinkMobGirl from '../../../public/assets/gallery-tab-img-2.png';
+import CloseIcon from '@/assets/svgImages/close-icon.svg';
+import searchIcon from '@/assets/search-icon.webp';
+import plusIcon from '@/assets/plus-block-icon.webp';
+import MainImage from '@/assets/gallery-tab-img-3.webp';
+import pinkMobGirl from '@/assets/gallery-tab-img-2.webp';
 import { Modal } from '@components/modal/modal';
 
 const collectionFrame = [
@@ -60,7 +60,7 @@ const AddToCollectionModal = ({ closeModalState }: AddToCollectionProps) => {
         <div className='w-full px-6 py-2'>
           <div className=' flex w-full gap-[10px] rounded-[8px] bg-white/[0.05] px-4 py-3'>
             <div className='mt-[10px] h-6 w-6'>
-              <Image className='h-full w-full' src={searchIcon} alt={''} />
+              <Image className='w-full h-full' src={searchIcon} alt={''} />
             </div>
             <div className='w-full'>
               <input
@@ -74,9 +74,9 @@ const AddToCollectionModal = ({ closeModalState }: AddToCollectionProps) => {
 
         <div className='grid grid-cols-3 gap-3 px-6 py-4'>
           <div className='flex h-[279px] flex-col items-center justify-center rounded-[16px] border border-white/[0.08] bg-white/[0.05]'>
-            <Image src={plusIcon} alt='' className='mb-4 object-contain' />
+            <Image src={plusIcon} alt='' className='object-contain mb-4' />
             <div
-              className='flex cursor-pointer flex-col items-center justify-center'
+              className='flex flex-col items-center justify-center cursor-pointer'
               onClick={() => setNewCollectionModal(true)}
             >
               <h5 className='mb-[20px] text-sm font-semibold'>
@@ -94,19 +94,19 @@ const AddToCollectionModal = ({ closeModalState }: AddToCollectionProps) => {
                 key={index}
                 className='group flex h-[279px] flex-col items-start overflow-hidden rounded-2xl bg-white/[0.05]'
               >
-                <div className='add-to-collection relative flex items-center justify-center overflow-hidden'>
+                <div className='relative flex items-center justify-center overflow-hidden add-to-collection'>
                   <div className='h-[227px] w-full'>
                     <Image src={item.image} alt='' className='object-cover' />
                   </div>
-                  <div className='custom-checkbox absolute right-0 top-0 h-full w-full'>
-                    <div className='pr-4 pt-4 text-right'>
+                  <div className='absolute top-0 right-0 w-full h-full custom-checkbox'>
+                    <div className='pt-4 pr-4 text-right'>
                       <input type='checkbox' id={`checked-${index}`} />
                       <label htmlFor={`checked-${index}`}></label>
                     </div>
                   </div>
                 </div>
-                <div className='flex flex-col items-start gap-3 self-stretch p-4'>
-                  <div className='flex items-center gap-1 self-stretch'>
+                <div className='flex flex-col items-start self-stretch gap-3 p-4'>
+                  <div className='flex items-center self-stretch gap-1'>
                     <div className='text-sm font-semibold text-[#FFFFFF]'>
                       {item.imageName}
                     </div>

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { Modal } from '@components/modal/modal';
-import girlPic from '../../../public/assets/girl.png';
-import Cross from '../../../public/assets/svgImages/close-icon.svg';
+import girlPic from '@/assets/girl.webp';
+import Cross from '@/assets/svgImages/close-icon.svg';
 import Copy from '../creator-studio/svg/Copy.svg';
 import Info from '../creator-studio/svg/info.svg';
-import Grid from '../../../public/assets/dots-vertical.png';
+import Grid from '@/assets/dots-vertical.webp';
 
 const PromptTags = [
   'Silver hair',

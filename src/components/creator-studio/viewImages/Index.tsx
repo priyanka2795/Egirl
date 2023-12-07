@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ViewImagesMainPage from './ViewImagesMainPage';
 import Image from 'next/image';
-import plusIcon from '../../../../public/assets/plus-large.png';
+import plusIcon from '@/assets/plus-large.webp';
 import EditImageGeneration from '../image-generator/editImagegeneration';
 
 const ViewImagesIndex = () => {

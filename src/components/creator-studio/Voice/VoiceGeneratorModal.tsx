@@ -1,12 +1,12 @@
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
 import React, { useState } from 'react';
-import crossIcon from '../../../../public/assets/xmark (1).png';
-import circleInformation from '../../../../public/assets/circle-information4.png';
+import crossIcon from '@/assets/xmark (1).webp';
+import circleInformation from '@/assets/circle-information4.webp';
 import { Range } from 'react-range';
 import RangePicker from '../common/RangePicker';
-import arrowDown from '../../../../public/assets/arrow-down.png';
-import arrowUp from '../../../../public/assets/arrow-up.png';
+import arrowDown from '@/assets/arrow-down.webp';
+import arrowUp from '@/assets/arrow-up.webp';
 
 interface VoiceGeneratorModalProp {
   closeModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -277,9 +277,9 @@ const VoiceGeneratorModal = ({ closeModal }: VoiceGeneratorModalProp) => {
               <div className='text-[15px] font-semibold leading-5 text-[#FFFFFF]'>
                 Voice settings
               </div>
-              <button className='font-bold items-center justify-center rounded-[10px] bg-white/[0.08] px-3 py-[7px] text-[12px] leading-[18px] text-[#FFFFFF]'>
+              <div className='font-bold items-center justify-center rounded-[10px] bg-white/[0.08] px-3 py-[7px] text-[12px] leading-[18px] text-[#FFFFFF] cursor-pointer'>
                 Default
-              </button>
+              </div>
             </div>
             <div className='flex flex-col gap-4'>
               <div className='flex flex-col gap-1'>

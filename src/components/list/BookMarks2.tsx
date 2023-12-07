@@ -2,20 +2,20 @@ import React from 'react';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Image from 'next/image';
-import micaChanFullImg from '../../../public/assets/mica-chan-img-bookmark.png'
-import avatar from '../../../public/assets/avatar.png'
-import threeDotsIcon from '../../../public/assets/three-dots-icon.png'
-import crossIcon from '../../../public/assets/xmark.png'
-import orangeHeart from '../../../public/assets/orange-heart.png'
-import messageIcon from '../../../public/assets/message-square.png'
-import bookmark from '../../../public/assets/bookmark-filled.png'
-import shareIcon from '../../../public/assets/share-icon.png'
+import micaChanFullImg from '@/assets/mica-chan-img-bookmark.webp'
+import avatar from '@/assets/avatar.webp'
+import threeDotsIcon from '@/assets/three-dots-icon.webp'
+import crossIcon from '@/assets/xmark.webp'
+import orangeHeart from '@/assets/orange-heart.webp'
+import messageIcon from '@/assets/message-square.png'
+import bookmark from '@/assets/bookmark-filled.webp'
+import shareIcon from '@/assets/share-icon.webp'
 import Slider from 'react-slick';
-import goldenShoulderGirlAvatar from '../../../public/assets/golden-shoulder-girl-avatar.png'
-import threeDotsWhite from '../../../public/assets/three-dots-white.png'
-import pinkPhnGirlAvatar from '../../../public/assets/pink-phn-girl-avatar.png'
-import heartIcon from '../../../public/assets/unfilled-heart.png'
-import smileyIcon from '../../../public/assets/face-smile-icon.png';
+import goldenShoulderGirlAvatar from '@/assets/golden-shoulder-girl-avatar.webp'
+import threeDotsWhite from '@/assets/three-dots-white.webp'
+import pinkPhnGirlAvatar from '@/assets/pink-phn-girl-avatar.webp'
+import heartIcon from '@/assets/unfilled-heart.webp'
+import smileyIcon from '@/assets/face-smile-icon.webp';
 
 const settings = { 
     dots: true,

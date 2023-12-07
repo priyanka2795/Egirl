@@ -354,7 +354,7 @@ export default function Lists(): JSX.Element {
     //       title='Save Profiles'
     //       description='Don’t let the good ones fly away! Bookmark Tweets to easily find them again in the future.'
     //       imageData={{
-    //         src: '/assets/no-bookmarks.png',
+    //         src: '/assets/no-bookmarks.webp',
     //         alt: 'No bookmarks'
     //       }}
     //     /> */}
@@ -376,7 +376,7 @@ export default function Lists(): JSX.Element {
     //         title='Save Profiles in a list'
     //         description='Don’t let the good ones fly away! Save Profiles to easily find them again in the future.'
     //         imageData={{
-    //           src: '/assets/no-bookmarks.png',
+    //           src: '/assets/no-bookmarks.webp',
     //           alt: 'No bookmarks'
     //         }}
     //       />
@@ -394,7 +394,7 @@ export default function Lists(): JSX.Element {
     //           title='Save Tweets for later'
     //           description='Don’t let the good ones fly away! Bookmark Tweets to easily find them again in the future.'
     //           imageData={{
-    //             src: '/assets/no-bookmarks.png',
+    //             src: '/assets/no-bookmarks.webp',
     //             alt: 'No bookmarks'
     //           }}
     //         />

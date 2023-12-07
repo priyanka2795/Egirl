@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import Image from 'next/image';
-import model2 from '../../../public/assets/gallery-tab-img.png';
-import micaChan from '../../../public/assets/mikaChan.png';
-import cardBlueImg from '../../../public/assets/latest-tans-card-img.png';
+import model2 from '@/assets/gallery-tab-img.webp';
+import micaChan from '@/assets/mikaChan.webp';
+import cardBlueImg from '@/assets/latest-tans-card-img.webp';
 
 
 const collectionFrame = [

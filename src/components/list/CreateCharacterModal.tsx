@@ -1,6 +1,6 @@
 import { Modal } from '@components/modal/modal';
 import React, { useState } from 'react';
-import CloseIcon from '../../../public/assets/svgImages/close-icon.svg';
+import CloseIcon from '@/assets/svgImages/close-icon.svg';
 
 interface createCharacterProps {
   closeState?: React.Dispatch<React.SetStateAction<boolean>> | any;

@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
-import confetti from '../../../../public/assets/Confetti.png';
-import xMark from '../../../../public/assets/xmark-green.png';
+import confetti from '@/assets/Confetti.webp';
+import xMark from '@/assets/xmark-green.webp';
 
 interface CompleteGenerationProp {
   completeGeneration: boolean;

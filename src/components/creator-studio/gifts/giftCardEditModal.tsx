@@ -1,10 +1,10 @@
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
 import React, { useState } from 'react';
-import crossIcon from '../../../../public/assets/xmark (1).png';
-import AlbumFirst from '../../../../public/assets/gallery-tab-img.png';
+import crossIcon from '@/assets/xmark (1).webp';
+import AlbumFirst from '@/assets/gallery-tab-img.webp';
 import ImageSquareGray from '../svg/image-square-gray.svg';
-import plusIcon from '../../../../public/assets/plus-large.png';
+import plusIcon from '@/assets/plus-large.webp';
 import MoveImgFirst from '../svg/Image-block.png';
 import MoveImg from '../svg/Image-block2.png';
 import ImageSquare from '../svg/image-square.png';
@@ -16,7 +16,6 @@ interface CardEditModal {
   closeModal: React.Dispatch<React.SetStateAction<boolean>>;
   GiftEditModal: number | undefined;
   DeleteGift: any;
-  DeleteIndex: number | undefined;
   DeleteBtnStep: number;
   giftImageSet: string;
   giftName?: string;
@@ -27,28 +26,11 @@ interface CardEditModal {
   setUpdateGift: React.Dispatch<React.SetStateAction<boolean>>;
   giftCategory:any
 }
-const moveData = [
-  {
-    name: 'Date',
-    imgpath: MoveImgFirst,
-    gifts: '0/9gifts'
-  },
-  {
-    name: 'Summer',
-    imgpath: MoveImg,
-    gifts: '2/9 gifts'
-  },
-  {
-    name: 'Tokyo',
-    imgpath: ImageSquare,
-    gifts: '9/9gifts'
-  }
-];
+
 function GiftCardEditModal({
   closeModal,
   GiftEditModal,
   DeleteGift,
-  DeleteIndex,
   DeleteBtnStep,
   giftImageSet,
   giftName,
@@ -257,8 +239,8 @@ function GiftCardEditModal({
           GiftName={giftName}
           DeleteGiftImage={giftImageSet}
           Img={false}
+          selectedGiftData={selectedGiftData}
           DeleteGift={DeleteGift}
-          DeleteIndex={DeleteIndex}
           DeleteBtnStep={DeleteBtnStep}
         />
       ) : (

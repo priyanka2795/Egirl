@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
-import xMark from '../../../../public/assets/xmark (1).png';
-import CameraIcon from '../../../../public/assets/camera.png';
-import ImagePlusIcon from '../../../../public/assets/image-plus2.png';
-import CoverImage from '../../../../public/assets/cover.png';
-import UserImage from '../../../../public/assets/style-gen-img6.png';
-import CongratulationsImage from '../../../../public/assets/congratulations-Image.png';
+import xMark from '@/assets/xmark (1).webp';
+import CameraIcon from '@/assets/camera.webp';
+import ImagePlusIcon from '@/assets/image-plus2.png';
+import CoverImage from '@/assets/cover.webp';
+import UserImage from '@/assets/style-gen-img6.webp';
+import CongratulationsImage from '@/assets/congratulations-Image.png';
 
 interface FinishStepModal{
   FinishStepCongratsModal:()=>void;

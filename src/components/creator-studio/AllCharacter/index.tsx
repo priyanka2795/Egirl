@@ -1,14 +1,14 @@
 //@ts-nocheck
 import React, { useState } from 'react';
-import plusIcon from '../../../../public/assets/plus-large.png';
+import plusIcon from '@/assets/plus-large.webp';
 import Image from 'next/image';
-import AvtarLarge from '../../../../public/assets/AvatarLarge.png';
-import imageSquare from '../../../../public/assets/image-square.png';
-import avtar3 from '../../../../public/assets/Avatar 3.png';
-import avtar4 from '../../../../public/assets/Avatar 4.png';
-import palette from '../../../../public/assets/palette.png';
-import dotsHorizontal from '../../../../public/assets/dots-horizontal.png';
-import userpic from '../../../components/creator-studio/svg/user-alt-1.png';
+import AvtarLarge from '@/assets/AvatarLarge.webp';
+import imageSquare from '@/assets/image-square.png';
+import avtar3 from '@/assets/Avatar 3.webp';
+import avtar4 from '@/assets/Avatar 4.webp';
+import palette from '@/assets/palette.webp';
+import dotsHorizontal from '@/assets/dots-horizontal.webp';
+import userpic from '../../../components/creator-studio/svg/user-alt-1.webp';
 import CharacterAdd from '../NewCharacter/CharacterAdd';
 
 

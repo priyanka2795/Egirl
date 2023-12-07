@@ -1,16 +1,6 @@
 import React from 'react';
-
-import { useRouter } from 'next/router';
-import bgImage from '../../../public/assets/sign-in-bg-img.png';
-import logo from '../../../public/assets/Logo-white.png';
+import logo from '@/assets/Logo-white.webp';
 import Image from 'next/image';
-import googleIcon from '../../../public/assets/google-icon.png';
-import discordIcon from '../../../public/assets/discord-icon.png';
-import facebookIcon from '../../../public/assets/facebook-icon.png';
-import vector1 from '../../../public/assets/Vector 1.png';
-import vector2 from '../../../public/assets/Vector 2.png';
-import Link from 'next/link';
-
 
 const SigninTemplate = ({ children }: any) => {
   return (
@@ -23,7 +13,6 @@ const SigninTemplate = ({ children }: any) => {
         </div>
         <div className='self-center p-[54px]'>{children}</div>
       </div>
-
     </div>
   );
 };

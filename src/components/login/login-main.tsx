@@ -9,7 +9,7 @@ export function LoginMain(): JSX.Element {
         <NextImage
           imgClassName='object-cover'
           blurClassName='bg-accent-blue'
-          src='/assets/twitter-banner.png'
+          src='/assets/twitter-banner.webp'
           alt='Twitter banner'
           layout='fill'
           useSkeleton

@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
-import bookUser from '../../../public/assets/book-user.png';
-import userPenIcon from '../../../public/assets/user-pen.png';
-import personalityIcon from '../../../public/assets/user.png';
-import imagePlusIcon from '../../../public/assets/image-plus.png';
-import palette from '../../../public/assets/palette.png';
-import flag from '../../../public/assets/flag.png';
+import bookUser from '@/assets/book-user.webp';
+import userPenIcon from '@/assets/user-pen.webp';
+import personalityIcon from '@/assets/user.webp';
+import imagePlusIcon from '@/assets/image-plus.webp';
+import palette from '@/assets/palette.webp';
+import flag from '@/assets/flag.webp';
 import HoverModal from './HoverModal';
-import paletteWhiteIcon from '../../../public/assets/palette-white.png';
-import RightIcon from '../../../public/assets/check-cs.png';
-import personalityWhiteIcon from '../../../public/assets/user-white.png';
-import imagePlusWhiteIcon from '../../../public/assets/image-plus-white.png';
-import flagWhite from '../../../public/assets/flag-white.png';
+import paletteWhiteIcon from '@/assets/palette-white.webp';
+import RightIcon from '@/assets/check-cs.webp';
+import personalityWhiteIcon from '@/assets/user-white.webp';
+import imagePlusWhiteIcon from '@/assets/image-plus-white.webp';
+import flagWhite from '@/assets/flag-white.webp';
 
 interface SetUpYourCharacter {
   IsOpen: any;
@@ -21,10 +21,7 @@ interface SetUpYourCharacter {
   setTourCount: React.Dispatch<React.SetStateAction<number>>;
   setIsTourOpen: React.Dispatch<React.SetStateAction<number>>;
   setProfileInfoPage: any;
-  btnSteps?: any;
-  setBtnSteps?: any;
   activeStep?: any;
-  setActiveStep?: any;
 }
 function SetUpYourCharacter({
   IsOpen,
@@ -34,10 +31,7 @@ function SetUpYourCharacter({
   setIsTourOpen,
   setTourCount,
   setProfileInfoPage,
-  btnSteps,
-  setBtnSteps,
   activeStep,
-  setActiveStep
 }: SetUpYourCharacter) {
   {
     /*
@@ -69,7 +63,6 @@ function SetUpYourCharacter({
   }
 
   const GuideStep = TourSteps[0].id;
-  console.log(TourSteps[0].id, 'TourSteps');
   return (
     <div className='mt-5 rounded-[14px] bg-[#121212] p-6'>
       <div className='flex items-center justify-between mb-6'>

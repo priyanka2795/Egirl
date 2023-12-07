@@ -1,10 +1,10 @@
 import React from 'react';
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
-import CloseIcon from '../../../../public/assets/xmark (1).png';
-import Brush from '../../../../public/assets/paintbrush-alt.png';
-import Image1 from '../../../../public/assets/inpaint-Image.png';
-import PoseImg from '../../../../public/assets/poseimg.png';
+import CloseIcon from '@/assets/xmark (1).webp';
+import Brush from '@/assets/paintbrush-alt.webp';
+import Image1 from '@/assets/inpaint-Image.png';
+import PoseImg from '@/assets/poseimg.webp';
 
 interface PoseExample {
   PoseExampleClose: React.Dispatch<React.SetStateAction<boolean>>;
@@ -31,7 +31,7 @@ const PoseExample = ({ PoseExampleClose }: PoseExample) => {
       <div className='px-6 pt-6'>
         <div className='overflow-hidden rounded-[14px] bg-[#FFFFFF0D]'>
           <div className=''>
-            <Image src={PoseImg} className='h-full w-full object-cover' />
+            <Image src={PoseImg} className='object-cover w-full h-full' />
           </div>
           <div className='px-5 py-4'>
             <h5 className='text-[15px] font-semibold'>Pose mode</h5>

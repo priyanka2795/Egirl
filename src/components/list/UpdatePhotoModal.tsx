@@ -1,7 +1,7 @@
 import React, { useState, createRef } from 'react';
 import Cropper, { ReactCropperElement } from 'react-cropper';
 import 'cropperjs/dist/cropper.css';
-import CloseIcon from '../../../public/assets/svgImages/close-icon.svg';
+import CloseIcon from '@/assets/svgImages/close-icon.svg';
 import { Modal } from '@components/modal/modal';
 import PreviewProfile from './PreviewProfile';
 

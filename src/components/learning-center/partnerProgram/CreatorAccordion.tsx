@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import minus from '../../../../public/assets/minus.png';
-import plus from '../../../../public/assets/plus-large4.png';
+import minus from '@/assets/minus.webp';
+import plus from '@/assets/plus-gray.webp';
 
 const data = [
   {

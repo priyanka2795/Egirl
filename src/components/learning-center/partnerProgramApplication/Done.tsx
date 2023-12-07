@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
-import leftArrow from '../../../../public/assets/left-arrow-grey.png';
-import confetti from '../../../../public/assets/confetti_green.png'
+import leftArrow from '@/assets/left-arrow-grey.webp';
+import confetti from '@/assets/confetti_green.webp'
 
 interface identityProps {
   setSteps: any;

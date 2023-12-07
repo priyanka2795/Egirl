@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import arrowUp from '../../../public/assets/arrow-up-white.png';
+import arrowUp from '@/assets/arrow-up-white.webp';
 const ScrollToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
 

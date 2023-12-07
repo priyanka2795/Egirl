@@ -1,9 +1,9 @@
 import React from 'react'
 
-import userProfileImg from '../../../public/assets/user-profile.png';
-import filterImg1 from '../../../public/assets/filter-img-1.png';
-import filterImg2 from '../../../public/assets/filter-img-3.png';
-import filterImg3 from '../../../public/assets/filter-img-2.png';
+import userProfileImg from '@/assets/user-profile.webp';
+import filterImg1 from '@/assets/filter-img-1.webp';
+import filterImg2 from '@/assets/filter-img-3.webp';
+import filterImg3 from '@/assets/filter-img-2.webp';
 import Image from 'next/image';
 import { UserEditProfile } from '@components/user/user-edit-profile';
 import UserProfile from './svg/user-profile.svg';

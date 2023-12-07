@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import rightArrow from '../../../../public/assets/right-arrow-grey.png';
-import downArrow from '../../../../public/assets/down-arrow-img.png';
-import rightArrowWhite from '../../../../public/assets/chevron-right-white.png';
-import leftArrow from '../../../../public/assets/left-arrow-grey.png';
-import downArrowGrey from '../../../../public/assets/arrow-down.png';
+import rightArrow from '@/assets/right-arrow-grey.png';
+import downArrow from '@/assets/down-arrow-img.webp';
+import rightArrowWhite from '@/assets/chevron-right-white.webp';
+import leftArrow from '@/assets/left-arrow-grey.webp';
+import downArrowGrey from '@/assets/arrow-down.webp';
 
 const countryData = ['Germany', 'India', 'America', 'Australia'];
 interface contactInfoProps {

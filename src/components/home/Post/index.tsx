@@ -158,7 +158,7 @@ const Post: React.FC<PostProps> = ({
           <Image
             // src='https://www.shutterstock.com/image-vector/lock-glass-morphism-trendy-style-260nw-2047414109.jpg' // Change to your image path
             src='/dummy-img.png'
-            alt='Locked Post' // Change to your alt text
+            alt='Locked Post' 
             width={512}
             height={512}
             className='rounded-xl'

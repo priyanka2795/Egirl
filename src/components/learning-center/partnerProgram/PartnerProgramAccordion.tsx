@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import voiceImgIcon from '../../../../public/assets/learning-center/voiceImgIcon.png';
-import wallet from '../../../../public/assets/learning-center/wallet.png';
-import messageCircle from '../../../../public/assets/learning-center/message-circle-heart.png';
-import chart from '../../../../public/assets/learning-center/Chart.png';
-import globe from '../../../../public/assets/learning-center/globe.png';
-import minus from '../../../../public/assets/minus.png';
-import plus from '../../../../public/assets/plus-large4.png';
+import voiceImgIcon from '@/assets/learning-center/voiceImgIcon.png';
+import wallet from '@/assets/learning-center/wallet.webp';
+import messageCircle from '@/assets/learning-center/message-circle-heart.png';
+import chart from '@/assets/learning-center/Chart.png';
+import globe from '@/assets/learning-center/globe.png';
+import minus from '@/assets/minus.webp';
+import plus from '@/assets/plus-gray.webp';
 
 const data = [
   {

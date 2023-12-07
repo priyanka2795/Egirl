@@ -1,27 +1,52 @@
-import React,{useState} from 'react';
-import Image from 'next/image'
-import arrowDown from '../../../public/assets/arrow-down.png';
+import { Menu, Transition } from '@headlessui/react'
+import { Fragment, useEffect, useRef, useState } from 'react'
+import { ChevronDownIcon } from '@heroicons/react/20/solid'
 
-const Dropdown = ({buttonTitle,options}:any) => {
-    const [openDropdown,setOpenDropdown]=useState(false);
-
-
+export default function Example({buttonTitle,options}:any) {
+    const [selected,setSelected]=useState("");
   return (
-    <>
-    <div className='flex cursor-pointer gap-2 border-l border-white/10 pl-2 relative'>
-                <p onClick={()=>setOpenDropdown(!openDropdown)}>{buttonTitle}</p>
-                <Image style={openDropdown ? {transform:'rotate(-180deg)'} : {transform:'rotate(0deg)'}} src={arrowDown} alt='' className='object-cover transition-all duration-300' />
-                <div style={openDropdown ? {opacity:1,pointerEvents:'all'} : {opacity:0,pointerEvents:'none'}} className="transition-all duration-300 dropdown_list w-fit h-fit bg-main-background border-2 border-main-grey absolute top-7 z-50 right-[5px] p-2 rounded-xl whitespace-nowrap">
-                  <ul>
-                    {options?.map((option,index)=>(
-                        <li key={index} className='px-4 py-2'>{option}</li>
-                    ))}
-                  </ul>
-                </div>
-                </div>
-    </>
-    
+    <div className="absolute top-[15rem] right-5 w-fit text-right z-50">
+      <Menu as="div" className="relative inline-block text-left">
+        <div>
+          <Menu.Button className="inline-flex w-full justify-center rounded-md bg-main-background px-4 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
+            Newest
+            <ChevronDownIcon
+              className="-mr-1 ml-2 h-5 w-5 text-violet-200 hover:text-violet-100"
+              aria-hidden="true"
+            />
+          </Menu.Button>
+        </div>
+        <Transition
+          as={Fragment}
+          enter="transition ease-out duration-100"
+          enterFrom="transform opacity-0 scale-95"
+          enterTo="transform opacity-100 scale-100"
+          leave="transition ease-in duration-75"
+          leaveFrom="transform opacity-100 scale-100"
+          leaveTo="transform opacity-0 scale-95"
+        >
+          <Menu.Items className="text-white absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-xl bg-main-background shadow-lg ring-1 ring-black/5 focus:outline-none border-2 border-main-gray">
+            <div className="px-1 py-1 ">
+              {options?.map((option,index)=>(
+                <Menu.Item key={index}>
+                {({ active }:any) => (
+                  <button
+                  onClick={()=>console.log({option})}
+                    className={`${
+                      active ? 'bg-[#5848BC]' : 'text-white'
+                    } group flex w-full items-center rounded-md px-2 py-2 text-sm text-white`}
+                  >
+                   
+                    {option}
+                  </button>
+                )}
+              </Menu.Item>
+              ))}
+             </div>
+          </Menu.Items>
+        </Transition>
+      </Menu>
+    </div>
   )
 }
 
-export default Dropdown

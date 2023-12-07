@@ -2,8 +2,8 @@ import React, {useEffect, useState} from 'react';
 import Slider from 'react-slick';
 import UserFrame from './UserFrame';
 import Image from 'next/image';
-import arrowLeft from '../../../public/assets/arrow-narrow-left.png';
-import arrowRight from '../../../public/assets/arrow-narrow-right.png';
+import arrowLeft from '@/assets/arrow-narrow-left.webp';
+import arrowRight from '@/assets/arrow-narrow-right.webp';
 import Cookies from 'js-cookie';
 import { profileYouMightLike } from 'services/services';
 

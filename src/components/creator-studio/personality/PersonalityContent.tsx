@@ -1,22 +1,24 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import React from 'react';
 import PersonalityS1 from './PersonalityS1';
 import PersonalityLikeSection from './PersonalityLikeSection';
 import PersonalityTraitsSection from './PersonalityTraitsSection';
 import Image from 'next/image';
-import circleInformation from '../../../../public/assets/circle-information5.png';
+import circleInformation from '@/assets/circle-information.webp';
 import {  updateCharacterPersonality } from 'services/services';
 
 interface PersonalityContent {
   SetBtnSteps?: any;
   personalityData?: any;
   setPersonalityData?: any;
-  handleSavePersonality?:any
+  handleSavePersonality?:any;
+  personalityAPIData?:any
 }
 const PersonalityContent = ({
   SetBtnSteps,
   personalityData,
   setPersonalityData,
-  handleSavePersonality
+  handleSavePersonality,
+  personalityAPIData
 }: PersonalityContent) => {
   const HandleChange = (e: any) => {
     const { name, value } = e.target;
@@ -55,7 +57,6 @@ const PersonalityContent = ({
     <>
       <div className='flex flex-col items-start self-stretch gap-4'>
         <PersonalityS1
-          personalityData={personalityData}
           setPersonalityData={setPersonalityData}
         />
 
@@ -120,9 +121,12 @@ const PersonalityContent = ({
               ></textarea>
             </div>
           </div>
-          <div onClick={handleSavePersonality} className='font-bold ml-auto w-max items-center justify-center rounded-[14px] bg-[#5848BC] px-5 py-[10px] text-[16px] leading-[22px] text-white'>
+          {personalityAPIData ? <div className='font-bold ml-auto w-max items-center justify-center rounded-[14px] bg-[#5848BC] px-5 py-[10px] text-[16px] leading-[22px] text-white'>
+            Update
+          </div> : <div onClick={handleSavePersonality} className='font-bold cursor-pointer ml-auto w-max items-center justify-center rounded-[14px] bg-[#5848BC] px-5 py-[10px] text-[16px] leading-[22px] text-white'>
             Save
-          </div>
+          </div>}
+         
         </div>
       </div>
     </>

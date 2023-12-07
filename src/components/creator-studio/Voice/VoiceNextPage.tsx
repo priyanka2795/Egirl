@@ -3,17 +3,17 @@
 import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
 import { Range } from 'react-range';
-import crossIcon from '../../../../public/assets/xmark (1).png';
-import circleInformation from '../../../../public/assets/circle-information4.png';
-import plusIcon from '../../../../public/assets/plus-large.png';
-import searchIcon from '../../../../public/assets/search-alt (1).png';
-import threeDots from '../../../../public/assets/dots-horizontal (2).png';
-import volume from '../../../../public/assets/volume-max.png';
-import pencil from '../../../../public/assets/pencil.png';
+import crossIcon from '@/assets/xmark (1).webp';
+import circleInformation from '@/assets/circle-information4.webp';
+import plusIcon from '@/assets/plus-large.webp';
+import searchIcon from '@/assets/search-alt (1).webp';
+import threeDots from '@/assets/dots-horizontal.webp';
+import volume from '@/assets/volume-max.webp';
+import pencil from '@/assets/pencil.webp';
 import TextEdit from './TextEdit';
 import RangePicker from '../common/RangePicker';
-import chevronDown from '../../../../public/assets/chevron-down2.png';
-import chevronUp from '../../../../public/assets/chevron-up.png';
+import chevronDown from '@/assets/chevron-down2.webp';
+import chevronUp from '@/assets/chevron-up.webp';
 
 const voiceGenerations = [
   {
@@ -314,9 +314,9 @@ const VoiceNextPage = () => {
                 <div className='text-[15px] font-semibold leading-5 text-[#FFFFFF]'>
                   Voice settings
                 </div>
-                <button className='font-bold items-center justify-center rounded-[10px] bg-white/[0.08] px-3 py-[7px] text-[12px] leading-[18px] text-[#FFFFFF]'>
+                <div className='font-bold items-center justify-center rounded-[10px] bg-white/[0.08] px-3 py-[7px] text-[12px] leading-[18px] text-[#FFFFFF] cursor-pointer'>
                   Default
-                </button>
+                </div>
               </div>
               <div className='flex flex-col gap-4'>
                 <div className='flex flex-col gap-1'>

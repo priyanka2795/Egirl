@@ -1,10 +1,11 @@
 import React from 'react';
-import googleIcon from '../../../public/assets/google-icon.png';
-import discordIcon from '../../../public/assets/discord-icon.png';
-import facebookIcon from '../../../public/assets/facebook-icon.png';
+import googleIcon from '@/assets/google-icon.webp';
+import discordIcon from '@/assets/discord-icon.webp';
+import facebookIcon from '@/assets/facebook-icon.webp';
 import Image from 'next/image';
 import Link from 'next/link';
-import { discordCallback, discordLogin } from 'services/services';
+import { discordLogin, googleLogin } from 'services/services';
+import axios from 'axios';
 
 const login = [
   {
@@ -14,11 +15,11 @@ const login = [
   {
     icon: discordIcon,
     text: 'Login with Discord'
-  },
-  {
-    icon: facebookIcon,
-    text: 'Login with Facebook'
   }
+  // {
+  //   icon: facebookIcon,
+  //   text: 'Login with Facebook'
+  // }
 ];
 
 interface SignInLoginOptProp {
@@ -26,7 +27,23 @@ interface SignInLoginOptProp {
   pageName: string;
 }
 const SigninLoginOpt = ({ heading, pageName }: SignInLoginOptProp) => {
-  const handleDiscordLogin = (index: number) => {
+  const handleDiscordLogin = async (index: number) => {
+    if (index === 0) {
+      try {
+        let apiUrl = `https://api.egirls.ai/google/login?origin_url=https://api.egirls.ai`;
+        const response = await axios.get(apiUrl, {
+          headers: {
+            'Content-Type': 'application/json',
+            accept: 'application/json',
+            'Access-Control-Allow-Origin': '*'
+          }
+        });
+        // return response;
+        console.log(response);
+      } catch (error) {
+        return error;
+      }
+    }
     if (index === 1) {
       discordLogin()
         .then((res: any) => {
@@ -42,8 +59,26 @@ const SigninLoginOpt = ({ heading, pageName }: SignInLoginOptProp) => {
         .catch((err) => {
           console.log('discord????error--', err);
         });
+    } else if (index == 0) {
+      googleLogin()
+        .then((res: any) => {
+          console.log('google????--', res);
+          window.location.href = res.data.redirectUrl;
+          // if (res.status === 307) {
+          //   const redirectedURL = res.headers.get('Location');
+          //   console.log('Redirected URL:', redirectedURL);
+          //   window.location.href = redirectedURL;
+          // } else {
+          //   console.log('reError????');
+          // }
+        })
+        .catch((err) => {
+          console.log('google????error--', err);
+        });
     }
   };
+
+  const handleGoogleLogin = (index: number) => {};
 
   return (
     <>

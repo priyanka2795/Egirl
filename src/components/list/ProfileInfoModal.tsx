@@ -1,24 +1,24 @@
 import Image from 'next/image';
 import React, { Dispatch, useEffect, useState } from 'react';
-import userPenIcon from '../../../public/assets/user-pen.png';
-import personalityIcon from '../../../public/assets/user.png';
-import personalityWhiteIcon from '../../../public/assets/user-white.png';
-import imagePlusIcon from '../../../public/assets/image-plus.png';
-import imagePlusWhiteIcon from '../../../public/assets/image-plus-white.png';
-import palette from '../../../public/assets/palette.png';
-import paletteWhiteIcon from '../../../public/assets/palette-white.png';
-import flag from '../../../public/assets/flag.png';
-import flagWhite from '../../../public/assets/flag-white.png';
-import circleInformation from '../../../public/assets/circle-information-blue.png';
-import RightIcon from '../../../public/assets/check-cs.png';
-import leftArrowIcon from '../../../public/assets/left-arrow-grey.png';
-import PersonalityContent from '@components/creator-studio/personality/PersonalityContent';
+import userPenIcon from '@/assets/user-pen.webp';
+import personalityIcon from '@/assets/user.webp';
+import personalityWhiteIcon from '@/assets/user-white.webp';
+import imagePlusIcon from '@/assets/image-plus.webp';
+import imagePlusWhiteIcon from '@/assets/image-plus-white.webp';
+import palette from '@/assets/palette.webp';
+import paletteWhiteIcon from '@/assets/palette-white.webp';
+import flag from '@/assets/flag.webp';
+import flagWhite from '@/assets/flag-white.webp';
+import circleInformation from '@/assets/circle-information-blue.webp';
+import RightIcon from '@/assets/check-cs.webp';
+import leftArrowIcon from '@/assets/left-arrow-grey.webp';
 import ImageGeneratorIndex from '@components/creator-studio/image-generator';
 import StyleGeneratorIndex from '@components/creator-studio/style-generator';
 import ViewProfile from './finishStep/viewProfile';
 import FinishStepModal from './finishStep/finishStepModal';
-import CongratulationsImage from '../../../public/assets/confetti_PNG87045 1.png';
+import CongratulationsImage from '@/assets/confetti_PNG87045 1.webp';
 import Confetti from '@components/common/Confetti';
+import PersonalityContent from '@components/creator-studio/personality/PersonalityContent';
 
 const SearchData = [
   {
@@ -120,7 +120,6 @@ const ProfileInfoModal = ({
   // Step 2
   const [personalityData, setPersonalityData] = useState(personalityValue);
   const personalityLength = Object.keys(personalityData).length;
-  const personalityLength2 = Object.keys(personalityData.description).length;
   const [secondStep, setSecondStep] = useState('');
   const [threadStep, setThreadStep] = useState('');
   const [fourthStep, setFourthStep] = useState('');

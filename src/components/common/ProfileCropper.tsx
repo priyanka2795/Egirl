@@ -2,18 +2,18 @@
 import RangePicker from '@components/creator-studio/common/RangePicker';
 import React, { SetStateAction, useState, useRef } from 'react';
 import AvatarEditor from 'react-avatar-editor';
-import PlusIcon from '../../../public/assets/svgImages/plus-large-icon.svg';
-import MinusIcon from '../../../public/assets/svgImages/minus-icon.svg';
-import RotateLeftIcon from '../../../public/assets/image-rotate-left.png';
-import RotateRightIcon from '../../../public/assets/image-rotate-right.png';
-import TooltipArrow from '../../../public/assets/svgImages/tooltiparrow.svg';
-import ImageUploaded from '../../../public/assets/uploadimage.png';
+import PlusIcon from '@/assets/svgImages/plus-large-icon.svg';
+import MinusIcon from '@/assets/svgImages/minus-icon.svg';
+import RotateLeftIcon from '@/assets/image-rotate-left.webp';
+import RotateRightIcon from '@/assets/image-rotate-right.webp';
+import TooltipArrow from '@/assets/svgImages/tooltiparrow.svg';
+import ImageUploaded from '@/assets/uploadimage.webp';
 import { Header } from './SmallCompoents/Header';
 import { Tooltip } from './SmallCompoents/Tooltip';
 import { Button } from './SmallCompoents/Button';
 import Image from 'next/image';
-import ArrowLeft from '../../../public/assets/svgImages/arrow-left.svg';
-import Xmark from '../../../public/assets/svgImages/xmark.svg';
+import ArrowLeft from '@/assets/svgImages/arrow-left.svg';
+import Xmark from '@/assets/svgImages/xmark.svg';
 interface profileInterface {
   setUpdateProfileImg?: React.Dispatch<React.SetStateAction<boolean>>;
   selectProfileImage?: any;
@@ -27,7 +27,7 @@ const ProfileCropper = ({
   setCroppedImage,
   setAddImagesModal
 }: profileInterface) => {
-  const [src, setSrc] = useState('../../../public/assets/uploadimage.png');
+  const [src, setSrc] = useState('@/assets/uploadimage.webp');
   const [values, setValues] = useState<number[]>([1]);
   const [rotate, setRotate] = useState<number>(0);
   const cropRef = useRef<AvatarEditor | null>(null);

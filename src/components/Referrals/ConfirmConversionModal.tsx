@@ -1,7 +1,7 @@
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
 import React from 'react';
-import greenArrows from '../../../public/assets/arrows-horizontal-green.png';
+import greenArrows from '@/assets/arrows-horizontal-green.webp';
 
 interface ConfirmConversionProp {
   closeConfirmModal: React.Dispatch<React.SetStateAction<boolean>>;

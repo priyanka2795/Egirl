@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import checkIcon from '../../../../public/assets/check-cs.png';
+import checkIcon from '@/assets/check-cs.webp';
 interface stepProps {
   steps: any;
 }

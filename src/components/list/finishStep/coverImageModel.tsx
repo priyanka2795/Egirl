@@ -1,27 +1,35 @@
 import React, { useState, createRef, useRef } from 'react';
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
-import crossIcon from '../../../../public/assets/xmark (1).png';
-// import CoverImage1 from '../../../../public/assets/bg.png';
+import crossIcon from '@/assets/xmark (1).webp';
+// import CoverImage1 from '@/assets/bg.webp';
 import Cropper, { ReactCropperElement } from 'react-cropper';
 import 'cropperjs/dist/cropper.css';
+import { postUploadMedia } from 'services/services';
+import Cookies from 'js-cookie';
 
 interface CoverImageModel {
   CloseModal: React.Dispatch<React.SetStateAction<boolean>>;
   coverImage: any;
   setCoverImage: React.Dispatch<React.SetStateAction<string>>;
+  image: any;
+  setImage: any;
+  handleCoverImage:any
 }
 const CoverImageModel = ({
   CloseModal,
   coverImage,
-  setCoverImage
+  setCoverImage,
+  image,
+  setImage,
+  handleCoverImage
 }: CoverImageModel) => {
   const cropperRef = createRef<ReactCropperElement>();
-  const [image, setImage] = useState('');
+  
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const token = Cookies.get('accessToken')
 
   const onChange = (e: any) => {
-    console.log("priyanka", e.target.files[0])
     e.preventDefault();
     let files;
     if (e.dataTransfer) {
@@ -41,10 +49,9 @@ const CoverImageModel = ({
       fileInputRef.current.click();
     }
   };
-  const handleCoverImage = () => {
-    setCoverImage(image);
-    CloseModal(false)
-  };
+
+
+
   return (
     <>
       <Modal

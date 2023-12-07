@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import plusIcon from '../../../public/assets/plus-large.png';
-import userIcon from '../../../public/assets/user-alt-1.png';
-import imageSquare from '../../../public/assets/image-square3.png';
-import palette from '../../../public/assets/palette2.png';
-import EditIcon from '../../../public/assets/pen.png';
-import ShareIcon from '../../../public/assets/arrow-up-from-bracket.png';
-import DeleteIcon from '../../../public/assets/trash-blank-alt3.png';
-import threeDots from '../../../public/assets/dots-horizontal (3).png';
+import plusIcon from '@/assets/plus-large.webp';
+import userIcon from '@/assets/user-alt-1.webp';
+import imageSquare from '@/assets/image-square3.webp';
+import palette from '@/assets/palette.webp';
+import EditIcon from '@/assets/pen.webp';
+import ShareIcon from '@/assets/arrow-up-from-bracket.webp';
+import DeleteIcon from '@/assets/trash-blank-alt3.webp';
+import threeDots from '@/assets/dots-horizontal.webp';
 import Image from 'next/image';
 import { getAllCharacter } from 'services/services';
 import Cookies from 'js-cookie';
@@ -51,7 +51,6 @@ const AllCharactersCards = () => {
   const handleCharactersMenu = (index: number) => {
     setOpenCharactersMenu(openCharactersMenu === index ? null : index);
   };
-  
 
   return (
     <>
@@ -161,12 +160,7 @@ const AllCharactersCards = () => {
             })}
         </div>
       </div>
-      {newCharacter && (
-        <CharacterAdd
-          NewCharacterClose={setNewCharacter}
-
-        />
-      )}
+      {newCharacter && <CharacterAdd NewCharacterClose={setNewCharacter} />}
     </>
   );
 };

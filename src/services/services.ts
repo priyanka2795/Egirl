@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-import { deleteApi, getApi, getApiWithToken, postApi, postApiWithToken, postWithParams, putApi, putApiWithToken } from "./apis";
+import { deleteApi, getApi, getApiWithToken, postApi, postApiWithToken, postApiWithTokenMultipart, postWithParams, putApi, putApiWithToken } from "./apis";
 
 
 // Post Login data
@@ -13,7 +13,7 @@ export const discordCallback=() => getApi('/discord/callback?code=1')
 // google api
 export const googleSignup = ()=> getApi('/google/signup')
 
-export const googleLogin = ()=> getApi('/google/login')
+export const googleLogin = ()=> getApi(`/google/login?origin_url=https://api.egirls.ai`)
 
 export const googleCallback = () => getApi('/google/callback')
 
@@ -35,7 +35,7 @@ export const forYouPost = (page:number, limit:number, token:string | null) => ge
 export const postLike = (data:any, token:string ) => postApiWithToken(`/posts/like/`, data, token)
 export const postComment = (data:any, token:string ) => postApiWithToken(`/posts/comment/`, data, token)
 export const getPostComments = (postId:number, page:number, pageSize:number, token:string | null) => getApiWithToken(`/posts/post/${postId}/comments?page=${page}&page_size=${pageSize}`, token)
-export const getPostSubscription = (page:number, token:string | null) => getApiWithToken(`/posts/subscriptions/${page}`, token)
+export const getPostSubscription = (page:number, limit:number, token:string | null) => getApiWithToken(`/posts/subscriptions/${page}/${limit}`, token)
 // (will not use) export const getPostDetails = (postId:number, token:string | null) => getApiWithToken(`/posts/post/${postId}/details`, token)
 export const postAddBookMark = (postId:number, token: string | null) => postWithParams(`/posts/post/${postId}/bookmark`, token)
 export const postRemoveBookMark = (postId:number, token: string | null) => deleteApi(`/posts/post/${postId}/bookmark`, token)
@@ -70,6 +70,8 @@ export const getAllCharacter = (token:string|null) => getApiWithToken('/studio/c
 export const updateCharacter = (data:any , token : string | null)=> putApiWithToken('/studio/character/update_character' , data , token )
 
 export const postCharacter = (data:any , token:any) => postApiWithToken('/studio/character/create_character' , data , token)
+
+export const postUploadMedia = (data:any , token:any) => postApiWithTokenMultipart('/studio/character/upload_media' , data , token)
 
 export const updateCharacterPersonality = (data:any , token : string | null)=> putApiWithToken('/studio/character/personality' , data , token)
 
@@ -107,4 +109,5 @@ export const logout = ()=>{
     Cookies.remove("accessToken")
     Cookies.remove("refreshToken")
     Cookies.remove("character_id")
+    Cookies.remove('signUpUserId')
 }

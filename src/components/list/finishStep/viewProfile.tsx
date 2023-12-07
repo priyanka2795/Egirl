@@ -1,9 +1,9 @@
 //@ts-nocheck
 import React, { useState } from 'react';
-import CameraIcon from '../../../../public/assets/camera.png';
-import ImagePlusIcon from '../../../../public/assets/image-plus2.png';
-import InformationIcon from '../../../../public/assets/circle-information24.png';
-import DeleteWhiteIcon from '../../../../public/assets/trash-blank-alt-white.png';
+import CameraIcon from '@/assets/camera.webp';
+import ImagePlusIcon from '@/assets/image-plus2.webp';
+import InformationIcon from '@/assets/circle-information24.webp';
+import DeleteWhiteIcon from '@/assets/trash-blank-alt-white.webp';
 import Image from 'next/image';
 import CoverImageModel from './coverImageModel';
 import SelectExploreImages from './selectExploreImages';

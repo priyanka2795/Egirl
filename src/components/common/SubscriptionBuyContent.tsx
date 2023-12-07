@@ -3,7 +3,7 @@ import Coin from './svg/coin.svg';
 import StarIcon from './svg/star-icon.svg';
 import HeartIcon from './svg/heart-icon.svg';
 import Image from 'next/image';
-import coinImg from "../../../public/assets/Coin-img.png"
+import coinImg from "@/assets/Coin-img.webp"
 import Star from './svg/star.svg';
 import Token from './svg/token.svg';
 import TokenActive from './svg/token-white.svg';

@@ -1,6 +1,6 @@
 import React from 'react';
 import ListFilter from './ListFilter';
-import heartIcon from '../../../public/assets/heart-with-plus.png';
+import heartIcon from '@/assets/heart-with-plus.png';
 import Image from 'next/image';
 
 interface FollowingProps {

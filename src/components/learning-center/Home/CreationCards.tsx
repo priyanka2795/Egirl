@@ -2,12 +2,12 @@ import React from 'react';
 import Image from 'next/image';
 import ProfileIcon from '../../creator-studio//svg/ProfileIcon';
 import PersonalityHeartIcon from '../../creator-studio//svg/PersonalityHeartIcon';
-import profileIcon from '../../../../public/assets/circle-user.png';
+import profileIcon from '@/assets/circle-user.webp';
 import ImageIcon from '../../creator-studio/svg/ImageGeneratorIcon';
 import StyleIcon from '../../creator-studio//svg/StyleGenerator';
 import VoiceIcon from '../../creator-studio/svg/VoiceIcon';
 import GiftIcon from '../../creator-studio/svg/GiftIcon';
-import arrowUpRight from '../../../../public/assets/arrow-up-right-grey.png';
+import arrowUpRight from '@/assets/arrow-up-right-grey.webp';
 
 const CreationCards = () => {
   return (

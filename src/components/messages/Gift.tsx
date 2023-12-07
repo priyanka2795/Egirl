@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
-import userIcon from '../../../public/assets/user-icon.png'
-import pizza from '../../../public/assets/pizza.png';
+import userIcon from '@/assets/user-icon.webp'
+import pizza from '@/assets/pizza.webp';
 
 type GiftProp = {
     showGiftImg: any;
@@ -10,7 +10,7 @@ type GiftProp = {
 
 const Gift = ({showGiftImg, showGiftName} : GiftProp) => {
   return (
-    <div className='flex gap-2 py-4 pr-6 w-full'>
+    <div className='flex w-full gap-2 py-4 pr-6'>
         <div className='px-3 py-2 rounded-full h-max bg-white/[0.08]'>
             <Image className='w-4 h-4' src={userIcon} alt={''} />
         </div>

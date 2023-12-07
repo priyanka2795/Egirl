@@ -43,7 +43,7 @@ import ImageRequestMsg from './ImageRequestMsg';
 import MessageIndicator from './MessageIndicator';
 import TextareaAutosize from 'react-textarea-autosize';
 import RecordVoice from './RecordVoice';
-import CrossIcon from '../../../public/assets/xmark.png';
+import CrossIcon from '@/assets/xmark.webp';
 
 type chatProps = {
   chatScreenClassName?: string;
@@ -75,7 +75,7 @@ export default function ChatScreen({
   const [emojiPicker, setEmojiPicker] = useState(false);
   const [chatView, setChatView] = useState(false);
   const [clearChat, setClearChat] = useState(false);
-  const [showMessage, setShowMessge] = useState(false);
+  const [showMessage, setShowMessage] = useState(false);
   const [currentPlanModal, setCurrentPlanModal] = useState(false);
   const [showGift, setShowGift] = useState('');
   const [showGiftImg, setShowGiftImg] = useState('');
@@ -114,9 +114,7 @@ export default function ChatScreen({
     }
   }
 
-  const handleMessage = () => {
-    setShowMessge(true);
-  };
+  
   const handleViews = (e: any) => {
     if (e === 'chatView') {
       if (moreOptionDropdown) {
@@ -177,20 +175,33 @@ export default function ChatScreen({
     setImageUploaded(updatedImages);
   };
 
-  // useEffect(() => {
+ 
+  useEffect(() => {
     const chatUrl =
       'wss://api.egirls.ai/room/ws/user/f47ac10b-58cc-4372-a567-0e02b2c3d479/room/1/character/a89df75b-4356-4118-9c9b-15dfa6e0123b/text_chat';
-    let socket = new WebSocket(chatUrl);
+      const socket = new WebSocket(chatUrl);
 
     socket.onopen = function (e) {
-      console.log('[open] Connection established');
-      socket.send("My name is John");
+      console.log('WebSocket connection established');
     };
     socket.onmessage = function (event) {
       console.log(`[message] Data received from server: ${event.data}`);
     };
-  // }, []);
-                                            
+    // return () => {
+    //   socket.close();
+    // };
+  }, []);
+
+  const handleMessage = () => {
+    setShowMessage(true);
+    console.log("message---",message)
+    const messageData = {
+      message: message
+    };
+    // socket.send(messageData);
+    setMessage('')
+  };
+                        
   return (
     <div
       className={`w-full border-r-[2px] border-[#252525] bg-[#121212] pb-3 lg:inline ${chatScreenClassName}`}

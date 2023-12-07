@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import rightArrowWhite from '../../../../public/assets/chevron-right-white.png';
-import leftArrow from '../../../../public/assets/left-arrow-grey.png';
+import rightArrowWhite from '@/assets/chevron-right-white.webp';
+import leftArrow from '@/assets/left-arrow-grey.webp';
 import UnSelectIcon from '../../creator-studio/svg/short_border_grey.svg';
 import SelectIcon from '../../creator-studio/svg/short_select.svg';
 

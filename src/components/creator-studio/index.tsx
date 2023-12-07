@@ -7,9 +7,8 @@ import CreateCharacter from '@components/list/CreateCharacter';
 import SetUpYourCharacter from '@components/list/SetUpYourCharacter';
 import AllCharactersCards from '@components/list/AllCharactersCards';
 import EditProfileModal from '@components/list/EditProfileModal';
-import FinishStepModal from '@components/list/finishStep/finishStepModal';
 import Image from 'next/image';
-import AddUser from '../../../public/assets/user-add-icon.png';
+import AddUser from '@/assets/user-add-icon.webp';
 
 interface CreatorStudio {
   IsOpen: any;
@@ -21,14 +20,10 @@ interface CreatorStudio {
   setProfileInfoPage: any;
   setUserDetails: any;
   userDetails: any;
-  btnSteps?: any;
-  setBtnSteps?: any;
   activeStep?: any;
-  setActiveStep?: any;
   UserGuide?: any;
   setUserGuide?: any;
   setCreateCharacterData: any;
-  createCharacterData: any;
   activeProfile: any;
   setActiveProfile: any;
   bannerData: any;
@@ -47,14 +42,10 @@ const CreatorStudio = ({
   setProfileInfoPage,
   setUserDetails,
   userDetails,
-  btnSteps,
-  setBtnSteps,
   activeStep,
-  setActiveStep,
   UserGuide,
   setUserGuide,
   setCreateCharacterData,
-  createCharacterData,
   activeProfile,
   setActiveProfile,
   bannerData,
@@ -92,7 +83,6 @@ const CreatorStudio = ({
             component={'CreatorStudioProfile'}
             userDetails={userDetails}
             setUserDetails={setUserDetails}
-            activeProfile={activeProfile}
             bannerData={bannerData}
             setUpdateCharacterToggle={setUpdateCharacterToggle}
             updateCharacterToggle={updateCharacterToggle}
@@ -107,10 +97,7 @@ const CreatorStudio = ({
               setIsTourOpen={setIsTourOpen}
               setTourCount={setTourCount}
               setProfileInfoPage={setProfileInfoPage}
-              btnSteps={btnSteps}
-              setBtnSteps={setBtnSteps}
               activeStep={activeStep}
-              setActiveStep={setActiveStep}
             />
           </div>
           <div className='flex max-w-[1196px] justify-between gap-5'>

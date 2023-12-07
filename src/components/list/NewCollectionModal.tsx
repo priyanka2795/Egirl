@@ -1,10 +1,10 @@
 import { Modal } from '@components/modal/modal';
 import React, { useState } from 'react';
 import Image from 'next/image';
-import xMark from '../../../public/assets/xmark.png';
-import cameraIcon from '../../../public/assets/cameraIcon.png';
-import avatar from '../../../public/assets/avatar.png';
-import CloseIcon from '../../../public/assets/svgImages/close-icon.svg';
+import xMark from '@/assets/xmark.webp';
+import cameraIcon from '@/assets/cameraIcon.webp';
+import avatar from '@/assets/avatar.webp';
+import CloseIcon from '@/assets/svgImages/close-icon.svg';
 
 interface CollectionModalProp {
   closeModalItem: any;

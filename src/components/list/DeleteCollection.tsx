@@ -1,9 +1,9 @@
 import { Modal } from '@components/modal/modal'
 import Image from 'next/image'
 import React from 'react'
-import cameraIcon from '../../../public/assets/camera-icon.png';
-import avatar from '../../../public/assets/avatar.png';
-import CloseIcon from '../../../public/assets/svgImages/close-icon.svg';
+import cameraIcon from '@/assets/camera-icon.png';
+import avatar from '@/assets/avatar.webp';
+import CloseIcon from '@/assets/svgImages/close-icon.svg';
 
 interface DeleteCollectionModalProp{
     closeDeleteModal:any

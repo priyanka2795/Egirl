@@ -4,7 +4,6 @@ import CreatorStudioNavbar from '@components/creator-studio/CreatorStudioNavbar'
 import CreatorStudioSidebar from '@components/creator-studio/CreatorStudioSidebar';
 import StyleBeingGenerated from '@components/creator-studio/style-generator/StyleBeingGenerated';
 import StyleGeneratorNext from '@components/creator-studio/style-generator/StyleGeneratorNext';
-import HoverModal from '@components/list/HoverModal';
 import React, { useState } from 'react';
 
 interface CreatorStudioLayoutProps {
@@ -12,10 +11,7 @@ interface CreatorStudioLayoutProps {
   setUserDetails: any;
   userDetails: any;
   children?: any;
-  btnSteps?: any;
-  setBtnSteps?: any;
   activeStep?: any;
-  setActiveStep?: any;
   UserGuide?: any;
   setUserGuide?: any;
   setCreateCharacterData: any;
@@ -36,10 +32,7 @@ const CreatorStudioLayout = ({
   setProfileInfoPage,
   setUserDetails,
   userDetails,
-  btnSteps,
-  setBtnSteps,
   activeStep,
-  setActiveStep,
   UserGuide,
   setUserGuide,
   setCreateCharacterData,
@@ -126,7 +119,6 @@ const CreatorStudioLayout = ({
             setIsTourOpen={setIsTourOpen}
             allCharacterData={allCharacterData}
             setActiveProfile={setActiveProfile}
-            bannerData={bannerData}
             activeProfile={activeProfile}
             setCreateCharacterData={setCreateCharacterData}
             UserGuide={UserGuide}
@@ -156,10 +148,7 @@ const CreatorStudioLayout = ({
                     setTourCount={setTourCount}
                     setProfileInfoPage={setProfileInfoPage}
                     userDetails={userDetails}
-                    btnSteps={btnSteps}
-                    setBtnSteps={setBtnSteps}
                     activeStep={activeStep}
-                    setActiveStep={setActiveStep}
                     UserGuide={UserGuide}
                     setUserGuide={setUserGuide}
                     createCharacterData={createCharacterData}

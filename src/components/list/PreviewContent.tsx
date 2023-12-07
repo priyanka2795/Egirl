@@ -1,13 +1,13 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
-import threeDotsIcon from '../../../public/assets/three-dots-icon.png';
-import avatar from '../../../public/assets/avatar.png';
-import micaChanFullImg from '../../../public/assets/mica-chan-full-img.png';
-import locationIcon from '../../../public/assets/location-icon.png';
-import bookmarkIcon from '../../../public/assets/bookmark.png';
-import shareIcon from '../../../public/assets/share-icon.png';
-import messageIcon from '../../../public/assets/message-square.png';
-import heartIcon from '../../../public/assets/unfilled-heart.png';
+import threeDotsIcon from '@/assets/three-dots-icon.webp';
+import avatar from '@/assets/avatar.webp';
+import micaChanFullImg from '@/assets/mica-chan-full-img.webp';
+import locationIcon from '@/assets/location-icon.webp';
+import bookmarkIcon from '@/assets/bookmark.webp';
+import shareIcon from '@/assets/share-icon.webp';
+import messageIcon from '@/assets/message-square.webp';
+import heartIcon from '@/assets/unfilled-heart.webp';
 import Slider from 'react-slick';
 
 const settings = {

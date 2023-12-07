@@ -2,8 +2,8 @@ import React from 'react';
 import PointedStarIcon from './svg/pointed-star-icon.svg';
 import Ellipse from './svg/ellipse.svg';
 import Star from './svg/star.svg';
-import heartIcon from '../../../public/assets/heart-icon.png';
-import starIcon from '../../../public/assets/blue-start-icon.png';
+import heartIcon from '@/assets/heart-icon.webp';
+import starIcon from '@/assets/blue-start-icon.webp';
 import Image from 'next/image';
 
 const egirlPlan = [
@@ -33,7 +33,7 @@ const SubscriptionEgirlPlan = ({ closeModal }: EgirlPlanProp) => {
             </button>
           </div>
           <div className='p-5'>
-            <p className='font-semibold pb-2'>Features:</p>
+            <p className='pb-2 font-semibold'>Features:</p>
 
             {freePlan.map((items) => {
               return (
@@ -50,7 +50,7 @@ const SubscriptionEgirlPlan = ({ closeModal }: EgirlPlanProp) => {
         </div>
         <div className='rounded-[14px] bg-[#5848BC]'>
           <div className='p-5 pb-4 border-b-2 border-[#ffffff0e] '>
-            <div className='flex  justify-between '>
+            <div className='flex justify-between '>
               <div>
                 <h6 className='text-[15px] text-[#FFFFFFCC]'>Egirls+</h6>
                 <h3 className='text-[30px] font-bold'>$19.99</h3>
@@ -65,11 +65,11 @@ const SubscriptionEgirlPlan = ({ closeModal }: EgirlPlanProp) => {
             </button>
           </div>
           <div className='p-5'>
-            <p className='font-semibold pb-2'>Features:</p>
+            <p className='pb-2 font-semibold'>Features:</p>
             {egirlPlan.map((items) => {
               return (
                 <>
-                  <div className='flex items-center gap-1 mb-3 last:mb-0 leading-3'>
+                  <div className='flex items-center gap-1 mb-3 leading-3 last:mb-0'>
                     <Ellipse />
                     <p className='text-[14px]'>{items}</p>
                   </div>

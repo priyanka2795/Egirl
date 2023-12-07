@@ -2,14 +2,14 @@
 
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
-import AlbumFirst from '../../../../public/assets/gallery-tab-img.png';
-import ImagePlus from '../../../../public/assets/image-plus2.png';
-import Edit from '../../../../public/assets/pen.svg';
+import AlbumFirst from '@/assets/gallery-tab-img.webp';
+import ImagePlus from '@/assets/image-plus2.webp';
+import Edit from '@/assets/pen.svg';
 import ImageSquare from '../svg/image-square.svg';
 import ImageSquareGray from '../svg/image-square-gray.svg';
 import Check from '../svg/check.svg';
-import plusIcon from '../../../../public/assets/plus-large.png';
-import crossIcon from '../../../../public/assets/xmark (1).png';
+import plusIcon from '@/assets/plus-large.webp';
+import crossIcon from '@/assets/xmark (1).webp';
 import CreateCategory from './createCategory';
 import Tooltip from './tooltip';
 import Cookies from 'js-cookie';
@@ -17,7 +17,6 @@ import { postGifts } from 'services/services';
 
 interface CreateGiftPopup {
   createGiftClose: React.Dispatch<React.SetStateAction<boolean>>;
-  GiftsView: React.Dispatch<React.SetStateAction<boolean>>;
   Steps?: React.Dispatch<React.SetStateAction<number>>;
   AddCategory: string[];
   SetCategory: React.Dispatch<React.SetStateAction<string[]>>;
@@ -35,7 +34,6 @@ interface CreateGiftPopup {
 
 function CreateGift({
   createGiftClose,
-  GiftsView,
   Steps,
   AddCategory,
   SetCategory,
@@ -96,7 +94,6 @@ function CreateGift({
           console.log(err, '????createGiftError');
         });
       createGiftClose(false);
-      GiftsView(true);
     }
   };
   const closeGifts = () => {

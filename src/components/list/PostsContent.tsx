@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
-import heart from '../../../public/assets/Egirls+.png'
+import heart from '@/assets/Egirls+.webp'
 
 const PostsContent = () => {  
   return (

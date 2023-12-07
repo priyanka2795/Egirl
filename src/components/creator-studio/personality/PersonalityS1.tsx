@@ -1,19 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import Isymbol from '../svg/Isymbol';
 import Roleplay from '../svg/Roleplay';
-import ConversationalIcon from '../svg/ConversationalIcon';
-import InfoIcon from '../../../../public/assets/svgImages/info-icon.svg';
-import { Range } from 'react-range';
+import InfoIcon from '@/assets/svgImages/info-icon.svg';
 import RangePicker from '../common/RangePicker';
 import UnSelectIcon from '../svg/short_border.svg';
 import SelectIcon from '../svg/short_select.svg';
 
 interface PersonalityS1 {
   setPersonalityData: any;
-  personalityData: any;
 }
 const PersonalityS1 = ({
-  personalityData,
   setPersonalityData
 }: PersonalityS1) => {
   const [values, setValues] = useState<number[]>([0]);
@@ -28,10 +24,6 @@ const PersonalityS1 = ({
       creativity: values[0]
     }));
   }, [shortTab, values, setPersonalityData]);
-
-  useEffect(() => {
-    console.log(personalityData, 'values');
-  }, [personalityData]);
 
   const SelectShort = (name: string) => {
     setShortTab(name);

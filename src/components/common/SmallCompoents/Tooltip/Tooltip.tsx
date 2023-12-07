@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
-import TooltipArrow from '../../../../../public/assets/svgImages/tooltiparrow.svg';
+import TooltipArrow from '@/assets/svgImages/tooltiparrow.svg';
 import Image from "next/image";
 interface Props {
   direction:

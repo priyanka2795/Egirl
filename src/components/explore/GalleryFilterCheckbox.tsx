@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
-import circleInformation from '../../../public/assets/circle-information.png';
+import circleInformation from '@/assets/circle-information.webp';
 import { log } from 'console';
 
 interface prop{
@@ -67,7 +67,7 @@ const GalleryFilterCheckbox = ({filterCloseForm,Tags,openAllTagsModal,selectedTa
   console.log({selectedTags, Tags})
 
   return (
-    <div className='absolute -right-[103px] z-[3] mt-2 flex flex-col items-center rounded-[14px] bg-[#272727] pb-5'>
+    <div className='absolute -right-[60px] z-[3] mt-6 flex flex-col items-center rounded-[14px] bg-[#272727] pb-5'>
       <form>
       <div className='flex w-[346px] flex-col items-start justify-center gap-3 px-6 py-5 text-[#FFFFFF]'>
         <div className='flex items-center self-stretch justify-between'>

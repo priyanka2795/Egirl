@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
 import crossIcon from '../../../../public/assets/xmark (1).png';
-import AlbumFirst from '../../../../public/assets/gallery-tab-img.png';
 import { Modal } from '@components/modal/modal';
 
 interface DeletePopup {
@@ -9,10 +8,11 @@ interface DeletePopup {
   Heading: string;
   Content: string;
   Img: boolean;
-  DeleteGift: any;
-  DeleteIndex: any;
+  DeleteGift?: any;
+  DeleteIndex?: any;
   DeleteAllGift?: any;
-  DeleteBtnStep: number;
+  selectedGiftData?:any,
+  DeleteBtnStep?: number;
   DeleteActionCategory?: any;
   CategoryActionIndex?: number;
   DeleteGiftImage?: string;
@@ -23,13 +23,13 @@ function GiftCardDelete({
   Heading,
   Content,
   Img,
-  DeleteGift,
-  DeleteIndex,
   DeleteAllGift,
+  selectedGiftData,
   DeleteBtnStep,
   DeleteActionCategory,
   CategoryActionIndex,
   DeleteGiftImage,
+  DeleteGift,
   GiftName
 }: DeletePopup) {
   return (
@@ -78,7 +78,7 @@ function GiftCardDelete({
               {DeleteBtnStep === 1 ? (
                 <button
                   className='rounded-[14px] bg-[#FF5336] px-5 py-3'
-                  onClick={() => DeleteGift(DeleteIndex)}
+                  onClick={() => DeleteGift(selectedGiftData)}
                 >
                   Delete
                 </button>

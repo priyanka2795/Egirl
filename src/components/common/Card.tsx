@@ -1,5 +1,5 @@
 import React from 'react'
-import blueTick from '../../../public/assets/badge-check.png'
+import blueTick from '@/assets/badge-check.webp'
 import Image from 'next/image'
 
 interface CardProps{

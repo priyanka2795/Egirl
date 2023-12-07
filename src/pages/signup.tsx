@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import * as Yup from 'yup';
 import Image from 'next/image';
-import vector1 from '../../public/assets/Vector_1.png';
-import vector2 from '../../public/assets/Vector_2.png';
+import vector1 from '@/assets/Vector_1.webp';
+import vector2 from '@/assets/Vector_1.webp';
 import CheckedIcon from './auth/svg/checkedIcon.svg';
 import CrossIcon from './auth/svg/xMark.svg';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
@@ -13,6 +13,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SigninTemplate from './auth/signinTemplate';
 import SigninLoginOpt from './auth/SigninLoginOpt';
+import WelcomeStepsModal from './auth/WelcomeSteps';
 
 const validationSchema = Yup.object().shape({
   username: Yup.string().required('Username is required'),
@@ -42,7 +43,15 @@ export default function SignUp() {
   const [hasNumberOrSpecialChar, setHasNumberOrSpecialChar] =
     useState<boolean>(false);
 
-  const [welcomeStepsModal, setWelcomeStepsModal] = useState<boolean>(false);
+  // const [welcomeStepsModal, setWelcomeStepsModal] = useState<boolean>(false);
+  // const [updateState, setUpdateState] = useState(false)
+
+  // useEffect(()=>{
+  //   let signUpUser = Cookies.get('signUpUserId')
+  //   if(signUpUser){
+  //     setWelcomeStepsModal(true)
+  //   }
+  // },[updateState])
 
   const [errorMsg, setErrorMsg] = useState('');
 
@@ -76,8 +85,10 @@ export default function SignUp() {
         console.log('sign up res---', res);
         sessionStorage.setItem('SignUpCompleted', 'true');
         if (res.status === 200) {
-          Cookies.set('accessToken', res.data.access_token);
-          Cookies.set('refreshToken', res.data.refresh_token);
+          Cookies.set('accessToken', res?.data?.access_token);
+          Cookies.set('refreshToken', res?.data?.refresh_token);
+          Cookies.set('signUpUserId', res?.data?.user_id);
+          // setUpdateState(!updateState)
           toast.success('User login successful');
           setTimeout(() => {
             router.push('/home');
@@ -209,7 +220,7 @@ export default function SignUp() {
                       <div>
                         <ul>
                           <li className='mb-3'>Create a password that:</li>
-                          <li className='mb-2 flex items-center'>
+                          <li className='flex items-center mb-2'>
                             {values.password ? (
                               errors.password ? (
                                 <CrossIcon />
@@ -221,7 +232,7 @@ export default function SignUp() {
                             )}
                             contains at least 8 characters
                           </li>
-                          <li className='mb-2 flex items-center'>
+                          <li className='flex items-center mb-2'>
                             {values.password ? (
                               errors.password ? (
                                 <CrossIcon />
@@ -247,11 +258,27 @@ export default function SignUp() {
                           </li>
                         </ul>
                       </div>
+                      <div className='flex items-center gap-2 mb-1'>
+                        <input
+                          id='checked-checkbox'
+                          type='checkbox'
+                          value=''
+                          className='w-4 h-4 text-[#5848BC] rounded focus:ring-0'
+                        />
+                        <div className='text-[13px] font-semibold leading-[18px] text-[#979797]'>
+                          <a
+                            href='https://egirls.ai/legal/terms-of-service'
+                            target='_blank'
+                          >
+                            Terms and Conditions
+                          </a>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                <div className='w-full px-10 pb-10 pt-5'>
+                <div className='w-full px-10 pt-5 pb-10'>
                   <button
                     type='submit'
                     className='font-bold flex w-full items-center justify-center rounded-[16px] bg-[#5848BC] px-6 py-4 text-[18px] leading-6 text-white'
@@ -273,7 +300,8 @@ export default function SignUp() {
           welcomeStepsModal={welcomeStepsModal}
           setWelcomeStepsModal={setWelcomeStepsModal}
         />
-      )} */}
+       
+      )}  */}
       <ToastContainer
         position='bottom-center'
         pauseOnHover

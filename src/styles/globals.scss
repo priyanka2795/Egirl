@@ -424,7 +424,7 @@
   }
   .explore-slider .slick-arrow.slick-next::before {
     content: '';
-    background-image: url('../../public/assets/right-slick-arrow.png');
+    background-image: url('../../public/assets/right-slick-arrow.webp');
     background-repeat: no-repeat;
     background-size: cover;
     width: 40px;
@@ -433,7 +433,7 @@
   }
   .explore-slider .slick-arrow.slick-prev::before {
     content: '';
-    background-image: url('../../public/assets/left-slick-arrow.png');
+    background-image: url('../../public/assets/left-slick-arrow.webp');
     background-repeat: no-repeat;
     background-size: cover;
     display: block;
@@ -444,7 +444,7 @@
 
   .list-slider .slick-arrow.slick-next::before {
     content: '';
-    background-image: url('../../public/assets/right-slick-arrow.png');
+    background-image: url('../../public/assets/right-slick-arrow.webp');
     background-repeat: no-repeat;
     background-size: cover;
     width: 20px;
@@ -455,7 +455,7 @@
 
   .list-slider .slick-arrow.slick-prev::before {
     content: '';
-    background-image: url('../../public/assets/left-slick-arrow.png');
+    background-image: url('../../public/assets/left-slick-arrow.webp');
     background-repeat: no-repeat;
     background-size: cover;
     display: block;
@@ -601,7 +601,7 @@
     input:checked + label:after {
       content: '';
       top: 6px;
-      background: url('../../public/assets/checked-icon.png') no-repeat center;
+      background: url('../../public/assets/checked-icon.webp') no-repeat center;
       width: 10.7px;
       @apply absolute left-[7px] block h-2 bg-cover bg-no-repeat;
     }
@@ -646,12 +646,12 @@
 
     .slick-arrow.slick-next::before {
       content: '';
-      background-image: url('../../public/assets/arrow-right.png');
+      background-image: url('../../public/assets/arrow-right.webp');
       @apply block h-6 w-6 bg-cover bg-no-repeat;
     }
     .slick-arrow.slick-prev::before {
       content: '';
-      background-image: url('../../public/assets/arrow-right.png');
+      background-image: url('../../public/assets/arrow-right.webp');
       @apply block h-6 w-6 rotate-180 bg-cover bg-no-repeat;
     }
 
@@ -924,7 +924,7 @@ span.audio-recorder-timer {
   width: 17px !important;
 }
 .signin-page{
-  background: url('../../public/assets/sign-in-bg-img.png') 100% no-repeat;
+  background: url('../../public/assets/sign-in-bg-img.webp') 100% no-repeat;
 }
 
 .scrollbar-hide::-webkit-scrollbar {
@@ -946,7 +946,7 @@ display: inline-grid !important;
 }
 .user-follow-slider .slick-slider .slick-next::after{
   content: '';
-background-image: url(../../public/assets/arrow-narrow-right.png);
+background-image: url(../../public/assets/arrow-narrow-right.webp);
 background-position: center;
 background-repeat: no-repeat;
 width: 20px !important;

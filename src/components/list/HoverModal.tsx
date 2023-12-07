@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import CloseIcon from '../../../public/assets/svgImages/close-icon.svg';
-import arrowLeft from '../../../public/assets/arrow-left.png';
-import downArrow from '../../../public/assets/arrow-down-grey.png';
-// import downArrow from '../../../public/assets/down-arrow-img.png';
+import CloseIcon from '@/assets/svgImages/close-icon.svg';
+import arrowLeft from '@/assets/arrow-left.webp';
+import downArrow from '@/assets/arrow-down-grey.webp';
+// import downArrow from '@/assets/down-arrow-img.webp';
 import Image from 'next/image';
 
 interface HoverModalProp {

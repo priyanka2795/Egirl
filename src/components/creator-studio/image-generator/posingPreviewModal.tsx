@@ -1,8 +1,8 @@
 import { Modal } from '@components/modal/modal';
 import Image from 'next/image';
 import React from 'react';
-import PoseImageSelect from '../../../../public/assets/poseimageselect.png';
-import CloseIcon from '../../../../public/assets/xmark-large.png';
+import PoseImageSelect from '@/assets/poseimageselect.webp';
+import CloseIcon from '@/assets/xmark-large.webp';
 
 interface PosingPreviewModal {
   PosingPreviewClose: React.Dispatch<React.SetStateAction<boolean>>;
@@ -19,7 +19,7 @@ const PosingPreviewModal = ({
       closeModal={() => PosingPreviewClose(false)}
       modalOverlayStyle='!bg-black/80'
     >
-      <Image src={PoseImageSelect} className='h-full w-full ' />
+      <Image src={PoseImageSelect} className='w-full h-full ' />
       <div className='absolute right-6 top-6'>
         <button
           className='h-[24px] w-[24px]'

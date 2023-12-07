@@ -1,10 +1,10 @@
 //@ts-nocheck
 import React,{useState,useEffect} from 'react';
-import Search from '../../../public/assets/search-alt (1).png';
-import Information from '../../../public/assets/circle-information2.png';
+import Search from '@/assets/search-alt (1).webp';
+import Information from '@/assets/circle-information2.webp';
 import Image from 'next/image';
 import SearchBar from '@components/common/Search/SearchBar';
-import arroeLeft from '../../../public/assets/arrow-left.png'
+import arroeLeft from '@/assets/arrow-left.webp'
 
 
 const alphabets=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
@@ -20,13 +20,13 @@ const ViewAllTags = ({selectedTags,getSelectedTagOnClick,filteredTags, closeAllT
     <div className='absolute right-8 top-5 z-50 flex w-[346px] flex-col rounded-[14px] border border-white/[0.05] bg-[#1A1A1A] mt-64' onClick={(e) => e.stopPropagation()}>
       <form>
         <div className='flex flex-col border-b border-white/[0.08] px-6'>
-          <div className='flex items-center justify-between  py-5'>
+          <div className='flex items-center justify-between py-5'>
             <div className='font-bold text-[18px] leading-6 text-white flex justify-start items-center gap-1'>
               <Image src={arroeLeft} onClick={closeAllTagsModal} className='cursor-pointer'/>
               Tags
             </div>
           </div>
-          <div className='flex items-center gap-1  pb-3'>
+          <div className='flex items-center gap-1 pb-3'>
             <Image src={Information} />{' '}
             <p className='text-xs text-[#979797]'>
               The maximum number of filters is 4

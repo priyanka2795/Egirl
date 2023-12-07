@@ -1,10 +1,10 @@
 import { Modal } from '@components/modal/modal';
 import React, {useState, useEffect} from 'react';
 import Image from 'next/image';
-import bluestarIcon from '../../../public/assets/blue-start-icon.png';
-import starIcon from '../../../public/assets/star-icon.png';
-import heartIcon from '../../../public/assets/heart-icon.png';
-import crownIcon from '../../../public/assets/crown-icon.png';
+import bluestarIcon from '@/assets/blue-start-icon.webp';
+import starIcon from '@/assets/star-icon.webp';
+import heartIcon from '@/assets/heart-icon.webp';
+import crownIcon from '@/assets/crown-icon.webp';
 import CloseIcon from './svg/close-icon.svg';
 import { exploreUserSubscription } from 'services/services';
 import Cookies from 'js-cookie';

@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import coinIcon from '../../../public/assets/coin.png';
-import crossIcon from '../../../public/assets/xmark (1).png';
-import sushi from '../../../public/assets/sushi.png';
-import pizza from '../../../public/assets/pizza.png';
-import taco from '../../../public/assets/taco.png';
-import chocolate from '../../../public/assets/chocolate.png';
-import lollipop from '../../../public/assets/lollipop.png';
-import cake from '../../../public/assets/cake.png';
-import soda from '../../../public/assets/soda.png';
-import eggplant from '../../../public/assets/eggplant.png';
-import tokenIcon from '../../../public/assets/token-white-icon.png';
+import coinIcon from '@/assets/coin.webp';
+import crossIcon from '@/assets/xmark (1).webp';
+import sushi from '@/assets/sushi.webp';
+import pizza from '@/assets/pizza.webp';
+import taco from '@/assets/taco.webp';
+import chocolate from '@/assets/chocolate.webp';
+import lollipop from '@/assets/lollipop.webp';
+import cake from '@/assets/cake.webp';
+import soda from '@/assets/soda.webp';
+import eggplant from '@/assets/eggplant.webp';
+import tokenIcon from '@/assets/token-white-icon.webp';
 
 
 type GiftModal = {

@@ -5,11 +5,12 @@ import React, { createRef, useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import userProfileImg from '../../../public/assets/user-profile.png';
-import filterImg1 from '../../../public/assets/filter-img-1.png';
-import filterImg2 from '../../../public/assets/filter-img-3.png';
-import filterImg3 from '../../../public/assets/filter-img-2.png';
-import xMark from '../../../public/assets/xmark.png';
+import userProfileImg from '@/assets/user-profile.webp';
+import filterImg1 from '@/assets/filter-img-1.webp';
+import filterImg2 from '@/assets/filter-img-3.webp';
+import filterImg3 from '@/assets/filter-img-2.webp';
+import arrowDown from '@/assets/arrow-down.webp';
+import xMark from '@/assets/xmark.webp';
 import UserProfile from './svg/user-profile.svg';
 import SearchIcon from './svg/search.svg';
 import FilterIcon from './svg/filter.svg';
@@ -21,7 +22,7 @@ import SearchBar from '@components/common/Search/SearchBar';
 import ViewAllTags from '@components/common/ViewAllTags';
 import useClickOutside from '../../api/utils/useClickOutside';
 import Dropdown from '@components/common/Dropdown';
-import arrowUpArrowDown from '../../../public/assets/arrow-down-arrow-up2.png';
+import arrowUpArrowDown from '../../../public/assets/arrow-down-arrow-up2.webp';
 import UnSelectIcon from '../../components/creator-studio/svg/short_border.svg';
 import SelectIcon from '../../components/creator-studio/svg/short_select.svg';
 const galleryArray = [
@@ -103,6 +104,7 @@ const GalleryTabFilter = ({
     setIsOpen: filterIsopen
   } = useClickOutside<HTMLDivElement>(false);
 
+  console.log({ selectedTags });
   console.log({ selectedTags });
 
   const toggleModal = () => {
@@ -299,7 +301,7 @@ const GalleryTabFilter = ({
           </div>
 
           <div className='mb-[23px] flex justify-between gap-2'>
-            <div className='flex h-fit w-full justify-start gap-2'>
+            <div className='flex h-fit justify-start gap-2'>
               {Object.keys(appliedFilter).length ? (
                 Object.keys(appliedFilter)?.map((item) => {
                   return appliedFilter[item]?.map((i) => (
@@ -325,13 +327,17 @@ const GalleryTabFilter = ({
             </div>
             <div className='flex items-center gap-3'>
               {/* <SearchIcon /> */}
-              <div className='relative'>
+             
+               <div className='relative flex'>
                 <FilterIcon
                   onClick={() => {
                     toggleModal();
                   }}
-                  className={`${filterOpen && 'white-stroke'} cursor-pointer`}
+                  className={`${
+                    filterOpen && 'white-stroke'
+                  }  cursor-pointer`}
                 />
+               
                 {filterOpen && Tags?.length && (
                   <GalleryFilterCheckbox
                     applyAllFilters={applyAllFilters}
@@ -342,9 +348,8 @@ const GalleryTabFilter = ({
                     getSelectedTagOnClick={getSelectedTagOnClick}
                     clearAll={clearAll}
                   />
-                )}
+                )} 
               </div>
-
               {/* <Dropdown buttonTitle="Newest" options={Tags}/> */}
               <div className='relative flex'>
                 <div

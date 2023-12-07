@@ -6,9 +6,9 @@ import Layout from '@components/common/Layout';
 import useScroll from '../../../hooks/useScroll';
 import SearchIcon from '../common/Search/SearchIcon';
 import Image from 'next/image';
-import Image1 from '../../../public/assets/messages/grid-img-15.png';
-import Image2 from '../../../public/assets/messages/grid-img-2.png';
-import Image3 from '../../../public/assets/messages/grid-img-1.png';
+import Image1 from '@/assets/messages/grid-img-15.png';
+import Image2 from '@/assets/messages/grid-img-2.png';
+import Image3 from '@/assets/messages/grid-img-1.png';
 import { forYouPost, getPostSubscription } from 'services/services';
 import Cookies from 'js-cookie';
 import { useAppDispatch, useAppSelector } from 'redux/hooks';
@@ -46,6 +46,7 @@ const Home = () => {
   const [toasts, setToasts] = useState(false);
   const [copyLink, setCopyLink] = useState(false);
   const [forYouData, setForYouData] = useState([])
+  const [subscriptionData, setSubscriptionData] = useState([])
   const [postUpdate, setPostUpdate] = useState(false)
   const [bookMarkToast, setBookMarkToast] = useState(false)
   const handleFeedSwitch = (feedType: string) => {
@@ -113,9 +114,10 @@ const Home = () => {
       console.log("forYou err---", err)
     })
 
-    getPostSubscription(1, token)
+    getPostSubscription(1, 10, token)
     .then((res:any)=>{
       console.log("post subscription res---", res)
+      setSubscriptionData(res?.data)
       if(res?.response?.status === 401){
         dispatch(tokenRefresh())
       }
@@ -123,10 +125,9 @@ const Home = () => {
     .catch((err:any)=>{
       console.log("post subscription err---", err)
     })
-  },[postUpdate,refreshTokenData,router.pathname])
+  }, [postUpdate,refreshTokenData,router.pathname])
 
-  
-  const formatTimestamp = (timestamp:any) => {
+    const formatTimestamp = (timestamp:any) => {
     const currentDate:any = new Date();
     const apiDate = Date.parse(timestamp);
     const diff = Math.abs(currentDate - apiDate);
@@ -241,7 +242,9 @@ const Home = () => {
           </div>
         </div>
         <div className='relative flex'>
-          <Feed
+          {
+            showForYou ?
+            <Feed
             bookmarksActive={bookmarksActive}
             BookmarksActive={BookmarksActive}
             handleShare={handleShare}
@@ -249,7 +252,21 @@ const Home = () => {
             postUpdate = {postUpdate}
             setPostUpdate={setPostUpdate}
             setBookMarkToast = {setBookMarkToast}
+            showForYou = {showForYou}
           />
+          :
+            <Feed
+            bookmarksActive={bookmarksActive}
+            BookmarksActive={BookmarksActive}
+            handleShare={handleShare}
+            subscriptionData={subscriptionData}
+            postUpdate = {postUpdate}
+            setPostUpdate={setPostUpdate}
+            setBookMarkToast = {setBookMarkToast}
+            showForYou={showForYou}
+          />
+          }
+         
           <Widgets />
           {toasts && (
             <div className='fixed bottom-3 left-1/2  -translate-x-1/2 rounded-[14px] bg-[#1591F1] px-5 py-4 text-center transition-all'>

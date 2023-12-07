@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Modal } from '@components/modal/modal';
-import InfoIcon from '../../../../public/assets/svgImages/info-icon.svg';
-import CloseIcon from '../../../../public/assets/svgImages/close-icon.svg';
-import searchIcon from '../../../../public/assets/search-alt.png';
+import InfoIcon from '@/assets/svgImages/info-icon.svg';
+import CloseIcon from '@/assets/svgImages/close-icon.svg';
+import searchIcon from '@/assets/search-alt.webp';
 import Image from 'next/image';
-import PersonalityHoverModal from './PersonalityHoverModal';
-import downArrow from '../../../../public/assets/down-arrow-img.png';
+import downArrow from '@/assets/down-arrow-img.webp';
 
 interface PersonalityLikesInterface {
   setPersonalityData?: any;

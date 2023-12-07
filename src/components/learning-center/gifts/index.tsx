@@ -1,9 +1,9 @@
 import React from 'react'
 import BreadCrumbs from '../BreadCrumbs';
 import Image from 'next/image';
-import giftBanner from '../../../../public/assets/learning-center/giftBanner.png'
+import giftBanner from '@/assets/learning-center/giftBanner.png'
 import PrevNextStep from '../PrevNextStep';
-import DemoImg from '../../../../public/assets/learning-center/blank_img.png';
+import DemoImg from '@/assets/learning-center/blank_img.png';
 import GiftContent from './GiftContent';
 
 

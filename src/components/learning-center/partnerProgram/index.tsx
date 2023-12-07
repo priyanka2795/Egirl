@@ -1,8 +1,8 @@
 import React from 'react';
 import BreadCrumbs from '../BreadCrumbs';
 import Image from 'next/image';
-import partnerProgramBanner from '../../../../public/assets/learning-center/partnerProgramBanner.png';
-import partnerProgram from '../../../../public/assets/learning-center/Partner Program.png';
+import partnerProgramBanner from '@/assets/learning-center/partnerProgramBanner.png';
+import partnerProgram from '@/assets/learning-center/Partner Program.png';
 import PartnerProgramAccordion from './PartnerProgramAccordion';
 import PartnerProgramContent from './PartnerProgramContent';
 import HowItWorkSteps from './HowItWorkSteps';
