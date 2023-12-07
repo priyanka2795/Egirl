@@ -341,6 +341,7 @@ const GalleryTabFilter = ({
                 <p>Newest</p>
                 <Image src={arrowDown} alt='' className='object-cover' />
               </div>
+              {/* <Dropdown buttonTitle='Newest' options={Tags} /> */}
             </div>
           </div>
         </>
