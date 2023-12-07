@@ -263,7 +263,7 @@ export default function CreatorLanding(): JSX.Element {
                 </span>
               </div>
               <div className='flex w-fit flex-col gap-4 pt-6 max-[560px]'>
-                <span className='select-none text-[16px] font-[400] text-black sm:text-[24px] '>
+                <span className='select-none text-[16px] font-[500] text-black sm:text-[18px] '>
                   Please feel free to contact us using the form on the right.
                   We’ll get back to you as soon as possible!
                 </span>
@@ -272,16 +272,11 @@ export default function CreatorLanding(): JSX.Element {
                   provider at: https://support.ccbill.com
                 </span>
                 <span className='select-none text-[16px] font-[400] text-black sm:text-[18px] '>
-                  Persona Enterprises Inc.<br/>
-                  251 Little Falls Drive, Wilmington, DE 19808, USA<br/>
-                  personaenterprises@outlook.com
-
-                </span>
-                {/* <span className='select-none text-[16px] font-[400] text-black sm:text-[18px] '>
+                  Persona Enterprises Inc.
                 </span>
                 <span className='select-none text-[16px] font-[400] text-black sm:text-[18px] '>
-                  personaenterprises@outlook.com
-                </span> */}
+                  251 Little Falls Drive, Wilmington, DE 19808, USA
+                </span>
                 {/* <div className='md:flex'>
               <div className='mr-6 hidden lg:flex lg:items-center'>
                 <button className='text-[32px] font-[500] text-[#5848BC] underline decoration-[#5848BC]  underline-offset-8 lg:text-[16px] '>

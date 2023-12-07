@@ -23,7 +23,7 @@ const ExploreTabs = ({ exploreTab, setExploreSelectedTab }: ExploreTabsProps) =>
     <>
       <div className='border-b border-white border-opacity-10'>
         <div className='flex justify-between px-8 py-4'>
-          <div className='flex items-start justify-start gap-3'>
+          <div className='flex items-start justify-between gap-3'>
             {tabContent.map((items, index) => {
               return (
                 <div
@@ -51,10 +51,11 @@ const ExploreTabs = ({ exploreTab, setExploreSelectedTab }: ExploreTabsProps) =>
               2 subs left
             </div>
           </div>
-
-          {subLeftModal && <SubscriptionModal closeState={setsubLeftModal} />}
+ 
         </div>
       </div>
+      {subLeftModal && <SubscriptionModal closeState={setsubLeftModal} />}
+
     </>
   );
 };
