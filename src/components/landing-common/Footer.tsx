@@ -109,6 +109,9 @@ const Footer = () => {
           <Link href="/legal/products-services-policy">
             <a className='hover:underline'>Products & Services Policy</a>
           </Link>
+          <Link href="/contact-us">
+            <a className='hover:underline'>Contact Us</a>
+          </Link>
         </div>
       </div>
       {/* <div className='mt-10 flex  select-none justify-between text-[15px] font-[400]'>
