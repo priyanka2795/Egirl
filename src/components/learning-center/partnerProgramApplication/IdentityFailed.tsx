@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import userCross from '@/assets/user-cross.png'
+import userCross from '../../../../public/assets/user-cross.png'
 
 interface identityProps {
   setSteps: any,
