@@ -6,3 +6,6 @@ up:
 
 down:
 	docker-compose down -v
+
+clean:
+	rm -rf node_modules next-env.d.ts .next package-lock.json
