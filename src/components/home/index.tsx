@@ -147,8 +147,8 @@ const Home = () => {
       return `${minutes}m`;
     }
   };
-  
   // console.log(formatTimestamp("2023-11-09T07:38:22.394397+00:00"))
+    
   return (
     <>
       {/*  max-w-[1650px] */}
