@@ -27,7 +27,19 @@ export default function CreatorLanding(): JSX.Element {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [selectedOption, setSelectedOption] = useState('');
+  const options = [
+    'Partnership',
+    'Request',
+    'Appeal',
+    'Complaint',
+    'Report',
+    'Other'
+  ];
 
+  const handleChange = (event: any) => {
+    setSelectedOption(event.target.value);
+  };
   const onChangeName = (event: ChangeEvent<HTMLInputElement>): void => {
     setName(event.target.value);
   };
@@ -111,7 +123,7 @@ export default function CreatorLanding(): JSX.Element {
                 </div>
               </div>
             </div>
-            <div className='md:flex'>
+            {/* <div className='md:flex'>
               <div className='mr-6 hidden lg:flex lg:items-center'>
                 <button className='text-[32px] font-[500] text-[#5848BC] underline decoration-[#5848BC]  underline-offset-8 lg:text-[16px] '>
                   Contact
@@ -135,7 +147,24 @@ export default function CreatorLanding(): JSX.Element {
               >
                 <Bars2Icon className='h-[40px] w-[40px] fill-[black] lg:hidden lg:h-[20px] lg:w-[20px]'></Bars2Icon>
               </div>
-            </div>
+            </div> */}
+            <div className='gap-2 md:flex'>
+            <button className='justify-center rounded-[12px] bg-[#5848BC] px-[10px] py-[10px] transition duration-100 hover:bg-[#4D37DA] xs:hidden sm:hidden md:flex md:items-center lg:flex lg:w-[80px] lg:items-center'>
+              <Link href='/login'>
+                <span className='text-[32px] font-[500] text-white lg:text-[16px]'>
+                  Login
+                </span>
+              </Link>
+            </button>
+
+            <button className='justify-center rounded-[12px] bg-[#5848BC] px-[10px] py-[10px] transition duration-100 hover:bg-[#4D37DA] xs:hidden sm:hidden md:flex md:items-center lg:flex lg:w-[80px] lg:items-center'>
+              <Link href='/signup'>
+                <span className='text-[32px] font-[500] text-white lg:text-[16px]'>
+                  Sign Up
+                </span>
+              </Link>
+            </button>
+          </div>
           </div>
         </div>
       </nav>
@@ -222,7 +251,7 @@ export default function CreatorLanding(): JSX.Element {
               <div className='flex justify-start'>
                 <div className='flex select-none items-center justify-center rounded-lg bg-[#E4E3EC] px-[10px] py-[8px] text-[15px] text-[#5848BC] md:px-[12px]'>
                   <ExperienceTheFuture className='mr-[6px] h-[16px] w-[16px] md:mr-[8px] md:h-[20px] md:w-[20px]' />
-                  become a creator
+                  contact us
                 </div>
               </div>
               <div className='select-none pt-6'>
@@ -233,13 +262,46 @@ export default function CreatorLanding(): JSX.Element {
                   CONVERSATION!
                 </span>
               </div>
-              <div className='w-fit pt-6'>
-                <span className='select-none text-[16px] font-[400] text-black sm:text-[18px] '>
-                  Are you interested in becoming our partner or simply want to
-                  share your thoughts about our work? Please feel free to
-                  contact us using the form on the right. We’ll get back to you
-                  as soon as possible!
+              <div className='flex w-fit flex-col gap-4 pt-6 max-[560px]'>
+                <span className='select-none text-[16px] font-[500] text-black sm:text-[18px] '>
+                  Please feel free to contact us using the form on the right.
+                  We’ll get back to you as soon as possible!
                 </span>
+                <span className='select-none text-[16px] font-[400] text-black sm:text-[18px] '>
+                  For all billing related questions please contact our payment
+                  provider at: https://support.ccbill.com
+                </span>
+                <span className='select-none text-[16px] font-[400] text-black sm:text-[18px] '>
+                  Persona Enterprises Inc.
+                </span>
+                <span className='select-none text-[16px] font-[400] text-black sm:text-[18px] '>
+                  251 Little Falls Drive, Wilmington, DE 19808, USA
+                </span>
+                {/* <div className='md:flex'>
+              <div className='mr-6 hidden lg:flex lg:items-center'>
+                <button className='text-[32px] font-[500] text-[#5848BC] underline decoration-[#5848BC]  underline-offset-8 lg:text-[16px] '>
+                  Contact
+                </button>
+              </div>
+              <button
+                onClick={() => {
+                  setBetaAccess();
+                }}
+                className='justify-center rounded-[12px] bg-[#5848BC] px-[18px] py-[10px] transition duration-100 hover:bg-[#4D37DA] xs:hidden sm:hidden md:flex md:items-center lg:flex lg:w-[158px] lg:items-center'
+              >
+                <span className='text-[16px] font-[500] text-white'>
+                  Get beta access
+                </span>
+              </button>
+              <div
+                className='ml-[32px] xs:flex xs:items-center sm:flex sm:items-center md:flex md:items-center lg:flex lg:items-center'
+                onClick={() => {
+                  setSideNav();
+                }}
+              >
+                <Bars2Icon className='h-[40px] w-[40px] fill-[black] lg:hidden lg:h-[20px] lg:w-[20px]'></Bars2Icon>
+              </div>
+            </div> */}
               </div>
             </div>
             <div className='mt-[48px] sm:mt-0'>
@@ -262,6 +324,7 @@ export default function CreatorLanding(): JSX.Element {
                         onChange={onChangeName}
                       />
                     </div>
+
                     <div className='w-full sm:w-1/2'>
                       <label className='mb-[6px] flex text-[13px] font-[500] text-[#646668]'>
                         Email
@@ -275,6 +338,26 @@ export default function CreatorLanding(): JSX.Element {
                         onChange={onChangeEmail}
                       />
                     </div>
+                  </div>
+
+                  <div className='mb-4 w-full'>
+                    <label className='mb-[6px] flex text-[13px] font-[500] text-[#646668]'>
+                      Subject
+                    </label>
+                    <select
+                      className='block w-full appearance-none rounded-[12px] border border-gray-300 bg-[#6c6e7214] px-4 py-4 pr-4 leading-tight text-[#646668] focus:border-gray-500 focus:bg-white focus:outline-none'
+                      value={selectedOption}
+                      onChange={handleChange}
+                    >
+                      <option value='' disabled selected>
+                        Choose Subject
+                      </option>
+                      {options.map((option, index) => (
+                        <option key={index} value={option}>
+                          {option}
+                        </option>
+                      ))}
+                    </select>
                   </div>
                   <div className='mb-6'>
                     <label className='mb-[6px] flex text-[13px] font-[500] text-[#646668]'>
