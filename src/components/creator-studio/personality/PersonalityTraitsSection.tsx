@@ -89,7 +89,7 @@ const PersonalityTraitsSection = ({
     handleClearSelection();
     setAdvance(0);
   };
-
+     
   //========== alphabetic scroll functionality =========
   const handleClick = (id: string) => {
     setSelectChar(id);

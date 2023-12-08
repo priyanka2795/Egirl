@@ -14,7 +14,7 @@ import { useEffect, useState } from 'react';
 import Script from 'next/script';
 import { Provider } from 'react-redux';
 import store from '../store';
-
+import Authenticator from 'Authenticator';
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -62,13 +62,11 @@ export default function App({
       </Script>
       <Provider store={store}>
         <AppHead />
-          {/* <AuthContextProvider> */}
-          <ThemeContextProvider>
-         
-            {<Component {...pageProps} />}
-         
-          </ThemeContextProvider>
-          {/* </AuthContextProvider> */}
+        {/* <AuthContextProvider> */}
+        <ThemeContextProvider>
+          <Authenticator>{<Component {...pageProps} />}</Authenticator>
+        </ThemeContextProvider>
+        {/* </AuthContextProvider> */}
       </Provider>
     </>
   );
