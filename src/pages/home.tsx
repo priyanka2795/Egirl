@@ -1,11 +1,8 @@
 import HomeContent from '@components/home';
 import React, {useState, useEffect} from 'react';
 import Cookies from 'js-cookie';
-import { useRouter } from 'next/router';
 import WelcomeStepsModal from './auth/WelcomeSteps';
 export default function Home() {
-  const router = useRouter();
-  const accessToken = Cookies.get('accessToken');
   const signUpUserId = Cookies.get('signUpUserId');
   const [welcomeStepsModal, setWelcomeStepsModal] = useState<boolean>(false);
    useEffect(()=>{
@@ -14,12 +11,6 @@ export default function Home() {
     }
   },[signUpUserId])
   
-  useEffect(() => {
-    if (!accessToken) {
-      router.push('/login');
-    }
-  }, [accessToken]);
-   
   return (
     <>
       <div>

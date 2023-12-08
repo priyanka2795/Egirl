@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 function Authenticator({ children }: any) {
   const token: any = Cookies.get('accessToken');
   const router = useRouter();
-  console.log(router.pathname);
+ 
   const loginRoutes = ['/login', '/signup'];
   const homeRoutes = [
     '/home',
@@ -25,18 +25,24 @@ function Authenticator({ children }: any) {
     '/style-generator',
     '/marketplace'
   ];
-  useEffect(()=>{
-    if(!token){
-        for(let path of homeRoutes){
-            if(router.pathname.includes(path)){
-                router.push('/')
-            }
+
+  useEffect(() => {
+    if (!token) {
+      for (let path of homeRoutes) {
+        if (router.pathname.includes(path)) {
+          router.push('/login');
         }
-    }else{
-        
+      }
+    } else {
+      for (let path of loginRoutes) {
+        if (router.pathname.includes(path)) {
+          router.push('/home');
+        }
+      }
     }
-  },[token])
-  return <div>{children}</div>;
+  }, [token]);
+
+  return <>{children}</>;
 }
 
 export default Authenticator;
