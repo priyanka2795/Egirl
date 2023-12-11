@@ -1,7 +1,7 @@
 //@ts-nocheck
 
 import Image from 'next/image';
-import React, { createRef, useEffect, useState } from 'react';
+import React, { createRef, useEffect, useRef, useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -250,6 +250,8 @@ const GalleryTabFilter = ({
     setSelectedTags({});
   };
 
+
+
   return (
     <>
       {isOpen && (
@@ -261,7 +263,9 @@ const GalleryTabFilter = ({
           setFilterTagsBy={setFilterTagsBy}
           filterTagsBy={filterTagsBy}
           filteredTags={filteredTags}
+          closeFilterModal={closeFilterModal}
         />
+        
       )}
       {singleProfileState === false ? (
         <>
