@@ -57,7 +57,7 @@ const Messages = () => {
   //========= get rooms api ==========
   
   
-  // console.log(chatViewStyle,':chatViewStyle',chartScreenView,': chartScreenView')
+  console.log(chatViewStyle,':chatViewStyle',chartScreenView,': chartScreenView')
   return (
     <>
       <main className='flex max-w-full min-h-screen mx-auto'>
