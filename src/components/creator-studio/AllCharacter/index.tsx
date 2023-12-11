@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import plusIcon from '@/assets/plus-large.webp';
 import Image from 'next/image';
 import AvtarLarge from '@/assets/AvatarLarge.webp';
-import imageSquare from '@/assets/image-square.png';
 import avtar3 from '@/assets/Avatar 3.webp';
 import avtar4 from '@/assets/Avatar 4.webp';
 import palette from '@/assets/palette.webp';

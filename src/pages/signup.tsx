@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import * as Yup from 'yup';
 import Image from 'next/image';
@@ -13,7 +13,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SigninTemplate from './auth/signinTemplate';
 import SigninLoginOpt from './auth/SigninLoginOpt';
-import WelcomeStepsModal from './auth/WelcomeSteps';
 
 const validationSchema = Yup.object().shape({
   username: Yup.string().required('Username is required'),
@@ -35,46 +34,19 @@ const initialValues = {
   verifyemail: '',
   password: ''
 };
+
+interface formValues{
+  username:string,
+  email:string,
+  password:string
+}
+
 export default function SignUp() {
   const router = useRouter();
-
-  const [password, setPassword] = useState<any>('');
-  const [isMinLength, setIsMinLength] = useState<boolean>(false);
-  const [hasNumberOrSpecialChar, setHasNumberOrSpecialChar] =
-    useState<boolean>(false);
-
-  // const [welcomeStepsModal, setWelcomeStepsModal] = useState<boolean>(false);
-  // const [updateState, setUpdateState] = useState(false)
-
-  // useEffect(()=>{
-  //   let signUpUser = Cookies.get('signUpUserId')
-  //   if(signUpUser){
-  //     setWelcomeStepsModal(true)
-  //   }
-  // },[updateState])
-
   const [errorMsg, setErrorMsg] = useState('');
 
-  const onPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-  };
-
-  const handlePasswordChange = (e: any) => {
-    const newPassword = e.target.value;
-    setPassword(newPassword);
-
-    // Check if the password meets the minimum length requirement (8 characters)
-    setIsMinLength(newPassword.length >= 8);
-
-    // Check if the password contains at least one number or special character
-    setHasNumberOrSpecialChar(
-      /[0-9!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(newPassword)
-    );
-  };
-
-  const handleSubmit = (values: any, { setSubmitting }: any) => {
+  const handleSubmit = (values: formValues, { setSubmitting }: any) => {
     setErrorMsg('');
-    // You can handle the form data submission here
     let data = {
       username: values.username,
       email: values.email,
@@ -82,13 +54,11 @@ export default function SignUp() {
     };
     userSignUp(data)
       .then((res: any) => {
-        console.log('sign up res---', res);
-        sessionStorage.setItem('SignUpCompleted', 'true');
         if (res.status === 200) {
           Cookies.set('accessToken', res?.data?.access_token);
           Cookies.set('refreshToken', res?.data?.refresh_token);
           Cookies.set('signUpUserId', res?.data?.user_id);
-          // setUpdateState(!updateState)
+        
           toast.success('User login successful');
           setTimeout(() => {
             router.push('/home');
@@ -102,7 +72,7 @@ export default function SignUp() {
         console.log('sign up err---', err);
       })
       .finally(() => {
-        setSubmitting(false); // Set submitting to false to enable the button
+        setSubmitting(false); 
       });
   };
 
@@ -212,11 +182,6 @@ export default function SignUp() {
                       `}
                       />
 
-                      {/* <ErrorMessage
-                        name='password'
-                        component='div'
-                        className='text-red-500'
-                      /> */}
                       <div>
                         <ul>
                           <li className='mb-3'>Create a password that:</li>
@@ -294,14 +259,6 @@ export default function SignUp() {
           )}
         </Formik>
       </SigninTemplate>
-
-      {/* {welcomeStepsModal && (
-        <WelcomeStepsModal
-          welcomeStepsModal={welcomeStepsModal}
-          setWelcomeStepsModal={setWelcomeStepsModal}
-        />
-       
-      )}  */}
       <ToastContainer
         position='bottom-center'
         pauseOnHover

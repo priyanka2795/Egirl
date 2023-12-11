@@ -54,7 +54,7 @@ interface VIMainImageBlock {
   AlbumData: any;
   allImgData: any;
   imageUpdate: boolean;
-  setImageUpdate: any;
+  setImageUpdate: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const VIMainImageBlock = ({
@@ -73,7 +73,7 @@ const VIMainImageBlock = ({
   const [albumDetails, setAlbumDetails] = useState<boolean>(false);
   const [deleteImageModal, setDeleteImageModal] = useState<boolean>(false);
   const [moveAlbumModal, setMoveAlbumModal] = useState<boolean>(false);
-  const [sdImageId, setSdImageId] = useState<any>();
+  const [sdImageId, setSdImageId] = useState<number>();
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [imageInfoPage, setImageInfoPage] = useState<boolean>(false);
   const [selectPrompt, setSelectPrompt] = useState<string[]>([]);
@@ -94,7 +94,6 @@ const VIMainImageBlock = ({
   const deleteImgBySdId = () => {
     deleteImageGeneration(sdImageId, token)
       .then((res: any) => {
-        console.log('delete image---', res);
         setImageUpdate(!imageUpdate);
       })
       .catch((err: any) => {

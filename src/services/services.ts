@@ -83,13 +83,13 @@ export const updateGifts = (data:any , token : string | null) => putApiWithToken
 
 export const postGifts = (data:any , token : string|null) => postApiWithToken('/studio/gift/create_gift' , data , token)
 
-export const deleteGift = (character_id:string , data:any , token:any)=> postApiWithToken(`/studio/gift/delete_gift/${character_id}` , data , token)
+export const deleteGift = (character_id:string , data:any , token:string | null)=> postApiWithToken(`/studio/gift/delete_gift/${character_id}` , data , token)
 
 export const getGiftCategory = (character_id:string|null , token:string|null) => getApiWithToken(`/studio/gift/category/${character_id}`  , token)
 
 export const updateGiftCategory = (data:any , token : string | null) => putApiWithToken('/studio/gift/category' , data , token)
 
-export const postGiftCategory = (data:any , token:any) => postApiWithToken('/studio/gift/category' , data , token)
+export const postGiftCategory = (data:any , token:string | null) => postApiWithToken('/studio/gift/category' , data , token)
 
 export const deleteGiftCategory = (characterId :string|null , giftCategoryId:number , token:string|null) => deleteApi(`/studio/gift/category/${characterId}/${giftCategoryId}` , token)
 
@@ -99,12 +99,12 @@ export const postInpaintImage = (data:any, token:string | null) => postApiWithTo
 
 export const postPoseImage = (data:any, token:string | null) => postApiWithToken('/studio/image_generation/pose_image' , data, token)
 
-export const getImageGeneration = (offset:number , limit:number, token:any) => getApiWithToken(`/studio/image_generation/?offset=${offset}&limit=${limit}`, token)
+export const getImageGeneration = (offset:number , limit:number, token:string | null) => getApiWithToken(`/studio/image_generation/?offset=${offset}&limit=${limit}`, token)
 
-export const deleteImageGeneration = (id:number, token:any) => deleteApi(`/studio/image_generation/${id}`, token)
+export const deleteImageGeneration = (id:number, token:string | null) => deleteApi(`/studio/image_generation/${id}`, token)
 
 // user interest api for welcome modal
-export const getUserInterest = (token:string | null) => getApiWithToken('/posts/user_interests', token)
+export const getUserInterest = (token:string | null) => getApiWithToken('/posts/get_all_interests', token)
 
 
 //logout function 

@@ -1,9 +1,7 @@
-import React, { ReactNode, useEffect, useState } from 'react';
-import Sidebar from '../common/Sidebar';
+import React, { useEffect, useState } from 'react';
 import Feed from './Feed';
 import Widgets from './Widgets';
 import Layout from '@components/common/Layout';
-import useScroll from '../../../hooks/useScroll';
 import SearchIcon from '../common/Search/SearchIcon';
 import Image from 'next/image';
 import Image1 from '@/assets/messages/grid-img-15.png';
@@ -36,12 +34,11 @@ const Home = () => {
   const router = useRouter()
   const dispatch = useAppDispatch()
   const token:any = Cookies.get("accessToken")
-  const refreshTokenData:any = useAppSelector((state)=> state.tokenRefresh?.tokenData)
+  const refreshTokenData:string | undefined = useAppSelector((state)=> state.tokenRefresh?.tokenData)
 
  console.log("token---",token, "refreshTokenData---", refreshTokenData)
 
   const [showForYou, setShowForYou] = useState(true);
-  const [sticky, animate] = useScroll();
   const [bookmarksActive, setBookmarksActive] = useState<boolean>(false);
   const [toasts, setToasts] = useState(false);
   const [copyLink, setCopyLink] = useState(false);
@@ -103,7 +100,6 @@ const Home = () => {
     
     forYouPost(1,10, token)
     .then((res:any)=>{
-      console.log("forYou res---", res)
       setForYouData(res?.data)
       
       if(res?.response?.status === 401){
@@ -116,7 +112,6 @@ const Home = () => {
 
     getPostSubscription(1, 10, token)
     .then((res:any)=>{
-      console.log("post subscription res---", res)
       setSubscriptionData(res?.data)
       if(res?.response?.status === 401){
         dispatch(tokenRefresh())

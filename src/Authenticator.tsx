@@ -2,8 +2,12 @@ import Cookies from 'js-cookie';
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-function Authenticator({ children }: any) {
-  const token: any = Cookies.get('accessToken');
+interface AuthenticatorProps {
+  children: string;
+ }
+
+function Authenticator({ children }: AuthenticatorProps) {
+  const token: string | undefined = Cookies.get('accessToken');
   const router = useRouter();
  
   const loginRoutes = ['/login', '/signup'];

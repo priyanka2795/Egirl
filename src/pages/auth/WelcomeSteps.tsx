@@ -4,8 +4,6 @@ import ArrowLeft from '@/assets/arrow-left.webp';
 import ArrowNext from '@/assets/arrow-next.webp';
 import RightIcon from '@/assets/check-icon-grey.webp';
 import Image from 'next/image';
-import arrowLeft from '@/assets/arrow-narrow-left.webp';
-import arrowRight from '@/assets/arrow-narrow-right.webp';
 import Slider from 'react-slick';
 import { useRouter } from 'next/router';
 import { ToastContainer, toast } from 'react-toastify';
@@ -97,7 +95,7 @@ const WelcomeStepsModal = ({
   const router = useRouter();
   const dispatch = useAppDispatch()
   const token:any = Cookies.get('accessToken')
-  const refreshTokenData:any = useAppSelector((state)=> state.tokenRefresh?.tokenData)
+  const refreshTokenData:string | undefined = useAppSelector((state)=> state.tokenRefresh?.tokenData)
   
   const [selectedItems, setSelectedItems] = useState<number[]>([]);
   const [nextBtn, setNextBtn] = useState(false);
@@ -140,19 +138,18 @@ const WelcomeStepsModal = ({
 
     getUserInterest(token)
     .then((res:any)=>{
-      console.log("get user interest res---", res)
       setUserInterestData(res?.data)
       if(res?.response?.status === 401){
         dispatch(tokenRefresh())
       }
     })
-    .catch(()=>{
-      console.log("get user")
+    .catch((err)=>{
+      console.log("get user err--",err)
     })
 
   },[refreshTokenData])
   //---------------------------------------
-console.log("-----")
+
   return (
     <Modal
       open={welcomeStepsModal}
@@ -281,10 +278,6 @@ console.log("-----")
               <Image src={RightIcon} /> Done
             </button>
           )}
-
-          {/* <button className='font-bold flex w-full items-center justify-center gap-2 rounded-2xl bg-[#FFFFFF14] px-5 py-4 text-center text-lg'>
-            <Image src={RightIcon} /> Done
-          </button> */}
         </div>
       </div>
       <ToastContainer

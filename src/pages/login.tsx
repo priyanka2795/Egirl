@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from 'react';
-// import { Database } from '../../types/database';
-import Router, { useRouter } from 'next/router';
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 import vector1 from '@/assets/Vector_1.webp';
 import vector2 from '@/assets/Vector_1.webp';
 import RotateIcon from '@/assets/rotate-cw.webp';
-import Link from 'next/link';
 import SigninTemplate from './auth/signinTemplate';
 import SigninLoginOpt from './auth/SigninLoginOpt';
 import OtpInput from './auth/OtpInput';
@@ -31,38 +29,34 @@ const initialValues = {
   email: '',
   password: ''
 };
+
+interface formValues{
+  email:string,
+  password:string
+}
 export default function SignIn({ SetFormStep }: SignIn) {
   const dispatch = useAppDispatch();
   const { isVisible, notification } = useAppSelector((state) => state.toast);
   const router = useRouter();
   const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
   const [errorMsg, setErrorMsg] = useState<string>('');
 
   const [signInSteps, setSignInSteps] = useState<number>();
   const [verifyCode, setVerifyCode] = useState<boolean>(false);
 
-  const onEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  };
-
-  const onPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-  };
 
   // Otp
   const [otp, setOtp] = useState('');
-  const [valid, setValid] = useState(false);
+ 
 
   const onChange = (value: string) => {
     setOtp(value);
   };
 
-  const handleSubmit = (values: any, { setSubmitting }: any) => {
+  const handleSubmit = (values: formValues, { setSubmitting }: any) => {
     setErrorMsg('');
     userLogin(values)
       .then((res: any) => {
-        console.log('login res--', res);
         if (res.status === 200) {
           toast.success('User login successful');
           Cookies.set('accessToken', res.data.access_token);

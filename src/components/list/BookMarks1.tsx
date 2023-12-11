@@ -87,7 +87,7 @@ const BookMarks = () => {
   const dispatch = useAppDispatch()
   const router = useRouter()
   const token:any = Cookies.get('accessToken');
-  const refreshTokenData:any = useAppSelector((state)=> state.tokenRefresh?.tokenData)
+  const refreshTokenData:string | undefined = useAppSelector((state)=> state.tokenRefresh?.tokenData)
   const [profileModalState, setProfileModalState] = useState(false);
   const [deleteBookmarkState, setDeleteBookmarkState] = useState(false);
   const [bookMarkedData, setBookMarkedData] = useState([])
@@ -99,7 +99,6 @@ const BookMarks = () => {
 
     getBookMarked(1,10, token)
     .then((res:any)=>{
-      console.log("bookmarked data res---", res)
       setBookMarkedData(res.data)
       if(res?.response?.status === 401){
         dispatch(tokenRefresh())

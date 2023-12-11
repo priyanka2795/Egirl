@@ -3,8 +3,6 @@ import '@styles/toaster.scss';
 import '../components/explore/CardStack.scss';
 import '../components/messages/TypingIndicator.scss';
 import '../components/creator-studio/common/MultiStepRangeSliderStyle.scss';
-
-import { AuthContextProvider } from '@lib/context/auth-context';
 import { ThemeContextProvider } from '@lib/context/theme-context';
 import { AppHead } from '@components/common-old/app-head';
 import type { ReactElement, ReactNode } from 'react';
@@ -62,11 +60,9 @@ export default function App({
       </Script>
       <Provider store={store}>
         <AppHead />
-        {/* <AuthContextProvider> */}
         <ThemeContextProvider>
           <Authenticator>{<Component {...pageProps} />}</Authenticator>
         </ThemeContextProvider>
-        {/* </AuthContextProvider> */}
       </Provider>
     </>
   );

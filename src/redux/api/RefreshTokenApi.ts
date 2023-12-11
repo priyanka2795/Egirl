@@ -1,35 +1,11 @@
-// import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-// interface Token {
-//     token: string 
-// }
-// const RefreshApi = createApi({
-//     baseQuery: fetchBaseQuery({ baseUrl: 'http://65.21.65.49:8000' }),
-//     tagTypes: ['Posts'],
-//     endpoints: (build) => ({
-//         refreshToken: build.mutation<Token, Partial<Token>>({
-//             query: (body) => ({
-//                 url: `/api/token/refresh`,
-//                 method: 'POST',
-//                 body:body,
-//             }),
-//             invalidatesTags: ['Posts'],
-//         }),
-//     }),
-// })
-
-// export  const { useRefreshTokenMutation } = RefreshApi
-
-
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import Cookies from "js-cookie";
-const token: any = Cookies.get("refreshToken")
-interface Token {
-  token: string,
-}
+
+const token: string | undefined = Cookies.get("refreshToken")
 export interface TokenState {
   loading: boolean;
-  tokenData: string | null;
+  tokenData: string | undefined;
   error: string | undefined;
 }
 const initialState: TokenState = {
@@ -39,7 +15,7 @@ const initialState: TokenState = {
 }
 export const tokenRefresh = createAsyncThunk(
   "tokenRefresh",
-  async (data) => {
+  async () => {
     const response = await axios.post("https://devapi.egirls.ai/api/token/refresh", {
       "refresh_token": "string"
     }, {
@@ -49,7 +25,6 @@ export const tokenRefresh = createAsyncThunk(
         accept: "application/json",
       },
     })
-    console.log("refresh token res---", response?.data?.access_token)
     return response?.data?.access_token
   }
 )

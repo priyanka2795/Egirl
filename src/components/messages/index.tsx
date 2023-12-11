@@ -33,7 +33,7 @@ const Messages = () => {
   };
   //========= get rooms api ==========
   const token: any = Cookies.get('accessToken');
-  const refreshTokenData: any = useAppSelector(
+  const refreshTokenData: string | undefined = useAppSelector(
     (state) => state.tokenRefresh?.tokenData
   );
   const [roomData, setRoomData] = useState([]);
@@ -44,7 +44,6 @@ const Messages = () => {
     }
     getRooms(token)
       .then((res: any) => {
-        console.log('get rooms res--', res);
         setRoomData(res?.data);
         if (res?.response?.status === 401) {
           dispatch(tokenRefresh());
@@ -56,8 +55,6 @@ const Messages = () => {
   }, [refreshTokenData]);
   //========= get rooms api ==========
   
-  
-  // console.log(chatViewStyle,':chatViewStyle',chartScreenView,': chartScreenView')
   return (
     <>
       <main className='flex max-w-full min-h-screen mx-auto'>
