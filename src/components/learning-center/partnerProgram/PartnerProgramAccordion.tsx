@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import voiceImgIcon from '@/assets/learning-center/voiceImgIcon.png';
-import wallet from '@/assets/learning-center/wallet.webp';
+import wallet from '../../../../public/assets/learning-center/wallet.png';
 import messageCircle from '@/assets/learning-center/message-circle-heart.png';
 import chart from '@/assets/learning-center/Chart.png';
 import globe from '@/assets/learning-center/globe.png';
