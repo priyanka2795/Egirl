@@ -64,6 +64,8 @@ export default function ChatScreen({
   chatViewStyle,
   setChatViewStyle
 }: chatProps) {
+  const filesButtonRef=useRef(null);
+  const buttonRef=useRef(null);
   const [sticky, animate] = useScroll();
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [message, setMessage] = useState('');
@@ -213,9 +215,22 @@ export default function ChatScreen({
   };
   console.log({ messages });
 
+  useEffect(()=>{
+    document.addEventListener('mousedown',handleClickOutside);
+    return ()=>{
+      document.removeEventListener('mousedown',handleClickOutside)
+    }
+  },[]);
+
+  const handleClickOutside=(event:any)=>{
+    if(filesButtonRef.current && !filesButtonRef?.current?.contains(event.target) && buttonRef.current && !buttonRef.current?.contains(event.target)){
+        setSendUploadImgState(false)
+    }
+  }
+
   return (
     <div
-      className={`w-full border-r-[2px] border-[#252525] bg-[#121212] pb-3 lg:inline ${chatScreenClassName}`}
+      className={`w-full border-r-[2px] border-[#252525] bg-[#121212] lg:inline ${chatScreenClassName}`}
     >
       <div className='flex h-[72px] w-full items-center justify-between border-b border-[#252525] px-6'>
         <div className='flex items-center'>
@@ -290,7 +305,7 @@ export default function ChatScreen({
           className={`custom-scroll-bar flex overflow-y-auto pb-5 ${
             chatScreenMsgClassName
               ? chatScreenMsgClassName
-              : 'h-[calc(100vh-72px-92px)] '
+              : 'h-[calc(100vh-72px-112px)] '
           } ${
             imageUploaded.length === 0
               ? 'h-[calc(100vh-72px-92px)]'
@@ -300,7 +315,7 @@ export default function ChatScreen({
         >
           <div
             ref={containerRef}
-            className={`flex h-max min-h-full w-full flex-col justify-start bg-[#121212] px-6 pt-4`}
+            className={`text-base flex h-max min-h-full w-full flex-col justify-start bg-[#121212] px-6 pt-4 break-words`}
           >
             {/* {selectUserState === 'One More Mika' ? (
               <>
@@ -327,24 +342,30 @@ export default function ChatScreen({
                 {msg.user_msg && (
                   <div
                     key={index}
-                    className={`my-1 rounded-lg p-2 ${
+                    className={`my-1 rounded-lg rounded-br-none py-3 pl-3 pr-3.5 relative min-w-[50px] max-w-[300px] text-left ${
                       msg.user_msg
-                        ? 'ml-auto bg-blue-200 text-black'
-                        : 'mr-auto bg-gray-200 text-black'
+                        ? 'ml-auto bg-[#5848BC] text-white'
+                        : 'mr-auto bg-[#5848BC] text-white'
                     }`}
                   >
                     {JSON.parse(msg.user_msg)?.message}
+                    <div className='absolute -bottom-4 right-1 w-full text-xs text-right'>
+                        <p>9:25</p>
+                    </div>
                   </div>
                 )}
                 <div
                   key={index}
-                  className={`my-1 rounded-lg p-2 ${
+                  className={`my-1 rounded-lg rounded-bl-none  py-3 pl-3.5 pr-3  relative min-w-[50px] text-center ${
                     msg.sender_type != 'character'
-                      ? 'ml-auto bg-blue-200 text-black'
-                      : 'mr-auto bg-gray-200 text-black'
+                      ? 'ml-auto bg-[#1E1E1E] text-white'
+                      : 'mr-auto bg-[#1E1E1E] text-white'
                   }`}
                 >
                   {msg.message}
+                  <div className='absolute -bottom-4 left-1 w-full text-xs text-left'>
+                        <p>09:25</p>
+                    </div>
                 </div>
               </>
             ))}
@@ -355,17 +376,20 @@ export default function ChatScreen({
           </div>
         </div>
         {showInput && (
-          <div className='flex flex-col gap-1 '>
+          <div className='flex flex-col justify-center items-start gap-1 py-6 px-2'>
             <div className={` flex w-full items-start bg-[red-400] px-6 pt-3 `}>
               <div className='relative mb-[10px]  self-end'>
                 <div
+                  ref={buttonRef}
                   className='plus-icon mr-[10px] mt-[8px] grid h-[32px] w-[32px] min-w-[32px] cursor-pointer place-items-center rounded-full bg-[#5848BC] transition duration-100 hover:bg-[#4b3abd]'
-                  onClick={() => setSendUploadImgState(!sendUploadImgState)}
+                  onClick={() => {
+                      setSendUploadImgState(!sendUploadImgState)
+                  }}
                 >
-                  <PlusIcon strokeclasses='stroke-[#ffffff]' />
+                  <PlusIcon strokeclasses='stroke-[#ffffff]'  />
                 </div>
                 {sendUploadImgState && (
-                  <div className='absolute -top-[152px] left-0 z-50 mt-2 inline-flex w-[218px] flex-col items-start justify-start rounded-2xl bg-zinc-900 py-2 shadow'>
+                  <div ref={filesButtonRef} className='absolute -translate-x-1 -top-[152px] left-0 z-50 mt-2 inline-flex w-[218px] flex-col items-start justify-start rounded-2xl bg-zinc-900 py-2 shadow'>
                     <div className='cursor-pointer flex-col items-center justify-start gap-2 self-stretch '>
                       <div
                         className='flex gap-2 px-4 py-[10px] text-sm'
@@ -468,6 +492,7 @@ export default function ChatScreen({
                       onKeyDown={handleKeyPress}
                       style={{ outline: 'none' }}
                       maxRows={5}
+                      placeholder='Type a message'
                     />
 
                     <div
@@ -492,6 +517,7 @@ export default function ChatScreen({
                   <>
                     {voiceMode ? (
                       <button
+                        className='w-[26px] h-[26px]'
                         onClick={() => {
                           setShowInput(false);
                         }}
