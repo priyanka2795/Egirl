@@ -25,14 +25,16 @@ const Toggle = ({ handleToggleState, toggleState, toggleText, infoIcon,toggleCla
         />
       </div>
       <div className="flex flex-col">
-      <h4 className='text-[14px] font-normal leading-[18px] text-white'>{toggleText}</h4>
+      <h4 className='text-[14px] font-normal leading-[18px] text-white translate-y-1'>{toggleText}</h4>
       {
         subHeading &&
       <h6 className="text-[12px] font-normal leading-4 text-[#515151] ">Text</h6>
       }
       </div>
       {infoIcon !== "hidden" &&
-      <InfoIcon />
+        <div className='w-4 h-4 translate-y-[5px] cursor-pointer'>
+          <InfoIcon />
+        </div>
       }
     </div>
   );
