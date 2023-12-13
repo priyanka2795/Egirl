@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ArrowDown from './svg/arrow-down.svg';
 import ArrowUp from './svg/arrow-up.svg';
 import CheckIcon from './svg/check-icon.svg';
@@ -18,6 +18,8 @@ const DefaultChatViewDropdown = ({
   setChatView
 }: chartViewProps) => {
   // const [chatView, setChatView] = useState(false);
+  const optionsRef=useRef(null);
+  const buttonRef=useRef(null)
   const [selectedChatView, setSelectedChatView] = useState(chartScreenView);
   const [selectedState, setSelectedState] = useState(chartScreenView);
   const handleSelectedOption = (items: string) => {
@@ -39,10 +41,24 @@ const DefaultChatViewDropdown = ({
 
     setChatView("chatView");  
   };
+
+  // useEffect(()=>{
+  //   document.addEventListener('mousedown',handleClickOutside);
+  //   return ()=>{
+  //     document.removeEventListener('mousedown',handleClickOutside)
+  //   }
+  // },[]);
+
+  // const handleClickOutside=(event:any)=>{
+  //   if(optionsRef.current && !optionsRef?.current?.contains(event.target) && buttonRef.current && !buttonRef?.current?.contains(event.target)){
+  //     setChatView(false) 
+  //   }
+  // }
   
   return (
     <div className='relative'>
       <div
+       ref={buttonRef}
         className='flex cursor-pointer text-[14px] font-normal leading-none text-neutral-400'
         onClick={() => {setChatView("chatView") }}
       >
@@ -50,8 +66,8 @@ const DefaultChatViewDropdown = ({
         <div className='ml-1'>{chatView ? <ArrowUp /> : <ArrowDown />}</div>
       </div>
       {chatView && (
-        <div className='absolute right-0 top-[100%] mt-2 inline-flex h-[130px] w-[218px] flex-col items-start justify-start rounded-2xl bg-zinc-900 py-2 shadow'>
-          <div className='flex-col items-center self-stretch justify-start gap-2 cursor-pointer '>
+        <div ref={optionsRef} className='z-50 absolute right-0 top-[100%] mt-2 inline-flex h-[130px] w-[218px] flex-col items-start justify-start rounded-2xl bg-zinc-900 py-2 shadow'>
+          <div  className='flex-col items-center self-stretch justify-start gap-2 cursor-pointer'>
             {viewOptions.map((items , index) => {
               return (
                 <div key={index}

@@ -97,17 +97,20 @@ const Footer = () => {
           <p>302-636-5401</p>
         </div>
         <div className='flex gap-x-4'>
-          <Link href="/legal/terms-of-service">
-            <a className='hover:underline'>Terms of Service</a>
-          </Link>
-          <Link href="/legal/privacy">
-            <a className='hover:underline'>Privacy Policy</a>
-          </Link>
-          <Link href="/legal/content-conduct-policy">
-            <a className='hover:underline'>Content & Conduct Policy</a>
-          </Link>
-          <Link href="/legal/products-services-policy">
-            <a className='hover:underline'>Products & Services Policy</a>
+          <a className='hover:underline' href="https://egirls.ai/legal/terms-of-service" target="_blank" rel="noopener noreferrer" className='hover:underline'>
+            Terms of Service
+          </a>
+          <a className='hover:underline' href="https://egirls.ai/legal/privacy" target="_blank" rel="noopener noreferrer" className='hover:underline'>
+            Privacy Policy
+          </a>
+          <a className='hover:underline' href="https://egirls.ai/legal/content-and-conduct" target="_blank" rel="noopener noreferrer" className='hover:underline'>
+            Content & Conduct Policy
+          </a>
+          <a className='hover:underline' href="https://egirls.ai/legal/products-and-services" target="_blank" rel="noopener noreferrer" className='hover:underline'>
+            Products & Services Policy
+          </a>
+          <Link href="/contact-us">
+            <a className='hover:underline'>Contact Us</a>
           </Link>
         </div>
       </div>

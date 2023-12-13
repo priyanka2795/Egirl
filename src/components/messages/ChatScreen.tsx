@@ -44,6 +44,7 @@ import MessageIndicator from './MessageIndicator';
 import TextareaAutosize from 'react-textarea-autosize';
 import RecordVoice from './RecordVoice';
 import CrossIcon from '@/assets/xmark.webp';
+import { log } from 'node:console';
 
 type chatProps = {
   chatScreenClassName?: string;
@@ -63,6 +64,8 @@ export default function ChatScreen({
   chatViewStyle,
   setChatViewStyle
 }: chatProps) {
+  const filesButtonRef=useRef(null);
+  const buttonRef=useRef(null);
   const [sticky, animate] = useScroll();
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [message, setMessage] = useState('');
@@ -87,7 +90,9 @@ export default function ChatScreen({
   // const [chatViewStyle ,setChatViewStyle] = useState('Inline chat');
   const [imageRequestMsg, setImageRequestMsg] = useState(false);
   const [typingState, setTypingState] = useState(false);
+  const [messages, setMessages] = useState<any>([]);
   // const [uploadedItemState, setUploadedItemState] = useState<any>();
+  const [socket, setSocket] = useState<any>(null);
   const handleChatViewModal = () => {
     setChatViewOption(!chatViewOption);
     setSendUploadImgState(false);
@@ -107,14 +112,13 @@ export default function ChatScreen({
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault(); // Prevents the default behavior (form submission, new line)
       // Update state, perform any necessary action with the current value in the input
-      handleMessage()
+      handleMessage();
     } else if (e.key === 'Enter' && e.shiftKey) {
       // Insert a newline character when Shift + Enter is pressed
       setMessage(message + '\n');
     }
-  }
+  };
 
-  
   const handleViews = (e: any) => {
     if (e === 'chatView') {
       if (moreOptionDropdown) {
@@ -175,11 +179,10 @@ export default function ChatScreen({
     setImageUploaded(updatedImages);
   };
 
- 
   useEffect(() => {
     const chatUrl =
-      'wss://api.egirls.ai/room/ws/user/f47ac10b-58cc-4372-a567-0e02b2c3d479/room/1/character/a89df75b-4356-4118-9c9b-15dfa6e0123b/text_chat';
-      const socket = new WebSocket(chatUrl);
+      'wss://devapi.egirls.ai/room/ws/user/f47ac10b-58cc-4372-a567-0e02b2c3d479/room/1/character/a89df75b-4356-4118-9c9b-15dfa6e0123b/text_chat';
+    const socket = new WebSocket(chatUrl);
 
     socket.onopen = function (e) {
       console.log('WebSocket connection established');
@@ -187,24 +190,47 @@ export default function ChatScreen({
     socket.onmessage = function (event) {
       console.log(`[message] Data received from server: ${event.data}`);
     };
-    // return () => {
-    //   socket.close();
-    // };
+    socket.onmessage = (event) => {
+      const receivedMessage = JSON.parse(event.data);
+      setMessages((prevMessages: any) => [...prevMessages, receivedMessage]);
+      console.log({ receivedMessage });
+    };
+
+    setSocket(socket);
+    return () => {
+      socket.close();
+    };
   }, []);
 
   const handleMessage = () => {
-    setShowMessage(true);
-    console.log("message---",message)
-    const messageData = {
-      message: message
-    };
-    // socket.send(messageData);
-    setMessage('')
+    if (socket && socket.readyState === WebSocket.OPEN) {
+      setShowMessage(true);
+      console.log('message---', message);
+      const messageData = {
+        message: message
+      };
+      socket.send(JSON.stringify(messageData));
+      setMessage('');
+    }
   };
-                        
+  console.log({ messages });
+
+  useEffect(()=>{
+    document.addEventListener('mousedown',handleClickOutside);
+    return ()=>{
+      document.removeEventListener('mousedown',handleClickOutside)
+    }
+  },[]);
+
+  const handleClickOutside=(event:any)=>{
+    if(filesButtonRef.current && !filesButtonRef?.current?.contains(event.target) && buttonRef.current && !buttonRef.current?.contains(event.target)){
+        setSendUploadImgState(false)
+    }
+  }
+
   return (
     <div
-      className={`w-full border-r-[2px] border-[#252525] bg-[#121212] pb-3 lg:inline ${chatScreenClassName}`}
+      className={`w-full border-r-[2px] border-[#252525] bg-[#121212] lg:inline ${chatScreenClassName}`}
     >
       <div className='flex h-[72px] w-full items-center justify-between border-b border-[#252525] px-6'>
         <div className='flex items-center'>
@@ -216,7 +242,7 @@ export default function ChatScreen({
             height={40}
             className='rounded-full'
           />
-          <div className='flex flex-col items-start ml-3'>
+          <div className='ml-3 flex flex-col items-start'>
             <h3 className='text-[15px] font-semibold leading-5'>Mika-chan</h3>
             <h6
               className='font-normal flex cursor-pointer gap-1 text-xs text-[#979797]'
@@ -274,12 +300,12 @@ export default function ChatScreen({
           </div>
         </div>
       </div>
-      <div className='flex flex-col w-full '>
+      <div className='flex w-full flex-col '>
         <div
           className={`custom-scroll-bar flex overflow-y-auto pb-5 ${
             chatScreenMsgClassName
               ? chatScreenMsgClassName
-              : 'h-[calc(100vh-72px-92px)] '
+              : 'h-[calc(100vh-72px-112px)] '
           } ${
             imageUploaded.length === 0
               ? 'h-[calc(100vh-72px-92px)]'
@@ -289,9 +315,9 @@ export default function ChatScreen({
         >
           <div
             ref={containerRef}
-            className={`flex h-max min-h-full w-full flex-col justify-start bg-[#121212] px-6 pt-4`}
+            className={`text-base flex h-max min-h-full w-full flex-col justify-start bg-[#121212] px-6 pt-4 break-words`}
           >
-            {selectUserState === 'One More Mika' ? (
+            {/* {selectUserState === 'One More Mika' ? (
               <>
                 <NewConversationWithUser />
                 {showMessage && (
@@ -309,8 +335,40 @@ export default function ChatScreen({
               </>
             ) : (
               clearChat === false && <DummyMessage chatName={chatViewStyle} />
-            )}
-
+            )} */}
+            {messages.map((msg: any, index: any) => (
+              <>
+                {' '}
+                {msg.user_msg && (
+                  <div
+                    key={index}
+                    className={`my-1 rounded-lg rounded-br-none py-3 pl-3 pr-3.5 relative min-w-[50px] max-w-[300px] text-left ${
+                      msg.user_msg
+                        ? 'ml-auto bg-[#5848BC] text-white'
+                        : 'mr-auto bg-[#5848BC] text-white'
+                    }`}
+                  >
+                    {JSON.parse(msg.user_msg)?.message}
+                    <div className='absolute -bottom-4 right-1 w-full text-xs text-right'>
+                        <p>9:25</p>
+                    </div>
+                  </div>
+                )}
+                <div
+                  key={index}
+                  className={`my-1 rounded-lg rounded-bl-none  py-3 pl-3.5 pr-3  relative min-w-[50px] text-center ${
+                    msg.sender_type != 'character'
+                      ? 'ml-auto bg-[#1E1E1E] text-white'
+                      : 'mr-auto bg-[#1E1E1E] text-white'
+                  }`}
+                >
+                  {msg.message}
+                  <div className='absolute -bottom-4 left-1 w-full text-xs text-left'>
+                        <p>09:25</p>
+                    </div>
+                </div>
+              </>
+            ))}
             {showGiftMsg && (
               <Gift showGiftImg={showGiftImg} showGiftName={showGiftName} />
             )}
@@ -318,18 +376,21 @@ export default function ChatScreen({
           </div>
         </div>
         {showInput && (
-          <div className='flex flex-col gap-1 '>
+          <div className='flex flex-col justify-center items-start gap-1 py-6 px-2'>
             <div className={` flex w-full items-start bg-[red-400] px-6 pt-3 `}>
               <div className='relative mb-[10px]  self-end'>
                 <div
+                  ref={buttonRef}
                   className='plus-icon mr-[10px] mt-[8px] grid h-[32px] w-[32px] min-w-[32px] cursor-pointer place-items-center rounded-full bg-[#5848BC] transition duration-100 hover:bg-[#4b3abd]'
-                  onClick={() => setSendUploadImgState(!sendUploadImgState)}
+                  onClick={() => {
+                      setSendUploadImgState(!sendUploadImgState)
+                  }}
                 >
-                  <PlusIcon strokeclasses='stroke-[#ffffff]' />
+                  <PlusIcon strokeclasses='stroke-[#ffffff]'  />
                 </div>
                 {sendUploadImgState && (
-                  <div className='absolute -top-[152px] left-0 z-50 mt-2 inline-flex w-[218px] flex-col items-start justify-start rounded-2xl bg-zinc-900 py-2 shadow'>
-                    <div className='flex-col items-center self-stretch justify-start gap-2 cursor-pointer '>
+                  <div ref={filesButtonRef} className='absolute -translate-x-1 -top-[152px] left-0 z-50 mt-2 inline-flex w-[218px] flex-col items-start justify-start rounded-2xl bg-zinc-900 py-2 shadow'>
+                    <div className='cursor-pointer flex-col items-center justify-start gap-2 self-stretch '>
                       <div
                         className='flex gap-2 px-4 py-[10px] text-sm'
                         onClick={handleChatViewModal}
@@ -350,7 +411,7 @@ export default function ChatScreen({
                           {...getRootProps()}
                         >
                           <UploadIcon />
-                          <input className='hidden mb-5' {...getInputProps()} />
+                          <input className='mb-5 hidden' {...getInputProps()} />
                           <button>Upload image</button>
                         </div>
                       ) : (
@@ -408,7 +469,7 @@ export default function ChatScreen({
                           className='absolute right-4 top-3 flex h-4 w-4 cursor-pointer items-center justify-center rounded-full bg-[#0000007A]'
                           onClick={() => handleDeleteImage(index)}
                         >
-                          <Image src={CrossIcon} alt='' className='w-2 h-2' />
+                          <Image src={CrossIcon} alt='' className='h-2 w-2' />
                         </div>
                       </div>
                     ))}
@@ -431,6 +492,7 @@ export default function ChatScreen({
                       onKeyDown={handleKeyPress}
                       style={{ outline: 'none' }}
                       maxRows={5}
+                      placeholder='Type a message'
                     />
 
                     <div
@@ -455,6 +517,7 @@ export default function ChatScreen({
                   <>
                     {voiceMode ? (
                       <button
+                        className='w-[26px] h-[26px]'
                         onClick={() => {
                           setShowInput(false);
                         }}
@@ -494,7 +557,7 @@ export default function ChatScreen({
             <SendWhiteIcon />
           </button>
         </div> */}
-          <div className='flex justify-between pt-5 mx-5'>
+          <div className='mx-5 flex justify-between pt-5'>
             <RecordVoice handleMessage={handleMessage} />
           </div>
         </>

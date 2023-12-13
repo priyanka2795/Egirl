@@ -1,7 +1,7 @@
 //@ts-nocheck
 
 import Image from 'next/image';
-import React, { createRef, useEffect, useState } from 'react';
+import React, { createRef, useEffect, useRef, useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -22,6 +22,9 @@ import SearchBar from '@components/common/Search/SearchBar';
 import ViewAllTags from '@components/common/ViewAllTags';
 import useClickOutside from '../../api/utils/useClickOutside';
 import Dropdown from '@components/common/Dropdown';
+import arrowUpArrowDown from '../../../public/assets/arrow-down-arrow-up2.webp';
+import UnSelectIcon from '../../components/creator-studio/svg/short_border.svg';
+import SelectIcon from '../../components/creator-studio/svg/short_select.svg';
 const galleryArray = [
   {
     id: 1,
@@ -69,6 +72,7 @@ const galleryArray = [
     filterText: 'Furry3'
   }
 ];
+const short = ['Newest first', 'Oldest first'];
 
 interface GalleryTabFilterProps {
   singleProfileState: boolean;
@@ -90,6 +94,9 @@ const GalleryTabFilter = ({
   const [appliedFilter, setAppliedFilter] = useState({});
   const [filterTagsBy, setFilterTagsBy] = useState('A');
   const [filteredTags, setFilteredTags] = useState([]);
+  const [shortSelect, setShortSelect] = useState<boolean>(false);
+  const [shortTab, setShortTab] = useState<number>(1);
+
   const { ref, isOpen, setIsOpen } = useClickOutside<HTMLDivElement>(false); // Initialize isOpen as false
   const {
     ref: filterRef,
@@ -97,6 +104,7 @@ const GalleryTabFilter = ({
     setIsOpen: filterIsopen
   } = useClickOutside<HTMLDivElement>(false);
 
+  console.log({ selectedTags });
   console.log({ selectedTags });
 
   const toggleModal = () => {
@@ -234,10 +242,15 @@ const GalleryTabFilter = ({
     setSelectedTags(copySelectedTags);
   };
 
+  const SelectShort = (index: number) => {
+    setShortTab(index);
+  };
   const clearAll = () => {
     setAppliedFilter({});
     setSelectedTags({});
   };
+
+
 
   return (
     <>
@@ -250,7 +263,9 @@ const GalleryTabFilter = ({
           setFilterTagsBy={setFilterTagsBy}
           filterTagsBy={filterTagsBy}
           filteredTags={filteredTags}
+          closeFilterModal={closeFilterModal}
         />
+        
       )}
       {singleProfileState === false ? (
         <>
@@ -316,15 +331,17 @@ const GalleryTabFilter = ({
             </div>
             <div className='flex items-center gap-3'>
               {/* <SearchIcon /> */}
-              <div className='relative'>
+             
+               <div className='relative flex'>
                 <FilterIcon
                   onClick={() => {
                     toggleModal();
                   }}
                   className={`${
                     filterOpen && 'white-stroke'
-                  } -translate-x-[6rem] -translate-y-1 cursor-pointer`}
+                  }  cursor-pointer`}
                 />
+               
                 {filterOpen && Tags?.length && (
                   <GalleryFilterCheckbox
                     applyAllFilters={applyAllFilters}
@@ -335,6 +352,33 @@ const GalleryTabFilter = ({
                     getSelectedTagOnClick={getSelectedTagOnClick}
                     clearAll={clearAll}
                   />
+                )} 
+              </div>
+              {/* <Dropdown buttonTitle="Newest" options={Tags}/> */}
+              <div className='relative flex'>
+                <div
+                  className={`flex h-9 w-9 cursor-pointer items-center justify-center rounded-full ${
+                    shortSelect && 'bg-[#FFFFFF14]'
+                  }`}
+                  onClick={() => {
+                    setShortSelect(!shortSelect);
+                  }}
+                >
+                  <Image src={arrowUpArrowDown} alt={''} />
+                </div>
+                {shortSelect && (
+                  <div className='shadow-[0px 8px 12px 0px #0000001F] absolute right-0 top-12 z-50 flex w-[170px] flex-col gap-2 rounded-[14px] bg-[#1A1A1A] px-3 py-4'>
+                    {short.map((item, index) => (
+                      <div
+                        className='flex items-center gap-2 cursor-pointer'
+                        onClick={() => SelectShort(index)}
+                        key={index}
+                      >
+                        {shortTab == index ? <SelectIcon /> : <UnSelectIcon />}
+                        <p>{item}</p>
+                      </div>
+                    ))}
+                  </div>
                 )}
               </div>
               <div className='flex gap-2 pl-2 border-l cursor-pointer border-white/10'>

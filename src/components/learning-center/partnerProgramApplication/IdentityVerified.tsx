@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import userBadgeCheck from '@/assets/user-badge-check.webp'
+import userBadgeCheck from '../../../../public/assets/user-badge-check.png'
 
 interface identityProps {
   setSteps: any,

@@ -13,6 +13,8 @@ RUN npm cache clean --force
 # Step 4: Install any necessary dependencies
 RUN npm install
 
+RUN npm install sass-loader sass webpack --save-dev
+
 # Step 5: Copy the rest of your application's source code from your project folder to the Docker container
 # COPY . .
 

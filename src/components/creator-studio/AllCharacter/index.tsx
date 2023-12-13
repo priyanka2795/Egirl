@@ -7,7 +7,7 @@ import avtar3 from '@/assets/Avatar 3.webp';
 import avtar4 from '@/assets/Avatar 4.webp';
 import palette from '@/assets/palette.webp';
 import dotsHorizontal from '@/assets/dots-horizontal.webp';
-import userpic from '../../../components/creator-studio/svg/user-alt-1.webp';
+import userpic from '../../../components/creator-studio/svg/user-alt-1.png';
 import CharacterAdd from '../NewCharacter/CharacterAdd';
 
 
