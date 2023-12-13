@@ -1,38 +1,20 @@
 //@ts-nocheck
 
 import Image from 'next/image';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { forwardRef, useEffect, useRef, useState } from 'react';
 import circleInformation from '@/assets/circle-information.webp';
 import { log } from 'console';
 
-interface prop{
-  filterCloseForm:any,
-  Tags:string [],
-  openAllTagsModal:()=>void,
-  selectedTags:any,
-  getSelectedTagOnClick:any,
-  applyAllFilters:any,
-  clearAll: () => void
-}
-const GalleryFilterCheckbox = ({filterCloseForm,Tags,openAllTagsModal,selectedTags,getSelectedTagOnClick,applyAllFilters, clearAll}:prop) => {
+
+const GalleryFilterCheckbox = forwardRef(function(props,ref) {
+  console.log({props})
+  const {filterCloseForm,Tags,openAllTagsModal,selectedTags,getSelectedTagOnClick,applyAllFilters, clearAll}=props;
   const [viewAllTags, setViewAllTags] = useState(false);
   const [filterValues, setFilterValues] = useState({});
   const [allTags,setAllTags]=useState([]);
   const [allSelectedTags,setAllSelectedTags]=useState({});
-  const allFiltersRef=useRef(null)
 
-  useEffect(()=>{
-    document.addEventListener('mousedown',handleClickOutside);
-    return ()=>{
-      document.removeEventListener('mousedown',handleClickOutside)
-    }
-  },[]);
 
-  const handleClickOutside=(event)=>{
-    if(allFiltersRef.current && !allFiltersRef.current.contains(event.target)){
-      filterCloseForm();
-    }
-  }
 
 
   useEffect(()=>{
@@ -81,7 +63,7 @@ const GalleryFilterCheckbox = ({filterCloseForm,Tags,openAllTagsModal,selectedTa
   console.log({selectedTags, Tags})
 
   return (
-    <div ref={allFiltersRef} className='absolute -right-[60px] z-[3] mt-6 flex flex-col items-center rounded-[14px] bg-[#272727] pb-5'>
+    <div ref={ref} className='absolute -right-[60px] z-[3] mt-6 flex flex-col items-center rounded-[14px] bg-[#272727] pb-5'>
       <form>
       <div className='flex w-[346px] flex-col items-start justify-center gap-3 px-6 py-5 text-[#FFFFFF]'>
         <div className='flex items-center self-stretch justify-between'>
@@ -240,6 +222,6 @@ const GalleryFilterCheckbox = ({filterCloseForm,Tags,openAllTagsModal,selectedTa
       </div>
     </div>
   );
-};
+});
 
 export default GalleryFilterCheckbox;

@@ -96,6 +96,10 @@ const GalleryTabFilter = ({
   const [filteredTags, setFilteredTags] = useState([]);
   const [shortSelect, setShortSelect] = useState<boolean>(false);
   const [shortTab, setShortTab] = useState<number>(1);
+  const allFiltersRef=useRef(null);
+  const buttonRef=useRef(null);
+  const shortSelectRef=useRef(null);
+  const shortButtonRef=useRef(null);
 
   const { ref, isOpen, setIsOpen } = useClickOutside<HTMLDivElement>(false); // Initialize isOpen as false
   const {
@@ -250,6 +254,27 @@ const GalleryTabFilter = ({
     setSelectedTags({});
   };
 
+  useEffect(()=>{
+    document.addEventListener('mousedown',handleClickOutside);
+    return ()=>{
+      document.removeEventListener('mousedown',handleClickOutside)
+    }
+  },[]);
+
+  const handleClickOutside=(event)=>{
+    console.log({event:event.target,ff:allFiltersRef.current})
+    if(allFiltersRef.current && !allFiltersRef.current.contains(event.target) && buttonRef.current && !buttonRef.current.contains(event.target)){
+      closeFilterModal();
+    }
+    if(shortSelectRef.current && !shortSelectRef.current.contains(event.target) && shortButtonRef.current && !shortButtonRef.current.contains(event.target)){
+      setShortSelect(false);
+    }
+  }
+
+  useEffect(()=>{
+    console.log("curr",allFiltersRef.current)
+  },[])
+
 
 
   return (
@@ -333,14 +358,18 @@ const GalleryTabFilter = ({
               {/* <SearchIcon /> */}
              
                <div className='relative flex'>
-                <FilterIcon
-                  onClick={() => {
+                <div ref={buttonRef} onClick={() => {
                     toggleModal();
-                  }}
+                  }}>
+                <FilterIcon
+                    
+                  
                   className={`${
                     filterOpen && 'white-stroke'
                   }  cursor-pointer`}
                 />
+                </div>
+                
                
                 {filterOpen && Tags?.length && (
                   <GalleryFilterCheckbox
@@ -351,12 +380,15 @@ const GalleryTabFilter = ({
                     selectedTags={selectedTags}
                     getSelectedTagOnClick={getSelectedTagOnClick}
                     clearAll={clearAll}
+                    ref={allFiltersRef}
                   />
                 )} 
               </div>
               {/* <Dropdown buttonTitle="Newest" options={Tags}/> */}
               <div className='relative flex'>
                 <div
+                ref={shortButtonRef}
+                  r={shortSelectRef}
                   className={`flex h-9 w-9 cursor-pointer items-center justify-center rounded-full ${
                     shortSelect && 'bg-[#FFFFFF14]'
                   }`}
@@ -367,7 +399,7 @@ const GalleryTabFilter = ({
                   <Image src={arrowUpArrowDown} alt={''} />
                 </div>
                 {shortSelect && (
-                  <div className='shadow-[0px 8px 12px 0px #0000001F] absolute right-0 top-12 z-50 flex w-[170px] flex-col gap-2 rounded-[14px] bg-[#1A1A1A] px-3 py-4'>
+                  <div ref={shortSelectRef} className='shadow-[0px 8px 12px 0px #0000001F] absolute right-0 top-12 z-50 flex w-[170px] flex-col gap-2 rounded-[14px] bg-[#1A1A1A] px-3 py-4'>
                     {short.map((item, index) => (
                       <div
                         className='flex cursor-pointer items-center gap-2'
