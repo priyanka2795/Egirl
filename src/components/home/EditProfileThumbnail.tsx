@@ -13,8 +13,8 @@ import Xmark from '@/assets/svgImages/xmark.svg';
 
 interface editThumbnailProp {
   setUpdateProfileThumbnail: React.Dispatch<React.SetStateAction<boolean>>;
-  croppedImage: boolean;
-  setCroppedImage: React.Dispatch<React.SetStateAction<boolean>>;
+  croppedImage: string | null;
+  setCroppedImage: React.Dispatch<React.SetStateAction<string | null>>;
 }
 const EditProfileThumbnail = ({
   setUpdateProfileThumbnail,

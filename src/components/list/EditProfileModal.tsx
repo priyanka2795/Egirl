@@ -7,11 +7,10 @@ import InputFieldDesign from '@components/common/InputFieldDesign';
 import ProfileDropdown from '@components/common/ProfileDropdown';
 import DeleteProfileModal from '@components/common/DeleteProfileModal';
 import AddImagesModal from '@components/creator-studio/style-generator/AddImagesModal';
-import {
-  updateCharacter
-} from 'services/services';
+import { updateCharacter} from 'services/services';
 import Cookies from 'js-cookie';
 import EditProfileThumbnail from '@components/home/EditProfileThumbnail';
+
 
 interface EditProfileModalProps {
   closeState: React.Dispatch<React.SetStateAction<boolean>>;
@@ -90,7 +89,7 @@ const EditProfileModal = ({
       >
         <div className='flex justify-between border-b border-white/[0.08] p-6'>
           <div className='font-bold text-[18px] leading-6 text-white'>
-            Edit profile
+            Edit profile 
           </div>
           <button onClick={() => closeState(false)}>
             <Image src={xMark} alt={''} className='h-[24px] w-[24px]' />
@@ -175,6 +174,7 @@ const EditProfileModal = ({
                   display_name: value
                 }))
               }
+              
             />
 
             <InputFieldDesign
@@ -192,12 +192,6 @@ const EditProfileModal = ({
               inputType='text'
               inputPlaceholder='Add profile tags'
               value={userDetails?.profile_tags}
-              // onChange={(value: any) =>
-              //   setUserDetails((prev: any) => ({
-              //     ...prev,
-              //     profile_tags: value
-              //   }))
-              // }
               onChange={(value: any) =>
                 setUserDetails((prev: any) => ({
                   ...prev,

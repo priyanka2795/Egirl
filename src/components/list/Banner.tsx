@@ -29,6 +29,8 @@ import userAvatar from '@/assets/user-alt-1.webp';
 import CoverImageModel from './finishStep/coverImageModel';
 import { postUploadMedia } from 'services/services';
 import Cookies from 'js-cookie';
+import { useRouter } from 'next/router';
+import HeartPlus from './svg/heartPlus.svg'
 
 const posts = [
   {
@@ -125,6 +127,8 @@ const Banner: React.FC<BannerProp> = ({
   updateCharacterToggle,
   setUpdateCharacterToggle
 }: BannerProp) => {
+  const router = useRouter()
+  
   const [actionDivShow, setActionDivShow] = useState(false);
   const [exploreSelectedTab, setExploreSelected] = useState('');
   const [collectionModalState, setCollectionModalState] = useState(false);
@@ -264,18 +268,21 @@ const Banner: React.FC<BannerProp> = ({
               <div className='mb-2 h-[200px] w-full bg-[#313131]'></div>
             ) : (
               <img className='h-[200px] w-full ' src={coverImage} alt='' />
-              // <Image className='w-full h-full ' src={Cover} alt='' />
             )}
             <div
               className='absolute right-[20px] top-[20px] cursor-pointer'
               ref={photoDropdownRef}
             >
-              <Image
+              {
+                router.asPath === "/explore" ? "":
+                <Image
                 className='relative'
                 src={cameraIcon}
                 alt=''
                 onClick={(e) => handleUploadPhotoShow(e)}
               />
+              }
+             
               {uploadPhotoShow ? (
                 <div className='absolute right-0 top-[65px] z-0 flex h-max w-[218px] flex-col items-start rounded-[14px] bg-[#1A1A1A] px-2 py-2 shadow-[0px_8px_12px_0px_#0000001F]'>
                   {uploadPhoto.map((item, index) => {
@@ -316,29 +323,33 @@ const Banner: React.FC<BannerProp> = ({
                 </div>
               </div>
               <div className={'flex gap-3 self-end'}>
-                {/* <button
+                {
+                  router.asPath === "/explore" ? 
+                <>
+                  <button
                   className={`flex h-max gap-2 rounded-[14px] px-[20px] py-[11px] text-[16px] font-bold ${
-                    followBtnStyle
-                      ? followBtnStyle
-                      : 'bg-white/[0.08] text-white'
+                    !"followed"
+                      ? 'bg-white/[0.08] text-white'
+                      : 'border border-[#7362C6] bg-transparent text-[#7362C6]'
                   }`}
                 >
-                  {followBtnStyle ? (
-                    ''
-                  ) : (
+                  {!"followed" ? (
                     <Image
-                      src={userCheckIcon}
-                      alt=''
-                      className='object-contain'
-                    />
-                  )}
+                    src={userCheckIcon}
+                    alt=''
+                    className='object-contain'
+                  />
+                  ) : ""}
 
-                  {followText ? followText : 'Following'}
+                  {!"followed" ? "Following" : 'Follow'}
                 </button>
-                <button className='h-max rounded-[14px] border border-[#5848BC] bg-[#5848BC] px-[20px] py-[11px] text-base font-bold text-white'>
-                  Subscribe
-                </button> */}
-                <button
+                <button className={`${!"subscribed" ? 'bg-white/[0.08] text-white' : 'border-[#5848BC] bg-[#5848BC]'} h-max flex items-center gap-2 rounded-[14px]   px-[20px] py-[11px] text-base font-bold text-white`}>
+                {!"subscribed" ? <HeartPlus/> : "" }Subscribe
+                </button> 
+                </>
+                :
+                <>
+                 <button
                   className='flex items-center justify-center gap-2 rounded-[14px] bg-white/[0.08] px-5 py-[13px]'
                   onClick={() => setEditProfileModal(true)}
                 >
@@ -361,7 +372,10 @@ const Banner: React.FC<BannerProp> = ({
                       />
                     </div>
                   </div>
-                </div>
+                </div></>
+                }
+             
+               
                 <div className='relative' ref={dropdownRef}>
                   <Image
                     className='relative cursor-pointer'
@@ -489,7 +503,7 @@ const Banner: React.FC<BannerProp> = ({
                 <div className='flex gap-[6px]'>
                   <Image className='object-contain' src={calendarIcon} alt='' />
                   <div className='font-normal text-[13px] text-[#FFFFFF]'>
-                    {`Joined ${joinedDate}`}
+                    {`Joined ${joinedDate}`} 
                   </div>
                 </div>
               </div>
