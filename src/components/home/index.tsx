@@ -36,7 +36,7 @@ const Home = () => {
   const token:any = Cookies.get("accessToken")
   const refreshTokenData:string | undefined = useAppSelector((state)=> state.tokenRefresh?.tokenData)
 
- console.log("token---",token, "refreshTokenData---", refreshTokenData)
+  console.log("token---",token, "refreshTokenData---", refreshTokenData)
 
   const [showForYou, setShowForYou] = useState(true);
   const [bookmarksActive, setBookmarksActive] = useState<boolean>(false);
@@ -44,8 +44,8 @@ const Home = () => {
   const [copyLink, setCopyLink] = useState(false);
   const [forYouData, setForYouData] = useState([])
   const [subscriptionData, setSubscriptionData] = useState([])
-  const [postUpdate, setPostUpdate] = useState(false)
-  const [bookMarkToast, setBookMarkToast] = useState(false)
+  const [postUpdate, setPostUpdate] = useState<boolean>(false)
+  const [bookMarkToast, setBookMarkToast] = useState<boolean>(false)
   const handleFeedSwitch = (feedType: string) => {
     if (feedType === 'forYou' && !showForYou) {
       setShowForYou(true);
@@ -101,12 +101,11 @@ const Home = () => {
     forYouPost(1,10, token)
     .then((res:any)=>{
       setForYouData(res?.data)
-      
       if(res?.response?.status === 401){
         dispatch(tokenRefresh())
       }
      })
-    .catch((err:any)=>{
+    .catch((err)=>{
       console.log("forYou err---", err)
     })
 
@@ -117,13 +116,13 @@ const Home = () => {
         dispatch(tokenRefresh())
       }
     })
-    .catch((err:any)=>{
+    .catch((err)=>{
       console.log("post subscription err---", err)
     })
   }, [postUpdate,refreshTokenData,router.pathname])
 
-    const formatTimestamp = (timestamp:any) => {
-    const currentDate:any = new Date();
+    const formatTimestamp = (timestamp:string) => {
+    const currentDate: any = new Date();
     const apiDate = Date.parse(timestamp);
     const diff = Math.abs(currentDate - apiDate);
 
@@ -143,7 +142,7 @@ const Home = () => {
     }
   };
   // console.log(formatTimestamp("2023-11-09T07:38:22.394397+00:00"))
-  
+
   return (
     <>
       {/*  max-w-[1650px] */}

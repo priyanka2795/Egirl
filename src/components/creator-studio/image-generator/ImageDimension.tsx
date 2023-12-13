@@ -34,7 +34,7 @@ const ImageDimension = ({setImageDimension}:props) => {
           return (
             <div
               key={index}
-              className={`${items.id} rounded-[12px] border border-[#515151] px-3 py-[10px] text-center cursor-pointer ${selectedDimension === index ? 'bg-[#1f1b3f]' : ''}`}
+              className={`${items.id} rounded-[12px] border border-[#515151] px-3 py-[10px] text-center cursor-pointer ${selectedDimension === index ? 'border-[#5848BC]' : ''}`}
               onClick={()=> handleDimension(items.area.height,items.area.width, index)}
             >
               <h6 className='text-[14px] font-bold leading-5 text-white'>

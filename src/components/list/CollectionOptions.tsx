@@ -18,27 +18,32 @@ import { tokenRefresh } from 'redux/api/RefreshTokenApi';
 import { useAppDispatch, useAppSelector } from 'redux/hooks';
 import { useRouter } from 'next/router'
 interface CollectionOptionsProps {
-  setShowRealistic: any;
+  setShowRealistic:React.Dispatch<React.SetStateAction<boolean>>
 }
+
+interface ApiResponse {
+  id:number
+  collection_name: string;
+ }
 
 const collectionImg = [model2, micaChan, mirandal, model2];
 const CollectionOptions = ({ setShowRealistic }: CollectionOptionsProps) => {
   const dispatch = useAppDispatch()
   const router = useRouter()
   const token:any = Cookies.get('accessToken');
-  const refreshTokenData:any = useAppSelector((state)=> state.tokenRefresh?.tokenData)
+  const refreshTokenData:string | undefined = useAppSelector((state)=> state.tokenRefresh?.tokenData)
   const [createCollectionModal, setCreateCollectionModal] = useState(false);
-  const [imageDropdownId, setImageDropdownId] = useState('');
+  const [imageDropdownId, setImageDropdownId] = useState<number>();
   const [selectedCardId, setSelectedCardId] = useState('false');
   const [filterByType, setFilterByType] = useState(false);
-  const [titleText, setTitleText] = useState('');
+  const [titleText, setTitleText] = useState<string>('');
   const [allCollections, setAllCollections] = useState([]);
   const [collectionUpdate, setCollectionUpdate] = useState(false)
 
-  const handleFilterContent = (e: any) => {
+  const handleFilterContent = (e: React.MouseEvent<HTMLElement>) => {
     setFilterByType(true);
-    setTitleText(e.target.innerHTML);
-  };
+    setTitleText((e.target as HTMLElement).innerHTML);
+};
 
   useEffect(() => {
     if(refreshTokenData){
@@ -46,7 +51,6 @@ const CollectionOptions = ({ setShowRealistic }: CollectionOptionsProps) => {
     }
     getAllCollections(1, 10, token)
       .then((res: any) => {
-        console.log('all collection res--', res);
         setAllCollections(res.data);
         if(res?.response?.status === 401){
           dispatch(tokenRefresh())
@@ -105,7 +109,7 @@ const CollectionOptions = ({ setShowRealistic }: CollectionOptionsProps) => {
           </div>
         </div>
           </div> */}
-              {allCollections?.map((e:any, i) => {
+              {allCollections?.map((e:ApiResponse, i) => {
                 return (
                   <CollectionCard
                     cardMainImg={collectionImg[i]}
@@ -114,7 +118,7 @@ const CollectionOptions = ({ setShowRealistic }: CollectionOptionsProps) => {
                     cardId={i}
                     setImageDropdownId={setImageDropdownId}
                     imageDropdownId={imageDropdownId}
-                    filterFunction={(e: any) => handleFilterContent(e)}
+                    filterFunction={(e:  React.MouseEvent<HTMLElement>) => handleFilterContent(e)}
                     setShowRealistic={setShowRealistic}
                     key={i}
                     collectionId = {e?.id}

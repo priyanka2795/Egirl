@@ -71,7 +71,7 @@ const Card = () => {
     updateCurrentIndex(index - 1);
   };
 
-  const outOfFrame = (name: any, idx: any) => {
+  const outOfFrame = (name: string, idx: number) => {
     console.log(`${name} (${idx}) left the screen!`, currentIndexRef.current);
     // handle the case in which go back is pressed before card goes outOfFrame
     currentIndexRef.current >= idx && childRefs[idx].current.restoreCard();

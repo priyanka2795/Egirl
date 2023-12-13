@@ -20,7 +20,6 @@ const GalleryFilterCheckbox = ({filterCloseForm,Tags,openAllTagsModal,selectedTa
   const [allTags,setAllTags]=useState([]);
   const [allSelectedTags,setAllSelectedTags]=useState({})
 
-
   useEffect(()=>{
     setAllTags(Tags)
   },[Tags]);

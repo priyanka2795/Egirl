@@ -51,8 +51,8 @@ const YouMightLike = () => {
               .map((_, index) => (
                 <Image
                   key={index}
-                  src='/dummy-char.png' // Change to your image path
-                  alt={`Character Profile Picture ${index + 1}`} // Change to your alt text
+                  src='/dummy-char.png' 
+                  alt={`Character Profile Picture ${index + 1}`} 
                   width={66}
                   height={66}
                   className='rounded-full'
@@ -71,8 +71,8 @@ const YouMightLike = () => {
             <Image
               src='/assets2/Home/ExploreMorePic.png'
               alt='Explore More'
-              width={328} // replace with your desired image width
-              height={274} // replace with your desired image height
+              width={328}
+              height={274} 
             />
             <button className='absolute bottom-4 left-4 right-4 flex items-center justify-center rounded-xl bg-[#5848BC] py-[10px] text-sm font-bold text-white transition duration-100 hover:bg-[#5342be]'>
               Explore more

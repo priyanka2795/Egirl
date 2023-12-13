@@ -9,12 +9,12 @@ interface CollectionCardProps {
   cardMainImg: any;
   characterName: string;
   cardImgClasses?: string;
-  imageDropdownId?: any;
+  imageDropdownId?: number;
   setImageDropdownId?: any;
   cardId?: number | undefined;
   filterFunction?: any;
   subscription?: string;
-  setShowRealistic: any;
+  setShowRealistic: React.Dispatch<React.SetStateAction<boolean>>;
   collectionId?:number
 }
 const CollectionCard = ({
@@ -30,13 +30,13 @@ const CollectionCard = ({
 }: CollectionCardProps) => {   
   const [filterByType , setFilterByType] = useState(false);
   let filterTitle = "";
-  const handleFilterContent = (e:any) =>{
+  const handleFilterContent = (e:React.MouseEvent<HTMLElement>) =>{
     setFilterByType(true);
-    filterTitle= e.target.innerHTML;
+    filterTitle= (e.target as HTMLElement).innerHTML;
   }
 
   const handleDropDownId = (cardId:number | undefined)=>{
-    setImageDropdownId((prev :any) => (prev === cardId ? null : cardId))
+    setImageDropdownId((prev :number | undefined) => (prev === cardId ? null : cardId))
   }
   
   return (<>

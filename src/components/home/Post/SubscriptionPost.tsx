@@ -32,8 +32,8 @@ interface PostProps {
   handleShare: () => void;
   postId: number;
   postUpdate: boolean;
-  setPostUpdate: any;
-  setBookMarkToast : any;
+  setPostUpdate: React.Dispatch<React.SetStateAction<boolean>>;
+  setBookMarkToast : React.Dispatch<React.SetStateAction<boolean>>;
   is_liked_by_user:boolean;
 }
 

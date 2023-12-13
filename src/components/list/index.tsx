@@ -20,7 +20,7 @@ const ListIndex = () => {
   const [showFollowing, setShowFollowing] = useState(false);
   const [showBookmark, setShowBookmark] = useState(false);
   const [showCollections, setShowCollections] = useState(false);
-  const [showRealistic, setShowRealistic] = useState(false);
+  const [showRealistic, setShowRealistic] = useState<boolean>(false);
   return (
     <div>
       

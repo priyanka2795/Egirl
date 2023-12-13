@@ -1,7 +1,6 @@
 //@ts-nocheck
 
 import { Button } from '@components/common/SmallCompoents/Button';
-import Image from 'next/image';
 import React, { useState, useRef } from 'react';
 import AvatarEditor from 'react-avatar-editor';
 import PlusIcon from '@/assets/svgImages/plus-large-icon.svg';
@@ -14,8 +13,8 @@ import Xmark from '@/assets/svgImages/xmark.svg';
 
 interface editThumbnailProp {
   setUpdateProfileThumbnail: React.Dispatch<React.SetStateAction<boolean>>;
-  croppedImage: any;
-  setCroppedImage: any;
+  croppedImage: boolean;
+  setCroppedImage: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const EditProfileThumbnail = ({
   setUpdateProfileThumbnail,

@@ -9,10 +9,22 @@ interface Feed {
   handleShare: () => void;
   forYouData?: any;
   postUpdate:boolean;
-  setPostUpdate:any;
-  setBookMarkToast : any;
+  setPostUpdate:React.Dispatch<React.SetStateAction<boolean>>;
+  setBookMarkToast : React.Dispatch<React.SetStateAction<boolean>>;
   subscriptionData?:any;
   showForYou:boolean
+}
+interface APIResponse{
+  id:number,
+  profile_picture_url:string,
+  character_display_name:string,
+  character_username:string,
+  description:string,
+  comments_count:string,
+  likes_count:string,
+  character_location:string,
+  is_bookmarked:boolean,
+  is_liked_by_user:boolean
 }
 export default function Feed({
   bookmarksActive,
@@ -33,7 +45,7 @@ export default function Feed({
     <div className='max-w-[600px] flex-grow bg-main-background lg:min-w-[600px]'>
       <div className='px-[20px]'>
         {showForYou ? 
-        forYouData?.map((ele: any, index: number) => {
+        forYouData?.map((ele: APIResponse, index: number) => {
           return (
            <div className='mb-5' key={index}>
              <Post

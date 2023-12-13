@@ -6,7 +6,6 @@ import BookmarkFillIcon from './svg/bookmark-fill.svg';
 import ReturnIcon from './svg/return-icon.svg';
 import EyeIcon from './svg/eye.svg';
 import LocationPinIcon from './svg/location-pin.svg';
-import Image from 'next/image';
 import DotsHorizontalIcon from './svg/dots-horizontal.svg';
 import CommentIcon from './svg/comment.svg';
 import Tooltip from '@components/common/tooltip';
@@ -32,8 +31,8 @@ interface PostProps {
   handleShare: () => void;
   postId: number;
   postUpdate: boolean;
-  setPostUpdate: any;
-  setBookMarkToast : any;
+  setPostUpdate: React.Dispatch<React.SetStateAction<boolean>>;
+  setBookMarkToast : React.Dispatch<React.SetStateAction<boolean>>;
   is_liked_by_user:boolean;
 }
 
@@ -84,7 +83,6 @@ const Post: React.FC<PostProps> = ({
     }
     postLike(likeData, token)
       .then((res) => {
-        // console.log('post like res---', res);
         setPostUpdate(!postUpdate);
       })
       .catch((err) => {

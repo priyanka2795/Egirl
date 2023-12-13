@@ -1,7 +1,5 @@
 import React from 'react'
 import Image from 'next/image'
-import TinderNopeBtn from '@components/explore/TinderNopeBtn';
-import TinderLikeBtn from '@components/explore/TinderLikeBtn';
 import blueDressGirl from '@/assets/blue-dress-girl.webp';
 import arrowNext from '@/assets/arrow-next.webp';
 
