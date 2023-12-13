@@ -308,8 +308,8 @@ export default function ChatScreen({
               : 'h-[calc(100vh-72px-112px)] '
           } ${
             imageUploaded.length === 0
-              ? 'h-[calc(100vh-72px-92px)]'
-              : 'h-[calc(72vh-72px-92px)]'
+              ? 'h-[calc(100vh-72px-112px)]'
+              : 'h-[calc(72vh-72px-112px)]'
           } `}
           // ${ imageUploaded.length === 0 ?'h-[calc(100vh-72px-92px)]' :'h-[calc(72vh-72px-92px)]'}
         >

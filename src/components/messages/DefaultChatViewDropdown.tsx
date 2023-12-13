@@ -51,7 +51,11 @@ const DefaultChatViewDropdown = ({
 
   // const handleClickOutside=(event:any)=>{
   //   if(optionsRef.current && !optionsRef?.current?.contains(event.target) && buttonRef.current && !buttonRef?.current?.contains(event.target)){
-  //     setChatView(false) 
+  //     if(chatView){
+  //       setChatView('chatView')
+  //     }else{
+  //       setChatView('Default view')
+  //     }
   //   }
   // }
   
