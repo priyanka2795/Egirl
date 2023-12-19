@@ -30,6 +30,8 @@ import userAdd from '@/assets/user-plus1.webp';
 import CreateCharacterModal from '@components/list/CreateCharacterModal';
 import Cookies from 'js-cookie';
 import { getAllCharacter, profileCharacter } from 'services/services';
+import { useAppDispatch, useAppSelector } from 'redux/hooks';
+import { tokenRefresh } from 'redux/api/RefreshTokenApi';
 interface CreatorStudioNavbarPropProp {
   shrinkSideBar: boolean;
   IsOpen: any;
@@ -73,6 +75,7 @@ const CreatorStudioSidebar = ({
   setCreateCharacterToggle,
   createCharacterToggle
 }: CreatorStudioNavbarPropProp) => {
+  const dispatch = useAppDispatch()
   const [sidebarModal, setSidebarModal] = useState<boolean>(false);
   const [moreOptionsModal, setMoreOptionsModal] = useState<boolean>(false);
   const [newCharacter, setNewCharacter] = useState<boolean>(false);
@@ -83,6 +86,7 @@ const CreatorStudioSidebar = ({
   const [activeProfileId, setActiveProfileId] = useState<any>();
   const [activeProfileData, setActiveProfileData] = useState<any>();
   const token: any = Cookies.get('accessToken');
+  const refreshTokenData:string | undefined = useAppSelector((state)=> state.tokenRefresh?.tokenData)
 
   const handleNewCharacter = () => {
     setCreateCharacter(true);
@@ -95,7 +99,7 @@ const CreatorStudioSidebar = ({
   const GuideStep4 = TourSteps[4].id;
 
   useEffect(() => {
-    getAllCharacter(token)
+    getAllCharacter(refreshTokenData?refreshTokenData:token)
       .then((res: any) => {
         setAllCharacterData(res?.data);
         if (res?.data.length === 1) {
@@ -111,6 +115,9 @@ const CreatorStudioSidebar = ({
           Cookies.set('character_id', res?.data[0]?.id);
           setActiveProfileId(res?.data[0]?.id); // Set active profile ID
         }
+        if(res?.response?.status === 401){
+          dispatch(tokenRefresh())
+        }
       })
       .catch((err: any) => {
         console.log(err);
@@ -123,16 +130,19 @@ const CreatorStudioSidebar = ({
   }, [activeProfile]);
 
   useEffect(() => {
-    profileCharacter(activeProfileId, token)
+    profileCharacter(activeProfileId, refreshTokenData?refreshTokenData:token)
       .then((res: any) => {
         setActiveProfileData(res?.data[0]);
         setBannerData(res?.data[0]);
+        if(res?.response?.status === 401){
+          dispatch(tokenRefresh())
+        }
       })
       .catch((err: any) => {
         console.log(err);
       });
   }, [activeProfileId]);
-
+ 
   return (
     <>
       <div

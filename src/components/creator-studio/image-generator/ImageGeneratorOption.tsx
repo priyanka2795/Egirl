@@ -284,7 +284,7 @@ const ImageGeneratorOption = ({
         inference_steps: stepScale[0].toString(),
         num_of_images: numOfImages
       };
-      postInpaintImage(inPaintData, token)
+      postInpaintImage(inPaintData, refreshTokenData?refreshTokenData:token)
         .then((res: any) => {
           console.log('inPaintImage res---', res);
           setUpdateImgState(!updateImgState)
@@ -322,7 +322,7 @@ const ImageGeneratorOption = ({
         inference_steps: stepScale[0].toString(),
         num_of_images: numOfImages
       };
-      postPoseImage(poseData, token)
+      postPoseImage(poseData, refreshTokenData?refreshTokenData:token)
       .then((res:any)=>{
         console.log("pose image res---", res)
         setUpdateImgState(!updateImgState)
@@ -355,7 +355,7 @@ const ImageGeneratorOption = ({
         inference_steps: stepScale[0].toString(),
         num_of_images: numOfImages
       };
-      postPromptImage(promptData, token)
+      postPromptImage(promptData, refreshTokenData?refreshTokenData:token)
         .then((res: any) => {
           console.log('prompt image res---', res);
           setUpdateImgState(!updateImgState)

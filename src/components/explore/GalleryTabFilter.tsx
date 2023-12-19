@@ -25,6 +25,7 @@ import Dropdown from '@components/common/Dropdown';
 import arrowUpArrowDown from '../../../public/assets/arrow-down-arrow-up2.webp';
 import UnSelectIcon from '../../components/creator-studio/svg/short_border.svg';
 import SelectIcon from '../../components/creator-studio/svg/short_select.svg';
+import { useAppDispatch, useAppSelector } from 'redux/hooks';
 const galleryArray = [
   {
     id: 1,
@@ -84,7 +85,9 @@ const GalleryTabFilter = ({
   setSingleProfileState,
   userId
 }: GalleryTabFilterProps) => {
+  const dispatch = useAppDispatch()
   const token: any = Cookies.get('accessToken');
+  const refreshTokenData:string | undefined = useAppSelector((state)=> state.tokenRefresh?.tokenData)
   const [selectedFilter, setSelectedFilter] = useState('All');
   const [filterForm, setFilterForm] = useState(false);
   const [galleryData, setGalleryData] = useState<any>();
@@ -143,15 +146,21 @@ const GalleryTabFilter = ({
   }, [filterTagsBy]);
 
   useEffect(() => {
-    exploreGallery(1, 10, token)
+    if(refreshTokenData){
+      Cookies.set("accessToken", refreshTokenData)
+    }
+    exploreGallery(1, 10, refreshTokenData?refreshTokenData:token)
       .then((res: any) => {
         setGalleryData(res?.data);
+        if(res?.response?.status === 401){
+          dispatch(tokenRefresh())
+        }
         console.log(res, 'exploreGallaryRes????');
       })
       .catch((err) => {
         console.log(err, 'exploreError????');
       });
-  }, []);
+  }, [refreshTokenData]);
 
   useEffect(() => {
     if (!isOpen && Object.keys(selectedTags)?.length) {

@@ -180,7 +180,7 @@ const ViewImagesMainPage = () => {
   if (refreshTokenData) {
     Cookies.set('accessToken', refreshTokenData);
   }
-  getImageGeneration(1,10,token)
+  getImageGeneration(1,10,refreshTokenData?refreshTokenData:token)
   .then((res:any)=>{
     console.log("get image generation res----",res)
     setAllImgData(res?.data)

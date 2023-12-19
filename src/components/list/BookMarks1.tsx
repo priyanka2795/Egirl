@@ -97,7 +97,7 @@ const BookMarks = () => {
       Cookies.set("accessToken", refreshTokenData)
     }
 
-    getBookMarked(1,10, token)
+    getBookMarked(1,10, refreshTokenData?refreshTokenData:token)
     .then((res:any)=>{
       setBookMarkedData(res.data)
       if(res?.response?.status === 401){

@@ -42,7 +42,7 @@ const Messages = () => {
     if (refreshTokenData) {
       Cookies.set('accessToken', refreshTokenData);
     }
-    getRooms(token)
+    getRooms(refreshTokenData?refreshTokenData:token)
       .then((res: any) => {
         setRoomData(res?.data);
         if (res?.response?.status === 401) {

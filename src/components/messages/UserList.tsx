@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect } from 'react';
 import NoResultFound from './NoResultFound';
 import ImageRequestModal from './ImageRequestModal';
 import { createRoom } from 'services/services';
@@ -33,14 +33,21 @@ type props = {
 
 const UserList = ({ userSelected }: props) => {
   const token: any = Cookies.get('accessT');
+  const refreshTokenData:string | undefined = useAppSelector((state)=> state.tokenRefresh?.tokenData)
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if(refreshTokenData){
+      Cookies.set("accessToken", refreshTokenData)
+    }
+  }, [refreshTokenData]);
 
   // ------ create room api -----------
   const handleCreateRoom = ()=>{
     let data = {
       character_id: '3fa85f64-5717-4562-b3fc-2c963f66afa6'
     };
-    createRoom(data, token)
+    createRoom(data, refreshTokenData?refreshTokenData:token)
       .then((res:any) => {
         console.log('create room res---', res);
         if (res?.response?.status === 401) {

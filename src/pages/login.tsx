@@ -44,12 +44,9 @@ export default function SignIn({ SetFormStep }: SignIn) {
   const [signInSteps, setSignInSteps] = useState<number>();
   const [verifyCode, setVerifyCode] = useState<boolean>(false);
 
-
   // Otp
   const [otp, setOtp] = useState('');
- 
-
-  const onChange = (value: string) => {
+   const onChange = (value: string) => {
     setOtp(value);
   };
 

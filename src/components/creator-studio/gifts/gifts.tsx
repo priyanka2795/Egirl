@@ -77,9 +77,12 @@ function Gifts() {
   };
 
   const DeleteGift = (data: any) => {
-    deleteGift(characterId, [data?.gift_id], token)
+    deleteGift(characterId, [data?.gift_id], refreshTokenData?refreshTokenData:token)
       .then((res: any) => {
         setDeleteGiftToggle(!deleteGiftToggle);
+        if(res?.response?.status === 401){
+          dispatch(tokenRefresh())
+        }
       })
       .then((err: any) => {
         console.log(err);
@@ -110,7 +113,7 @@ function Gifts() {
     }
   }, [refreshTokenData]);
   const getAllCategory = () => {
-    getGiftCategory(characterId, token)
+    getGiftCategory(characterId, refreshTokenData?refreshTokenData:token)
       .then((response: any) => {
         if (response && response.data) {
           setGiftCategory(response?.data);
@@ -146,7 +149,7 @@ function Gifts() {
       selectedCategoryId
         ? selectedCategoryId
         : giftCategory && giftCategory[0]?.gift_category_id,
-      token
+        refreshTokenData?refreshTokenData:token
     )
       .then((res: any) => {
         console.log(res);
@@ -172,7 +175,8 @@ function Gifts() {
     giftCategory,
     createCategoryToggle,
     createGiftToggle,
-    searchQuery
+    searchQuery,
+    refreshTokenData
   ]);
 
   return (

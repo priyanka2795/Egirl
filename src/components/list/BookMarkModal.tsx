@@ -88,7 +88,7 @@ const BookMarkModal = ({
       post_id: postId,
       description: textAreaCount
     };
-    postComment(commentData, token)
+    postComment(commentData, refreshTokenData?refreshTokenData:token)
       .then((res: any) => {
         console.log('post comment res---', res);
         setPostUpdate(!postUpdate);
@@ -101,7 +101,7 @@ const BookMarkModal = ({
 
   // ===== get post comment api =====
   useEffect(() => {
-    getPostComments(postId, 1, 10, token)
+    getPostComments(postId, 1, 10, refreshTokenData?refreshTokenData:token)
       .then((res: any) => {
         console.log('get comments res----', res);
         setCommentsData(res?.data);

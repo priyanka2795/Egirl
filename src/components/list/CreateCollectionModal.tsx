@@ -32,7 +32,7 @@ const CreateCollectionModal = ({ closeModalItem ,collectionUpdate, setCollection
       setListNameErr("required")
       return
     }
-    createCollection(listName, token)
+    createCollection(listName, refreshTokenData?refreshTokenData:token)
     .then((res:any)=>{
       console.log("create collection res---",res)
       if(res.status === 200){

@@ -98,7 +98,7 @@ const Home = () => {
     }
     
     
-    forYouPost(1,10, token)
+    forYouPost(1,10, refreshTokenData?refreshTokenData:token)
     .then((res:any)=>{
       setForYouData(res?.data)
       if(res?.response?.status === 401){
@@ -109,7 +109,7 @@ const Home = () => {
       console.log("forYou err---", err)
     })
 
-    getPostSubscription(1, 10, token)
+    getPostSubscription(1, 10, refreshTokenData?refreshTokenData:token)
     .then((res:any)=>{
       setSubscriptionData(res?.data)
       if(res?.response?.status === 401){

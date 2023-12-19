@@ -33,7 +33,7 @@ const SubscriptionOptions = ({ showProfile, component }: SubscriptionOptionsProp
       Cookies.set("accessToken", refreshTokenData)
     }
 
-    getSubscribed(1,10, token)
+    getSubscribed(1,10, refreshTokenData?refreshTokenData:token)
     .then((res:any)=>{
       console.log("get subscription res---",res)
       setSubscriptions(res.data)

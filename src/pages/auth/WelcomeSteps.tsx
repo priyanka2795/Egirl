@@ -136,7 +136,7 @@ const WelcomeStepsModal = ({
       Cookies.set("accessToken", refreshTokenData)
     }
 
-    getUserInterest(token)
+    getUserInterest(refreshTokenData?refreshTokenData:token)
     .then((res:any)=>{
       setUserInterestData(res?.data)
       if(res?.response?.status === 401){

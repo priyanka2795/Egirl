@@ -49,7 +49,7 @@ const CollectionOptions = ({ setShowRealistic }: CollectionOptionsProps) => {
     if(refreshTokenData){
       Cookies.set("accessToken", refreshTokenData)
     }
-    getAllCollections(1, 10, token)
+    getAllCollections(1, 10, refreshTokenData?refreshTokenData:token)
       .then((res: any) => {
         setAllCollections(res.data);
         if(res?.response?.status === 401){
