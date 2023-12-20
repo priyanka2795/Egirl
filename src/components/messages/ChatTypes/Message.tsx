@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Image from 'next/image';
 import RefreshIcon from '../svg/refresh-icon.svg';
 import EmojiIcon from '../svg/emoji-icon.svg';
@@ -19,6 +19,7 @@ import ChatGridImg from './ChatGridImg';
 import BubbleViewTimeStamp from './BubbleViewTimeStamp';
 import Rating from './Rating';
 
+
 interface MessageProps {
   src: string;
   alt: string;
@@ -32,6 +33,7 @@ interface MessageProps {
   isLast?: boolean;
   messageId?: any;
   chatName: string;
+  copyMessage:any
 }
 
 const Message: React.FC<MessageProps> = ({
@@ -46,7 +48,8 @@ const Message: React.FC<MessageProps> = ({
   regenerateIcon,
   messageId,
   chatName,
-  isLast
+  isLast,
+  copyMessage
 }) => {
   var settings = {
     dots: true,
@@ -64,6 +67,9 @@ const Message: React.FC<MessageProps> = ({
   const [showSelectedEmoji, setShowSeletedEmoji] = useState('');
   const [feedbackSent, setFeedbackSent] = useState(false);
   const [showFeedText, setShowFeedText] = useState(false);
+  const messageRef=useRef(null)
+
+  console.log({message,rateResponse})
 
   const handleStarClick = (starCount: number) => {
     setSelectedStars(starCount);
@@ -81,55 +87,37 @@ const Message: React.FC<MessageProps> = ({
       console.log("mouseLeave>>>>");
   };
 
+
+
   return (
     <>
-      <div
-        className={`refresh-icon-parent flex py-4 last:pb-0 ${
-          chatName === 'Bubble chat' && name === 'You'
-            ? 'rounded-br-0 ml-auto !w-[300px] items-end justify-end'
-            : chatName === 'Bubble chat'
-            ? 'mr-auto w-[350px] items-start items-end'
-            : 'w-full items-start '
-        }`}
-      >
-        {chatName === 'Bubble chat' && name === 'You' ? (
+      <div className='w-full flex mb-3 gap-2'>
+      {chatName === 'Bubble chat' && name === 'You' ? (
           ''
         ) : (
           <Image
             key={0}
-            src={src} // Change to your image path
+            src={src} // Change to your image path //profile
             alt={alt} // Change to your alt text
             width={40}
             height={40}
             className='object-contain rounded-full '
           />
         )}
+        <div className='w-full'>
+        <div
+        className={` my-1 rounded-lg relative py-3  min-w-[50px] max-w-[300px] text-left text-white ${name==="You" ? "float-right rounded-br-none bg-[#5848BC] pl-3 pr-3.5" : "rounded-bl-none bg-[#1E1E1E]  pl-3.5 pr-3"}`}
+      >
+        
         <div className='flex flex-col w-full ml-3 group'>
-          {chatName === 'Bubble chat' ? (
-            <></>
-          ) : (
-            <div className='mb-[2px] flex items-center'>
-              <span className='mr-2 cursor-pointer text-[15px] font-medium leading-5'>
-                {name}
-              </span>
-              <span className='text-[12px] font-normal leading-4 text-[#979797]'>
-                {time}
-              </span>
-            </div>
-          )}
+          
 
           {messageIcons ? (
             <>
-              <div className='relative flex gap-[18px]'>
+              <div className='relative flex'>
                 <span
-                  className={`refresh-icon w-full text-[16px] font-normal leading-6                  
-                  ${
-                    chatName === 'Bubble chat' && name === 'You'
-                      ? 'rounded-br-0 max-w-[300px] items-end justify-end rounded-bl-[10px] rounded-tl-[10px] rounded-tr-[10px] bg-[#5848BC] p-3'
-                      : chatName === 'Bubble chat' && name !== 'you'
-                      ? 'rounded-br-0 justify-end rounded-br-[10px] rounded-tl-[10px] rounded-tr-[10px] bg-[#272727] p-4 '
-                      : 'w-full items-start'
-                  }`}
+                ref={messageRef}
+                  className='mx-2'
                 >
                   {message}
                 </span>
@@ -137,14 +125,14 @@ const Message: React.FC<MessageProps> = ({
                 <div
                   className={`${
                     chatName === 'Bubble chat' && name === 'You'
-                      ? 'absolute -left-[97px] flex h-full items-center'
+                      ? 'absolute -left-[120px] flex h-full items-center z-50'
                       : chatName === 'Bubble chat' && name !== 'You'
                       ? 'absolute -right-[97px] flex h-full items-center'
                       : ''
                   }`}
                 >
                   <div
-                    className={`flex w-[78px] gap-3 opacity-0 group-hover:flex group-hover:opacity-100 ${
+                    className={`flex w-[78px] gap-2 opacity-0 group-hover:flex group-hover:opacity-100 ${
                       chatName === 'Bubble chat' && name === 'You'
                         ? 'justify-end'
                         : chatName === 'Bubble chat' && name !== 'You'
@@ -172,7 +160,7 @@ const Message: React.FC<MessageProps> = ({
                         />
                       ) : null}
                     </div>
-                    <CopyIcon className='h-5 cursor-pointer' />
+                    <CopyIcon className='h-5 cursor-pointer' onClick={()=>copyMessage(message)}/>
                   </div>
                 </div>
               </div>
@@ -190,13 +178,9 @@ const Message: React.FC<MessageProps> = ({
 
         </div>
       </div>
-          <BubbleViewTimeStamp
-            chatName={chatName}
-            userName={name}
-            timeStamp={time}
-          />
-
-          {feedbackSent ? (
+      <div className={`w-full text-xs flex items-center gap-2 ${name==="You" ? "justify-end" : "justify-start"}`}>
+        <p>09:25pm</p>
+        {feedbackSent ? (
             <FeedbackSent />
           ) : showFeedText ? (
             <FeedbackTexts
@@ -205,17 +189,28 @@ const Message: React.FC<MessageProps> = ({
               setFeedbackSent={setFeedbackSent}
             />
           ) : rateResponse ? (
-            <div className='flex items-center justify-between w-full pl-[47px]'>
+            <div className='flex items-center justify-between w-full w-full'>
               <Rating selectedStars={selectedStars} handleStarClick={handleStarClick} handleStarHover={handleStarHover} handleStarHoverOut={handleStarHoverOut}/>
               <div className='flex gap-2'>
-               <ArrowLeft/>
+               {/* <ArrowLeft/>
                 <p className='text-[13px] font-semibold text-[#979797]'>2/2</p>
-               <ArrowRight/>
+               <ArrowRight/> */}
               </div>
             </div>
           ) : (
             ''
           )}
+      </div>
+        </div>
+      </div>
+      
+          {/* <BubbleViewTimeStamp
+            chatName={chatName}
+            userName={name}
+            timeStamp={time}
+          /> */}
+
+        
     </>
   );
 };
