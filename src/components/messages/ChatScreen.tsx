@@ -99,6 +99,9 @@ export default function ChatScreen({
   const [socket, setSocket] = useState<any>(null);
   const [showVoiceModeText, setShowVoiceModeText] = useState<boolean>(false);
 
+  const [imageUploaded, setImageUploaded] = useState<any[]>([]);
+  const [showImageUploaded, setShowImageUploaded] = useState<any[]>([]);
+
   const copyMessage = (message: string) => {
     navigator.clipboard.writeText(message);
     toast.success('Copy to Clipboard', {
@@ -165,7 +168,6 @@ export default function ChatScreen({
     }
   };
 
-  const [imageUploaded, setImageUploaded] = useState<any[]>([]);
 
   const {
     isDragActive,
@@ -193,6 +195,7 @@ export default function ChatScreen({
       }));
       setSendUploadImgState(false);
       setImageUploaded((prevImages) => [...prevImages, ...newImages]);
+      setShowImageUploaded((prevImages) => [...prevImages, ...newImages])
     }
   }, [acceptedFiles]);
 
@@ -200,6 +203,7 @@ export default function ChatScreen({
     const updatedImages = [...imageUploaded];
     updatedImages.splice(index, 1);
     setImageUploaded(updatedImages);
+    setShowImageUploaded(updatedImages)
   };
 
   useEffect(() => {
@@ -226,17 +230,19 @@ export default function ChatScreen({
   }, []);
 
   const handleMessage = () => {
-    if (socket && socket.readyState === WebSocket.OPEN) {
-      setShowMessage(true);
-      console.log('message---', message);
-      const messageData = {
-        message: message
-      };
-      socket.send(JSON.stringify(messageData));
-      setMessage('');
+    if(message.length > 0){
+      if (socket && socket.readyState === WebSocket.OPEN) {
+        setShowMessage(true);
+        console.log('message---', message);
+        const messageData = {
+          message: message
+        };
+        socket.send(JSON.stringify(messageData));
+        setMessage('');
+      }
+      setImageUploaded([])
     }
-  };
-  console.log({ messages });
+   };
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
@@ -244,8 +250,6 @@ export default function ChatScreen({
       document.removeEventListener('mousedown', handleClickOutside);
       clearTimeout(voicemodeTimerRef.current)
     };
-
-
   }, []);
 
   const handleClickOutside = (event: any) => {
@@ -266,7 +270,7 @@ export default function ChatScreen({
       setShowVoiceModeText(false);
     },500)
   };
-
+ 
   return (
     <>
       <div
@@ -511,7 +515,7 @@ export default function ChatScreen({
                   <div className='relative flex w-full flex-col items-center rounded-[14px] bg-[#1E1E1E]'>
                     <div className='flex w-full items-start rounded-t-[14px] bg-[#1E1E1E]'>
                       {imageUploaded?.map((file: any, index: number) => (
-                        <div className='relative p-2'>
+                        <div className='relative p-2' key={index}>
                           <Image
                             src={file?.preview || ''}
                             alt=''
