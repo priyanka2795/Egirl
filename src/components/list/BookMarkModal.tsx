@@ -1,6 +1,6 @@
 //@ts-nocheck
 import { Modal } from '@components/modal/modal';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useRef } from 'react';
 import CloseIcon from '@/assets/svgImages/close-icon.svg';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -123,13 +123,37 @@ const BookMarkModal = ({
     setCommentLength(1)
    }  
   }
+  
+ 
+  // useEffect(() => {
+  //   let element = document.getElementsByClassName("slick-arrow slick-next");
+  //  for(let i=0; i<element.length; i++){
+  //   element[i].addEventListener('click', (event: any) => {
+  //     event.stopPropagation();
+  //     closeModalState(true);
+  //   });
+  //  }
+  // }, []);
+  const modalRef=useRef(null)
+  useEffect(()=>{
+    document.addEventListener('mousedown',handleClickOutside);
+    return ()=>{
+      document.removeEventListener('mousedown',handleClickOutside)
+    }
+  },[]);
 
+  const handleClickOutside=(event)=>{
+    if(modalRef.current && !modalRef.current.contains(event.target)){
+      closeModalState(false);
+    }
+  }
    return (
     <Modal
       open={true}
       modalClassName='flex flex-col h-max  w-[1248px] rounded-[20px] bg-[#121212] overflow-hidden mt-10 mb-10 ml-5 bookmark-img-text'
-      closeModal={() => closeModalState(false)}
+      closeModal={() => closeModalState(false),event.stopPropagation()}
       modalOverlayStyle='!bg-black/80'
+      ref = {modalRef}
     >
       <div className='flex '>
         <div className='book-mark-modal relative h-full w-[800px]'>
@@ -316,7 +340,7 @@ const BookMarkModal = ({
                               {ele.commenter_username}
                             </div>
                             <div className='font-normal text-[15px] text-[#979797]'>
-                              @{ele.commenter_display_name}
+                              @{ele.commenter_display_name&&ele.commenter_display_name.slice(0,10)}
                             </div>
                           </div>
                           <div className='font-normal text-[13px] text-[#979797]'>

@@ -274,7 +274,7 @@ const Banner: React.FC<BannerProp> = ({
               ref={photoDropdownRef}
             >
               {
-                router.asPath === "/explore" ? "":
+                (router.asPath === "/explore" || router.asPath === "/lists") ? "":
                 <Image
                 className='relative'
                 src={cameraIcon}
@@ -324,7 +324,7 @@ const Banner: React.FC<BannerProp> = ({
               </div>
               <div className={'flex gap-3 self-end'}>
                 {
-                  router.asPath === "/explore" ? 
+                  (router.asPath === "/explore" || router.asPath === "/lists") ? 
                 <>
                   <button
                   className={`flex h-max gap-2 rounded-[14px] px-[20px] py-[11px] text-[16px] font-bold ${

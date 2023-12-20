@@ -16,8 +16,7 @@ const ViewAllTags = ({selectedTags,getSelectedTagOnClick,filteredTags, closeAllT
     const letterToFilterBy=(letter)=>{
       setFilterTagsBy(letter);
     }
-
-    useEffect(()=>{
+ useEffect(()=>{
       document.addEventListener('mousedown',handleClickOutside);
       return ()=>{
         document.removeEventListener('mousedown',handleClickOutside)
